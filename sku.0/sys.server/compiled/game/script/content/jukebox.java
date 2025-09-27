@@ -5,7 +5,7 @@ package script.content;/*
 @Requirements: <no requirements>
 @Notes: Sounds might not stop playing when you swap them out. idk how to fix.
 @Created: Monday, 5/6/2024, at 11:32 PM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

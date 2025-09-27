@@ -25,10 +25,9 @@ public class cantina_controller extends script.base_script
         {
             if (!hasObjVar(self, "bhcelebs.next_invasion_time"))
             {
-                float minInvasionTime = TWENTY_FOUR_HOURS;
                 float timeChunkSize = 900.0f;
                 int numTimeChunk = 192;
-                float nextInvasionTime = (rand(1, numTimeChunk) * timeChunkSize) + minInvasionTime + getGameTime();
+                float nextInvasionTime = (rand(1, numTimeChunk) * timeChunkSize) + TWENTY_FOUR_HOURS + getGameTime();
                 setObjVar(self, "bhcelebs.next_invasion_time", nextInvasionTime);
             }
             setObjVar(self, "bhcelebs.invasion_active", 0);
@@ -109,11 +108,10 @@ public class cantina_controller extends script.base_script
         setObjVar(self, "bhcelebs.invasion_active", 0);
         setObjVar(bossk, "bhcelebs.run_away", 1);
         messageTo(bossk, "runAwayAndPoof", null, 1, false);
-        float minInvasionTime = TWENTY_FOUR_HOURS;
         float timeChunkSize = 900.0f;
         int numTimeChunk = 192;
         float rightNow = getGameTime();
-        float nextInvasionTime = (rand(1, numTimeChunk) * timeChunkSize) + minInvasionTime + rightNow;
+        float nextInvasionTime = (rand(1, numTimeChunk) * timeChunkSize) + TWENTY_FOUR_HOURS + rightNow;
         setObjVar(self, "bhcelebs.next_invasion_time", nextInvasionTime);
         messageTo(self, "invasionTimerPing", null, TWENTY_FOUR_HOURS, false);
         return SCRIPT_CONTINUE;

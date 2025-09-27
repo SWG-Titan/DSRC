@@ -3,7 +3,7 @@ package script.event.lifeday;
 import script.*;
 import script.library.*;
 
-public class lifeday_objective extends script.base_script
+public class lifeday_objective extends base_script
 {
     public lifeday_objective()
     {
@@ -95,7 +95,7 @@ public class lifeday_objective extends script.base_script
             int secondsUntil = 10;
             int then = now + secondsUntil;
             int actuallyEnd = then - now;
-            sendSystemMessageTestingOnly(speaker, "Day will end in " + actuallyEnd + " seconds");
+            broadcast(speaker, "Day will end in " + actuallyEnd + " seconds");
             setObjVar(speaker, LIFEDAY_TIMESTAMP, then);
         }
         if (text.equals("endDayPlanet"))
@@ -105,7 +105,7 @@ public class lifeday_objective extends script.base_script
             int secondsUntil = 10;
             int then = now + secondsUntil;
             int actuallyEnd = then - now;
-            sendSystemMessageTestingOnly(speaker, "Leader board day will end in " + actuallyEnd + " seconds");
+            broadcast(speaker, "Leader board day will end in " + actuallyEnd + " seconds");
             if (!isIdValid(tatooine) || !exists(tatooine))
             {
                 return SCRIPT_CONTINUE;
@@ -122,7 +122,7 @@ public class lifeday_objective extends script.base_script
         }
         if (text.equals("resetMe"))
         {
-            sendSystemMessageTestingOnly(speaker, "Resetting all life day obj vars and buffs");
+            broadcast(speaker, "Resetting all life day obj vars and buffs");
             removeObjVar(speaker, "lifeday.locked_out");
             removeObjVar(speaker, "lifeday.time_stamp");
             removeObjVar(speaker, "lifeday.neutral_imperial");
@@ -279,6 +279,7 @@ public class lifeday_objective extends script.base_script
     }
     private void giveTreat(obj_id player, int quantity, int faction) throws InterruptedException
     {
+        //NOTE: This handles the giving of tokens to players. It also handles the daily limit of tokens.
         obj_id pInv = utils.getInventoryContainer(player);
         if (faction == REBEL)
         {

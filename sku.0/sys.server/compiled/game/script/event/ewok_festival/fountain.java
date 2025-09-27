@@ -36,6 +36,7 @@ public class fountain extends script.base_script
             else 
             {
                 sendSystemMessage(player, ALREADY_HAVE);
+                LOG("events", "EFoL: ewok_festival.fountain.OnObjectMenuSelect() - Player " + player + " attempted to convert berry 1 to berry 2, but already had berry 2.");
             }
             sendDirtyObjectMenuNotification(self);
         }
@@ -53,6 +54,7 @@ public class fountain extends script.base_script
             static_item.createNewItemFunction(OBJ_BERRY_TWO, utils.getInventoryContainer(player));
             doAnimationAction(player, "manipulate_medium");
             sendSystemMessage(player, BERRY_GRANTED);
+            LOG("events", "EFoL: ewok_festival.fountain.convertBerry() - Player " + player + " converted berry 1 to berry 2.");
             destroyObject(berryOne);
             return true;
         }

@@ -3,12 +3,11 @@ package script.event.halloween;
 import script.*;
 import script.library.*;
 
-public class trick_device extends script.base_script
+public class trick_device extends base_script
 {
-    public trick_device()
-    {
-    }
     private static final String HALLOWEEN = "event/halloween";
+    public static final string_id TEN_COINS = new string_id(HALLOWEEN, "ten_coins");
+    public static final string_id FIVE_COINS = new string_id(HALLOWEEN, "five_coins");
     private static final string_id TRICK_OPTION_1_ID = new string_id(HALLOWEEN, "halloween_trick_1");
     private static final string_id TRICK_OPTION_2_ID = new string_id(HALLOWEEN, "halloween_trick_2");
     private static final string_id TRICK_OPTION_3_ID = new string_id(HALLOWEEN, "halloween_trick_3");
@@ -24,9 +23,12 @@ public class trick_device extends script.base_script
     private static final string_id SID_TURN_ON = new string_id(HALLOWEEN, "fog_machine_on");
     private static final string_id SID_TURN_OFF = new string_id(HALLOWEEN, "fog_machine_off");
     private static final string_id CANT_USE = new string_id(HALLOWEEN, "cant_use_device");
-    public static final string_id TEN_COINS = new string_id(HALLOWEEN, "ten_coins");
-    public static final string_id FIVE_COINS = new string_id(HALLOWEEN, "five_coins");
     private static final string_id OUT_OF_RANGE = new string_id(HALLOWEEN, "trick_device_oor");
+
+    public trick_device()
+    {
+    }
+
     public int OnInitialize(obj_id self) throws InterruptedException
     {
         int projectorTier = getIntObjVar(self, "item.projector");
@@ -41,13 +43,14 @@ public class trick_device extends script.base_script
                 }
                 createTriggerVolume("trickAura", 5, true);
             }
-            else 
+            else
             {
                 removeTriggerVolume("trickAura");
             }
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnAboutToBeTransferred(obj_id self, obj_id destContainer, obj_id transferer) throws InterruptedException
     {
         if (hasObjVar(self, "fogOn"))
@@ -58,6 +61,7 @@ public class trick_device extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnTransferred(obj_id self, obj_id sourceContainer, obj_id destContainer, obj_id transferer) throws InterruptedException
     {
         int projectorTier = getIntObjVar(self, "item.projector");
@@ -73,13 +77,14 @@ public class trick_device extends script.base_script
             {
                 createTriggerVolume("trickAura", 5, true);
             }
-            else 
+            else
             {
                 removeTriggerVolume("trickAura");
             }
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnTriggerVolumeEntered(obj_id self, String volumeName, obj_id breacher) throws InterruptedException
     {
         if (volumeName.equals("trickAura"))
@@ -113,6 +118,7 @@ public class trick_device extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
         mi.addRootMenu(menu_info_types.ITEM_USE, new string_id("", ""));
@@ -122,13 +128,14 @@ public class trick_device extends script.base_script
             {
                 mi.addRootMenu(menu_info_types.ITEM_USE, SID_TURN_OFF);
             }
-            else 
+            else
             {
                 mi.addRootMenu(menu_info_types.ITEM_USE, SID_TURN_ON);
             }
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
         if (inHouse(self))
@@ -157,6 +164,7 @@ public class trick_device extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     private boolean canUse(obj_id player, obj_id device) throws InterruptedException
     {
         if (!inHouse(device))
@@ -165,7 +173,8 @@ public class trick_device extends script.base_script
             {
                 return false;
             }
-            if(!isValidId(getIntendedTarget(player))) {
+            if (!isValidId(getIntendedTarget(player)))
+            {
                 return false;
             }
             obj_id correctPlayer = utils.getObjIdScriptVar(getIntendedTarget(player), "readyForTrickFromPlayer." + player);
@@ -173,6 +182,7 @@ public class trick_device extends script.base_script
         }
         return false;
     }
+
     private void startDevice(obj_id player) throws InterruptedException
     {
         String TRICK_OPTION_1 = utils.packStringId(TRICK_OPTION_1_ID);
@@ -180,27 +190,27 @@ public class trick_device extends script.base_script
         String TRICK_OPTION_3 = utils.packStringId(TRICK_OPTION_3_ID);
         String TRICK_OPTION_4 = utils.packStringId(TRICK_OPTION_4_ID);
         String TRICK_OPTION_5 = utils.packStringId(TRICK_OPTION_5_ID);
-        final String[] TRICK_OPTIONS_1 = 
-        {
-            TRICK_OPTION_1,
-            TRICK_OPTION_2,
-            TRICK_OPTION_3
-        };
-        final String[] TRICK_OPTIONS_2 = 
-        {
-            TRICK_OPTION_1,
-            TRICK_OPTION_2,
-            TRICK_OPTION_3,
-            TRICK_OPTION_4
-        };
-        final String[] TRICK_OPTIONS_3 = 
-        {
-            TRICK_OPTION_1,
-            TRICK_OPTION_2,
-            TRICK_OPTION_3,
-            TRICK_OPTION_4,
-            TRICK_OPTION_5
-        };
+        final String[] TRICK_OPTIONS_1 =
+                {
+                        TRICK_OPTION_1,
+                        TRICK_OPTION_2,
+                        TRICK_OPTION_3
+                };
+        final String[] TRICK_OPTIONS_2 =
+                {
+                        TRICK_OPTION_1,
+                        TRICK_OPTION_2,
+                        TRICK_OPTION_3,
+                        TRICK_OPTION_4
+                };
+        final String[] TRICK_OPTIONS_3 =
+                {
+                        TRICK_OPTION_1,
+                        TRICK_OPTION_2,
+                        TRICK_OPTION_3,
+                        TRICK_OPTION_4,
+                        TRICK_OPTION_5
+                };
         obj_id self = getSelf();
         String prompt = "Select the desired trick";
         String title = "Trick or Treat Projector";
@@ -221,6 +231,7 @@ public class trick_device extends script.base_script
             setWindowPid(player, pid);
         }
     }
+
     public int handleOptionSelect(obj_id self, dictionary params) throws InterruptedException
     {
         if ((params == null) || (params.isEmpty()))
@@ -255,8 +266,10 @@ public class trick_device extends script.base_script
         if (utils.hasScriptVar(target, "readyForTrickFromPlayer." + player))
         {
             obj_id correctPlayer = utils.getObjIdScriptVar(target, "readyForTrickFromPlayer." + player);
-            if(correctPlayer == player) {
-                switch (idx) {
+            if (correctPlayer == player)
+            {
+                switch (idx)
+                {
                     case 0:
                         utils.removeScriptVar(target, "readyForTrickFromPlayer." + player);
                         playTrick(self, player, target, 1);
@@ -284,6 +297,7 @@ public class trick_device extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     private void playTrick(obj_id self, obj_id player, obj_id target, int trick) throws InterruptedException
     {
         if (!ai_lib.isInCombat(player) || !ai_lib.isInCombat(target))
@@ -345,17 +359,19 @@ public class trick_device extends script.base_script
                 chat.chat(target, player, chat.CHAT_SAY, new string_id(HALLOWEEN, "not_scared_" + scareDialogue), chat.ChatFlag_targetOnly);
             }
         }
-        else 
+        else
         {
             sendSystemMessage(player, IN_COMBAT);
         }
     }
+
     public void cleanScriptVars(obj_id player) throws InterruptedException
     {
         utils.removeScriptVarTree(player, "trick_or_treat_device");
         utils.removeScriptVarTree(getSelf(), "trick_or_treat_device");
         setObjVar(player, "trick_or_treat_device", true);
     }
+
     public void closeOldWindow(obj_id player) throws InterruptedException
     {
         if (utils.hasScriptVar(player, "trick_or_treat_device.pid"))
@@ -364,6 +380,7 @@ public class trick_device extends script.base_script
             utils.removeScriptVar(player, "trick_or_treat_device.pid");
         }
     }
+
     public void setWindowPid(obj_id player, int pid) throws InterruptedException
     {
         if (pid > -1)
@@ -371,6 +388,7 @@ public class trick_device extends script.base_script
             utils.setScriptVar(player, "trick_or_treat_device.pid", pid);
         }
     }
+
     private boolean inHouse(obj_id device) throws InterruptedException
     {
         obj_id selfContainer = getContainedBy(device);
@@ -380,12 +398,9 @@ public class trick_device extends script.base_script
         {
             templateName = getTemplateName(ship);
         }
-        if ((utils.isInHouseCellSpace(device) || space_utils.isPobType(templateName)) && !utils.isNestedWithinAPlayer(device))
-        {
-            return true;
-        }
-        return false;
+        return (utils.isInHouseCellSpace(device) || space_utils.isPobType(templateName)) && !utils.isNestedWithinAPlayer(device);
     }
+
     private void startFog(obj_id device) throws InterruptedException
     {
         stopClientEffectObjByLabel(device, "halloweenFog");
@@ -397,6 +412,7 @@ public class trick_device extends script.base_script
         playClientEffectObj(device, "clienteffect/halloween_fog_machine.cef", device, "", null, "halloweenFog");
         messageTo(device, "continueFog", null, 18.0f, false);
     }
+
     private void stopFog(obj_id device) throws InterruptedException
     {
         stopClientEffectObjByLabel(device, "halloweenFog");
@@ -409,6 +425,7 @@ public class trick_device extends script.base_script
             removeObjVar(device, "unmoveable");
         }
     }
+
     public int continueFog(obj_id self, dictionary params) throws InterruptedException
     {
         if (hasObjVar(self, "fogOn"))
@@ -418,6 +435,7 @@ public class trick_device extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnDestroy(obj_id self) throws InterruptedException
     {
         if (getIntObjVar(self, "item.projector") > 2)

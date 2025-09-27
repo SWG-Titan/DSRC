@@ -2,7 +2,7 @@ package script.item.container.got_specific;
 
 import script.obj_id;
 
-public class lunchbox extends script.item.container.got_specific.base
+public class lunchbox extends base
 {
     public lunchbox()
     {

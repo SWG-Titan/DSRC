@@ -5,11 +5,8 @@ import script.library.*;
 
 import java.util.Vector;
 
-public class emperor_statue extends script.base_script
+public class emperor_statue extends base_script
 {
-    public emperor_statue()
-    {
-    }
     public static final String MUSIC_IMPERIAL_MARCH = "object/soundobject/soundobject_imperial_march.iff";
     public static final String MUSIC_IMPERIAL_ATTACK = "object/soundobject/soundobject_imperial_attack.iff";
     public static final String EMP_DAY = "event/emperors_day";
@@ -33,12 +30,19 @@ public class emperor_statue extends script.base_script
     public static final string_id NOT_OLD_ENOUGH = new string_id(EMP_DAY, "not_old_enough");
     public static final string_id WINNER_HELP = new string_id(EMP_DAY, "winner_help_empire");
     public static final float LAMBDA_YAW = -0.01f;
+
+    public emperor_statue()
+    {
+    }
+
     public int OnInitialize(obj_id self) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.OnInitialize: Init.");
-        if (utils.hasScriptVar(self, "musicObject")) {
+        if (utils.hasScriptVar(self, "musicObject"))
+        {
             obj_id oldSoundObject = utils.getObjIdScriptVar(self, "musicObject");
-            if ((isIdValid(oldSoundObject)) && exists(oldSoundObject)) {
+            if ((isIdValid(oldSoundObject)) && exists(oldSoundObject))
+            {
                 destroyObject(oldSoundObject);
             }
         }
@@ -47,6 +51,7 @@ public class emperor_statue extends script.base_script
         messageTo(self, "prepareParade", null, 30.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int OnGetAttributes(obj_id self, obj_id player, String[] names, String[] attribs) throws InterruptedException
     {
         int idx = utils.getValidAttributeIndex(names);
@@ -60,7 +65,7 @@ public class emperor_statue extends script.base_script
             attribs[idx] = "Now";
             idx++;
         }
-        else 
+        else
         {
             int nextCeremony = getIntObjVar(self, "ceremonyTime");
             if (nextCeremony <= 0)
@@ -82,6 +87,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
         if (!isIdValid(player) || ai_lib.isInCombat(player) || isIncapacitated(player) || isDead(player))
@@ -98,6 +104,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
         if (!isIdValid(player) || ai_lib.isInCombat(player) || isIncapacitated(player) || isDead(player))
@@ -123,6 +130,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnDestroy(obj_id self) throws InterruptedException
     {
         obj_id oldSoundObject = utils.getObjIdScriptVar(self, "musicObject");
@@ -133,8 +141,10 @@ public class emperor_statue extends script.base_script
         if (utils.hasScriptVar(self, "vader"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "vader");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     destroyObject(((obj_id) aNpc));
                 }
             }
@@ -143,8 +153,10 @@ public class emperor_statue extends script.base_script
         if (utils.hasScriptVar(self, "dark_trooper"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "dark_trooper");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     destroyObject(((obj_id) aNpc));
                 }
             }
@@ -152,13 +164,15 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnHearSpeech(obj_id self, obj_id speaker, String text) throws InterruptedException
     {
         if (!isGod(speaker))
         {
             return SCRIPT_CONTINUE;
         }
-        switch (text) {
+        switch (text)
+        {
             case "getyaw":
                 sendSystemMessage(speaker, "Statue Yaw: " + getYaw(self), "");
                 return SCRIPT_OVERRIDE;
@@ -166,18 +180,22 @@ public class emperor_statue extends script.base_script
                 sendSystemMessage(speaker, "Creating Shuttle", "");
                 createLambdaDropship(self, getLocation(speaker));
                 return SCRIPT_OVERRIDE;
-            case "startParade": {
+            case "startParade":
+            {
                 obj_id oldSoundObject = utils.getObjIdScriptVar(self, "musicObject");
-                if ((isIdValid(oldSoundObject)) && exists(oldSoundObject)) {
+                if ((isIdValid(oldSoundObject)) && exists(oldSoundObject))
+                {
                     destroyObject(oldSoundObject);
                 }
                 sendSystemMessage(speaker, "Manually starting parade", "");
                 messageTo(self, "prepareParade", null, 10.0f, false);
                 return SCRIPT_OVERRIDE;
             }
-            case "removeParade": {
+            case "removeParade":
+            {
                 obj_id oldSoundObject = utils.getObjIdScriptVar(self, "musicObject");
-                if ((isIdValid(oldSoundObject)) && exists(oldSoundObject)) {
+                if ((isIdValid(oldSoundObject)) && exists(oldSoundObject))
+                {
                     destroyObject(oldSoundObject);
                 }
                 sendSystemMessage(speaker, "Manually destroying parade", "");
@@ -190,15 +208,19 @@ public class emperor_statue extends script.base_script
                 return SCRIPT_OVERRIDE;
             case "removeMyBadges":
             case "removeBadges":
-                if (hasCompletedCollectionSlot(speaker, holiday.EMPIRE_DAY_CHAMPION_BADGE)) {
+                if (hasCompletedCollectionSlot(speaker, holiday.EMPIRE_DAY_CHAMPION_BADGE))
+                {
                     sendSystemMessage(speaker, "Removed Imperial Badge", "");
-                    if (modifyCollectionSlotValue(speaker, holiday.EMPIRE_DAY_CHAMPION_BADGE, -1)) {
+                    if (modifyCollectionSlotValue(speaker, holiday.EMPIRE_DAY_CHAMPION_BADGE, -1))
+                    {
                         sendSystemMessage(speaker, holiday.SID_REM_EMP_DAY_BADGE);
                     }
                 }
-                if (hasCompletedCollectionSlot(speaker, holiday.REMEMBRANCE_DAY_CHAMPION_BADGE)) {
+                if (hasCompletedCollectionSlot(speaker, holiday.REMEMBRANCE_DAY_CHAMPION_BADGE))
+                {
                     sendSystemMessage(speaker, "Removed Rebel Badge", "");
-                    if (modifyCollectionSlotValue(speaker, holiday.REMEMBRANCE_DAY_CHAMPION_BADGE, -1)) {
+                    if (modifyCollectionSlotValue(speaker, holiday.REMEMBRANCE_DAY_CHAMPION_BADGE, -1))
+                    {
                         sendSystemMessage(speaker, holiday.SID_REM_REM_DAY_BADGE);
                     }
                 }
@@ -212,6 +234,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int npcTypeList(obj_id self, dictionary params) throws InterruptedException
     {
         String npcType = params.getString("type");
@@ -225,6 +248,7 @@ public class emperor_statue extends script.base_script
         utils.setScriptVar(self, npcType, npcs);
         return SCRIPT_CONTINUE;
     }
+
     public int prepareParade(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.prepareParade: messageHandler initialized.");
@@ -240,12 +264,13 @@ public class emperor_statue extends script.base_script
             }
             messageTo(self, "parade", null, 10.0f, false);
         }
-        else 
+        else
         {
             CustomerServiceLog("holidayEvent", "emperor_statue.prepareParade: Failed to start because the statue says the parade is running.");
         }
         return SCRIPT_CONTINUE;
     }
+
     public int parade(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.parade: messageHandler initialized.");
@@ -291,6 +316,7 @@ public class emperor_statue extends script.base_script
         messageTo(self, "spawnVader", null, 35.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int shuttleAdjust(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.parade: Adjusting location now");
@@ -302,6 +328,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int spawnDarkTroopers1(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id[] squad = new obj_id[4];
@@ -321,11 +348,12 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int spawnDarkTroopers2(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id[] squad = new obj_id[4];
         location spawnLoc = getLocation(holiday.getEmpireDayWaypointObjectObjId(self, "spawnDark2", holiday.OBJECT_NEAR_CHECK_RANGE_100M));
-        location tempLoc = (location)spawnLoc.clone();
+        location tempLoc = (location) spawnLoc.clone();
         for (int i = 0; i < squad.length; i++)
         {
             tempLoc.z = spawnLoc.z + i * 2;
@@ -340,6 +368,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int spawnVader(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vader = create.object("imperial_emperorsday_darth_vader", getLocation(holiday.getEmpireDayWaypointObjectObjId(self, "spawnVader", holiday.OBJECT_NEAR_CHECK_RANGE_100M)));
@@ -354,6 +383,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int moveParade(obj_id self, dictionary params) throws InterruptedException
     {
         location loc = getLocation(self);
@@ -363,17 +393,23 @@ public class emperor_statue extends script.base_script
         Vector squad2 = new Vector();
         squad2.setSize(0);
         obj_id pathPoint;
-        for (obj_id object : objects) {
-            if (isIdValid(object)) {
-                if (hasObjVar(object, "darkTroopers1")) {
+        for (obj_id object : objects)
+        {
+            if (isIdValid(object))
+            {
+                if (hasObjVar(object, "darkTroopers1"))
+                {
                     utils.addElement(squad1, object);
                 }
-                if (hasObjVar(object, "darkTroopers2")) {
+                if (hasObjVar(object, "darkTroopers2"))
+                {
                     utils.addElement(squad2, object);
                 }
-                if (hasObjVar(object, "vader")) {
+                if (hasObjVar(object, "vader"))
+                {
                     pathPoint = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vader_path");
-                    if (isIdValid(pathPoint) && exists(pathPoint)) {
+                    if (isIdValid(pathPoint) && exists(pathPoint))
+                    {
                         pathTo(object, getLocation(pathPoint));
                     }
                 }
@@ -385,7 +421,7 @@ public class emperor_statue extends script.base_script
             location tempLoc;
             for (int i = 0; i < squad1.size(); i++)
             {
-                if (isIdValid(((obj_id)squad1.get(i))) && isIdValid(((obj_id)squad2.get(i))))
+                if (isIdValid(((obj_id) squad1.get(i))) && isIdValid(((obj_id) squad2.get(i))))
                 {
                     pathPoint = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "darktrooper_path_right");
                     if (isIdValid(pathPoint) && exists(pathPoint))
@@ -393,7 +429,7 @@ public class emperor_statue extends script.base_script
                         pathLoc = getLocation(pathPoint);
                         tempLoc = (location) pathLoc.clone();
                         tempLoc.z = pathLoc.z - i * 2;
-                        pathTo(((obj_id)squad1.get(i)), tempLoc);
+                        pathTo(((obj_id) squad1.get(i)), tempLoc);
                     }
                     pathPoint = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "darktrooper_path_left");
                     if (isIdValid(pathPoint) && exists(pathPoint))
@@ -401,13 +437,14 @@ public class emperor_statue extends script.base_script
                         pathLoc = getLocation(pathPoint);
                         tempLoc = (location) pathLoc.clone();
                         tempLoc.z = pathLoc.z - i * 2;
-                        pathTo(((obj_id)squad2.get(i)), tempLoc);
+                        pathTo(((obj_id) squad2.get(i)), tempLoc);
                     }
                 }
             }
         }
         return SCRIPT_CONTINUE;
     }
+
     public int launchRandomTieFighterFlyBy(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.launchRandomTieFighterFlyBy: messageHandler initialized.");
@@ -439,11 +476,12 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int launchRandomNonFactionalFirework(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.launchRandomFirework: messageHandler initialized.");
         location statue = getLocation(self);
-        location here = (location)statue.clone();
+        location here = (location) statue.clone();
         here.z = statue.z + 20;
         int tableLength = dataTableGetNumRows(firework.TBL_FX);
         Vector nonFactionalTemplates = new Vector();
@@ -461,7 +499,7 @@ public class emperor_statue extends script.base_script
         }
         CustomerServiceLog("holidayEvent", "emperor_statue.launchRandomFirework: We are selecting a random firework out of a list of " + nonFactionalTemplates.size());
         int roll = rand(0, nonFactionalTemplates.size() - 1);
-        String template = ((String)nonFactionalTemplates.get(roll));
+        String template = ((String) nonFactionalTemplates.get(roll));
         location there = utils.getRandomLocationInRing(here, 0, 10);
         obj_id effect = create.object(template, there);
         if (isIdValid(effect))
@@ -470,10 +508,11 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int launchFactionalFirework(obj_id self, dictionary params) throws InterruptedException
     {
         location statue = getLocation(self);
-        location here = (location)statue.clone();
+        location here = (location) statue.clone();
         here.z = statue.z + 20;
         location there = utils.getRandomLocationInRing(here, 0, 10);
         obj_id effect = create.object("object/static/firework/fx_19.iff", there);
@@ -483,14 +522,17 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int vaderLeaving(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.vaderLeaving: messageHandler initialized.");
         if (utils.hasScriptVar(self, "stormtrooper_squadleader"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "stormtrooper_squadleader");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     doAnimationAction(((obj_id) aNpc), "salute2");
                 }
             }
@@ -513,12 +555,16 @@ public class emperor_statue extends script.base_script
         if (utils.hasScriptVar(self, "dark_trooper"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "dark_trooper");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
-                    if (hasObjVar(((obj_id) aNpc), "darkTroopers1")) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
+                    if (hasObjVar(((obj_id) aNpc), "darkTroopers1"))
+                    {
                         setYaw(((obj_id) aNpc), -180.0f);
                     }
-                    if (hasObjVar(((obj_id) aNpc), "darkTroopers2")) {
+                    if (hasObjVar(((obj_id) aNpc), "darkTroopers2"))
+                    {
                         setYaw(((obj_id) aNpc), -180.0f);
                     }
                 }
@@ -526,6 +572,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int finalMarch(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id[] objects = getObjectsInRange(getLocation(self), holiday.OBJECT_NEAR_CHECK_RANGE_100M);
@@ -533,15 +580,20 @@ public class emperor_statue extends script.base_script
         squad1.setSize(0);
         Vector squad2 = new Vector();
         squad2.setSize(0);
-        for (obj_id object : objects) {
-            if (isIdValid(object)) {
-                if (hasObjVar(object, "darkTroopers1")) {
+        for (obj_id object : objects)
+        {
+            if (isIdValid(object))
+            {
+                if (hasObjVar(object, "darkTroopers1"))
+                {
                     utils.addElement(squad1, object);
                 }
-                if (hasObjVar(object, "darkTroopers2")) {
+                if (hasObjVar(object, "darkTroopers2"))
+                {
                     utils.addElement(squad2, object);
                 }
-                if (hasObjVar(object, "vader")) {
+                if (hasObjVar(object, "vader"))
+                {
                     pathTo(object, getLocation(holiday.getEmpireDayWaypointObjectObjId(self, "spawnVader", holiday.OBJECT_NEAR_CHECK_RANGE_100M)));
                 }
             }
@@ -553,18 +605,18 @@ public class emperor_statue extends script.base_script
             location tempLoc;
             for (int i = 0; i < squad1.size(); i++)
             {
-                if (isIdValid(((obj_id)squad1.get(i))) && isIdValid(((obj_id)squad2.get(i))))
+                if (isIdValid(((obj_id) squad1.get(i))) && isIdValid(((obj_id) squad2.get(i))))
                 {
                     pathPoint = holiday.getEmpireDayWaypointObjectObjId(self, "spawnDark1", holiday.OBJECT_NEAR_CHECK_RANGE_100M);
                     pathLoc = getLocation(pathPoint);
                     tempLoc = (location) pathLoc.clone();
                     tempLoc.z = pathLoc.z + i * 2;
-                    pathTo(((obj_id)squad1.get(i)), tempLoc);
+                    pathTo(((obj_id) squad1.get(i)), tempLoc);
                     pathPoint = holiday.getEmpireDayWaypointObjectObjId(self, "spawnDark2", holiday.OBJECT_NEAR_CHECK_RANGE_100M);
                     pathLoc = getLocation(pathPoint);
                     tempLoc = (location) pathLoc.clone();
                     tempLoc.z = pathLoc.z + i * 2;
-                    pathTo(((obj_id)squad2.get(i)), tempLoc);
+                    pathTo(((obj_id) squad2.get(i)), tempLoc);
                 }
             }
         }
@@ -577,6 +629,7 @@ public class emperor_statue extends script.base_script
         messageTo(lambda, "takeOff", null, 90.0f, true);
         return SCRIPT_CONTINUE;
     }
+
     public int destroyParade(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.destroyParade: Destroy Parade, Destroying Parade now.");
@@ -600,8 +653,10 @@ public class emperor_statue extends script.base_script
         {
             CustomerServiceLog("holidayEvent", "emperor_statue.destroyParade: Destroying all parade NPCs that are vader.");
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "vader");
-            for (Object aNpc : npc) {
-                if (isIdValid(vader) && exists(vader)) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(vader) && exists(vader))
+                {
                     destroyObject(((obj_id) aNpc));
                 }
             }
@@ -612,8 +667,10 @@ public class emperor_statue extends script.base_script
         {
             CustomerServiceLog("holidayEvent", "emperor_statue.destroyParade: Destroying all parade NPCs that are dark troppers.");
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "dark_trooper");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     destroyObject(((obj_id) aNpc));
                 }
             }
@@ -626,24 +683,30 @@ public class emperor_statue extends script.base_script
         utils.removeScriptVar(self, "paradeRunning");
         return SCRIPT_CONTINUE;
     }
+
     public int normalMusic(obj_id self, dictionary params) throws InterruptedException
     {
-        if (utils.hasScriptVar(self, "musicObject")) {
+        if (utils.hasScriptVar(self, "musicObject"))
+        {
             obj_id oldSoundObject = utils.getObjIdScriptVar(self, "musicObject");
-            if ((isIdValid(oldSoundObject)) && exists(oldSoundObject)) {
+            if ((isIdValid(oldSoundObject)) && exists(oldSoundObject))
+            {
                 destroyObject(oldSoundObject);
             }
         }
         utils.setScriptVar(self, "musicObject", createObject(MUSIC_IMPERIAL_ATTACK, getLocation(self)));
         return SCRIPT_CONTINUE;
     }
+
     public int startConversation(obj_id self, dictionary params) throws InterruptedException
     {
         if (utils.hasScriptVar(self, "stormtrooper_squadleader"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "stormtrooper_squadleader");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     doAnimationAction(((obj_id) aNpc), "salute2");
                 }
             }
@@ -662,13 +725,17 @@ public class emperor_statue extends script.base_script
             Vector squad2 = new Vector();
             squad2.setSize(0);
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "dark_trooper");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     setYaw(((obj_id) aNpc), 0.0f);
-                    if (hasObjVar(((obj_id) aNpc), "darkTroopers1")) {
+                    if (hasObjVar(((obj_id) aNpc), "darkTroopers1"))
+                    {
                         utils.addElement(squad1, aNpc);
                     }
-                    if (hasObjVar(((obj_id) aNpc), "darkTroopers2")) {
+                    if (hasObjVar(((obj_id) aNpc), "darkTroopers2"))
+                    {
                         utils.addElement(squad2, aNpc);
                     }
                 }
@@ -677,16 +744,17 @@ public class emperor_statue extends script.base_script
             {
                 for (int i = 0; i < squad1.size(); i++)
                 {
-                    if (isIdValid(((obj_id)squad1.get(i))) && isIdValid(((obj_id)squad2.get(i))))
+                    if (isIdValid(((obj_id) squad1.get(i))) && isIdValid(((obj_id) squad2.get(i))))
                     {
-                        setYaw(((obj_id)squad1.get(i)), 90.0f);
-                        setYaw(((obj_id)squad2.get(i)), -110.0f);
+                        setYaw(((obj_id) squad1.get(i)), 90.0f);
+                        setYaw(((obj_id) squad2.get(i)), -110.0f);
                     }
                 }
             }
         }
         return SCRIPT_CONTINUE;
     }
+
     public int darth1(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vader = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vader");
@@ -697,6 +765,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int vendor2(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vendor = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vendor");
@@ -708,6 +777,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int darth2(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vader = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vader");
@@ -720,6 +790,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int darth3(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vader = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vader");
@@ -730,6 +801,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int darth4(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vader = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vader");
@@ -740,6 +812,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int darth5(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vader = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vader");
@@ -750,6 +823,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int darth6(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.darth6: messageHandler Initialized.");
@@ -766,11 +840,14 @@ public class emperor_statue extends script.base_script
             }
             Vector imperialPlayers = new Vector();
             imperialPlayers.setSize(0);
-            for (obj_id aPlayersInRange : playersInRange) {
-                if (!isIdValid(aPlayersInRange) || !exists(aPlayersInRange)) {
+            for (obj_id aPlayersInRange : playersInRange)
+            {
+                if (!isIdValid(aPlayersInRange) || !exists(aPlayersInRange))
+                {
                     continue;
                 }
-                if (holiday.isEmpireDayPlayerEligible(aPlayersInRange, holiday.IMPERIAL_PLAYER)) {
+                if (holiday.isEmpireDayPlayerEligible(aPlayersInRange, holiday.IMPERIAL_PLAYER))
+                {
                     utils.addElement(imperialPlayers, aPlayersInRange);
                 }
             }
@@ -809,7 +886,7 @@ public class emperor_statue extends script.base_script
                 messageTo(self, "waitingHalf", params, 45.0f, false);
                 messageTo(self, "waitingDone", params, 70.0f, false);
             }
-            else 
+            else
             {
                 CustomerServiceLog("holidayEvent", "emperor_statue.darth6: The list length is: " + listOfWinners.length);
                 prose_package pp = prose.getPackage(DARTH_6);
@@ -823,7 +900,7 @@ public class emperor_statue extends script.base_script
                     {
                         winnerList += " and " + getFirstName(listOfWinners[i]);
                     }
-                    else 
+                    else
                     {
                         winnerList += ", " + getFirstName(listOfWinners[i]);
                     }
@@ -851,6 +928,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int vendor3(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.vendor3: messageHandler Initialized.");
@@ -898,6 +976,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int waitingHalf(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.waitingHalf: messageHandler Initialized.");
@@ -964,36 +1043,37 @@ public class emperor_statue extends script.base_script
             if (miaList.size() == 1)
             {
                 CustomerServiceLog("holidayEvent", "emperor_statue.waitingHalf: The list length for MIA players is only one player: " + miaList.get(0));
-                waitingOnList = getFirstName(((obj_id)miaList.get(0)));
+                waitingOnList = getFirstName(((obj_id) miaList.get(0)));
             }
-            else 
+            else
             {
                 CustomerServiceLog("holidayEvent", "emperor_statue.waitingHalf: The list length for MIA players is: " + miaList.size());
                 for (int i = 0; i < miaList.size(); i++)
                 {
                     if (i == 0)
                     {
-                        waitingOnList += getFirstName(((obj_id)miaList.get(i)));
+                        waitingOnList += getFirstName(((obj_id) miaList.get(i)));
                     }
                     else if (i == (miaList.size() - 1))
                     {
-                        waitingOnList += " and " + getFirstName(((obj_id)miaList.get(i)));
+                        waitingOnList += " and " + getFirstName(((obj_id) miaList.get(i)));
                     }
-                    else 
+                    else
                     {
-                        waitingOnList += ", " + getFirstName(((obj_id)miaList.get(i)));
+                        waitingOnList += ", " + getFirstName(((obj_id) miaList.get(i)));
                     }
                 }
             }
             prose_package pp = prose.getPackage(DARTH_ANNOYED);
             prose.setTO(pp, waitingOnList);
-            chat.chat(vader, ((obj_id)miaList.get(0)), pp);
+            chat.chat(vader, ((obj_id) miaList.get(0)), pp);
             setObjVar(vader, "miaList", miaList);
             setObjVar(vader, "waitingOnList", waitingOnList);
             messageTo(self, "vendorReplyAnnoyed", null, 10.0f, false);
         }
         return SCRIPT_CONTINUE;
     }
+
     public int vendorReplyAnnoyed(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.vendorReplyAnnoyed: messageHandler Initialized.");
@@ -1005,6 +1085,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int waitingDone(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.waitingDone: messageHandler Initialized.");
@@ -1078,26 +1159,26 @@ public class emperor_statue extends script.base_script
                 if (lastestMiaList.size() == 1)
                 {
                     CustomerServiceLog("holidayEvent", "emperor_statue.waitingDone: The list length for MIA players is only one player: " + lastestMiaList.get(0));
-                    waitingOnList = getFirstName(((obj_id)lastestMiaList.get(0)));
+                    waitingOnList = getFirstName(((obj_id) lastestMiaList.get(0)));
                 }
-                else 
+                else
                 {
                     CustomerServiceLog("holidayEvent", "emperor_statue.waitingDone: The list length for MIA players is: " + lastestMiaList.size());
                     for (int i = 0; i < lastestMiaList.size(); i++)
                     {
                         if (i == 0)
                         {
-                            waitingOnList += getFirstName(((obj_id)lastestMiaList.get(i)));
+                            waitingOnList += getFirstName(((obj_id) lastestMiaList.get(i)));
                         }
                         else if (i == (lastestMiaList.size() - 1))
                         {
-                            waitingOnList += " and " + getFirstName(((obj_id)lastestMiaList.get(i)));
+                            waitingOnList += " and " + getFirstName(((obj_id) lastestMiaList.get(i)));
                         }
-                        else 
+                        else
                         {
-                            waitingOnList += ", " + getFirstName(((obj_id)lastestMiaList.get(i)));
+                            waitingOnList += ", " + getFirstName(((obj_id) lastestMiaList.get(i)));
                         }
-                        utils.removeScriptVar(((obj_id)lastestMiaList.get(i)), "emperorsDayBadge");
+                        utils.removeScriptVar(((obj_id) lastestMiaList.get(i)), "emperorsDayBadge");
                     }
                 }
                 prose_package pp = prose.getPackage(DARTH_ANNOYED_2_SINGULAR);
@@ -1106,9 +1187,9 @@ public class emperor_statue extends script.base_script
                     pp = prose.getPackage(DARTH_ANNOYED_2_PLURAL);
                 }
                 prose.setTO(pp, waitingOnList);
-                chat.chat(vader, ((obj_id)lastestMiaList.get(0)), pp);
+                chat.chat(vader, ((obj_id) lastestMiaList.get(0)), pp);
             }
-            else 
+            else
             {
                 String waitingOnList = getStringObjVar(vader, "waitingOnList");
                 prose_package pp = prose.getPackage(DARTH_ANNOYED_2_SINGULAR);
@@ -1118,8 +1199,10 @@ public class emperor_statue extends script.base_script
                 }
                 prose.setTO(pp, waitingOnList);
                 chat.chat(vader, oldMiaList[0], pp);
-                for (obj_id anOldMiaList : oldMiaList) {
-                    if (isIdValid(anOldMiaList) && exists(anOldMiaList)) {
+                for (obj_id anOldMiaList : oldMiaList)
+                {
+                    if (isIdValid(anOldMiaList) && exists(anOldMiaList))
+                    {
                         utils.removeScriptVar(anOldMiaList, "emperorsDayBadge");
                     }
                 }
@@ -1128,6 +1211,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int vendorReplyWaiting(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.vendorReplyWaiting: messageHandler Initialized.");
@@ -1140,6 +1224,7 @@ public class emperor_statue extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public boolean playTieFighterPair(obj_id self, obj_id playOnObject) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.playTieFighterPair: Function initialized.");
@@ -1156,6 +1241,7 @@ public class emperor_statue extends script.base_script
         playClientEffectLoc(getPlayerCreaturesInRange(here, 200.0f), holiday.IMPERIAL_FLYBY_PARTICLE_01, here, 1.0f);
         return true;
     }
+
     public boolean playTieFighterGroup(obj_id self, obj_id playOnObject) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.playTieFighterGroup:  Function initialized.");
@@ -1172,6 +1258,7 @@ public class emperor_statue extends script.base_script
         playClientEffectLoc(getPlayerCreaturesInRange(here, 200.0f), holiday.IMPERIAL_FLYBY_PARTICLE_02, here, 1.0f);
         return true;
     }
+
     public boolean createLambdaDropship(obj_id self, location loc) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.createLambdaDropship: Init.");

@@ -3,11 +3,12 @@ package script.event.emperorsday;
 import script.*;
 import script.library.*;
 
-public class rebel_npc extends script.base_script
+public class rebel_npc extends base_script
 {
     public rebel_npc()
     {
     }
+
     public int OnAttach(obj_id self) throws InterruptedException
     {
         String npcType = getStringObjVar(self, "emperorsday.npcType");
@@ -24,6 +25,7 @@ public class rebel_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnMovePathComplete(obj_id self) throws InterruptedException
     {
         obj_id masterObject = holiday.masterObjectObjId(self);
@@ -131,6 +133,7 @@ public class rebel_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
         if (!isIdValid(player) || ai_lib.isInCombat(player) || isIncapacitated(player) || isDead(player))
@@ -143,6 +146,7 @@ public class rebel_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
         if (!isIdValid(player) || ai_lib.isInCombat(player) || isIncapacitated(player) || isDead(player))
@@ -158,8 +162,10 @@ public class rebel_npc extends script.base_script
                 return SCRIPT_CONTINUE;
             }
             boolean playerReward = false;
-            for (obj_id listOfWinner : listOfWinners) {
-                if (player != listOfWinner) {
+            for (obj_id listOfWinner : listOfWinners)
+            {
+                if (player != listOfWinner)
+                {
                     continue;
                 }
                 playerReward = true;
@@ -173,6 +179,7 @@ public class rebel_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnSawEmote(obj_id self, obj_id emoteSayer, String emotein) throws InterruptedException
     {
         if (!isValidId(emoteSayer) || !exists(emoteSayer))
@@ -198,7 +205,7 @@ public class rebel_npc extends script.base_script
                     holiday.slapPlayerDownForBeingRude(honorGuard, emoteSayer);
                 }
             }
-            else 
+            else
             {
                 holiday.slapPlayerDownForBeingRude(self, emoteSayer);
             }
@@ -217,7 +224,7 @@ public class rebel_npc extends script.base_script
                 {
                     case 0:
                     case 2:
-                    break;
+                        break;
                     case 1:
                         doAnimationAction(self, "shake_head_no");
                         utils.removeScriptVar(emoteSayer, "emperorsDayBadge");
@@ -236,6 +243,7 @@ public class rebel_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int playerKnockedOut(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id player = params.getObjId("myTarget");

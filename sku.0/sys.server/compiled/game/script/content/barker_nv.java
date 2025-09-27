@@ -5,7 +5,7 @@ package script.content;/*
 @Requirements: <no requirements>
 @Notes: This script is an advanced version of the barker script. It allows for 4 chatter options and a barking cycle to help with a more dynamic environment.
 @Created: Wednesday, 4/24/2024, at 9:58 PM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

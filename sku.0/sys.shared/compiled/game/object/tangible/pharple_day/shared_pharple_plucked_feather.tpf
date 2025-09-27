@@ -1,0 +1,13 @@
+
+@base object/tangible/base/shared_tangible_base.iff
+
+@class tangible_object_template 6
+
+@class object_template 7
+
+objectName = "obj_n" "pharple_feather"
+detailedDescription = "obj_d" "pharple_feather"
+
+appearanceFilename = "appearance/item_collections_feather_s06.apt"
+
+gameObjectType = GOT_misc_item

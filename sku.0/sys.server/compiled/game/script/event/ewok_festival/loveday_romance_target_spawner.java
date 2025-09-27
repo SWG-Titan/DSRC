@@ -39,7 +39,7 @@ public class loveday_romance_target_spawner extends script.base_script
     public void areaDebugMessaging(obj_id self, String message) throws InterruptedException
     {
         obj_id[] players = getAllPlayers(getLocation(getTopMostContainer(self)), 35.0f);
-        if (players != null && players.length > 0)
+        if (players != null)
         {
             for (obj_id player : players) {
                 sendSystemMessage(player, message, "");

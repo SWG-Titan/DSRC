@@ -3,7 +3,7 @@ package script.event.emp_day;
 import script.*;
 import script.library.*;
 
-public class crash_site_requisition extends script.base_script
+public class crash_site_requisition extends base_script
 {
     public crash_site_requisition()
     {

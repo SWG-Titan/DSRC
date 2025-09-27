@@ -5,7 +5,7 @@ import script.obj_id;
 import script.obj_var;
 import script.obj_var_list;
 
-public class factory_crate extends script.item.container.remove_only
+public class factory_crate extends remove_only
 {
     public factory_crate()
     {
@@ -28,10 +28,10 @@ public class factory_crate extends script.item.container.remove_only
                 String ovName = ov.getName();
                 java.util.StringTokenizer st = new java.util.StringTokenizer(ovName, ".");
                 st.nextToken();
-                String ovPath = st.nextToken();
+                StringBuilder ovPath = new StringBuilder(st.nextToken());
                 while (st.hasMoreTokens())
                 {
-                    ovPath += "." + st.nextToken();
+                    ovPath.append(".").append(st.nextToken());
                 }
             }
         }

@@ -5,7 +5,7 @@ package script.content;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Friday, 5/10/2024, at 12:28 AM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

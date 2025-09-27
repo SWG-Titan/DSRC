@@ -5,7 +5,7 @@ import script.library.*;
 
 import java.util.HashSet;
 
-public class dianoga_dumpster extends script.base_script
+public class dianoga_dumpster extends base_script
 {
     public dianoga_dumpster()
     {

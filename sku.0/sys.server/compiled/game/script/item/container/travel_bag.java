@@ -2,7 +2,7 @@ package script.item.container;
 
 import script.*;
 
-public class travel_bag extends script.base_script
+public class travel_bag extends base_script
 {
     public travel_bag()
     {

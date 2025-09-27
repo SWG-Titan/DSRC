@@ -5,7 +5,7 @@ package script.content.worldboss;/*
 @Notes; This boss should be placed on Lok, roaming in the NE quadrant.
 @Requirements: script.player.player_nb, script.library.nb_player
 @Created: Sunday, 2/01/2023, at 11:42 PM,
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

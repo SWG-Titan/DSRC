@@ -1,6 +1,7 @@
 package script.event;
 
 import script.dictionary;
+import script.library.event_flags;
 import script.library.holiday;
 import script.library.utils;
 import script.obj_id;
@@ -12,6 +13,7 @@ public class holiday_controller extends script.base_script
     }
     public int OnInitialize(obj_id self) throws InterruptedException
     {
+        setName(self, "*Holiday Controller*");
         CustomerServiceLog("holidayEvent", "holiday_controller.OnInitialize planet initialized, holiday controller called.");
         messageTo(self, "halloweenServerStart", null, 600.0f, false);
         messageTo(self, "lifedayServerStart", null, 610.0f, false);
@@ -21,6 +23,7 @@ public class holiday_controller extends script.base_script
     }
     public int OnAttach(obj_id self) throws InterruptedException
     {
+        setName(self, "*Holiday Controller*");
         messageTo(self, "halloweenServerStart", null, 720.0f, false);
         messageTo(self, "lifedayServerStart", null, 730.0f, false);
         messageTo(self, "lovedayServerStart", null, 735.0f, false);
@@ -161,8 +164,9 @@ public class holiday_controller extends script.base_script
     }
 
     // Make sure CSRs can't take the master object on a stroll down Amidala's Beach when they should be home doing their homework
-    public int OnAboutToBeTransferred(obj_id self, obj_id destContainer, obj_id transferer) throws InterruptedException {
-        sendSystemMessageTestingOnly(transferer, "You cannot move this item!");
+    public int OnAboutToBeTransferred(obj_id self, obj_id destContainer, obj_id transferer) throws InterruptedException
+    {
+        broadcast(transferer, "This item cannot be moved. If somehow moved or deleted, please see Development.");
         return SCRIPT_OVERRIDE;
     }
 
@@ -170,19 +174,20 @@ public class holiday_controller extends script.base_script
     {
         if (holidayRunning == null)
         {
-            sendSystemMessageTestingOnly(speaker, "Server config is not marked as " + holidayName + " running");
+            broadcast(speaker, "Server config is not marked as " + holidayName + " running");
             return;
         }
         if (holidayRunning.equals("true") || holidayRunning.equals("1"))
         {
             if (holidayStatus > -1)
             {
-                sendSystemMessageTestingOnly(speaker, "Server says that " + holidayName + " is already running. If you are sure that it's not, say " + holidayName + "StartForReals");
+                broadcast(speaker, "Server says that " + holidayName + " is already running. If you are sure that it's not, say " + holidayName + "StartForReals");
             }
             if (holidayStatus < 0)
             {
-                sendSystemMessageTestingOnly(speaker, holidayName + " started.");
+                broadcast(speaker, holidayName + " started.");
                 startUniverseWideEvent(holidayName);
+                event_flags.enableEventFlag(holidayName);
             }
         }
     }
@@ -190,12 +195,12 @@ public class holiday_controller extends script.base_script
     {
         if (holidayRunning == null)
         {
-            sendSystemMessageTestingOnly(speaker, "Server config is not marked as " + holidayName + " running");
+            broadcast(speaker, "Server config is not marked as " + holidayName + " running");
             return;
         }
         if (holidayRunning.equals("true") || holidayRunning.equals("1"))
         {
-            sendSystemMessageTestingOnly(speaker, holidayName + " started.");
+            broadcast(speaker, holidayName + " started.");
             startUniverseWideEvent(holidayName);
         }
     }
@@ -203,13 +208,14 @@ public class holiday_controller extends script.base_script
     {
         if (holidayRunning.equals("true") || holidayRunning.equals("1"))
         {
-            sendSystemMessageTestingOnly(speaker, "Server config is marked as " + holidayName + " running. If you are sure that it should not be running anyway, say " + holidayName + "StopForReals");
+            broadcast(speaker, "Server config is marked as " + holidayName + " running. If you are sure that it should not be running anyway, say " + holidayName + "StopForReals");
         }
     }
     private void stopHolidayEventForReals(obj_id speaker, String holidayName) throws InterruptedException
     {
-        sendSystemMessageTestingOnly(speaker, holidayName + " stopped.");
+        broadcast(speaker, holidayName + " stopped.");
         stopUniverseWideEvent(holidayName);
+        event_flags.disableEventFlag(holidayName);
     }
     public int halloweenServerStart(obj_id self, dictionary params) throws InterruptedException
     {

@@ -5,7 +5,7 @@ import script.library.collection;
 import script.library.static_item;
 import script.library.utils;
 
-public class loot_crate extends script.base_script
+public class loot_crate extends base_script
 {
     public loot_crate()
     {

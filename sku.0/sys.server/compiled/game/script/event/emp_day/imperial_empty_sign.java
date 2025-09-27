@@ -3,11 +3,13 @@ package script.event.emp_day;
 import script.*;
 import script.library.*;
 
-public class imperial_empty_sign extends script.base_script
+public class imperial_empty_sign extends base_script
 {
     public imperial_empty_sign()
     {
     }
+
+    // EMPIRE DAY - IMPERIAL PROPAGANDA OF IMPERIAL RECRUITMENT SIGN
     public static final String EMPIREDAY = "event/empire_day";
     public static final String LIFEDAY = "event/life_day";
     public static final string_id SID_WRONG_FACTION = new string_id(EMPIREDAY, "wrong_faction");

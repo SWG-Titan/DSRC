@@ -1,0 +1,14 @@
+@base object/tangible/container/base/shared_base_container_volume.iff
+
+@class tangible_object_template 6
+
+@class object_template 5
+
+
+objectName = "container_name"  "city_converter"
+
+detailedDescription = "container_name"  "city_converter"
+
+appearanceFilename = "appearance/eqp_storage_pod_s01.apt"
+
+containerVolumeLimit = 5

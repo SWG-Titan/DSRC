@@ -108,8 +108,7 @@ public class invasion_setup extends script.base_script
     {
         String promptExtra = getStringObjVar(self, "event.invasion.misc.promptExtra");
         int current = getIntObjVar(self, "event.invasion.setup.setupStep");
-        int pid = sui.inputbox(self, self, PROMPT_TEXT[current] + promptExtra, TITLE[current], "handleUIdata", 255, false, "");
-        return pid;
+        return sui.inputbox(self, self, PROMPT_TEXT[current] + promptExtra, TITLE[current], "handleUIdata", 255, false, "");
     }
     public int handleUIdata(obj_id self, dictionary params) throws InterruptedException
     {

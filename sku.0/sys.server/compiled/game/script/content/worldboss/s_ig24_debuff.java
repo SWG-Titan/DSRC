@@ -5,7 +5,7 @@ package script.content.worldboss;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Wednesday, 7/31/2024, at 10:09 PM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

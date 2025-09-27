@@ -10,7 +10,7 @@ import java.util.List;
 @Requirements: Map Strings
 @Notes: <no notes>
 @Created: Tuesday, 11/12/2024, at 11:40 PM,
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 public class mapped_strings

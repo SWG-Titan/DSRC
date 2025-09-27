@@ -7,7 +7,7 @@ import script.library.colors;
 import script.library.create;
 import script.library.utils;
 
-public class stolen_fighter extends script.base_script
+public class stolen_fighter extends base_script
 {
     public stolen_fighter()
     {

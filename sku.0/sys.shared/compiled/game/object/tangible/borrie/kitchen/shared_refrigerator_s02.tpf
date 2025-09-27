@@ -1,0 +1,14 @@
+@base object/tangible/container/base/shared_base_container_volume.iff
+
+@class tangible_object_template 6
+
+@class object_template 5
+
+
+objectName = "container_name"  "refridgerator_s02"
+
+detailedDescription = "container_name"  "refridgerator_s02"
+
+appearanceFilename = "appearance/frn_bor_ktchn_fridge_eleg_s01.apt"
+
+containerVolumeLimit = 50

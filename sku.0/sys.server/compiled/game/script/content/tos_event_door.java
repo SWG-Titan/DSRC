@@ -5,7 +5,7 @@ package script.content;/*
 @Requirements: <no requirements>
 @Notes: Usage for Event Rooms #1 and #2 on Rally Point Nova
 @Created: Tuesday, 5/7/2024, at 11:51 AM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

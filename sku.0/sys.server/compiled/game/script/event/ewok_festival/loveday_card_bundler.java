@@ -6,7 +6,7 @@ import script.*;
 
 import java.util.Vector;
 
-public class loveday_card_bundler extends script.base_script
+public class loveday_card_bundler extends base_script
 {
     public loveday_card_bundler()
     {

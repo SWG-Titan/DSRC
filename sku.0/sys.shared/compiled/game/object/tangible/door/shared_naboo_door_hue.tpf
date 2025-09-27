@@ -1,0 +1,35 @@
+//Generated with Template Editor v1.0
+//Author: Roachie
+
+
+
+
+
+
+@base object/tangible/base/shared_tangible_base.iff
+
+
+
+
+
+@class tangible_object_template 10
+
+@class object_template 8
+
+
+
+appearanceFilename = "appearance/ply_nboo_house_hue_door.apt"
+
+
+objectName = "item_n"  "naboo_door_hue"
+
+detailedDescription = "item_d"  "naboo_door_hue"
+
+
+
+gameObjectType = GOT_terminal_misc
+
+containerType = CT_none
+
+containerVolumeLimit = 0
+

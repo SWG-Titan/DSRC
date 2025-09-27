@@ -3,7 +3,7 @@ package script.content;/*
 @Author: BubbaJoeX
 @Purpose: Allows traders to purchase best resource for X amount of credits.
 @Created: Friday, 11/17/2023, at 8:11 AM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

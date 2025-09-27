@@ -1,14 +1,14 @@
 package script.library;/*
 @Origin: dsrc.script.library
 @Author: BubbaJoeX
-@Purpose: Base library for SWG-OR.
+@Purpose: Base library for SWG: Titan.
 @Notes:
     This file contains config settings for Discord integration.
     This file contains the handling for the World Boss system and announcements.
     This file contains some custom group functions.
 @Created: Sunday, 10/1/2023, at 12:56 PM.
 @Requirements: <no requirements>
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

@@ -9,7 +9,7 @@ package script;/*
     The original script can be found @gist/k3kdude
 @Requirements: <no requirements>
 @Created: Sunday, 2/01/2023, at 11:42 PM,
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

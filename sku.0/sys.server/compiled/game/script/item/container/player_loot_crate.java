@@ -3,7 +3,7 @@ package script.item.container;
 import script.dictionary;
 import script.obj_id;
 
-public class player_loot_crate extends script.item.container.locked_slicable
+public class player_loot_crate extends locked_slicable
 {
     public player_loot_crate()
     {

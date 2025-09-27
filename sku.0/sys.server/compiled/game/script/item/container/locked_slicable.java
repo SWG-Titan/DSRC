@@ -4,7 +4,7 @@ import script.*;
 import script.library.slicing;
 import script.library.utils;
 
-public class locked_slicable extends script.base_script
+public class locked_slicable extends base_script
 {
     public locked_slicable()
     {

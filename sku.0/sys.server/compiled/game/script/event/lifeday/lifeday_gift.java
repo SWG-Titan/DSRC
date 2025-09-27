@@ -6,7 +6,7 @@ import script.library.utils;
 
 import java.util.HashSet;
 
-public class lifeday_gift extends script.base_script
+public class lifeday_gift extends base_script
 {
     public lifeday_gift()
     {
@@ -130,6 +130,7 @@ public class lifeday_gift extends script.base_script
                 showLootBox(player, gift);
                 playMusic(player, giftData.getString("music"));
                 playClientEffectObj(player, giftData.getString("client_effect"), player, "");
+                LOG("events", "Lifeday: lifeday_gift.grantReward() - Player " + player + " received " + itemNames.length + " items from lifeday gift crate.");
                 return true;
             }
         }

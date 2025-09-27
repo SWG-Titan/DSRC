@@ -5,7 +5,7 @@ package script.content;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Sunday, 5/12/2024, at 6:19 AM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 
@@ -100,7 +100,7 @@ public class tos_event_spawner extends base_script
             return SCRIPT_CONTINUE;
         }
         String mob = sui.getInputBoxText(params);
-        if (mob == null || mob.equals(""))
+        if (mob == null || mob.isEmpty())
         {
             String selection = sui.getComboBoxText(params);
             broadcast(self, "Mob set to: " + mob);

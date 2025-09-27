@@ -30,7 +30,7 @@ public class loveday_disillusion_blaire_spawner extends script.base_script
             float spawnerYaw = getYaw(self);
             boolean spawnBlaire = false;
             String lovedayRunning = getConfigSetting("GameServer", "loveday");
-            if (lovedayRunning != null && lovedayRunning.length() > 0)
+            if (lovedayRunning != null && !lovedayRunning.isEmpty())
             {
                 if (lovedayRunning.equals("true") || lovedayRunning.equals("1"))
                 {
@@ -63,7 +63,7 @@ public class loveday_disillusion_blaire_spawner extends script.base_script
     public void areaDebugMessaging(obj_id self, String message) throws InterruptedException
     {
         obj_id[] players = getAllPlayers(getLocation(getTopMostContainer(self)), 35.0f);
-        if (players != null && players.length > 0)
+        if (players != null)
         {
             for (obj_id player : players) {
                 sendSystemMessage(player, message, "");

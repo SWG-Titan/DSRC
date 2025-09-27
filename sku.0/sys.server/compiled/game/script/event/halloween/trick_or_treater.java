@@ -13,6 +13,13 @@ public class trick_or_treater extends script.base_script
     public trick_or_treater()
     {
     }
+
+    public static boolean notShapechanged(obj_id actor) throws InterruptedException
+    {
+        int shapechange = buff.getBuffOnTargetFromGroup(actor, "shapechange");
+        return shapechange == 0;
+    }
+
     public int OnLogin(obj_id self) throws InterruptedException
     {
         if (!costumeBuffExists(self))
@@ -34,6 +41,7 @@ public class trick_or_treater extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnAttach(obj_id self) throws InterruptedException
     {
         if (buff.hasBuff(self, "event_halloween_coin_limit"))
@@ -51,6 +59,7 @@ public class trick_or_treater extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnInitialize(obj_id self) throws InterruptedException
     {
         if (!costumeBuffExists(self))
@@ -59,6 +68,7 @@ public class trick_or_treater extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnHearSpeech(obj_id self, obj_id speaker, String text) throws InterruptedException
     {
         if (speaker == self)
@@ -67,7 +77,7 @@ public class trick_or_treater extends script.base_script
             {
                 if (text.equals("setDailyLimitTwoMinutes"))
                 {
-                    sendSystemMessageTestingOnly(self, "The daily limit will get reset 2 minutes from now");
+                    broadcast(self, "The daily limit will get reset 2 minutes from now");
                     int now = getCalendarTime();
                     int secondsUntil = 120;
                     int then = now + secondsUntil;
@@ -159,12 +169,12 @@ public class trick_or_treater extends script.base_script
                                         utils.setScriptVar(self, event_perk.LIST_VAR + "." + target, newLockOutTime);
                                         event_perk.handlePayout(self, target);
                                     }
-                                    else 
+                                    else
                                     {
                                         chat.chat(target, self, chat.CHAT_SAY, event_perk.TOO_SOON, chat.ChatFlag_targetOnly);
                                     }
                                 }
-                                else 
+                                else
                                 {
                                     utils.setScriptVar(self, event_perk.LIST_VAR + "." + target, newLockOutTime);
                                     event_perk.handlePayout(self, target);
@@ -172,7 +182,7 @@ public class trick_or_treater extends script.base_script
                             }
                         }
                     }
-                    else 
+                    else
                     {
                         return SCRIPT_CONTINUE;
                     }
@@ -184,7 +194,7 @@ public class trick_or_treater extends script.base_script
                         Enumeration keys = vars.keys();
                         while (keys.hasMoreElements())
                         {
-                            String key = (String)(keys.nextElement());
+                            String key = (String) (keys.nextElement());
                             if (key.startsWith(event_perk.LIST_VAR + "."))
                             {
                                 int data = vars.getInt(key);
@@ -200,30 +210,36 @@ public class trick_or_treater extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public boolean isInCity(location here) throws InterruptedException
     {
         region[] regionsHere = getRegionsAtPoint(here);
         if (regionsHere != null && regionsHere.length > 0)
         {
             String regionName;
-            for (region testRegion : regionsHere) {
+            for (region testRegion : regionsHere)
+            {
                 regionName = testRegion.getName();
-                if (regionName.endsWith("mos_eisley")) {
+                if (regionName.endsWith("mos_eisley"))
+                {
                     return true;
                 }
-                if (regionName.endsWith("moenia")) {
+                if (regionName.endsWith("moenia"))
+                {
                     return true;
                 }
             }
         }
         return false;
     }
+
     private boolean costumeBuffExists(obj_id player) throws InterruptedException
     {
         return buff.hasBuff(player, "event_halloween_costume_jawa") ||
                 buff.hasBuff(player, "event_halloween_costume_droid") ||
                 buff.hasBuff(player, "event_halloween_costume_kowakian") ||
                 buff.hasBuff(player, "event_halloween_costume_hutt_female") ||
-                buff.hasBuff(player, "event_halloween_costume_toydarian");
+                buff.hasBuff(player, "event_halloween_costume_toydarian") ||
+                !notShapechanged(player);
     }
 }

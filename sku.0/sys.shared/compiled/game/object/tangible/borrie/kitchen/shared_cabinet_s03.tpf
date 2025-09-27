@@ -1,0 +1,14 @@
+@base object/tangible/container/base/shared_base_container_volume.iff
+
+@class tangible_object_template 6
+
+@class object_template 5
+
+
+objectName = "container_name"  "cabinet_s03"
+
+detailedDescription = "container_name"  "cabinet_s03"
+
+appearanceFilename = "appearance/frn_bor_ktchn_cabinet_tech_s01.apt"
+
+containerVolumeLimit = 50

@@ -1,0 +1,17 @@
+// This file ws written by the template editor @ 11:23:03 AM -  Thu Jan 2 2003
+
+@base object/tangible/furniture/base/shared_furniture_base.iff
+
+@class tangible_object_template 6
+
+@class object_template 5
+
+
+objectName = "item_n"  "floor_panel"
+
+detailedDescription = "item_d"  "floor_panel"
+
+appearanceFilename = "appearance/leather_divider.apt"
+
+portalLayoutFilename = ""
+

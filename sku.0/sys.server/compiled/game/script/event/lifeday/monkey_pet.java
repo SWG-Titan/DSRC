@@ -3,7 +3,7 @@ package script.event.lifeday;
 import script.*;
 import script.library.*;
 
-public class monkey_pet extends script.base_script
+public class monkey_pet extends base_script
 {
     public monkey_pet()
     {

@@ -5,7 +5,7 @@ import script.library.*;
 
 import java.util.HashSet;
 
-public class sarlacc_mini_game extends script.base_script
+public class sarlacc_mini_game extends base_script
 {
     public sarlacc_mini_game()
     {

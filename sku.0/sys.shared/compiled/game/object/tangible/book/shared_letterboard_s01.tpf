@@ -1,0 +1,14 @@
+@base object/tangible/terminal/base/shared_base_terminal.iff
+
+@class tangible_object_template 3
+
+
+@class object_template 5
+
+
+objectName = "item_n" "newspaper"
+detailedDescription = "item_d" "newspaper"
+
+appearanceFilename = "appearance/letterboard_s01.apt"
+
+gameObjectType = GOT_misc_item_usable

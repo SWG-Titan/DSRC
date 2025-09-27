@@ -1,0 +1,9 @@
+@base object/tangible/furniture/base/furniture_base.iff
+
+@class tangible_object_template 0
+
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/tarkin_custom/decorative/rug/shared_tarkin_rug_21.iff"
+

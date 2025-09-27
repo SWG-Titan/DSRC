@@ -33,7 +33,7 @@ public class chief extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        if ((toLower(text)).equals("allayloo ta nuv"))
+        if ((toLower(text)).contains("allay"))//loo ta nuv"))
         {
             if (getIntendedTarget(speaker) == self)
             {
@@ -41,11 +41,13 @@ public class chief extends script.base_script
                 {
                     sendSystemMessage(speaker, HAVE_GIFT);
                     doAnimationAction(self, "explain");
+                    LOG("events", "EFoL: ewok_festival.chief.OnHearSpeech() - Player " + speaker + " tried to give the chief a gift, but already had the quest completed.");
                     return SCRIPT_CONTINUE;
                 }
                 doAnimationAction(self, "bow");
                 groundquests.requestGrantQuest(speaker, OBJ_BOUQUET_QUEST);
                 sendSystemMessage(speaker, GIVE_GIFT);
+                LOG("events", "EFoL: ewok_festival.chief.OnHearSpeech() - Player " + speaker + " received bouquet.");
                 return SCRIPT_CONTINUE;
             }
             doAnimationAction(self, "celebrate");

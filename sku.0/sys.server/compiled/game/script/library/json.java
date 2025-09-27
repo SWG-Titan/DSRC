@@ -5,7 +5,7 @@ package script.library;/*
 @Notes:
     This contents of this script should not be used for anything player facing. This is solely to parse data via java.
 @Created: Monday, 10/30/2023, at 6:55 PM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

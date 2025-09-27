@@ -2,7 +2,7 @@ package script.item.container.got_specific;
 
 import script.obj_id;
 
-public class medbag extends script.item.container.got_specific.base
+public class medbag extends base
 {
     public medbag()
     {

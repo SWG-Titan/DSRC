@@ -6,25 +6,29 @@ import script.library.factions;
 import script.library.groundquests;
 import script.library.holiday;
 
-public class rebel_npc_corpse extends script.base_script
+public class rebel_npc_corpse extends base_script
 {
-    public rebel_npc_corpse()
-    {
-    }
     public static final String EMPIREDAY = "event/empire_day";
     public static final string_id SID_MNU_REBEL = new string_id(EMPIREDAY, "rebel_crash_victim_rebel_menu");
     public static final string_id SID_MNU_IMPERIAL = new string_id(EMPIREDAY, "rebel_crash_victim_imperial_menu");
     public static final string_id SID_YOU_FIND_NOTHING = new string_id(EMPIREDAY, "you_find_nothing");
+
+    public rebel_npc_corpse()
+    {
+    }
+
     public int OnAttach(obj_id self) throws InterruptedException
     {
         messageTo(self, "knockDown", null, 10, false);
         return SCRIPT_CONTINUE;
     }
+
     public int OnInitialize(obj_id self) throws InterruptedException
     {
         messageTo(self, "knockDown", null, 10, false);
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
         if (isDead(player) || isIncapacitated(player))
@@ -47,6 +51,7 @@ public class rebel_npc_corpse extends script.base_script
         mi.addRootMenu(menu_info_types.SERVER_MENU2, SID_MNU_IMPERIAL);
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
         if (isDead(player) || isIncapacitated(player))
@@ -73,6 +78,7 @@ public class rebel_npc_corpse extends script.base_script
         groundquests.sendSignal(player, holiday.EMPIREDAYQUEST_IMP_CORPSE_SIGNAL);
         return SCRIPT_CONTINUE;
     }
+
     public int knockDown(obj_id self, dictionary params) throws InterruptedException
     {
         ai_lib.aiSetPosture(self, POSTURE_KNOCKED_DOWN);

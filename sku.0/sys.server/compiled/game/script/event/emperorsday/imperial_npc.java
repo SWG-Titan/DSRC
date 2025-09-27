@@ -3,11 +3,12 @@ package script.event.emperorsday;
 import script.*;
 import script.library.*;
 
-public class imperial_npc extends script.base_script
+public class imperial_npc extends base_script
 {
     public imperial_npc()
     {
     }
+
     public int OnAttach(obj_id self) throws InterruptedException
     {
         String npcType = getStringObjVar(self, "emperorsday.npcType");
@@ -24,6 +25,7 @@ public class imperial_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnMovePathComplete(obj_id self) throws InterruptedException
     {
         if (!hasObjVar(self, "vader"))
@@ -55,6 +57,7 @@ public class imperial_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
         if (!isIdValid(player) || ai_lib.isInCombat(player) || isIncapacitated(player) || isDead(player))
@@ -68,6 +71,7 @@ public class imperial_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
         if (!isIdValid(player) || ai_lib.isInCombat(player) || isIncapacitated(player) || isDead(player))
@@ -83,8 +87,10 @@ public class imperial_npc extends script.base_script
                 return SCRIPT_CONTINUE;
             }
             boolean playerReward = false;
-            for (obj_id winner : listOfWinners) {
-                if (player != winner) {
+            for (obj_id winner : listOfWinners)
+            {
+                if (player != winner)
+                {
                     continue;
                 }
                 playerReward = true;
@@ -103,6 +109,7 @@ public class imperial_npc extends script.base_script
         sendDirtyObjectMenuNotification(self);
         return SCRIPT_CONTINUE;
     }
+
     public int OnSawEmote(obj_id self, obj_id emoteSayer, String emotein) throws InterruptedException
     {
         obj_id emotetarget = getLookAtTarget(emoteSayer);
@@ -153,6 +160,7 @@ public class imperial_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int playerKnockedOut(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id player = params.getObjId("myTarget");
@@ -169,6 +177,7 @@ public class imperial_npc extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public boolean forceChokePlayer(obj_id npcObject, obj_id playerToBeIncapped) throws InterruptedException
     {
         stealth.testInvisNonCombatAction(playerToBeIncapped, npcObject);

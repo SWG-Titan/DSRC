@@ -8,14 +8,16 @@ import script.string_id;
 
 public class song_book extends script.base_script
 {
-    public song_book()
-    {
-    }
     private static final String HALLOWEEN = "event/halloween";
     public static final string_id SID_USE = new string_id(HALLOWEEN, "learn_song");
     private static final string_id CANT_USE = new string_id(HALLOWEEN, "not_entertainer");
     private static final string_id LEARNED_SONG = new string_id(HALLOWEEN, "learned_song");
     private static final string_id CANT_USE_LOW_LEVEL = new string_id(HALLOWEEN, "not_entertainer_enough");
+
+    public song_book()
+    {
+    }
+
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
         if (utils.isNestedWithin(self, player))
@@ -30,6 +32,7 @@ public class song_book extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
         if (utils.isNestedWithin(self, player))
@@ -44,12 +47,12 @@ public class song_book extends script.base_script
                         sendSystemMessage(player, LEARNED_SONG);
                         destroyObject(self);
                     }
-                    else 
+                    else
                     {
                         sendSystemMessage(player, CANT_USE_LOW_LEVEL);
                     }
                 }
-                else 
+                else
                 {
                     sendSystemMessage(player, CANT_USE);
                 }

@@ -6,7 +6,7 @@
 package script;
 
 /*
- * Copyright © SWG-OR 2024.
+ * Copyright © SWG: Titan 2024.
  *
  * Unauthorized usage, viewing or sharing of this file is prohibited.
  */

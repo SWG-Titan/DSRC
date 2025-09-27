@@ -5,7 +5,7 @@ import script.library.space_transition;
 import script.library.space_utils;
 import script.library.utils;
 
-public class proton_chair extends script.base_script
+public class proton_chair extends base_script
 {
     public proton_chair()
     {

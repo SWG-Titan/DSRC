@@ -1,0 +1,9 @@
+// This file was generated at [3/15/2023 | 12:04 AM via BubbaJoeX)
+
+@base object/tangible/base/tangible_base.iff
+
+@class tangible_object_template 1
+
+@class object_template 5
+
+sharedTemplate = "object/tangible/gjpud/reward/shared_metal_detector.iff"

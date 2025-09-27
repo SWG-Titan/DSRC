@@ -16,7 +16,7 @@ public class planet_event_handler extends script.base_script
         String lifedayRunning = getConfigSetting("GameServer", "lifeday");
         if (lifedayRunning != null && !lifedayRunning.equals("false"))
         {
-            CustomerServiceLog("holidayEvent", "planet_event_handler.OnAttach: Life Day oconfig found.");
+            CustomerServiceLog("holidayEvent", "planet_event_handler.OnAttach: Life Day config found.");
             checkLifeDayData(self);
         }
         else
@@ -35,7 +35,7 @@ public class planet_event_handler extends script.base_script
         String lifedayRunning = getConfigSetting("GameServer", "lifeday");
         if (lifedayRunning != null && !lifedayRunning.equals("false"))
         {
-            CustomerServiceLog("holidayEvent", "planet_event_handler.OnInitialize: Life Day oconfig found.");
+            CustomerServiceLog("holidayEvent", "planet_event_handler.OnInitialize: Life Day config found.");
             checkLifeDayData(self);
         }
         else

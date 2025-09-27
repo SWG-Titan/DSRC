@@ -5,7 +5,7 @@ import script.library.*;
 
 import java.util.HashSet;
 
-public class sarlacc_furniture_terminal extends script.base_script
+public class sarlacc_furniture_terminal extends base_script
 {
     public sarlacc_furniture_terminal()
     {

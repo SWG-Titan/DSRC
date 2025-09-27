@@ -1,0 +1,14 @@
+@base object/tangible/terminal/base/shared_base_terminal.iff
+
+@class tangible_object_template 3
+
+
+@class object_template 5
+
+
+objectName = "item_n" "whiteboard"
+detailedDescription = "item_d" "whiteboard"
+
+appearanceFilename = "appearance/whiteboard_01.apt"
+
+gameObjectType = GOT_misc_item_usable

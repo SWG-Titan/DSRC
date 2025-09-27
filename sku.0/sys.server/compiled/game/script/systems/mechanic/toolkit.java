@@ -3,7 +3,7 @@ package script.systems.mechanic;/*
 @Author: BubbaJoeX
 @Purpose: Toolkit for vehicle tuning.
 @Created: Tuesday 9/26/2023, at 12:25am
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

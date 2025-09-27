@@ -1,0 +1,23 @@
+//            Filename:     object_tangible_tarkin_custom_decorative_door_tato_despot_s02
+//            Directory:    object/tangible/furniture
+//
+//            Description:
+//
+//
+//            Notes:
+//
+//
+//            Category:                   Furniture
+//            Sub-Category:               Null
+//            Classification:             Null
+//            
+
+@base object/tangible/furniture/base/furniture_base.iff
+
+@class tangible_object_template 0
+
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/tarkin_custom/decorative/shared_door_tato_despot_s02.iff"
+

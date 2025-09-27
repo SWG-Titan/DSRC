@@ -5,7 +5,7 @@ package script.player;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Tuesday, 6/4/2024, at 12:00 AM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 
 @TODO: Change the objvars to be under the "vehicle." objvar root.

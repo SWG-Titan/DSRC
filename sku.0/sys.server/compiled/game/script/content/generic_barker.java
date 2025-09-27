@@ -3,7 +3,7 @@ package script.content;/*
 @Author: BubbaJoeX
 @Purpose: Barks about food.
 @Created: Friday, 9/8/2023, at 10:55 PM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

@@ -1,16 +1,16 @@
 package script.player;/*
 @Origin: dsrc.script.player.player_nb
 @Author: BubbaJoeX
-@Purpose: SWG-OR Player Handler
+@Purpose: SWG: Titan Player Handler
 @Notes:
-    This script is the main handler for all player-related events and actions that are custom to SWG-OR.
+    This script is the main handler for all player-related events and actions that are custom to SWG: Titan.
     This script is responsible for handling player login, logout, and other player-related events.
     This script is also responsible for handling the player's arrival sound, Christmas present, and other player-related actions.
     This script also logs most triggers to the "ethereal.log" log file.
     There are 5 booleans and 10 integers that are used for various settings and calculations. Please read what they are for.
 
 @Created: Monday, 8/28/2023, at 3:31 PM,
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

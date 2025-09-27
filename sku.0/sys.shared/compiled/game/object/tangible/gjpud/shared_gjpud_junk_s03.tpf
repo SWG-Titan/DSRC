@@ -1,0 +1,16 @@
+// This file was generated at [3/15/2023 | 12:04 AM via BubbaJoeX)
+
+@base object/tangible/terminal/base/shared_base_terminal.iff
+
+@class tangible_object_template 6
+
+@class object_template 5
+
+
+objectName = "gjpud"  "junk_object"
+
+detailedDescription = "gjpud"  "junk_object"
+
+appearanceFilename = "appearance/thm_prp_junk_s1.apt"
+
+gameObjectType = GOT_terminal_misc

@@ -5,7 +5,7 @@ package script.content.new_instance;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Monday, 6/3/2024, at 4:46 PM, 
-@Copyright © SWG-OR 2024.
+@Copyright © SWG: Titan 2024.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

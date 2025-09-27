@@ -5,11 +5,8 @@ import script.library.*;
 
 import java.util.Vector;
 
-public class yoda_fountain extends script.base_script
+public class yoda_fountain extends base_script
 {
-    public yoda_fountain()
-    {
-    }
     public static final String MUSIC_BATTLE_HEROES = "object/soundobject/soundobject_battle_heroes.iff";
     public static final String MUSIC_HAN_LEIA = "object/soundobject/soundobject_empire_day_romance_b.iff";
     public static final String EMP_DAY = "event/emperors_day";
@@ -39,6 +36,11 @@ public class yoda_fountain extends script.base_script
     public static final string_id NOT_OLD_ENOUGH = new string_id(EMP_DAY, "rebel_not_old_enough");
     public static final string_id GIFT_GRANTED = new string_id(EMP_DAY, "gift_granted_rebel");
     public static final string_id WINNER_HELP = new string_id(EMP_DAY, "winner_help_rebel");
+
+    public yoda_fountain()
+    {
+    }
+
     public int OnInitialize(obj_id self) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.OnInitialize: Fountain is initializing.");
@@ -57,6 +59,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "prepareParade", null, 30.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int OnGetAttributes(obj_id self, obj_id player, String[] names, String[] attribs) throws InterruptedException
     {
         int idx = utils.getValidAttributeIndex(names);
@@ -70,7 +73,7 @@ public class yoda_fountain extends script.base_script
             attribs[idx] = "Now";
             idx++;
         }
-        else 
+        else
         {
             int nextCeremony = getIntObjVar(self, "ceremonyTime");
             if (nextCeremony <= 0)
@@ -85,12 +88,14 @@ public class yoda_fountain extends script.base_script
             idx++;
         }
         String statusString = holiday.getEmpireDayEligibility(player, holiday.REBEL_PLAYER);
-        if (statusString != null && !statusString.equals("")) {
+        if (statusString != null && !statusString.equals(""))
+        {
             names[idx] = "remembrance_day_player_status";
             attribs[idx] = statusString;
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
         if (!isIdValid(player) || ai_lib.isInCombat(player) || isIncapacitated(player) || isDead(player))
@@ -107,6 +112,7 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
         if (!isIdValid(player) || ai_lib.isInCombat(player) || isIncapacitated(player) || isDead(player))
@@ -132,6 +138,7 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnDestroy(obj_id self) throws InterruptedException
     {
         obj_id oldSoundObject = utils.getObjIdScriptVar(self, "musicObject");
@@ -148,8 +155,10 @@ public class yoda_fountain extends script.base_script
         if (utils.hasScriptVar(self, "leia"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "leia");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     destroyObject(((obj_id) aNpc));
                 }
             }
@@ -158,8 +167,10 @@ public class yoda_fountain extends script.base_script
         if (utils.hasScriptVar(self, "solo"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "solo");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     destroyObject(((obj_id) aNpc));
                 }
             }
@@ -168,8 +179,10 @@ public class yoda_fountain extends script.base_script
         if (utils.hasScriptVar(self, "chewbacca"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "chewbacca");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     destroyObject(((obj_id) aNpc));
                 }
             }
@@ -177,6 +190,7 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int OnHearSpeech(obj_id self, obj_id speaker, String text) throws InterruptedException
     {
         if (!isGod(speaker))
@@ -231,6 +245,7 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int npcTypeList(obj_id self, dictionary params) throws InterruptedException
     {
         String npcType = params.getString("type");
@@ -245,6 +260,7 @@ public class yoda_fountain extends script.base_script
         utils.setScriptVar(self, npcType, npcs);
         return SCRIPT_CONTINUE;
     }
+
     public int prepareParade(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.prepareParade: messageHandler initialized.");
@@ -261,9 +277,12 @@ public class yoda_fountain extends script.base_script
             location loc = getLocation(self);
             obj_id[] objects = getObjectsInRange(loc, holiday.OBJECT_NEAR_CHECK_RANGE_100M);
             obj_id pathPoint;
-            for (obj_id object : objects) {
-                if (isIdValid(object)) {
-                    if (hasObjVar(object, "soldier")) {
+            for (obj_id object : objects)
+            {
+                if (isIdValid(object))
+                {
+                    if (hasObjVar(object, "soldier"))
+                    {
                         int soldierNumber = getIntObjVar(object, "soldier");
                         pathPoint = holiday.getEmpireDayWaypointObjectObjId(self, "pathsoldier" + soldierNumber, holiday.OBJECT_NEAR_CHECK_RANGE_100M);
                         pathTo(object, getLocation(pathPoint));
@@ -272,12 +291,13 @@ public class yoda_fountain extends script.base_script
             }
             messageTo(self, "parade", null, 10.0f, false);
         }
-        else 
+        else
         {
             CustomerServiceLog("holidayEvent", "yoda_fountain.prepareParade: Failed to start because the statue says the parade is running.");
         }
         return SCRIPT_CONTINUE;
     }
+
     public int parade(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.parade: messageHandler initialized.");
@@ -320,6 +340,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "spawnHan", null, 55.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int spawnLeia(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.spawnLeia: Spawning Leia at Falcon ramp.");
@@ -348,6 +369,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "moveLeia", null, 5.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int moveLeia(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.moveLeia: Moving Leia to her lecture spot now.");
@@ -369,6 +391,7 @@ public class yoda_fountain extends script.base_script
         pathTo(leia, pathLoc);
         return SCRIPT_CONTINUE;
     }
+
     public int spawnChewie(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.spawnChewie: Spawning Chewie at Falcon ramp.");
@@ -397,6 +420,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "moveChewie", null, 3.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int moveChewie(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.moveChewie: Moving Chewie to his spot now.");
@@ -418,6 +442,7 @@ public class yoda_fountain extends script.base_script
         pathTo(chewie, pathLoc);
         return SCRIPT_CONTINUE;
     }
+
     public int spawnHan(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.spawnHan: Spawning Han at Falcon ramp.");
@@ -445,6 +470,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "moveHan", null, 3.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int moveHan(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.moveChewie: Moving Chewie to his spot now.");
@@ -466,14 +492,18 @@ public class yoda_fountain extends script.base_script
         pathTo(han, pathLoc);
         return SCRIPT_CONTINUE;
     }
+
     public int startConversation(obj_id self, dictionary params) throws InterruptedException
     {
         if (utils.hasScriptVar(self, "soldier"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "soldier");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
-                    if (isValidId(getObjectInSlot(((obj_id) aNpc), "hold_r"))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
+                    if (isValidId(getObjectInSlot(((obj_id) aNpc), "hold_r")))
+                    {
                         continue;
                     }
                     doAnimationAction(((obj_id) aNpc), "salute1");
@@ -490,6 +520,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "leia1", null, 5.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int leia1(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id leia = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "leia");
@@ -501,6 +532,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "vendor2", null, 10.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int vendor2(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vendor = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vendor");
@@ -513,6 +545,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "leia2", null, 5.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int leia2(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id leia = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "leia");
@@ -526,6 +559,7 @@ public class yoda_fountain extends script.base_script
         setYaw(leia, 0.0f);
         return SCRIPT_CONTINUE;
     }
+
     public int leia3(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id leia = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "leia");
@@ -537,6 +571,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "leia4", null, 15.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int leia4(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id leia = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "leia");
@@ -548,6 +583,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "leia5", null, 15.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int leia5(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id leia = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "leia");
@@ -559,6 +595,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "leia6", null, 15.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int leia6(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.leia6: messageHandler Initialized.");
@@ -577,11 +614,14 @@ public class yoda_fountain extends script.base_script
         }
         Vector rebelPlayers = new Vector();
         rebelPlayers.setSize(0);
-        for (obj_id aPlayersInRange : playersInRange) {
-            if (!isIdValid(aPlayersInRange) || !exists(aPlayersInRange)) {
+        for (obj_id aPlayersInRange : playersInRange)
+        {
+            if (!isIdValid(aPlayersInRange) || !exists(aPlayersInRange))
+            {
                 continue;
             }
-            if (holiday.isEmpireDayPlayerEligible(aPlayersInRange, holiday.REBEL_PLAYER)) {
+            if (holiday.isEmpireDayPlayerEligible(aPlayersInRange, holiday.REBEL_PLAYER))
+            {
                 utils.addElement(rebelPlayers, aPlayersInRange);
             }
         }
@@ -620,7 +660,7 @@ public class yoda_fountain extends script.base_script
             messageTo(self, "waitingHalf", params, 45.0f, false);
             messageTo(self, "waitingDone", params, 70.0f, false);
         }
-        else 
+        else
         {
             CustomerServiceLog("holidayEvent", "yoda_fountain.leia6: The list length is: " + listOfWinners.length);
             prose_package pp = prose.getPackage(LEIA_6);
@@ -634,7 +674,7 @@ public class yoda_fountain extends script.base_script
                 {
                     winnerList += " and " + getFirstName(listOfWinners[i]);
                 }
-                else 
+                else
                 {
                     winnerList += ", " + getFirstName(listOfWinners[i]);
                 }
@@ -661,6 +701,7 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int hanAngry(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id rudePlayer = params.getObjId("rudePlayer");
@@ -679,6 +720,7 @@ public class yoda_fountain extends script.base_script
         doAnimationAction(han, "pound_fist_palm");
         return SCRIPT_CONTINUE;
     }
+
     public int hanHappy(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id han = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "han");
@@ -695,14 +737,17 @@ public class yoda_fountain extends script.base_script
         if (utils.hasScriptVar(self, "soldier"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "soldier");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
                     doAnimationAction(((obj_id) aNpc), "celebrate");
                 }
             }
         }
         return SCRIPT_CONTINUE;
     }
+
     public int vendor3(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.vendor3: messageHandler Initialized.");
@@ -751,6 +796,7 @@ public class yoda_fountain extends script.base_script
         chat.chat(vendor, listOfWinners[0], pp);
         return SCRIPT_CONTINUE;
     }
+
     public int waitingHalf(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.waitingHalf: messageHandler Initialized.");
@@ -822,24 +868,24 @@ public class yoda_fountain extends script.base_script
         if (miaList.size() == 1)
         {
             CustomerServiceLog("holidayEvent", "yoda_fountain.waitingHalf: The list length for MIA players is only one player: " + miaList.get(0));
-            waitingOnList = getFirstName(((obj_id)miaList.get(0)));
+            waitingOnList = getFirstName(((obj_id) miaList.get(0)));
         }
-        else 
+        else
         {
             CustomerServiceLog("holidayEvent", "yoda_fountain.waitingHalf: The list length for MIA players is: " + miaList.get(0));
             for (int i = 0; i < miaList.size(); i++)
             {
                 if (i == 0)
                 {
-                    waitingOnList += getFirstName(((obj_id)miaList.get(i)));
+                    waitingOnList += getFirstName(((obj_id) miaList.get(i)));
                 }
                 else if (i == (miaList.size() - 1))
                 {
-                    waitingOnList += " and " + getFirstName(((obj_id)miaList.get(i)));
+                    waitingOnList += " and " + getFirstName(((obj_id) miaList.get(i)));
                 }
-                else 
+                else
                 {
-                    waitingOnList += ", " + getFirstName(((obj_id)miaList.get(i)));
+                    waitingOnList += ", " + getFirstName(((obj_id) miaList.get(i)));
                 }
             }
         }
@@ -850,12 +896,13 @@ public class yoda_fountain extends script.base_script
             pp = prose.getPackage(LEIA_ANNOYED_PLURAL);
         }
         prose.setTO(pp, waitingOnList);
-        chat.chat(leia, ((obj_id)miaList.get(0)), pp);
+        chat.chat(leia, ((obj_id) miaList.get(0)), pp);
         setObjVar(leia, "miaList", miaList);
         setObjVar(leia, "waitingOnList", waitingOnList);
         messageTo(self, "vendorReplyAnnoyed", null, 10.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int vendorReplyAnnoyed(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vendor = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vendor");
@@ -867,6 +914,7 @@ public class yoda_fountain extends script.base_script
         chat.chat(vendor, VENDOR_REPLY_ANNOYED);
         return SCRIPT_CONTINUE;
     }
+
     public int waitingDone(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.waitingDone: messageHandler Initialized.");
@@ -940,26 +988,26 @@ public class yoda_fountain extends script.base_script
             if (lastestMiaList.size() == 1)
             {
                 CustomerServiceLog("holidayEvent", "emperor_statue.waitingDone: The list length for MIA players is only one player: " + lastestMiaList.get(0));
-                waitingOnList = getFirstName(((obj_id)lastestMiaList.get(0)));
+                waitingOnList = getFirstName(((obj_id) lastestMiaList.get(0)));
             }
-            else 
+            else
             {
                 CustomerServiceLog("holidayEvent", "emperor_statue.waitingDone: The list length for MIA players is: " + lastestMiaList.size());
                 for (int i = 0; i < lastestMiaList.size(); i++)
                 {
                     if (i == 0)
                     {
-                        waitingOnList += getFirstName(((obj_id)lastestMiaList.get(i)));
+                        waitingOnList += getFirstName(((obj_id) lastestMiaList.get(i)));
                     }
                     else if (i == (lastestMiaList.size() - 1))
                     {
-                        waitingOnList += " and " + getFirstName(((obj_id)lastestMiaList.get(i)));
+                        waitingOnList += " and " + getFirstName(((obj_id) lastestMiaList.get(i)));
                     }
-                    else 
+                    else
                     {
-                        waitingOnList += ", " + getFirstName(((obj_id)lastestMiaList.get(i)));
+                        waitingOnList += ", " + getFirstName(((obj_id) lastestMiaList.get(i)));
                     }
-                    utils.removeScriptVar(((obj_id)lastestMiaList.get(i)), "emperorsDayBadge");
+                    utils.removeScriptVar(((obj_id) lastestMiaList.get(i)), "emperorsDayBadge");
                 }
             }
             prose_package pp = prose.getPackage(LEIA_ANNOYED_2_SINGULAR);
@@ -968,9 +1016,9 @@ public class yoda_fountain extends script.base_script
                 pp = prose.getPackage(LEIA_ANNOYED_2_PLURAL);
             }
             prose.setTO(pp, waitingOnList);
-            chat.chat(leia, ((obj_id)lastestMiaList.get(0)), pp);
+            chat.chat(leia, ((obj_id) lastestMiaList.get(0)), pp);
         }
-        else 
+        else
         {
             String waitingOnList = getStringObjVar(leia, "waitingOnList");
             prose_package pp = prose.getPackage(LEIA_ANNOYED_2_SINGULAR);
@@ -980,8 +1028,10 @@ public class yoda_fountain extends script.base_script
             }
             prose.setTO(pp, waitingOnList);
             chat.chat(leia, oldMiaList[0], pp);
-            for (obj_id miaItem : oldMiaList) {
-                if (isIdValid(miaItem) && exists(miaItem)) {
+            for (obj_id miaItem : oldMiaList)
+            {
+                if (isIdValid(miaItem) && exists(miaItem))
+                {
                     utils.removeScriptVar(miaItem, "emperorsDayBadge");
                 }
             }
@@ -989,6 +1039,7 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "vendorReplyWaiting", null, 10.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int vendorReplyWaiting(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vendor = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vendor");
@@ -1001,11 +1052,12 @@ public class yoda_fountain extends script.base_script
         messageTo(self, "leiaLeaving", null, 10.0f, false);
         return SCRIPT_CONTINUE;
     }
+
     public int launchRandomNonFactionalFirework(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "emperor_statue.launchRandomFirework: messageHandler initialized.");
         location statue = getLocation(self);
-        location here = (location)statue.clone();
+        location here = (location) statue.clone();
         here.z = statue.z - 30;
         location there = utils.getRandomLocationInRing(here, 0, 10);
         int tableLength = dataTableGetNumRows(firework.TBL_FX);
@@ -1024,7 +1076,7 @@ public class yoda_fountain extends script.base_script
         }
         CustomerServiceLog("holidayEvent", "emperor_statue.launchRandomFirework: We are selecting a random firework out of a list of " + nonFactionalTemplates.size());
         int roll = rand(0, nonFactionalTemplates.size() - 1);
-        String template = ((String)nonFactionalTemplates.get(roll));
+        String template = ((String) nonFactionalTemplates.get(roll));
         obj_id effect = create.object(template, there);
         if (isIdValid(effect))
         {
@@ -1032,10 +1084,11 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int launchFactionalFirework(obj_id self, dictionary params) throws InterruptedException
     {
         location statue = getLocation(self);
-        location here = (location)statue.clone();
+        location here = (location) statue.clone();
         here.z = statue.z - 30;
         location there = utils.getRandomLocationInRing(here, 0, 10);
         obj_id effect = create.object("object/static/firework/fx_20.iff", there);
@@ -1045,14 +1098,18 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int leiaLeaving(obj_id self, dictionary params) throws InterruptedException
     {
         if (utils.hasScriptVar(self, "soldier"))
         {
             Vector npc = utils.getResizeableObjIdArrayScriptVar(self, "soldier");
-            for (Object aNpc : npc) {
-                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc))) {
-                    if (isValidId(getObjectInSlot(((obj_id) aNpc), "hold_r"))) {
+            for (Object aNpc : npc)
+            {
+                if (isIdValid(((obj_id) aNpc)) && exists(((obj_id) aNpc)))
+                {
+                    if (isValidId(getObjectInSlot(((obj_id) aNpc), "hold_r")))
+                    {
                         continue;
                     }
                     doAnimationAction(((obj_id) aNpc), "salute1");
@@ -1076,6 +1133,7 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int finalMarch(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id falconRamp = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "falcon_ramp");
@@ -1105,6 +1163,7 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int destroyParade(obj_id self, dictionary params) throws InterruptedException
     {
         obj_id vendor = getObjIdObjVar(self, holiday.SPAWNER_PREFIX_OBJVAR + "vendor");
@@ -1143,9 +1202,12 @@ public class yoda_fountain extends script.base_script
         location loc = getLocation(self);
         obj_id[] objects = getObjectsInRange(loc, holiday.OBJECT_NEAR_CHECK_RANGE_100M);
         obj_id pathPoint;
-        for (obj_id object : objects) {
-            if (isIdValid(object)) {
-                if (hasObjVar(object, "soldier")) {
+        for (obj_id object : objects)
+        {
+            if (isIdValid(object))
+            {
+                if (hasObjVar(object, "soldier"))
+                {
                     int soldierNumber = getIntObjVar(object, "soldier");
                     pathPoint = holiday.getEmpireDayWaypointObjectObjId(self, "spawnsoldier" + soldierNumber, holiday.OBJECT_NEAR_CHECK_RANGE_100M);
                     pathTo(object, getLocation(pathPoint));
@@ -1159,6 +1221,7 @@ public class yoda_fountain extends script.base_script
         utils.removeScriptVar(self, "paradeRunning");
         return SCRIPT_CONTINUE;
     }
+
     public int normalMusic(obj_id self, dictionary params) throws InterruptedException
     {
         if (!utils.hasScriptVar(self, "musicObject"))
@@ -1180,6 +1243,7 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public int launchRandomRebelShipFlyBy(obj_id self, dictionary params) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.launchRandomTieFighterFlyBy: messageHandler initialized.");
@@ -1222,6 +1286,7 @@ public class yoda_fountain extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
     public boolean playRebelFlyBy(obj_id self, obj_id playOnObject, int sequence) throws InterruptedException
     {
         CustomerServiceLog("holidayEvent", "yoda_fountain.playRebelFlyBy:  Function initialized.");
@@ -1238,8 +1303,11 @@ public class yoda_fountain extends script.base_script
         playClientEffectLoc(getPlayerCreaturesInRange(here, 200.0f), getFlyBy(sequence), here, 1.0f);
         return true;
     }
-    private String getFlyBy(int sequence){
-        switch(sequence){
+
+    private String getFlyBy(int sequence)
+    {
+        switch (sequence)
+        {
             case 1:
                 return holiday.REBEL_FLYBY_PARTICLE_01;
             case 2:
@@ -1251,6 +1319,7 @@ public class yoda_fountain extends script.base_script
         }
         return holiday.REBEL_FLYBY_PARTICLE_01;
     }
+
     public boolean createFalconDropship(obj_id fountain, location loc) throws InterruptedException
     {
         if (loc == null)
