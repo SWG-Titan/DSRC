@@ -30,12 +30,13 @@ import script.combat_engine.hit_result;
 import static script.library.factions.setFaction;
 import static script.library.utils.getIntScriptVar;
 
-@SuppressWarnings({"unused"})
 public class player_titan extends base_script
 {
     public boolean requireEntBuffRecycle = false;
     public boolean restoredContent = false;
     public boolean LOGGING = true;
+    public boolean doArrival = false;
+    public boolean showOneTimer = false;
     public boolean craftingRollEnabled = false;
     public boolean craftingTokenEnabled = false;
     public boolean grantLifeDay = false;
@@ -72,19 +73,20 @@ public class player_titan extends base_script
 
     public int OnLogin(obj_id self) throws InterruptedException
     {
+        if (doArrival)
+        {
+            arrivalSound(self);
+        }
         location here = getLocation(self);
         if (requireEntBuffRecycle)
         {
             restoreEntertainerBuffs(self);
             return SCRIPT_CONTINUE;
         }
-        arrivalSound(self);
-        if (isGod(self))
+        if (showOneTimer)
         {
-            addToAdminList(self);
+            showServerInfo(self); //@TODO: enable when flashing window goes bye bye
         }
-        //showServerInfo(self); //@TODO: enable when flashing window goes bye bye
-        incrementPlayerCount(self);
         if (isGod(self))
         {
             LOG("ethereal", "[Avatar]: Admin " + getPlayerFullName(self) + " has logged in on " + getCurrentSceneName() + " at " + getCalendarTimeStringLocal_YYYYMMDDHHMMSS(getCalendarTime()) + " at " + here.toReadableFormat(true));
@@ -110,7 +112,6 @@ public class player_titan extends base_script
         }
         checkForRaceChange(self);
         clearConditionsFromPlayer(self);
-        //startStatSyncLoop(self);
         checkRenownStatus(self);
         return SCRIPT_CONTINUE;
     }
@@ -163,14 +164,14 @@ public class player_titan extends base_script
         String GIFT_TEMPLATE = "object/tangible/item/target_dummy_publish_giftbox.iff";
         obj_id gift = createObject(GIFT_TEMPLATE, utils.getInventoryContainer(self), "");
         attachScript(gift, "event.anniversary.gift_object");
-        setObjVar(self, "anni_24", true);
-        broadcast(self, "You have received a present! Happy Anniversary from the SWG-OR Staff!");
+        setObjVar(self, "anni_26", true);
+        broadcast(self, "You have received a present! Happy Anniversary from the Titan Staff!");
         LOG("ethereal", "[Anniversary]: " + getPlayerFullName(self) + " has received their anniversary gift.");
     }
 
     private boolean hasAnniversaryPresent(obj_id self)
     {
-        return hasObjVar(self, "anni_24");
+        return hasObjVar(self, "anni_26");
     }
 
     public void checkForRaceChange(obj_id self)
@@ -184,20 +185,20 @@ public class player_titan extends base_script
 
     public void grantChristmasPresent(obj_id self) throws InterruptedException
     {
-        if (!hasObjVar(self, "lifeday.gift_23"))
+        if (!hasObjVar(self, "lifeday.gift_25"))
         {
             obj_id inventory = utils.getInventoryContainer(self);
             obj_id giftbox = createObject("object/tangible/event_perk/life_day_presents.iff", inventory, "");
-            attachScript(giftbox, "event.lifeday.gift_23");
-            setObjVar(self, "lifeday.gift_23", true);
-            sendConsoleMessage(self, "You have received a present! Happy Holidays from the SWG-OR Staff!");
+            attachScript(giftbox, "event.lifeday.gift_25");
+            setObjVar(self, "lifeday.gift_25", true);
+            sendConsoleMessage(self, "You have received a present! Happy Holidays from the Titan Staff!");
             play2dNonLoopingSound(self, "sound/utinni.snd");
         }
     }
 
     public void nukeFrog(obj_id self) throws InterruptedException
     {
-        //Nukes frog if the server is not named "Judicator" or "swg", preventing the frog from being transported around on live.
+        //Nukes frog if the server is not named "development" or "swg", preventing the frog from being transported around on live.
         obj_id[] inventory = utils.getContents(self, true);
         for (obj_id frog : inventory)
         {
@@ -213,55 +214,9 @@ public class player_titan extends base_script
 
     public int OnLogout(obj_id self) throws InterruptedException
     {
-        if (isGod(self))
-        {
-            removeFromAdminList(self);
-        }
-        decrementPlayerCount(self);
-        stopListeningToMessage(self, "handleAdminMessage");
         return SCRIPT_CONTINUE;
     }
 
-    public void removeFromAdminList(obj_id self)
-    {
-        obj_id tatooine = getPlanetByName("tatooine");
-        if (hasObjVar(tatooine, "skynet.admin_list"))
-        {
-            String[] adminList = getStringArrayObjVar(tatooine, "skynet.admin_list");
-            Vector adminListFinal = new Vector(Arrays.asList(adminList));
-            if (adminListFinal.contains(self.toString()))
-            {
-                adminListFinal.remove(self.toString());
-                setObjVar(tatooine, "skynet.admin_list", adminListFinal);
-            }
-        }
-    }
-
-    public void sendMoneyPulse(obj_id self)
-    {
-        //@TODO add in money metrics
-    }
-
-    public void addToAdminList(obj_id self)
-    {
-        obj_id tatooine = getPlanetByName("tatooine");
-        if (hasObjVar(tatooine, "skynet.admin_list"))
-        {
-            String[] adminList = getStringArrayObjVar(tatooine, "skynet.admin_list");
-            Vector adminListFinal = new Vector(Arrays.asList(adminList));
-            if (!adminListFinal.contains(self.toString()))
-            {
-                adminListFinal.add(self.toString());
-                setObjVar(tatooine, "skynet.admin_list", adminListFinal);
-            }
-        }
-        else
-        {
-            String[] adminList = new String[1];
-            adminList[0] = self.toString();
-            setObjVar(tatooine, "skynet.admin_list", adminList);
-        }
-    }
 
     public void arrivalSound(obj_id self)
     {
@@ -276,7 +231,7 @@ public class player_titan extends base_script
         String planetName = getCurrentSceneName();
         if (planetName.equals("tutorial"))
         {
-            broadcast(self, "Welcome to SWG-OR!");
+            broadcast(self, "Welcome to Titan!");
         }
         else if (planetName.equals("corellia"))
         {
@@ -328,9 +283,9 @@ public class player_titan extends base_script
         }
     }
 
-    public void showServerInfo(obj_id self)
+    public void showServerInfo(obj_id self) throws InterruptedException
     {
-        if (!hasObjVar(self, "swgor_welcome_onetimer") && (isInAllowedScene()))
+        if (!hasObjVar(self, "titan_welcome_onetimer") && (isInAllowedScene()))
         {
             if (isOnTestCluster())
             {
@@ -343,13 +298,13 @@ public class player_titan extends base_script
             String maxLogin = "# of Allowed Characters Online: " + color("3", "FFD700") + "\n";
             String unlocks = "# of Unlockable Character Slots: " + color("5", "FFD700") + "\n";
             String nl = "\n\\#.";
-            String title = "SWG - OR Account and Character Notice:" + "\\#.";
+            String title = "Titan Account and Character Notice:" + "\\#.";
             final String welcome = title + nl + nl + pleaseRead + numCharacters + maxLogin + unlocks + nl;
 
             int page = createServerWelcomePage(self, welcome, welcomeName);
             showSUIPage(page);
             flushSUIPage(page);
-            setObjVar(self, "swgor_welcome_onetimer", 1);
+            setObjVar(self, "titan_welcome_onetimer", 1);
         }
     }
 
@@ -402,7 +357,7 @@ public class player_titan extends base_script
     private boolean isOnTestCluster()
     {
         String clusterName = getClusterName();
-        return clusterName.equals("swg") || clusterName.equals("Judicator");
+        return clusterName.equalsIgnoreCase("swg") || clusterName.equalsIgnoreCase("development");
     }
 
     private boolean isDevelopmentPlanet(String scene)
@@ -413,7 +368,7 @@ public class player_titan extends base_script
     private boolean isOnLiveCluster()
     {
         String clusterName = getClusterName();
-        return clusterName.equals("Outer Rim");
+        return clusterName.equals("Titan");
     }
 
     private String color(String text, String colorCode)
