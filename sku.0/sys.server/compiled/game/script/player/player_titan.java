@@ -16,14 +16,7 @@ package script.player;/*
 
 import script.*;
 import script.library.*;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 import script.combat_engine.hit_result;
 
@@ -85,7 +78,7 @@ public class player_titan extends base_script
         }
         if (showOneTimer)
         {
-            showServerInfo(self); //@TODO: enable when flashing window goes bye bye
+            showServerInfo(self);
         }
         if (isGod(self))
         {
