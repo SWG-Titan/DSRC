@@ -26880,4 +26880,26 @@ public class base_class
         }
     }
 
+    public static String getNameNoSpam(obj_id target)
+    {
+        String name = _getName(getLongWithNull(target));
+        if (name.contains("@dummy_string_table:"))
+        {
+            return name.replace("@dummy_string_table:", "");
+        }
+        else if (name.contains("dummy_string_table:"))
+        {
+            return name.replace("dummy_string_table:", "");
+        }
+        else
+        {
+            return name;
+        }
+    }
+
+    public static void setDescriptionString(obj_id target, String description)
+    {
+        _setDescriptionStringId(getLongWithNull(target), new string_id(description));
+    }
+
 }   // class base_class

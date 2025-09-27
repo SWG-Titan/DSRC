@@ -25,6 +25,8 @@ public class consts extends script.base_script
     public static final int MAXIMUM_INVENTORY = 80;
     public static final int MAXIMUM_RESOURCE_DISBERSEMENT = 100500;
     public static final int MAXIMUM_FACTION_DISBERSEMENT = 5000;
+    public static final float AI_SERVICE_RANGE = 3.24f;
+    public static final float AI_SERVICE_DURATION = 3600f;
     public static String color(String html, String message)
     {
         return "\\#" + html + "" + message + "\\#.";
