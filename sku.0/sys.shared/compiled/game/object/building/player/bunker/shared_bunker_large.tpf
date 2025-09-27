@@ -1,0 +1,8 @@
+@base object/building/base/shared_base_cave.iff
+@class building_object_template 1
+terrainModificationFileName = "terrain/poi_medium.lay"
+@class tangible_object_template 6
+structureFootprintFileName = "footprint/building/player/shared_player_house_generic_large_style_01.sfp"
+@class object_template 5
+objectName = "building_name" "bunker_large"
+portalLayoutFilename = "appearance/poi_all_impl_bunker_crimelord_retreat_s01.pob"

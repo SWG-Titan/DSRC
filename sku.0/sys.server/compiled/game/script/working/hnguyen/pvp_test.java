@@ -1,0 +1,69 @@
+package script.working.hnguyen;
+
+import script.library.utils;
+import script.obj_id;
+
+import java.util.StringTokenizer;
+
+public class pvp_test extends script.base_script
+{
+    public pvp_test()
+    {
+    }
+
+    public int OnInitialize(obj_id self) throws InterruptedException
+    {
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnHearSpeech(obj_id self, obj_id objSpeaker, String strText) throws InterruptedException
+    {
+        if (objSpeaker != self)
+        {
+            return SCRIPT_CONTINUE;
+        }
+        if (strText.startsWith("setpe"))
+        {
+            StringTokenizer st = new StringTokenizer(strText);
+            if (st.countTokens() == 3)
+            {
+                String command = st.nextToken();
+                obj_id dest = utils.stringToObjId(st.nextToken());
+                obj_id enemy = utils.stringToObjId(st.nextToken());
+                pvpSetPersonalEnemyFlag(dest, enemy);
+                broadcast(self, dest + " now has " + enemy + " as a personal enemy");
+            }
+        }
+        else if (strText.startsWith("haspe"))
+        {
+            StringTokenizer st = new StringTokenizer(strText);
+            if (st.countTokens() == 3)
+            {
+                String command = st.nextToken();
+                obj_id actor = utils.stringToObjId(st.nextToken());
+                obj_id target = utils.stringToObjId(st.nextToken());
+                if (pvpHasPersonalEnemyFlag(actor, target))
+                {
+                    broadcast(self, actor + " has " + target + " as a personal enemy");
+                }
+                else
+                {
+                    broadcast(self, actor + " DOESN'T have " + target + " as a personal enemy");
+                }
+            }
+        }
+        else if (strText.startsWith("removepe"))
+        {
+            StringTokenizer st = new StringTokenizer(strText);
+            if (st.countTokens() == 3)
+            {
+                String command = st.nextToken();
+                obj_id target = utils.stringToObjId(st.nextToken());
+                obj_id enemyId = utils.stringToObjId(st.nextToken());
+                pvpRemovePersonalEnemyFlags(target, enemyId);
+                broadcast(self, target + " no longer has " + enemyId + " as a personal enemy");
+            }
+        }
+        return SCRIPT_CONTINUE;
+    }
+}
