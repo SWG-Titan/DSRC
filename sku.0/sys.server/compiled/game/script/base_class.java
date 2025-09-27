@@ -3867,6 +3867,14 @@ public class base_class
     }
 
     /**
+     * Send a system message to an individual (shorthand)
+     */
+    public static void broadcast (obj_id to, String systemMessage)
+    {
+        sendSystemMessage (to, systemMessage, null);
+    }
+
+    /**
     * Send a system message to an individual
     */
     public static void sendSystemMessageOob (String to, String oob)
