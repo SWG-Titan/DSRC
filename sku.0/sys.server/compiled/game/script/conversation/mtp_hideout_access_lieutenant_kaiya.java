@@ -355,25 +355,24 @@ public class mtp_hideout_access_lieutenant_kaiya extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (mtp_hideout_access_lieutenant_kaiya_condition_doneWithKaiya(player, npc))
+        if (mtp_hideout_access_lieutenant_kaiya_condition_doneWithKaiya(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_33");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_access_lieutenant_kaiya_condition_return_mtpHideout07(player, npc))
+        if (mtp_hideout_access_lieutenant_kaiya_condition_return_mtpHideout07(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_11");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_access_lieutenant_kaiya_condition__defaultCondition(player, npc))
+            if (mtp_hideout_access_lieutenant_kaiya_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -388,27 +387,27 @@ public class mtp_hideout_access_lieutenant_kaiya extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_access_lieutenant_kaiya.branchId", 2);
-                npcStartConversation(player, npc, "mtp_hideout_access_lieutenant_kaiya", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_access_lieutenant_kaiya", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_access_lieutenant_kaiya_condition_active_mtpHideout07(player, npc))
+        if (mtp_hideout_access_lieutenant_kaiya_condition_active_mtpHideout07(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_access_lieutenant_kaiya_condition_return_mtpHideout06(player, npc))
+        if (mtp_hideout_access_lieutenant_kaiya_condition_return_mtpHideout06(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_13");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_access_lieutenant_kaiya_condition__defaultCondition(player, npc))
+            if (mtp_hideout_access_lieutenant_kaiya_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -423,27 +422,27 @@ public class mtp_hideout_access_lieutenant_kaiya extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_19");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_access_lieutenant_kaiya.branchId", 6);
-                npcStartConversation(player, npc, "mtp_hideout_access_lieutenant_kaiya", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_access_lieutenant_kaiya", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_access_lieutenant_kaiya_condition_active_mtpHideout06(player, npc))
+        if (mtp_hideout_access_lieutenant_kaiya_condition_active_mtpHideout06(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_access_lieutenant_kaiya_condition_mtpHideout05_02(player, npc))
+        if (mtp_hideout_access_lieutenant_kaiya_condition_mtpHideout05_02(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_access_lieutenant_kaiya_condition__defaultCondition(player, npc))
+            if (mtp_hideout_access_lieutenant_kaiya_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -458,21 +457,21 @@ public class mtp_hideout_access_lieutenant_kaiya extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_access_lieutenant_kaiya.branchId", 11);
-                npcStartConversation(player, npc, "mtp_hideout_access_lieutenant_kaiya", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_access_lieutenant_kaiya", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_access_lieutenant_kaiya_condition__defaultCondition(player, npc))
+        if (mtp_hideout_access_lieutenant_kaiya_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -481,41 +480,40 @@ public class mtp_hideout_access_lieutenant_kaiya extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.mtp_hideout_access_lieutenant_kaiya.branchId");
-        if (branchId == 2 && mtp_hideout_access_lieutenant_kaiya_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && mtp_hideout_access_lieutenant_kaiya_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && mtp_hideout_access_lieutenant_kaiya_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && mtp_hideout_access_lieutenant_kaiya_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && mtp_hideout_access_lieutenant_kaiya_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && mtp_hideout_access_lieutenant_kaiya_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && mtp_hideout_access_lieutenant_kaiya_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && mtp_hideout_access_lieutenant_kaiya_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && mtp_hideout_access_lieutenant_kaiya_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && mtp_hideout_access_lieutenant_kaiya_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && mtp_hideout_access_lieutenant_kaiya_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && mtp_hideout_access_lieutenant_kaiya_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && mtp_hideout_access_lieutenant_kaiya_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && mtp_hideout_access_lieutenant_kaiya_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && mtp_hideout_access_lieutenant_kaiya_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && mtp_hideout_access_lieutenant_kaiya_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.mtp_hideout_access_lieutenant_kaiya.branchId");
         return SCRIPT_CONTINUE;
     }

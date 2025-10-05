@@ -699,50 +699,49 @@ public class jinkins extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (jinkins_condition_hasCompletedThemePark(player, npc))
+        if (jinkins_condition_hasCompletedThemePark(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_52");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (jinkins_condition_allQuestsComplete(player, npc))
+        if (jinkins_condition_allQuestsComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_48");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (jinkins_condition_isDoneMineQuest(player, npc))
+        if (jinkins_condition_isDoneMineQuest(player, self))
         {
-            jinkins_action_gotoKole(player, npc);
+            jinkins_action_gotoKole(player, self);
             string_id message = new string_id(c_stringFile, "s_50");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (jinkins_condition_hasMineFilter(player, npc))
+        if (jinkins_condition_hasMineFilter(player, self))
         {
-            doAnimationAction(npc, "nod_head_multiple");
+            doAnimationAction(self, "nod_head_multiple");
             string_id message = new string_id(c_stringFile, "s_38");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (jinkins_condition__defaultCondition(player, npc))
+            if (jinkins_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -757,21 +756,21 @@ public class jinkins extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_39");
                 }
                 utils.setScriptVar(player, "conversation.jinkins.branchId", 4);
-                npcStartConversation(player, npc, "jinkins", message, responses);
+                npcStartConversation(player, self, "jinkins", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (jinkins_condition_hasMineQuestIncomplete(player, npc))
+        if (jinkins_condition_hasMineQuestIncomplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_146");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (jinkins_condition__defaultCondition(player, npc))
+            if (jinkins_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -786,23 +785,23 @@ public class jinkins extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_147");
                 }
                 utils.setScriptVar(player, "conversation.jinkins.branchId", 6);
-                npcStartConversation(player, npc, "jinkins", message, responses);
+                npcStartConversation(player, self, "jinkins", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (jinkins_condition_hasReturnedFromMoore(player, npc))
+        if (jinkins_condition_hasReturnedFromMoore(player, self))
         {
-            doAnimationAction(npc, "adjust");
-            jinkins_action_completeMooreQuest(player, npc);
+            doAnimationAction(self, "adjust");
+            jinkins_action_completeMooreQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_135");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (jinkins_condition__defaultCondition(player, npc))
+            if (jinkins_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -817,30 +816,30 @@ public class jinkins extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_136");
                 }
                 utils.setScriptVar(player, "conversation.jinkins.branchId", 8);
-                npcStartConversation(player, npc, "jinkins", message, responses);
+                npcStartConversation(player, self, "jinkins", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (jinkins_condition_hasCompletedPirate(player, npc))
+        if (jinkins_condition_hasCompletedPirate(player, self))
         {
-            doAnimationAction(npc, "clap_rousing");
-            jinkins_action_hasFoundJinkins(player, npc);
+            doAnimationAction(self, "clap_rousing");
+            jinkins_action_hasFoundJinkins(player, self);
             string_id message = new string_id(c_stringFile, "s_99");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (jinkins_condition__defaultCondition(player, npc))
+            if (jinkins_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (jinkins_condition__defaultCondition(player, npc))
+            if (jinkins_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -862,34 +861,34 @@ public class jinkins extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "jinkins", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "jinkins", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (jinkins_condition_hasNotCompletedPirate(player, npc))
+        if (jinkins_condition_hasNotCompletedPirate(player, self))
         {
-            doAnimationAction(npc, "shoo");
+            doAnimationAction(self, "shoo");
             string_id message = new string_id(c_stringFile, "s_105");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (jinkins_condition__defaultCondition(player, npc))
+        if (jinkins_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "tap_foot");
+            doAnimationAction(self, "tap_foot");
             string_id message = new string_id(c_stringFile, "s_100");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -898,73 +897,72 @@ public class jinkins extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.jinkins.branchId");
-        if (branchId == 4 && jinkins_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && jinkins_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && jinkins_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && jinkins_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && jinkins_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && jinkins_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && jinkins_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && jinkins_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && jinkins_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && jinkins_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && jinkins_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && jinkins_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && jinkins_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && jinkins_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && jinkins_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && jinkins_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && jinkins_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && jinkins_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && jinkins_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && jinkins_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && jinkins_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && jinkins_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && jinkins_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && jinkins_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && jinkins_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && jinkins_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && jinkins_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && jinkins_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && jinkins_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && jinkins_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && jinkins_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && jinkins_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.jinkins.branchId");
         return SCRIPT_CONTINUE;
     }

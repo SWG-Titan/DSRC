@@ -309,18 +309,17 @@ public class rancor_boss_fight_controller extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!rancor_boss_fight_controller_condition_hasGroup(player, npc))
+        if (!rancor_boss_fight_controller_condition_hasGroup(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_175");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rancor_boss_fight_controller_condition__defaultCondition(player, npc))
+            if (rancor_boss_fight_controller_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -335,28 +334,28 @@ public class rancor_boss_fight_controller extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_176");
                 }
                 utils.setScriptVar(player, "conversation.rancor_boss_fight_controller.branchId", 1);
-                npcStartConversation(player, npc, "rancor_boss_fight_controller", message, responses);
+                npcStartConversation(player, self, "rancor_boss_fight_controller", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!rancor_boss_fight_controller_condition_hasQuest(player, npc))
+        if (!rancor_boss_fight_controller_condition_hasQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_15");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!rancor_boss_fight_controller_condition_hasCompleted(player, npc))
+            if (!rancor_boss_fight_controller_condition_hasCompleted(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rancor_boss_fight_controller_condition_hasCompleted(player, npc))
+            if (rancor_boss_fight_controller_condition_hasCompleted(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -375,21 +374,21 @@ public class rancor_boss_fight_controller extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.rancor_boss_fight_controller.branchId", 3);
-                npcStartConversation(player, npc, "rancor_boss_fight_controller", message, responses);
+                npcStartConversation(player, self, "rancor_boss_fight_controller", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rancor_boss_fight_controller_condition_wave_event_active(player, npc))
+        if (rancor_boss_fight_controller_condition_wave_event_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_165");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rancor_boss_fight_controller_condition__defaultCondition(player, npc))
+            if (rancor_boss_fight_controller_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -404,21 +403,21 @@ public class rancor_boss_fight_controller extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_171");
                 }
                 utils.setScriptVar(player, "conversation.rancor_boss_fight_controller.branchId", 7);
-                npcStartConversation(player, npc, "rancor_boss_fight_controller", message, responses);
+                npcStartConversation(player, self, "rancor_boss_fight_controller", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rancor_boss_fight_controller_condition_hasQuestAndGroup(player, npc))
+        if (rancor_boss_fight_controller_condition_hasQuestAndGroup(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_100");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rancor_boss_fight_controller_condition__defaultCondition(player, npc))
+            if (rancor_boss_fight_controller_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -433,21 +432,21 @@ public class rancor_boss_fight_controller extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_101");
                 }
                 utils.setScriptVar(player, "conversation.rancor_boss_fight_controller.branchId", 9);
-                npcStartConversation(player, npc, "rancor_boss_fight_controller", message, responses);
+                npcStartConversation(player, self, "rancor_boss_fight_controller", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rancor_boss_fight_controller_condition__defaultCondition(player, npc))
+        if (rancor_boss_fight_controller_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_25");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rancor_boss_fight_controller_condition__defaultCondition(player, npc))
+            if (rancor_boss_fight_controller_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -462,15 +461,15 @@ public class rancor_boss_fight_controller extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_31");
                 }
                 utils.setScriptVar(player, "conversation.rancor_boss_fight_controller.branchId", 12);
-                npcStartConversation(player, npc, "rancor_boss_fight_controller", message, responses);
+                npcStartConversation(player, self, "rancor_boss_fight_controller", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -479,37 +478,36 @@ public class rancor_boss_fight_controller extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.rancor_boss_fight_controller.branchId");
-        if (branchId == 1 && rancor_boss_fight_controller_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && rancor_boss_fight_controller_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && rancor_boss_fight_controller_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && rancor_boss_fight_controller_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && rancor_boss_fight_controller_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && rancor_boss_fight_controller_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && rancor_boss_fight_controller_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && rancor_boss_fight_controller_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && rancor_boss_fight_controller_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && rancor_boss_fight_controller_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && rancor_boss_fight_controller_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && rancor_boss_fight_controller_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && rancor_boss_fight_controller_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && rancor_boss_fight_controller_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.rancor_boss_fight_controller.branchId");
         return SCRIPT_CONTINUE;
     }

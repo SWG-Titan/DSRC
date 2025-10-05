@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class ep3_clone_relics_queen_wookie_informant_3 extends script.base_script
+public class ep3_clone_relics_queen_wookie_informant_3 extends base_script
 {
     public ep3_clone_relics_queen_wookie_informant_3()
     {

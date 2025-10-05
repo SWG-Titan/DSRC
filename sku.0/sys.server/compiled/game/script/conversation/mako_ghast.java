@@ -765,18 +765,17 @@ public class mako_ghast extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (mako_ghast_condition_hasReturnedEliteLab(player, npc))
+        if (mako_ghast_condition_hasReturnedEliteLab(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_31");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mako_ghast_condition__defaultCondition(player, npc))
+            if (mako_ghast_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -791,28 +790,28 @@ public class mako_ghast extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.mako_ghast.branchId", 1);
-                npcStartConversation(player, npc, "mako_ghast", message, responses);
+                npcStartConversation(player, self, "mako_ghast", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasCompletedLabEliteCollection(player, npc))
+        if (mako_ghast_condition_hasCompletedLabEliteCollection(player, self))
         {
-            mako_ghast_action_BruteForceCompleteLabElite(player, npc);
+            mako_ghast_action_BruteForceCompleteLabElite(player, self);
             string_id message = new string_id(c_stringFile, "s_109");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasEliteLabNotComplete(player, npc))
+        if (mako_ghast_condition_hasEliteLabNotComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mako_ghast_condition__defaultCondition(player, npc))
+            if (mako_ghast_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -827,21 +826,21 @@ public class mako_ghast extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_34");
                 }
                 utils.setScriptVar(player, "conversation.mako_ghast.branchId", 5);
-                npcStartConversation(player, npc, "mako_ghast", message, responses);
+                npcStartConversation(player, self, "mako_ghast", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_canDoEliteLab(player, npc))
+        if (mako_ghast_condition_canDoEliteLab(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_29");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mako_ghast_condition__defaultCondition(player, npc))
+            if (mako_ghast_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -859,32 +858,32 @@ public class mako_ghast extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "mako_ghast", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "mako_ghast", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasntDoneLab(player, npc))
+        if (mako_ghast_condition_hasntDoneLab(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_105");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasReturnedEliteCave(player, npc))
+        if (mako_ghast_condition_hasReturnedEliteCave(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mako_ghast_condition__defaultCondition(player, npc))
+            if (mako_ghast_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -899,28 +898,28 @@ public class mako_ghast extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27");
                 }
                 utils.setScriptVar(player, "conversation.mako_ghast.branchId", 13);
-                npcStartConversation(player, npc, "mako_ghast", message, responses);
+                npcStartConversation(player, self, "mako_ghast", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasCompletedMinerEliteCollection(player, npc))
+        if (mako_ghast_condition_hasCompletedMinerEliteCollection(player, self))
         {
-            mako_ghast_action_BruteForceCompleteMinerElite(player, npc);
+            mako_ghast_action_BruteForceCompleteMinerElite(player, self);
             string_id message = new string_id(c_stringFile, "s_110");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasEliteCaveNotComplete(player, npc))
+        if (mako_ghast_condition_hasEliteCaveNotComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_39");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mako_ghast_condition__defaultCondition(player, npc))
+            if (mako_ghast_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -935,21 +934,21 @@ public class mako_ghast extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.mako_ghast.branchId", 16);
-                npcStartConversation(player, npc, "mako_ghast", message, responses);
+                npcStartConversation(player, self, "mako_ghast", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_canDoEliteCave(player, npc))
+        if (mako_ghast_condition_canDoEliteCave(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_45");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mako_ghast_condition__defaultCondition(player, npc))
+            if (mako_ghast_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -964,27 +963,27 @@ public class mako_ghast extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_47");
                 }
                 utils.setScriptVar(player, "conversation.mako_ghast.branchId", 18);
-                npcStartConversation(player, npc, "mako_ghast", message, responses);
+                npcStartConversation(player, self, "mako_ghast", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasntDoneCave(player, npc))
+        if (mako_ghast_condition_hasntDoneCave(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_104");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasReturnedEliteHideout(player, npc))
+        if (mako_ghast_condition_hasReturnedEliteHideout(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_62");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mako_ghast_condition__defaultCondition(player, npc))
+            if (mako_ghast_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -999,28 +998,28 @@ public class mako_ghast extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_64");
                 }
                 utils.setScriptVar(player, "conversation.mako_ghast.branchId", 26);
-                npcStartConversation(player, npc, "mako_ghast", message, responses);
+                npcStartConversation(player, self, "mako_ghast", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasCompletedPirateEliteCollection(player, npc))
+        if (mako_ghast_condition_hasCompletedPirateEliteCollection(player, self))
         {
-            mako_ghast_action_BruteForceCompletePirateElite(player, npc);
+            mako_ghast_action_BruteForceCompletePirateElite(player, self);
             string_id message = new string_id(c_stringFile, "s_111");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasEliteHideoutNotComplete(player, npc))
+        if (mako_ghast_condition_hasEliteHideoutNotComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_79");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mako_ghast_condition__defaultCondition(player, npc))
+            if (mako_ghast_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1035,21 +1034,21 @@ public class mako_ghast extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_81");
                 }
                 utils.setScriptVar(player, "conversation.mako_ghast.branchId", 29);
-                npcStartConversation(player, npc, "mako_ghast", message, responses);
+                npcStartConversation(player, self, "mako_ghast", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_canDoEliteHideout(player, npc))
+        if (mako_ghast_condition_canDoEliteHideout(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_85");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mako_ghast_condition__defaultCondition(player, npc))
+            if (mako_ghast_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1067,32 +1066,32 @@ public class mako_ghast extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "mako_ghast", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "mako_ghast", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition_hasntDoneHideout(player, npc))
+        if (mako_ghast_condition_hasntDoneHideout(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_112");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mako_ghast_condition__defaultCondition(player, npc))
+        if (mako_ghast_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_114");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1101,89 +1100,88 @@ public class mako_ghast extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.mako_ghast.branchId");
-        if (branchId == 1 && mako_ghast_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && mako_ghast_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && mako_ghast_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && mako_ghast_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && mako_ghast_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && mako_ghast_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && mako_ghast_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && mako_ghast_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && mako_ghast_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && mako_ghast_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && mako_ghast_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && mako_ghast_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && mako_ghast_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && mako_ghast_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && mako_ghast_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && mako_ghast_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && mako_ghast_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && mako_ghast_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && mako_ghast_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && mako_ghast_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && mako_ghast_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && mako_ghast_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && mako_ghast_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && mako_ghast_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && mako_ghast_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && mako_ghast_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && mako_ghast_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && mako_ghast_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && mako_ghast_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && mako_ghast_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && mako_ghast_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && mako_ghast_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && mako_ghast_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && mako_ghast_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && mako_ghast_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && mako_ghast_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && mako_ghast_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && mako_ghast_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && mako_ghast_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && mako_ghast_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.mako_ghast.branchId");
         return SCRIPT_CONTINUE;
     }

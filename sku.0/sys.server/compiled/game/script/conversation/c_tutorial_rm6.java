@@ -20,29 +20,25 @@ public class c_tutorial_rm6 extends script.base_script
     {
         int questId = questGetQuestId("quest/c_newbie_hall_range01");
         int explainWeapons = groundquests.getTaskId(questId, "explainWeapons");
-        boolean onTask = questIsQuestActive(questId, player) && !questIsTaskComplete(questId, explainWeapons, player);
-        return onTask;
+        return questIsQuestActive(questId, player) && !questIsTaskComplete(questId, explainWeapons, player);
     }
     public boolean c_tutorial_rm6_condition_taskComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId = questGetQuestId("quest/c_newbie_hall_range01");
         int explainWeapons = groundquests.getTaskId(questId, "explainWeapons");
-        boolean onTask = questIsTaskComplete(questId, explainWeapons, player);
-        return onTask;
+        return questIsTaskComplete(questId, explainWeapons, player);
     }
     public boolean c_tutorial_rm6_condition_playerOnQuestStep0502(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId = questGetQuestId("quest/c_newbie_hall_01");
         int explainRadar = groundquests.getTaskId(questId, "explainRadar");
-        boolean onTask = questIsQuestActive(questId, player) && !questIsTaskComplete(questId, explainRadar, player);
-        return onTask;
+        return questIsQuestActive(questId, player) && !questIsTaskComplete(questId, explainRadar, player);
     }
     public boolean c_tutorial_rm6_condition_playerOnQuestStep05(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId = questGetQuestId("quest/c_newbie_hall_02");
         int explainWaypoint = groundquests.getTaskId(questId, "explainWaypoint");
-        boolean onTask = questIsQuestActive(questId, player) && !questIsTaskComplete(questId, explainWaypoint, player);
-        return onTask;
+        return questIsQuestActive(questId, player) && !questIsTaskComplete(questId, explainWaypoint, player);
     }
     public void c_tutorial_rm6_action_facePlayer(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -391,27 +387,26 @@ public class c_tutorial_rm6 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_tutorial_rm6_condition_playerOnQuest(player, npc))
+        if (c_tutorial_rm6_condition_playerOnQuest(player, self))
         {
-            doAnimationAction(npc, "explain");
-            c_tutorial_rm6_action_facePlayer(player, npc);
+            doAnimationAction(self, "explain");
+            c_tutorial_rm6_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_tutorial_rm6_condition__defaultCondition(player, npc))
+            if (c_tutorial_rm6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_tutorial_rm6_condition__defaultCondition(player, npc))
+            if (c_tutorial_rm6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -430,31 +425,31 @@ public class c_tutorial_rm6 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_69");
                 }
                 utils.setScriptVar(player, "conversation.c_tutorial_rm6.branchId", 1);
-                npcStartConversation(player, npc, "c_tutorial_rm6", message, responses);
+                npcStartConversation(player, self, "c_tutorial_rm6", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_tutorial_rm6_condition_taskComplete(player, npc))
+        if (c_tutorial_rm6_condition_taskComplete(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             doAnimationAction(player, "point_right");
-            c_tutorial_rm6_action_facePlayer(player, npc);
+            c_tutorial_rm6_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_75");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_tutorial_rm6_condition__defaultCondition(player, npc))
+            if (c_tutorial_rm6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_tutorial_rm6_condition__defaultCondition(player, npc))
+            if (c_tutorial_rm6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -473,31 +468,31 @@ public class c_tutorial_rm6 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_81");
                 }
                 utils.setScriptVar(player, "conversation.c_tutorial_rm6.branchId", 6);
-                npcStartConversation(player, npc, "c_tutorial_rm6", message, responses);
+                npcStartConversation(player, self, "c_tutorial_rm6", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_tutorial_rm6_condition_playerOnQuestStep05(player, npc))
+        if (c_tutorial_rm6_condition_playerOnQuestStep05(player, self))
         {
-            doAnimationAction(npc, "point_forward");
-            c_tutorial_rm6_action_facePlayer(player, npc);
+            doAnimationAction(self, "point_forward");
+            c_tutorial_rm6_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_99");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_tutorial_rm6_condition_playerOnQuestStep0502(player, npc))
+        if (c_tutorial_rm6_condition_playerOnQuestStep0502(player, self))
         {
-            doAnimationAction(npc, "point_forward");
-            c_tutorial_rm6_action_facePlayer(player, npc);
+            doAnimationAction(self, "point_forward");
+            c_tutorial_rm6_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_101");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -506,37 +501,36 @@ public class c_tutorial_rm6 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_tutorial_rm6.branchId");
-        if (branchId == 1 && c_tutorial_rm6_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && c_tutorial_rm6_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && c_tutorial_rm6_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && c_tutorial_rm6_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && c_tutorial_rm6_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && c_tutorial_rm6_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && c_tutorial_rm6_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && c_tutorial_rm6_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && c_tutorial_rm6_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && c_tutorial_rm6_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && c_tutorial_rm6_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && c_tutorial_rm6_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && c_tutorial_rm6_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && c_tutorial_rm6_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_tutorial_rm6.branchId");
         return SCRIPT_CONTINUE;
     }

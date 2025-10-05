@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class restuss_battle_cryer extends script.base_script
+public class restuss_battle_cryer extends base_script
 {
     public restuss_battle_cryer()
     {
@@ -53,19 +53,18 @@ public class restuss_battle_cryer extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (restuss_battle_cryer_condition__defaultCondition(player, npc))
+        if (restuss_battle_cryer_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "whisper");
+            doAnimationAction(self, "whisper");
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -74,9 +73,8 @@ public class restuss_battle_cryer extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.restuss_battle_cryer.branchId");
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.restuss_battle_cryer.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class newbie_scout extends script.base_script
+public class newbie_scout extends base_script
 {
     public newbie_scout()
     {

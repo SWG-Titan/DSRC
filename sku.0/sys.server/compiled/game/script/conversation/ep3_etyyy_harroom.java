@@ -91,46 +91,45 @@ public class ep3_etyyy_harroom extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_etyyy_harroom_condition_needsUllerReward(player, npc))
+        if (ep3_etyyy_harroom_condition_needsUllerReward(player, self))
         {
-            ep3_etyyy_harroom_action_giveUllerReward(player, npc);
+            ep3_etyyy_harroom_action_giveUllerReward(player, self);
             string_id message = new string_id(c_stringFile, "s_183");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_harroom_condition_needsWallugaReward(player, npc))
+        if (ep3_etyyy_harroom_condition_needsWallugaReward(player, self))
         {
-            ep3_etyyy_harroom_action_giveWallugaReward(player, npc);
+            ep3_etyyy_harroom_action_giveWallugaReward(player, self);
             string_id message = new string_id(c_stringFile, "s_185");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_harroom_condition_needsMoufReward(player, npc))
+        if (ep3_etyyy_harroom_condition_needsMoufReward(player, self))
         {
-            ep3_etyyy_harroom_action_giveMoufReward(player, npc);
+            ep3_etyyy_harroom_action_giveMoufReward(player, self);
             string_id message = new string_id(c_stringFile, "s_187");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_harroom_condition_needsWebweaverReward(player, npc))
+        if (ep3_etyyy_harroom_condition_needsWebweaverReward(player, self))
         {
-            ep3_etyyy_harroom_action_giveWebweaverReward(player, npc);
+            ep3_etyyy_harroom_action_giveWebweaverReward(player, self);
             string_id message = new string_id(c_stringFile, "s_189");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_harroom_condition__defaultCondition(player, npc))
+        if (ep3_etyyy_harroom_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_294");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -139,9 +138,8 @@ public class ep3_etyyy_harroom extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_etyyy_harroom.branchId");
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_etyyy_harroom.branchId");
         return SCRIPT_CONTINUE;
     }

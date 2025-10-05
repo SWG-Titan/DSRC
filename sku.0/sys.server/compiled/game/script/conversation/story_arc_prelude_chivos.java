@@ -894,24 +894,23 @@ public class story_arc_prelude_chivos extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (story_arc_prelude_chivos_condition_hasWonAllMissions(player, npc))
+        if (story_arc_prelude_chivos_condition_hasWonAllMissions(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_27");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_prelude_chivos_condition_hasCollectedRods(player, npc))
+        if (story_arc_prelude_chivos_condition_hasCollectedRods(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_prelude_chivos_condition__defaultCondition(player, npc))
+            if (story_arc_prelude_chivos_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -926,21 +925,21 @@ public class story_arc_prelude_chivos extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_28");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_prelude_chivos.branchId", 2);
-                npcStartConversation(player, npc, "story_arc_prelude_chivos", message, responses);
+                npcStartConversation(player, self, "story_arc_prelude_chivos", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_prelude_chivos_condition_isOnMissionTwo(player, npc))
+        if (story_arc_prelude_chivos_condition_isOnMissionTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_11");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_prelude_chivos_condition__defaultCondition(player, npc))
+            if (story_arc_prelude_chivos_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -955,28 +954,28 @@ public class story_arc_prelude_chivos extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_25");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_prelude_chivos.branchId", 5);
-                npcStartConversation(player, npc, "story_arc_prelude_chivos", message, responses);
+                npcStartConversation(player, self, "story_arc_prelude_chivos", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_prelude_chivos_condition_hasWonVentMission(player, npc))
+        if (story_arc_prelude_chivos_condition_hasWonVentMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_15");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_prelude_chivos_condition__defaultCondition(player, npc))
+            if (story_arc_prelude_chivos_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (story_arc_prelude_chivos_condition__defaultCondition(player, npc))
+            if (story_arc_prelude_chivos_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -995,22 +994,22 @@ public class story_arc_prelude_chivos extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_22");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_prelude_chivos.branchId", 7);
-                npcStartConversation(player, npc, "story_arc_prelude_chivos", message, responses);
+                npcStartConversation(player, self, "story_arc_prelude_chivos", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_prelude_chivos_condition_hasCleanedVents(player, npc))
+        if (story_arc_prelude_chivos_condition_hasCleanedVents(player, self))
         {
-            doAnimationAction(npc, "nod_head_multiple");
+            doAnimationAction(self, "nod_head_multiple");
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_prelude_chivos_condition__defaultCondition(player, npc))
+            if (story_arc_prelude_chivos_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1025,21 +1024,21 @@ public class story_arc_prelude_chivos extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_30");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_prelude_chivos.branchId", 9);
-                npcStartConversation(player, npc, "story_arc_prelude_chivos", message, responses);
+                npcStartConversation(player, self, "story_arc_prelude_chivos", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_prelude_chivos_condition_isOnMissionOne(player, npc))
+        if (story_arc_prelude_chivos_condition_isOnMissionOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_55");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_prelude_chivos_condition__defaultCondition(player, npc))
+            if (story_arc_prelude_chivos_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1054,22 +1053,22 @@ public class story_arc_prelude_chivos extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_57");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_prelude_chivos.branchId", 20);
-                npcStartConversation(player, npc, "story_arc_prelude_chivos", message, responses);
+                npcStartConversation(player, self, "story_arc_prelude_chivos", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_prelude_chivos_condition_hasCompletedSupply(player, npc))
+        if (story_arc_prelude_chivos_condition_hasCompletedSupply(player, self))
         {
-            doAnimationAction(npc, "taken_aback");
+            doAnimationAction(self, "taken_aback");
             string_id message = new string_id(c_stringFile, "s_101");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_prelude_chivos_condition__defaultCondition(player, npc))
+            if (story_arc_prelude_chivos_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1084,22 +1083,22 @@ public class story_arc_prelude_chivos extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_102");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_prelude_chivos.branchId", 22);
-                npcStartConversation(player, npc, "story_arc_prelude_chivos", message, responses);
+                npcStartConversation(player, self, "story_arc_prelude_chivos", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_prelude_chivos_condition__defaultCondition(player, npc))
+        if (story_arc_prelude_chivos_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "bow4");
+            doAnimationAction(self, "bow4");
             string_id message = new string_id(c_stringFile, "s_68");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_prelude_chivos_condition__defaultCondition(player, npc))
+            if (story_arc_prelude_chivos_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1114,15 +1113,15 @@ public class story_arc_prelude_chivos extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_80");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_prelude_chivos.branchId", 26);
-                npcStartConversation(player, npc, "story_arc_prelude_chivos", message, responses);
+                npcStartConversation(player, self, "story_arc_prelude_chivos", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1131,93 +1130,92 @@ public class story_arc_prelude_chivos extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.story_arc_prelude_chivos.branchId");
-        if (branchId == 2 && story_arc_prelude_chivos_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && story_arc_prelude_chivos_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && story_arc_prelude_chivos_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && story_arc_prelude_chivos_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && story_arc_prelude_chivos_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && story_arc_prelude_chivos_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && story_arc_prelude_chivos_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && story_arc_prelude_chivos_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && story_arc_prelude_chivos_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && story_arc_prelude_chivos_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && story_arc_prelude_chivos_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && story_arc_prelude_chivos_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && story_arc_prelude_chivos_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && story_arc_prelude_chivos_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && story_arc_prelude_chivos_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && story_arc_prelude_chivos_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && story_arc_prelude_chivos_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && story_arc_prelude_chivos_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && story_arc_prelude_chivos_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && story_arc_prelude_chivos_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && story_arc_prelude_chivos_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && story_arc_prelude_chivos_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && story_arc_prelude_chivos_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && story_arc_prelude_chivos_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && story_arc_prelude_chivos_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && story_arc_prelude_chivos_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && story_arc_prelude_chivos_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && story_arc_prelude_chivos_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && story_arc_prelude_chivos_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && story_arc_prelude_chivos_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && story_arc_prelude_chivos_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && story_arc_prelude_chivos_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && story_arc_prelude_chivos_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && story_arc_prelude_chivos_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && story_arc_prelude_chivos_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && story_arc_prelude_chivos_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && story_arc_prelude_chivos_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && story_arc_prelude_chivos_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && story_arc_prelude_chivos_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && story_arc_prelude_chivos_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && story_arc_prelude_chivos_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && story_arc_prelude_chivos_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.story_arc_prelude_chivos.branchId");
         return SCRIPT_CONTINUE;
     }

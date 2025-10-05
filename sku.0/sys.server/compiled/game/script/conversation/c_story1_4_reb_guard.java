@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class c_story1_4_reb_guard extends script.base_script
+public class c_story1_4_reb_guard extends base_script
 {
     public c_story1_4_reb_guard()
     {

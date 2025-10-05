@@ -533,18 +533,17 @@ public class ep3_forest_outcast_informant extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_forest_outcast_informant_condition_hasCompletedQuestOne(player, npc))
+        if (ep3_forest_outcast_informant_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_583");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_outcast_informant_condition__defaultCondition(player, npc))
+            if (ep3_forest_outcast_informant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -559,21 +558,21 @@ public class ep3_forest_outcast_informant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_586");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_outcast_informant.branchId", 1);
-                npcStartConversation(player, npc, "ep3_forest_outcast_informant", message, responses);
+                npcStartConversation(player, self, "ep3_forest_outcast_informant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_outcast_informant_condition_isTaskActiveOne(player, npc))
+        if (ep3_forest_outcast_informant_condition_isTaskActiveOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_594");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_outcast_informant_condition__defaultCondition(player, npc))
+            if (ep3_forest_outcast_informant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -588,28 +587,28 @@ public class ep3_forest_outcast_informant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_598");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_outcast_informant.branchId", 3);
-                npcStartConversation(player, npc, "ep3_forest_outcast_informant", message, responses);
+                npcStartConversation(player, self, "ep3_forest_outcast_informant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_outcast_informant_condition_isEpicTaskActiveContact(player, npc))
+        if (ep3_forest_outcast_informant_condition_isEpicTaskActiveContact(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_616");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_outcast_informant_condition_ChkContactActive(player, npc))
+            if (ep3_forest_outcast_informant_condition_ChkContactActive(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_outcast_informant_condition_ChkContactFinish(player, npc))
+            if (ep3_forest_outcast_informant_condition_ChkContactFinish(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -628,28 +627,28 @@ public class ep3_forest_outcast_informant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_626");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_outcast_informant.branchId", 7);
-                npcStartConversation(player, npc, "ep3_forest_outcast_informant", message, responses);
+                npcStartConversation(player, self, "ep3_forest_outcast_informant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_outcast_informant_condition_isEpicTaskAssassinActive(player, npc))
+        if (ep3_forest_outcast_informant_condition_isEpicTaskAssassinActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_628");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_outcast_informant_condition_ChkActiveAssassin(player, npc))
+            if (ep3_forest_outcast_informant_condition_ChkActiveAssassin(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_outcast_informant_condition_ChkCompleteAssassin(player, npc))
+            if (ep3_forest_outcast_informant_condition_ChkCompleteAssassin(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -668,21 +667,21 @@ public class ep3_forest_outcast_informant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_634");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_outcast_informant.branchId", 11);
-                npcStartConversation(player, npc, "ep3_forest_outcast_informant", message, responses);
+                npcStartConversation(player, self, "ep3_forest_outcast_informant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_outcast_informant_condition_isEpicTaskActiveBad(player, npc))
+        if (ep3_forest_outcast_informant_condition_isEpicTaskActiveBad(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_638");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_outcast_informant_condition__defaultCondition(player, npc))
+            if (ep3_forest_outcast_informant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -697,21 +696,21 @@ public class ep3_forest_outcast_informant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_640");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_outcast_informant.branchId", 14);
-                npcStartConversation(player, npc, "ep3_forest_outcast_informant", message, responses);
+                npcStartConversation(player, self, "ep3_forest_outcast_informant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_outcast_informant_condition_isEpicTaskActiveGood(player, npc))
+        if (ep3_forest_outcast_informant_condition_isEpicTaskActiveGood(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_652");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_outcast_informant_condition__defaultCondition(player, npc))
+            if (ep3_forest_outcast_informant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -726,21 +725,21 @@ public class ep3_forest_outcast_informant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_654");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_outcast_informant.branchId", 18);
-                npcStartConversation(player, npc, "ep3_forest_outcast_informant", message, responses);
+                npcStartConversation(player, self, "ep3_forest_outcast_informant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_outcast_informant_condition__defaultCondition(player, npc))
+        if (ep3_forest_outcast_informant_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_662");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_outcast_informant_condition__defaultCondition(player, npc))
+            if (ep3_forest_outcast_informant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -755,15 +754,15 @@ public class ep3_forest_outcast_informant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_664");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_outcast_informant.branchId", 21);
-                npcStartConversation(player, npc, "ep3_forest_outcast_informant", message, responses);
+                npcStartConversation(player, self, "ep3_forest_outcast_informant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -772,69 +771,68 @@ public class ep3_forest_outcast_informant extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_forest_outcast_informant.branchId");
-        if (branchId == 1 && ep3_forest_outcast_informant_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && ep3_forest_outcast_informant_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && ep3_forest_outcast_informant_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_forest_outcast_informant_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && ep3_forest_outcast_informant_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_forest_outcast_informant_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ep3_forest_outcast_informant_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_forest_outcast_informant_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_forest_outcast_informant_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_forest_outcast_informant_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_forest_outcast_informant_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_forest_outcast_informant_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_forest_outcast_informant_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_forest_outcast_informant_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && ep3_forest_outcast_informant_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && ep3_forest_outcast_informant_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_forest_outcast_informant_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_forest_outcast_informant_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_forest_outcast_informant_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_forest_outcast_informant_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_forest_outcast_informant_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_forest_outcast_informant_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && ep3_forest_outcast_informant_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && ep3_forest_outcast_informant_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_forest_outcast_informant_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_forest_outcast_informant_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && ep3_forest_outcast_informant_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && ep3_forest_outcast_informant_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_forest_outcast_informant_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_forest_outcast_informant_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_forest_outcast_informant.branchId");
         return SCRIPT_CONTINUE;
     }

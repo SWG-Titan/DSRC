@@ -924,25 +924,24 @@ public class padawan_sob_story_01 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (padawan_sob_story_01_condition_completedQuest(player, npc))
+        if (padawan_sob_story_01_condition_completedQuest(player, self))
         {
-            doAnimationAction(npc, "embarrassed");
+            doAnimationAction(self, "embarrassed");
             string_id message = new string_id(c_stringFile, "s_1f8a26f8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (padawan_sob_story_01_condition_spokeToNpc(player, npc))
+        if (padawan_sob_story_01_condition_spokeToNpc(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3d146002");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_sob_story_01_condition__defaultCondition(player, npc))
+            if (padawan_sob_story_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -957,28 +956,28 @@ public class padawan_sob_story_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_da7087d0");
                 }
                 utils.setScriptVar(player, "conversation.padawan_sob_story_01.branchId", 2);
-                npcStartConversation(player, npc, "padawan_sob_story_01", message, responses);
+                npcStartConversation(player, self, "padawan_sob_story_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_sob_story_01_condition_acceptedQuest(player, npc))
+        if (padawan_sob_story_01_condition_acceptedQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_45240d04");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_sob_story_01_condition__defaultCondition(player, npc))
+            if (padawan_sob_story_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (padawan_sob_story_01_condition__defaultCondition(player, npc))
+            if (padawan_sob_story_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -997,28 +996,28 @@ public class padawan_sob_story_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_2438dea0");
                 }
                 utils.setScriptVar(player, "conversation.padawan_sob_story_01.branchId", 4);
-                npcStartConversation(player, npc, "padawan_sob_story_01", message, responses);
+                npcStartConversation(player, self, "padawan_sob_story_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_sob_story_01_condition_isTrialPlayer(player, npc))
+        if (padawan_sob_story_01_condition_isTrialPlayer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4c1008a4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_sob_story_01_condition__defaultCondition(player, npc))
+            if (padawan_sob_story_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (padawan_sob_story_01_condition__defaultCondition(player, npc))
+            if (padawan_sob_story_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1037,21 +1036,21 @@ public class padawan_sob_story_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_b7139d72");
                 }
                 utils.setScriptVar(player, "conversation.padawan_sob_story_01.branchId", 7);
-                npcStartConversation(player, npc, "padawan_sob_story_01", message, responses);
+                npcStartConversation(player, self, "padawan_sob_story_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_sob_story_01_condition__defaultCondition(player, npc))
+        if (padawan_sob_story_01_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_202dc610");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1060,73 +1059,72 @@ public class padawan_sob_story_01 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.padawan_sob_story_01.branchId");
-        if (branchId == 2 && padawan_sob_story_01_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && padawan_sob_story_01_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && padawan_sob_story_01_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && padawan_sob_story_01_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && padawan_sob_story_01_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && padawan_sob_story_01_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && padawan_sob_story_01_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && padawan_sob_story_01_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && padawan_sob_story_01_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && padawan_sob_story_01_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && padawan_sob_story_01_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && padawan_sob_story_01_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && padawan_sob_story_01_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && padawan_sob_story_01_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && padawan_sob_story_01_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && padawan_sob_story_01_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && padawan_sob_story_01_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && padawan_sob_story_01_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && padawan_sob_story_01_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && padawan_sob_story_01_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && padawan_sob_story_01_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && padawan_sob_story_01_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && padawan_sob_story_01_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && padawan_sob_story_01_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && padawan_sob_story_01_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && padawan_sob_story_01_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && padawan_sob_story_01_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && padawan_sob_story_01_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && padawan_sob_story_01_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && padawan_sob_story_01_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && padawan_sob_story_01_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && padawan_sob_story_01_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.padawan_sob_story_01.branchId");
         return SCRIPT_CONTINUE;
     }

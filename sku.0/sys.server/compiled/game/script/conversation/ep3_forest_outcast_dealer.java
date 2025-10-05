@@ -5,7 +5,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.library.utils;
 
-public class ep3_forest_outcast_dealer extends script.base_script
+public class ep3_forest_outcast_dealer extends base_script
 {
     public ep3_forest_outcast_dealer()
     {

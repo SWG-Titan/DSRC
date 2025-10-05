@@ -74,7 +74,7 @@ public class station_corellia extends script.base_script
         {
             if (isGod(player))
             {
-                sendSystemMessageTestingOnly(player, "[GOD MODE MSG] You are currently waiting on your next mission that should arrive via e-mail within 3 hours.");
+                broadcast(player, "[GOD MODE MSG] You are currently waiting on your next mission that should arrive via e-mail within 3 hours.");
             }
             return false;
         }

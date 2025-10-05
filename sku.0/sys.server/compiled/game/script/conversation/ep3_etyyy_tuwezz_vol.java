@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class ep3_etyyy_tuwezz_vol extends script.base_script
+public class ep3_etyyy_tuwezz_vol extends base_script
 {
     public ep3_etyyy_tuwezz_vol()
     {

@@ -4,7 +4,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.*;
 
-public class indigo_siyan extends script.base_script
+public class indigo_siyan extends base_script
 {
     public indigo_siyan()
     {

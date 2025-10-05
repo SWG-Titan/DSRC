@@ -123,30 +123,29 @@ public class loveday_disillusion_pet_lover extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (loveday_disillusion_pet_lover_condition_petFound(player, npc))
+        if (loveday_disillusion_pet_lover_condition_petFound(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_16");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_pet_lover_condition_petSearch(player, npc))
+        if (loveday_disillusion_pet_lover_condition_petSearch(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_pet_lover_condition_speakWithHim(player, npc))
+        if (loveday_disillusion_pet_lover_condition_speakWithHim(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (loveday_disillusion_pet_lover_condition__defaultCondition(player, npc))
+            if (loveday_disillusion_pet_lover_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -161,21 +160,21 @@ public class loveday_disillusion_pet_lover extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_12");
                 }
                 utils.setScriptVar(player, "conversation.loveday_disillusion_pet_lover.branchId", 3);
-                npcStartConversation(player, npc, "loveday_disillusion_pet_lover", message, responses);
+                npcStartConversation(player, self, "loveday_disillusion_pet_lover", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_pet_lover_condition__defaultCondition(player, npc))
+        if (loveday_disillusion_pet_lover_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_18");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -184,17 +183,16 @@ public class loveday_disillusion_pet_lover extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.loveday_disillusion_pet_lover.branchId");
-        if (branchId == 3 && loveday_disillusion_pet_lover_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && loveday_disillusion_pet_lover_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && loveday_disillusion_pet_lover_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && loveday_disillusion_pet_lover_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.loveday_disillusion_pet_lover.branchId");
         return SCRIPT_CONTINUE;
     }

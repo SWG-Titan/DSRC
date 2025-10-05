@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class corellia_droid_factory_sergeant_mener extends script.base_script
+public class corellia_droid_factory_sergeant_mener extends base_script
 {
     public corellia_droid_factory_sergeant_mener()
     {

@@ -6,7 +6,7 @@ import script.library.static_item;
 import script.library.utils;
 import script.*;
 
-public class jedi_robe_jinsu_taker extends script.base_script
+public class jedi_robe_jinsu_taker extends base_script
 {
     public jedi_robe_jinsu_taker()
     {
@@ -628,12 +628,20 @@ public class jedi_robe_jinsu_taker extends script.base_script
         }
         setCondition(self, CONDITION_CONVERSABLE);
         ai_lib.setDefaultCalmBehavior(self, ai_lib.BEHAVIOR_SENTINEL);
+        location here = getLocation(self);
+        float y = getHeightAtLocation(here.x, here.z);
+        location f_height = new location(here.x, y, here.z);
+        setLocation(self, f_height);
         return SCRIPT_CONTINUE;
     }
     public int OnAttach(obj_id self) throws InterruptedException
     {
         setCondition(self, CONDITION_CONVERSABLE);
         ai_lib.setDefaultCalmBehavior(self, ai_lib.BEHAVIOR_SENTINEL);
+        location here = getLocation(self);
+        float y = getHeightAtLocation(here.x, here.z);
+        location f_height = new location(here.x, y, here.z);
+        setLocation(self, f_height);
         return SCRIPT_CONTINUE;
     }
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info menuInfo) throws InterruptedException

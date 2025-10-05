@@ -3769,33 +3769,32 @@ public class privateer_broker extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!privateer_broker_condition_hasSpaceExp(player, npc))
+        if (!privateer_broker_condition_hasSpaceExp(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_79be144a");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (privateer_broker_condition_isNeutralPilot(player, npc))
+        if (privateer_broker_condition_isNeutralPilot(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             string_id message = new string_id(c_stringFile, "s_13dd951a");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (privateer_broker_condition__defaultCondition(player, npc))
+            if (privateer_broker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (privateer_broker_condition__defaultCondition(player, npc))
+            if (privateer_broker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3814,35 +3813,35 @@ public class privateer_broker extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_8cb932b7");
                 }
                 setObjVar(player, "conversation.privateer_broker.branchId", 2);
-                npcStartConversation(player, npc, "privateer_broker", message, responses);
+                npcStartConversation(player, self, "privateer_broker", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (privateer_broker_condition_isPilot(player, npc))
+        if (privateer_broker_condition_isPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_c3f7c619");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (privateer_broker_condition__defaultCondition(player, npc))
+        if (privateer_broker_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "cough_polite");
+            doAnimationAction(self, "cough_polite");
             string_id message = new string_id(c_stringFile, "s_9fdd7cf3");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (privateer_broker_condition__defaultCondition(player, npc))
+            if (privateer_broker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (privateer_broker_condition__defaultCondition(player, npc))
+            if (privateer_broker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3861,15 +3860,15 @@ public class privateer_broker extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_f6dbaaf2");
                 }
                 setObjVar(player, "conversation.privateer_broker.branchId", 10);
-                npcStartConversation(player, npc, "privateer_broker", message, responses);
+                npcStartConversation(player, self, "privateer_broker", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -3878,133 +3877,132 @@ public class privateer_broker extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = getIntObjVar(player, "conversation.privateer_broker.branchId");
-        if (branchId == 2 && privateer_broker_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && privateer_broker_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && privateer_broker_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && privateer_broker_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && privateer_broker_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && privateer_broker_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && privateer_broker_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && privateer_broker_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && privateer_broker_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && privateer_broker_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && privateer_broker_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && privateer_broker_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && privateer_broker_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && privateer_broker_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && privateer_broker_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && privateer_broker_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && privateer_broker_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && privateer_broker_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && privateer_broker_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && privateer_broker_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && privateer_broker_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && privateer_broker_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && privateer_broker_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && privateer_broker_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && privateer_broker_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && privateer_broker_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && privateer_broker_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && privateer_broker_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && privateer_broker_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && privateer_broker_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && privateer_broker_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && privateer_broker_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && privateer_broker_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && privateer_broker_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && privateer_broker_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && privateer_broker_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && privateer_broker_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && privateer_broker_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && privateer_broker_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && privateer_broker_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && privateer_broker_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && privateer_broker_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && privateer_broker_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && privateer_broker_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && privateer_broker_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && privateer_broker_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && privateer_broker_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && privateer_broker_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && privateer_broker_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && privateer_broker_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && privateer_broker_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && privateer_broker_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && privateer_broker_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && privateer_broker_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && privateer_broker_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && privateer_broker_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && privateer_broker_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && privateer_broker_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && privateer_broker_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && privateer_broker_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && privateer_broker_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && privateer_broker_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         removeObjVar(player, "conversation.privateer_broker.branchId");
         return SCRIPT_CONTINUE;
     }

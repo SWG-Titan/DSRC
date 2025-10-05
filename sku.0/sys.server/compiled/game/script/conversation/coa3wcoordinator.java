@@ -882,38 +882,37 @@ public class coa3wcoordinator extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (coa3wcoordinator_condition_hasSpokeCoordinatorOnce(player, npc))
+        if (coa3wcoordinator_condition_hasSpokeCoordinatorOnce(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6837ec87");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition_hasSpokeInfoOfficer(player, npc))
+        if (coa3wcoordinator_condition_hasSpokeInfoOfficer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4ba81cc8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -936,34 +935,34 @@ public class coa3wcoordinator extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_43");
                 }
                 utils.setScriptVar(player, "conversation.coa3wcoordinator.branchId", 2);
-                npcStartConversation(player, npc, "coa3wcoordinator", message, responses);
+                npcStartConversation(player, self, "coa3wcoordinator", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition_sentToTactOfficer(player, npc))
+        if (coa3wcoordinator_condition_sentToTactOfficer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_19d54dc3");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition_completedFloraStoryMission(player, npc))
+        if (coa3wcoordinator_condition_completedFloraStoryMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_fa0fdb09");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -982,41 +981,41 @@ public class coa3wcoordinator extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_d819b34e");
                 }
                 utils.setScriptVar(player, "conversation.coa3wcoordinator.branchId", 18);
-                npcStartConversation(player, npc, "coa3wcoordinator", message, responses);
+                npcStartConversation(player, self, "coa3wcoordinator", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition_hasFinishedStory(player, npc))
+        if (coa3wcoordinator_condition_hasFinishedStory(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_e2c3d142");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition_hasOffworldWaypoint(player, npc))
+        if (coa3wcoordinator_condition_hasOffworldWaypoint(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_c9282e23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1039,49 +1038,49 @@ public class coa3wcoordinator extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_315ff574");
                 }
                 utils.setScriptVar(player, "conversation.coa3wcoordinator.branchId", 22);
-                npcStartConversation(player, npc, "coa3wcoordinator", message, responses);
+                npcStartConversation(player, self, "coa3wcoordinator", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition_playerHasDisk(player, npc))
+        if (coa3wcoordinator_condition_playerHasDisk(player, self))
         {
-            coa3wcoordinator_action_diskToCoordinator(player, npc);
+            coa3wcoordinator_action_diskToCoordinator(player, self);
             string_id message = new string_id(c_stringFile, "s_fec795");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition_lookoutMissionActive(player, npc))
+        if (coa3wcoordinator_condition_lookoutMissionActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_882bc6e0");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1108,28 +1107,28 @@ public class coa3wcoordinator extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_81");
                 }
                 utils.setScriptVar(player, "conversation.coa3wcoordinator.branchId", 27);
-                npcStartConversation(player, npc, "coa3wcoordinator", message, responses);
+                npcStartConversation(player, self, "coa3wcoordinator", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition_hasCOA2Badge(player, npc))
+        if (coa3wcoordinator_condition_hasCOA2Badge(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8d99c71a");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1148,35 +1147,35 @@ public class coa3wcoordinator extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_20eec74a");
                 }
                 utils.setScriptVar(player, "conversation.coa3wcoordinator.branchId", 35);
-                npcStartConversation(player, npc, "coa3wcoordinator", message, responses);
+                npcStartConversation(player, self, "coa3wcoordinator", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition_isNotEnemyFaction(player, npc))
+        if (coa3wcoordinator_condition_isNotEnemyFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_afa4d099");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (coa3wcoordinator_condition__defaultCondition(player, npc))
+            if (coa3wcoordinator_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1199,21 +1198,21 @@ public class coa3wcoordinator extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_103");
                 }
                 utils.setScriptVar(player, "conversation.coa3wcoordinator.branchId", 39);
-                npcStartConversation(player, npc, "coa3wcoordinator", message, responses);
+                npcStartConversation(player, self, "coa3wcoordinator", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coa3wcoordinator_condition__defaultCondition(player, npc))
+        if (coa3wcoordinator_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_e19d057c");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1222,69 +1221,68 @@ public class coa3wcoordinator extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.coa3wcoordinator.branchId");
-        if (branchId == 2 && coa3wcoordinator_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && coa3wcoordinator_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && coa3wcoordinator_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && coa3wcoordinator_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && coa3wcoordinator_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && coa3wcoordinator_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && coa3wcoordinator_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && coa3wcoordinator_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && coa3wcoordinator_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && coa3wcoordinator_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && coa3wcoordinator_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && coa3wcoordinator_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && coa3wcoordinator_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && coa3wcoordinator_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && coa3wcoordinator_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && coa3wcoordinator_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && coa3wcoordinator_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && coa3wcoordinator_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && coa3wcoordinator_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && coa3wcoordinator_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && coa3wcoordinator_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && coa3wcoordinator_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && coa3wcoordinator_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && coa3wcoordinator_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && coa3wcoordinator_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && coa3wcoordinator_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && coa3wcoordinator_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && coa3wcoordinator_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && coa3wcoordinator_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && coa3wcoordinator_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.coa3wcoordinator.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class emp_day_jedi_prisoner extends script.base_script
+public class emp_day_jedi_prisoner extends base_script
 {
     public emp_day_jedi_prisoner()
     {
@@ -52678,131 +52678,130 @@ public class emp_day_jedi_prisoner extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!emp_day_jedi_prisoner_condition_hasInterrogated(player, npc))
+        if (!emp_day_jedi_prisoner_condition_hasInterrogated(player, self))
         {
-            emp_day_jedi_prisoner_action_initCounter(player, npc);
+            emp_day_jedi_prisoner_action_initCounter(player, self);
             string_id message = new string_id(c_stringFile, "s_1040");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_jedi_prisoner_condition_zero(player, npc))
+            if (emp_day_jedi_prisoner_condition_zero(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (emp_day_jedi_prisoner_condition_zero(player, npc))
+            if (emp_day_jedi_prisoner_condition_zero(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (emp_day_jedi_prisoner_condition_minus1(player, npc))
+            if (emp_day_jedi_prisoner_condition_minus1(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (emp_day_jedi_prisoner_condition_minus1(player, npc))
+            if (emp_day_jedi_prisoner_condition_minus1(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (emp_day_jedi_prisoner_condition_minus2(player, npc))
+            if (emp_day_jedi_prisoner_condition_minus2(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (emp_day_jedi_prisoner_condition_minus2(player, npc))
+            if (emp_day_jedi_prisoner_condition_minus2(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (emp_day_jedi_prisoner_condition_minus3(player, npc))
+            if (emp_day_jedi_prisoner_condition_minus3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (emp_day_jedi_prisoner_condition_minus3(player, npc))
+            if (emp_day_jedi_prisoner_condition_minus3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse7 = true;
             }
             boolean hasResponse8 = false;
-            if (emp_day_jedi_prisoner_condition_minus4(player, npc))
+            if (emp_day_jedi_prisoner_condition_minus4(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse8 = true;
             }
             boolean hasResponse9 = false;
-            if (emp_day_jedi_prisoner_condition_minus4(player, npc))
+            if (emp_day_jedi_prisoner_condition_minus4(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse9 = true;
             }
             boolean hasResponse10 = false;
-            if (emp_day_jedi_prisoner_condition_plus1(player, npc))
+            if (emp_day_jedi_prisoner_condition_plus1(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse10 = true;
             }
             boolean hasResponse11 = false;
-            if (emp_day_jedi_prisoner_condition_plus1(player, npc))
+            if (emp_day_jedi_prisoner_condition_plus1(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse11 = true;
             }
             boolean hasResponse12 = false;
-            if (emp_day_jedi_prisoner_condition_plus2(player, npc))
+            if (emp_day_jedi_prisoner_condition_plus2(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse12 = true;
             }
             boolean hasResponse13 = false;
-            if (emp_day_jedi_prisoner_condition_plus2(player, npc))
+            if (emp_day_jedi_prisoner_condition_plus2(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse13 = true;
             }
             boolean hasResponse14 = false;
-            if (emp_day_jedi_prisoner_condition_plus3(player, npc))
+            if (emp_day_jedi_prisoner_condition_plus3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse14 = true;
             }
             boolean hasResponse15 = false;
-            if (emp_day_jedi_prisoner_condition_plus3(player, npc))
+            if (emp_day_jedi_prisoner_condition_plus3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse15 = true;
             }
             boolean hasResponse16 = false;
-            if (emp_day_jedi_prisoner_condition_plus4(player, npc))
+            if (emp_day_jedi_prisoner_condition_plus4(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -52881,21 +52880,21 @@ public class emp_day_jedi_prisoner extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1170");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_jedi_prisoner.branchId", 1);
-                npcStartConversation(player, npc, "emp_day_jedi_prisoner", message, responses);
+                npcStartConversation(player, self, "emp_day_jedi_prisoner", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_jedi_prisoner_condition_hasInterrogated(player, npc))
+        if (emp_day_jedi_prisoner_condition_hasInterrogated(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1198");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -52904,145 +52903,144 @@ public class emp_day_jedi_prisoner extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.emp_day_jedi_prisoner.branchId");
-        if (branchId == 1 && emp_day_jedi_prisoner_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && emp_day_jedi_prisoner_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && emp_day_jedi_prisoner_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && emp_day_jedi_prisoner_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && emp_day_jedi_prisoner_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && emp_day_jedi_prisoner_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && emp_day_jedi_prisoner_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && emp_day_jedi_prisoner_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && emp_day_jedi_prisoner_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && emp_day_jedi_prisoner_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && emp_day_jedi_prisoner_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && emp_day_jedi_prisoner_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && emp_day_jedi_prisoner_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && emp_day_jedi_prisoner_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && emp_day_jedi_prisoner_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && emp_day_jedi_prisoner_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && emp_day_jedi_prisoner_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && emp_day_jedi_prisoner_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && emp_day_jedi_prisoner_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && emp_day_jedi_prisoner_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && emp_day_jedi_prisoner_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && emp_day_jedi_prisoner_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && emp_day_jedi_prisoner_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && emp_day_jedi_prisoner_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && emp_day_jedi_prisoner_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && emp_day_jedi_prisoner_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && emp_day_jedi_prisoner_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && emp_day_jedi_prisoner_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && emp_day_jedi_prisoner_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && emp_day_jedi_prisoner_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && emp_day_jedi_prisoner_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && emp_day_jedi_prisoner_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && emp_day_jedi_prisoner_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && emp_day_jedi_prisoner_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && emp_day_jedi_prisoner_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && emp_day_jedi_prisoner_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && emp_day_jedi_prisoner_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && emp_day_jedi_prisoner_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && emp_day_jedi_prisoner_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && emp_day_jedi_prisoner_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && emp_day_jedi_prisoner_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && emp_day_jedi_prisoner_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && emp_day_jedi_prisoner_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && emp_day_jedi_prisoner_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && emp_day_jedi_prisoner_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && emp_day_jedi_prisoner_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && emp_day_jedi_prisoner_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && emp_day_jedi_prisoner_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && emp_day_jedi_prisoner_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && emp_day_jedi_prisoner_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && emp_day_jedi_prisoner_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && emp_day_jedi_prisoner_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && emp_day_jedi_prisoner_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && emp_day_jedi_prisoner_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && emp_day_jedi_prisoner_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && emp_day_jedi_prisoner_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && emp_day_jedi_prisoner_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && emp_day_jedi_prisoner_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && emp_day_jedi_prisoner_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && emp_day_jedi_prisoner_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && emp_day_jedi_prisoner_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && emp_day_jedi_prisoner_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && emp_day_jedi_prisoner_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && emp_day_jedi_prisoner_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && emp_day_jedi_prisoner_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && emp_day_jedi_prisoner_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && emp_day_jedi_prisoner_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && emp_day_jedi_prisoner_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.emp_day_jedi_prisoner.branchId");
         return SCRIPT_CONTINUE;
     }

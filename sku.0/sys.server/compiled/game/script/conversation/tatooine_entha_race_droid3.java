@@ -164,19 +164,18 @@ public class tatooine_entha_race_droid3 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_entha_race_droid3_condition_completedRace3(player, npc))
+        if (tatooine_entha_race_droid3_condition_completedRace3(player, self))
         {
-            tatooine_entha_race_droid3_action_signalFinish(player, npc);
+            tatooine_entha_race_droid3_action_signalFinish(player, self);
             string_id message = new string_id(c_stringFile, "s_15");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_race_droid3_condition__defaultCondition(player, npc))
+            if (tatooine_entha_race_droid3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -191,28 +190,28 @@ public class tatooine_entha_race_droid3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_16");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_race_droid3.branchId", 1);
-                npcStartConversation(player, npc, "tatooine_entha_race_droid3", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_race_droid3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_race_droid3_condition_onRace3(player, npc))
+        if (tatooine_entha_race_droid3_condition_onRace3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_10");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_race_droid3_condition__defaultCondition(player, npc))
+            if (tatooine_entha_race_droid3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_entha_race_droid3_condition__defaultCondition(player, npc))
+            if (tatooine_entha_race_droid3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -231,28 +230,28 @@ public class tatooine_entha_race_droid3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_12");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_race_droid3.branchId", 3);
-                npcStartConversation(player, npc, "tatooine_entha_race_droid3", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_race_droid3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_race_droid3_condition_onStartRace3(player, npc))
+        if (tatooine_entha_race_droid3_condition_onStartRace3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_race_droid3_condition__defaultCondition(player, npc))
+            if (tatooine_entha_race_droid3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_entha_race_droid3_condition__defaultCondition(player, npc))
+            if (tatooine_entha_race_droid3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -271,21 +270,21 @@ public class tatooine_entha_race_droid3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_race_droid3.branchId", 6);
-                npcStartConversation(player, npc, "tatooine_entha_race_droid3", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_race_droid3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_race_droid3_condition__defaultCondition(player, npc))
+        if (tatooine_entha_race_droid3_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_race_droid3_condition__defaultCondition(player, npc))
+            if (tatooine_entha_race_droid3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -300,15 +299,15 @@ public class tatooine_entha_race_droid3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_32");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_race_droid3.branchId", 9);
-                npcStartConversation(player, npc, "tatooine_entha_race_droid3", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_race_droid3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -317,25 +316,24 @@ public class tatooine_entha_race_droid3 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_entha_race_droid3.branchId");
-        if (branchId == 1 && tatooine_entha_race_droid3_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && tatooine_entha_race_droid3_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && tatooine_entha_race_droid3_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_entha_race_droid3_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && tatooine_entha_race_droid3_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && tatooine_entha_race_droid3_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tatooine_entha_race_droid3_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tatooine_entha_race_droid3_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_entha_race_droid3.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -413,25 +413,24 @@ public class outbreak_defense_zsu_val_epsilon extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (outbreak_defense_zsu_val_epsilon_condition_noAntiVirus(player, npc))
+        if (outbreak_defense_zsu_val_epsilon_condition_noAntiVirus(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_69");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_defense_zsu_val_epsilon_condition_levelTooLow(player, npc))
+        if (outbreak_defense_zsu_val_epsilon_condition_levelTooLow(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_44");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, npc))
+            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -446,49 +445,49 @@ public class outbreak_defense_zsu_val_epsilon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_45");
                 }
                 utils.setScriptVar(player, "conversation.outbreak_defense_zsu_val_epsilon.branchId", 2);
-                npcStartConversation(player, npc, "outbreak_defense_zsu_val_epsilon", message, responses);
+                npcStartConversation(player, self, "outbreak_defense_zsu_val_epsilon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_defense_zsu_val_epsilon_condition_isWaitingForRewardSignal(player, npc))
+        if (outbreak_defense_zsu_val_epsilon_condition_isWaitingForRewardSignal(player, self))
         {
-            outbreak_defense_zsu_val_epsilon_action_sendQuestSignal(player, npc);
+            outbreak_defense_zsu_val_epsilon_action_sendQuestSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_64");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_defense_zsu_val_epsilon_condition_isGodPlayerTester(player, npc))
+        if (outbreak_defense_zsu_val_epsilon_condition_isGodPlayerTester(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_21");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, npc))
+            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, npc))
+            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, npc))
+            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, npc))
+            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -515,21 +514,21 @@ public class outbreak_defense_zsu_val_epsilon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27");
                 }
                 utils.setScriptVar(player, "conversation.outbreak_defense_zsu_val_epsilon.branchId", 5);
-                npcStartConversation(player, npc, "outbreak_defense_zsu_val_epsilon", message, responses);
+                npcStartConversation(player, self, "outbreak_defense_zsu_val_epsilon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_defense_zsu_val_epsilon_condition_hasCompletedDefenseQuest(player, npc))
+        if (outbreak_defense_zsu_val_epsilon_condition_hasCompletedDefenseQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_55");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, npc))
+            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -544,28 +543,28 @@ public class outbreak_defense_zsu_val_epsilon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_62");
                 }
                 utils.setScriptVar(player, "conversation.outbreak_defense_zsu_val_epsilon.branchId", 10);
-                npcStartConversation(player, npc, "outbreak_defense_zsu_val_epsilon", message, responses);
+                npcStartConversation(player, self, "outbreak_defense_zsu_val_epsilon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_defense_zsu_val_epsilon_condition_hasDefenseQuest(player, npc))
+        if (outbreak_defense_zsu_val_epsilon_condition_hasDefenseQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_50");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_defense_zsu_val_epsilon_condition_hasNeverSpoken(player, npc))
+        if (outbreak_defense_zsu_val_epsilon_condition_hasNeverSpoken(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_36");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, npc))
+            if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -580,27 +579,27 @@ public class outbreak_defense_zsu_val_epsilon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_38");
                 }
                 utils.setScriptVar(player, "conversation.outbreak_defense_zsu_val_epsilon.branchId", 14);
-                npcStartConversation(player, npc, "outbreak_defense_zsu_val_epsilon", message, responses);
+                npcStartConversation(player, self, "outbreak_defense_zsu_val_epsilon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!outbreak_defense_zsu_val_epsilon_condition_hasAvailableGuardPosts(player, npc))
+        if (!outbreak_defense_zsu_val_epsilon_condition_hasAvailableGuardPosts(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_47");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, npc))
+        if (outbreak_defense_zsu_val_epsilon_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_90");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -609,37 +608,36 @@ public class outbreak_defense_zsu_val_epsilon extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.outbreak_defense_zsu_val_epsilon.branchId");
-        if (branchId == 2 && outbreak_defense_zsu_val_epsilon_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && outbreak_defense_zsu_val_epsilon_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && outbreak_defense_zsu_val_epsilon_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && outbreak_defense_zsu_val_epsilon_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && outbreak_defense_zsu_val_epsilon_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && outbreak_defense_zsu_val_epsilon_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && outbreak_defense_zsu_val_epsilon_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && outbreak_defense_zsu_val_epsilon_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && outbreak_defense_zsu_val_epsilon_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && outbreak_defense_zsu_val_epsilon_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && outbreak_defense_zsu_val_epsilon_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && outbreak_defense_zsu_val_epsilon_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && outbreak_defense_zsu_val_epsilon_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && outbreak_defense_zsu_val_epsilon_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.outbreak_defense_zsu_val_epsilon.branchId");
         return SCRIPT_CONTINUE;
     }

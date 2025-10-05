@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class corellia_38_pech_seki extends script.base_script
+public class corellia_38_pech_seki extends base_script
 {
     public corellia_38_pech_seki()
     {

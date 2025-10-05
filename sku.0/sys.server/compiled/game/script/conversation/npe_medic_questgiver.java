@@ -585,18 +585,17 @@ public class npe_medic_questgiver extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_medic_questgiver_condition_needsPack(player, npc))
+        if (npe_medic_questgiver_condition_needsPack(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_50");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_medic_questgiver_condition__defaultCondition(player, npc))
+            if (npe_medic_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -611,22 +610,22 @@ public class npe_medic_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_52");
                 }
                 utils.setScriptVar(player, "conversation.npe_medic_questgiver.branchId", 1);
-                npcStartConversation(player, npc, "npe_medic_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_medic_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_medic_questgiver_condition_isTaskCompleteDna(player, npc))
+        if (npe_medic_questgiver_condition_isTaskCompleteDna(player, self))
         {
-            npe_medic_questgiver_action_facePlayer(player, npc);
+            npe_medic_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_64");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_medic_questgiver_condition__defaultCondition(player, npc))
+            if (npe_medic_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -641,36 +640,36 @@ public class npe_medic_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_65");
                 }
                 utils.setScriptVar(player, "conversation.npe_medic_questgiver.branchId", 3);
-                npcStartConversation(player, npc, "npe_medic_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_medic_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_medic_questgiver_condition_canTakeDna(player, npc))
+        if (npe_medic_questgiver_condition_canTakeDna(player, self))
         {
-            npe_medic_questgiver_action_facePlayer(player, npc);
+            npe_medic_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_49");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_medic_questgiver_condition__defaultCondition(player, npc))
+            if (npe_medic_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_medic_questgiver_condition__defaultCondition(player, npc))
+            if (npe_medic_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (npe_medic_questgiver_condition__defaultCondition(player, npc))
+            if (npe_medic_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -696,34 +695,34 @@ public class npe_medic_questgiver extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "npe_medic_questgiver", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "npe_medic_questgiver", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_medic_questgiver_condition_isAnyTaskActive(player, npc))
+        if (npe_medic_questgiver_condition_isAnyTaskActive(player, self))
         {
-            npe_medic_questgiver_action_facePlayer(player, npc);
+            npe_medic_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_29");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_medic_questgiver_condition_isTaskCompleteBacta(player, npc))
+        if (npe_medic_questgiver_condition_isTaskCompleteBacta(player, self))
         {
-            npe_medic_questgiver_action_facePlayer(player, npc);
+            npe_medic_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_medic_questgiver_condition__defaultCondition(player, npc))
+            if (npe_medic_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -738,22 +737,22 @@ public class npe_medic_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_32");
                 }
                 utils.setScriptVar(player, "conversation.npe_medic_questgiver.branchId", 15);
-                npcStartConversation(player, npc, "npe_medic_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_medic_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_medic_questgiver_condition_pointedToHere(player, npc))
+        if (npe_medic_questgiver_condition_pointedToHere(player, self))
         {
-            npe_medic_questgiver_action_facePlayer(player, npc);
+            npe_medic_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_42");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_medic_questgiver_condition__defaultCondition(player, npc))
+            if (npe_medic_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -768,36 +767,36 @@ public class npe_medic_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_44");
                 }
                 utils.setScriptVar(player, "conversation.npe_medic_questgiver.branchId", 18);
-                npcStartConversation(player, npc, "npe_medic_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_medic_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_medic_questgiver_condition_needsToFinishTraining(player, npc))
+        if (npe_medic_questgiver_condition_needsToFinishTraining(player, self))
         {
-            npe_medic_questgiver_action_facePlayer(player, npc);
+            npe_medic_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_medic_questgiver_condition_cantHelp(player, npc))
+        if (npe_medic_questgiver_condition_cantHelp(player, self))
         {
-            npe_medic_questgiver_action_facePlayer(player, npc);
+            npe_medic_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_67");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_medic_questgiver_condition__defaultCondition(player, npc))
+        if (npe_medic_questgiver_condition__defaultCondition(player, self))
         {
-            npe_medic_questgiver_action_facePlayer(player, npc);
+            npe_medic_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_94");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -806,53 +805,52 @@ public class npe_medic_questgiver extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_medic_questgiver.branchId");
-        if (branchId == 1 && npe_medic_questgiver_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && npe_medic_questgiver_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && npe_medic_questgiver_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && npe_medic_questgiver_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && npe_medic_questgiver_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && npe_medic_questgiver_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_medic_questgiver_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_medic_questgiver_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && npe_medic_questgiver_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && npe_medic_questgiver_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && npe_medic_questgiver_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && npe_medic_questgiver_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && npe_medic_questgiver_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && npe_medic_questgiver_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && npe_medic_questgiver_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && npe_medic_questgiver_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && npe_medic_questgiver_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && npe_medic_questgiver_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && npe_medic_questgiver_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && npe_medic_questgiver_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && npe_medic_questgiver_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && npe_medic_questgiver_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_medic_questgiver.branchId");
         return SCRIPT_CONTINUE;
     }

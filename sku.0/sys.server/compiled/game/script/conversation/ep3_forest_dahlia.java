@@ -2280,18 +2280,17 @@ public class ep3_forest_dahlia extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_forest_dahlia_condition_hasCompletedQuestThree(player, npc))
+        if (ep3_forest_dahlia_condition_hasCompletedQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3134");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2306,35 +2305,35 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3136");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 1);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_hasCompletedTaskThree(player, npc))
+        if (ep3_forest_dahlia_condition_hasCompletedTaskThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3140");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition_isFemale(player, npc))
+            if (ep3_forest_dahlia_condition_isFemale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_dahlia_condition_isMale(player, npc))
+            if (ep3_forest_dahlia_condition_isMale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2357,47 +2356,47 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3170");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 3);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_isTaskActiveThree(player, npc))
+        if (ep3_forest_dahlia_condition_isTaskActiveThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3182");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_isTaskStillActive(player, npc))
+        if (ep3_forest_dahlia_condition_isTaskStillActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3184");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_hasCompletedQuestTwo(player, npc))
+        if (ep3_forest_dahlia_condition_hasCompletedQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3186");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition_isMale(player, npc))
+            if (ep3_forest_dahlia_condition_isMale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_dahlia_condition_isFemale(player, npc))
+            if (ep3_forest_dahlia_condition_isFemale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2420,35 +2419,35 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3224");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 16);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_hasCompletedTaskTwo(player, npc))
+        if (ep3_forest_dahlia_condition_hasCompletedTaskTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3244");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition_isMale(player, npc))
+            if (ep3_forest_dahlia_condition_isMale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_dahlia_condition_isFemale(player, npc))
+            if (ep3_forest_dahlia_condition_isFemale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2471,21 +2470,21 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3262");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 31);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_isTaskActiveTwo(player, npc))
+        if (ep3_forest_dahlia_condition_isTaskActiveTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3270");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2500,35 +2499,35 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3272");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 38);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_hasCompletedQuestOne(player, npc))
+        if (ep3_forest_dahlia_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3276");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition_isMale(player, npc))
+            if (ep3_forest_dahlia_condition_isMale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_dahlia_condition_isFemale(player, npc))
+            if (ep3_forest_dahlia_condition_isFemale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2551,35 +2550,35 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3314");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 40);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_hasCompletedTaskOne(player, npc))
+        if (ep3_forest_dahlia_condition_hasCompletedTaskOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3342");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition_isFemale(player, npc))
+            if (ep3_forest_dahlia_condition_isFemale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_dahlia_condition_isMale(player, npc))
+            if (ep3_forest_dahlia_condition_isMale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2602,21 +2601,21 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3360");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 57);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_isTaskActiveOne(player, npc))
+        if (ep3_forest_dahlia_condition_isTaskActiveOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3368");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2631,35 +2630,35 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3370");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 64);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_hasCompletedInitial(player, npc))
+        if (ep3_forest_dahlia_condition_hasCompletedInitial(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3374");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition_isFemale(player, npc))
+            if (ep3_forest_dahlia_condition_isFemale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_dahlia_condition_isMale(player, npc))
+            if (ep3_forest_dahlia_condition_isMale(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2682,21 +2681,21 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3412");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 66);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_isBadGuy(player, npc))
+        if (ep3_forest_dahlia_condition_isBadGuy(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3452");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2711,27 +2710,27 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3454");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 86);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition_isGoodGuy(player, npc))
+        if (ep3_forest_dahlia_condition_isGoodGuy(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3458");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+        if (ep3_forest_dahlia_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3460");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_dahlia_condition__defaultCondition(player, npc))
+            if (ep3_forest_dahlia_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2746,15 +2745,15 @@ public class ep3_forest_dahlia extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3462");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_dahlia.branchId", 89);
-                npcStartConversation(player, npc, "ep3_forest_dahlia", message, responses);
+                npcStartConversation(player, self, "ep3_forest_dahlia", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2763,217 +2762,216 @@ public class ep3_forest_dahlia extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_forest_dahlia.branchId");
-        if (branchId == 1 && ep3_forest_dahlia_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && ep3_forest_dahlia_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && ep3_forest_dahlia_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_forest_dahlia_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && ep3_forest_dahlia_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_forest_dahlia_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ep3_forest_dahlia_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_forest_dahlia_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_forest_dahlia_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_forest_dahlia_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_forest_dahlia_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_forest_dahlia_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_forest_dahlia_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_forest_dahlia_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_forest_dahlia_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_forest_dahlia_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_forest_dahlia_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_forest_dahlia_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_forest_dahlia_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_forest_dahlia_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_forest_dahlia_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_forest_dahlia_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_forest_dahlia_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_forest_dahlia_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_forest_dahlia_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_forest_dahlia_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && ep3_forest_dahlia_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && ep3_forest_dahlia_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_forest_dahlia_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_forest_dahlia_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && ep3_forest_dahlia_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && ep3_forest_dahlia_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && ep3_forest_dahlia_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && ep3_forest_dahlia_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && ep3_forest_dahlia_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && ep3_forest_dahlia_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && ep3_forest_dahlia_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && ep3_forest_dahlia_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && ep3_forest_dahlia_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && ep3_forest_dahlia_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && ep3_forest_dahlia_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && ep3_forest_dahlia_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && ep3_forest_dahlia_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && ep3_forest_dahlia_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && ep3_forest_dahlia_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && ep3_forest_dahlia_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && ep3_forest_dahlia_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && ep3_forest_dahlia_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && ep3_forest_dahlia_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && ep3_forest_dahlia_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && ep3_forest_dahlia_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && ep3_forest_dahlia_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && ep3_forest_dahlia_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && ep3_forest_dahlia_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && ep3_forest_dahlia_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && ep3_forest_dahlia_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && ep3_forest_dahlia_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && ep3_forest_dahlia_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && ep3_forest_dahlia_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && ep3_forest_dahlia_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && ep3_forest_dahlia_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && ep3_forest_dahlia_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && ep3_forest_dahlia_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && ep3_forest_dahlia_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && ep3_forest_dahlia_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && ep3_forest_dahlia_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && ep3_forest_dahlia_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && ep3_forest_dahlia_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && ep3_forest_dahlia_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && ep3_forest_dahlia_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && ep3_forest_dahlia_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && ep3_forest_dahlia_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && ep3_forest_dahlia_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && ep3_forest_dahlia_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && ep3_forest_dahlia_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && ep3_forest_dahlia_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && ep3_forest_dahlia_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && ep3_forest_dahlia_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && ep3_forest_dahlia_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && ep3_forest_dahlia_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && ep3_forest_dahlia_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && ep3_forest_dahlia_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && ep3_forest_dahlia_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && ep3_forest_dahlia_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && ep3_forest_dahlia_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && ep3_forest_dahlia_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && ep3_forest_dahlia_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && ep3_forest_dahlia_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && ep3_forest_dahlia_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && ep3_forest_dahlia_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && ep3_forest_dahlia_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && ep3_forest_dahlia_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && ep3_forest_dahlia_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && ep3_forest_dahlia_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && ep3_forest_dahlia_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && ep3_forest_dahlia_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && ep3_forest_dahlia_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && ep3_forest_dahlia_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && ep3_forest_dahlia_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && ep3_forest_dahlia_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && ep3_forest_dahlia_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && ep3_forest_dahlia_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && ep3_forest_dahlia_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && ep3_forest_dahlia_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_forest_dahlia.branchId");
         return SCRIPT_CONTINUE;
     }

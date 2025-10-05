@@ -1040,30 +1040,29 @@ public class rek_thelcar extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (rek_thelcar_condition_hasCompletedAll(player, npc))
+        if (rek_thelcar_condition_hasCompletedAll(player, self))
         {
-            rek_thelcar_action_correctAnyPlayerErrors(player, npc);
+            rek_thelcar_action_correctAnyPlayerErrors(player, self);
             string_id message = new string_id(c_stringFile, "s_147");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasReturnedQuestion(player, npc))
+        if (rek_thelcar_condition_hasReturnedQuestion(player, self))
         {
-            doAnimationAction(npc, "hair_flip");
+            doAnimationAction(self, "hair_flip");
             string_id message = new string_id(c_stringFile, "s_113");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1081,34 +1080,34 @@ public class rek_thelcar extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rek_thelcar", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rek_thelcar", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasCompletedScientistCollection(player, npc))
+        if (rek_thelcar_condition_hasCompletedScientistCollection(player, self))
         {
-            rek_thelcar_action_BruteForceCompleteScientist(player, npc);
+            rek_thelcar_action_BruteForceCompleteScientist(player, self);
             string_id message = new string_id(c_stringFile, "s_142");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasQuestionNotComplete(player, npc))
+        if (rek_thelcar_condition_hasQuestionNotComplete(player, self))
         {
-            doAnimationAction(npc, "applause_excited");
+            doAnimationAction(self, "applause_excited");
             string_id message = new string_id(c_stringFile, "s_85");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1126,34 +1125,34 @@ public class rek_thelcar extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rek_thelcar", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rek_thelcar", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_isElligibleQuestion(player, npc))
+        if (rek_thelcar_condition_isElligibleQuestion(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_43");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1175,33 +1174,33 @@ public class rek_thelcar extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rek_thelcar", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rek_thelcar", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasntDoneQuestion(player, npc))
+        if (rek_thelcar_condition_hasntDoneQuestion(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_137");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasReturnedMinerDna(player, npc))
+        if (rek_thelcar_condition_hasReturnedMinerDna(player, self))
         {
-            doAnimationAction(npc, "bounce");
+            doAnimationAction(self, "bounce");
             string_id message = new string_id(c_stringFile, "s_108");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1219,34 +1218,34 @@ public class rek_thelcar extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rek_thelcar", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rek_thelcar", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasCompletedDNACollection(player, npc))
+        if (rek_thelcar_condition_hasCompletedDNACollection(player, self))
         {
-            rek_thelcar_action_BruteForceCompleteDNA(player, npc);
+            rek_thelcar_action_BruteForceCompleteDNA(player, self);
             string_id message = new string_id(c_stringFile, "s_144");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasMinerDnaNotComplete(player, npc))
+        if (rek_thelcar_condition_hasMinerDnaNotComplete(player, self))
         {
-            doAnimationAction(npc, "bounce");
+            doAnimationAction(self, "bounce");
             string_id message = new string_id(c_stringFile, "s_84");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1264,41 +1263,41 @@ public class rek_thelcar extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rek_thelcar", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rek_thelcar", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_isElligibleMinerDna(player, npc))
+        if (rek_thelcar_condition_isElligibleMinerDna(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_39");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1324,33 +1323,33 @@ public class rek_thelcar extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rek_thelcar", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rek_thelcar", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasntDoneMinerDNA(player, npc))
+        if (rek_thelcar_condition_hasntDoneMinerDNA(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_136");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasReturnedSurveillance(player, npc))
+        if (rek_thelcar_condition_hasReturnedSurveillance(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_86");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1368,34 +1367,34 @@ public class rek_thelcar extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rek_thelcar", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rek_thelcar", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasCompletedDeviceCollection(player, npc))
+        if (rek_thelcar_condition_hasCompletedDeviceCollection(player, self))
         {
-            rek_thelcar_action_BruteForceCompleteDevice(player, npc);
+            rek_thelcar_action_BruteForceCompleteDevice(player, self);
             string_id message = new string_id(c_stringFile, "s_146");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasSurveillanceNotComplete(player, npc))
+        if (rek_thelcar_condition_hasSurveillanceNotComplete(player, self))
         {
-            doAnimationAction(npc, "applause_excited");
+            doAnimationAction(self, "applause_excited");
             string_id message = new string_id(c_stringFile, "s_94");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1413,34 +1412,34 @@ public class rek_thelcar extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rek_thelcar", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rek_thelcar", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_isEligibleSurveillance(player, npc))
+        if (rek_thelcar_condition_isEligibleSurveillance(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_100");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rek_thelcar_condition__defaultCondition(player, npc))
+            if (rek_thelcar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1462,33 +1461,33 @@ public class rek_thelcar extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rek_thelcar", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rek_thelcar", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition_hasntDoneSurveillance(player, npc))
+        if (rek_thelcar_condition_hasntDoneSurveillance(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_150");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rek_thelcar_condition__defaultCondition(player, npc))
+        if (rek_thelcar_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "hi5_tandem");
+            doAnimationAction(self, "hi5_tandem");
             string_id message = new string_id(c_stringFile, "s_152");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1497,97 +1496,96 @@ public class rek_thelcar extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.rek_thelcar.branchId");
-        if (branchId == 2 && rek_thelcar_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && rek_thelcar_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && rek_thelcar_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && rek_thelcar_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && rek_thelcar_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && rek_thelcar_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && rek_thelcar_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && rek_thelcar_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && rek_thelcar_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && rek_thelcar_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && rek_thelcar_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && rek_thelcar_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && rek_thelcar_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && rek_thelcar_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && rek_thelcar_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && rek_thelcar_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && rek_thelcar_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && rek_thelcar_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && rek_thelcar_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && rek_thelcar_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && rek_thelcar_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && rek_thelcar_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && rek_thelcar_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && rek_thelcar_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && rek_thelcar_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && rek_thelcar_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && rek_thelcar_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && rek_thelcar_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && rek_thelcar_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && rek_thelcar_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && rek_thelcar_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && rek_thelcar_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && rek_thelcar_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && rek_thelcar_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && rek_thelcar_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && rek_thelcar_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && rek_thelcar_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && rek_thelcar_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && rek_thelcar_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && rek_thelcar_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && rek_thelcar_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && rek_thelcar_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && rek_thelcar_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && rek_thelcar_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.rek_thelcar.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class story_arc_chapter_three_cobar extends script.base_script
+public class story_arc_chapter_three_cobar extends base_script
 {
     public story_arc_chapter_three_cobar()
     {

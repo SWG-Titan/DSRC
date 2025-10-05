@@ -118,38 +118,37 @@ public class quest_u10_bossk_henchman extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (quest_u10_bossk_henchman_condition_quest_u10_complete_deleted_u16(player, npc))
+        if (quest_u10_bossk_henchman_condition_quest_u10_complete_deleted_u16(player, self))
         {
-            quest_u10_bossk_henchman_action_grant_u16_quest(player, npc);
+            quest_u10_bossk_henchman_action_grant_u16_quest(player, self);
             string_id message = new string_id(c_stringFile, "s_16");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (quest_u10_bossk_henchman_condition_quest_u10_03_complete(player, npc))
+        if (quest_u10_bossk_henchman_condition_quest_u10_03_complete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (quest_u10_bossk_henchman_condition_quest_u10_03_05_active(player, npc))
+        if (quest_u10_bossk_henchman_condition_quest_u10_03_05_active(player, self))
         {
-            quest_u10_bossk_henchman_action_quest_u10_03_05_signal(player, npc);
+            quest_u10_bossk_henchman_action_quest_u10_03_05_signal(player, self);
             string_id message = new string_id(c_stringFile, "s_12");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (quest_u10_bossk_henchman_condition_quest_u10_03_04_active(player, npc))
+        if (quest_u10_bossk_henchman_condition_quest_u10_03_04_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (quest_u10_bossk_henchman_condition__defaultCondition(player, npc))
+            if (quest_u10_bossk_henchman_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -164,34 +163,34 @@ public class quest_u10_bossk_henchman extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_10");
                 }
                 utils.setScriptVar(player, "conversation.quest_u10_bossk_henchman.branchId", 4);
-                npcStartConversation(player, npc, "quest_u10_bossk_henchman", message, responses);
+                npcStartConversation(player, self, "quest_u10_bossk_henchman", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (quest_u10_bossk_henchman_condition_quest_u10_03_02_active(player, npc))
+        if (quest_u10_bossk_henchman_condition_quest_u10_03_02_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_37");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (quest_u10_bossk_henchman_condition_quest_u10_03_01_active(player, npc))
+        if (quest_u10_bossk_henchman_condition_quest_u10_03_01_active(player, self))
         {
-            quest_u10_bossk_henchman_action_quest_u10_03_01_signal(player, npc);
+            quest_u10_bossk_henchman_action_quest_u10_03_01_signal(player, self);
             string_id message = new string_id(c_stringFile, "s_15");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (quest_u10_bossk_henchman_condition__defaultCondition(player, npc))
+        if (quest_u10_bossk_henchman_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_29");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -200,13 +199,12 @@ public class quest_u10_bossk_henchman extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.quest_u10_bossk_henchman.branchId");
-        if (branchId == 4 && quest_u10_bossk_henchman_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && quest_u10_bossk_henchman_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.quest_u10_bossk_henchman.branchId");
         return SCRIPT_CONTINUE;
     }

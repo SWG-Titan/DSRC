@@ -4,7 +4,7 @@ import script.*;
 import script.library.ai_lib;
 import script.library.chat;
 
-public class racing_mosespa extends script.base_script
+public class racing_mosespa extends base_script
 {
     public racing_mosespa()
     {

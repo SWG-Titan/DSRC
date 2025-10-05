@@ -63,3 +63,10 @@ object/mobile/vehicle/tcg_republic_gunship.iff	0	21.9	1	205	103	2.9	9.9	7	1	1	1.
 object/mobile/vehicle/walker_at_st.iff	0	10	1	190	95	2.9	9.9	7	2	3	4	2.5	45	0	0		vehicle_1	
 object/mobile/vehicle/walker_at_xt_player.iff	0	10	1	190	95	2.9	9.9	7	2	3	4	2.5	45	0	0		vehicle_1	
 object/mobile/vehicle/single_pod_airspeeder.iff	0	17.9	1	154	77	2.9	9.9	7	2	3	4	2.5	45	0.5	0.25		vehicle_3	
+object/mobile/vehicle/tri_air_speeder.iff	0	35	1	190	95	2.9	9.9	7	2	3	4	2.5	45	0.5	0.25		vehicle_4	
+object/mobile/vehicle/city_explorer_s01.iff	0	35	1	190	95	2.9	9.9	7	2	3	4	2.5	45	0.5	0.25		vehicle_4	
+object/mobile/vehicle/hover_tank_red.iff	0	35	1	190	95	2.9	9.9	7	2	3	4	2.5	45	0.5	0.25		vehicle_4	
+object/mobile/vehicle/hut_speeder_s01.iff	0	35	1	190	95	2.9	9.9	7	2	3	4	2.5	45	0.5	0.25		vehicle_4	
+object/mobile/vehicle/imp_dart_s01.iff	0	90	1	190	95	9.9	9.9	20	2	3	4	2.5	45	0.5	0.25		vehicle_4	
+object/mobile/vehicle/sky_flyer_red.iff	0	80	1	190	95	2.9	9.9	7	2	3	4	2.5	45	1.5	0.75		vehicle_4	
+object/mobile/vehicle/speeder_bike_s001.iff	0	35	1	190	95	2.9	9.9	7	2	3	4	2.5	45	0.5	0.25		vehicle_4	

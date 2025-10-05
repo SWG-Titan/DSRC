@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class tatooine_24_azure_cabal_propti_xaroon_01 extends script.base_script
+public class tatooine_24_azure_cabal_propti_xaroon_01 extends base_script
 {
     public tatooine_24_azure_cabal_propti_xaroon_01()
     {
@@ -82,8 +82,7 @@ public class tatooine_24_azure_cabal_propti_xaroon_01 extends script.base_script
     }
     public String tatooine_24_azure_cabal_propti_xaroon_01_tokenTO_playerFirstName(obj_id player, obj_id npc) throws InterruptedException
     {
-        String name = getFirstName(player);
-        return name;
+        return getFirstName(player);
     }
     public int tatooine_24_azure_cabal_propti_xaroon_01_handleBranch1(obj_id player, obj_id npc, string_id response) throws InterruptedException
     {
@@ -1376,33 +1375,32 @@ public class tatooine_24_azure_cabal_propti_xaroon_01 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasCompletedLoruna1(player, npc))
+        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasCompletedLoruna1(player, self))
         {
-            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, npc);
+            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_49");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1425,30 +1423,30 @@ public class tatooine_24_azure_cabal_propti_xaroon_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_51");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_24_azure_cabal_propti_xaroon_01.branchId", 1);
-                npcStartConversation(player, npc, "tatooine_24_azure_cabal_propti_xaroon_01", message, responses);
+                npcStartConversation(player, self, "tatooine_24_azure_cabal_propti_xaroon_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasCompletedPropti1(player, npc))
+        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasCompletedPropti1(player, self))
         {
-            doAnimationAction(npc, "bow3");
-            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, npc);
+            doAnimationAction(self, "bow3");
+            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasCompletedPropti1_hasOtherACActive(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasCompletedPropti1_hasOtherACActive(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1470,37 +1468,37 @@ public class tatooine_24_azure_cabal_propti_xaroon_01 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(tatooine_24_azure_cabal_propti_xaroon_01_tokenTO_playerFirstName(player, npc));
-                npcStartConversation(player, npc, "tatooine_24_azure_cabal_propti_xaroon_01", null, pp, responses);
+                pp.target.set(self);
+                pp.other.set(tatooine_24_azure_cabal_propti_xaroon_01_tokenTO_playerFirstName(player, self));
+                npcStartConversation(player, self, "tatooine_24_azure_cabal_propti_xaroon_01", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(tatooine_24_azure_cabal_propti_xaroon_01_tokenTO_playerFirstName(player, npc));
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                pp.other.set(tatooine_24_azure_cabal_propti_xaroon_01_tokenTO_playerFirstName(player, self));
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasActiveTaskReturnPropti(player, npc))
+        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasActiveTaskReturnPropti(player, self))
         {
-            doAnimationAction(npc, "kisscheek");
-            tatooine_24_azure_cabal_propti_xaroon_01_action_signalProptiEndorsement(player, npc);
+            doAnimationAction(self, "kisscheek");
+            tatooine_24_azure_cabal_propti_xaroon_01_action_signalProptiEndorsement(player, self);
             string_id message = new string_id(c_stringFile, "s_27");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1522,36 +1520,36 @@ public class tatooine_24_azure_cabal_propti_xaroon_01 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(tatooine_24_azure_cabal_propti_xaroon_01_tokenTO_playerFirstName(player, npc));
-                npcStartConversation(player, npc, "tatooine_24_azure_cabal_propti_xaroon_01", null, pp, responses);
+                pp.target.set(self);
+                pp.other.set(tatooine_24_azure_cabal_propti_xaroon_01_tokenTO_playerFirstName(player, self));
+                npcStartConversation(player, self, "tatooine_24_azure_cabal_propti_xaroon_01", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(tatooine_24_azure_cabal_propti_xaroon_01_tokenTO_playerFirstName(player, npc));
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                pp.other.set(tatooine_24_azure_cabal_propti_xaroon_01_tokenTO_playerFirstName(player, self));
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasActiveTaskRetrievePurse(player, npc))
+        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasActiveTaskRetrievePurse(player, self))
         {
-            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, npc);
+            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_96");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasNotCompletedPropti1_hasOtherACActive(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasNotCompletedPropti1_hasOtherACActive(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1570,37 +1568,37 @@ public class tatooine_24_azure_cabal_propti_xaroon_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_98");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_24_azure_cabal_propti_xaroon_01.branchId", 17);
-                npcStartConversation(player, npc, "tatooine_24_azure_cabal_propti_xaroon_01", message, responses);
+                npcStartConversation(player, self, "tatooine_24_azure_cabal_propti_xaroon_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasActiveTaskEndorsementPropti(player, npc))
+        if (tatooine_24_azure_cabal_propti_xaroon_01_condition_hasActiveTaskEndorsementPropti(player, self))
         {
-            doAnimationAction(npc, "hair_flip");
-            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, npc);
+            doAnimationAction(self, "hair_flip");
+            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_93");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+            if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1623,23 +1621,23 @@ public class tatooine_24_azure_cabal_propti_xaroon_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_126");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_24_azure_cabal_propti_xaroon_01.branchId", 18);
-                npcStartConversation(player, npc, "tatooine_24_azure_cabal_propti_xaroon_01", message, responses);
+                npcStartConversation(player, self, "tatooine_24_azure_cabal_propti_xaroon_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, npc))
+        if (tatooine_24_azure_cabal_propti_xaroon_01_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "shoo");
-            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, npc);
+            doAnimationAction(self, "shoo");
+            tatooine_24_azure_cabal_propti_xaroon_01_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_128");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1648,85 +1646,84 @@ public class tatooine_24_azure_cabal_propti_xaroon_01 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_24_azure_cabal_propti_xaroon_01.branchId");
-        if (branchId == 1 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && tatooine_24_azure_cabal_propti_xaroon_01_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_24_azure_cabal_propti_xaroon_01.branchId");
         return SCRIPT_CONTINUE;
     }

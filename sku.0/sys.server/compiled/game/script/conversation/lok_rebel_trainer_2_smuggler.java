@@ -1229,26 +1229,25 @@ public class lok_rebel_trainer_2_smuggler extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (lok_rebel_trainer_2_smuggler_condition_isRightPlayer1(player, npc))
+        if (lok_rebel_trainer_2_smuggler_condition_isRightPlayer1(player, self))
         {
-            lok_rebel_trainer_2_smuggler_action_face(player, npc);
+            lok_rebel_trainer_2_smuggler_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_c5fc3d7a");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, npc))
+            if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, npc))
+            if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1267,30 +1266,30 @@ public class lok_rebel_trainer_2_smuggler extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_a46f0bb8");
                 }
                 utils.setScriptVar(player, "conversation.lok_rebel_trainer_2_smuggler.branchId", 1);
-                npcStartConversation(player, npc, "lok_rebel_trainer_2_smuggler", message, responses);
+                npcStartConversation(player, self, "lok_rebel_trainer_2_smuggler", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (lok_rebel_trainer_2_smuggler_condition_isRightPlayer2(player, npc))
+        if (lok_rebel_trainer_2_smuggler_condition_isRightPlayer2(player, self))
         {
-            doAnimationAction(npc, "nervous");
-            lok_rebel_trainer_2_smuggler_action_face(player, npc);
+            doAnimationAction(self, "nervous");
+            lok_rebel_trainer_2_smuggler_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_9b75f1f");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, npc))
+            if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, npc))
+            if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1309,23 +1308,23 @@ public class lok_rebel_trainer_2_smuggler extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_e28286fc");
                 }
                 utils.setScriptVar(player, "conversation.lok_rebel_trainer_2_smuggler.branchId", 10);
-                npcStartConversation(player, npc, "lok_rebel_trainer_2_smuggler", message, responses);
+                npcStartConversation(player, self, "lok_rebel_trainer_2_smuggler", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, npc))
+        if (lok_rebel_trainer_2_smuggler_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
-            lok_rebel_trainer_2_smuggler_action_face(player, npc);
+            doAnimationAction(self, "dismiss");
+            lok_rebel_trainer_2_smuggler_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_b02a22c2");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1334,93 +1333,92 @@ public class lok_rebel_trainer_2_smuggler extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.lok_rebel_trainer_2_smuggler.branchId");
-        if (branchId == 1 && lok_rebel_trainer_2_smuggler_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && lok_rebel_trainer_2_smuggler_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && lok_rebel_trainer_2_smuggler_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && lok_rebel_trainer_2_smuggler_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && lok_rebel_trainer_2_smuggler_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && lok_rebel_trainer_2_smuggler_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && lok_rebel_trainer_2_smuggler_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && lok_rebel_trainer_2_smuggler_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && lok_rebel_trainer_2_smuggler_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && lok_rebel_trainer_2_smuggler_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && lok_rebel_trainer_2_smuggler_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && lok_rebel_trainer_2_smuggler_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && lok_rebel_trainer_2_smuggler_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && lok_rebel_trainer_2_smuggler_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && lok_rebel_trainer_2_smuggler_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && lok_rebel_trainer_2_smuggler_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && lok_rebel_trainer_2_smuggler_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && lok_rebel_trainer_2_smuggler_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && lok_rebel_trainer_2_smuggler_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && lok_rebel_trainer_2_smuggler_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && lok_rebel_trainer_2_smuggler_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && lok_rebel_trainer_2_smuggler_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && lok_rebel_trainer_2_smuggler_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && lok_rebel_trainer_2_smuggler_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && lok_rebel_trainer_2_smuggler_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && lok_rebel_trainer_2_smuggler_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && lok_rebel_trainer_2_smuggler_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && lok_rebel_trainer_2_smuggler_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && lok_rebel_trainer_2_smuggler_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && lok_rebel_trainer_2_smuggler_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && lok_rebel_trainer_2_smuggler_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && lok_rebel_trainer_2_smuggler_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && lok_rebel_trainer_2_smuggler_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && lok_rebel_trainer_2_smuggler_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && lok_rebel_trainer_2_smuggler_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && lok_rebel_trainer_2_smuggler_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && lok_rebel_trainer_2_smuggler_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && lok_rebel_trainer_2_smuggler_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && lok_rebel_trainer_2_smuggler_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && lok_rebel_trainer_2_smuggler_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && lok_rebel_trainer_2_smuggler_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && lok_rebel_trainer_2_smuggler_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.lok_rebel_trainer_2_smuggler.branchId");
         return SCRIPT_CONTINUE;
     }

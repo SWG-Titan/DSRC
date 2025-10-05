@@ -6,7 +6,7 @@ import script.library.chat;
 import script.library.trial;
 import script.library.utils;
 
-public class sd_event_two_convo extends script.base_script
+public class sd_event_two_convo extends base_script
 {
     public sd_event_two_convo()
     {

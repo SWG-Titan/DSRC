@@ -1499,33 +1499,32 @@ public class c_newbie_secondchance extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_newbie_secondchance_condition_allComplete(player, npc))
+        if (c_newbie_secondchance_condition_allComplete(player, self))
         {
-            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, npc);
+            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, self);
             string_id message = new string_id(c_stringFile, "s_60");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_secondchance_condition_alreadyOnNiko(player, npc))
+        if (c_newbie_secondchance_condition_alreadyOnNiko(player, self))
         {
-            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, npc);
+            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, self);
             string_id message = new string_id(c_stringFile, "s_59");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_secondchance_condition_fromMayor(player, npc))
+        if (c_newbie_secondchance_condition_fromMayor(player, self))
         {
-            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, npc);
+            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, self);
             string_id message = new string_id(c_stringFile, "s_84");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_secondchance_condition__defaultCondition(player, npc))
+            if (c_newbie_secondchance_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1540,29 +1539,29 @@ public class c_newbie_secondchance extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_86");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_secondchance.branchId", 3);
-                npcStartConversation(player, npc, "c_newbie_secondchance", message, responses);
+                npcStartConversation(player, self, "c_newbie_secondchance", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_secondchance_condition_bibOnQuest(player, npc))
+        if (c_newbie_secondchance_condition_bibOnQuest(player, self))
         {
-            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, npc);
+            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, self);
             string_id message = new string_id(c_stringFile, "s_98");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_secondchance_condition__defaultCondition(player, npc))
+            if (c_newbie_secondchance_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_secondchance_condition__defaultCondition(player, npc))
+            if (c_newbie_secondchance_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1581,21 +1580,21 @@ public class c_newbie_secondchance extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_108");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_secondchance.branchId", 7);
-                npcStartConversation(player, npc, "c_newbie_secondchance", message, responses);
+                npcStartConversation(player, self, "c_newbie_secondchance", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_secondchance_condition_onTrehla(player, npc))
+        if (c_newbie_secondchance_condition_onTrehla(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_61");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_secondchance_condition__defaultCondition(player, npc))
+            if (c_newbie_secondchance_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1610,22 +1609,22 @@ public class c_newbie_secondchance extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_62");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_secondchance.branchId", 12);
-                npcStartConversation(player, npc, "c_newbie_secondchance", message, responses);
+                npcStartConversation(player, self, "c_newbie_secondchance", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_secondchance_condition_newbieStart(player, npc))
+        if (c_newbie_secondchance_condition_newbieStart(player, self))
         {
-            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, npc);
+            c_newbie_secondchance_action_facePlayerAndSignalVourk(player, self);
             string_id message = new string_id(c_stringFile, "s_116");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_secondchance_condition__defaultCondition(player, npc))
+            if (c_newbie_secondchance_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1640,22 +1639,22 @@ public class c_newbie_secondchance extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_118");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_secondchance.branchId", 14);
-                npcStartConversation(player, npc, "c_newbie_secondchance", message, responses);
+                npcStartConversation(player, self, "c_newbie_secondchance", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_secondchance_condition__defaultCondition(player, npc))
+        if (c_newbie_secondchance_condition__defaultCondition(player, self))
         {
-            c_newbie_secondchance_action_signalGotoVourk(player, npc);
+            c_newbie_secondchance_action_signalGotoVourk(player, self);
             string_id message = new string_id(c_stringFile, "s_200");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1664,105 +1663,104 @@ public class c_newbie_secondchance extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_newbie_secondchance.branchId");
-        if (branchId == 3 && c_newbie_secondchance_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && c_newbie_secondchance_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && c_newbie_secondchance_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && c_newbie_secondchance_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && c_newbie_secondchance_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && c_newbie_secondchance_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && c_newbie_secondchance_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && c_newbie_secondchance_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && c_newbie_secondchance_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && c_newbie_secondchance_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && c_newbie_secondchance_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && c_newbie_secondchance_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && c_newbie_secondchance_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && c_newbie_secondchance_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && c_newbie_secondchance_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && c_newbie_secondchance_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && c_newbie_secondchance_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && c_newbie_secondchance_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && c_newbie_secondchance_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && c_newbie_secondchance_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && c_newbie_secondchance_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && c_newbie_secondchance_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && c_newbie_secondchance_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && c_newbie_secondchance_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && c_newbie_secondchance_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && c_newbie_secondchance_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && c_newbie_secondchance_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && c_newbie_secondchance_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && c_newbie_secondchance_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && c_newbie_secondchance_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && c_newbie_secondchance_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && c_newbie_secondchance_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && c_newbie_secondchance_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && c_newbie_secondchance_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && c_newbie_secondchance_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && c_newbie_secondchance_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && c_newbie_secondchance_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && c_newbie_secondchance_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && c_newbie_secondchance_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && c_newbie_secondchance_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && c_newbie_secondchance_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && c_newbie_secondchance_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && c_newbie_secondchance_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && c_newbie_secondchance_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && c_newbie_secondchance_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && c_newbie_secondchance_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && c_newbie_secondchance_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && c_newbie_secondchance_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_newbie_secondchance.branchId");
         return SCRIPT_CONTINUE;
     }

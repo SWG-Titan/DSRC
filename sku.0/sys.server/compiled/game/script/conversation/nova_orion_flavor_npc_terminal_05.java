@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class nova_orion_flavor_npc_terminal_05 extends script.base_script
+public class nova_orion_flavor_npc_terminal_05 extends base_script
 {
     public nova_orion_flavor_npc_terminal_05()
     {

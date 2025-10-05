@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class corellia_privateer_tier3 extends script.base_script
+public class corellia_privateer_tier3 extends base_script
 {
     public corellia_privateer_tier3()
     {
@@ -7104,25 +7104,24 @@ public class corellia_privateer_tier3 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!corellia_privateer_tier3_condition_isCorrectFaction(player, npc))
+        if (!corellia_privateer_tier3_condition_isCorrectFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ccf2f65c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7141,42 +7140,42 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_af22b9b2");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 1);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_tier3_condition_isReadyForTier3(player, npc))
+        if (!corellia_privateer_tier3_condition_isReadyForTier3(player, self))
         {
-            doAnimationAction(npc, "whisper");
+            doAnimationAction(self, "whisper");
             string_id message = new string_id(c_stringFile, "s_61b78d18");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition_isOnQuest(player, npc))
+        if (corellia_privateer_tier3_condition_isOnQuest(player, self))
         {
-            doAnimationAction(npc, "shrug_shoulders");
+            doAnimationAction(self, "shrug_shoulders");
             string_id message = new string_id(c_stringFile, "s_c816ccac");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition_failedQuestOne(player, npc))
+        if (corellia_privateer_tier3_condition_failedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_62241cb7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7195,29 +7194,29 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_657871b9");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 6);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition_failedQuestTwo(player, npc))
+        if (corellia_privateer_tier3_condition_failedQuestTwo(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
+            doAnimationAction(self, "gesticulate_wildly");
             string_id message = new string_id(c_stringFile, "s_b53ef7a5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7236,29 +7235,29 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c8ea3e2b");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 10);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition_failedQuestThree(player, npc))
+        if (corellia_privateer_tier3_condition_failedQuestThree(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_9d1ce696");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7280,33 +7279,33 @@ public class corellia_privateer_tier3 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "corellia_privateer_tier3", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition_failedQuestFour(player, npc))
+        if (corellia_privateer_tier3_condition_failedQuestFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7d0ca743");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7325,23 +7324,23 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7d4eaca7");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 19);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition_collectingQuestOneReward(player, npc))
+        if (corellia_privateer_tier3_condition_collectingQuestOneReward(player, self))
         {
-            doAnimationAction(npc, "smack_self");
-            corellia_privateer_tier3_action_rewardForQuestOne(player, npc);
+            doAnimationAction(self, "smack_self");
+            corellia_privateer_tier3_action_rewardForQuestOne(player, self);
             string_id message = new string_id(c_stringFile, "s_7c722941");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7356,23 +7355,23 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_513");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 24);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition_collectingQuestTwoReward(player, npc))
+        if (corellia_privateer_tier3_condition_collectingQuestTwoReward(player, self))
         {
-            doAnimationAction(npc, "applause_excited");
-            corellia_privateer_tier3_action_rewardForQuestTwo(player, npc);
+            doAnimationAction(self, "applause_excited");
+            corellia_privateer_tier3_action_rewardForQuestTwo(player, self);
             string_id message = new string_id(c_stringFile, "s_97c1c260");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7387,23 +7386,23 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_513");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 24);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition_collectingQuestThreeReward(player, npc))
+        if (corellia_privateer_tier3_condition_collectingQuestThreeReward(player, self))
         {
-            doAnimationAction(npc, "laugh");
-            corellia_privateer_tier3_action_rewardForQuestThree(player, npc);
+            doAnimationAction(self, "laugh");
+            corellia_privateer_tier3_action_rewardForQuestThree(player, self);
             string_id message = new string_id(c_stringFile, "s_c0786e56");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7421,28 +7420,28 @@ public class corellia_privateer_tier3 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "corellia_privateer_tier3", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition_collectingQuestFourReward(player, npc))
+        if (corellia_privateer_tier3_condition_collectingQuestFourReward(player, self))
         {
-            doAnimationAction(npc, "stretch");
-            corellia_privateer_tier3_action_rewardForQuestFour(player, npc);
+            doAnimationAction(self, "stretch");
+            corellia_privateer_tier3_action_rewardForQuestFour(player, self);
             string_id message = new string_id(c_stringFile, "s_191d4365");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7457,29 +7456,29 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_513");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 24);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_tier3_condition_hasCompletedQuestOne(player, npc))
+        if (!corellia_privateer_tier3_condition_hasCompletedQuestOne(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_61e91afa");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7501,34 +7500,34 @@ public class corellia_privateer_tier3 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "corellia_privateer_tier3", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_tier3_condition_hasCompletedQuestTwo(player, npc))
+        if (!corellia_privateer_tier3_condition_hasCompletedQuestTwo(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
+            doAnimationAction(self, "gesticulate_wildly");
             string_id message = new string_id(c_stringFile, "s_55c00fb4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7547,36 +7546,36 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7bec018d");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 63);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_tier3_condition_hasCompletedQuestThree(player, npc))
+        if (!corellia_privateer_tier3_condition_hasCompletedQuestThree(player, self))
         {
-            doAnimationAction(npc, "rub_belly");
+            doAnimationAction(self, "rub_belly");
             string_id message = new string_id(c_stringFile, "s_f37012cf");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7599,29 +7598,29 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_f50b28e8");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 100);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_tier3_condition_hasCompletedQuestFour(player, npc))
+        if (!corellia_privateer_tier3_condition_hasCompletedQuestFour(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_44d4901e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7640,28 +7639,28 @@ public class corellia_privateer_tier3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_b95fcaf8");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_tier3.branchId", 171);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_tier3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+        if (corellia_privateer_tier3_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_15be2c5c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_tier3_condition__defaultCondition(player, npc))
+            if (corellia_privateer_tier3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -7683,20 +7682,20 @@ public class corellia_privateer_tier3 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "corellia_privateer_tier3", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "corellia_privateer_tier3", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -7705,673 +7704,672 @@ public class corellia_privateer_tier3 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_privateer_tier3.branchId");
-        if (branchId == 1 && corellia_privateer_tier3_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && corellia_privateer_tier3_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_privateer_tier3_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_privateer_tier3_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && corellia_privateer_tier3_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && corellia_privateer_tier3_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_privateer_tier3_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_privateer_tier3_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && corellia_privateer_tier3_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && corellia_privateer_tier3_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && corellia_privateer_tier3_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && corellia_privateer_tier3_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && corellia_privateer_tier3_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && corellia_privateer_tier3_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && corellia_privateer_tier3_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && corellia_privateer_tier3_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && corellia_privateer_tier3_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && corellia_privateer_tier3_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && corellia_privateer_tier3_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && corellia_privateer_tier3_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && corellia_privateer_tier3_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && corellia_privateer_tier3_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && corellia_privateer_tier3_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && corellia_privateer_tier3_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && corellia_privateer_tier3_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && corellia_privateer_tier3_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && corellia_privateer_tier3_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && corellia_privateer_tier3_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && corellia_privateer_tier3_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && corellia_privateer_tier3_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && corellia_privateer_tier3_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && corellia_privateer_tier3_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && corellia_privateer_tier3_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && corellia_privateer_tier3_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && corellia_privateer_tier3_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && corellia_privateer_tier3_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && corellia_privateer_tier3_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && corellia_privateer_tier3_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && corellia_privateer_tier3_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && corellia_privateer_tier3_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && corellia_privateer_tier3_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && corellia_privateer_tier3_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && corellia_privateer_tier3_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && corellia_privateer_tier3_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && corellia_privateer_tier3_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && corellia_privateer_tier3_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && corellia_privateer_tier3_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && corellia_privateer_tier3_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && corellia_privateer_tier3_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && corellia_privateer_tier3_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && corellia_privateer_tier3_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && corellia_privateer_tier3_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && corellia_privateer_tier3_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && corellia_privateer_tier3_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && corellia_privateer_tier3_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && corellia_privateer_tier3_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && corellia_privateer_tier3_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && corellia_privateer_tier3_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && corellia_privateer_tier3_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && corellia_privateer_tier3_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && corellia_privateer_tier3_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && corellia_privateer_tier3_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && corellia_privateer_tier3_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && corellia_privateer_tier3_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && corellia_privateer_tier3_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && corellia_privateer_tier3_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && corellia_privateer_tier3_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && corellia_privateer_tier3_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && corellia_privateer_tier3_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && corellia_privateer_tier3_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && corellia_privateer_tier3_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && corellia_privateer_tier3_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && corellia_privateer_tier3_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && corellia_privateer_tier3_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && corellia_privateer_tier3_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && corellia_privateer_tier3_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && corellia_privateer_tier3_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && corellia_privateer_tier3_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && corellia_privateer_tier3_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && corellia_privateer_tier3_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && corellia_privateer_tier3_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && corellia_privateer_tier3_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && corellia_privateer_tier3_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && corellia_privateer_tier3_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && corellia_privateer_tier3_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && corellia_privateer_tier3_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && corellia_privateer_tier3_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && corellia_privateer_tier3_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && corellia_privateer_tier3_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && corellia_privateer_tier3_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && corellia_privateer_tier3_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && corellia_privateer_tier3_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && corellia_privateer_tier3_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && corellia_privateer_tier3_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && corellia_privateer_tier3_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && corellia_privateer_tier3_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && corellia_privateer_tier3_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && corellia_privateer_tier3_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && corellia_privateer_tier3_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && corellia_privateer_tier3_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && corellia_privateer_tier3_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && corellia_privateer_tier3_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && corellia_privateer_tier3_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && corellia_privateer_tier3_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && corellia_privateer_tier3_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && corellia_privateer_tier3_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && corellia_privateer_tier3_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && corellia_privateer_tier3_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && corellia_privateer_tier3_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && corellia_privateer_tier3_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && corellia_privateer_tier3_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && corellia_privateer_tier3_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && corellia_privateer_tier3_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && corellia_privateer_tier3_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && corellia_privateer_tier3_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && corellia_privateer_tier3_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && corellia_privateer_tier3_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && corellia_privateer_tier3_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && corellia_privateer_tier3_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && corellia_privateer_tier3_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && corellia_privateer_tier3_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && corellia_privateer_tier3_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && corellia_privateer_tier3_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && corellia_privateer_tier3_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && corellia_privateer_tier3_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && corellia_privateer_tier3_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && corellia_privateer_tier3_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && corellia_privateer_tier3_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && corellia_privateer_tier3_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && corellia_privateer_tier3_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && corellia_privateer_tier3_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && corellia_privateer_tier3_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && corellia_privateer_tier3_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && corellia_privateer_tier3_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && corellia_privateer_tier3_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && corellia_privateer_tier3_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && corellia_privateer_tier3_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && corellia_privateer_tier3_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && corellia_privateer_tier3_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && corellia_privateer_tier3_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && corellia_privateer_tier3_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && corellia_privateer_tier3_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && corellia_privateer_tier3_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && corellia_privateer_tier3_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && corellia_privateer_tier3_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && corellia_privateer_tier3_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && corellia_privateer_tier3_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && corellia_privateer_tier3_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && corellia_privateer_tier3_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && corellia_privateer_tier3_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 98 && corellia_privateer_tier3_handleBranch98(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 98 && corellia_privateer_tier3_handleBranch98(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 100 && corellia_privateer_tier3_handleBranch100(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 100 && corellia_privateer_tier3_handleBranch100(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 101 && corellia_privateer_tier3_handleBranch101(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 101 && corellia_privateer_tier3_handleBranch101(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 102 && corellia_privateer_tier3_handleBranch102(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 102 && corellia_privateer_tier3_handleBranch102(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 103 && corellia_privateer_tier3_handleBranch103(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 103 && corellia_privateer_tier3_handleBranch103(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 104 && corellia_privateer_tier3_handleBranch104(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 104 && corellia_privateer_tier3_handleBranch104(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 105 && corellia_privateer_tier3_handleBranch105(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 105 && corellia_privateer_tier3_handleBranch105(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 106 && corellia_privateer_tier3_handleBranch106(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 106 && corellia_privateer_tier3_handleBranch106(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 107 && corellia_privateer_tier3_handleBranch107(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 107 && corellia_privateer_tier3_handleBranch107(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 108 && corellia_privateer_tier3_handleBranch108(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 108 && corellia_privateer_tier3_handleBranch108(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 109 && corellia_privateer_tier3_handleBranch109(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 109 && corellia_privateer_tier3_handleBranch109(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 110 && corellia_privateer_tier3_handleBranch110(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 110 && corellia_privateer_tier3_handleBranch110(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 111 && corellia_privateer_tier3_handleBranch111(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 111 && corellia_privateer_tier3_handleBranch111(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 112 && corellia_privateer_tier3_handleBranch112(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 112 && corellia_privateer_tier3_handleBranch112(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 113 && corellia_privateer_tier3_handleBranch113(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 113 && corellia_privateer_tier3_handleBranch113(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 114 && corellia_privateer_tier3_handleBranch114(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 114 && corellia_privateer_tier3_handleBranch114(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 115 && corellia_privateer_tier3_handleBranch115(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 115 && corellia_privateer_tier3_handleBranch115(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 116 && corellia_privateer_tier3_handleBranch116(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 116 && corellia_privateer_tier3_handleBranch116(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 118 && corellia_privateer_tier3_handleBranch118(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 118 && corellia_privateer_tier3_handleBranch118(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 119 && corellia_privateer_tier3_handleBranch119(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 119 && corellia_privateer_tier3_handleBranch119(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 120 && corellia_privateer_tier3_handleBranch120(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 120 && corellia_privateer_tier3_handleBranch120(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 121 && corellia_privateer_tier3_handleBranch121(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 121 && corellia_privateer_tier3_handleBranch121(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 122 && corellia_privateer_tier3_handleBranch122(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 122 && corellia_privateer_tier3_handleBranch122(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 123 && corellia_privateer_tier3_handleBranch123(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 123 && corellia_privateer_tier3_handleBranch123(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 124 && corellia_privateer_tier3_handleBranch124(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 124 && corellia_privateer_tier3_handleBranch124(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 125 && corellia_privateer_tier3_handleBranch125(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 125 && corellia_privateer_tier3_handleBranch125(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 126 && corellia_privateer_tier3_handleBranch126(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 126 && corellia_privateer_tier3_handleBranch126(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 127 && corellia_privateer_tier3_handleBranch127(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 127 && corellia_privateer_tier3_handleBranch127(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 129 && corellia_privateer_tier3_handleBranch129(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 129 && corellia_privateer_tier3_handleBranch129(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 130 && corellia_privateer_tier3_handleBranch130(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 130 && corellia_privateer_tier3_handleBranch130(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 131 && corellia_privateer_tier3_handleBranch131(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 131 && corellia_privateer_tier3_handleBranch131(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 132 && corellia_privateer_tier3_handleBranch132(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 132 && corellia_privateer_tier3_handleBranch132(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 133 && corellia_privateer_tier3_handleBranch133(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 133 && corellia_privateer_tier3_handleBranch133(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 134 && corellia_privateer_tier3_handleBranch134(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 134 && corellia_privateer_tier3_handleBranch134(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 135 && corellia_privateer_tier3_handleBranch135(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 135 && corellia_privateer_tier3_handleBranch135(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 136 && corellia_privateer_tier3_handleBranch136(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 136 && corellia_privateer_tier3_handleBranch136(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 137 && corellia_privateer_tier3_handleBranch137(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 137 && corellia_privateer_tier3_handleBranch137(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 138 && corellia_privateer_tier3_handleBranch138(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 138 && corellia_privateer_tier3_handleBranch138(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 139 && corellia_privateer_tier3_handleBranch139(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 139 && corellia_privateer_tier3_handleBranch139(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 140 && corellia_privateer_tier3_handleBranch140(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 140 && corellia_privateer_tier3_handleBranch140(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 141 && corellia_privateer_tier3_handleBranch141(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 141 && corellia_privateer_tier3_handleBranch141(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 142 && corellia_privateer_tier3_handleBranch142(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 142 && corellia_privateer_tier3_handleBranch142(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 143 && corellia_privateer_tier3_handleBranch143(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 143 && corellia_privateer_tier3_handleBranch143(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 144 && corellia_privateer_tier3_handleBranch144(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 144 && corellia_privateer_tier3_handleBranch144(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 145 && corellia_privateer_tier3_handleBranch145(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 145 && corellia_privateer_tier3_handleBranch145(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 146 && corellia_privateer_tier3_handleBranch146(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 146 && corellia_privateer_tier3_handleBranch146(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 147 && corellia_privateer_tier3_handleBranch147(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 147 && corellia_privateer_tier3_handleBranch147(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 148 && corellia_privateer_tier3_handleBranch148(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 148 && corellia_privateer_tier3_handleBranch148(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 149 && corellia_privateer_tier3_handleBranch149(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 149 && corellia_privateer_tier3_handleBranch149(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 151 && corellia_privateer_tier3_handleBranch151(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 151 && corellia_privateer_tier3_handleBranch151(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 152 && corellia_privateer_tier3_handleBranch152(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 152 && corellia_privateer_tier3_handleBranch152(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 153 && corellia_privateer_tier3_handleBranch153(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 153 && corellia_privateer_tier3_handleBranch153(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 154 && corellia_privateer_tier3_handleBranch154(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 154 && corellia_privateer_tier3_handleBranch154(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 155 && corellia_privateer_tier3_handleBranch155(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 155 && corellia_privateer_tier3_handleBranch155(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 156 && corellia_privateer_tier3_handleBranch156(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 156 && corellia_privateer_tier3_handleBranch156(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 157 && corellia_privateer_tier3_handleBranch157(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 157 && corellia_privateer_tier3_handleBranch157(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 158 && corellia_privateer_tier3_handleBranch158(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 158 && corellia_privateer_tier3_handleBranch158(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 159 && corellia_privateer_tier3_handleBranch159(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 159 && corellia_privateer_tier3_handleBranch159(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 160 && corellia_privateer_tier3_handleBranch160(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 160 && corellia_privateer_tier3_handleBranch160(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 162 && corellia_privateer_tier3_handleBranch162(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 162 && corellia_privateer_tier3_handleBranch162(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 163 && corellia_privateer_tier3_handleBranch163(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 163 && corellia_privateer_tier3_handleBranch163(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 164 && corellia_privateer_tier3_handleBranch164(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 164 && corellia_privateer_tier3_handleBranch164(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 165 && corellia_privateer_tier3_handleBranch165(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 165 && corellia_privateer_tier3_handleBranch165(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 166 && corellia_privateer_tier3_handleBranch166(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 166 && corellia_privateer_tier3_handleBranch166(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 167 && corellia_privateer_tier3_handleBranch167(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 167 && corellia_privateer_tier3_handleBranch167(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 168 && corellia_privateer_tier3_handleBranch168(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 168 && corellia_privateer_tier3_handleBranch168(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 169 && corellia_privateer_tier3_handleBranch169(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 169 && corellia_privateer_tier3_handleBranch169(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 171 && corellia_privateer_tier3_handleBranch171(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 171 && corellia_privateer_tier3_handleBranch171(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 172 && corellia_privateer_tier3_handleBranch172(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 172 && corellia_privateer_tier3_handleBranch172(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 173 && corellia_privateer_tier3_handleBranch173(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 173 && corellia_privateer_tier3_handleBranch173(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 174 && corellia_privateer_tier3_handleBranch174(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 174 && corellia_privateer_tier3_handleBranch174(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 175 && corellia_privateer_tier3_handleBranch175(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 175 && corellia_privateer_tier3_handleBranch175(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 176 && corellia_privateer_tier3_handleBranch176(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 176 && corellia_privateer_tier3_handleBranch176(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 177 && corellia_privateer_tier3_handleBranch177(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 177 && corellia_privateer_tier3_handleBranch177(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 178 && corellia_privateer_tier3_handleBranch178(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 178 && corellia_privateer_tier3_handleBranch178(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 180 && corellia_privateer_tier3_handleBranch180(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 180 && corellia_privateer_tier3_handleBranch180(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 181 && corellia_privateer_tier3_handleBranch181(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 181 && corellia_privateer_tier3_handleBranch181(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 182 && corellia_privateer_tier3_handleBranch182(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 182 && corellia_privateer_tier3_handleBranch182(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 183 && corellia_privateer_tier3_handleBranch183(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 183 && corellia_privateer_tier3_handleBranch183(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 184 && corellia_privateer_tier3_handleBranch184(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 184 && corellia_privateer_tier3_handleBranch184(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 185 && corellia_privateer_tier3_handleBranch185(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 185 && corellia_privateer_tier3_handleBranch185(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 186 && corellia_privateer_tier3_handleBranch186(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 186 && corellia_privateer_tier3_handleBranch186(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 187 && corellia_privateer_tier3_handleBranch187(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 187 && corellia_privateer_tier3_handleBranch187(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 189 && corellia_privateer_tier3_handleBranch189(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 189 && corellia_privateer_tier3_handleBranch189(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 190 && corellia_privateer_tier3_handleBranch190(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 190 && corellia_privateer_tier3_handleBranch190(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 191 && corellia_privateer_tier3_handleBranch191(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 191 && corellia_privateer_tier3_handleBranch191(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 192 && corellia_privateer_tier3_handleBranch192(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 192 && corellia_privateer_tier3_handleBranch192(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 193 && corellia_privateer_tier3_handleBranch193(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 193 && corellia_privateer_tier3_handleBranch193(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 194 && corellia_privateer_tier3_handleBranch194(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 194 && corellia_privateer_tier3_handleBranch194(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 195 && corellia_privateer_tier3_handleBranch195(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 195 && corellia_privateer_tier3_handleBranch195(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 197 && corellia_privateer_tier3_handleBranch197(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 197 && corellia_privateer_tier3_handleBranch197(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_privateer_tier3.branchId");
         return SCRIPT_CONTINUE;
     }

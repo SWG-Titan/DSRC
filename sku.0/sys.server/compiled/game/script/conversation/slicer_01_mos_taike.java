@@ -1705,24 +1705,23 @@ public class slicer_01_mos_taike extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (slicer_01_mos_taike_condition_hasCompletedProlog(player, npc))
+        if (slicer_01_mos_taike_condition_hasCompletedProlog(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_134");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition_hasCompletedDathomir(player, npc))
+        if (slicer_01_mos_taike_condition_hasCompletedDathomir(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_127");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (slicer_01_mos_taike_condition__defaultCondition(player, npc))
+            if (slicer_01_mos_taike_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1737,41 +1736,41 @@ public class slicer_01_mos_taike extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_129");
                 }
                 utils.setScriptVar(player, "conversation.slicer_01_mos_taike.branchId", 2);
-                npcStartConversation(player, npc, "slicer_01_mos_taike", message, responses);
+                npcStartConversation(player, self, "slicer_01_mos_taike", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition_canceledQuest06(player, npc))
+        if (slicer_01_mos_taike_condition_canceledQuest06(player, self))
         {
-            slicer_01_mos_taike_action_grantQuest06(player, npc);
+            slicer_01_mos_taike_action_grantQuest06(player, self);
             string_id message = new string_id(c_stringFile, "s_146");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition_shouldBeOnLok(player, npc))
+        if (slicer_01_mos_taike_condition_shouldBeOnLok(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_30");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition_hasCompletedValarian(player, npc))
+        if (slicer_01_mos_taike_condition_hasCompletedValarian(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_70");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (slicer_01_mos_taike_condition_failedToDefeatAssassin(player, npc))
+            if (slicer_01_mos_taike_condition_failedToDefeatAssassin(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (slicer_01_mos_taike_condition_successDefeatAssassin(player, npc))
+            if (slicer_01_mos_taike_condition_successDefeatAssassin(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1790,34 +1789,34 @@ public class slicer_01_mos_taike extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_72");
                 }
                 utils.setScriptVar(player, "conversation.slicer_01_mos_taike.branchId", 9);
-                npcStartConversation(player, npc, "slicer_01_mos_taike", message, responses);
+                npcStartConversation(player, self, "slicer_01_mos_taike", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition_shouldBeLadyValerian(player, npc))
+        if (slicer_01_mos_taike_condition_shouldBeLadyValerian(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition_completedQuest04Deleted05(player, npc))
+        if (slicer_01_mos_taike_condition_completedQuest04Deleted05(player, self))
         {
-            slicer_01_mos_taike_action_grantFrameValarainQuest(player, npc);
+            slicer_01_mos_taike_action_grantFrameValarainQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_149");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition_hasCompletedInitQuest(player, npc))
+        if (slicer_01_mos_taike_condition_hasCompletedInitQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_54");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (slicer_01_mos_taike_condition__defaultCondition(player, npc))
+            if (slicer_01_mos_taike_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1832,28 +1831,28 @@ public class slicer_01_mos_taike extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_55");
                 }
                 utils.setScriptVar(player, "conversation.slicer_01_mos_taike.branchId", 25);
-                npcStartConversation(player, npc, "slicer_01_mos_taike", message, responses);
+                npcStartConversation(player, self, "slicer_01_mos_taike", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition_isCheckingWithBib(player, npc))
+        if (slicer_01_mos_taike_condition_isCheckingWithBib(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_147");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition_hasInitialQuest(player, npc))
+        if (slicer_01_mos_taike_condition_hasInitialQuest(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
+            doAnimationAction(self, "wave_finger_warning");
             string_id message = new string_id(c_stringFile, "s_107");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (slicer_01_mos_taike_condition__defaultCondition(player, npc))
+            if (slicer_01_mos_taike_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1868,21 +1867,21 @@ public class slicer_01_mos_taike extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_109");
                 }
                 utils.setScriptVar(player, "conversation.slicer_01_mos_taike.branchId", 38);
-                npcStartConversation(player, npc, "slicer_01_mos_taike", message, responses);
+                npcStartConversation(player, self, "slicer_01_mos_taike", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (slicer_01_mos_taike_condition__defaultCondition(player, npc))
+        if (slicer_01_mos_taike_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_157");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1891,153 +1890,152 @@ public class slicer_01_mos_taike extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.slicer_01_mos_taike.branchId");
-        if (branchId == 2 && slicer_01_mos_taike_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && slicer_01_mos_taike_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && slicer_01_mos_taike_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && slicer_01_mos_taike_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && slicer_01_mos_taike_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && slicer_01_mos_taike_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && slicer_01_mos_taike_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && slicer_01_mos_taike_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && slicer_01_mos_taike_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && slicer_01_mos_taike_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && slicer_01_mos_taike_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && slicer_01_mos_taike_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && slicer_01_mos_taike_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && slicer_01_mos_taike_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && slicer_01_mos_taike_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && slicer_01_mos_taike_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && slicer_01_mos_taike_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && slicer_01_mos_taike_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && slicer_01_mos_taike_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && slicer_01_mos_taike_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && slicer_01_mos_taike_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && slicer_01_mos_taike_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && slicer_01_mos_taike_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && slicer_01_mos_taike_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && slicer_01_mos_taike_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && slicer_01_mos_taike_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && slicer_01_mos_taike_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && slicer_01_mos_taike_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && slicer_01_mos_taike_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && slicer_01_mos_taike_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && slicer_01_mos_taike_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && slicer_01_mos_taike_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && slicer_01_mos_taike_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && slicer_01_mos_taike_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && slicer_01_mos_taike_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && slicer_01_mos_taike_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && slicer_01_mos_taike_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && slicer_01_mos_taike_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && slicer_01_mos_taike_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && slicer_01_mos_taike_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && slicer_01_mos_taike_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && slicer_01_mos_taike_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && slicer_01_mos_taike_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && slicer_01_mos_taike_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && slicer_01_mos_taike_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && slicer_01_mos_taike_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && slicer_01_mos_taike_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && slicer_01_mos_taike_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && slicer_01_mos_taike_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && slicer_01_mos_taike_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && slicer_01_mos_taike_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && slicer_01_mos_taike_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && slicer_01_mos_taike_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && slicer_01_mos_taike_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && slicer_01_mos_taike_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && slicer_01_mos_taike_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && slicer_01_mos_taike_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && slicer_01_mos_taike_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && slicer_01_mos_taike_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && slicer_01_mos_taike_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && slicer_01_mos_taike_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && slicer_01_mos_taike_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && slicer_01_mos_taike_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && slicer_01_mos_taike_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && slicer_01_mos_taike_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && slicer_01_mos_taike_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && slicer_01_mos_taike_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && slicer_01_mos_taike_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && slicer_01_mos_taike_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && slicer_01_mos_taike_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && slicer_01_mos_taike_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && slicer_01_mos_taike_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.slicer_01_mos_taike.branchId");
         return SCRIPT_CONTINUE;
     }

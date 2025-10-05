@@ -149,24 +149,23 @@ public class coronet_captain_dool extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (coronet_captain_dool_condition_workingForLyman(player, npc))
+        if (coronet_captain_dool_condition_workingForLyman(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (coronet_captain_dool_condition_giveGoToLymanZavalaAgain(player, npc))
+        if (coronet_captain_dool_condition_giveGoToLymanZavalaAgain(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coronet_captain_dool_condition__defaultCondition(player, npc))
+            if (coronet_captain_dool_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -181,22 +180,22 @@ public class coronet_captain_dool extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_13");
                 }
                 utils.setScriptVar(player, "conversation.coronet_captain_dool.branchId", 2);
-                npcStartConversation(player, npc, "coronet_captain_dool", message, responses);
+                npcStartConversation(player, self, "coronet_captain_dool", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coronet_captain_dool_condition_readyToFinishDoolsQueset(player, npc))
+        if (coronet_captain_dool_condition_readyToFinishDoolsQueset(player, self))
         {
-            coronet_captain_dool_action_sendGreckMissionCompleteSignal(player, npc);
+            coronet_captain_dool_action_sendGreckMissionCompleteSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coronet_captain_dool_condition__defaultCondition(player, npc))
+            if (coronet_captain_dool_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -211,28 +210,28 @@ public class coronet_captain_dool extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_11");
                 }
                 utils.setScriptVar(player, "conversation.coronet_captain_dool.branchId", 4);
-                npcStartConversation(player, npc, "coronet_captain_dool", message, responses);
+                npcStartConversation(player, self, "coronet_captain_dool", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coronet_captain_dool_condition_doingDoolsQuest(player, npc))
+        if (coronet_captain_dool_condition_doingDoolsQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_18");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (coronet_captain_dool_condition_justCameFromSheelya(player, npc))
+        if (coronet_captain_dool_condition_justCameFromSheelya(player, self))
         {
-            coronet_captain_dool_action_completeGoToDoolQuest(player, npc);
+            coronet_captain_dool_action_completeGoToDoolQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coronet_captain_dool_condition__defaultCondition(player, npc))
+            if (coronet_captain_dool_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -247,21 +246,21 @@ public class coronet_captain_dool extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_22");
                 }
                 utils.setScriptVar(player, "conversation.coronet_captain_dool.branchId", 7);
-                npcStartConversation(player, npc, "coronet_captain_dool", message, responses);
+                npcStartConversation(player, self, "coronet_captain_dool", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coronet_captain_dool_condition__defaultCondition(player, npc))
+        if (coronet_captain_dool_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_26");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -270,21 +269,20 @@ public class coronet_captain_dool extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.coronet_captain_dool.branchId");
-        if (branchId == 2 && coronet_captain_dool_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && coronet_captain_dool_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && coronet_captain_dool_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && coronet_captain_dool_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && coronet_captain_dool_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && coronet_captain_dool_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.coronet_captain_dool.branchId");
         return SCRIPT_CONTINUE;
     }

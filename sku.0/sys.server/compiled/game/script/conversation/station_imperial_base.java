@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class station_imperial_base extends script.base_script
+public class station_imperial_base extends base_script
 {
     public station_imperial_base()
     {

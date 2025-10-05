@@ -412,35 +412,34 @@ public class ep3_trandoshan_harwakokok_zssik_05 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_trandoshan_harwakokok_zssik_05_condition_cannotSpeakWookiee(player, npc))
+        if (ep3_trandoshan_harwakokok_zssik_05_condition_cannotSpeakWookiee(player, self))
         {
-            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeLong(player, npc);
+            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeLong(player, self);
             string_id message = new string_id(c_stringFile, "s_122");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_trandoshan_harwakokok_zssik_05_condition_hasCompletedQuest01(player, npc))
+        if (ep3_trandoshan_harwakokok_zssik_05_condition_hasCompletedQuest01(player, self))
         {
-            doAnimationAction(npc, "bow");
-            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeMed(player, npc);
+            doAnimationAction(self, "bow");
+            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeMed(player, self);
             string_id message = new string_id(c_stringFile, "s_886");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_trandoshan_harwakokok_zssik_05_condition_isOnTask02(player, npc))
+        if (ep3_trandoshan_harwakokok_zssik_05_condition_isOnTask02(player, self))
         {
-            doAnimationAction(npc, "pose_proudly");
-            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeMed(player, npc);
+            doAnimationAction(self, "pose_proudly");
+            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeMed(player, self);
             string_id message = new string_id(c_stringFile, "s_888");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_trandoshan_harwakokok_zssik_05_condition__defaultCondition(player, npc))
+            if (ep3_trandoshan_harwakokok_zssik_05_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -455,31 +454,31 @@ public class ep3_trandoshan_harwakokok_zssik_05 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_890");
                 }
                 utils.setScriptVar(player, "conversation.ep3_trandoshan_harwakokok_zssik_05.branchId", 3);
-                npcStartConversation(player, npc, "ep3_trandoshan_harwakokok_zssik_05", message, responses);
+                npcStartConversation(player, self, "ep3_trandoshan_harwakokok_zssik_05", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_trandoshan_harwakokok_zssik_05_condition_isOnQuest(player, npc))
+        if (ep3_trandoshan_harwakokok_zssik_05_condition_isOnQuest(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
-            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeMed(player, npc);
+            doAnimationAction(self, "wave_on_dismissing");
+            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeMed(player, self);
             string_id message = new string_id(c_stringFile, "s_894");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_trandoshan_harwakokok_zssik_05_condition_isOnTask01(player, npc))
+        if (ep3_trandoshan_harwakokok_zssik_05_condition_isOnTask01(player, self))
         {
-            doAnimationAction(npc, "rub_chin_thoughtful");
-            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeShort(player, npc);
+            doAnimationAction(self, "rub_chin_thoughtful");
+            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeShort(player, self);
             string_id message = new string_id(c_stringFile, "s_896");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_trandoshan_harwakokok_zssik_05_condition__defaultCondition(player, npc))
+            if (ep3_trandoshan_harwakokok_zssik_05_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -494,23 +493,23 @@ public class ep3_trandoshan_harwakokok_zssik_05 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_898");
                 }
                 utils.setScriptVar(player, "conversation.ep3_trandoshan_harwakokok_zssik_05.branchId", 6);
-                npcStartConversation(player, npc, "ep3_trandoshan_harwakokok_zssik_05", message, responses);
+                npcStartConversation(player, self, "ep3_trandoshan_harwakokok_zssik_05", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_trandoshan_harwakokok_zssik_05_condition__defaultCondition(player, npc))
+        if (ep3_trandoshan_harwakokok_zssik_05_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
-            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeShort(player, npc);
+            doAnimationAction(self, "wave_on_dismissing");
+            ep3_trandoshan_harwakokok_zssik_05_action_vocalizeShort(player, self);
             string_id message = new string_id(c_stringFile, "s_930");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -519,41 +518,40 @@ public class ep3_trandoshan_harwakokok_zssik_05 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_trandoshan_harwakokok_zssik_05.branchId");
-        if (branchId == 3 && ep3_trandoshan_harwakokok_zssik_05_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_trandoshan_harwakokok_zssik_05_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_trandoshan_harwakokok_zssik_05_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_trandoshan_harwakokok_zssik_05_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_trandoshan_harwakokok_zssik_05_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_trandoshan_harwakokok_zssik_05_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_trandoshan_harwakokok_zssik_05_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_trandoshan_harwakokok_zssik_05_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_trandoshan_harwakokok_zssik_05_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_trandoshan_harwakokok_zssik_05_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_trandoshan_harwakokok_zssik_05_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_trandoshan_harwakokok_zssik_05_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_trandoshan_harwakokok_zssik_05_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_trandoshan_harwakokok_zssik_05_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_trandoshan_harwakokok_zssik_05_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_trandoshan_harwakokok_zssik_05_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_trandoshan_harwakokok_zssik_05.branchId");
         return SCRIPT_CONTINUE;
     }

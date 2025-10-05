@@ -146,10 +146,6 @@ public class c_story1_1_neu_quest extends script.base_script
             return false;
         }
     }
-    public boolean c_story1_1_neu_quest_condition_questDisabled(obj_id player, obj_id npc) throws InterruptedException
-    {
-        return true;
-    }
     public boolean c_story1_1_neu_quest_condition_quest3Active(obj_id player, obj_id npc) throws InterruptedException
     {
         return (groundquests.isQuestActive(player, "c_story1_3_neu"));
@@ -1445,12 +1441,6 @@ public class c_story1_1_neu_quest extends script.base_script
             doAnimationAction(npc, "shoo");
             c_story1_1_neu_quest_action_faceplayer(player, npc);
             string_id message = new string_id(c_stringFile, "s_651");
-            chat.chat(npc, player, message);
-            return SCRIPT_CONTINUE;
-        }
-        if (c_story1_1_neu_quest_condition_questDisabled(player, npc))
-        {
-            string_id message = new string_id(c_stringFile, "s_109");
             chat.chat(npc, player, message);
             return SCRIPT_CONTINUE;
         }

@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class npe_journal_quest extends script.base_script
+public class npe_journal_quest extends base_script
 {
     public npe_journal_quest()
     {
@@ -168,24 +168,23 @@ public class npe_journal_quest extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_journal_quest_condition_hasCompletedJournal(player, npc))
+        if (npe_journal_quest_condition_hasCompletedJournal(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_journal_quest_condition_isJournalActive(player, npc))
+        if (npe_journal_quest_condition_isJournalActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_journal_quest_condition__defaultCondition(player, npc))
+            if (npe_journal_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -200,21 +199,21 @@ public class npe_journal_quest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9");
                 }
                 utils.setScriptVar(player, "conversation.npe_journal_quest.branchId", 2);
-                npcStartConversation(player, npc, "npe_journal_quest", message, responses);
+                npcStartConversation(player, self, "npe_journal_quest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_journal_quest_condition__defaultCondition(player, npc))
+        if (npe_journal_quest_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_20");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -223,21 +222,20 @@ public class npe_journal_quest extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_journal_quest.branchId");
-        if (branchId == 2 && npe_journal_quest_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_journal_quest_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && npe_journal_quest_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && npe_journal_quest_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && npe_journal_quest_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && npe_journal_quest_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_journal_quest.branchId");
         return SCRIPT_CONTINUE;
     }

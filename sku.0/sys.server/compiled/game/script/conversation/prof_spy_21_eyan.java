@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class prof_spy_21_eyan extends script.base_script
+public class prof_spy_21_eyan extends base_script
 {
     public prof_spy_21_eyan()
     {

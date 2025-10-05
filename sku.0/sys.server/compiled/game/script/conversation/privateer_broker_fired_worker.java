@@ -4,7 +4,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.*;
 
-public class privateer_broker_fired_worker extends script.base_script
+public class privateer_broker_fired_worker extends base_script
 {
     public privateer_broker_fired_worker()
     {

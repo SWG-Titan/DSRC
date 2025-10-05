@@ -11658,20 +11658,19 @@ public class trehla_keelo extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!trehla_keelo_condition_questActiveOrComplete(player, npc))
+        if (!trehla_keelo_condition_questActiveOrComplete(player, self))
         {
-            doAnimationAction(npc, "greet");
-            trehla_keelo_action_faceplayer(player, npc);
+            doAnimationAction(self, "greet");
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_303");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11686,37 +11685,37 @@ public class trehla_keelo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_305");
                 }
                 utils.setScriptVar(player, "conversation.trehla_keelo.branchId", 1);
-                npcStartConversation(player, npc, "trehla_keelo", message, responses);
+                npcStartConversation(player, self, "trehla_keelo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnBankStep(player, npc))
+        if (trehla_keelo_condition_playerOnBankStep(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_349");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnBankReturn(player, npc))
+        if (trehla_keelo_condition_playerOnBankReturn(player, self))
         {
-            doAnimationAction(npc, "greet");
-            trehla_keelo_action_faceplayer(player, npc);
+            doAnimationAction(self, "greet");
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_351");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11735,44 +11734,44 @@ public class trehla_keelo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_357");
                 }
                 utils.setScriptVar(player, "conversation.trehla_keelo.branchId", 14);
-                npcStartConversation(player, npc, "trehla_keelo", message, responses);
+                npcStartConversation(player, self, "trehla_keelo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnBazaarStep(player, npc))
+        if (trehla_keelo_condition_playerOnBazaarStep(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
-            trehla_keelo_action_faceplayer(player, npc);
+            doAnimationAction(self, "wave_finger_warning");
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_369");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnBazaarReturn(player, npc))
+        if (trehla_keelo_condition_playerOnBazaarReturn(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_371");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11795,37 +11794,37 @@ public class trehla_keelo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_381");
                 }
                 utils.setScriptVar(player, "conversation.trehla_keelo.branchId", 20);
-                npcStartConversation(player, npc, "trehla_keelo", message, responses);
+                npcStartConversation(player, self, "trehla_keelo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnCloneStep(player, npc))
+        if (trehla_keelo_condition_playerOnCloneStep(player, self))
         {
-            doAnimationAction(npc, "sigh_deeply");
-            trehla_keelo_action_faceplayer(player, npc);
+            doAnimationAction(self, "sigh_deeply");
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_401");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnCloneReturn(player, npc))
+        if (trehla_keelo_condition_playerOnCloneReturn(player, self))
         {
-            trehla_keelo_action_signalCloneReturn(player, npc);
+            trehla_keelo_action_signalCloneReturn(player, self);
             string_id message = new string_id(c_stringFile, "s_403");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11844,29 +11843,29 @@ public class trehla_keelo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_409");
                 }
                 utils.setScriptVar(player, "conversation.trehla_keelo.branchId", 29);
-                npcStartConversation(player, npc, "trehla_keelo", message, responses);
+                npcStartConversation(player, self, "trehla_keelo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnMedCenterReturn(player, npc))
+        if (trehla_keelo_condition_playerOnMedCenterReturn(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_567");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11885,36 +11884,36 @@ public class trehla_keelo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_585");
                 }
                 utils.setScriptVar(player, "conversation.trehla_keelo.branchId", 33);
-                npcStartConversation(player, npc, "trehla_keelo", message, responses);
+                npcStartConversation(player, self, "trehla_keelo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnJunkStep(player, npc))
+        if (trehla_keelo_condition_playerOnJunkStep(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_601");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnJunkReturn(player, npc))
+        if (trehla_keelo_condition_playerOnJunkReturn(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_604");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11933,34 +11932,34 @@ public class trehla_keelo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_616");
                 }
                 utils.setScriptVar(player, "conversation.trehla_keelo.branchId", 41);
-                npcStartConversation(player, npc, "trehla_keelo", message, responses);
+                npcStartConversation(player, self, "trehla_keelo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnVehicleInfo(player, npc))
+        if (trehla_keelo_condition_playerOnVehicleInfo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_632");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerLearnDroid(player, npc))
+        if (trehla_keelo_condition_playerLearnDroid(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_715");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnLearnGroup(player, npc))
+        if (trehla_keelo_condition_playerOnLearnGroup(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_718");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11975,36 +11974,36 @@ public class trehla_keelo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_721");
                 }
                 utils.setScriptVar(player, "conversation.trehla_keelo.branchId", 49);
-                npcStartConversation(player, npc, "trehla_keelo", message, responses);
+                npcStartConversation(player, self, "trehla_keelo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnShuttleStep(player, npc))
+        if (trehla_keelo_condition_playerOnShuttleStep(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_740");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnAssociateStep(player, npc))
+        if (trehla_keelo_condition_playerOnAssociateStep(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_743");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition_playerOnLastStep(player, npc))
+        if (trehla_keelo_condition_playerOnLastStep(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_746");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12019,50 +12018,50 @@ public class trehla_keelo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_749");
                 }
                 utils.setScriptVar(player, "conversation.trehla_keelo.branchId", 55);
-                npcStartConversation(player, npc, "trehla_keelo", message, responses);
+                npcStartConversation(player, self, "trehla_keelo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trehla_keelo_condition__defaultCondition(player, npc))
+        if (trehla_keelo_condition__defaultCondition(player, self))
         {
-            trehla_keelo_action_faceplayer(player, npc);
+            trehla_keelo_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1131");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (trehla_keelo_condition__defaultCondition(player, npc))
+            if (trehla_keelo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (!trehla_keelo_condition_startedVourk(player, npc))
+            if (!trehla_keelo_condition_startedVourk(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12096,20 +12095,20 @@ public class trehla_keelo extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "trehla_keelo", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "trehla_keelo", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -12118,365 +12117,364 @@ public class trehla_keelo extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.trehla_keelo.branchId");
-        if (branchId == 1 && trehla_keelo_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && trehla_keelo_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && trehla_keelo_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && trehla_keelo_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && trehla_keelo_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && trehla_keelo_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && trehla_keelo_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && trehla_keelo_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && trehla_keelo_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && trehla_keelo_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && trehla_keelo_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && trehla_keelo_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && trehla_keelo_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && trehla_keelo_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && trehla_keelo_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && trehla_keelo_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && trehla_keelo_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && trehla_keelo_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && trehla_keelo_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && trehla_keelo_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && trehla_keelo_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && trehla_keelo_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && trehla_keelo_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && trehla_keelo_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && trehla_keelo_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && trehla_keelo_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && trehla_keelo_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && trehla_keelo_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && trehla_keelo_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && trehla_keelo_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && trehla_keelo_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && trehla_keelo_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && trehla_keelo_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && trehla_keelo_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && trehla_keelo_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && trehla_keelo_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && trehla_keelo_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && trehla_keelo_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && trehla_keelo_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && trehla_keelo_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && trehla_keelo_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && trehla_keelo_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && trehla_keelo_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && trehla_keelo_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && trehla_keelo_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && trehla_keelo_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && trehla_keelo_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && trehla_keelo_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && trehla_keelo_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && trehla_keelo_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && trehla_keelo_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && trehla_keelo_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && trehla_keelo_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && trehla_keelo_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && trehla_keelo_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && trehla_keelo_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && trehla_keelo_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && trehla_keelo_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && trehla_keelo_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && trehla_keelo_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && trehla_keelo_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && trehla_keelo_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && trehla_keelo_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && trehla_keelo_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && trehla_keelo_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && trehla_keelo_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && trehla_keelo_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && trehla_keelo_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && trehla_keelo_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && trehla_keelo_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && trehla_keelo_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && trehla_keelo_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && trehla_keelo_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && trehla_keelo_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && trehla_keelo_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && trehla_keelo_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && trehla_keelo_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && trehla_keelo_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && trehla_keelo_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && trehla_keelo_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && trehla_keelo_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && trehla_keelo_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && trehla_keelo_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && trehla_keelo_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && trehla_keelo_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && trehla_keelo_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && trehla_keelo_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && trehla_keelo_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && trehla_keelo_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && trehla_keelo_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && trehla_keelo_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && trehla_keelo_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && trehla_keelo_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && trehla_keelo_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && trehla_keelo_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && trehla_keelo_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && trehla_keelo_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && trehla_keelo_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && trehla_keelo_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && trehla_keelo_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && trehla_keelo_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && trehla_keelo_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && trehla_keelo_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && trehla_keelo_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && trehla_keelo_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && trehla_keelo_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && trehla_keelo_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && trehla_keelo_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && trehla_keelo_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && trehla_keelo_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && trehla_keelo_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && trehla_keelo_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && trehla_keelo_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && trehla_keelo_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && trehla_keelo_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && trehla_keelo_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && trehla_keelo_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && trehla_keelo_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && trehla_keelo_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && trehla_keelo_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && trehla_keelo_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && trehla_keelo_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && trehla_keelo_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && trehla_keelo_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && trehla_keelo_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && trehla_keelo_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && trehla_keelo_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && trehla_keelo_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && trehla_keelo_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && trehla_keelo_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && trehla_keelo_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && trehla_keelo_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && trehla_keelo_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && trehla_keelo_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && trehla_keelo_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && trehla_keelo_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && trehla_keelo_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && trehla_keelo_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && trehla_keelo_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && trehla_keelo_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && trehla_keelo_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && trehla_keelo_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && trehla_keelo_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && trehla_keelo_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && trehla_keelo_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && trehla_keelo_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && trehla_keelo_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && trehla_keelo_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && trehla_keelo_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && trehla_keelo_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && trehla_keelo_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && trehla_keelo_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && trehla_keelo_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && trehla_keelo_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && trehla_keelo_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && trehla_keelo_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && trehla_keelo_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && trehla_keelo_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 98 && trehla_keelo_handleBranch98(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 98 && trehla_keelo_handleBranch98(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 99 && trehla_keelo_handleBranch99(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 99 && trehla_keelo_handleBranch99(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 100 && trehla_keelo_handleBranch100(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 100 && trehla_keelo_handleBranch100(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 101 && trehla_keelo_handleBranch101(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 101 && trehla_keelo_handleBranch101(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 102 && trehla_keelo_handleBranch102(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 102 && trehla_keelo_handleBranch102(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 103 && trehla_keelo_handleBranch103(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 103 && trehla_keelo_handleBranch103(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 104 && trehla_keelo_handleBranch104(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 104 && trehla_keelo_handleBranch104(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 106 && trehla_keelo_handleBranch106(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 106 && trehla_keelo_handleBranch106(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 108 && trehla_keelo_handleBranch108(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 108 && trehla_keelo_handleBranch108(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 111 && trehla_keelo_handleBranch111(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 111 && trehla_keelo_handleBranch111(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.trehla_keelo.branchId");
         return SCRIPT_CONTINUE;
     }

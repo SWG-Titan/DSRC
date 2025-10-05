@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class tatooine_imperial_tier4 extends script.base_script
+public class tatooine_imperial_tier4 extends base_script
 {
     public tatooine_imperial_tier4()
     {
@@ -3994,30 +3994,29 @@ public class tatooine_imperial_tier4 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!tatooine_imperial_tier4_condition_isPilot(player, npc))
+        if (!tatooine_imperial_tier4_condition_isPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_d318f289");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_isWrongFaction(player, npc))
+        if (tatooine_imperial_tier4_condition_isWrongFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_e16137e8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!tatooine_imperial_tier4_condition_onMyTrack(player, npc))
+        if (!tatooine_imperial_tier4_condition_onMyTrack(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_50605b35");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4032,22 +4031,22 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4854758d");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 3);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_hasNegativeFaction(player, npc))
+        if (tatooine_imperial_tier4_condition_hasNegativeFaction(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             string_id message = new string_id(c_stringFile, "s_f2643fdd");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4065,48 +4064,48 @@ public class tatooine_imperial_tier4 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!tatooine_imperial_tier4_condition_hasCompletedTier3(player, npc))
+        if (!tatooine_imperial_tier4_condition_hasCompletedTier3(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_d3b2272c");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_isOnMission(player, npc))
+        if (tatooine_imperial_tier4_condition_isOnMission(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             string_id message = new string_id(c_stringFile, "s_2a35d2fe");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_faliedMissionOne(player, npc))
+        if (tatooine_imperial_tier4_condition_faliedMissionOne(player, self))
         {
-            tatooine_imperial_tier4_action_grantMissionOne(player, npc);
+            tatooine_imperial_tier4_action_grantMissionOne(player, self);
             string_id message = new string_id(c_stringFile, "s_71e775f5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4125,30 +4124,30 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_abddb145");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 10);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_failedMissionTwo(player, npc))
+        if (tatooine_imperial_tier4_condition_failedMissionTwo(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
-            tatooine_imperial_tier4_action_grantMissionTwo(player, npc);
+            doAnimationAction(self, "wave_finger_warning");
+            tatooine_imperial_tier4_action_grantMissionTwo(player, self);
             string_id message = new string_id(c_stringFile, "s_2eb3aa2");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4170,34 +4169,34 @@ public class tatooine_imperial_tier4 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_failedMissionThree(player, npc))
+        if (tatooine_imperial_tier4_condition_failedMissionThree(player, self))
         {
-            tatooine_imperial_tier4_action_grantMissionThree(player, npc);
+            tatooine_imperial_tier4_action_grantMissionThree(player, self);
             string_id message = new string_id(c_stringFile, "s_e0e28bdb");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4216,29 +4215,29 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_e26ff616");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 19);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_failedMissionFour(player, npc))
+        if (tatooine_imperial_tier4_condition_failedMissionFour(player, self))
         {
-            tatooine_imperial_tier4_action_grantMissionFour(player, npc);
+            tatooine_imperial_tier4_action_grantMissionFour(player, self);
             string_id message = new string_id(c_stringFile, "s_3e3689e0");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4257,29 +4256,29 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4c695dbd");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 23);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_isGettingMissionOneReward(player, npc))
+        if (tatooine_imperial_tier4_condition_isGettingMissionOneReward(player, self))
         {
-            tatooine_imperial_tier4_action_rewardForMissionOne(player, npc);
+            tatooine_imperial_tier4_action_rewardForMissionOne(player, self);
             string_id message = new string_id(c_stringFile, "s_3ec8b347");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4301,34 +4300,34 @@ public class tatooine_imperial_tier4 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_isGettingMissionTwoReward(player, npc))
+        if (tatooine_imperial_tier4_condition_isGettingMissionTwoReward(player, self))
         {
-            tatooine_imperial_tier4_action_rewardForMissionTwo(player, npc);
+            tatooine_imperial_tier4_action_rewardForMissionTwo(player, self);
             string_id message = new string_id(c_stringFile, "s_a4dd5d0d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4350,34 +4349,34 @@ public class tatooine_imperial_tier4 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_isGettingMissionThreeReward(player, npc))
+        if (tatooine_imperial_tier4_condition_isGettingMissionThreeReward(player, self))
         {
-            tatooine_imperial_tier4_action_rewardForMissionThree(player, npc);
+            tatooine_imperial_tier4_action_rewardForMissionThree(player, self);
             string_id message = new string_id(c_stringFile, "s_9ff091bd");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4399,34 +4398,34 @@ public class tatooine_imperial_tier4 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_isGettingMissionFourReward(player, npc))
+        if (tatooine_imperial_tier4_condition_isGettingMissionFourReward(player, self))
         {
-            tatooine_imperial_tier4_action_rewardForMissionFour(player, npc);
+            tatooine_imperial_tier4_action_rewardForMissionFour(player, self);
             string_id message = new string_id(c_stringFile, "s_5066022c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4445,21 +4444,21 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5085bdab");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 35);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_isReadyForMission(player, npc))
+        if (tatooine_imperial_tier4_condition_isReadyForMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_53773f7e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4477,27 +4476,27 @@ public class tatooine_imperial_tier4 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition_isReadyForTraining(player, npc))
+        if (tatooine_imperial_tier4_condition_isReadyForTraining(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_d1e73984");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4512,21 +4511,21 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_212");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 43);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!tatooine_imperial_tier4_condition_hasMetMe(player, npc))
+        if (!tatooine_imperial_tier4_condition_hasMetMe(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7f465235");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4541,49 +4540,49 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_178");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 87);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!tatooine_imperial_tier4_condition_hasCompletedTier4(player, npc))
+        if (!tatooine_imperial_tier4_condition_hasCompletedTier4(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_67f91789");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4614,28 +4613,28 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_49805f81");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 88);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!tatooine_imperial_tier4_condition_hasMasterSkill(player, npc))
+        if (!tatooine_imperial_tier4_condition_hasMasterSkill(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_146bc0b9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4654,49 +4653,49 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7177c3f2");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 97);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+        if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_f5e3efbe");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (tatooine_imperial_tier4_condition__defaultCondition(player, npc))
+            if (tatooine_imperial_tier4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4727,15 +4726,15 @@ public class tatooine_imperial_tier4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_49805f81");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_imperial_tier4.branchId", 88);
-                npcStartConversation(player, npc, "tatooine_imperial_tier4", message, responses);
+                npcStartConversation(player, self, "tatooine_imperial_tier4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -4744,277 +4743,276 @@ public class tatooine_imperial_tier4 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_imperial_tier4.branchId");
-        if (branchId == 3 && tatooine_imperial_tier4_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_imperial_tier4_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && tatooine_imperial_tier4_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tatooine_imperial_tier4_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && tatooine_imperial_tier4_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && tatooine_imperial_tier4_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tatooine_imperial_tier4_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tatooine_imperial_tier4_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && tatooine_imperial_tier4_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && tatooine_imperial_tier4_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tatooine_imperial_tier4_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tatooine_imperial_tier4_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && tatooine_imperial_tier4_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && tatooine_imperial_tier4_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && tatooine_imperial_tier4_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && tatooine_imperial_tier4_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && tatooine_imperial_tier4_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && tatooine_imperial_tier4_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && tatooine_imperial_tier4_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && tatooine_imperial_tier4_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && tatooine_imperial_tier4_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && tatooine_imperial_tier4_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && tatooine_imperial_tier4_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && tatooine_imperial_tier4_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && tatooine_imperial_tier4_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && tatooine_imperial_tier4_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && tatooine_imperial_tier4_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && tatooine_imperial_tier4_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && tatooine_imperial_tier4_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && tatooine_imperial_tier4_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && tatooine_imperial_tier4_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && tatooine_imperial_tier4_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && tatooine_imperial_tier4_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && tatooine_imperial_tier4_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && tatooine_imperial_tier4_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && tatooine_imperial_tier4_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && tatooine_imperial_tier4_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && tatooine_imperial_tier4_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && tatooine_imperial_tier4_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && tatooine_imperial_tier4_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && tatooine_imperial_tier4_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && tatooine_imperial_tier4_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && tatooine_imperial_tier4_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && tatooine_imperial_tier4_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && tatooine_imperial_tier4_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && tatooine_imperial_tier4_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && tatooine_imperial_tier4_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && tatooine_imperial_tier4_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && tatooine_imperial_tier4_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && tatooine_imperial_tier4_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && tatooine_imperial_tier4_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && tatooine_imperial_tier4_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && tatooine_imperial_tier4_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && tatooine_imperial_tier4_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && tatooine_imperial_tier4_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && tatooine_imperial_tier4_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && tatooine_imperial_tier4_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && tatooine_imperial_tier4_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && tatooine_imperial_tier4_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && tatooine_imperial_tier4_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && tatooine_imperial_tier4_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && tatooine_imperial_tier4_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && tatooine_imperial_tier4_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && tatooine_imperial_tier4_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && tatooine_imperial_tier4_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && tatooine_imperial_tier4_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && tatooine_imperial_tier4_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && tatooine_imperial_tier4_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && tatooine_imperial_tier4_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && tatooine_imperial_tier4_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && tatooine_imperial_tier4_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && tatooine_imperial_tier4_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && tatooine_imperial_tier4_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && tatooine_imperial_tier4_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && tatooine_imperial_tier4_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && tatooine_imperial_tier4_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && tatooine_imperial_tier4_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && tatooine_imperial_tier4_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && tatooine_imperial_tier4_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && tatooine_imperial_tier4_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && tatooine_imperial_tier4_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && tatooine_imperial_tier4_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && tatooine_imperial_tier4_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && tatooine_imperial_tier4_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && tatooine_imperial_tier4_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && tatooine_imperial_tier4_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && tatooine_imperial_tier4_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && tatooine_imperial_tier4_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && tatooine_imperial_tier4_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && tatooine_imperial_tier4_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && tatooine_imperial_tier4_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && tatooine_imperial_tier4_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && tatooine_imperial_tier4_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && tatooine_imperial_tier4_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && tatooine_imperial_tier4_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && tatooine_imperial_tier4_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && tatooine_imperial_tier4_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && tatooine_imperial_tier4_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && tatooine_imperial_tier4_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && tatooine_imperial_tier4_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && tatooine_imperial_tier4_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && tatooine_imperial_tier4_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && tatooine_imperial_tier4_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && tatooine_imperial_tier4_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && tatooine_imperial_tier4_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && tatooine_imperial_tier4_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && tatooine_imperial_tier4_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && tatooine_imperial_tier4_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && tatooine_imperial_tier4_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && tatooine_imperial_tier4_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && tatooine_imperial_tier4_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && tatooine_imperial_tier4_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && tatooine_imperial_tier4_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && tatooine_imperial_tier4_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && tatooine_imperial_tier4_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && tatooine_imperial_tier4_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && tatooine_imperial_tier4_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && tatooine_imperial_tier4_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && tatooine_imperial_tier4_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && tatooine_imperial_tier4_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && tatooine_imperial_tier4_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && tatooine_imperial_tier4_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && tatooine_imperial_tier4_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && tatooine_imperial_tier4_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && tatooine_imperial_tier4_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && tatooine_imperial_tier4_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 98 && tatooine_imperial_tier4_handleBranch98(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 98 && tatooine_imperial_tier4_handleBranch98(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 99 && tatooine_imperial_tier4_handleBranch99(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 99 && tatooine_imperial_tier4_handleBranch99(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 102 && tatooine_imperial_tier4_handleBranch102(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 102 && tatooine_imperial_tier4_handleBranch102(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 105 && tatooine_imperial_tier4_handleBranch105(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 105 && tatooine_imperial_tier4_handleBranch105(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_imperial_tier4.branchId");
         return SCRIPT_CONTINUE;
     }

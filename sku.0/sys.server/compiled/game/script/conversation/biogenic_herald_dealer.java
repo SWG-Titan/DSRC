@@ -5,7 +5,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.library.utils;
 
-public class biogenic_herald_dealer extends script.base_script
+public class biogenic_herald_dealer extends base_script
 {
     public biogenic_herald_dealer()
     {

@@ -5473,38 +5473,37 @@ public class station_kashyyyk extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (station_kashyyyk_condition_isTooFar(player, npc))
+        if (station_kashyyyk_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_204");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!station_kashyyyk_condition_hasBadge_visited_Kachirho(player, npc))
+        if (!station_kashyyyk_condition_hasBadge_visited_Kachirho(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_206");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5527,37 +5526,37 @@ public class station_kashyyyk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_247");
                 }
                 utils.setScriptVar(player, "conversation.station_kashyyyk.branchId", 2);
-                npcStartConversation(player, npc, "station_kashyyyk", message, responses);
+                npcStartConversation(player, self, "station_kashyyyk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_isOnQuest_escort_alpha(player, npc))
+        if (station_kashyyyk_condition_isOnQuest_escort_alpha(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_251");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_isOnQuest_escort_bravo(player, npc))
+        if (station_kashyyyk_condition_isOnQuest_escort_bravo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_428");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_isOnQuest_rescue_alpha(player, npc))
+        if (station_kashyyyk_condition_isOnQuest_rescue_alpha(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_430");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5572,31 +5571,31 @@ public class station_kashyyyk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_432");
                 }
                 utils.setScriptVar(player, "conversation.station_kashyyyk.branchId", 16);
-                npcStartConversation(player, npc, "station_kashyyyk", message, responses);
+                npcStartConversation(player, self, "station_kashyyyk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_isOnQuest_AMBUSH(player, npc))
+        if (station_kashyyyk_condition_isOnQuest_AMBUSH(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_436");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_hasWon_blacksun_heavy_recovery(player, npc))
+        if (station_kashyyyk_condition_hasWon_blacksun_heavy_recovery(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_438");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5614,47 +5613,47 @@ public class station_kashyyyk extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "station_kashyyyk", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "station_kashyyyk", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_hasWon_assassinations(player, npc))
+        if (station_kashyyyk_condition_hasWon_assassinations(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_444");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!station_kashyyyk_condition_hasBeenRewarded_blacksun_heavy(player, npc))
+            if (!station_kashyyyk_condition_hasBeenRewarded_blacksun_heavy(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5684,40 +5683,40 @@ public class station_kashyyyk extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "station_kashyyyk", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "station_kashyyyk", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_hasWon03_not04yet(player, npc))
+        if (station_kashyyyk_condition_hasWon03_not04yet(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_494");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5740,35 +5739,35 @@ public class station_kashyyyk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_500");
                 }
                 utils.setScriptVar(player, "conversation.station_kashyyyk.branchId", 42);
-                npcStartConversation(player, npc, "station_kashyyyk", message, responses);
+                npcStartConversation(player, self, "station_kashyyyk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_hasFailedQuest_03(player, npc))
+        if (station_kashyyyk_condition_hasFailedQuest_03(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_508");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5791,35 +5790,35 @@ public class station_kashyyyk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_514");
                 }
                 utils.setScriptVar(player, "conversation.station_kashyyyk.branchId", 45);
-                npcStartConversation(player, npc, "station_kashyyyk", message, responses);
+                npcStartConversation(player, self, "station_kashyyyk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_hasFailedQuest_02(player, npc))
+        if (station_kashyyyk_condition_hasFailedQuest_02(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_518");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5842,35 +5841,35 @@ public class station_kashyyyk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_524");
                 }
                 utils.setScriptVar(player, "conversation.station_kashyyyk.branchId", 47);
-                npcStartConversation(player, npc, "station_kashyyyk", message, responses);
+                npcStartConversation(player, self, "station_kashyyyk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_hasWon02_not03yet(player, npc))
+        if (station_kashyyyk_condition_hasWon02_not03yet(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_528");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5896,40 +5895,40 @@ public class station_kashyyyk extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "station_kashyyyk", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "station_kashyyyk", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_hasFailedQuest_01(player, npc))
+        if (station_kashyyyk_condition_hasFailedQuest_01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_546");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5952,36 +5951,36 @@ public class station_kashyyyk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_376");
                 }
                 utils.setScriptVar(player, "conversation.station_kashyyyk.branchId", 53);
-                npcStartConversation(player, npc, "station_kashyyyk", message, responses);
+                npcStartConversation(player, self, "station_kashyyyk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition_hasWon01_not02yet(player, npc))
+        if (station_kashyyyk_condition_hasWon01_not02yet(player, self))
         {
-            station_kashyyyk_action_rewardQuest_01(player, npc);
+            station_kashyyyk_action_rewardQuest_01(player, self);
             string_id message = new string_id(c_stringFile, "s_382");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6004,42 +6003,42 @@ public class station_kashyyyk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_562");
                 }
                 utils.setScriptVar(player, "conversation.station_kashyyyk.branchId", 55);
-                npcStartConversation(player, npc, "station_kashyyyk", message, responses);
+                npcStartConversation(player, self, "station_kashyyyk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_kashyyyk_condition__defaultCondition(player, npc))
+        if (station_kashyyyk_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_578");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_kashyyyk_condition__defaultCondition(player, npc))
+            if (station_kashyyyk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_kashyyyk_condition_canAfford25(player, npc))
+            if (station_kashyyyk_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!station_kashyyyk_condition_hasWonQuest_01(player, npc))
+            if (!station_kashyyyk_condition_hasWonQuest_01(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_kashyyyk_condition_hasWonQuest_04(player, npc))
+            if (station_kashyyyk_condition_hasWonQuest_04(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6066,15 +6065,15 @@ public class station_kashyyyk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_709");
                 }
                 utils.setScriptVar(player, "conversation.station_kashyyyk.branchId", 59);
-                npcStartConversation(player, npc, "station_kashyyyk", message, responses);
+                npcStartConversation(player, self, "station_kashyyyk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -6083,209 +6082,208 @@ public class station_kashyyyk extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.station_kashyyyk.branchId");
-        if (branchId == 2 && station_kashyyyk_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && station_kashyyyk_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && station_kashyyyk_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && station_kashyyyk_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && station_kashyyyk_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && station_kashyyyk_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && station_kashyyyk_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && station_kashyyyk_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && station_kashyyyk_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && station_kashyyyk_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && station_kashyyyk_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && station_kashyyyk_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && station_kashyyyk_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && station_kashyyyk_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && station_kashyyyk_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && station_kashyyyk_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && station_kashyyyk_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && station_kashyyyk_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && station_kashyyyk_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && station_kashyyyk_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && station_kashyyyk_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && station_kashyyyk_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && station_kashyyyk_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && station_kashyyyk_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && station_kashyyyk_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && station_kashyyyk_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && station_kashyyyk_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && station_kashyyyk_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && station_kashyyyk_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && station_kashyyyk_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && station_kashyyyk_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && station_kashyyyk_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && station_kashyyyk_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && station_kashyyyk_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && station_kashyyyk_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && station_kashyyyk_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && station_kashyyyk_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && station_kashyyyk_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && station_kashyyyk_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && station_kashyyyk_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && station_kashyyyk_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && station_kashyyyk_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && station_kashyyyk_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && station_kashyyyk_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && station_kashyyyk_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && station_kashyyyk_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && station_kashyyyk_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && station_kashyyyk_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && station_kashyyyk_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && station_kashyyyk_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && station_kashyyyk_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && station_kashyyyk_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && station_kashyyyk_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && station_kashyyyk_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && station_kashyyyk_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && station_kashyyyk_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && station_kashyyyk_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && station_kashyyyk_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && station_kashyyyk_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && station_kashyyyk_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && station_kashyyyk_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && station_kashyyyk_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && station_kashyyyk_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && station_kashyyyk_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && station_kashyyyk_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && station_kashyyyk_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && station_kashyyyk_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && station_kashyyyk_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && station_kashyyyk_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && station_kashyyyk_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && station_kashyyyk_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && station_kashyyyk_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && station_kashyyyk_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && station_kashyyyk_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && station_kashyyyk_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && station_kashyyyk_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && station_kashyyyk_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && station_kashyyyk_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && station_kashyyyk_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && station_kashyyyk_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && station_kashyyyk_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && station_kashyyyk_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && station_kashyyyk_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && station_kashyyyk_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && station_kashyyyk_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && station_kashyyyk_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && station_kashyyyk_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && station_kashyyyk_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && station_kashyyyk_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && station_kashyyyk_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && station_kashyyyk_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && station_kashyyyk_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && station_kashyyyk_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && station_kashyyyk_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && station_kashyyyk_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && station_kashyyyk_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && station_kashyyyk_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && station_kashyyyk_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && station_kashyyyk_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && station_kashyyyk_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.station_kashyyyk.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class station_ord_mantell_dungeon extends script.base_script
+public class station_ord_mantell_dungeon extends base_script
 {
     public station_ord_mantell_dungeon()
     {
@@ -353,31 +353,30 @@ public class station_ord_mantell_dungeon extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (station_ord_mantell_dungeon_condition_isTooFar(player, npc))
+        if (station_ord_mantell_dungeon_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_ord_mantell_dungeon_condition__defaultCondition(player, npc))
+        if (station_ord_mantell_dungeon_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_ord_mantell_dungeon_condition__defaultCondition(player, npc))
+            if (station_ord_mantell_dungeon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_ord_mantell_dungeon_condition_needsRepairs(player, npc))
+            if (station_ord_mantell_dungeon_condition_needsRepairs(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -396,15 +395,15 @@ public class station_ord_mantell_dungeon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_13");
                 }
                 utils.setScriptVar(player, "conversation.station_ord_mantell_dungeon.branchId", 2);
-                npcStartConversation(player, npc, "station_ord_mantell_dungeon", message, responses);
+                npcStartConversation(player, self, "station_ord_mantell_dungeon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -413,25 +412,24 @@ public class station_ord_mantell_dungeon extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.station_ord_mantell_dungeon.branchId");
-        if (branchId == 2 && station_ord_mantell_dungeon_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && station_ord_mantell_dungeon_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && station_ord_mantell_dungeon_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && station_ord_mantell_dungeon_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && station_ord_mantell_dungeon_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && station_ord_mantell_dungeon_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && station_ord_mantell_dungeon_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && station_ord_mantell_dungeon_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.station_ord_mantell_dungeon.branchId");
         return SCRIPT_CONTINUE;
     }

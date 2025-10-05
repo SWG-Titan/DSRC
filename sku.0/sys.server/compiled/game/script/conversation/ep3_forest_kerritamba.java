@@ -1978,38 +1978,37 @@ public class ep3_forest_kerritamba extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_forest_kerritamba_condition_hasLanguage(player, npc))
+        if (ep3_forest_kerritamba_condition_hasLanguage(player, self))
         {
-            ep3_forest_kerritamba_action_Language(player, npc);
+            ep3_forest_kerritamba_action_Language(player, self);
             string_id message = new string_id(c_stringFile, "s_690");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_badQuest(player, npc))
+        if (ep3_forest_kerritamba_condition_badQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_149");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_AllComplete(player, npc))
+        if (ep3_forest_kerritamba_condition_AllComplete(player, self))
         {
-            ep3_forest_kerritamba_action_fixBrokenPlayer(player, npc);
+            ep3_forest_kerritamba_action_fixBrokenPlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_603");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_EpicTaskCompletedSeven(player, npc))
+        if (ep3_forest_kerritamba_condition_EpicTaskCompletedSeven(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_605");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2024,34 +2023,34 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_607");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 4);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_isEpicTaskActiveSeven(player, npc))
+        if (ep3_forest_kerritamba_condition_isEpicTaskActiveSeven(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_615");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_isEpicTaskActiveBad(player, npc))
+        if (ep3_forest_kerritamba_condition_isEpicTaskActiveBad(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_617");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2070,21 +2069,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_627");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 8);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_isEpicTaskActiveGood(player, npc))
+        if (ep3_forest_kerritamba_condition_isEpicTaskActiveGood(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_639");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2099,27 +2098,27 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_641");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 14);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_isEpicTaskActiveSix(player, npc))
+        if (ep3_forest_kerritamba_condition_isEpicTaskActiveSix(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_645");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_hasCompletedQuestFive(player, npc))
+        if (ep3_forest_kerritamba_condition_hasCompletedQuestFive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_647");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2134,21 +2133,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_649");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 17);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_EpicTaskCompletedFive(player, npc))
+        if (ep3_forest_kerritamba_condition_EpicTaskCompletedFive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_673");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2163,21 +2162,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_675");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 24);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_isEpicTaskActiveFive(player, npc))
+        if (ep3_forest_kerritamba_condition_isEpicTaskActiveFive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_683");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2192,21 +2191,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_685");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 27);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_hasCompletedQuestFour(player, npc))
+        if (ep3_forest_kerritamba_condition_hasCompletedQuestFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_689");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2221,21 +2220,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_691");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 29);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_EpicTaskCompletedFour(player, npc))
+        if (ep3_forest_kerritamba_condition_EpicTaskCompletedFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_715");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2250,21 +2249,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_717");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 36);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_isEpicTaskActiveFour(player, npc))
+        if (ep3_forest_kerritamba_condition_isEpicTaskActiveFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_725");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2279,21 +2278,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_727");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 39);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_hasCompletedQuestThree(player, npc))
+        if (ep3_forest_kerritamba_condition_hasCompletedQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_731");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2308,21 +2307,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_733");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 41);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_EpicTaskCompletedThree(player, npc))
+        if (ep3_forest_kerritamba_condition_EpicTaskCompletedThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_749");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2337,28 +2336,28 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_751");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 46);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_isEpicTaskActiveThree(player, npc))
+        if (ep3_forest_kerritamba_condition_isEpicTaskActiveThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_755");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!ep3_forest_kerritamba_condition_hasCure(player, npc))
+            if (!ep3_forest_kerritamba_condition_hasCure(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2377,28 +2376,28 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_761");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 48);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_hasCompletedQuestTwo(player, npc))
+        if (ep3_forest_kerritamba_condition_hasCompletedQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_765");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2417,21 +2416,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_771");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 51);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_EpicTaskCompletedTwo(player, npc))
+        if (ep3_forest_kerritamba_condition_EpicTaskCompletedTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_787");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2446,21 +2445,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_789");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 57);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_isEpicTaskActiveTwo(player, npc))
+        if (ep3_forest_kerritamba_condition_isEpicTaskActiveTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_797");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2475,21 +2474,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_799");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 60);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_hasCompletedQuestOne(player, npc))
+        if (ep3_forest_kerritamba_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_803");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2504,21 +2503,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_805");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 62);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_EpicTaskCompletedOne(player, npc))
+        if (ep3_forest_kerritamba_condition_EpicTaskCompletedOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_821");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2533,21 +2532,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_823");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 67);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition_isEpicTaskActiveOne(player, npc))
+        if (ep3_forest_kerritamba_condition_isEpicTaskActiveOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_831");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2562,21 +2561,21 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_833");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 70);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+        if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_837");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_forest_kerritamba_condition__defaultCondition(player, npc))
+            if (ep3_forest_kerritamba_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2591,15 +2590,15 @@ public class ep3_forest_kerritamba extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_839");
                 }
                 utils.setScriptVar(player, "conversation.ep3_forest_kerritamba.branchId", 72);
-                npcStartConversation(player, npc, "ep3_forest_kerritamba", message, responses);
+                npcStartConversation(player, self, "ep3_forest_kerritamba", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2608,217 +2607,216 @@ public class ep3_forest_kerritamba extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_forest_kerritamba.branchId");
-        if (branchId == 4 && ep3_forest_kerritamba_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_forest_kerritamba_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ep3_forest_kerritamba_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_forest_kerritamba_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_forest_kerritamba_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_forest_kerritamba_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_forest_kerritamba_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_forest_kerritamba_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_forest_kerritamba_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_forest_kerritamba_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_forest_kerritamba_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_forest_kerritamba_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && ep3_forest_kerritamba_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && ep3_forest_kerritamba_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_forest_kerritamba_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_forest_kerritamba_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_forest_kerritamba_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_forest_kerritamba_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && ep3_forest_kerritamba_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && ep3_forest_kerritamba_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_forest_kerritamba_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_forest_kerritamba_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_forest_kerritamba_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_forest_kerritamba_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && ep3_forest_kerritamba_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && ep3_forest_kerritamba_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && ep3_forest_kerritamba_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && ep3_forest_kerritamba_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && ep3_forest_kerritamba_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && ep3_forest_kerritamba_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && ep3_forest_kerritamba_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && ep3_forest_kerritamba_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && ep3_forest_kerritamba_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && ep3_forest_kerritamba_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && ep3_forest_kerritamba_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && ep3_forest_kerritamba_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && ep3_forest_kerritamba_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && ep3_forest_kerritamba_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && ep3_forest_kerritamba_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && ep3_forest_kerritamba_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && ep3_forest_kerritamba_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && ep3_forest_kerritamba_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && ep3_forest_kerritamba_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && ep3_forest_kerritamba_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && ep3_forest_kerritamba_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && ep3_forest_kerritamba_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && ep3_forest_kerritamba_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && ep3_forest_kerritamba_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && ep3_forest_kerritamba_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && ep3_forest_kerritamba_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && ep3_forest_kerritamba_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && ep3_forest_kerritamba_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && ep3_forest_kerritamba_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && ep3_forest_kerritamba_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && ep3_forest_kerritamba_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && ep3_forest_kerritamba_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && ep3_forest_kerritamba_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && ep3_forest_kerritamba_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && ep3_forest_kerritamba_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && ep3_forest_kerritamba_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && ep3_forest_kerritamba_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && ep3_forest_kerritamba_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && ep3_forest_kerritamba_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && ep3_forest_kerritamba_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && ep3_forest_kerritamba_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && ep3_forest_kerritamba_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && ep3_forest_kerritamba_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && ep3_forest_kerritamba_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && ep3_forest_kerritamba_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && ep3_forest_kerritamba_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && ep3_forest_kerritamba_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && ep3_forest_kerritamba_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && ep3_forest_kerritamba_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && ep3_forest_kerritamba_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && ep3_forest_kerritamba_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && ep3_forest_kerritamba_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && ep3_forest_kerritamba_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && ep3_forest_kerritamba_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && ep3_forest_kerritamba_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && ep3_forest_kerritamba_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && ep3_forest_kerritamba_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && ep3_forest_kerritamba_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && ep3_forest_kerritamba_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && ep3_forest_kerritamba_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && ep3_forest_kerritamba_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && ep3_forest_kerritamba_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && ep3_forest_kerritamba_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && ep3_forest_kerritamba_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && ep3_forest_kerritamba_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && ep3_forest_kerritamba_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && ep3_forest_kerritamba_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && ep3_forest_kerritamba_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && ep3_forest_kerritamba_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && ep3_forest_kerritamba_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && ep3_forest_kerritamba_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && ep3_forest_kerritamba_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && ep3_forest_kerritamba_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && ep3_forest_kerritamba_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && ep3_forest_kerritamba_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && ep3_forest_kerritamba_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && ep3_forest_kerritamba_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && ep3_forest_kerritamba_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && ep3_forest_kerritamba_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && ep3_forest_kerritamba_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_forest_kerritamba.branchId");
         return SCRIPT_CONTINUE;
     }

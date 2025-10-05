@@ -17,8 +17,7 @@ public class c_tutorial_rm8 extends script.base_script
     {
         int questId = questGetQuestId("quest/c_newbie_hall_03");
         int c_newbie_hall_end = groundquests.getTaskId(questId, "c_newbie_hall_end");
-        boolean onTask = questIsQuestActive(questId, player) && !questIsTaskComplete(questId, c_newbie_hall_end, player);
-        return onTask;
+        return questIsQuestActive(questId, player) && !questIsTaskComplete(questId, c_newbie_hall_end, player);
     }
     public boolean c_tutorial_rm8_condition_taskComplete(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -1079,36 +1078,35 @@ public class c_tutorial_rm8 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_tutorial_rm8_condition_taskComplete(player, npc))
+        if (c_tutorial_rm8_condition_taskComplete(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             doAnimationAction(player, "point_right");
-            c_tutorial_rm8_action_facePlayer(player, npc);
+            c_tutorial_rm8_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_406");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_tutorial_rm8_condition__defaultCondition(player, npc))
+        if (c_tutorial_rm8_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
-            c_tutorial_rm8_action_giveJediQuest(player, npc);
+            doAnimationAction(self, "greet");
+            c_tutorial_rm8_action_giveJediQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_300");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_tutorial_rm8_condition__defaultCondition(player, npc))
+            if (c_tutorial_rm8_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_tutorial_rm8_condition__defaultCondition(player, npc))
+            if (c_tutorial_rm8_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1130,20 +1128,20 @@ public class c_tutorial_rm8 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "c_tutorial_rm8", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "c_tutorial_rm8", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1152,97 +1150,96 @@ public class c_tutorial_rm8 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_tutorial_rm8.branchId");
-        if (branchId == 2 && c_tutorial_rm8_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && c_tutorial_rm8_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && c_tutorial_rm8_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && c_tutorial_rm8_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && c_tutorial_rm8_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && c_tutorial_rm8_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && c_tutorial_rm8_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && c_tutorial_rm8_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && c_tutorial_rm8_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && c_tutorial_rm8_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && c_tutorial_rm8_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && c_tutorial_rm8_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && c_tutorial_rm8_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && c_tutorial_rm8_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && c_tutorial_rm8_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && c_tutorial_rm8_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && c_tutorial_rm8_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && c_tutorial_rm8_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && c_tutorial_rm8_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && c_tutorial_rm8_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && c_tutorial_rm8_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && c_tutorial_rm8_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && c_tutorial_rm8_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && c_tutorial_rm8_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && c_tutorial_rm8_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && c_tutorial_rm8_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && c_tutorial_rm8_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && c_tutorial_rm8_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && c_tutorial_rm8_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && c_tutorial_rm8_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && c_tutorial_rm8_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && c_tutorial_rm8_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && c_tutorial_rm8_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && c_tutorial_rm8_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && c_tutorial_rm8_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && c_tutorial_rm8_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && c_tutorial_rm8_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && c_tutorial_rm8_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && c_tutorial_rm8_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && c_tutorial_rm8_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && c_tutorial_rm8_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && c_tutorial_rm8_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && c_tutorial_rm8_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && c_tutorial_rm8_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_tutorial_rm8.branchId");
         return SCRIPT_CONTINUE;
     }

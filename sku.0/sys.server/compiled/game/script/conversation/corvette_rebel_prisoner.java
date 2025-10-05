@@ -6,7 +6,7 @@ import script.library.factions;
 import script.library.group;
 import script.*;
 
-public class corvette_rebel_prisoner extends script.base_script
+public class corvette_rebel_prisoner extends base_script
 {
     public corvette_rebel_prisoner()
     {

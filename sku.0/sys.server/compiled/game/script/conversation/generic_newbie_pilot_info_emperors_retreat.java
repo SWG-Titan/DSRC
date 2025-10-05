@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class generic_newbie_pilot_info_emperors_retreat extends script.base_script
+public class generic_newbie_pilot_info_emperors_retreat extends base_script
 {
     public generic_newbie_pilot_info_emperors_retreat()
     {
@@ -695,41 +695,40 @@ public class generic_newbie_pilot_info_emperors_retreat extends script.base_scri
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (generic_newbie_pilot_info_emperors_retreat_condition_hasSpaceAccess(player, npc))
+        if (generic_newbie_pilot_info_emperors_retreat_condition_hasSpaceAccess(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_c6cd8614");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (generic_newbie_pilot_info_emperors_retreat_condition_hasWonAccessQuest(player, npc))
+        if (generic_newbie_pilot_info_emperors_retreat_condition_hasWonAccessQuest(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             string_id message = new string_id(c_stringFile, "s_421b07a8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, npc))
+            if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, npc))
+            if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, npc))
+            if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -752,29 +751,29 @@ public class generic_newbie_pilot_info_emperors_retreat extends script.base_scri
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9045a59e");
                 }
                 utils.setScriptVar(player, "conversation.generic_newbie_pilot_info_emperors_retreat.branchId", 2);
-                npcStartConversation(player, npc, "generic_newbie_pilot_info_emperors_retreat", message, responses);
+                npcStartConversation(player, self, "generic_newbie_pilot_info_emperors_retreat", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, npc))
+        if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_1093ddb2");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (generic_newbie_pilot_info_emperors_retreat_condition_hasSpaceShip(player, npc))
+            if (generic_newbie_pilot_info_emperors_retreat_condition_hasSpaceShip(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, npc))
+            if (generic_newbie_pilot_info_emperors_retreat_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -793,15 +792,15 @@ public class generic_newbie_pilot_info_emperors_retreat extends script.base_scri
                     responses[responseIndex++] = new string_id(c_stringFile, "s_ca992d2c");
                 }
                 utils.setScriptVar(player, "conversation.generic_newbie_pilot_info_emperors_retreat.branchId", 19);
-                npcStartConversation(player, npc, "generic_newbie_pilot_info_emperors_retreat", message, responses);
+                npcStartConversation(player, self, "generic_newbie_pilot_info_emperors_retreat", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -810,65 +809,64 @@ public class generic_newbie_pilot_info_emperors_retreat extends script.base_scri
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.generic_newbie_pilot_info_emperors_retreat.branchId");
-        if (branchId == 2 && generic_newbie_pilot_info_emperors_retreat_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && generic_newbie_pilot_info_emperors_retreat_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && generic_newbie_pilot_info_emperors_retreat_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && generic_newbie_pilot_info_emperors_retreat_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && generic_newbie_pilot_info_emperors_retreat_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && generic_newbie_pilot_info_emperors_retreat_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && generic_newbie_pilot_info_emperors_retreat_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && generic_newbie_pilot_info_emperors_retreat_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && generic_newbie_pilot_info_emperors_retreat_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && generic_newbie_pilot_info_emperors_retreat_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && generic_newbie_pilot_info_emperors_retreat_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && generic_newbie_pilot_info_emperors_retreat_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && generic_newbie_pilot_info_emperors_retreat_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && generic_newbie_pilot_info_emperors_retreat_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && generic_newbie_pilot_info_emperors_retreat_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && generic_newbie_pilot_info_emperors_retreat_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && generic_newbie_pilot_info_emperors_retreat_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && generic_newbie_pilot_info_emperors_retreat_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && generic_newbie_pilot_info_emperors_retreat_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && generic_newbie_pilot_info_emperors_retreat_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && generic_newbie_pilot_info_emperors_retreat_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && generic_newbie_pilot_info_emperors_retreat_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && generic_newbie_pilot_info_emperors_retreat_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && generic_newbie_pilot_info_emperors_retreat_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && generic_newbie_pilot_info_emperors_retreat_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && generic_newbie_pilot_info_emperors_retreat_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && generic_newbie_pilot_info_emperors_retreat_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && generic_newbie_pilot_info_emperors_retreat_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.generic_newbie_pilot_info_emperors_retreat.branchId");
         return SCRIPT_CONTINUE;
     }

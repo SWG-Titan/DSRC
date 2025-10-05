@@ -735,37 +735,36 @@ public class ep3_mining_thom_steele extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_mining_thom_steele_condition_completedAll(player, npc))
+        if (ep3_mining_thom_steele_condition_completedAll(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_53");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_isQuestFourActive(player, npc))
+        if (ep3_mining_thom_steele_condition_isQuestFourActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_52");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_canTakeQuestFour(player, npc))
+        if (ep3_mining_thom_steele_condition_canTakeQuestFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_234");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -784,21 +783,21 @@ public class ep3_mining_thom_steele extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_240");
                 }
                 utils.setScriptVar(player, "conversation.ep3_mining_thom_steele.branchId", 3);
-                npcStartConversation(player, npc, "ep3_mining_thom_steele", message, responses);
+                npcStartConversation(player, self, "ep3_mining_thom_steele", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_hasFailedQuestThree(player, npc))
+        if (ep3_mining_thom_steele_condition_hasFailedQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -813,27 +812,27 @@ public class ep3_mining_thom_steele extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_64");
                 }
                 utils.setScriptVar(player, "conversation.ep3_mining_thom_steele.branchId", 6);
-                npcStartConversation(player, npc, "ep3_mining_thom_steele", message, responses);
+                npcStartConversation(player, self, "ep3_mining_thom_steele", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_isQuestThreeActive(player, npc))
+        if (ep3_mining_thom_steele_condition_isQuestThreeActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_244");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_hasCompletedQuestThree(player, npc))
+        if (ep3_mining_thom_steele_condition_hasCompletedQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_246");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -848,28 +847,28 @@ public class ep3_mining_thom_steele extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_248");
                 }
                 utils.setScriptVar(player, "conversation.ep3_mining_thom_steele.branchId", 9);
-                npcStartConversation(player, npc, "ep3_mining_thom_steele", message, responses);
+                npcStartConversation(player, self, "ep3_mining_thom_steele", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_hasBeenRewardedForQuestTwo(player, npc))
+        if (ep3_mining_thom_steele_condition_hasBeenRewardedForQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_268");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -888,21 +887,21 @@ public class ep3_mining_thom_steele extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_274");
                 }
                 utils.setScriptVar(player, "conversation.ep3_mining_thom_steele.branchId", 15);
-                npcStartConversation(player, npc, "ep3_mining_thom_steele", message, responses);
+                npcStartConversation(player, self, "ep3_mining_thom_steele", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_hasFailedQuestTwo(player, npc))
+        if (ep3_mining_thom_steele_condition_hasFailedQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_55");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -917,22 +916,22 @@ public class ep3_mining_thom_steele extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_57");
                 }
                 utils.setScriptVar(player, "conversation.ep3_mining_thom_steele.branchId", 18);
-                npcStartConversation(player, npc, "ep3_mining_thom_steele", message, responses);
+                npcStartConversation(player, self, "ep3_mining_thom_steele", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_hasCompletedQuestTwo(player, npc))
+        if (ep3_mining_thom_steele_condition_hasCompletedQuestTwo(player, self))
         {
-            doAnimationAction(npc, "wave1");
+            doAnimationAction(self, "wave1");
             string_id message = new string_id(c_stringFile, "s_278");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -947,27 +946,27 @@ public class ep3_mining_thom_steele extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_280");
                 }
                 utils.setScriptVar(player, "conversation.ep3_mining_thom_steele.branchId", 20);
-                npcStartConversation(player, npc, "ep3_mining_thom_steele", message, responses);
+                npcStartConversation(player, self, "ep3_mining_thom_steele", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_isQuestTwoActive(player, npc))
+        if (ep3_mining_thom_steele_condition_isQuestTwoActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_300");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_canTakeQuestTwo(player, npc))
+        if (ep3_mining_thom_steele_condition_canTakeQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_302");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -982,21 +981,21 @@ public class ep3_mining_thom_steele extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_304");
                 }
                 utils.setScriptVar(player, "conversation.ep3_mining_thom_steele.branchId", 27);
-                npcStartConversation(player, npc, "ep3_mining_thom_steele", message, responses);
+                npcStartConversation(player, self, "ep3_mining_thom_steele", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition_isQuestOneActive(player, npc))
+        if (ep3_mining_thom_steele_condition_isQuestOneActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_312");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+            if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1011,22 +1010,22 @@ public class ep3_mining_thom_steele extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_314");
                 }
                 utils.setScriptVar(player, "conversation.ep3_mining_thom_steele.branchId", 30);
-                npcStartConversation(player, npc, "ep3_mining_thom_steele", message, responses);
+                npcStartConversation(player, self, "ep3_mining_thom_steele", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_mining_thom_steele_condition__defaultCondition(player, npc))
+        if (ep3_mining_thom_steele_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_330");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1035,77 +1034,76 @@ public class ep3_mining_thom_steele extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_mining_thom_steele.branchId");
-        if (branchId == 3 && ep3_mining_thom_steele_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_mining_thom_steele_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_mining_thom_steele_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_mining_thom_steele_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_mining_thom_steele_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_mining_thom_steele_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_mining_thom_steele_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_mining_thom_steele_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_mining_thom_steele_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_mining_thom_steele_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_mining_thom_steele_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_mining_thom_steele_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_mining_thom_steele_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_mining_thom_steele_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_mining_thom_steele_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_mining_thom_steele_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_mining_thom_steele_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_mining_thom_steele_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_mining_thom_steele_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_mining_thom_steele_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && ep3_mining_thom_steele_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && ep3_mining_thom_steele_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_mining_thom_steele_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_mining_thom_steele_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && ep3_mining_thom_steele_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && ep3_mining_thom_steele_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && ep3_mining_thom_steele_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && ep3_mining_thom_steele_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && ep3_mining_thom_steele_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && ep3_mining_thom_steele_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && ep3_mining_thom_steele_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && ep3_mining_thom_steele_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && ep3_mining_thom_steele_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && ep3_mining_thom_steele_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_mining_thom_steele.branchId");
         return SCRIPT_CONTINUE;
     }

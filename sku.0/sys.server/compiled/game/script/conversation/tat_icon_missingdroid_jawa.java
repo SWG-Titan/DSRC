@@ -20,28 +20,24 @@ public class tat_icon_missingdroid_jawa extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_jawa_to_droid_e2 = groundquests.getTaskId(questId1, "tat_icon_jawa_to_droid_e2");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_jawa_to_droid_e2, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_jawa_to_droid_e2, player);
     }
     public boolean tat_icon_missingdroid_jawa_condition_fixingJawa_e1_dren2Jawa(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_dren_to_jawa_e1 = groundquests.getTaskId(questId1, "tat_icon_dren_to_jawa_e1");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_dren_to_jawa_e1, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_dren_to_jawa_e1, player);
     }
     public boolean tat_icon_missingdroid_jawa_condition_fixingJawa_e3_droid2Dren(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_droid_to_dren_e3 = groundquests.getTaskId(questId1, "tat_icon_droid_to_dren_e3");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_droid_to_dren_e3, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_droid_to_dren_e3, player);
     }
     public boolean tat_icon_missingdroid_jawa_condition_fixingJawa_complete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public void tat_icon_missingdroid_jawa_action_signal_gotoDroid_e1(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -1077,38 +1073,37 @@ public class tat_icon_missingdroid_jawa extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tat_icon_missingdroid_jawa_condition_fixingJawa_complete(player, npc))
+        if (tat_icon_missingdroid_jawa_condition_fixingJawa_complete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tat_icon_missingdroid_jawa_condition_fixingJawa_e2_jawa2Droid(player, npc))
+        if (tat_icon_missingdroid_jawa_condition_fixingJawa_e2_jawa2Droid(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tat_icon_missingdroid_jawa_condition_fixingJawa_e3_droid2Dren(player, npc))
+            if (tat_icon_missingdroid_jawa_condition_fixingJawa_e3_droid2Dren(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tat_icon_missingdroid_jawa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_jawa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tat_icon_missingdroid_jawa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_jawa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1131,28 +1126,28 @@ public class tat_icon_missingdroid_jawa extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_66");
                 }
                 utils.setScriptVar(player, "conversation.tat_icon_missingdroid_jawa.branchId", 2);
-                npcStartConversation(player, npc, "tat_icon_missingdroid_jawa", message, responses);
+                npcStartConversation(player, self, "tat_icon_missingdroid_jawa", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tat_icon_missingdroid_jawa_condition__defaultCondition(player, npc))
+        if (tat_icon_missingdroid_jawa_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_22");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tat_icon_missingdroid_jawa_condition_fixingJawa_e1_dren2Jawa(player, npc))
+            if (tat_icon_missingdroid_jawa_condition_fixingJawa_e1_dren2Jawa(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tat_icon_missingdroid_jawa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_jawa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1171,15 +1166,15 @@ public class tat_icon_missingdroid_jawa extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_96");
                 }
                 utils.setScriptVar(player, "conversation.tat_icon_missingdroid_jawa.branchId", 10);
-                npcStartConversation(player, npc, "tat_icon_missingdroid_jawa", message, responses);
+                npcStartConversation(player, self, "tat_icon_missingdroid_jawa", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1188,89 +1183,88 @@ public class tat_icon_missingdroid_jawa extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tat_icon_missingdroid_jawa.branchId");
-        if (branchId == 2 && tat_icon_missingdroid_jawa_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tat_icon_missingdroid_jawa_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && tat_icon_missingdroid_jawa_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tat_icon_missingdroid_jawa_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && tat_icon_missingdroid_jawa_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tat_icon_missingdroid_jawa_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tat_icon_missingdroid_jawa_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tat_icon_missingdroid_jawa_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tat_icon_missingdroid_jawa_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tat_icon_missingdroid_jawa_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && tat_icon_missingdroid_jawa_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && tat_icon_missingdroid_jawa_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && tat_icon_missingdroid_jawa_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && tat_icon_missingdroid_jawa_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && tat_icon_missingdroid_jawa_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && tat_icon_missingdroid_jawa_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tat_icon_missingdroid_jawa_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tat_icon_missingdroid_jawa_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && tat_icon_missingdroid_jawa_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && tat_icon_missingdroid_jawa_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && tat_icon_missingdroid_jawa_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && tat_icon_missingdroid_jawa_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && tat_icon_missingdroid_jawa_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && tat_icon_missingdroid_jawa_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && tat_icon_missingdroid_jawa_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && tat_icon_missingdroid_jawa_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && tat_icon_missingdroid_jawa_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && tat_icon_missingdroid_jawa_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && tat_icon_missingdroid_jawa_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && tat_icon_missingdroid_jawa_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && tat_icon_missingdroid_jawa_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && tat_icon_missingdroid_jawa_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && tat_icon_missingdroid_jawa_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && tat_icon_missingdroid_jawa_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && tat_icon_missingdroid_jawa_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && tat_icon_missingdroid_jawa_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && tat_icon_missingdroid_jawa_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && tat_icon_missingdroid_jawa_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && tat_icon_missingdroid_jawa_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && tat_icon_missingdroid_jawa_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tat_icon_missingdroid_jawa.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -360,30 +360,29 @@ public class outbreak_canister_demolition_bothan_beta extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (outbreak_canister_demolition_bothan_beta_condition_hasCompletedAllCamps(player, npc))
+        if (outbreak_canister_demolition_bothan_beta_condition_hasCompletedAllCamps(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_42");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_canister_demolition_bothan_beta_condition_hasCompletedBetaQuest(player, npc))
+        if (outbreak_canister_demolition_bothan_beta_condition_hasCompletedBetaQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_97");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_canister_demolition_bothan_beta_condition_hasFinishedQuota(player, npc))
+        if (outbreak_canister_demolition_bothan_beta_condition_hasFinishedQuota(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_94");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, npc))
+            if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -398,34 +397,34 @@ public class outbreak_canister_demolition_bothan_beta extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_95");
                 }
                 utils.setScriptVar(player, "conversation.outbreak_canister_demolition_bothan_beta.branchId", 3);
-                npcStartConversation(player, npc, "outbreak_canister_demolition_bothan_beta", message, responses);
+                npcStartConversation(player, self, "outbreak_canister_demolition_bothan_beta", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_canister_demolition_bothan_beta_condition_hasBetaQuestIncomplete(player, npc))
+        if (outbreak_canister_demolition_bothan_beta_condition_hasBetaQuestIncomplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_93");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_canister_demolition_bothan_beta_condition_noAntiVirus(player, npc))
+        if (outbreak_canister_demolition_bothan_beta_condition_noAntiVirus(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_69");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_canister_demolition_bothan_beta_condition_hasAnotherCampIncomplete(player, npc))
+        if (outbreak_canister_demolition_bothan_beta_condition_hasAnotherCampIncomplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_25");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, npc))
+            if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -440,21 +439,21 @@ public class outbreak_canister_demolition_bothan_beta extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27");
                 }
                 utils.setScriptVar(player, "conversation.outbreak_canister_demolition_bothan_beta.branchId", 7);
-                npcStartConversation(player, npc, "outbreak_canister_demolition_bothan_beta", message, responses);
+                npcStartConversation(player, self, "outbreak_canister_demolition_bothan_beta", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_canister_demolition_bothan_beta_condition_hasAnotherCampCompleted(player, npc))
+        if (outbreak_canister_demolition_bothan_beta_condition_hasAnotherCampCompleted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_26");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, npc))
+            if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -469,22 +468,22 @@ public class outbreak_canister_demolition_bothan_beta extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_29");
                 }
                 utils.setScriptVar(player, "conversation.outbreak_canister_demolition_bothan_beta.branchId", 9);
-                npcStartConversation(player, npc, "outbreak_canister_demolition_bothan_beta", message, responses);
+                npcStartConversation(player, self, "outbreak_canister_demolition_bothan_beta", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_canister_demolition_bothan_beta_condition_hasNeverSpoken(player, npc))
+        if (outbreak_canister_demolition_bothan_beta_condition_hasNeverSpoken(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_35");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, npc))
+            if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -499,21 +498,21 @@ public class outbreak_canister_demolition_bothan_beta extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.outbreak_canister_demolition_bothan_beta.branchId", 11);
-                npcStartConversation(player, npc, "outbreak_canister_demolition_bothan_beta", message, responses);
+                npcStartConversation(player, self, "outbreak_canister_demolition_bothan_beta", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, npc))
+        if (outbreak_canister_demolition_bothan_beta_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_90");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -522,45 +521,44 @@ public class outbreak_canister_demolition_bothan_beta extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.outbreak_canister_demolition_bothan_beta.branchId");
-        if (branchId == 3 && outbreak_canister_demolition_bothan_beta_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && outbreak_canister_demolition_bothan_beta_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && outbreak_canister_demolition_bothan_beta_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && outbreak_canister_demolition_bothan_beta_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && outbreak_canister_demolition_bothan_beta_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && outbreak_canister_demolition_bothan_beta_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && outbreak_canister_demolition_bothan_beta_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && outbreak_canister_demolition_bothan_beta_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && outbreak_canister_demolition_bothan_beta_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && outbreak_canister_demolition_bothan_beta_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && outbreak_canister_demolition_bothan_beta_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && outbreak_canister_demolition_bothan_beta_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && outbreak_canister_demolition_bothan_beta_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && outbreak_canister_demolition_bothan_beta_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && outbreak_canister_demolition_bothan_beta_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && outbreak_canister_demolition_bothan_beta_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && outbreak_canister_demolition_bothan_beta_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && outbreak_canister_demolition_bothan_beta_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.outbreak_canister_demolition_bothan_beta.branchId");
         return SCRIPT_CONTINUE;
     }

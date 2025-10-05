@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class restuss_imperial_reward_npc extends script.base_script
+public class restuss_imperial_reward_npc extends base_script
 {
     public restuss_imperial_reward_npc()
     {
@@ -11999,47 +11999,46 @@ public class restuss_imperial_reward_npc extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (restuss_imperial_reward_npc_condition_isPlayerRebel(player, npc))
+        if (restuss_imperial_reward_npc_condition_isPlayerRebel(player, self))
         {
-            restuss_imperial_reward_npc_action_eject(player, npc);
+            restuss_imperial_reward_npc_action_eject(player, self);
             string_id message = new string_id(c_stringFile, "s_219");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_reward_npc_condition_notPhase3(player, npc))
+        if (restuss_imperial_reward_npc_condition_notPhase3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_203");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_reward_npc_condition_playerImperial(player, npc))
+        if (restuss_imperial_reward_npc_condition_playerImperial(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_reward_npc_condition__defaultCondition(player, npc))
+            if (restuss_imperial_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_reward_npc_condition__defaultCondition(player, npc))
+            if (restuss_imperial_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (restuss_imperial_reward_npc_condition_readyForBadge(player, npc))
+            if (restuss_imperial_reward_npc_condition_readyForBadge(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12062,22 +12061,22 @@ public class restuss_imperial_reward_npc extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_205");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_reward_npc.branchId", 3);
-                npcStartConversation(player, npc, "restuss_imperial_reward_npc", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_reward_npc", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_reward_npc_condition__defaultCondition(player, npc))
+        if (restuss_imperial_reward_npc_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_217");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -12086,241 +12085,240 @@ public class restuss_imperial_reward_npc extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.restuss_imperial_reward_npc.branchId");
-        if (branchId == 3 && restuss_imperial_reward_npc_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && restuss_imperial_reward_npc_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && restuss_imperial_reward_npc_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && restuss_imperial_reward_npc_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && restuss_imperial_reward_npc_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && restuss_imperial_reward_npc_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && restuss_imperial_reward_npc_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && restuss_imperial_reward_npc_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && restuss_imperial_reward_npc_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && restuss_imperial_reward_npc_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && restuss_imperial_reward_npc_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && restuss_imperial_reward_npc_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && restuss_imperial_reward_npc_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && restuss_imperial_reward_npc_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && restuss_imperial_reward_npc_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && restuss_imperial_reward_npc_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && restuss_imperial_reward_npc_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && restuss_imperial_reward_npc_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && restuss_imperial_reward_npc_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && restuss_imperial_reward_npc_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && restuss_imperial_reward_npc_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && restuss_imperial_reward_npc_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && restuss_imperial_reward_npc_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && restuss_imperial_reward_npc_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && restuss_imperial_reward_npc_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && restuss_imperial_reward_npc_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && restuss_imperial_reward_npc_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && restuss_imperial_reward_npc_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && restuss_imperial_reward_npc_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && restuss_imperial_reward_npc_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && restuss_imperial_reward_npc_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && restuss_imperial_reward_npc_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && restuss_imperial_reward_npc_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && restuss_imperial_reward_npc_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && restuss_imperial_reward_npc_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && restuss_imperial_reward_npc_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && restuss_imperial_reward_npc_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && restuss_imperial_reward_npc_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && restuss_imperial_reward_npc_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && restuss_imperial_reward_npc_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && restuss_imperial_reward_npc_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && restuss_imperial_reward_npc_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && restuss_imperial_reward_npc_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && restuss_imperial_reward_npc_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && restuss_imperial_reward_npc_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && restuss_imperial_reward_npc_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && restuss_imperial_reward_npc_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && restuss_imperial_reward_npc_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && restuss_imperial_reward_npc_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && restuss_imperial_reward_npc_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && restuss_imperial_reward_npc_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && restuss_imperial_reward_npc_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && restuss_imperial_reward_npc_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && restuss_imperial_reward_npc_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && restuss_imperial_reward_npc_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && restuss_imperial_reward_npc_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && restuss_imperial_reward_npc_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && restuss_imperial_reward_npc_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && restuss_imperial_reward_npc_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && restuss_imperial_reward_npc_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && restuss_imperial_reward_npc_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && restuss_imperial_reward_npc_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && restuss_imperial_reward_npc_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && restuss_imperial_reward_npc_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && restuss_imperial_reward_npc_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && restuss_imperial_reward_npc_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && restuss_imperial_reward_npc_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && restuss_imperial_reward_npc_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && restuss_imperial_reward_npc_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && restuss_imperial_reward_npc_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && restuss_imperial_reward_npc_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && restuss_imperial_reward_npc_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && restuss_imperial_reward_npc_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && restuss_imperial_reward_npc_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && restuss_imperial_reward_npc_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && restuss_imperial_reward_npc_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && restuss_imperial_reward_npc_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && restuss_imperial_reward_npc_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && restuss_imperial_reward_npc_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && restuss_imperial_reward_npc_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && restuss_imperial_reward_npc_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && restuss_imperial_reward_npc_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && restuss_imperial_reward_npc_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && restuss_imperial_reward_npc_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && restuss_imperial_reward_npc_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && restuss_imperial_reward_npc_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && restuss_imperial_reward_npc_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && restuss_imperial_reward_npc_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && restuss_imperial_reward_npc_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && restuss_imperial_reward_npc_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && restuss_imperial_reward_npc_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && restuss_imperial_reward_npc_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && restuss_imperial_reward_npc_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && restuss_imperial_reward_npc_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && restuss_imperial_reward_npc_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && restuss_imperial_reward_npc_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && restuss_imperial_reward_npc_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && restuss_imperial_reward_npc_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && restuss_imperial_reward_npc_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && restuss_imperial_reward_npc_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && restuss_imperial_reward_npc_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && restuss_imperial_reward_npc_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && restuss_imperial_reward_npc_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && restuss_imperial_reward_npc_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && restuss_imperial_reward_npc_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && restuss_imperial_reward_npc_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && restuss_imperial_reward_npc_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && restuss_imperial_reward_npc_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && restuss_imperial_reward_npc_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && restuss_imperial_reward_npc_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && restuss_imperial_reward_npc_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && restuss_imperial_reward_npc_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && restuss_imperial_reward_npc_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && restuss_imperial_reward_npc_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && restuss_imperial_reward_npc_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && restuss_imperial_reward_npc_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.restuss_imperial_reward_npc.branchId");
         return SCRIPT_CONTINUE;
     }

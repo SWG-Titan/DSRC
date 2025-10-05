@@ -4,7 +4,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.*;
 
-public class quest_hero_of_tatooine_box extends script.base_script
+public class quest_hero_of_tatooine_box extends base_script
 {
     public quest_hero_of_tatooine_box()
     {

@@ -2483,33 +2483,32 @@ public class tatooine_rebel_trainer_2 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_rebel_trainer_2_condition_hasImperialSkill(player, npc))
+        if (tatooine_rebel_trainer_2_condition_hasImperialSkill(player, self))
         {
-            tatooine_rebel_trainer_2_action_animDismiss(player, npc);
+            tatooine_rebel_trainer_2_action_animDismiss(player, self);
             string_id message = new string_id(c_stringFile, "s_32c77056");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_rebel_trainer_2_condition_hasPilotSkill(player, npc))
+        if (tatooine_rebel_trainer_2_condition_hasPilotSkill(player, self))
         {
-            tatooine_rebel_trainer_2_action_animPointAway(player, npc);
+            tatooine_rebel_trainer_2_action_animPointAway(player, self);
             string_id message = new string_id(c_stringFile, "s_4243cd30");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_rebel_trainer_2_condition_hasFailedFirstQuest(player, npc))
+        if (tatooine_rebel_trainer_2_condition_hasFailedFirstQuest(player, self))
         {
-            tatooine_rebel_trainer_2_action_animScratchHead(player, npc);
+            tatooine_rebel_trainer_2_action_animScratchHead(player, self);
             string_id message = new string_id(c_stringFile, "s_8af71059");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2524,22 +2523,22 @@ public class tatooine_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_65c6992e");
                 }
                 setObjVar(player, "conversation.tatooine_rebel_trainer_2.branchId", 3);
-                npcStartConversation(player, npc, "tatooine_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "tatooine_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_rebel_trainer_2_condition_hasAbortedFirstQuest(player, npc))
+        if (tatooine_rebel_trainer_2_condition_hasAbortedFirstQuest(player, self))
         {
-            tatooine_rebel_trainer_2_action_animScratchHead(player, npc);
+            tatooine_rebel_trainer_2_action_animScratchHead(player, self);
             string_id message = new string_id(c_stringFile, "s_f3a2a7d2");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2554,29 +2553,29 @@ public class tatooine_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_65c6992e");
                 }
                 setObjVar(player, "conversation.tatooine_rebel_trainer_2.branchId", 5);
-                npcStartConversation(player, npc, "tatooine_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "tatooine_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_rebel_trainer_2_condition_hasSecondQuest(player, npc))
+        if (tatooine_rebel_trainer_2_condition_hasSecondQuest(player, self))
         {
-            tatooine_rebel_trainer_2_action_animSaluteEachOther(player, npc);
+            tatooine_rebel_trainer_2_action_animSaluteEachOther(player, self);
             string_id message = new string_id(c_stringFile, "s_340e3cc");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_rebel_trainer_2_condition_hasWonSecondQuest(player, npc))
+            if (tatooine_rebel_trainer_2_condition_hasWonSecondQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2595,22 +2594,22 @@ public class tatooine_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c49dadaf");
                 }
                 setObjVar(player, "conversation.tatooine_rebel_trainer_2.branchId", 7);
-                npcStartConversation(player, npc, "tatooine_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "tatooine_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_rebel_trainer_2_condition_hasWonFirstQuest(player, npc))
+        if (tatooine_rebel_trainer_2_condition_hasWonFirstQuest(player, self))
         {
-            tatooine_rebel_trainer_2_action_animSalute1(player, npc);
+            tatooine_rebel_trainer_2_action_animSalute1(player, self);
             string_id message = new string_id(c_stringFile, "s_113f133e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2625,36 +2624,36 @@ public class tatooine_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6c251948");
                 }
                 setObjVar(player, "conversation.tatooine_rebel_trainer_2.branchId", 10);
-                npcStartConversation(player, npc, "tatooine_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "tatooine_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_rebel_trainer_2_condition_hasFirstQuest(player, npc))
+        if (tatooine_rebel_trainer_2_condition_hasFirstQuest(player, self))
         {
-            tatooine_rebel_trainer_2_action_animSaluteEachOther(player, npc);
+            tatooine_rebel_trainer_2_action_animSaluteEachOther(player, self);
             string_id message = new string_id(c_stringFile, "s_ef7c4c8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_rebel_trainer_2_condition_hasWonFirstQuest(player, npc))
+            if (tatooine_rebel_trainer_2_condition_hasWonFirstQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2677,36 +2676,36 @@ public class tatooine_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_32583e8e");
                 }
                 setObjVar(player, "conversation.tatooine_rebel_trainer_2.branchId", 12);
-                npcStartConversation(player, npc, "tatooine_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "tatooine_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_rebel_trainer_2_condition_hasFinishedNewbieSeries(player, npc))
+        if (tatooine_rebel_trainer_2_condition_hasFinishedNewbieSeries(player, self))
         {
-            tatooine_rebel_trainer_2_action_animSlitThroat(player, npc);
+            tatooine_rebel_trainer_2_action_animSlitThroat(player, self);
             string_id message = new string_id(c_stringFile, "s_3e8d2533");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2729,36 +2728,36 @@ public class tatooine_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3a8e238f");
                 }
                 setObjVar(player, "conversation.tatooine_rebel_trainer_2.branchId", 16);
-                npcStartConversation(player, npc, "tatooine_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "tatooine_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+        if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
         {
-            tatooine_rebel_trainer_2_action_animSlowDown(player, npc);
+            tatooine_rebel_trainer_2_action_animSlowDown(player, self);
             string_id message = new string_id(c_stringFile, "s_1d2c155d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (tatooine_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2781,15 +2780,15 @@ public class tatooine_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_ca776e30");
                 }
                 setObjVar(player, "conversation.tatooine_rebel_trainer_2.branchId", 33);
-                npcStartConversation(player, npc, "tatooine_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "tatooine_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2798,81 +2797,80 @@ public class tatooine_rebel_trainer_2 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = getIntObjVar(player, "conversation.tatooine_rebel_trainer_2.branchId");
-        if (branchId == 3 && tatooine_rebel_trainer_2_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_rebel_trainer_2_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tatooine_rebel_trainer_2_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_rebel_trainer_2_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && tatooine_rebel_trainer_2_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && tatooine_rebel_trainer_2_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tatooine_rebel_trainer_2_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tatooine_rebel_trainer_2_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && tatooine_rebel_trainer_2_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && tatooine_rebel_trainer_2_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && tatooine_rebel_trainer_2_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && tatooine_rebel_trainer_2_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && tatooine_rebel_trainer_2_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && tatooine_rebel_trainer_2_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && tatooine_rebel_trainer_2_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && tatooine_rebel_trainer_2_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && tatooine_rebel_trainer_2_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && tatooine_rebel_trainer_2_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && tatooine_rebel_trainer_2_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && tatooine_rebel_trainer_2_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && tatooine_rebel_trainer_2_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && tatooine_rebel_trainer_2_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && tatooine_rebel_trainer_2_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && tatooine_rebel_trainer_2_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && tatooine_rebel_trainer_2_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && tatooine_rebel_trainer_2_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && tatooine_rebel_trainer_2_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && tatooine_rebel_trainer_2_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && tatooine_rebel_trainer_2_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && tatooine_rebel_trainer_2_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && tatooine_rebel_trainer_2_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && tatooine_rebel_trainer_2_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && tatooine_rebel_trainer_2_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && tatooine_rebel_trainer_2_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && tatooine_rebel_trainer_2_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && tatooine_rebel_trainer_2_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         removeObjVar(player, "conversation.tatooine_rebel_trainer_2.branchId");
         return SCRIPT_CONTINUE;
     }

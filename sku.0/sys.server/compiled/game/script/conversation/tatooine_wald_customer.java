@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class tatooine_wald_customer extends script.base_script
+public class tatooine_wald_customer extends base_script
 {
     public tatooine_wald_customer()
     {

@@ -222,18 +222,17 @@ public class npe_bounty_strong_arm extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_bounty_strong_arm_condition_isOnQuest(player, npc))
+        if (npe_bounty_strong_arm_condition_isOnQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_bounty_strong_arm_condition__defaultCondition(player, npc))
+            if (npe_bounty_strong_arm_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -248,27 +247,27 @@ public class npe_bounty_strong_arm extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6");
                 }
                 utils.setScriptVar(player, "conversation.npe_bounty_strong_arm.branchId", 1);
-                npcStartConversation(player, npc, "npe_bounty_strong_arm", message, responses);
+                npcStartConversation(player, self, "npe_bounty_strong_arm", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_bounty_strong_arm_condition_hasRattedOut(player, npc))
+        if (npe_bounty_strong_arm_condition_hasRattedOut(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_22");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_bounty_strong_arm_condition__defaultCondition(player, npc))
+        if (npe_bounty_strong_arm_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_24");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_bounty_strong_arm_condition__defaultCondition(player, npc))
+            if (npe_bounty_strong_arm_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -283,15 +282,15 @@ public class npe_bounty_strong_arm extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.npe_bounty_strong_arm.branchId", 7);
-                npcStartConversation(player, npc, "npe_bounty_strong_arm", message, responses);
+                npcStartConversation(player, self, "npe_bounty_strong_arm", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -300,29 +299,28 @@ public class npe_bounty_strong_arm extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_bounty_strong_arm.branchId");
-        if (branchId == 1 && npe_bounty_strong_arm_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && npe_bounty_strong_arm_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && npe_bounty_strong_arm_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_bounty_strong_arm_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && npe_bounty_strong_arm_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && npe_bounty_strong_arm_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && npe_bounty_strong_arm_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && npe_bounty_strong_arm_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && npe_bounty_strong_arm_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && npe_bounty_strong_arm_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_bounty_strong_arm.branchId");
         return SCRIPT_CONTINUE;
     }

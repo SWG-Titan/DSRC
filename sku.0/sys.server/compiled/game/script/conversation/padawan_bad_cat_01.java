@@ -6,7 +6,7 @@ import script.library.jedi_trials;
 import script.library.utils;
 import script.*;
 
-public class padawan_bad_cat_01 extends script.base_script
+public class padawan_bad_cat_01 extends base_script
 {
     public padawan_bad_cat_01()
     {

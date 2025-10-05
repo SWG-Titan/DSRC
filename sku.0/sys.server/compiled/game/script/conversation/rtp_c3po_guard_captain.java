@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class rtp_c3po_guard_captain extends script.base_script
+public class rtp_c3po_guard_captain extends base_script
 {
     public rtp_c3po_guard_captain()
     {

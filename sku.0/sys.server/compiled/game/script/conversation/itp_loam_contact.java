@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class itp_loam_contact extends script.base_script
+public class itp_loam_contact extends base_script
 {
     public itp_loam_contact()
     {

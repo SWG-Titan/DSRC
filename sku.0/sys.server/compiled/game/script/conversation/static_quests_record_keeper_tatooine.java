@@ -4,7 +4,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.*;
 
-public class static_quests_record_keeper_tatooine extends script.base_script
+public class static_quests_record_keeper_tatooine extends base_script
 {
     public static_quests_record_keeper_tatooine()
     {

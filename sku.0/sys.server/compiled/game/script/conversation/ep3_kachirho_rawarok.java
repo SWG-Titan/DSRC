@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class ep3_kachirho_rawarok extends script.base_script
+public class ep3_kachirho_rawarok extends base_script
 {
     public ep3_kachirho_rawarok()
     {
@@ -64,26 +64,25 @@ public class ep3_kachirho_rawarok extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_kachirho_rawarok_condition_cannotSpeakWookiee(player, npc))
+        if (ep3_kachirho_rawarok_condition_cannotSpeakWookiee(player, self))
         {
-            ep3_kachirho_rawarok_action_vocalizeWookiee(player, npc);
+            ep3_kachirho_rawarok_action_vocalizeWookiee(player, self);
             string_id message = new string_id(c_stringFile, "s_29");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_kachirho_rawarok_condition__defaultCondition(player, npc))
+        if (ep3_kachirho_rawarok_condition__defaultCondition(player, self))
         {
-            ep3_kachirho_rawarok_action_vocalizeShort(player, npc);
+            ep3_kachirho_rawarok_action_vocalizeShort(player, self);
             string_id message = new string_id(c_stringFile, "s_30");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -92,9 +91,8 @@ public class ep3_kachirho_rawarok extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_kachirho_rawarok.branchId");
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_kachirho_rawarok.branchId");
         return SCRIPT_CONTINUE;
     }

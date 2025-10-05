@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class event_ls_informant_6 extends script.base_script
+public class event_ls_informant_6 extends base_script
 {
     public event_ls_informant_6()
     {
@@ -2774,53 +2774,52 @@ public class event_ls_informant_6 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (event_ls_informant_6_condition__defaultCondition(player, npc))
+        if (event_ls_informant_6_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_ls_informant_6_condition__defaultCondition(player, npc))
+            if (event_ls_informant_6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (event_ls_informant_6_condition__defaultCondition(player, npc))
+            if (event_ls_informant_6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (event_ls_informant_6_condition__defaultCondition(player, npc))
+            if (event_ls_informant_6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (event_ls_informant_6_condition__defaultCondition(player, npc))
+            if (event_ls_informant_6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (event_ls_informant_6_condition__defaultCondition(player, npc))
+            if (event_ls_informant_6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (event_ls_informant_6_condition__defaultCondition(player, npc))
+            if (event_ls_informant_6_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2855,15 +2854,15 @@ public class event_ls_informant_6 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_11");
                 }
                 utils.setScriptVar(player, "conversation.event_ls_informant_6.branchId", 1);
-                npcStartConversation(player, npc, "event_ls_informant_6", message, responses);
+                npcStartConversation(player, self, "event_ls_informant_6", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2872,53 +2871,52 @@ public class event_ls_informant_6 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.event_ls_informant_6.branchId");
-        if (branchId == 1 && event_ls_informant_6_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && event_ls_informant_6_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && event_ls_informant_6_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && event_ls_informant_6_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && event_ls_informant_6_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && event_ls_informant_6_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && event_ls_informant_6_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && event_ls_informant_6_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && event_ls_informant_6_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && event_ls_informant_6_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && event_ls_informant_6_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && event_ls_informant_6_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && event_ls_informant_6_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && event_ls_informant_6_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && event_ls_informant_6_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && event_ls_informant_6_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && event_ls_informant_6_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && event_ls_informant_6_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && event_ls_informant_6_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && event_ls_informant_6_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && event_ls_informant_6_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && event_ls_informant_6_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.event_ls_informant_6.branchId");
         return SCRIPT_CONTINUE;
     }

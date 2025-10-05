@@ -254,6 +254,27 @@ public class sd_chief_olum extends script.base_script
         chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
+
+
+    public int OnSawEmote(obj_id self, obj_id performer, String emote) throws InterruptedException
+    {
+        if (emote.equals("going"))
+        {
+            if (isPlayer(performer))
+            {
+                if (!utils.hasScriptVar(self, "moveIt"))
+                {
+                    utils.setScriptVar(self, "moveIt", 1);
+                    setMovementRun(self);
+                    setMovementPercent(self, 2.5f);
+                    chat.chat(self, "Alright, Let's get moving.");
+                }
+            }
+        }
+        return SCRIPT_CONTINUE;
+    }
+
+
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
     {
         if (!conversationId.equals("sd_chief_olum"))

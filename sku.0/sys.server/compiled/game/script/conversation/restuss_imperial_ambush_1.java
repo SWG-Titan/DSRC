@@ -393,82 +393,81 @@ public class restuss_imperial_ambush_1 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (restuss_imperial_ambush_1_condition_isRebelPlayer(player, npc))
+        if (restuss_imperial_ambush_1_condition_isRebelPlayer(player, self))
         {
-            restuss_imperial_ambush_1_action_eject(player, npc);
+            restuss_imperial_ambush_1_action_eject(player, self);
             string_id message = new string_id(c_stringFile, "s_57");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ambush_1_condition_mission2Success(player, npc))
+        if (restuss_imperial_ambush_1_condition_mission2Success(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
-            restuss_imperial_ambush_1_action_reward2(player, npc);
+            restuss_imperial_ambush_1_action_reward2(player, self);
             string_id message = new string_id(c_stringFile, "s_39");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ambush_1_condition_mission1Success(player, npc))
+        if (restuss_imperial_ambush_1_condition_mission1Success(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
-            restuss_imperial_ambush_1_action_reward1(player, npc);
+            restuss_imperial_ambush_1_action_reward1(player, self);
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ambush_1_condition_mission1Active(player, npc))
+        if (restuss_imperial_ambush_1_condition_mission1Active(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ambush_1_condition_mission2Active(player, npc))
+        if (restuss_imperial_ambush_1_condition_mission2Active(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_25");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ambush_1_condition_completedMission2(player, npc))
+        if (restuss_imperial_ambush_1_condition_completedMission2(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_72");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_ambush_1_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ambush_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_ambush_1_condition_notSpy(player, npc))
+            if (restuss_imperial_ambush_1_condition_notSpy(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (restuss_imperial_ambush_1_condition_spy(player, npc))
+            if (restuss_imperial_ambush_1_condition_spy(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (restuss_imperial_ambush_1_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ambush_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -495,37 +494,37 @@ public class restuss_imperial_ambush_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_94");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_ambush_1.branchId", 6);
-                npcStartConversation(player, npc, "restuss_imperial_ambush_1", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_ambush_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ambush_1_condition_completedMission1(player, npc))
+        if (restuss_imperial_ambush_1_condition_completedMission1(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_ambush_1_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ambush_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_ambush_1_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ambush_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (restuss_imperial_ambush_1_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ambush_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -548,37 +547,37 @@ public class restuss_imperial_ambush_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_46");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_ambush_1.branchId", 11);
-                npcStartConversation(player, npc, "restuss_imperial_ambush_1", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_ambush_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ambush_1_condition_stage3ready(player, npc))
+        if (restuss_imperial_ambush_1_condition_stage3ready(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_50");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_ambush_1_condition_notSpy(player, npc))
+            if (restuss_imperial_ambush_1_condition_notSpy(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_ambush_1_condition_spy(player, npc))
+            if (restuss_imperial_ambush_1_condition_spy(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (restuss_imperial_ambush_1_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ambush_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -601,30 +600,30 @@ public class restuss_imperial_ambush_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_56");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_ambush_1.branchId", 18);
-                npcStartConversation(player, npc, "restuss_imperial_ambush_1", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_ambush_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ambush_1_condition_playerImperial(player, npc))
+        if (restuss_imperial_ambush_1_condition_playerImperial(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_53");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ambush_1_condition__defaultCondition(player, npc))
+        if (restuss_imperial_ambush_1_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_60");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -633,25 +632,24 @@ public class restuss_imperial_ambush_1 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.restuss_imperial_ambush_1.branchId");
-        if (branchId == 6 && restuss_imperial_ambush_1_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && restuss_imperial_ambush_1_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && restuss_imperial_ambush_1_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && restuss_imperial_ambush_1_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && restuss_imperial_ambush_1_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && restuss_imperial_ambush_1_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && restuss_imperial_ambush_1_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && restuss_imperial_ambush_1_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.restuss_imperial_ambush_1.branchId");
         return SCRIPT_CONTINUE;
     }

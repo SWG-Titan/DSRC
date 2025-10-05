@@ -292,38 +292,37 @@ public class ep3_rryatt_tressk extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_rryatt_tressk_condition_completelyFinished(player, npc))
+        if (ep3_rryatt_tressk_condition_completelyFinished(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_31");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_tressk_condition_finishedGotalHunters(player, npc))
+        if (ep3_rryatt_tressk_condition_finishedGotalHunters(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1367");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -346,35 +345,35 @@ public class ep3_rryatt_tressk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_29");
                 }
                 utils.setScriptVar(player, "conversation.ep3_rryatt_tressk.branchId", 2);
-                npcStartConversation(player, npc, "ep3_rryatt_tressk", message, responses);
+                npcStartConversation(player, self, "ep3_rryatt_tressk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_tressk_condition_onGotalHunters(player, npc))
+        if (ep3_rryatt_tressk_condition_onGotalHunters(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1368");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_tressk_condition_finishedDeepWoodsPoachers(player, npc))
+        if (ep3_rryatt_tressk_condition_finishedDeepWoodsPoachers(player, self))
         {
-            ep3_rryatt_tressk_action_doneDeepWoodsPoachers(player, npc);
+            ep3_rryatt_tressk_action_doneDeepWoodsPoachers(player, self);
             string_id message = new string_id(c_stringFile, "s_1369");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -393,35 +392,35 @@ public class ep3_rryatt_tressk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1386");
                 }
                 utils.setScriptVar(player, "conversation.ep3_rryatt_tressk.branchId", 7);
-                npcStartConversation(player, npc, "ep3_rryatt_tressk", message, responses);
+                npcStartConversation(player, self, "ep3_rryatt_tressk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_tressk_condition_onDeepWoodsPoachers(player, npc))
+        if (ep3_rryatt_tressk_condition_onDeepWoodsPoachers(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1370");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_tressk_condition_finishedLostRodianHunters(player, npc))
+        if (ep3_rryatt_tressk_condition_finishedLostRodianHunters(player, self))
         {
-            ep3_rryatt_tressk_action_doneLostRodianHunters(player, npc);
+            ep3_rryatt_tressk_action_doneLostRodianHunters(player, self);
             string_id message = new string_id(c_stringFile, "s_1371");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -440,34 +439,34 @@ public class ep3_rryatt_tressk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1382");
                 }
                 utils.setScriptVar(player, "conversation.ep3_rryatt_tressk.branchId", 11);
-                npcStartConversation(player, npc, "ep3_rryatt_tressk", message, responses);
+                npcStartConversation(player, self, "ep3_rryatt_tressk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_tressk_condition_onLostRodianHunters(player, npc))
+        if (ep3_rryatt_tressk_condition_onLostRodianHunters(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1372");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+        if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1366");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_rryatt_tressk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_tressk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -486,15 +485,15 @@ public class ep3_rryatt_tressk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1374");
                 }
                 utils.setScriptVar(player, "conversation.ep3_rryatt_tressk.branchId", 15);
-                npcStartConversation(player, npc, "ep3_rryatt_tressk", message, responses);
+                npcStartConversation(player, self, "ep3_rryatt_tressk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -503,29 +502,28 @@ public class ep3_rryatt_tressk extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_rryatt_tressk.branchId");
-        if (branchId == 2 && ep3_rryatt_tressk_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_rryatt_tressk_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_rryatt_tressk_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_rryatt_tressk_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_rryatt_tressk_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_rryatt_tressk_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_rryatt_tressk_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_rryatt_tressk_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_rryatt_tressk_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_rryatt_tressk_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_rryatt_tressk.branchId");
         return SCRIPT_CONTINUE;
     }

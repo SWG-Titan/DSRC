@@ -789,26 +789,25 @@ public class som_exploration_marker extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (som_exploration_marker_condition_completedReward(player, npc))
+        if (som_exploration_marker_condition_completedReward(player, self))
         {
-            doAnimationAction(npc, "bow");
+            doAnimationAction(self, "bow");
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_exploration_marker_condition_completeAll(player, npc))
+        if (som_exploration_marker_condition_completeAll(player, self))
         {
-            doAnimationAction(npc, "thank");
+            doAnimationAction(self, "thank");
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_exploration_marker_condition__defaultCondition(player, npc))
+            if (som_exploration_marker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -823,29 +822,29 @@ public class som_exploration_marker extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.som_exploration_marker.branchId", 2);
-                npcStartConversation(player, npc, "som_exploration_marker", message, responses);
+                npcStartConversation(player, self, "som_exploration_marker", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_exploration_marker_condition_hasAcceptedOne(player, npc))
+        if (som_exploration_marker_condition_hasAcceptedOne(player, self))
         {
-            doAnimationAction(npc, "wave1");
+            doAnimationAction(self, "wave1");
             string_id message = new string_id(c_stringFile, "s_10");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_exploration_marker_condition__defaultCondition(player, npc))
+            if (som_exploration_marker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_exploration_marker_condition__defaultCondition(player, npc))
+            if (som_exploration_marker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -864,29 +863,29 @@ public class som_exploration_marker extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_39");
                 }
                 utils.setScriptVar(player, "conversation.som_exploration_marker.branchId", 4);
-                npcStartConversation(player, npc, "som_exploration_marker", message, responses);
+                npcStartConversation(player, self, "som_exploration_marker", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_exploration_marker_condition__defaultCondition(player, npc))
+        if (som_exploration_marker_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "bow4");
+            doAnimationAction(self, "bow4");
             string_id message = new string_id(c_stringFile, "s_15");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_exploration_marker_condition__defaultCondition(player, npc))
+            if (som_exploration_marker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_exploration_marker_condition__defaultCondition(player, npc))
+            if (som_exploration_marker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -905,15 +904,15 @@ public class som_exploration_marker extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_76");
                 }
                 utils.setScriptVar(player, "conversation.som_exploration_marker.branchId", 6);
-                npcStartConversation(player, npc, "som_exploration_marker", message, responses);
+                npcStartConversation(player, self, "som_exploration_marker", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -922,49 +921,48 @@ public class som_exploration_marker extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.som_exploration_marker.branchId");
-        if (branchId == 2 && som_exploration_marker_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && som_exploration_marker_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && som_exploration_marker_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && som_exploration_marker_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && som_exploration_marker_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && som_exploration_marker_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && som_exploration_marker_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && som_exploration_marker_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && som_exploration_marker_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && som_exploration_marker_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && som_exploration_marker_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && som_exploration_marker_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && som_exploration_marker_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && som_exploration_marker_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && som_exploration_marker_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && som_exploration_marker_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && som_exploration_marker_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && som_exploration_marker_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && som_exploration_marker_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && som_exploration_marker_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.som_exploration_marker.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -2484,27 +2484,26 @@ public class npe_station_han_solo2 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_station_han_solo2_condition_finishedInaldraQuest(player, npc))
+        if (npe_station_han_solo2_condition_finishedInaldraQuest(player, self))
         {
-            doAnimationAction(npc, "thank");
-            npe_station_han_solo2_action_sound46(player, npc);
+            doAnimationAction(self, "thank");
+            npe_station_han_solo2_action_sound46(player, self);
             string_id message = new string_id(c_stringFile, "s_131");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!npe_station_han_solo2_condition_isBH(player, npc))
+            if (!npe_station_han_solo2_condition_isBH(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2523,36 +2522,36 @@ public class npe_station_han_solo2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_223");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_han_solo2.branchId", 1);
-                npcStartConversation(player, npc, "npe_station_han_solo2", message, responses);
+                npcStartConversation(player, self, "npe_station_han_solo2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_completedMainQuest(player, npc))
+        if (npe_station_han_solo2_condition_completedMainQuest(player, self))
         {
-            npe_station_han_solo2_action_sound34(player, npc);
+            npe_station_han_solo2_action_sound34(player, self);
             string_id message = new string_id(c_stringFile, "s_126");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_han_solo2_condition_onInaldraQuest(player, npc))
+            if (npe_station_han_solo2_condition_onInaldraQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!npe_station_han_solo2_condition_isBH(player, npc))
+            if (!npe_station_han_solo2_condition_isBH(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2575,22 +2574,22 @@ public class npe_station_han_solo2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_217");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_han_solo2.branchId", 2);
-                npcStartConversation(player, npc, "npe_station_han_solo2", message, responses);
+                npcStartConversation(player, self, "npe_station_han_solo2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_onlastHanstep(player, npc))
+        if (npe_station_han_solo2_condition_onlastHanstep(player, self))
         {
-            npe_station_han_solo2_action_sound32(player, npc);
+            npe_station_han_solo2_action_sound32(player, self);
             string_id message = new string_id(c_stringFile, "s_118");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2605,23 +2604,23 @@ public class npe_station_han_solo2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_119");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_han_solo2.branchId", 17);
-                npcStartConversation(player, npc, "npe_station_han_solo2", message, responses);
+                npcStartConversation(player, self, "npe_station_han_solo2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_onCollectStep(player, npc))
+        if (npe_station_han_solo2_condition_onCollectStep(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
-            npe_station_han_solo2_action_sound29(player, npc);
+            doAnimationAction(self, "shake_head_disgust");
+            npe_station_han_solo2_action_sound29(player, self);
             string_id message = new string_id(c_stringFile, "s_111");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2636,22 +2635,22 @@ public class npe_station_han_solo2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_240");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_han_solo2.branchId", 21);
-                npcStartConversation(player, npc, "npe_station_han_solo2", message, responses);
+                npcStartConversation(player, self, "npe_station_han_solo2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_onCantinaStep(player, npc))
+        if (npe_station_han_solo2_condition_onCantinaStep(player, self))
         {
-            npe_station_han_solo2_action_sound27(player, npc);
+            npe_station_han_solo2_action_sound27(player, self);
             string_id message = new string_id(c_stringFile, "s_108");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2666,45 +2665,45 @@ public class npe_station_han_solo2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_109");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_han_solo2.branchId", 24);
-                npcStartConversation(player, npc, "npe_station_han_solo2", message, responses);
+                npcStartConversation(player, self, "npe_station_han_solo2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_onMainQuest(player, npc))
+        if (npe_station_han_solo2_condition_onMainQuest(player, self))
         {
-            doAnimationAction(npc, "dismiss");
-            npe_station_han_solo2_action_sound26(player, npc);
+            doAnimationAction(self, "dismiss");
+            npe_station_han_solo2_action_sound26(player, self);
             string_id message = new string_id(c_stringFile, "s_106");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_finishedProfessionTrainer(player, npc))
+        if (npe_station_han_solo2_condition_finishedProfessionTrainer(player, self))
         {
-            doAnimationAction(npc, "greet");
-            npe_station_han_solo2_action_sound20(player, npc);
+            doAnimationAction(self, "greet");
+            npe_station_han_solo2_action_sound20(player, self);
             string_id message = new string_id(c_stringFile, "s_94");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2727,23 +2726,23 @@ public class npe_station_han_solo2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_191");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_han_solo2.branchId", 27);
-                npcStartConversation(player, npc, "npe_station_han_solo2", message, responses);
+                npcStartConversation(player, self, "npe_station_han_solo2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_onLastSmugglerStep(player, npc))
+        if (npe_station_han_solo2_condition_onLastSmugglerStep(player, self))
         {
-            doAnimationAction(npc, "thank");
-            npe_station_han_solo2_action_sound17(player, npc);
+            doAnimationAction(self, "thank");
+            npe_station_han_solo2_action_sound17(player, self);
             string_id message = new string_id(c_stringFile, "s_103");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2758,37 +2757,37 @@ public class npe_station_han_solo2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_105");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_han_solo2.branchId", 35);
-                npcStartConversation(player, npc, "npe_station_han_solo2", message, responses);
+                npcStartConversation(player, self, "npe_station_han_solo2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_ClassQuestActive(player, npc))
+        if (npe_station_han_solo2_condition_ClassQuestActive(player, self))
         {
-            npe_station_han_solo2_action_sound16(player, npc);
+            npe_station_han_solo2_action_sound16(player, self);
             string_id message = new string_id(c_stringFile, "s_245");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_isTraining(player, npc))
+        if (npe_station_han_solo2_condition_isTraining(player, self))
         {
-            npe_station_han_solo2_action_sound15(player, npc);
+            npe_station_han_solo2_action_sound15(player, self);
             string_id message = new string_id(c_stringFile, "s_243");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_isSmugglerToTrain(player, npc))
+        if (npe_station_han_solo2_condition_isSmugglerToTrain(player, self))
         {
-            doAnimationAction(npc, "nod");
-            npe_station_han_solo2_action_sound13(player, npc);
+            doAnimationAction(self, "nod");
+            npe_station_han_solo2_action_sound13(player, self);
             string_id message = new string_id(c_stringFile, "s_224");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2803,30 +2802,30 @@ public class npe_station_han_solo2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_226");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_han_solo2.branchId", 41);
-                npcStartConversation(player, npc, "npe_station_han_solo2", message, responses);
+                npcStartConversation(player, self, "npe_station_han_solo2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition_choseProfessionTrainer(player, npc))
+        if (npe_station_han_solo2_condition_choseProfessionTrainer(player, self))
         {
-            npe_station_han_solo2_action_sound12(player, npc);
+            npe_station_han_solo2_action_sound12(player, self);
             string_id message = new string_id(c_stringFile, "s_225");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+        if (npe_station_han_solo2_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "thumbs_up");
-            npe_station_han_solo2_action_giveFirstReward(player, npc);
+            doAnimationAction(self, "thumbs_up");
+            npe_station_han_solo2_action_giveFirstReward(player, self);
             string_id message = new string_id(c_stringFile, "s_196");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_han_solo2_condition__defaultCondition(player, npc))
+            if (npe_station_han_solo2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2841,15 +2840,15 @@ public class npe_station_han_solo2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_197");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_han_solo2.branchId", 45);
-                npcStartConversation(player, npc, "npe_station_han_solo2", message, responses);
+                npcStartConversation(player, self, "npe_station_han_solo2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2858,177 +2857,176 @@ public class npe_station_han_solo2 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_station_han_solo2.branchId");
-        if (branchId == 1 && npe_station_han_solo2_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && npe_station_han_solo2_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && npe_station_han_solo2_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_station_han_solo2_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && npe_station_han_solo2_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && npe_station_han_solo2_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && npe_station_han_solo2_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && npe_station_han_solo2_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_station_han_solo2_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_station_han_solo2_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && npe_station_han_solo2_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && npe_station_han_solo2_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && npe_station_han_solo2_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && npe_station_han_solo2_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && npe_station_han_solo2_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && npe_station_han_solo2_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && npe_station_han_solo2_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && npe_station_han_solo2_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && npe_station_han_solo2_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && npe_station_han_solo2_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && npe_station_han_solo2_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && npe_station_han_solo2_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && npe_station_han_solo2_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && npe_station_han_solo2_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && npe_station_han_solo2_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && npe_station_han_solo2_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && npe_station_han_solo2_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && npe_station_han_solo2_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && npe_station_han_solo2_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && npe_station_han_solo2_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && npe_station_han_solo2_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && npe_station_han_solo2_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && npe_station_han_solo2_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && npe_station_han_solo2_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && npe_station_han_solo2_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && npe_station_han_solo2_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && npe_station_han_solo2_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && npe_station_han_solo2_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && npe_station_han_solo2_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && npe_station_han_solo2_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && npe_station_han_solo2_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && npe_station_han_solo2_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && npe_station_han_solo2_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && npe_station_han_solo2_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && npe_station_han_solo2_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && npe_station_han_solo2_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && npe_station_han_solo2_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && npe_station_han_solo2_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && npe_station_han_solo2_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && npe_station_han_solo2_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && npe_station_han_solo2_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && npe_station_han_solo2_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && npe_station_han_solo2_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && npe_station_han_solo2_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && npe_station_han_solo2_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && npe_station_han_solo2_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && npe_station_han_solo2_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && npe_station_han_solo2_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && npe_station_han_solo2_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && npe_station_han_solo2_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && npe_station_han_solo2_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && npe_station_han_solo2_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && npe_station_han_solo2_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && npe_station_han_solo2_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && npe_station_han_solo2_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && npe_station_han_solo2_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && npe_station_han_solo2_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && npe_station_han_solo2_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && npe_station_han_solo2_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && npe_station_han_solo2_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && npe_station_han_solo2_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && npe_station_han_solo2_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && npe_station_han_solo2_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && npe_station_han_solo2_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && npe_station_han_solo2_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && npe_station_han_solo2_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && npe_station_han_solo2_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && npe_station_han_solo2_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && npe_station_han_solo2_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && npe_station_han_solo2_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && npe_station_han_solo2_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && npe_station_han_solo2_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && npe_station_han_solo2_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && npe_station_han_solo2_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_station_han_solo2.branchId");
         return SCRIPT_CONTINUE;
     }

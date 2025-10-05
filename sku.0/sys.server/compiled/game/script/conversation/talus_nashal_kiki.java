@@ -434,25 +434,24 @@ public class talus_nashal_kiki extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (talus_nashal_kiki_condition_completeGotoMother(player, npc))
+        if (talus_nashal_kiki_condition_completeGotoMother(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_kiki_condition_completeFindWeakness(player, npc))
+        if (talus_nashal_kiki_condition_completeFindWeakness(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_46");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_kiki_condition__defaultCondition(player, npc))
+            if (talus_nashal_kiki_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -467,22 +466,22 @@ public class talus_nashal_kiki extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_47");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_kiki.branchId", 2);
-                npcStartConversation(player, npc, "talus_nashal_kiki", message, responses);
+                npcStartConversation(player, self, "talus_nashal_kiki", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_kiki_condition_onReturnKiki2(player, npc))
+        if (talus_nashal_kiki_condition_onReturnKiki2(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
+            doAnimationAction(self, "wave_finger_warning");
             string_id message = new string_id(c_stringFile, "s_9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_kiki_condition__defaultCondition(player, npc))
+            if (talus_nashal_kiki_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -497,29 +496,29 @@ public class talus_nashal_kiki extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_kiki.branchId", 4);
-                npcStartConversation(player, npc, "talus_nashal_kiki", message, responses);
+                npcStartConversation(player, self, "talus_nashal_kiki", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_kiki_condition_onFindFlight(player, npc))
+        if (talus_nashal_kiki_condition_onFindFlight(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
+            doAnimationAction(self, "wave_finger_warning");
             string_id message = new string_id(c_stringFile, "s_21");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_kiki_condition_onReturnKiki1(player, npc))
+        if (talus_nashal_kiki_condition_onReturnKiki1(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_kiki_condition__defaultCondition(player, npc))
+            if (talus_nashal_kiki_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -534,31 +533,31 @@ public class talus_nashal_kiki extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_kiki.branchId", 11);
-                npcStartConversation(player, npc, "talus_nashal_kiki", message, responses);
+                npcStartConversation(player, self, "talus_nashal_kiki", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_kiki_condition_onFindRecon(player, npc))
+        if (talus_nashal_kiki_condition_onFindRecon(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_kiki_condition_completeGotoKiki(player, npc))
+        if (talus_nashal_kiki_condition_completeGotoKiki(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             doAnimationAction(player, "listen");
-            talus_nashal_kiki_action_signalTalkKiki(player, npc);
+            talus_nashal_kiki_action_signalTalkKiki(player, self);
             string_id message = new string_id(c_stringFile, "s_50");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_kiki_condition__defaultCondition(player, npc))
+            if (talus_nashal_kiki_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -573,22 +572,22 @@ public class talus_nashal_kiki extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_52");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_kiki.branchId", 16);
-                npcStartConversation(player, npc, "talus_nashal_kiki", message, responses);
+                npcStartConversation(player, self, "talus_nashal_kiki", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_kiki_condition__defaultCondition(player, npc))
+        if (talus_nashal_kiki_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "shake_head_no");
+            doAnimationAction(self, "shake_head_no");
             string_id message = new string_id(c_stringFile, "s_72");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -597,49 +596,48 @@ public class talus_nashal_kiki extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.talus_nashal_kiki.branchId");
-        if (branchId == 2 && talus_nashal_kiki_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && talus_nashal_kiki_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && talus_nashal_kiki_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && talus_nashal_kiki_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && talus_nashal_kiki_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && talus_nashal_kiki_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && talus_nashal_kiki_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && talus_nashal_kiki_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && talus_nashal_kiki_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && talus_nashal_kiki_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && talus_nashal_kiki_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && talus_nashal_kiki_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && talus_nashal_kiki_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && talus_nashal_kiki_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && talus_nashal_kiki_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && talus_nashal_kiki_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && talus_nashal_kiki_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && talus_nashal_kiki_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && talus_nashal_kiki_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && talus_nashal_kiki_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.talus_nashal_kiki.branchId");
         return SCRIPT_CONTINUE;
     }

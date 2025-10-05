@@ -20,8 +20,7 @@ public class c_bounty_hunter_oldksam extends script.base_script
     {
         int questId1 = questGetQuestId("quest/c_bounty_hunter_kill_1");
         int ground = groundquests.getTaskId(questId1, "bounty_hunter_kill_1_e5");
-        boolean onTask = (questIsTaskActive(questId1, ground, player));
-        return onTask;
+        return (questIsTaskActive(questId1, ground, player));
     }
     public boolean c_bounty_hunter_oldksam_condition_hasCompletedQuestBounty1(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -31,15 +30,13 @@ public class c_bounty_hunter_oldksam extends script.base_script
     {
         int questId1 = questGetQuestId("quest/c_bounty_hunter_kill_1");
         int ground = groundquests.getTaskId(questId1, "bounty_hunter_kill_1_e4");
-        boolean onTask = (questIsTaskActive(questId1, ground, player));
-        return onTask;
+        return (questIsTaskActive(questId1, ground, player));
     }
     public boolean c_bounty_hunter_oldksam_condition_completedConversation(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/c_bounty_hunter_kill_1");
         int ground = groundquests.getTaskId(questId1, "bounty_hunter_kill_1_e5");
-        boolean onTask = (questIsTaskComplete(questId1, ground, player));
-        return onTask;
+        return (questIsTaskComplete(questId1, ground, player));
     }
     public void c_bounty_hunter_oldksam_action_giveSignalTalk(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -252,34 +249,33 @@ public class c_bounty_hunter_oldksam extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_bounty_hunter_oldksam_condition_hasCompletedQuestBounty1(player, npc))
+        if (c_bounty_hunter_oldksam_condition_hasCompletedQuestBounty1(player, self))
         {
-            doAnimationAction(npc, "cover_eyes");
-            c_bounty_hunter_oldksam_action_facePlayer(player, npc);
+            doAnimationAction(self, "cover_eyes");
+            c_bounty_hunter_oldksam_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_bounty_hunter_oldksam_condition_completedConversation(player, npc))
+        if (c_bounty_hunter_oldksam_condition_completedConversation(player, self))
         {
-            c_bounty_hunter_oldksam_action_facePlayer(player, npc);
+            c_bounty_hunter_oldksam_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_23");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_bounty_hunter_oldksam_condition_onGiveFlower(player, npc))
+        if (c_bounty_hunter_oldksam_condition_onGiveFlower(player, self))
         {
-            c_bounty_hunter_oldksam_action_facePlayer(player, npc);
+            c_bounty_hunter_oldksam_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_17");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_bounty_hunter_oldksam_condition__defaultCondition(player, npc))
+            if (c_bounty_hunter_oldksam_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -294,21 +290,21 @@ public class c_bounty_hunter_oldksam extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_19");
                 }
                 utils.setScriptVar(player, "conversation.c_bounty_hunter_oldksam.branchId", 3);
-                npcStartConversation(player, npc, "c_bounty_hunter_oldksam", message, responses);
+                npcStartConversation(player, self, "c_bounty_hunter_oldksam", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_bounty_hunter_oldksam_condition_isTaskActiveBounty1(player, npc))
+        if (c_bounty_hunter_oldksam_condition_isTaskActiveBounty1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_bounty_hunter_oldksam_condition__defaultCondition(player, npc))
+            if (c_bounty_hunter_oldksam_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -323,21 +319,21 @@ public class c_bounty_hunter_oldksam extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_14");
                 }
                 utils.setScriptVar(player, "conversation.c_bounty_hunter_oldksam.branchId", 6);
-                npcStartConversation(player, npc, "c_bounty_hunter_oldksam", message, responses);
+                npcStartConversation(player, self, "c_bounty_hunter_oldksam", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_bounty_hunter_oldksam_condition__defaultCondition(player, npc))
+        if (c_bounty_hunter_oldksam_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_46");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -346,29 +342,28 @@ public class c_bounty_hunter_oldksam extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_bounty_hunter_oldksam.branchId");
-        if (branchId == 3 && c_bounty_hunter_oldksam_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && c_bounty_hunter_oldksam_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && c_bounty_hunter_oldksam_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && c_bounty_hunter_oldksam_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && c_bounty_hunter_oldksam_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && c_bounty_hunter_oldksam_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && c_bounty_hunter_oldksam_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && c_bounty_hunter_oldksam_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && c_bounty_hunter_oldksam_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && c_bounty_hunter_oldksam_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_bounty_hunter_oldksam.branchId");
         return SCRIPT_CONTINUE;
     }

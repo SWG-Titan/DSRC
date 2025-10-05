@@ -296,27 +296,26 @@ public class bounty_check_reset extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (bounty_check_reset_condition_bountyHunter(player, npc))
+        if (bounty_check_reset_condition_bountyHunter(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (bounty_check_reset_condition__defaultCondition(player, npc))
+            if (bounty_check_reset_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (bounty_check_reset_condition_completedCollection(player, npc))
+            if (bounty_check_reset_condition_completedCollection(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -338,27 +337,27 @@ public class bounty_check_reset extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "bounty_check_reset", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "bounty_check_reset", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (bounty_check_reset_condition__defaultCondition(player, npc))
+        if (bounty_check_reset_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "threaten");
+            doAnimationAction(self, "threaten");
             string_id message = new string_id(c_stringFile, "s_36");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -367,25 +366,24 @@ public class bounty_check_reset extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.bounty_check_reset.branchId");
-        if (branchId == 1 && bounty_check_reset_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && bounty_check_reset_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && bounty_check_reset_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && bounty_check_reset_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && bounty_check_reset_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && bounty_check_reset_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && bounty_check_reset_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && bounty_check_reset_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.bounty_check_reset.branchId");
         return SCRIPT_CONTINUE;
     }

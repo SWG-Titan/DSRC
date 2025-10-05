@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class borvo_acklay_guard extends script.base_script
+public class borvo_acklay_guard extends base_script
 {
     public borvo_acklay_guard()
     {

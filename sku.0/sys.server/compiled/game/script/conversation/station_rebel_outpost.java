@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class station_rebel_outpost extends script.base_script
+public class station_rebel_outpost extends base_script
 {
     public station_rebel_outpost()
     {
@@ -1535,37 +1535,36 @@ public class station_rebel_outpost extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (station_rebel_outpost_condition_isInYacht(player, npc))
+        if (station_rebel_outpost_condition_isInYacht(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_713");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition_isPlayerImperial(player, npc))
+        if (station_rebel_outpost_condition_isPlayerImperial(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_715");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition_isRebelFactionWithMission(player, npc))
+        if (station_rebel_outpost_condition_isRebelFactionWithMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_717");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1587,38 +1586,38 @@ public class station_rebel_outpost extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "station_rebel_outpost", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "station_rebel_outpost", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition_isPlayerNeutral(player, npc))
+        if (station_rebel_outpost_condition_isPlayerNeutral(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_725");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition_isTooFar(player, npc))
+        if (station_rebel_outpost_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_727");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition_hasWon_heavy_xwing_recovery(player, npc))
+        if (station_rebel_outpost_condition_hasWon_heavy_xwing_recovery(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_850");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1633,21 +1632,21 @@ public class station_rebel_outpost extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1110");
                 }
                 utils.setScriptVar(player, "conversation.station_rebel_outpost.branchId", 8);
-                npcStartConversation(player, npc, "station_rebel_outpost", message, responses);
+                npcStartConversation(player, self, "station_rebel_outpost", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition_hasFailed_rebel_escort_alpha(player, npc))
+        if (station_rebel_outpost_condition_hasFailed_rebel_escort_alpha(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_729");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1662,21 +1661,21 @@ public class station_rebel_outpost extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_731");
                 }
                 utils.setScriptVar(player, "conversation.station_rebel_outpost.branchId", 10);
-                npcStartConversation(player, npc, "station_rebel_outpost", message, responses);
+                npcStartConversation(player, self, "station_rebel_outpost", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition_isReady_for_escort_alpha(player, npc))
+        if (station_rebel_outpost_condition_isReady_for_escort_alpha(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_735");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1694,47 +1693,47 @@ public class station_rebel_outpost extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "station_rebel_outpost", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "station_rebel_outpost", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition_hasBeenRewarded_rebel_escort_alpha(player, npc))
+        if (station_rebel_outpost_condition_hasBeenRewarded_rebel_escort_alpha(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_761");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!station_rebel_outpost_condition_hasBeenRewarded_heavy_xwing(player, npc))
+            if (!station_rebel_outpost_condition_hasBeenRewarded_heavy_xwing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1764,26 +1763,26 @@ public class station_rebel_outpost extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "station_rebel_outpost", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "station_rebel_outpost", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition_hasWon_rebel_escort_alpha(player, npc))
+        if (station_rebel_outpost_condition_hasWon_rebel_escort_alpha(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_821");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1798,35 +1797,35 @@ public class station_rebel_outpost extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_823");
                 }
                 utils.setScriptVar(player, "conversation.station_rebel_outpost.branchId", 33);
-                npcStartConversation(player, npc, "station_rebel_outpost", message, responses);
+                npcStartConversation(player, self, "station_rebel_outpost", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_rebel_outpost_condition__defaultCondition(player, npc))
+        if (station_rebel_outpost_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_827");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_rebel_outpost_condition__defaultCondition(player, npc))
+            if (station_rebel_outpost_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1852,20 +1851,20 @@ public class station_rebel_outpost extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "station_rebel_outpost", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "station_rebel_outpost", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1874,97 +1873,96 @@ public class station_rebel_outpost extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.station_rebel_outpost.branchId");
-        if (branchId == 3 && station_rebel_outpost_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && station_rebel_outpost_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && station_rebel_outpost_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && station_rebel_outpost_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && station_rebel_outpost_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && station_rebel_outpost_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && station_rebel_outpost_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && station_rebel_outpost_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && station_rebel_outpost_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && station_rebel_outpost_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && station_rebel_outpost_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && station_rebel_outpost_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && station_rebel_outpost_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && station_rebel_outpost_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && station_rebel_outpost_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && station_rebel_outpost_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && station_rebel_outpost_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && station_rebel_outpost_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && station_rebel_outpost_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && station_rebel_outpost_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && station_rebel_outpost_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && station_rebel_outpost_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && station_rebel_outpost_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && station_rebel_outpost_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && station_rebel_outpost_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && station_rebel_outpost_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && station_rebel_outpost_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && station_rebel_outpost_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && station_rebel_outpost_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && station_rebel_outpost_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && station_rebel_outpost_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && station_rebel_outpost_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && station_rebel_outpost_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && station_rebel_outpost_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && station_rebel_outpost_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && station_rebel_outpost_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && station_rebel_outpost_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && station_rebel_outpost_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && station_rebel_outpost_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && station_rebel_outpost_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && station_rebel_outpost_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && station_rebel_outpost_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && station_rebel_outpost_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && station_rebel_outpost_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.station_rebel_outpost.branchId");
         return SCRIPT_CONTINUE;
     }

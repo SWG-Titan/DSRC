@@ -131,7 +131,7 @@ public class novicecollector extends script.base_script
     public boolean novicecollector_condition_collectorHintEndor(obj_id player, obj_id npc) throws InterruptedException
     {
         String planetName = getCurrentSceneName();
-        sendSystemMessageTestingOnly(player, planetName);
+        broadcast(player, planetName);
         if (planetName.equals("endor"))
         {
             return false;
@@ -182,7 +182,7 @@ public class novicecollector extends script.base_script
     public boolean novicecollector_condition_collectorHintTatooine(obj_id player, obj_id npc) throws InterruptedException
     {
         String planetName = getCurrentSceneName();
-        sendSystemMessageTestingOnly(player, planetName);
+        broadcast(player, planetName);
         if (planetName.equals("tatooine"))
         {
             return false;
@@ -192,7 +192,7 @@ public class novicecollector extends script.base_script
     public boolean novicecollector_condition_collectorHintYavin4(obj_id player, obj_id npc) throws InterruptedException
     {
         String planetName = getCurrentSceneName();
-        sendSystemMessageTestingOnly(player, planetName);
+        broadcast(player, planetName);
         if (planetName.equals("yavin4"))
         {
             return false;
@@ -203,7 +203,7 @@ public class novicecollector extends script.base_script
     {
         String planetName = getCurrentSceneName();
         int playerLevel = getLevel(player);
-        sendSystemMessageTestingOnly(player, planetName);
+        broadcast(player, planetName);
         if (planetName.equals("dathomir") || playerLevel < 70)
         {
             return false;
@@ -957,48 +957,47 @@ public class novicecollector extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (novicecollector_condition_isSomehowBroken(player, npc))
+        if (novicecollector_condition_isSomehowBroken(player, self))
         {
-            novicecollector_action_fixPlayer(player, npc);
+            novicecollector_action_fixPlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_77");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_allCollectionsComplete(player, npc))
+        if (novicecollector_condition_allCollectionsComplete(player, self))
         {
-            doAnimationAction(npc, "goodbye");
-            novicecollector_action_collectionQuestSignal(player, npc);
+            doAnimationAction(self, "goodbye");
+            novicecollector_action_collectionQuestSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_37");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1025,24 +1024,24 @@ public class novicecollector extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_65");
                 }
                 utils.setScriptVar(player, "conversation.novicecollector.branchId", 2);
-                npcStartConversation(player, npc, "novicecollector", message, responses);
+                npcStartConversation(player, self, "novicecollector", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_hasFulfilledCounterQuota(player, npc))
+        if (novicecollector_condition_hasFulfilledCounterQuota(player, self))
         {
-            doAnimationAction(npc, "applause_polite");
+            doAnimationAction(self, "applause_polite");
             doAnimationAction(player, "bow");
-            novicecollector_action_completeCounterCollection(player, npc);
+            novicecollector_action_completeCounterCollection(player, self);
             string_id message = new string_id(c_stringFile, "s_36");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1057,34 +1056,34 @@ public class novicecollector extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_53");
                 }
                 utils.setScriptVar(player, "conversation.novicecollector.branchId", 19);
-                npcStartConversation(player, npc, "novicecollector", message, responses);
+                npcStartConversation(player, self, "novicecollector", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_counterCollectionActive(player, npc))
+        if (novicecollector_condition_counterCollectionActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_51");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_hasCompletedClickInventoryCollection(player, npc))
+        if (novicecollector_condition_hasCompletedClickInventoryCollection(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_41");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1103,49 +1102,49 @@ public class novicecollector extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_47");
                 }
                 utils.setScriptVar(player, "conversation.novicecollector.branchId", 22);
-                npcStartConversation(player, npc, "novicecollector", message, responses);
+                npcStartConversation(player, self, "novicecollector", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_hasFoundInventoryCollection(player, npc))
+        if (novicecollector_condition_hasFoundInventoryCollection(player, self))
         {
-            doAnimationAction(npc, "thumbs_up");
-            novicecollector_action_completeInventoryCollection(player, npc);
+            doAnimationAction(self, "thumbs_up");
+            novicecollector_action_completeInventoryCollection(player, self);
             string_id message = new string_id(c_stringFile, "s_52");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_hasFinishedInventoryOutOfOrder(player, npc))
+        if (novicecollector_condition_hasFinishedInventoryOutOfOrder(player, self))
         {
-            novicecollector_action_grantInventoryQuest(player, npc);
+            novicecollector_action_grantInventoryQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_110");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_inventoryCollectionActive(player, npc))
+        if (novicecollector_condition_inventoryCollectionActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_67");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_hasCompletedClickCollection(player, npc))
+        if (novicecollector_condition_hasCompletedClickCollection(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_69");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1164,36 +1163,36 @@ public class novicecollector extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_75");
                 }
                 utils.setScriptVar(player, "conversation.novicecollector.branchId", 28);
-                npcStartConversation(player, npc, "novicecollector", message, responses);
+                npcStartConversation(player, self, "novicecollector", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_hasFoundClickCollection(player, npc))
+        if (novicecollector_condition_hasFoundClickCollection(player, self))
         {
-            doAnimationAction(npc, "thumb_up");
-            novicecollector_action_completeClickCollection(player, npc);
+            doAnimationAction(self, "thumb_up");
+            novicecollector_action_completeClickCollection(player, self);
             string_id message = new string_id(c_stringFile, "s_80");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_clickCollectionActive(player, npc))
+        if (novicecollector_condition_clickCollectionActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_82");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_hasPublishGiftToken(player, npc))
+        if (novicecollector_condition_hasPublishGiftToken(player, self))
         {
-            doAnimationAction(npc, "curtsey");
+            doAnimationAction(self, "curtsey");
             string_id message = new string_id(c_stringFile, "s_84");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1208,33 +1207,33 @@ public class novicecollector extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_86");
                 }
                 utils.setScriptVar(player, "conversation.novicecollector.branchId", 33);
-                npcStartConversation(player, npc, "novicecollector", message, responses);
+                npcStartConversation(player, self, "novicecollector", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_hasActivatedOne(player, npc))
+        if (novicecollector_condition_hasActivatedOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_105");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition_foundUnusedComlink(player, npc))
+        if (novicecollector_condition_foundUnusedComlink(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_107");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (novicecollector_condition__defaultCondition(player, npc))
+        if (novicecollector_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_109");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (novicecollector_condition__defaultCondition(player, npc))
+            if (novicecollector_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1249,15 +1248,15 @@ public class novicecollector extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_124");
                 }
                 utils.setScriptVar(player, "conversation.novicecollector.branchId", 39);
-                npcStartConversation(player, npc, "novicecollector", message, responses);
+                npcStartConversation(player, self, "novicecollector", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1266,57 +1265,56 @@ public class novicecollector extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.novicecollector.branchId");
-        if (branchId == 2 && novicecollector_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && novicecollector_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && novicecollector_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && novicecollector_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && novicecollector_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && novicecollector_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && novicecollector_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && novicecollector_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && novicecollector_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && novicecollector_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && novicecollector_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && novicecollector_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && novicecollector_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && novicecollector_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && novicecollector_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && novicecollector_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && novicecollector_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && novicecollector_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && novicecollector_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && novicecollector_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && novicecollector_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && novicecollector_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && novicecollector_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && novicecollector_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.novicecollector.branchId");
         return SCRIPT_CONTINUE;
     }

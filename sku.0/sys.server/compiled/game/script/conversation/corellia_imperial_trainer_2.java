@@ -4771,40 +4771,39 @@ public class corellia_imperial_trainer_2 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_imperial_trainer_2_condition_isPrivateer(player, npc))
+        if (corellia_imperial_trainer_2_condition_isPrivateer(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
+            doAnimationAction(self, "wave_finger_warning");
             string_id message = new string_id(c_stringFile, "s_fc007f1");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_isRebel(player, npc))
+        if (corellia_imperial_trainer_2_condition_isRebel(player, self))
         {
-            doAnimationAction(npc, "slow_down");
+            doAnimationAction(self, "slow_down");
             string_id message = new string_id(c_stringFile, "s_dbf39d2a");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_imperial_trainer_2_condition_isPilot(player, npc))
+        if (!corellia_imperial_trainer_2_condition_isPilot(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_4391b2de");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasNegativeFactionMale(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasNegativeFactionMale(player, self))
         {
-            doAnimationAction(npc, "sigh_deeply");
+            doAnimationAction(self, "sigh_deeply");
             string_id message = new string_id(c_stringFile, "s_f7df921b");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4822,27 +4821,27 @@ public class corellia_imperial_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasNegativeFaction(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasNegativeFaction(player, self))
         {
-            doAnimationAction(npc, "sigh_deeply");
+            doAnimationAction(self, "sigh_deeply");
             string_id message = new string_id(c_stringFile, "s_9d62faa2");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4860,27 +4859,27 @@ public class corellia_imperial_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_imperial_trainer_2_condition_onMyTrack(player, npc))
+        if (!corellia_imperial_trainer_2_condition_onMyTrack(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
+            doAnimationAction(self, "shake_head_disgust");
             string_id message = new string_id(c_stringFile, "s_74f9775d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4895,22 +4894,22 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4854758d");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 14);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_isReadyForMission(player, npc))
+        if (corellia_imperial_trainer_2_condition_isReadyForMission(player, self))
         {
-            doAnimationAction(npc, "nod");
+            doAnimationAction(self, "nod");
             string_id message = new string_id(c_stringFile, "s_9a117462");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4925,29 +4924,29 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6d3be6aa");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 17);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasCompletedFinal(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasCompletedFinal(player, self))
         {
-            doAnimationAction(npc, "thumb_up");
+            doAnimationAction(self, "thumb_up");
             string_id message = new string_id(c_stringFile, "s_be3a7e31");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4966,30 +4965,30 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_d335136f");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 22);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasFailedMissionFinal(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasFailedMissionFinal(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
-            corellia_imperial_trainer_2_action_grantMissionFinal(player, npc);
+            doAnimationAction(self, "pound_fist_palm");
+            corellia_imperial_trainer_2_action_grantMissionFinal(player, self);
             string_id message = new string_id(c_stringFile, "s_4cc1cf3b");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasAllTier2Skills(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasAllTier2Skills(player, self))
         {
-            doAnimationAction(npc, "nod");
+            doAnimationAction(self, "nod");
             string_id message = new string_id(c_stringFile, "s_d9391d4a");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5004,22 +5003,22 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9d2c9b0a");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 25);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_isOnQuest(player, npc))
+        if (corellia_imperial_trainer_2_condition_isOnQuest(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_ae8492d2");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5034,22 +5033,22 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5ffdd434");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 33);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasFailedOpening(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasFailedOpening(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             string_id message = new string_id(c_stringFile, "s_e2d5b9eb");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5064,53 +5063,53 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37680b25");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 35);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasFailedMission12(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasFailedMission12(player, self))
         {
-            doAnimationAction(npc, "point_up");
-            corellia_imperial_trainer_2_action_grantMission12(player, npc);
+            doAnimationAction(self, "point_up");
+            corellia_imperial_trainer_2_action_grantMission12(player, self);
             string_id message = new string_id(c_stringFile, "s_bae9fe80");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasFailedMission13(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasFailedMission13(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
-            corellia_imperial_trainer_2_action_grantMission13(player, npc);
+            doAnimationAction(self, "shake_head_disgust");
+            corellia_imperial_trainer_2_action_grantMission13(player, self);
             string_id message = new string_id(c_stringFile, "s_63e01bb7");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasFailedMission14(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasFailedMission14(player, self))
         {
-            corellia_imperial_trainer_2_action_grantMission14(player, npc);
+            corellia_imperial_trainer_2_action_grantMission14(player, self);
             string_id message = new string_id(c_stringFile, "s_b5a3714a");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasFailedMission15(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasFailedMission15(player, self))
         {
-            doAnimationAction(npc, "point_up");
-            corellia_imperial_trainer_2_action_grantMission15(player, npc);
+            doAnimationAction(self, "point_up");
+            corellia_imperial_trainer_2_action_grantMission15(player, self);
             string_id message = new string_id(c_stringFile, "s_fe284208");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasWonMission12(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasWonMission12(player, self))
         {
-            doAnimationAction(npc, "thumb_up");
+            doAnimationAction(self, "thumb_up");
             string_id message = new string_id(c_stringFile, "s_e67a0734");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5125,22 +5124,22 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_59894e66");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 41);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasWonMission13(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasWonMission13(player, self))
         {
-            doAnimationAction(npc, "point_to_self");
+            doAnimationAction(self, "point_to_self");
             string_id message = new string_id(c_stringFile, "s_cfb9fb6e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5155,22 +5154,22 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_d4374209");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 43);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasWonMission14(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasWonMission14(player, self))
         {
-            doAnimationAction(npc, "applause_polite");
+            doAnimationAction(self, "applause_polite");
             string_id message = new string_id(c_stringFile, "s_b69b5bf4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5185,22 +5184,22 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_16439d46");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 45);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasWonMission15(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasWonMission15(player, self))
         {
-            doAnimationAction(npc, "thumb_up");
+            doAnimationAction(self, "thumb_up");
             string_id message = new string_id(c_stringFile, "s_9d96ae32");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5215,22 +5214,22 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_8e613fca");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 47);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_isReadyForTraining(player, npc))
+        if (corellia_imperial_trainer_2_condition_isReadyForTraining(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             string_id message = new string_id(c_stringFile, "s_584a90f8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5248,34 +5247,34 @@ public class corellia_imperial_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_hasCompletedOpening(player, npc))
+        if (corellia_imperial_trainer_2_condition_hasCompletedOpening(player, self))
         {
-            doAnimationAction(npc, "thumbs_up");
+            doAnimationAction(self, "thumbs_up");
             string_id message = new string_id(c_stringFile, "s_392fc531");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5297,26 +5296,26 @@ public class corellia_imperial_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition_isReadyForPhase2Other(player, npc))
+        if (corellia_imperial_trainer_2_condition_isReadyForPhase2Other(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6a1562ad");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+            if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5331,22 +5330,22 @@ public class corellia_imperial_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9edd30bf");
                 }
                 utils.setScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId", 81);
-                npcStartConversation(player, npc, "corellia_imperial_trainer_2", message, responses);
+                npcStartConversation(player, self, "corellia_imperial_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_imperial_trainer_2_condition__defaultCondition(player, npc))
+        if (corellia_imperial_trainer_2_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
+            doAnimationAction(self, "wave_finger_warning");
             string_id message = new string_id(c_stringFile, "s_e71f0d40");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -5355,261 +5354,260 @@ public class corellia_imperial_trainer_2 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId");
-        if (branchId == 4 && corellia_imperial_trainer_2_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && corellia_imperial_trainer_2_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && corellia_imperial_trainer_2_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && corellia_imperial_trainer_2_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_imperial_trainer_2_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_imperial_trainer_2_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && corellia_imperial_trainer_2_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && corellia_imperial_trainer_2_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && corellia_imperial_trainer_2_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && corellia_imperial_trainer_2_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_imperial_trainer_2_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_imperial_trainer_2_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && corellia_imperial_trainer_2_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && corellia_imperial_trainer_2_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && corellia_imperial_trainer_2_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && corellia_imperial_trainer_2_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && corellia_imperial_trainer_2_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && corellia_imperial_trainer_2_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && corellia_imperial_trainer_2_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && corellia_imperial_trainer_2_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && corellia_imperial_trainer_2_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && corellia_imperial_trainer_2_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && corellia_imperial_trainer_2_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && corellia_imperial_trainer_2_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && corellia_imperial_trainer_2_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && corellia_imperial_trainer_2_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && corellia_imperial_trainer_2_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && corellia_imperial_trainer_2_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && corellia_imperial_trainer_2_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && corellia_imperial_trainer_2_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && corellia_imperial_trainer_2_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && corellia_imperial_trainer_2_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && corellia_imperial_trainer_2_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && corellia_imperial_trainer_2_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && corellia_imperial_trainer_2_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && corellia_imperial_trainer_2_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && corellia_imperial_trainer_2_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && corellia_imperial_trainer_2_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && corellia_imperial_trainer_2_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && corellia_imperial_trainer_2_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && corellia_imperial_trainer_2_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && corellia_imperial_trainer_2_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && corellia_imperial_trainer_2_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && corellia_imperial_trainer_2_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && corellia_imperial_trainer_2_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && corellia_imperial_trainer_2_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && corellia_imperial_trainer_2_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && corellia_imperial_trainer_2_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && corellia_imperial_trainer_2_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && corellia_imperial_trainer_2_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && corellia_imperial_trainer_2_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && corellia_imperial_trainer_2_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && corellia_imperial_trainer_2_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && corellia_imperial_trainer_2_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && corellia_imperial_trainer_2_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && corellia_imperial_trainer_2_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && corellia_imperial_trainer_2_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && corellia_imperial_trainer_2_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && corellia_imperial_trainer_2_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && corellia_imperial_trainer_2_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && corellia_imperial_trainer_2_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && corellia_imperial_trainer_2_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && corellia_imperial_trainer_2_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && corellia_imperial_trainer_2_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && corellia_imperial_trainer_2_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && corellia_imperial_trainer_2_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && corellia_imperial_trainer_2_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && corellia_imperial_trainer_2_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && corellia_imperial_trainer_2_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && corellia_imperial_trainer_2_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && corellia_imperial_trainer_2_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && corellia_imperial_trainer_2_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && corellia_imperial_trainer_2_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && corellia_imperial_trainer_2_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && corellia_imperial_trainer_2_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && corellia_imperial_trainer_2_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && corellia_imperial_trainer_2_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && corellia_imperial_trainer_2_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && corellia_imperial_trainer_2_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && corellia_imperial_trainer_2_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && corellia_imperial_trainer_2_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && corellia_imperial_trainer_2_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && corellia_imperial_trainer_2_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && corellia_imperial_trainer_2_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && corellia_imperial_trainer_2_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && corellia_imperial_trainer_2_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && corellia_imperial_trainer_2_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && corellia_imperial_trainer_2_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && corellia_imperial_trainer_2_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && corellia_imperial_trainer_2_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && corellia_imperial_trainer_2_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && corellia_imperial_trainer_2_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && corellia_imperial_trainer_2_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && corellia_imperial_trainer_2_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && corellia_imperial_trainer_2_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && corellia_imperial_trainer_2_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && corellia_imperial_trainer_2_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && corellia_imperial_trainer_2_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && corellia_imperial_trainer_2_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && corellia_imperial_trainer_2_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && corellia_imperial_trainer_2_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && corellia_imperial_trainer_2_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && corellia_imperial_trainer_2_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && corellia_imperial_trainer_2_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && corellia_imperial_trainer_2_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && corellia_imperial_trainer_2_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && corellia_imperial_trainer_2_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && corellia_imperial_trainer_2_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && corellia_imperial_trainer_2_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && corellia_imperial_trainer_2_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && corellia_imperial_trainer_2_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && corellia_imperial_trainer_2_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && corellia_imperial_trainer_2_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && corellia_imperial_trainer_2_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && corellia_imperial_trainer_2_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && corellia_imperial_trainer_2_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && corellia_imperial_trainer_2_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && corellia_imperial_trainer_2_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && corellia_imperial_trainer_2_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && corellia_imperial_trainer_2_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && corellia_imperial_trainer_2_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && corellia_imperial_trainer_2_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && corellia_imperial_trainer_2_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && corellia_imperial_trainer_2_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && corellia_imperial_trainer_2_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && corellia_imperial_trainer_2_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_imperial_trainer_2.branchId");
         return SCRIPT_CONTINUE;
     }

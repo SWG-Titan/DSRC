@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class ep3_etyyy_chrilooc extends script.base_script
+public class ep3_etyyy_chrilooc extends base_script
 {
     public ep3_etyyy_chrilooc()
     {
@@ -585,37 +585,36 @@ public class ep3_etyyy_chrilooc extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_etyyy_chrilooc_condition_cannotSpeakWookiee(player, npc))
+        if (ep3_etyyy_chrilooc_condition_cannotSpeakWookiee(player, self))
         {
-            ep3_etyyy_chrilooc_action_thinkWookieeConfusion(player, npc);
+            ep3_etyyy_chrilooc_action_thinkWookieeConfusion(player, self);
             string_id message = new string_id(c_stringFile, "s_364");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_chrilooc_condition_foundBrodyJohnson(player, npc))
+        if (ep3_etyyy_chrilooc_condition_foundBrodyJohnson(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_366");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_chrilooc_condition_hasCompletedSmithQuest(player, npc))
+        if (ep3_etyyy_chrilooc_condition_hasCompletedSmithQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_368");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_chrilooc_condition_hasCompletedKerssocQuest(player, npc))
+        if (ep3_etyyy_chrilooc_condition_hasCompletedKerssocQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_370");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -630,21 +629,21 @@ public class ep3_etyyy_chrilooc extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_372");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_chrilooc.branchId", 4);
-                npcStartConversation(player, npc, "ep3_etyyy_chrilooc", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_chrilooc", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_chrilooc_condition_isSpeakingWithKerssoc(player, npc))
+        if (ep3_etyyy_chrilooc_condition_isSpeakingWithKerssoc(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_384");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -659,35 +658,35 @@ public class ep3_etyyy_chrilooc extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_386");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_chrilooc.branchId", 8);
-                npcStartConversation(player, npc, "ep3_etyyy_chrilooc", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_chrilooc", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_chrilooc_condition_hasCompletedMedicalQuest(player, npc))
+        if (ep3_etyyy_chrilooc_condition_hasCompletedMedicalQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_390");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!ep3_etyyy_chrilooc_condition_hasEtyyyAccess(player, npc))
+            if (!ep3_etyyy_chrilooc_condition_hasEtyyyAccess(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_chrilooc_condition_hasEtyyyAccess(player, npc))
+            if (ep3_etyyy_chrilooc_condition_hasEtyyyAccess(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -710,28 +709,28 @@ public class ep3_etyyy_chrilooc extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_410");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_chrilooc.branchId", 10);
-                npcStartConversation(player, npc, "ep3_etyyy_chrilooc", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_chrilooc", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_chrilooc_condition_failedGettingMedSupplies(player, npc))
+        if (ep3_etyyy_chrilooc_condition_failedGettingMedSupplies(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_414");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -750,21 +749,21 @@ public class ep3_etyyy_chrilooc extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_422");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_chrilooc.branchId", 17);
-                npcStartConversation(player, npc, "ep3_etyyy_chrilooc", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_chrilooc", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_chrilooc_condition_isGettingMedicalSupplies(player, npc))
+        if (ep3_etyyy_chrilooc_condition_isGettingMedicalSupplies(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_426");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -779,29 +778,29 @@ public class ep3_etyyy_chrilooc extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_428");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_chrilooc.branchId", 21);
-                npcStartConversation(player, npc, "ep3_etyyy_chrilooc", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_chrilooc", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_chrilooc_condition_fromWrelaac(player, npc))
+        if (ep3_etyyy_chrilooc_condition_fromWrelaac(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_432");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_chrilooc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -820,21 +819,21 @@ public class ep3_etyyy_chrilooc extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_456");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_chrilooc.branchId", 23);
-                npcStartConversation(player, npc, "ep3_etyyy_chrilooc", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_chrilooc", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_chrilooc_condition__defaultCondition(player, npc))
+        if (ep3_etyyy_chrilooc_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_460");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -843,53 +842,52 @@ public class ep3_etyyy_chrilooc extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_etyyy_chrilooc.branchId");
-        if (branchId == 4 && ep3_etyyy_chrilooc_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_etyyy_chrilooc_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ep3_etyyy_chrilooc_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_etyyy_chrilooc_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_etyyy_chrilooc_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_etyyy_chrilooc_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_etyyy_chrilooc_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_etyyy_chrilooc_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_etyyy_chrilooc_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_etyyy_chrilooc_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_etyyy_chrilooc_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_etyyy_chrilooc_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_etyyy_chrilooc_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_etyyy_chrilooc_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_etyyy_chrilooc_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_etyyy_chrilooc_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_etyyy_chrilooc_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_etyyy_chrilooc_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && ep3_etyyy_chrilooc_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && ep3_etyyy_chrilooc_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && ep3_etyyy_chrilooc_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && ep3_etyyy_chrilooc_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_etyyy_chrilooc.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -359,25 +359,24 @@ public class death_watch_insane_miner extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (death_watch_insane_miner_condition_startMission(player, npc))
+        if (death_watch_insane_miner_condition_startMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_21632dd");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (death_watch_insane_miner_condition__defaultCondition(player, npc))
+            if (death_watch_insane_miner_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (death_watch_insane_miner_condition__defaultCondition(player, npc))
+            if (death_watch_insane_miner_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -396,35 +395,35 @@ public class death_watch_insane_miner extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7c3e9069");
                 }
                 utils.setScriptVar(player, "conversation.death_watch_insane_miner.branchId", 1);
-                npcStartConversation(player, npc, "death_watch_insane_miner", message, responses);
+                npcStartConversation(player, self, "death_watch_insane_miner", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (death_watch_insane_miner_condition_alreadyAccepted(player, npc))
+        if (death_watch_insane_miner_condition_alreadyAccepted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ce67a12e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (death_watch_insane_miner_condition_noMedicine(player, npc))
+            if (death_watch_insane_miner_condition_noMedicine(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (death_watch_insane_miner_condition_checkMedicine(player, npc))
+            if (death_watch_insane_miner_condition_checkMedicine(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (death_watch_insane_miner_condition__defaultCondition(player, npc))
+            if (death_watch_insane_miner_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -447,21 +446,21 @@ public class death_watch_insane_miner extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_23");
                 }
                 utils.setScriptVar(player, "conversation.death_watch_insane_miner.branchId", 8);
-                npcStartConversation(player, npc, "death_watch_insane_miner", message, responses);
+                npcStartConversation(player, self, "death_watch_insane_miner", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (death_watch_insane_miner_condition_noQuest(player, npc))
+        if (death_watch_insane_miner_condition_noQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_c2b7bf76");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -470,25 +469,24 @@ public class death_watch_insane_miner extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.death_watch_insane_miner.branchId");
-        if (branchId == 1 && death_watch_insane_miner_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && death_watch_insane_miner_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && death_watch_insane_miner_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && death_watch_insane_miner_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && death_watch_insane_miner_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && death_watch_insane_miner_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && death_watch_insane_miner_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && death_watch_insane_miner_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.death_watch_insane_miner.branchId");
         return SCRIPT_CONTINUE;
     }

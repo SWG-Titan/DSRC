@@ -3,7 +3,7 @@ package script.conversation;
 import script.*;
 import script.library.*;
 
-public class ep3_clone_relics_clone_trooper_palpatine extends script.base_script
+public class ep3_clone_relics_clone_trooper_palpatine extends base_script
 {
     public ep3_clone_relics_clone_trooper_palpatine()
     {

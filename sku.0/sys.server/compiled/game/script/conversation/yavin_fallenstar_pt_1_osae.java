@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class yavin_fallenstar_pt_1_osae extends script.base_script
+public class yavin_fallenstar_pt_1_osae extends base_script
 {
     public yavin_fallenstar_pt_1_osae()
     {
@@ -17,45 +17,39 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
     {
         int questId1 = questGetQuestId("quest/yavin_fallenStar_pt1");
         int questId2 = questGetQuestId("quest/yavin_fallenStar_pt2");
-        boolean OnTask = (questIsQuestActive(questId1, player)) || (questIsQuestComplete(questId1, player)) || (questIsQuestActive(questId2, player)) || (questIsQuestComplete(questId2, player));
-        return OnTask;
+        return (questIsQuestActive(questId1, player)) || (questIsQuestComplete(questId1, player)) || (questIsQuestActive(questId2, player)) || (questIsQuestComplete(questId2, player));
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_questComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt1");
         int questId2 = questGetQuestId("quest/yavin_fallenstar_pt2");
         int questId3 = questGetQuestId("quest/yavin_fallenstar_pt3");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (questIsQuestComplete(questId2, player)) && (questIsQuestComplete(questId3, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (questIsQuestComplete(questId2, player)) && (questIsQuestComplete(questId3, player));
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_MeganWarned(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt1");
         int yavin_fallenstar_e7_getreward = groundquests.getTaskId(questId1, "yavin_fallenstar_e7_getreward");
-        boolean OnTask = questIsTaskActive(questId1, yavin_fallenstar_e7_getreward, player);
-        return OnTask;
+        return questIsTaskActive(questId1, yavin_fallenstar_e7_getreward, player);
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_questNotDone(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt1");
         int yavin_fallenstar_e3_warn_megan = groundquests.getTaskId(questId1, "yavin_fallenstar_e3_warn_megan");
         int yavin_fallenstar_e4_fight_yak = groundquests.getTaskId(questId1, "yavin_fallenstar_e4_fight_yak");
-        boolean OnTask = questIsTaskActive(questId1, yavin_fallenstar_e3_warn_megan, player) || questIsTaskActive(questId1, yavin_fallenstar_e4_fight_yak, player);
-        return OnTask;
+        return questIsTaskActive(questId1, yavin_fallenstar_e3_warn_megan, player) || questIsTaskActive(questId1, yavin_fallenstar_e4_fight_yak, player);
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_Pt1_questComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt1");
-        boolean OnTask = questIsQuestComplete(questId1, player);
-        return OnTask;
+        return questIsQuestComplete(questId1, player);
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_questNotDone_pt_2_Wuioe(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt2");
         int yavin_fallenstar_e11_kill_robbers = groundquests.getTaskId(questId1, "yavin_fallenstar_e11_kill_robbers");
         int yavin_fallenstar_e12_kill_smugglers = groundquests.getTaskId(questId1, "yavin_fallenstar_e12_kill_smugglers");
-        boolean OnTask = questIsTaskActive(questId1, yavin_fallenstar_e11_kill_robbers, player) || questIsTaskActive(questId1, yavin_fallenstar_e12_kill_smugglers, player);
-        return OnTask;
+        return questIsTaskActive(questId1, yavin_fallenstar_e11_kill_robbers, player) || questIsTaskActive(questId1, yavin_fallenstar_e12_kill_smugglers, player);
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_spaceCompleted(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -69,30 +63,26 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt3");
         int yavin_fallenstar_e14_interception = groundquests.getTaskId(questId1, "yavin_fallenstar_e14_interception");
-        boolean OnTask = questIsTaskActive(questId1, yavin_fallenstar_e14_interception, player) && !(space_quest.hasWonQuest(player, "recovery", "yavin_fallenstar_pt_2_recovery"));
-        return OnTask;
+        return questIsTaskActive(questId1, yavin_fallenstar_e14_interception, player) && !(space_quest.hasWonQuest(player, "recovery", "yavin_fallenstar_pt_2_recovery"));
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_opcaCompleted(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt2");
         int yavin_fallenstar_e14_return_osae = groundquests.getTaskId(questId1, "yavin_fallenstar_e14_return_osae");
-        boolean OnTask = questIsTaskActive(questId1, yavin_fallenstar_e14_return_osae, player);
-        return OnTask;
+        return questIsTaskActive(questId1, yavin_fallenstar_e14_return_osae, player);
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_HasJTL(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt1");
         int questId2 = questGetQuestId("quest/yavin_fallenstar_pt2");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (questIsQuestComplete(questId2, player)) && (features.isSpaceEdition(player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (questIsQuestComplete(questId2, player)) && (features.isSpaceEdition(player));
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_onQuest(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/yavin_meganjobs_lostworker");
         int questId2 = questGetQuestId("quest/yavin_meganjobs_hyperdrive");
         int questId3 = questGetQuestId("quest/yavin_meganjobs_killrival");
-        boolean OnTask = (questIsQuestActive(questId1, player)) || (questIsQuestActive(questId2, player)) || (questIsQuestActive(questId3, player));
-        return OnTask;
+        return (questIsQuestActive(questId1, player)) || (questIsQuestActive(questId2, player)) || (questIsQuestActive(questId3, player));
     }
     public boolean yavin_fallenstar_pt_1_osae_condition_spaceFailed(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -1113,41 +1103,40 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_questComplete(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_questComplete(player, self))
         {
-            yavin_fallenstar_pt_1_osae_action_facePlayer(player, npc);
+            yavin_fallenstar_pt_1_osae_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_101");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_spaceCompleted(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_spaceCompleted(player, self))
         {
-            doAnimationAction(npc, "laugh_cackle");
-            yavin_fallenstar_pt_1_osae_action_rewardSignal_pt_3_chose(player, npc);
+            doAnimationAction(self, "laugh_cackle");
+            yavin_fallenstar_pt_1_osae_action_rewardSignal_pt_3_chose(player, self);
             string_id message = new string_id(c_stringFile, "s_118");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1170,29 +1159,29 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_122");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 2);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_spaceFailed(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_spaceFailed(player, self))
         {
-            yavin_fallenstar_pt_1_osae_action_facePlayer(player, npc);
+            yavin_fallenstar_pt_1_osae_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_105");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1211,28 +1200,28 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_110");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 8);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_questNotDone_pt_3_ship(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_questNotDone_pt_3_ship(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_75");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1251,29 +1240,29 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_84");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 10);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_HasJTL(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_HasJTL(player, self))
         {
-            yavin_fallenstar_pt_1_osae_action_facePlayer(player, npc);
+            yavin_fallenstar_pt_1_osae_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_102");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1292,28 +1281,28 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_107");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 12);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_questNotDone(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_questNotDone(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_833");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1332,29 +1321,29 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_839");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 15);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_MeganWarned(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_MeganWarned(player, self))
         {
-            yavin_fallenstar_pt_1_osae_action_facePlayer(player, npc);
+            yavin_fallenstar_pt_1_osae_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_843");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1373,28 +1362,28 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_849");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 18);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_questNotDone_pt_2_Wuioe(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_questNotDone_pt_2_Wuioe(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_57");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1413,23 +1402,23 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_63");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 21);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_opcaCompleted(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_opcaCompleted(player, self))
         {
-            doAnimationAction(npc, "thank");
-            yavin_fallenstar_pt_1_osae_action_facePlayer(player, npc);
+            doAnimationAction(self, "thank");
+            yavin_fallenstar_pt_1_osae_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_77");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1444,29 +1433,29 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_79");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 24);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition_Pt1_questComplete(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition_Pt1_questComplete(player, self))
         {
-            yavin_fallenstar_pt_1_osae_action_facePlayer(player, npc);
+            yavin_fallenstar_pt_1_osae_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_52");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1485,22 +1474,22 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_60");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 26);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+        if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
         {
-            yavin_fallenstar_pt_1_osae_action_facePlayer(player, npc);
+            yavin_fallenstar_pt_1_osae_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_805");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_1_osae_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1515,15 +1504,15 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_807");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId", 32);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_1_osae", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_1_osae", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1532,85 +1521,84 @@ public class yavin_fallenstar_pt_1_osae extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId");
-        if (branchId == 2 && yavin_fallenstar_pt_1_osae_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && yavin_fallenstar_pt_1_osae_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && yavin_fallenstar_pt_1_osae_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && yavin_fallenstar_pt_1_osae_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && yavin_fallenstar_pt_1_osae_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && yavin_fallenstar_pt_1_osae_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && yavin_fallenstar_pt_1_osae_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && yavin_fallenstar_pt_1_osae_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && yavin_fallenstar_pt_1_osae_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && yavin_fallenstar_pt_1_osae_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && yavin_fallenstar_pt_1_osae_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && yavin_fallenstar_pt_1_osae_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && yavin_fallenstar_pt_1_osae_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && yavin_fallenstar_pt_1_osae_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && yavin_fallenstar_pt_1_osae_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && yavin_fallenstar_pt_1_osae_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && yavin_fallenstar_pt_1_osae_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && yavin_fallenstar_pt_1_osae_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && yavin_fallenstar_pt_1_osae_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && yavin_fallenstar_pt_1_osae_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && yavin_fallenstar_pt_1_osae_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && yavin_fallenstar_pt_1_osae_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && yavin_fallenstar_pt_1_osae_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && yavin_fallenstar_pt_1_osae_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && yavin_fallenstar_pt_1_osae_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && yavin_fallenstar_pt_1_osae_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && yavin_fallenstar_pt_1_osae_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && yavin_fallenstar_pt_1_osae_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && yavin_fallenstar_pt_1_osae_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && yavin_fallenstar_pt_1_osae_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && yavin_fallenstar_pt_1_osae_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && yavin_fallenstar_pt_1_osae_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && yavin_fallenstar_pt_1_osae_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && yavin_fallenstar_pt_1_osae_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && yavin_fallenstar_pt_1_osae_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && yavin_fallenstar_pt_1_osae_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && yavin_fallenstar_pt_1_osae_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && yavin_fallenstar_pt_1_osae_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.yavin_fallenstar_pt_1_osae.branchId");
         return SCRIPT_CONTINUE;
     }

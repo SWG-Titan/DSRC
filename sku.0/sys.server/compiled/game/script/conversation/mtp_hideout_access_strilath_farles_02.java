@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class mtp_hideout_access_strilath_farles_02 extends script.base_script
+public class mtp_hideout_access_strilath_farles_02 extends base_script
 {
     public mtp_hideout_access_strilath_farles_02()
     {
@@ -261,24 +261,23 @@ public class mtp_hideout_access_strilath_farles_02 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (mtp_hideout_access_strilath_farles_02_condition_active_mtpHideout04(player, npc))
+        if (mtp_hideout_access_strilath_farles_02_condition_active_mtpHideout04(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_access_strilath_farles_02_condition_mtpHideout04_03(player, npc))
+        if (mtp_hideout_access_strilath_farles_02_condition_mtpHideout04_03(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_29");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_access_strilath_farles_02_condition__defaultCondition(player, npc))
+            if (mtp_hideout_access_strilath_farles_02_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -293,28 +292,28 @@ public class mtp_hideout_access_strilath_farles_02 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_47");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_access_strilath_farles_02.branchId", 2);
-                npcStartConversation(player, npc, "mtp_hideout_access_strilath_farles_02", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_access_strilath_farles_02", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_access_strilath_farles_02_condition_needs_mtpHideout04(player, npc))
+        if (mtp_hideout_access_strilath_farles_02_condition_needs_mtpHideout04(player, self))
         {
-            mtp_hideout_access_strilath_farles_02_action_regrant_mtpHideout04(player, npc);
+            mtp_hideout_access_strilath_farles_02_action_regrant_mtpHideout04(player, self);
             string_id message = new string_id(c_stringFile, "s_25");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_access_strilath_farles_02_condition__defaultCondition(player, npc))
+        if (mtp_hideout_access_strilath_farles_02_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -323,25 +322,24 @@ public class mtp_hideout_access_strilath_farles_02 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.mtp_hideout_access_strilath_farles_02.branchId");
-        if (branchId == 2 && mtp_hideout_access_strilath_farles_02_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && mtp_hideout_access_strilath_farles_02_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && mtp_hideout_access_strilath_farles_02_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && mtp_hideout_access_strilath_farles_02_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && mtp_hideout_access_strilath_farles_02_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && mtp_hideout_access_strilath_farles_02_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && mtp_hideout_access_strilath_farles_02_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && mtp_hideout_access_strilath_farles_02_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.mtp_hideout_access_strilath_farles_02.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class death_watch_medical_droid extends script.base_script
+public class death_watch_medical_droid extends base_script
 {
     public death_watch_medical_droid()
     {

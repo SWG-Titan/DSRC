@@ -363,30 +363,29 @@ public class pvp_station_rebel extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (pvp_station_rebel_condition_isInYacht(player, npc))
+        if (pvp_station_rebel_condition_isInYacht(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_358253b2");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_rebel_condition_isPlayerImperial(player, npc))
+        if (pvp_station_rebel_condition_isPlayerImperial(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_514ace33");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_rebel_condition_isRebelFactionWithMission(player, npc))
+        if (pvp_station_rebel_condition_isRebelFactionWithMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_223d8c5f");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (pvp_station_rebel_condition__defaultCondition(player, npc))
+            if (pvp_station_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -404,52 +403,52 @@ public class pvp_station_rebel extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "pvp_station_rebel", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "pvp_station_rebel", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_rebel_condition_isPlayerNeutral(player, npc))
+        if (pvp_station_rebel_condition_isPlayerNeutral(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_17456755");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_rebel_condition_isTooFar(player, npc))
+        if (pvp_station_rebel_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_48f82131");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_rebel_condition__defaultCondition(player, npc))
+        if (pvp_station_rebel_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_e7fb4e63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (pvp_station_rebel_condition__defaultCondition(player, npc))
+            if (pvp_station_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (pvp_station_rebel_condition__defaultCondition(player, npc))
+            if (pvp_station_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (pvp_station_rebel_condition__defaultCondition(player, npc))
+            if (pvp_station_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -475,20 +474,20 @@ public class pvp_station_rebel extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "pvp_station_rebel", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "pvp_station_rebel", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -497,29 +496,28 @@ public class pvp_station_rebel extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = getIntObjVar(player, "conversation.pvp_station_rebel.branchId");
-        if (branchId == 3 && pvp_station_rebel_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && pvp_station_rebel_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && pvp_station_rebel_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && pvp_station_rebel_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && pvp_station_rebel_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && pvp_station_rebel_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && pvp_station_rebel_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && pvp_station_rebel_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && pvp_station_rebel_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && pvp_station_rebel_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         removeObjVar(player, "conversation.pvp_station_rebel.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class imperial_title_grant extends script.base_script
+public class imperial_title_grant extends base_script
 {
     public imperial_title_grant()
     {

@@ -580,18 +580,17 @@ public class event_perk_racing extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!event_perk_racing_condition_partOfStory(player, npc))
+        if (!event_perk_racing_condition_partOfStory(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_17");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_perk_racing_condition__defaultCondition(player, npc))
+            if (event_perk_racing_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -606,21 +605,21 @@ public class event_perk_racing extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_23");
                 }
                 utils.setScriptVar(player, "conversation.event_perk_racing.branchId", 1);
-                npcStartConversation(player, npc, "event_perk_racing", message, responses);
+                npcStartConversation(player, self, "event_perk_racing", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (event_perk_racing_condition_isRacing(player, npc))
+        if (event_perk_racing_condition_isRacing(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6a5b9858");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_perk_racing_condition__defaultCondition(player, npc))
+            if (event_perk_racing_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -635,21 +634,21 @@ public class event_perk_racing extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_d900d1be");
                 }
                 utils.setScriptVar(player, "conversation.event_perk_racing.branchId", 3);
-                npcStartConversation(player, npc, "event_perk_racing", message, responses);
+                npcStartConversation(player, self, "event_perk_racing", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (event_perk_racing_condition_hasLastTime(player, npc))
+        if (event_perk_racing_condition_hasLastTime(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_891e1f6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_perk_racing_condition__defaultCondition(player, npc))
+            if (event_perk_racing_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -664,35 +663,35 @@ public class event_perk_racing extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_21");
                 }
                 utils.setScriptVar(player, "conversation.event_perk_racing.branchId", 5);
-                npcStartConversation(player, npc, "event_perk_racing", message, responses);
+                npcStartConversation(player, self, "event_perk_racing", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (event_perk_racing_condition__defaultCondition(player, npc))
+        if (event_perk_racing_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ac51e630");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_perk_racing_condition__defaultCondition(player, npc))
+            if (event_perk_racing_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (event_perk_racing_condition__defaultCondition(player, npc))
+            if (event_perk_racing_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (event_perk_racing_condition__defaultCondition(player, npc))
+            if (event_perk_racing_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -715,15 +714,15 @@ public class event_perk_racing extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_dffdee4b");
                 }
                 utils.setScriptVar(player, "conversation.event_perk_racing.branchId", 7);
-                npcStartConversation(player, npc, "event_perk_racing", message, responses);
+                npcStartConversation(player, self, "event_perk_racing", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -732,37 +731,36 @@ public class event_perk_racing extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.event_perk_racing.branchId");
-        if (branchId == 1 && event_perk_racing_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && event_perk_racing_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && event_perk_racing_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && event_perk_racing_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && event_perk_racing_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && event_perk_racing_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && event_perk_racing_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && event_perk_racing_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && event_perk_racing_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && event_perk_racing_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && event_perk_racing_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && event_perk_racing_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && event_perk_racing_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && event_perk_racing_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.event_perk_racing.branchId");
         return SCRIPT_CONTINUE;
     }

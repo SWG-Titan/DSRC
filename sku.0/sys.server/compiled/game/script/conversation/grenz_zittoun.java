@@ -1077,30 +1077,29 @@ public class grenz_zittoun extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (grenz_zittoun_condition_hasCompletedAll(player, npc))
+        if (grenz_zittoun_condition_hasCompletedAll(player, self))
         {
-            grenz_zittoun_action_verifyAndCorrectErrors(player, npc);
+            grenz_zittoun_action_verifyAndCorrectErrors(player, self);
             string_id message = new string_id(c_stringFile, "s_139");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasReturnedLabBoss(player, npc))
+        if (grenz_zittoun_condition_hasReturnedLabBoss(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_81");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1118,34 +1117,34 @@ public class grenz_zittoun extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "grenz_zittoun", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "grenz_zittoun", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasCompletedLabBossCollection(player, npc))
+        if (grenz_zittoun_condition_hasCompletedLabBossCollection(player, self))
         {
-            grenz_zittoun_action_BruteForceCompleteLabBoss(player, npc);
+            grenz_zittoun_action_BruteForceCompleteLabBoss(player, self);
             string_id message = new string_id(c_stringFile, "s_135");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasLabBossNotComplete(player, npc))
+        if (grenz_zittoun_condition_hasLabBossNotComplete(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_78");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1163,41 +1162,41 @@ public class grenz_zittoun extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "grenz_zittoun", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "grenz_zittoun", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasIncompleteMinerBossCollection(player, npc))
+        if (grenz_zittoun_condition_hasIncompleteMinerBossCollection(player, self))
         {
-            grenz_zittoun_action_BruteForceCompleteMineBossCollection(player, npc);
+            grenz_zittoun_action_BruteForceCompleteMineBossCollection(player, self);
             string_id message = new string_id(c_stringFile, "s_141");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_isElligibleLabBoss(player, npc))
+        if (grenz_zittoun_condition_isElligibleLabBoss(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1219,38 +1218,38 @@ public class grenz_zittoun extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "grenz_zittoun", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "grenz_zittoun", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasntDoneLab(player, npc))
+        if (grenz_zittoun_condition_hasntDoneLab(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_129");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            pp.other.set(grenz_zittoun_tokenTO_firstName(player, npc));
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            pp.other.set(grenz_zittoun_tokenTO_firstName(player, self));
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasReturnedMineBoss(player, npc))
+        if (grenz_zittoun_condition_hasReturnedMineBoss(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_60");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1268,34 +1267,34 @@ public class grenz_zittoun extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "grenz_zittoun", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "grenz_zittoun", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasCompletedMinerBossCollection(player, npc))
+        if (grenz_zittoun_condition_hasCompletedMinerBossCollection(player, self))
         {
-            grenz_zittoun_action_BruteForceCompleteMineBoss(player, npc);
+            grenz_zittoun_action_BruteForceCompleteMineBoss(player, self);
             string_id message = new string_id(c_stringFile, "s_134");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasMineBossNotComplete(player, npc))
+        if (grenz_zittoun_condition_hasMineBossNotComplete(player, self))
         {
-            doAnimationAction(npc, "cough_polite");
+            doAnimationAction(self, "cough_polite");
             string_id message = new string_id(c_stringFile, "s_57");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1313,43 +1312,43 @@ public class grenz_zittoun extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(grenz_zittoun_tokenTO_firstName(player, npc));
-                npcStartConversation(player, npc, "grenz_zittoun", null, pp, responses);
+                pp.target.set(self);
+                pp.other.set(grenz_zittoun_tokenTO_firstName(player, self));
+                npcStartConversation(player, self, "grenz_zittoun", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(grenz_zittoun_tokenTO_firstName(player, npc));
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                pp.other.set(grenz_zittoun_tokenTO_firstName(player, self));
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasIncompletePirateBossCollection(player, npc))
+        if (grenz_zittoun_condition_hasIncompletePirateBossCollection(player, self))
         {
-            grenz_zittoun_action_BruteForceCompletePirateBossCollection(player, npc);
+            grenz_zittoun_action_BruteForceCompletePirateBossCollection(player, self);
             string_id message = new string_id(c_stringFile, "s_140");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_isElligibleMineBoss(player, npc))
+        if (grenz_zittoun_condition_isElligibleMineBoss(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_44");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1371,38 +1370,38 @@ public class grenz_zittoun extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "grenz_zittoun", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "grenz_zittoun", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasntDoneMine(player, npc))
+        if (grenz_zittoun_condition_hasntDoneMine(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_128");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            pp.other.set(grenz_zittoun_tokenTO_firstName(player, npc));
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            pp.other.set(grenz_zittoun_tokenTO_firstName(player, self));
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasReturnedHideoutBoss(player, npc))
+        if (grenz_zittoun_condition_hasReturnedHideoutBoss(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_92");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1420,34 +1419,34 @@ public class grenz_zittoun extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "grenz_zittoun", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "grenz_zittoun", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasCompletedPirateBossCollection(player, npc))
+        if (grenz_zittoun_condition_hasCompletedPirateBossCollection(player, self))
         {
-            grenz_zittoun_action_BruteForceCompletePirateBoss(player, npc);
+            grenz_zittoun_action_BruteForceCompletePirateBoss(player, self);
             string_id message = new string_id(c_stringFile, "s_133");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasHideoutBossNotComplete(player, npc))
+        if (grenz_zittoun_condition_hasHideoutBossNotComplete(player, self))
         {
-            doAnimationAction(npc, "cough_polite");
+            doAnimationAction(self, "cough_polite");
             string_id message = new string_id(c_stringFile, "s_99");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1465,34 +1464,34 @@ public class grenz_zittoun extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "grenz_zittoun", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "grenz_zittoun", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_isElligibleHideoutBoss(player, npc))
+        if (grenz_zittoun_condition_isElligibleHideoutBoss(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_105");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (grenz_zittoun_condition__defaultCondition(player, npc))
+            if (grenz_zittoun_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1514,40 +1513,40 @@ public class grenz_zittoun extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(grenz_zittoun_tokenTO_firstName(player, npc));
-                npcStartConversation(player, npc, "grenz_zittoun", null, pp, responses);
+                pp.target.set(self);
+                pp.other.set(grenz_zittoun_tokenTO_firstName(player, self));
+                npcStartConversation(player, self, "grenz_zittoun", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(grenz_zittoun_tokenTO_firstName(player, npc));
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                pp.other.set(grenz_zittoun_tokenTO_firstName(player, self));
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition_hasntDoneHideout(player, npc))
+        if (grenz_zittoun_condition_hasntDoneHideout(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_136");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            pp.other.set(grenz_zittoun_tokenTO_firstName(player, npc));
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            pp.other.set(grenz_zittoun_tokenTO_firstName(player, self));
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (grenz_zittoun_condition__defaultCondition(player, npc))
+        if (grenz_zittoun_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             string_id message = new string_id(c_stringFile, "s_138");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1556,93 +1555,92 @@ public class grenz_zittoun extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.grenz_zittoun.branchId");
-        if (branchId == 2 && grenz_zittoun_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && grenz_zittoun_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && grenz_zittoun_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && grenz_zittoun_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && grenz_zittoun_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && grenz_zittoun_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && grenz_zittoun_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && grenz_zittoun_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && grenz_zittoun_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && grenz_zittoun_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && grenz_zittoun_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && grenz_zittoun_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && grenz_zittoun_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && grenz_zittoun_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && grenz_zittoun_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && grenz_zittoun_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && grenz_zittoun_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && grenz_zittoun_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && grenz_zittoun_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && grenz_zittoun_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && grenz_zittoun_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && grenz_zittoun_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && grenz_zittoun_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && grenz_zittoun_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && grenz_zittoun_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && grenz_zittoun_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && grenz_zittoun_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && grenz_zittoun_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && grenz_zittoun_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && grenz_zittoun_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && grenz_zittoun_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && grenz_zittoun_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && grenz_zittoun_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && grenz_zittoun_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && grenz_zittoun_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && grenz_zittoun_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && grenz_zittoun_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && grenz_zittoun_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && grenz_zittoun_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && grenz_zittoun_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && grenz_zittoun_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && grenz_zittoun_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.grenz_zittoun.branchId");
         return SCRIPT_CONTINUE;
     }

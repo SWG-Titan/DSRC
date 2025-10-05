@@ -414,3 +414,158 @@ object/building/player/player_house_jabbas_sail_barge.iff	object/building/player
 																													
 object/building/player/player_house_tree_house_02.iff	object/building/player/construction/construction_player_house_tree_house_02.iff			3	32								13	3	4320	1700	1					4							
 																							object/tangible/terminal/terminal_player_structure_nosnap.iff	8.8	1.1	1.73	entry	-91	
+object/building/player/city/cityhall_camo_tatooine.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1		1				0	0	0	1000		1		private_place_cityhall	100	place_cityhall	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-16.78	2	7.9	mayoroffice	180	
+																							object/tangible/terminal/terminal_city_vote.iff	0.25	2	-9.65	grandhall	0	
+																							object/tangible/terminal/terminal_city.iff	17.07	2	-8.7	library	0	
+object/building/player/city/bank_camo_tatooine.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1	2	4					0	0	1000		1		private_place_bank	100	place_bank	4							
+																							object/tangible/terminal/terminal_bank.iff	-1	-0.25	0	WORLD_DELTA	90	
+																							object/tangible/terminal/terminal_bank.iff	1	-0.25	0	WORLD_DELTA	-90	
+																							object/tangible/terminal/terminal_bank.iff	0	-0.25	-1	WORLD_DELTA	0	
+																							object/tangible/terminal/terminal_player_structure_nosnap.iff	0	-0.25	1	WORLD_DELTA	180	
+object/building/player/city/cantina_camo_tatooine.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			1			2						13	5	7200	2500	1		private_place_cantina	100	place_cantina	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-4.1	2	6.19	cantina	157	
+object/building/player/city/cloning_camo_tatooine.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1	-5		1	3	3		1			0	0	1000		1		private_place_cloning	100	place_cloning	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-13.5	1	-6.4	cloninglab	90	
+																							object/tangible/terminal/terminal_cloning.iff	-14	1	3.1	cloninglab	90	
+																							object/tangible/terminal/terminal_insurance.iff	6.3	1	-6.69	cloninglab	-90	
+object/building/player/city/hospital_camo_tatooine.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			0			3						13	5	7200	2500	1		private_place_hospital	100	place_hospital	4							
+																							object/tangible/terminal/terminal_player_structure.iff	7.48	2	1.5	mainroom	-90	
+object/building/player/city/theater_camo_tatooine.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			0			4						13	5	7200	2500	1		private_place_theater	100	place_theater	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-7	2	-14.2	backstage	90	
+object/building/player/city/shuttleport_camo_tatooine.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1	4	2	1				0	0	1000		1		private_place_shuttleport	100	place_shuttleport	4							
+																							object/tangible/terminal/terminal_player_structure_nosnap.iff	8.4	-1	-14.5	WORLD_DELTA	90	
+object/building/player/player_garage_camo_tatooine_style_01.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff		1			1	2	3			1		0	0	1000				private_place_garage	100	place_garage	4							
+																							object/tangible/terminal/terminal_player_structure_nosnap_mini.iff	-3	-1	-3	WORLD_DELTA	0	
+object/building/player/city/imp_cityhall_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1		1				0	0	0	1000		1		private_place_cityhall	100	place_cityhall	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-16.78	2	7.9	mayoroffice	180	
+																							object/tangible/terminal/terminal_city_vote.iff	0.25	2	-9.65	grandhall	0	
+																							object/tangible/terminal/terminal_city.iff	17.07	2	-8.7	library	0	
+object/building/player/city/imp_bank_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1	2	4					0	0	1000		1		private_place_bank	100	place_bank	4							
+																							object/tangible/terminal/terminal_bank.iff	-1	-0.25	0	WORLD_DELTA	90	
+																							object/tangible/terminal/terminal_bank.iff	1	-0.25	0	WORLD_DELTA	-90	
+																							object/tangible/terminal/terminal_bank.iff	0	-0.25	-1	WORLD_DELTA	0	
+																							object/tangible/terminal/terminal_player_structure_nosnap.iff	0	-0.25	1	WORLD_DELTA	180	
+object/building/player/city/imp_cantina_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			1			2						13	5	7200	2500	1		private_place_cantina	100	place_cantina	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-4.1	2	6.19	cantina	157	
+object/building/player/city/imp_cloning_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1	3	3		1			0	0	1000		1		private_place_cloning	100	place_cloning	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-13.5	1	-6.4	cloninglab	90	
+																							object/tangible/terminal/terminal_cloning.iff	-14	1	3.1	cloninglab	90	
+																							object/tangible/terminal/terminal_insurance.iff	6.3	1	-6.69	cloninglab	-90	
+object/building/player/city/imp_hospital_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			0			3						13	5	7200	2500	1		private_place_hospital	100	place_hospital	4							
+																							object/tangible/terminal/terminal_player_structure.iff	7.48	2	1.5	mainroom	-90	
+object/building/player/city/imp_theater_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			0			4						13	5	7200	2500	1		private_place_theater	100	place_theater	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-7	2	-14.2	backstage	90	
+object/building/player/city/imp_shuttleport_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1	4	2	1				0	0	1000		1		private_place_shuttleport	100	place_shuttleport	4							
+																							object/tangible/terminal/terminal_player_structure_nosnap.iff	8.4	-1	-14.5	WORLD_DELTA	90	
+object/building/player/player_garage_imp_corellia_style_01.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff		1			1	2	3			1		0	0	1000				private_place_garage	100	place_garage	4							
+																							object/tangible/terminal/terminal_player_structure_nosnap_mini.iff	-3	-1	-3	WORLD_DELTA	0	
+object/building/player/city/reb_cityhall_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1		1				0	0	0	1000		1		private_place_cityhall	100	place_cityhall	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-16.78	2	7.9	mayoroffice	180	
+																							object/tangible/terminal/terminal_city_vote.iff	0.25	2	-9.65	grandhall	0	
+																							object/tangible/terminal/terminal_city.iff	17.07	2	-8.7	library	0	
+object/building/player/city/reb_bank_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1	2	4					0	0	1000		1		private_place_bank	100	place_bank	4							
+																							object/tangible/terminal/terminal_bank.iff	-1	-0.25	0	WORLD_DELTA	90	
+																							object/tangible/terminal/terminal_bank.iff	1	-0.25	0	WORLD_DELTA	-90	
+																							object/tangible/terminal/terminal_bank.iff	0	-0.25	-1	WORLD_DELTA	0	
+																							object/tangible/terminal/terminal_player_structure_nosnap.iff	0	-0.25	1	WORLD_DELTA	180	
+object/building/player/city/reb_cantina_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			1			2						13	5	7200	2500	1		private_place_cantina	100	place_cantina	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-4.1	2	6.19	cantina	157	
+object/building/player/city/reb_cloning_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1	3	3		1			0	0	1000		1		private_place_cloning	100	place_cloning	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-13.5	1	-6.4	cloninglab	90	
+																							object/tangible/terminal/terminal_cloning.iff	-14	1	3.1	cloninglab	90	
+																							object/tangible/terminal/terminal_insurance.iff	6.3	1	-6.69	cloninglab	-90	
+object/building/player/city/reb_hospital_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			0			3						13	5	7200	2500	1		private_place_hospital	100	place_hospital	4							
+																							object/tangible/terminal/terminal_player_structure.iff	7.48	2	1.5	mainroom	-90	
+object/building/player/city/reb_theater_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			0			4						13	5	7200	2500	1		private_place_theater	100	place_theater	4							
+																							object/tangible/terminal/terminal_player_structure.iff	-7	2	-14.2	backstage	90	
+object/building/player/city/reb_shuttleport_corellia.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff		1			1	4	2	1				0	0	1000		1		private_place_shuttleport	100	place_shuttleport	4							
+																							object/tangible/terminal/terminal_player_structure_nosnap.iff	8.4	-1	-14.5	WORLD_DELTA	90	
+object/building/player/player_garage_reb_corellia_style_01.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff		1			1	2	3			1		0	0	1000				private_place_garage	100	place_garage	4							
+																							object/tangible/terminal/terminal_player_structure_nosnap_mini.iff	-3	-1	-3	WORLD_DELTA	0	
+object/building/player/player_reb_house_generic_small_style_02.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff			0									4	3	4320	800	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-5	0.74	-2.76	entry	-90	
+object/building/player/player_reb_house_generic_small_windowed.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff			0									4	3	4320	800	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-5	0.74	-1.81	entry	-90	
+object/building/player/player_reb_house_generic_medium_windowed.iff	object/building/player/construction/construction_player_house_tatooine_medium_style_01.iff			-1									9	4	5760	1700	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	5	0.62	6.4	public	-180	
+object/building/player/player_reb_house_generic_medium_style_01.iff	object/building/player/construction/construction_player_house_tatooine_medium_style_01.iff			-1									9	4	5760	1700	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	5	0.62	6.4	public	-180	
+object/building/player/player_reb_house_corellia_large_style_01.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			1									13	5	7200	2500	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	3.17	4.59	-4.4	mainhall1	0	
+object/building/player/player_reb_house_generic_large_window_s01.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			1									13	5	7200	2500	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-6.22	4.71	-3.85	hallway	180	Z = FORWARD/BACK
+object/building/player/player_imp_house_generic_small_style_02.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff			0									4	3	4320	800	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-5	0.74	-2.76	entry	-90	
+object/building/player/player_imp_house_generic_small_windowed.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff			0									4	3	4320	800	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-5	0.74	-1.81	entry	-90	
+object/building/player/player_imp_house_generic_medium_style_01.iff	object/building/player/construction/construction_player_house_tatooine_medium_style_01.iff			-1									9	4	5760	1700	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	3	0.62	6.4	public	180	
+object/building/player/player_imp_house_generic_medium_windowed.iff	object/building/player/construction/construction_player_house_tatooine_medium_style_01.iff			-1									9	4	5760	1700	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	5	0.62	6.4	public	-180	
+object/building/player/player_imp_house_corellia_large_style_01.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			1									13	5	7200	2500	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	3.17	4.59	-4.4	mainhall1	0	
+object/building/player/player_imp_house_generic_large_window_s01.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			1									13	5	7200	2500	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-6.22	4.71	-3.85	hallway	180	Z = FORWARD/BACK
+object/building/player/player_imp_guildhall_generic_style_01.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			4									25	5	7200	5000	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	17.88	2.25	10.45	closeta	90	
+object/building/player/player_reb_guildhall_generic_style_01.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			4									25	5	7200	5000	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	17.88	2.25	10.45	closeta	90	
+object/building/player/player_house_full_vip.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			-1	8								13	5	7200	0	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-4.5	0.46	6.33	entrance	90	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-33	1.61	elevator	160	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	-26	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	0.47	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-26	1.61	elevator	160	
+object/building/player/player_guildhall_corellia_style_02.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			4									25	5	7200	5000	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	17.88	2.25	10.45	closeta	90	
+object/building/player/player_mega_bunker.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			-1	8								13	5	7200	0	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-4.5	0.46	6.33	entrance	90	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-33	1.61	elevator	160	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	-26	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	0.47	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-26	1.61	elevator	160	
+object/building/content/aurilia/aurilia_prisoner_hut.iff	object/building/player/construction/construction_player_house_wod_ns_hut.iff			0	32								13	3	4320	800	1					4							
+																							object/tangible/terminal/terminal_player_structure_nosnap.iff	3.3	0.79	0.61	r1	-91	
+object/building/player/player_guildhall_generic_style_02.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			4									25	5	7200	5000	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	17.88	2.25	10.45	closeta	90	
+object/building/player/player_guildhall_naboo_style_02.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			4									25	5	7200	5000	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	17.88	2.25	10.45	closeta	90	
+object/building/player/player_guildhall_tatooine_style_03.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			4									25	5	7200	5000	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	17.88	2.25	10.45	closeta	90	
+object/building/player/player_reb_guildhall_generic_style_02.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			4									25	5	7200	5000	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	17.88	2.25	10.45	closeta	90	
+object/building/player/player_imp_guildhall_generic_style_02.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			4									25	5	7200	5000	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	17.88	2.25	10.45	closeta	90	
+object/building/player/player_house_tatooine_large_style_02.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			4									25	5	7200	5000	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	4	2.25	4	foyer1	90	
+object/building/player/player_house_camo_generic_large_window_s02.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			1									13	5	7200	2500	1					4							Y = UP/DOWN
+																							object/tangible/terminal/terminal_player_structure.iff	8	0	-8.5	entry	0	X = right/left
+object/building/player/player_house_camo_tatooine_small_window_style_01.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff			0									4	3	4320	800	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	3.79	1.06	6.02	foyer	180	
+object/building/player/player_house_camo_tatooine_small_style_01.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff			0									4	3	4320	800	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	3.79	1.06	6.02	foyer	180	
+object/building/player/player_house_camo_tatooine_small_style_02.iff	object/building/player/construction/construction_player_house_tatooine_small_style_01.iff			0									4	3	4320	800	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	3.79	1.06	6.02	foyer	180	
+object/building/player/player_house_camo_tatooine_medium_style_01.iff	object/building/player/construction/construction_player_house_tatooine_medium_style_01.iff			-1									9	4	5760	1700	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	6.94	1.06	7.98	foyer	180	
+object/building/player/player_house_camo_tatooine_large_style_01.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			1									13	5	7200	2500	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	8.16	1.06	11.24	public	180	
+object/building/player/player_mandalorian_bunker_s01.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			-1	8								13	5	7200	0	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-4.5	0.46	6.33	entrance	90	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-33	1.61	elevator	160	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	-26	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	0.47	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-26	1.61	elevator	160	
+object/building/player/player_house_reb_bunker.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			-1	8								13	5	7200	0	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-4.5	0.46	6.33	entrance	90	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-33	1.61	elevator	160	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	-26	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	0.47	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-26	1.61	elevator	160	
+object/building/player/player_house_imp_bunker.iff	object/building/player/construction/construction_player_house_tatooine_large_style_01.iff			-1	8								13	5	7200	0	1					4							
+																							object/tangible/terminal/terminal_player_structure.iff	-4.5	0.46	6.33	entrance	90	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-33	1.61	elevator	160	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	-26	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_down.iff	1.18	0.47	1.65	elevator	-166	
+																							object/tangible/terminal/terminal_elevator_up.iff	-1.19	-26	1.61	elevator	160	

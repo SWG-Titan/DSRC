@@ -2812,33 +2812,32 @@ public class biogenic_engineertech extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (biogenic_engineertech_condition_get_tracker_3(player, npc))
+        if (biogenic_engineertech_condition_get_tracker_3(player, self))
         {
-            biogenic_engineertech_action_face_to(player, npc);
+            biogenic_engineertech_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_8c024a43");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (biogenic_engineertech_condition_get_tracker_2(player, npc))
+        if (biogenic_engineertech_condition_get_tracker_2(player, self))
         {
-            biogenic_engineertech_action_face_to(player, npc);
+            biogenic_engineertech_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_2c2921ad");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (biogenic_engineertech_condition_has_datapad(player, npc))
+            if (biogenic_engineertech_condition_has_datapad(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (biogenic_engineertech_condition__defaultCondition(player, npc))
+            if (biogenic_engineertech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2857,36 +2856,36 @@ public class biogenic_engineertech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27707b65");
                 }
                 utils.setScriptVar(player, "conversation.biogenic_engineertech.branchId", 2);
-                npcStartConversation(player, npc, "biogenic_engineertech", message, responses);
+                npcStartConversation(player, self, "biogenic_engineertech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (biogenic_engineertech_condition_get_tracker_1(player, npc))
+        if (biogenic_engineertech_condition_get_tracker_1(player, self))
         {
-            biogenic_engineertech_action_face_to(player, npc);
+            biogenic_engineertech_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_d4b22fda");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (biogenic_engineertech_condition_has_datapad(player, npc))
+            if (biogenic_engineertech_condition_has_datapad(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (biogenic_engineertech_condition__defaultCondition(player, npc))
+            if (biogenic_engineertech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (biogenic_engineertech_condition__defaultCondition(player, npc))
+            if (biogenic_engineertech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2909,50 +2908,50 @@ public class biogenic_engineertech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_8e26cc3d");
                 }
                 utils.setScriptVar(player, "conversation.biogenic_engineertech.branchId", 8);
-                npcStartConversation(player, npc, "biogenic_engineertech", message, responses);
+                npcStartConversation(player, self, "biogenic_engineertech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (biogenic_engineertech_condition__defaultCondition(player, npc))
+        if (biogenic_engineertech_condition__defaultCondition(player, self))
         {
-            biogenic_engineertech_action_face_to(player, npc);
+            biogenic_engineertech_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_3d90816");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (biogenic_engineertech_condition_has_datapad(player, npc))
+            if (biogenic_engineertech_condition_has_datapad(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (biogenic_engineertech_condition__defaultCondition(player, npc))
+            if (biogenic_engineertech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (biogenic_engineertech_condition_get_security_tracker(player, npc))
+            if (biogenic_engineertech_condition_get_security_tracker(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!biogenic_engineertech_condition_get_security_tracker(player, npc))
+            if (!biogenic_engineertech_condition_get_security_tracker(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (biogenic_engineertech_condition__defaultCondition(player, npc))
+            if (biogenic_engineertech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2983,15 +2982,15 @@ public class biogenic_engineertech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9d6ccb86");
                 }
                 utils.setScriptVar(player, "conversation.biogenic_engineertech.branchId", 23);
-                npcStartConversation(player, npc, "biogenic_engineertech", message, responses);
+                npcStartConversation(player, self, "biogenic_engineertech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -3000,193 +2999,192 @@ public class biogenic_engineertech extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.biogenic_engineertech.branchId");
-        if (branchId == 2 && biogenic_engineertech_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && biogenic_engineertech_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && biogenic_engineertech_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && biogenic_engineertech_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && biogenic_engineertech_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && biogenic_engineertech_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && biogenic_engineertech_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && biogenic_engineertech_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && biogenic_engineertech_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && biogenic_engineertech_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && biogenic_engineertech_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && biogenic_engineertech_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && biogenic_engineertech_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && biogenic_engineertech_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && biogenic_engineertech_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && biogenic_engineertech_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && biogenic_engineertech_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && biogenic_engineertech_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && biogenic_engineertech_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && biogenic_engineertech_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && biogenic_engineertech_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && biogenic_engineertech_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && biogenic_engineertech_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && biogenic_engineertech_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && biogenic_engineertech_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && biogenic_engineertech_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && biogenic_engineertech_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && biogenic_engineertech_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && biogenic_engineertech_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && biogenic_engineertech_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && biogenic_engineertech_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && biogenic_engineertech_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && biogenic_engineertech_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && biogenic_engineertech_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && biogenic_engineertech_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && biogenic_engineertech_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && biogenic_engineertech_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && biogenic_engineertech_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && biogenic_engineertech_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && biogenic_engineertech_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && biogenic_engineertech_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && biogenic_engineertech_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && biogenic_engineertech_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && biogenic_engineertech_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && biogenic_engineertech_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && biogenic_engineertech_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && biogenic_engineertech_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && biogenic_engineertech_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && biogenic_engineertech_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && biogenic_engineertech_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && biogenic_engineertech_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && biogenic_engineertech_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && biogenic_engineertech_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && biogenic_engineertech_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && biogenic_engineertech_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && biogenic_engineertech_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && biogenic_engineertech_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && biogenic_engineertech_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && biogenic_engineertech_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && biogenic_engineertech_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && biogenic_engineertech_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && biogenic_engineertech_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && biogenic_engineertech_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && biogenic_engineertech_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && biogenic_engineertech_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && biogenic_engineertech_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && biogenic_engineertech_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && biogenic_engineertech_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && biogenic_engineertech_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && biogenic_engineertech_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && biogenic_engineertech_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && biogenic_engineertech_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && biogenic_engineertech_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && biogenic_engineertech_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && biogenic_engineertech_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && biogenic_engineertech_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && biogenic_engineertech_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && biogenic_engineertech_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && biogenic_engineertech_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && biogenic_engineertech_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && biogenic_engineertech_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && biogenic_engineertech_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && biogenic_engineertech_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && biogenic_engineertech_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && biogenic_engineertech_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && biogenic_engineertech_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && biogenic_engineertech_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && biogenic_engineertech_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && biogenic_engineertech_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && biogenic_engineertech_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && biogenic_engineertech_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && biogenic_engineertech_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.biogenic_engineertech.branchId");
         return SCRIPT_CONTINUE;
     }

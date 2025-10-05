@@ -20,28 +20,24 @@ public class prof_spy_11_kaesii extends script.base_script
     {
         int questId1 = questGetQuestId("quest/prof_spy_11");
         int prof_spy_goto_e2 = groundquests.getTaskId(questId1, "prof_spy_goto_e2");
-        boolean onTask = questIsTaskActive(questId1, prof_spy_goto_e2, player);
-        return onTask;
+        return questIsTaskActive(questId1, prof_spy_goto_e2, player);
     }
     public boolean prof_spy_11_kaesii_condition_onMission11(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/prof_spy_11a");
         int spy_mission_1_e1 = groundquests.getTaskId(questId1, "spy_mission_1_e1");
-        boolean onTask = questIsTaskActive(questId1, spy_mission_1_e1, player);
-        return onTask;
+        return questIsTaskActive(questId1, spy_mission_1_e1, player);
     }
     public boolean prof_spy_11_kaesii_condition_mission11Complete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/prof_spy_11a");
         int spy_mission_1_e3 = groundquests.getTaskId(questId1, "spy_mission_1_e3");
-        boolean onTask = questIsTaskActive(questId1, spy_mission_1_e3, player);
-        return onTask;
+        return questIsTaskActive(questId1, spy_mission_1_e3, player);
     }
     public boolean prof_spy_11_kaesii_condition_missionIntroComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/prof_spy_11");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean prof_spy_11_kaesii_condition_finishedMission(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -1015,25 +1011,24 @@ public class prof_spy_11_kaesii extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (prof_spy_11_kaesii_condition_finishedMission(player, npc))
+        if (prof_spy_11_kaesii_condition_finishedMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_115");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prof_spy_11_kaesii_condition_mission11Complete(player, npc))
+        if (prof_spy_11_kaesii_condition_mission11Complete(player, self))
         {
-            prof_spy_11_kaesii_action_facePlayer(player, npc);
+            prof_spy_11_kaesii_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_77");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prof_spy_11_kaesii_condition__defaultCondition(player, npc))
+            if (prof_spy_11_kaesii_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1048,22 +1043,22 @@ public class prof_spy_11_kaesii extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_78");
                 }
                 utils.setScriptVar(player, "conversation.prof_spy_11_kaesii.branchId", 2);
-                npcStartConversation(player, npc, "prof_spy_11_kaesii", message, responses);
+                npcStartConversation(player, self, "prof_spy_11_kaesii", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (prof_spy_11_kaesii_condition_onMission11(player, npc))
+        if (prof_spy_11_kaesii_condition_onMission11(player, self))
         {
-            prof_spy_11_kaesii_action_facePlayer(player, npc);
+            prof_spy_11_kaesii_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_72");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prof_spy_11_kaesii_condition__defaultCondition(player, npc))
+            if (prof_spy_11_kaesii_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1078,21 +1073,21 @@ public class prof_spy_11_kaesii extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_73");
                 }
                 utils.setScriptVar(player, "conversation.prof_spy_11_kaesii.branchId", 8);
-                npcStartConversation(player, npc, "prof_spy_11_kaesii", message, responses);
+                npcStartConversation(player, self, "prof_spy_11_kaesii", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (prof_spy_11_kaesii_condition_missionIntroComplete(player, npc))
+        if (prof_spy_11_kaesii_condition_missionIntroComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_107");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prof_spy_11_kaesii_condition__defaultCondition(player, npc))
+            if (prof_spy_11_kaesii_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1107,22 +1102,22 @@ public class prof_spy_11_kaesii extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_108");
                 }
                 utils.setScriptVar(player, "conversation.prof_spy_11_kaesii.branchId", 11);
-                npcStartConversation(player, npc, "prof_spy_11_kaesii", message, responses);
+                npcStartConversation(player, self, "prof_spy_11_kaesii", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (prof_spy_11_kaesii_condition_onContact(player, npc))
+        if (prof_spy_11_kaesii_condition_onContact(player, self))
         {
-            prof_spy_11_kaesii_action_signalGoto(player, npc);
+            prof_spy_11_kaesii_action_signalGoto(player, self);
             string_id message = new string_id(c_stringFile, "s_25");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prof_spy_11_kaesii_condition__defaultCondition(player, npc))
+            if (prof_spy_11_kaesii_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1137,22 +1132,22 @@ public class prof_spy_11_kaesii extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27");
                 }
                 utils.setScriptVar(player, "conversation.prof_spy_11_kaesii.branchId", 13);
-                npcStartConversation(player, npc, "prof_spy_11_kaesii", message, responses);
+                npcStartConversation(player, self, "prof_spy_11_kaesii", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (prof_spy_11_kaesii_condition__defaultCondition(player, npc))
+        if (prof_spy_11_kaesii_condition__defaultCondition(player, self))
         {
-            prof_spy_11_kaesii_action_facePlayer(player, npc);
+            prof_spy_11_kaesii_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_69");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prof_spy_11_kaesii_condition__defaultCondition(player, npc))
+            if (prof_spy_11_kaesii_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1167,15 +1162,15 @@ public class prof_spy_11_kaesii extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_71");
                 }
                 utils.setScriptVar(player, "conversation.prof_spy_11_kaesii.branchId", 25);
-                npcStartConversation(player, npc, "prof_spy_11_kaesii", message, responses);
+                npcStartConversation(player, self, "prof_spy_11_kaesii", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1184,105 +1179,104 @@ public class prof_spy_11_kaesii extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.prof_spy_11_kaesii.branchId");
-        if (branchId == 2 && prof_spy_11_kaesii_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && prof_spy_11_kaesii_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && prof_spy_11_kaesii_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && prof_spy_11_kaesii_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && prof_spy_11_kaesii_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && prof_spy_11_kaesii_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && prof_spy_11_kaesii_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && prof_spy_11_kaesii_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && prof_spy_11_kaesii_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && prof_spy_11_kaesii_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && prof_spy_11_kaesii_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && prof_spy_11_kaesii_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && prof_spy_11_kaesii_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && prof_spy_11_kaesii_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && prof_spy_11_kaesii_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && prof_spy_11_kaesii_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && prof_spy_11_kaesii_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && prof_spy_11_kaesii_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && prof_spy_11_kaesii_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && prof_spy_11_kaesii_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && prof_spy_11_kaesii_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && prof_spy_11_kaesii_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && prof_spy_11_kaesii_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && prof_spy_11_kaesii_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && prof_spy_11_kaesii_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && prof_spy_11_kaesii_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && prof_spy_11_kaesii_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && prof_spy_11_kaesii_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && prof_spy_11_kaesii_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && prof_spy_11_kaesii_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && prof_spy_11_kaesii_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && prof_spy_11_kaesii_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && prof_spy_11_kaesii_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && prof_spy_11_kaesii_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && prof_spy_11_kaesii_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && prof_spy_11_kaesii_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && prof_spy_11_kaesii_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && prof_spy_11_kaesii_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && prof_spy_11_kaesii_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && prof_spy_11_kaesii_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && prof_spy_11_kaesii_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && prof_spy_11_kaesii_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && prof_spy_11_kaesii_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && prof_spy_11_kaesii_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && prof_spy_11_kaesii_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && prof_spy_11_kaesii_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && prof_spy_11_kaesii_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && prof_spy_11_kaesii_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.prof_spy_11_kaesii.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -678,18 +678,17 @@ public class radio_delivery_deathtrooper_conversation extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_hasHelmet(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_hasHelmet(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_91");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, npc))
+            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -704,40 +703,40 @@ public class radio_delivery_deathtrooper_conversation extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_92");
                 }
                 utils.setScriptVar(player, "conversation.radio_delivery_deathtrooper_conversation.branchId", 1);
-                npcStartConversation(player, npc, "radio_delivery_deathtrooper_conversation", message, responses);
+                npcStartConversation(player, self, "radio_delivery_deathtrooper_conversation", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_hasCompletedAll(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_hasCompletedAll(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_75");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_hasDeliveryQuestActive(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_hasDeliveryQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_31");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_hasLastRadiosDelivered(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_hasLastRadiosDelivered(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_70");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, npc))
+            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, npc))
+            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -756,21 +755,21 @@ public class radio_delivery_deathtrooper_conversation extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_73");
                 }
                 utils.setScriptVar(player, "conversation.radio_delivery_deathtrooper_conversation.branchId", 5);
-                npcStartConversation(player, npc, "radio_delivery_deathtrooper_conversation", message, responses);
+                npcStartConversation(player, self, "radio_delivery_deathtrooper_conversation", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_hasRadioQuest2Complete(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_hasRadioQuest2Complete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_33");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, npc))
+            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -785,28 +784,28 @@ public class radio_delivery_deathtrooper_conversation extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.radio_delivery_deathtrooper_conversation.branchId", 8);
-                npcStartConversation(player, npc, "radio_delivery_deathtrooper_conversation", message, responses);
+                npcStartConversation(player, self, "radio_delivery_deathtrooper_conversation", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_hasRadioTwoDelivered(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_hasRadioTwoDelivered(player, self))
         {
-            radio_delivery_deathtrooper_conversation_action_deliverTwoCompleted(player, npc);
+            radio_delivery_deathtrooper_conversation_action_deliverTwoCompleted(player, self);
             string_id message = new string_id(c_stringFile, "s_68");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_hasRadioQuest1Complete(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_hasRadioQuest1Complete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_54");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, npc))
+            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -821,34 +820,34 @@ public class radio_delivery_deathtrooper_conversation extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_55");
                 }
                 utils.setScriptVar(player, "conversation.radio_delivery_deathtrooper_conversation.branchId", 13);
-                npcStartConversation(player, npc, "radio_delivery_deathtrooper_conversation", message, responses);
+                npcStartConversation(player, self, "radio_delivery_deathtrooper_conversation", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_hasRadioOneDelivered(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_hasRadioOneDelivered(player, self))
         {
-            radio_delivery_deathtrooper_conversation_action_deliveryOneCompleted(player, npc);
+            radio_delivery_deathtrooper_conversation_action_deliveryOneCompleted(player, self);
             string_id message = new string_id(c_stringFile, "s_61");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_noAntiVirus(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_noAntiVirus(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_69");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition_hasNeverSpoken(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition_hasNeverSpoken(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_35");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, npc))
+            if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -863,21 +862,21 @@ public class radio_delivery_deathtrooper_conversation extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37");
                 }
                 utils.setScriptVar(player, "conversation.radio_delivery_deathtrooper_conversation.branchId", 20);
-                npcStartConversation(player, npc, "radio_delivery_deathtrooper_conversation", message, responses);
+                npcStartConversation(player, self, "radio_delivery_deathtrooper_conversation", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, npc))
+        if (radio_delivery_deathtrooper_conversation_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_96");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -886,77 +885,76 @@ public class radio_delivery_deathtrooper_conversation extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.radio_delivery_deathtrooper_conversation.branchId");
-        if (branchId == 1 && radio_delivery_deathtrooper_conversation_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && radio_delivery_deathtrooper_conversation_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && radio_delivery_deathtrooper_conversation_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && radio_delivery_deathtrooper_conversation_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && radio_delivery_deathtrooper_conversation_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && radio_delivery_deathtrooper_conversation_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && radio_delivery_deathtrooper_conversation_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && radio_delivery_deathtrooper_conversation_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && radio_delivery_deathtrooper_conversation_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && radio_delivery_deathtrooper_conversation_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && radio_delivery_deathtrooper_conversation_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && radio_delivery_deathtrooper_conversation_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && radio_delivery_deathtrooper_conversation_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && radio_delivery_deathtrooper_conversation_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && radio_delivery_deathtrooper_conversation_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && radio_delivery_deathtrooper_conversation_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && radio_delivery_deathtrooper_conversation_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && radio_delivery_deathtrooper_conversation_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && radio_delivery_deathtrooper_conversation_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && radio_delivery_deathtrooper_conversation_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && radio_delivery_deathtrooper_conversation_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && radio_delivery_deathtrooper_conversation_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && radio_delivery_deathtrooper_conversation_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && radio_delivery_deathtrooper_conversation_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && radio_delivery_deathtrooper_conversation_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && radio_delivery_deathtrooper_conversation_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && radio_delivery_deathtrooper_conversation_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && radio_delivery_deathtrooper_conversation_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && radio_delivery_deathtrooper_conversation_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && radio_delivery_deathtrooper_conversation_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && radio_delivery_deathtrooper_conversation_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && radio_delivery_deathtrooper_conversation_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && radio_delivery_deathtrooper_conversation_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && radio_delivery_deathtrooper_conversation_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.radio_delivery_deathtrooper_conversation.branchId");
         return SCRIPT_CONTINUE;
     }

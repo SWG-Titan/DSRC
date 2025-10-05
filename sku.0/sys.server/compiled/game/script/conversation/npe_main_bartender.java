@@ -510,19 +510,18 @@ public class npe_main_bartender extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_main_bartender_condition_ifBHPointed(player, npc))
+        if (npe_main_bartender_condition_ifBHPointed(player, self))
         {
-            npe_main_bartender_action_facePlayer(player, npc);
+            npe_main_bartender_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_48");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_main_bartender_condition__defaultCondition(player, npc))
+            if (npe_main_bartender_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -537,21 +536,21 @@ public class npe_main_bartender extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_49");
                 }
                 utils.setScriptVar(player, "conversation.npe_main_bartender.branchId", 1);
-                npcStartConversation(player, npc, "npe_main_bartender", message, responses);
+                npcStartConversation(player, self, "npe_main_bartender", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_main_bartender_condition_onTraderTask(player, npc))
+        if (npe_main_bartender_condition_onTraderTask(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_53");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_main_bartender_condition__defaultCondition(player, npc))
+            if (npe_main_bartender_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -566,36 +565,36 @@ public class npe_main_bartender extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_54");
                 }
                 utils.setScriptVar(player, "conversation.npe_main_bartender.branchId", 4);
-                npcStartConversation(player, npc, "npe_main_bartender", message, responses);
+                npcStartConversation(player, self, "npe_main_bartender", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_main_bartender_condition_completedArtisanQuest(player, npc))
+        if (npe_main_bartender_condition_completedArtisanQuest(player, self))
         {
-            npe_main_bartender_action_facePlayer(player, npc);
+            npe_main_bartender_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_main_bartender_condition_isArtisanQuestActive(player, npc))
+        if (npe_main_bartender_condition_isArtisanQuestActive(player, self))
         {
-            npe_main_bartender_action_facePlayer(player, npc);
+            npe_main_bartender_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_39");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_main_bartender_condition_completedAssignment(player, npc))
+            if (npe_main_bartender_condition_completedAssignment(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!npe_main_bartender_condition_completedAssignment(player, npc))
+            if (!npe_main_bartender_condition_completedAssignment(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -614,29 +613,29 @@ public class npe_main_bartender extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.npe_main_bartender.branchId", 9);
-                npcStartConversation(player, npc, "npe_main_bartender", message, responses);
+                npcStartConversation(player, self, "npe_main_bartender", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_main_bartender_condition_onPointerQuest(player, npc))
+        if (npe_main_bartender_condition_onPointerQuest(player, self))
         {
-            npe_main_bartender_action_facePlayer(player, npc);
+            npe_main_bartender_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_24");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_main_bartender_condition_onPointerQuest(player, npc))
+            if (npe_main_bartender_condition_onPointerQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!npe_main_bartender_condition_onPointerQuest(player, npc))
+            if (!npe_main_bartender_condition_onPointerQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -655,21 +654,21 @@ public class npe_main_bartender extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_78");
                 }
                 utils.setScriptVar(player, "conversation.npe_main_bartender.branchId", 13);
-                npcStartConversation(player, npc, "npe_main_bartender", message, responses);
+                npcStartConversation(player, self, "npe_main_bartender", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_main_bartender_condition__defaultCondition(player, npc))
+        if (npe_main_bartender_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_80");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -678,53 +677,52 @@ public class npe_main_bartender extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_main_bartender.branchId");
-        if (branchId == 1 && npe_main_bartender_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && npe_main_bartender_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && npe_main_bartender_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_main_bartender_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && npe_main_bartender_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && npe_main_bartender_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && npe_main_bartender_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && npe_main_bartender_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_main_bartender_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_main_bartender_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && npe_main_bartender_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && npe_main_bartender_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && npe_main_bartender_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && npe_main_bartender_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && npe_main_bartender_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && npe_main_bartender_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && npe_main_bartender_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && npe_main_bartender_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && npe_main_bartender_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && npe_main_bartender_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && npe_main_bartender_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && npe_main_bartender_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_main_bartender.branchId");
         return SCRIPT_CONTINUE;
     }

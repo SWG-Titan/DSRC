@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.jedi_trials;
 import script.*;
 
-public class padawan_pannaqa_03 extends script.base_script
+public class padawan_pannaqa_03 extends base_script
 {
     public padawan_pannaqa_03()
     {

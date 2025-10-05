@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class npe_new_jtl_tutorial extends script.base_script
+public class npe_new_jtl_tutorial extends base_script
 {
     public npe_new_jtl_tutorial()
     {

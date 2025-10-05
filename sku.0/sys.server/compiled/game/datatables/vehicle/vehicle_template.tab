@@ -64,4 +64,10 @@ walker_at_xt_player	object/intangible/vehicle/walker_at_xt_pcd.iff	object/mobile
 single_pod_airspeeder	object/intangible/vehicle/tcg_8_air_speeder_pcd.iff	object/mobile/vehicle/tcg_8_air_speeder.iff	object/tangible/tcg/series8/garage_display_vehicles/tcg_8_air_speeder.iff	15	4	1
 atst_walker	object/intangible/vehicle/walker_at_st_walker_pcd.iff	object/mobile/vehicle/walker_at_st.iff	object/tangible/tcg/series7/garage_display_vehicles/hoth_at_st.iff	20	4	1
 atxt_walker	object/intangible/vehicle/walker_at_xt_pcd.iff	object/mobile/vehicle/walker_at_xt_player.iff	object/tangible/tcg/series7/garage_display_vehicles/walker_at_xt.iff	20	4	1
-
+tri_air_speeder	object/intangible/vehicle/tri_air_speeder.iff	object/mobile/vehicle/tri_air_speeder.iff	object/tangible/tcg/series7/garage_display_vehicles/tri_air_speeder.iff	20	0.75	1
+city_explorer_s01	object/intangible/vehicle/city_explorer_s01.iff	object/mobile/vehicle/city_explorer_s01.iff	object/tangible/tcg/series7/garage_display_vehicles/city_explorer_s01.iff	20	0.75	1
+hover_tank_red	object/intangible/vehicle/hover_tank_red.iff	object/mobile/vehicle/hover_tank_red.iff	object/tangible/tcg/series7/garage_display_vehicles/hover_tank_red.iff	20	0.75	1
+hut_speeder_s01	object/intangible/vehicle/hut_speeder_s01.iff	object/mobile/vehicle/hut_speeder_s01.iff	object/tangible/tcg/series7/garage_display_vehicles/hut_speeder_s01.iff	20	0.75	1
+imp_dart_s01	object/intangible/vehicle/imp_dart_s01.iff	object/mobile/vehicle/imp_dart_s01.iff	object/tangible/tcg/series7/garage_display_vehicles/imp_dart_s01.iff	20	0.75	1
+sky_flyer_red	object/intangible/vehicle/sky_flyer_red.iff	object/mobile/vehicle/sky_flyer_red.iff	object/tangible/tcg/series7/garage_display_vehicles/sky_flyer_red.iff	20	0.75	1
+speeder_bike_s001	object/intangible/vehicle/speeder_bike_s001.iff	object/mobile/vehicle/speeder_bike_s001.iff	object/tangible/tcg/series7/garage_display_vehicles/speeder_bike_s001.iff	20	0.75	1

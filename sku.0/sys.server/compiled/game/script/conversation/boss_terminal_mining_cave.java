@@ -6,7 +6,7 @@ import script.library.chat;
 import script.library.groundquests;
 import script.library.utils;
 
-public class boss_terminal_mining_cave extends script.base_script
+public class boss_terminal_mining_cave extends base_script
 {
     public boss_terminal_mining_cave()
     {

@@ -809,27 +809,26 @@ public class talus_dearic_coa_syirlabradawk extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (talus_dearic_coa_syirlabradawk_condition_completed_medic_quest(player, npc))
+        if (talus_dearic_coa_syirlabradawk_condition_completed_medic_quest(player, self))
         {
-            doAnimationAction(npc, "explain");
-            talus_dearic_coa_syirlabradawk_action_grant_return_quest2(player, npc);
+            doAnimationAction(self, "explain");
+            talus_dearic_coa_syirlabradawk_action_grant_return_quest2(player, self);
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_syirlabradawk_condition_reb_opt_quest_complete(player, npc))
+        if (talus_dearic_coa_syirlabradawk_condition_reb_opt_quest_complete(player, self))
         {
-            doAnimationAction(npc, "manipulate_medium");
+            doAnimationAction(self, "manipulate_medium");
             string_id message = new string_id(c_stringFile, "s_63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -844,35 +843,35 @@ public class talus_dearic_coa_syirlabradawk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_65");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_syirlabradawk.branchId", 2);
-                npcStartConversation(player, npc, "talus_dearic_coa_syirlabradawk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_syirlabradawk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_syirlabradawk_condition_reb_opt_qst_active(player, npc))
+        if (talus_dearic_coa_syirlabradawk_condition_reb_opt_qst_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_129");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_syirlabradawk_condition_reb_opt_qst_unaccepted(player, npc))
+        if (talus_dearic_coa_syirlabradawk_condition_reb_opt_qst_unaccepted(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             string_id message = new string_id(c_stringFile, "s_64");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -891,23 +890,23 @@ public class talus_dearic_coa_syirlabradawk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_83");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_syirlabradawk.branchId", 6);
-                npcStartConversation(player, npc, "talus_dearic_coa_syirlabradawk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_syirlabradawk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_syirlabradawk_condition_medic_tasks_complete(player, npc))
+        if (talus_dearic_coa_syirlabradawk_condition_medic_tasks_complete(player, self))
         {
-            doAnimationAction(npc, "thank");
+            doAnimationAction(self, "thank");
             doAnimationAction(player, "tap_foot");
             string_id message = new string_id(c_stringFile, "s_23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -922,23 +921,23 @@ public class talus_dearic_coa_syirlabradawk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_syirlabradawk.branchId", 11);
-                npcStartConversation(player, npc, "talus_dearic_coa_syirlabradawk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_syirlabradawk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_syirlabradawk_condition_accepted_medic_quest(player, npc))
+        if (talus_dearic_coa_syirlabradawk_condition_accepted_medic_quest(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             doAnimationAction(player, "listen");
             string_id message = new string_id(c_stringFile, "s_42");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -953,29 +952,29 @@ public class talus_dearic_coa_syirlabradawk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_91");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_syirlabradawk.branchId", 20);
-                npcStartConversation(player, npc, "talus_dearic_coa_syirlabradawk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_syirlabradawk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_syirlabradawk_condition_used_mainframe(player, npc))
+        if (talus_dearic_coa_syirlabradawk_condition_used_mainframe(player, self))
         {
-            doAnimationAction(npc, "whisper");
+            doAnimationAction(self, "whisper");
             string_id message = new string_id(c_stringFile, "s_46");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -994,22 +993,22 @@ public class talus_dearic_coa_syirlabradawk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_104");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_syirlabradawk.branchId", 22);
-                npcStartConversation(player, npc, "talus_dearic_coa_syirlabradawk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_syirlabradawk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, npc))
+        if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "whisper");
+            doAnimationAction(self, "whisper");
             string_id message = new string_id(c_stringFile, "s_108");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_syirlabradawk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1024,15 +1023,15 @@ public class talus_dearic_coa_syirlabradawk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_110");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_syirlabradawk.branchId", 31);
-                npcStartConversation(player, npc, "talus_dearic_coa_syirlabradawk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_syirlabradawk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1041,77 +1040,76 @@ public class talus_dearic_coa_syirlabradawk extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.talus_dearic_coa_syirlabradawk.branchId");
-        if (branchId == 2 && talus_dearic_coa_syirlabradawk_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && talus_dearic_coa_syirlabradawk_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && talus_dearic_coa_syirlabradawk_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && talus_dearic_coa_syirlabradawk_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && talus_dearic_coa_syirlabradawk_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && talus_dearic_coa_syirlabradawk_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && talus_dearic_coa_syirlabradawk_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && talus_dearic_coa_syirlabradawk_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && talus_dearic_coa_syirlabradawk_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && talus_dearic_coa_syirlabradawk_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && talus_dearic_coa_syirlabradawk_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && talus_dearic_coa_syirlabradawk_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && talus_dearic_coa_syirlabradawk_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && talus_dearic_coa_syirlabradawk_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && talus_dearic_coa_syirlabradawk_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && talus_dearic_coa_syirlabradawk_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && talus_dearic_coa_syirlabradawk_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && talus_dearic_coa_syirlabradawk_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && talus_dearic_coa_syirlabradawk_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && talus_dearic_coa_syirlabradawk_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && talus_dearic_coa_syirlabradawk_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && talus_dearic_coa_syirlabradawk_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && talus_dearic_coa_syirlabradawk_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && talus_dearic_coa_syirlabradawk_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && talus_dearic_coa_syirlabradawk_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && talus_dearic_coa_syirlabradawk_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && talus_dearic_coa_syirlabradawk_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && talus_dearic_coa_syirlabradawk_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && talus_dearic_coa_syirlabradawk_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && talus_dearic_coa_syirlabradawk_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && talus_dearic_coa_syirlabradawk_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && talus_dearic_coa_syirlabradawk_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && talus_dearic_coa_syirlabradawk_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && talus_dearic_coa_syirlabradawk_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.talus_dearic_coa_syirlabradawk.branchId");
         return SCRIPT_CONTINUE;
     }

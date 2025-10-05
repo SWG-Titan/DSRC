@@ -1605,33 +1605,32 @@ public class static_quests_record_keeper_dantooine extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (static_quests_record_keeper_dantooine_condition_already_reset(player, npc))
+        if (static_quests_record_keeper_dantooine_condition_already_reset(player, self))
         {
-            static_quests_record_keeper_dantooine_action_face_to(player, npc);
+            static_quests_record_keeper_dantooine_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_32bfa453");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (static_quests_record_keeper_dantooine_condition_static_quests_on_player(player, npc))
+        if (static_quests_record_keeper_dantooine_condition_static_quests_on_player(player, self))
         {
-            static_quests_record_keeper_dantooine_action_face_to(player, npc);
+            static_quests_record_keeper_dantooine_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_5c12e6ea");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (static_quests_record_keeper_dantooine_condition__defaultCondition(player, npc))
+            if (static_quests_record_keeper_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (static_quests_record_keeper_dantooine_condition__defaultCondition(player, npc))
+            if (static_quests_record_keeper_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1650,22 +1649,22 @@ public class static_quests_record_keeper_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_2e18346d");
                 }
                 utils.setScriptVar(player, "conversation.static_quests_record_keeper_dantooine.branchId", 2);
-                npcStartConversation(player, npc, "static_quests_record_keeper_dantooine", message, responses);
+                npcStartConversation(player, self, "static_quests_record_keeper_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (static_quests_record_keeper_dantooine_condition__defaultCondition(player, npc))
+        if (static_quests_record_keeper_dantooine_condition__defaultCondition(player, self))
         {
-            static_quests_record_keeper_dantooine_action_face_to(player, npc);
+            static_quests_record_keeper_dantooine_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_9413f709");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1674,53 +1673,52 @@ public class static_quests_record_keeper_dantooine extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.static_quests_record_keeper_dantooine.branchId");
-        if (branchId == 2 && static_quests_record_keeper_dantooine_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && static_quests_record_keeper_dantooine_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && static_quests_record_keeper_dantooine_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && static_quests_record_keeper_dantooine_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && static_quests_record_keeper_dantooine_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && static_quests_record_keeper_dantooine_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && static_quests_record_keeper_dantooine_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && static_quests_record_keeper_dantooine_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && static_quests_record_keeper_dantooine_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && static_quests_record_keeper_dantooine_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && static_quests_record_keeper_dantooine_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && static_quests_record_keeper_dantooine_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && static_quests_record_keeper_dantooine_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && static_quests_record_keeper_dantooine_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && static_quests_record_keeper_dantooine_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && static_quests_record_keeper_dantooine_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && static_quests_record_keeper_dantooine_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && static_quests_record_keeper_dantooine_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && static_quests_record_keeper_dantooine_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && static_quests_record_keeper_dantooine_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && static_quests_record_keeper_dantooine_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && static_quests_record_keeper_dantooine_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.static_quests_record_keeper_dantooine.branchId");
         return SCRIPT_CONTINUE;
     }

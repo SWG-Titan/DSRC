@@ -189,57 +189,56 @@ public class rtp_leia_main extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (rtp_leia_main_condition_notRebel(player, npc))
+        if (rtp_leia_main_condition_notRebel(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!rtp_leia_main_condition_completedWedge(player, npc))
+        if (!rtp_leia_main_condition_completedWedge(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_46");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_leia_main_condition_rebel_isOnLeave(player, npc))
+        if (rtp_leia_main_condition_rebel_isOnLeave(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_43");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_leia_main_condition_rtp_leia_03_complete(player, npc))
+        if (rtp_leia_main_condition_rtp_leia_03_complete(player, self))
         {
-            rtp_leia_main_action_rtp_leia_03_signal(player, npc);
+            rtp_leia_main_action_rtp_leia_03_signal(player, self);
             string_id message = new string_id(c_stringFile, "s_9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_leia_main_condition_rtp_leia_03_active(player, npc))
+        if (rtp_leia_main_condition_rtp_leia_03_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_29");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_leia_main_condition_rtp_leia_02_complete(player, npc))
+        if (rtp_leia_main_condition_rtp_leia_02_complete(player, self))
         {
-            rtp_leia_main_action_rtp_leia_02_signal(player, npc);
+            rtp_leia_main_action_rtp_leia_02_signal(player, self);
             string_id message = new string_id(c_stringFile, "s_28");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rtp_leia_main_condition__defaultCondition(player, npc))
+            if (rtp_leia_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rtp_leia_main_condition__defaultCondition(player, npc))
+            if (rtp_leia_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -258,35 +257,35 @@ public class rtp_leia_main extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_35");
                 }
                 utils.setScriptVar(player, "conversation.rtp_leia_main.branchId", 6);
-                npcStartConversation(player, npc, "rtp_leia_main", message, responses);
+                npcStartConversation(player, self, "rtp_leia_main", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rtp_leia_main_condition_rtp_leia_02_active(player, npc))
+        if (rtp_leia_main_condition_rtp_leia_02_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_16");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_leia_main_condition_rtp_leia_01_complete(player, npc))
+        if (rtp_leia_main_condition_rtp_leia_01_complete(player, self))
         {
-            rtp_leia_main_action_rtp_leia_01_signal(player, npc);
+            rtp_leia_main_action_rtp_leia_01_signal(player, self);
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rtp_leia_main_condition__defaultCondition(player, npc))
+            if (rtp_leia_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rtp_leia_main_condition__defaultCondition(player, npc))
+            if (rtp_leia_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -305,34 +304,34 @@ public class rtp_leia_main extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.rtp_leia_main.branchId", 10);
-                npcStartConversation(player, npc, "rtp_leia_main", message, responses);
+                npcStartConversation(player, self, "rtp_leia_main", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rtp_leia_main_condition_rtp_leia_01_active(player, npc))
+        if (rtp_leia_main_condition_rtp_leia_01_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_leia_main_condition__defaultCondition(player, npc))
+        if (rtp_leia_main_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rtp_leia_main_condition__defaultCondition(player, npc))
+            if (rtp_leia_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rtp_leia_main_condition__defaultCondition(player, npc))
+            if (rtp_leia_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -351,15 +350,15 @@ public class rtp_leia_main extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.rtp_leia_main.branchId", 14);
-                npcStartConversation(player, npc, "rtp_leia_main", message, responses);
+                npcStartConversation(player, self, "rtp_leia_main", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -368,21 +367,20 @@ public class rtp_leia_main extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.rtp_leia_main.branchId");
-        if (branchId == 6 && rtp_leia_main_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && rtp_leia_main_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && rtp_leia_main_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && rtp_leia_main_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && rtp_leia_main_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && rtp_leia_main_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.rtp_leia_main.branchId");
         return SCRIPT_CONTINUE;
     }

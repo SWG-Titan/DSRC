@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class ep3_trando_herald extends script.base_script
+public class ep3_trando_herald extends base_script
 {
     public ep3_trando_herald()
     {

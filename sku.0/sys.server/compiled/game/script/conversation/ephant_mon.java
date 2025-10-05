@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class ephant_mon extends script.base_script
+public class ephant_mon extends base_script
 {
     public ephant_mon()
     {

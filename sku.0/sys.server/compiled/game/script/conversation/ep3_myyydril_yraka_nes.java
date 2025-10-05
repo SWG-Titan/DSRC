@@ -1501,18 +1501,17 @@ public class ep3_myyydril_yraka_nes extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_myyydril_yraka_nes_condition_completeEpic1(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_completeEpic1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_894");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1527,21 +1526,21 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_898");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 1);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_hasCompletedTaskEpic(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_hasCompletedTaskEpic(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_906");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1556,21 +1555,21 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_910");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 3);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_isActiveQuestEpic(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_isActiveQuestEpic(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_920");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1585,21 +1584,21 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_922");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 6);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_hasCompletedQuestFour(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_hasCompletedQuestFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_926");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1614,27 +1613,27 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_928");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 8);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_isTaskActiveFour(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_isTaskActiveFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_952");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_hasCompletedQuestThree(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_hasCompletedQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_955");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1649,21 +1648,21 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_957");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 16);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_hasCompletedTaskThree(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_hasCompletedTaskThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_969");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1678,34 +1677,34 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_971");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 20);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_isActiveTaskThree(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_isActiveTaskThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_979");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_hasCompletedQuestTwo(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_hasCompletedQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_981");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1724,21 +1723,21 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_995");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 24);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_hasCompletedTaskTwo(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_hasCompletedTaskTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_999");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1753,21 +1752,21 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1001");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 29);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_isActiveTaskTwo(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_isActiveTaskTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1009");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1782,28 +1781,28 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1011");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 32);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_hasCompletedQuestOne(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1015");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1822,22 +1821,22 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1029");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 34);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_hasCompletedTaskOne(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_hasCompletedTaskOne(player, self))
         {
-            ep3_myyydril_yraka_nes_action_giveSignal1(player, npc);
+            ep3_myyydril_yraka_nes_action_giveSignal1(player, self);
             string_id message = new string_id(c_stringFile, "s_1033");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1852,27 +1851,27 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1035");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 39);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_isActiveTaskOne(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_isActiveTaskOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1039");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition_hasCompletedOther(player, npc))
+        if (ep3_myyydril_yraka_nes_condition_hasCompletedOther(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1041");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1887,21 +1886,21 @@ public class ep3_myyydril_yraka_nes extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1043");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId", 42);
-                npcStartConversation(player, npc, "ep3_myyydril_yraka_nes", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_yraka_nes", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, npc))
+        if (ep3_myyydril_yraka_nes_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1133");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1910,153 +1909,152 @@ public class ep3_myyydril_yraka_nes extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId");
-        if (branchId == 1 && ep3_myyydril_yraka_nes_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && ep3_myyydril_yraka_nes_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && ep3_myyydril_yraka_nes_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_myyydril_yraka_nes_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && ep3_myyydril_yraka_nes_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_myyydril_yraka_nes_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_myyydril_yraka_nes_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_myyydril_yraka_nes_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_myyydril_yraka_nes_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_myyydril_yraka_nes_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_myyydril_yraka_nes_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_myyydril_yraka_nes_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_myyydril_yraka_nes_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_myyydril_yraka_nes_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_myyydril_yraka_nes_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_myyydril_yraka_nes_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_myyydril_yraka_nes_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_myyydril_yraka_nes_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_myyydril_yraka_nes_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_myyydril_yraka_nes_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_myyydril_yraka_nes_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_myyydril_yraka_nes_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_myyydril_yraka_nes_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_myyydril_yraka_nes_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_myyydril_yraka_nes_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_myyydril_yraka_nes_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && ep3_myyydril_yraka_nes_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && ep3_myyydril_yraka_nes_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && ep3_myyydril_yraka_nes_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && ep3_myyydril_yraka_nes_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && ep3_myyydril_yraka_nes_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && ep3_myyydril_yraka_nes_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && ep3_myyydril_yraka_nes_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && ep3_myyydril_yraka_nes_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && ep3_myyydril_yraka_nes_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && ep3_myyydril_yraka_nes_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && ep3_myyydril_yraka_nes_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && ep3_myyydril_yraka_nes_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && ep3_myyydril_yraka_nes_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && ep3_myyydril_yraka_nes_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && ep3_myyydril_yraka_nes_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && ep3_myyydril_yraka_nes_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && ep3_myyydril_yraka_nes_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && ep3_myyydril_yraka_nes_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && ep3_myyydril_yraka_nes_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && ep3_myyydril_yraka_nes_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && ep3_myyydril_yraka_nes_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && ep3_myyydril_yraka_nes_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && ep3_myyydril_yraka_nes_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && ep3_myyydril_yraka_nes_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && ep3_myyydril_yraka_nes_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && ep3_myyydril_yraka_nes_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && ep3_myyydril_yraka_nes_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && ep3_myyydril_yraka_nes_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && ep3_myyydril_yraka_nes_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && ep3_myyydril_yraka_nes_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && ep3_myyydril_yraka_nes_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && ep3_myyydril_yraka_nes_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && ep3_myyydril_yraka_nes_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && ep3_myyydril_yraka_nes_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && ep3_myyydril_yraka_nes_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && ep3_myyydril_yraka_nes_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && ep3_myyydril_yraka_nes_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && ep3_myyydril_yraka_nes_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && ep3_myyydril_yraka_nes_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && ep3_myyydril_yraka_nes_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && ep3_myyydril_yraka_nes_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && ep3_myyydril_yraka_nes_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && ep3_myyydril_yraka_nes_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && ep3_myyydril_yraka_nes_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && ep3_myyydril_yraka_nes_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && ep3_myyydril_yraka_nes_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_myyydril_yraka_nes.branchId");
         return SCRIPT_CONTINUE;
     }

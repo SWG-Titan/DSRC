@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class heraldnaboo2 extends script.base_script
+public class heraldnaboo2 extends base_script
 {
     public heraldnaboo2()
     {

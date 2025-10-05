@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class npe_entertainer_side_i_questgiver extends script.base_script
+public class npe_entertainer_side_i_questgiver extends base_script
 {
     public npe_entertainer_side_i_questgiver()
     {

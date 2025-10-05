@@ -501,19 +501,18 @@ public class talus_dearic_coa_galiir_ac_yandar extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (talus_dearic_coa_galiir_ac_yandar_condition_nsh_tasks_reported(player, npc))
+        if (talus_dearic_coa_galiir_ac_yandar_condition_nsh_tasks_reported(player, self))
         {
-            doAnimationAction(npc, "fakepunch");
+            doAnimationAction(self, "fakepunch");
             string_id message = new string_id(c_stringFile, "s_4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -528,29 +527,29 @@ public class talus_dearic_coa_galiir_ac_yandar extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_53");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_galiir_ac_yandar.branchId", 1);
-                npcStartConversation(player, npc, "talus_dearic_coa_galiir_ac_yandar", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_galiir_ac_yandar", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_galiir_ac_yandar_condition_nsh_tasks_complete(player, npc))
+        if (talus_dearic_coa_galiir_ac_yandar_condition_nsh_tasks_complete(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
+            doAnimationAction(self, "pound_fist_palm");
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -569,22 +568,22 @@ public class talus_dearic_coa_galiir_ac_yandar extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_34");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_galiir_ac_yandar.branchId", 3);
-                npcStartConversation(player, npc, "talus_dearic_coa_galiir_ac_yandar", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_galiir_ac_yandar", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_galiir_ac_yandar_condition_on_nsh_tasks(player, npc))
+        if (talus_dearic_coa_galiir_ac_yandar_condition_on_nsh_tasks(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             string_id message = new string_id(c_stringFile, "s_18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -599,21 +598,21 @@ public class talus_dearic_coa_galiir_ac_yandar extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_55");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_galiir_ac_yandar.branchId", 8);
-                npcStartConversation(player, npc, "talus_dearic_coa_galiir_ac_yandar", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_galiir_ac_yandar", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_galiir_ac_yandar_condition_abandoned_deep_cover(player, npc))
+        if (talus_dearic_coa_galiir_ac_yandar_condition_abandoned_deep_cover(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_69");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -628,29 +627,29 @@ public class talus_dearic_coa_galiir_ac_yandar extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_70");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_galiir_ac_yandar.branchId", 11);
-                npcStartConversation(player, npc, "talus_dearic_coa_galiir_ac_yandar", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_galiir_ac_yandar", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_galiir_ac_yandar_condition_speak_galiir(player, npc))
+        if (talus_dearic_coa_galiir_ac_yandar_condition_speak_galiir(player, self))
         {
-            doAnimationAction(npc, "giveup");
+            doAnimationAction(self, "giveup");
             string_id message = new string_id(c_stringFile, "s_27");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -669,22 +668,22 @@ public class talus_dearic_coa_galiir_ac_yandar extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_67");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_galiir_ac_yandar.branchId", 13);
-                npcStartConversation(player, npc, "talus_dearic_coa_galiir_ac_yandar", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_galiir_ac_yandar", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, npc))
+        if (talus_dearic_coa_galiir_ac_yandar_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "threaten");
+            doAnimationAction(self, "threaten");
             string_id message = new string_id(c_stringFile, "s_74");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -693,57 +692,56 @@ public class talus_dearic_coa_galiir_ac_yandar extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.talus_dearic_coa_galiir_ac_yandar.branchId");
-        if (branchId == 1 && talus_dearic_coa_galiir_ac_yandar_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && talus_dearic_coa_galiir_ac_yandar_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && talus_dearic_coa_galiir_ac_yandar_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && talus_dearic_coa_galiir_ac_yandar_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && talus_dearic_coa_galiir_ac_yandar_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && talus_dearic_coa_galiir_ac_yandar_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && talus_dearic_coa_galiir_ac_yandar_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && talus_dearic_coa_galiir_ac_yandar_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && talus_dearic_coa_galiir_ac_yandar_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && talus_dearic_coa_galiir_ac_yandar_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && talus_dearic_coa_galiir_ac_yandar_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && talus_dearic_coa_galiir_ac_yandar_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && talus_dearic_coa_galiir_ac_yandar_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && talus_dearic_coa_galiir_ac_yandar_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && talus_dearic_coa_galiir_ac_yandar_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && talus_dearic_coa_galiir_ac_yandar_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && talus_dearic_coa_galiir_ac_yandar_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && talus_dearic_coa_galiir_ac_yandar_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && talus_dearic_coa_galiir_ac_yandar_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && talus_dearic_coa_galiir_ac_yandar_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && talus_dearic_coa_galiir_ac_yandar_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && talus_dearic_coa_galiir_ac_yandar_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && talus_dearic_coa_galiir_ac_yandar_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && talus_dearic_coa_galiir_ac_yandar_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.talus_dearic_coa_galiir_ac_yandar.branchId");
         return SCRIPT_CONTINUE;
     }

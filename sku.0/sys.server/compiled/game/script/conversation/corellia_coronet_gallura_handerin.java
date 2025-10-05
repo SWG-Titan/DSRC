@@ -224,24 +224,23 @@ public class corellia_coronet_gallura_handerin extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_coronet_gallura_handerin_condition_thankfulDiktatComplete(player, npc))
+        if (corellia_coronet_gallura_handerin_condition_thankfulDiktatComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_31");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_gallura_handerin_condition_governmentWorkComplete(player, npc))
+        if (corellia_coronet_gallura_handerin_condition_governmentWorkComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!corellia_coronet_gallura_handerin_condition_onInformant(player, npc))
+            if (!corellia_coronet_gallura_handerin_condition_onInformant(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -256,22 +255,22 @@ public class corellia_coronet_gallura_handerin extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_56");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_gallura_handerin.branchId", 2);
-                npcStartConversation(player, npc, "corellia_coronet_gallura_handerin", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_gallura_handerin", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_gallura_handerin_condition_missingCourierSuccess(player, npc))
+        if (corellia_coronet_gallura_handerin_condition_missingCourierSuccess(player, self))
         {
-            corellia_coronet_gallura_handerin_action_endGovernmentWork(player, npc);
+            corellia_coronet_gallura_handerin_action_endGovernmentWork(player, self);
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, npc))
+            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -286,34 +285,34 @@ public class corellia_coronet_gallura_handerin extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_51");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_gallura_handerin.branchId", 4);
-                npcStartConversation(player, npc, "corellia_coronet_gallura_handerin", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_gallura_handerin", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_gallura_handerin_condition_missingCourierActive(player, npc))
+        if (corellia_coronet_gallura_handerin_condition_missingCourierActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_11");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_gallura_handerin_condition_stolenArmorComplete(player, npc))
+        if (corellia_coronet_gallura_handerin_condition_stolenArmorComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_13");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, npc))
+            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, npc))
+            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -332,34 +331,34 @@ public class corellia_coronet_gallura_handerin extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_gallura_handerin.branchId", 7);
-                npcStartConversation(player, npc, "corellia_coronet_gallura_handerin", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_gallura_handerin", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_gallura_handerin_condition_stolenArmorActive(player, npc))
+        if (corellia_coronet_gallura_handerin_condition_stolenArmorActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_19");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_gallura_handerin_condition_dropBoxesComplete(player, npc))
+        if (corellia_coronet_gallura_handerin_condition_dropBoxesComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_21");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, npc))
+            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, npc))
+            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -378,34 +377,34 @@ public class corellia_coronet_gallura_handerin extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_33");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_gallura_handerin.branchId", 11);
-                npcStartConversation(player, npc, "corellia_coronet_gallura_handerin", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_gallura_handerin", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_gallura_handerin_condition_dropBoxesActive(player, npc))
+        if (corellia_coronet_gallura_handerin_condition_dropBoxesActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_37");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_gallura_handerin_condition_governemtWorkBegin(player, npc))
+        if (corellia_coronet_gallura_handerin_condition_governemtWorkBegin(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_39");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, npc))
+            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, npc))
+            if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -424,21 +423,21 @@ public class corellia_coronet_gallura_handerin extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_45");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_gallura_handerin.branchId", 15);
-                npcStartConversation(player, npc, "corellia_coronet_gallura_handerin", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_gallura_handerin", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, npc))
+        if (corellia_coronet_gallura_handerin_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_50");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -447,29 +446,28 @@ public class corellia_coronet_gallura_handerin extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_coronet_gallura_handerin.branchId");
-        if (branchId == 2 && corellia_coronet_gallura_handerin_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && corellia_coronet_gallura_handerin_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && corellia_coronet_gallura_handerin_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && corellia_coronet_gallura_handerin_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && corellia_coronet_gallura_handerin_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && corellia_coronet_gallura_handerin_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && corellia_coronet_gallura_handerin_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && corellia_coronet_gallura_handerin_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && corellia_coronet_gallura_handerin_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && corellia_coronet_gallura_handerin_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_coronet_gallura_handerin.branchId");
         return SCRIPT_CONTINUE;
     }

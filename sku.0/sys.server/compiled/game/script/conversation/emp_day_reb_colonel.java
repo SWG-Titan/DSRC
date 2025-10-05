@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class emp_day_reb_colonel extends script.base_script
+public class emp_day_reb_colonel extends base_script
 {
     public emp_day_reb_colonel()
     {
@@ -421,37 +421,36 @@ public class emp_day_reb_colonel extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (emp_day_reb_colonel_condition_isImperial(player, npc))
+        if (emp_day_reb_colonel_condition_isImperial(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_293");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_reb_colonel_condition_questCompleted(player, npc))
+        if (emp_day_reb_colonel_condition_questCompleted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_295");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_reb_colonel_condition_hasTask8(player, npc))
+        if (emp_day_reb_colonel_condition_hasTask8(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_299");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_reb_colonel_condition_convertOfficer(player, npc))
+            if (emp_day_reb_colonel_condition_convertOfficer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!emp_day_reb_colonel_condition_convertOfficer(player, npc))
+            if (!emp_day_reb_colonel_condition_convertOfficer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -470,27 +469,27 @@ public class emp_day_reb_colonel extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_310");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_reb_colonel.branchId", 3);
-                npcStartConversation(player, npc, "emp_day_reb_colonel", message, responses);
+                npcStartConversation(player, self, "emp_day_reb_colonel", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_reb_colonel_condition_notReadyForYou(player, npc))
+        if (emp_day_reb_colonel_condition_notReadyForYou(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_314");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_reb_colonel_condition_hasTask6(player, npc))
+        if (emp_day_reb_colonel_condition_hasTask6(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_316");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_reb_colonel_condition__defaultCondition(player, npc))
+            if (emp_day_reb_colonel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -505,27 +504,27 @@ public class emp_day_reb_colonel extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_318");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_reb_colonel.branchId", 7);
-                npcStartConversation(player, npc, "emp_day_reb_colonel", message, responses);
+                npcStartConversation(player, self, "emp_day_reb_colonel", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_reb_colonel_condition_hasTask7(player, npc))
+        if (emp_day_reb_colonel_condition_hasTask7(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_348");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_reb_colonel_condition__defaultCondition(player, npc))
+        if (emp_day_reb_colonel_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_350");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -534,29 +533,28 @@ public class emp_day_reb_colonel extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.emp_day_reb_colonel.branchId");
-        if (branchId == 3 && emp_day_reb_colonel_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && emp_day_reb_colonel_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && emp_day_reb_colonel_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && emp_day_reb_colonel_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && emp_day_reb_colonel_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && emp_day_reb_colonel_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && emp_day_reb_colonel_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && emp_day_reb_colonel_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && emp_day_reb_colonel_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && emp_day_reb_colonel_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.emp_day_reb_colonel.branchId");
         return SCRIPT_CONTINUE;
     }

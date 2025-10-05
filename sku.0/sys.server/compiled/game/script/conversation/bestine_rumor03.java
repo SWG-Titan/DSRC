@@ -4,7 +4,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.*;
 
-public class bestine_rumor03 extends script.base_script
+public class bestine_rumor03 extends base_script
 {
     public bestine_rumor03()
     {

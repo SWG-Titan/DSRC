@@ -296,50 +296,49 @@ public class prof_officer_11 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (prof_officer_11_condition_doneWithOfficerQuest(player, npc))
+        if (prof_officer_11_condition_doneWithOfficerQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prof_officer_11_condition_notOfficer(player, npc))
+        if (prof_officer_11_condition_notOfficer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prof_officer_11_condition_finishingOfficer(player, npc))
+        if (prof_officer_11_condition_finishingOfficer(player, self))
         {
-            prof_officer_11_action_sendFinishSignal(player, npc);
+            prof_officer_11_action_sendFinishSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prof_officer_11_condition_isDoingOfficerQuest(player, npc))
+        if (prof_officer_11_condition_isDoingOfficerQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prof_officer_11_condition__defaultCondition(player, npc))
+        if (prof_officer_11_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prof_officer_11_condition__defaultCondition(player, npc))
+            if (prof_officer_11_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (prof_officer_11_condition__defaultCondition(player, npc))
+            if (prof_officer_11_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -358,15 +357,15 @@ public class prof_officer_11 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.prof_officer_11.branchId", 5);
-                npcStartConversation(player, npc, "prof_officer_11", message, responses);
+                npcStartConversation(player, self, "prof_officer_11", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -375,25 +374,24 @@ public class prof_officer_11 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.prof_officer_11.branchId");
-        if (branchId == 5 && prof_officer_11_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && prof_officer_11_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && prof_officer_11_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && prof_officer_11_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && prof_officer_11_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && prof_officer_11_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && prof_officer_11_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && prof_officer_11_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.prof_officer_11.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -572,25 +572,24 @@ public class destroyed_camp_radio extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (destroyed_camp_radio_condition_hasCompletedSeries(player, npc))
+        if (destroyed_camp_radio_condition_hasCompletedSeries(player, self))
         {
-            destroyed_camp_radio_action_sendStatic(player, npc);
+            destroyed_camp_radio_action_sendStatic(player, self);
             string_id message = new string_id(c_stringFile, "s_407");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (destroyed_camp_radio_condition_isOnTask03(player, npc))
+        if (destroyed_camp_radio_condition_isOnTask03(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_409");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (destroyed_camp_radio_condition__defaultCondition(player, npc))
+            if (destroyed_camp_radio_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -605,21 +604,21 @@ public class destroyed_camp_radio extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_411");
                 }
                 utils.setScriptVar(player, "conversation.destroyed_camp_radio.branchId", 2);
-                npcStartConversation(player, npc, "destroyed_camp_radio", message, responses);
+                npcStartConversation(player, self, "destroyed_camp_radio", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (destroyed_camp_radio_condition_isOnTask02(player, npc))
+        if (destroyed_camp_radio_condition_isOnTask02(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_415");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (destroyed_camp_radio_condition__defaultCondition(player, npc))
+            if (destroyed_camp_radio_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -634,21 +633,21 @@ public class destroyed_camp_radio extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_417");
                 }
                 utils.setScriptVar(player, "conversation.destroyed_camp_radio.branchId", 4);
-                npcStartConversation(player, npc, "destroyed_camp_radio", message, responses);
+                npcStartConversation(player, self, "destroyed_camp_radio", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (destroyed_camp_radio_condition_isOnTask01(player, npc))
+        if (destroyed_camp_radio_condition_isOnTask01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_441");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (destroyed_camp_radio_condition__defaultCondition(player, npc))
+            if (destroyed_camp_radio_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -663,21 +662,21 @@ public class destroyed_camp_radio extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_443");
                 }
                 utils.setScriptVar(player, "conversation.destroyed_camp_radio.branchId", 10);
-                npcStartConversation(player, npc, "destroyed_camp_radio", message, responses);
+                npcStartConversation(player, self, "destroyed_camp_radio", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (destroyed_camp_radio_condition_isOnMission(player, npc))
+        if (destroyed_camp_radio_condition_isOnMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_104");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (destroyed_camp_radio_condition__defaultCondition(player, npc))
+            if (destroyed_camp_radio_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -692,21 +691,21 @@ public class destroyed_camp_radio extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_105");
                 }
                 utils.setScriptVar(player, "conversation.destroyed_camp_radio.branchId", 17);
-                npcStartConversation(player, npc, "destroyed_camp_radio", message, responses);
+                npcStartConversation(player, self, "destroyed_camp_radio", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (destroyed_camp_radio_condition__defaultCondition(player, npc))
+        if (destroyed_camp_radio_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_467");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (destroyed_camp_radio_condition__defaultCondition(player, npc))
+            if (destroyed_camp_radio_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -721,15 +720,15 @@ public class destroyed_camp_radio extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_469");
                 }
                 utils.setScriptVar(player, "conversation.destroyed_camp_radio.branchId", 19);
-                npcStartConversation(player, npc, "destroyed_camp_radio", message, responses);
+                npcStartConversation(player, self, "destroyed_camp_radio", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -738,65 +737,64 @@ public class destroyed_camp_radio extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.destroyed_camp_radio.branchId");
-        if (branchId == 2 && destroyed_camp_radio_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && destroyed_camp_radio_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && destroyed_camp_radio_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && destroyed_camp_radio_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && destroyed_camp_radio_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && destroyed_camp_radio_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && destroyed_camp_radio_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && destroyed_camp_radio_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && destroyed_camp_radio_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && destroyed_camp_radio_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && destroyed_camp_radio_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && destroyed_camp_radio_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && destroyed_camp_radio_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && destroyed_camp_radio_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && destroyed_camp_radio_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && destroyed_camp_radio_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && destroyed_camp_radio_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && destroyed_camp_radio_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && destroyed_camp_radio_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && destroyed_camp_radio_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && destroyed_camp_radio_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && destroyed_camp_radio_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && destroyed_camp_radio_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && destroyed_camp_radio_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && destroyed_camp_radio_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && destroyed_camp_radio_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && destroyed_camp_radio_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && destroyed_camp_radio_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.destroyed_camp_radio.branchId");
         return SCRIPT_CONTINUE;
     }

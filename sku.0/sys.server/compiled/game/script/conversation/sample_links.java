@@ -4,7 +4,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.*;
 
-public class sample_links extends script.base_script
+public class sample_links extends base_script
 {
     public sample_links()
     {

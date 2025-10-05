@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class imperial_inquisitor_dathomir extends script.base_script
+public class imperial_inquisitor_dathomir extends base_script
 {
     public imperial_inquisitor_dathomir()
     {

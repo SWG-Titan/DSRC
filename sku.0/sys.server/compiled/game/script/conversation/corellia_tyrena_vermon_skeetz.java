@@ -605,25 +605,24 @@ public class corellia_tyrena_vermon_skeetz extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_tyrena_vermon_skeetz_condition_completePetty(player, npc))
+        if (corellia_tyrena_vermon_skeetz_condition_completePetty(player, self))
         {
-            doAnimationAction(npc, "cuckoo");
+            doAnimationAction(self, "cuckoo");
             string_id message = new string_id(c_stringFile, "s_36");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_vermon_skeetz_condition_onPettyReturn(player, npc))
+        if (corellia_tyrena_vermon_skeetz_condition_onPettyReturn(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_29");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_vermon_skeetz_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_vermon_skeetz_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -638,22 +637,22 @@ public class corellia_tyrena_vermon_skeetz extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_30");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_vermon_skeetz.branchId", 2);
-                npcStartConversation(player, npc, "corellia_tyrena_vermon_skeetz", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_vermon_skeetz", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_vermon_skeetz_condition_onPetty(player, npc))
+        if (corellia_tyrena_vermon_skeetz_condition_onPetty(player, self))
         {
             doAnimationAction(player, "slit_throat");
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_vermon_skeetz_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_vermon_skeetz_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -668,22 +667,22 @@ public class corellia_tyrena_vermon_skeetz extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_21");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_vermon_skeetz.branchId", 6);
-                npcStartConversation(player, npc, "corellia_tyrena_vermon_skeetz", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_vermon_skeetz", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_vermon_skeetz_condition_completeMissing(player, npc))
+        if (corellia_tyrena_vermon_skeetz_condition_completeMissing(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_38");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_vermon_skeetz_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_vermon_skeetz_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -698,22 +697,22 @@ public class corellia_tyrena_vermon_skeetz extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_40");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_vermon_skeetz.branchId", 11);
-                npcStartConversation(player, npc, "corellia_tyrena_vermon_skeetz", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_vermon_skeetz", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_vermon_skeetz_condition__defaultCondition(player, npc))
+        if (corellia_tyrena_vermon_skeetz_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_72");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -722,69 +721,68 @@ public class corellia_tyrena_vermon_skeetz extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_tyrena_vermon_skeetz.branchId");
-        if (branchId == 2 && corellia_tyrena_vermon_skeetz_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && corellia_tyrena_vermon_skeetz_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && corellia_tyrena_vermon_skeetz_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corellia_tyrena_vermon_skeetz_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && corellia_tyrena_vermon_skeetz_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && corellia_tyrena_vermon_skeetz_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_tyrena_vermon_skeetz_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_tyrena_vermon_skeetz_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && corellia_tyrena_vermon_skeetz_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && corellia_tyrena_vermon_skeetz_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && corellia_tyrena_vermon_skeetz_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && corellia_tyrena_vermon_skeetz_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && corellia_tyrena_vermon_skeetz_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && corellia_tyrena_vermon_skeetz_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && corellia_tyrena_vermon_skeetz_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && corellia_tyrena_vermon_skeetz_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && corellia_tyrena_vermon_skeetz_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && corellia_tyrena_vermon_skeetz_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && corellia_tyrena_vermon_skeetz_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && corellia_tyrena_vermon_skeetz_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && corellia_tyrena_vermon_skeetz_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && corellia_tyrena_vermon_skeetz_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && corellia_tyrena_vermon_skeetz_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && corellia_tyrena_vermon_skeetz_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && corellia_tyrena_vermon_skeetz_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && corellia_tyrena_vermon_skeetz_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && corellia_tyrena_vermon_skeetz_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && corellia_tyrena_vermon_skeetz_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && corellia_tyrena_vermon_skeetz_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && corellia_tyrena_vermon_skeetz_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_tyrena_vermon_skeetz.branchId");
         return SCRIPT_CONTINUE;
     }

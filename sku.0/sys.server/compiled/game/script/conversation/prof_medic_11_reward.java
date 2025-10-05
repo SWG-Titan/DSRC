@@ -90,26 +90,25 @@ public class prof_medic_11_reward extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (prof_medic_11_reward_condition_playercompletedTask(player, npc))
+        if (prof_medic_11_reward_condition_playercompletedTask(player, self))
         {
-            prof_medic_11_reward_action_facePlayer(player, npc);
+            prof_medic_11_reward_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prof_medic_11_reward_condition_playerOnCorrectStep(player, npc))
+        if (prof_medic_11_reward_condition_playerOnCorrectStep(player, self))
         {
-            prof_medic_11_reward_action_facePlayer(player, npc);
+            prof_medic_11_reward_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prof_medic_11_reward_condition__defaultCondition(player, npc))
+            if (prof_medic_11_reward_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -127,27 +126,27 @@ public class prof_medic_11_reward extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "prof_medic_11_reward", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "prof_medic_11_reward", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (prof_medic_11_reward_condition__defaultCondition(player, npc))
+        if (prof_medic_11_reward_condition__defaultCondition(player, self))
         {
-            prof_medic_11_reward_action_facePlayer(player, npc);
+            prof_medic_11_reward_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -156,13 +155,12 @@ public class prof_medic_11_reward extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.prof_medic_11_reward.branchId");
-        if (branchId == 2 && prof_medic_11_reward_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && prof_medic_11_reward_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.prof_medic_11_reward.branchId");
         return SCRIPT_CONTINUE;
     }

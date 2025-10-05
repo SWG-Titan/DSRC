@@ -1089,38 +1089,37 @@ public class npe_artisan_questgiver extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_artisan_questgiver_condition_playeronSecondQuest(player, npc))
+        if (npe_artisan_questgiver_condition_playeronSecondQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_40");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_artisan_questgiver_condition_playerFinishedFirstQuest(player, npc))
+        if (npe_artisan_questgiver_condition_playerFinishedFirstQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_28");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_artisan_questgiver_condition__defaultCondition(player, npc))
+            if (npe_artisan_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_artisan_questgiver_condition__defaultCondition(player, npc))
+            if (npe_artisan_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (npe_artisan_questgiver_condition__defaultCondition(player, npc))
+            if (npe_artisan_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1146,33 +1145,33 @@ public class npe_artisan_questgiver extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "npe_artisan_questgiver", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "npe_artisan_questgiver", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_artisan_questgiver_condition_playerOnFirstQuest(player, npc))
+        if (npe_artisan_questgiver_condition_playerOnFirstQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_21");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_artisan_questgiver_condition_playerOnFirstQuestRewardStep(player, npc))
+            if (npe_artisan_questgiver_condition_playerOnFirstQuestRewardStep(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_artisan_questgiver_condition__defaultCondition(player, npc))
+            if (npe_artisan_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1191,28 +1190,28 @@ public class npe_artisan_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_25");
                 }
                 utils.setScriptVar(player, "conversation.npe_artisan_questgiver.branchId", 8);
-                npcStartConversation(player, npc, "npe_artisan_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_artisan_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_artisan_questgiver_condition__defaultCondition(player, npc))
+        if (npe_artisan_questgiver_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_artisan_questgiver_condition__defaultCondition(player, npc))
+            if (npe_artisan_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_artisan_questgiver_condition__defaultCondition(player, npc))
+            if (npe_artisan_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1231,15 +1230,15 @@ public class npe_artisan_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6");
                 }
                 utils.setScriptVar(player, "conversation.npe_artisan_questgiver.branchId", 16);
-                npcStartConversation(player, npc, "npe_artisan_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_artisan_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1248,69 +1247,68 @@ public class npe_artisan_questgiver extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_artisan_questgiver.branchId");
-        if (branchId == 2 && npe_artisan_questgiver_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_artisan_questgiver_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && npe_artisan_questgiver_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && npe_artisan_questgiver_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && npe_artisan_questgiver_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && npe_artisan_questgiver_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && npe_artisan_questgiver_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && npe_artisan_questgiver_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && npe_artisan_questgiver_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && npe_artisan_questgiver_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && npe_artisan_questgiver_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && npe_artisan_questgiver_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && npe_artisan_questgiver_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && npe_artisan_questgiver_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && npe_artisan_questgiver_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && npe_artisan_questgiver_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && npe_artisan_questgiver_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && npe_artisan_questgiver_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && npe_artisan_questgiver_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && npe_artisan_questgiver_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && npe_artisan_questgiver_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && npe_artisan_questgiver_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && npe_artisan_questgiver_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && npe_artisan_questgiver_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && npe_artisan_questgiver_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && npe_artisan_questgiver_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && npe_artisan_questgiver_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && npe_artisan_questgiver_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && npe_artisan_questgiver_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && npe_artisan_questgiver_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_artisan_questgiver.branchId");
         return SCRIPT_CONTINUE;
     }

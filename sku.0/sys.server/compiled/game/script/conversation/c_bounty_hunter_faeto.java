@@ -24,8 +24,7 @@ public class c_bounty_hunter_faeto extends script.base_script
     {
         int questId1 = questGetQuestId("quest/c_bounty_hunter_kill_1");
         int ground = groundquests.getTaskId(questId1, "bounty_hunter_kill_1_e100");
-        boolean onTask = (questIsTaskComplete(questId1, ground, player));
-        return onTask;
+        return (questIsTaskComplete(questId1, ground, player));
     }
     public boolean c_bounty_hunter_faeto_condition_hasCompletedTaskBounty1(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -557,26 +556,25 @@ public class c_bounty_hunter_faeto extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_bounty_hunter_faeto_condition_hasCompletedQuestAll(player, npc))
+        if (c_bounty_hunter_faeto_condition_hasCompletedQuestAll(player, self))
         {
-            c_bounty_hunter_faeto_action_facePlayer(player, npc);
+            c_bounty_hunter_faeto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_39");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_bounty_hunter_faeto_condition_hasCompletedTaskBounty1(player, npc))
+        if (c_bounty_hunter_faeto_condition_hasCompletedTaskBounty1(player, self))
         {
-            c_bounty_hunter_faeto_action_facePlayer(player, npc);
+            c_bounty_hunter_faeto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_22");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_bounty_hunter_faeto_condition__defaultCondition(player, npc))
+            if (c_bounty_hunter_faeto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -591,22 +589,22 @@ public class c_bounty_hunter_faeto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_23");
                 }
                 utils.setScriptVar(player, "conversation.c_bounty_hunter_faeto.branchId", 2);
-                npcStartConversation(player, npc, "c_bounty_hunter_faeto", message, responses);
+                npcStartConversation(player, self, "c_bounty_hunter_faeto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_bounty_hunter_faeto_condition_isTaskActiveBounty1(player, npc))
+        if (c_bounty_hunter_faeto_condition_isTaskActiveBounty1(player, self))
         {
-            c_bounty_hunter_faeto_action_facePlayer(player, npc);
+            c_bounty_hunter_faeto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_bounty_hunter_faeto_condition__defaultCondition(player, npc))
+            if (c_bounty_hunter_faeto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -621,36 +619,36 @@ public class c_bounty_hunter_faeto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_33");
                 }
                 utils.setScriptVar(player, "conversation.c_bounty_hunter_faeto.branchId", 4);
-                npcStartConversation(player, npc, "c_bounty_hunter_faeto", message, responses);
+                npcStartConversation(player, self, "c_bounty_hunter_faeto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_bounty_hunter_faeto_condition_isTaskActiveBobaLink(player, npc))
+        if (c_bounty_hunter_faeto_condition_isTaskActiveBobaLink(player, self))
         {
-            c_bounty_hunter_faeto_action_facePlayer(player, npc);
+            c_bounty_hunter_faeto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_42");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_bounty_hunter_faeto_condition__defaultCondition(player, npc))
+            if (c_bounty_hunter_faeto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_bounty_hunter_faeto_condition__defaultCondition(player, npc))
+            if (c_bounty_hunter_faeto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_bounty_hunter_faeto_condition__defaultCondition(player, npc))
+            if (c_bounty_hunter_faeto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -673,21 +671,21 @@ public class c_bounty_hunter_faeto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_103");
                 }
                 utils.setScriptVar(player, "conversation.c_bounty_hunter_faeto.branchId", 6);
-                npcStartConversation(player, npc, "c_bounty_hunter_faeto", message, responses);
+                npcStartConversation(player, self, "c_bounty_hunter_faeto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_bounty_hunter_faeto_condition__defaultCondition(player, npc))
+        if (c_bounty_hunter_faeto_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_72");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -696,45 +694,44 @@ public class c_bounty_hunter_faeto extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_bounty_hunter_faeto.branchId");
-        if (branchId == 2 && c_bounty_hunter_faeto_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && c_bounty_hunter_faeto_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && c_bounty_hunter_faeto_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && c_bounty_hunter_faeto_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && c_bounty_hunter_faeto_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && c_bounty_hunter_faeto_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && c_bounty_hunter_faeto_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && c_bounty_hunter_faeto_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && c_bounty_hunter_faeto_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && c_bounty_hunter_faeto_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && c_bounty_hunter_faeto_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && c_bounty_hunter_faeto_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && c_bounty_hunter_faeto_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && c_bounty_hunter_faeto_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && c_bounty_hunter_faeto_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && c_bounty_hunter_faeto_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && c_bounty_hunter_faeto_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && c_bounty_hunter_faeto_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_bounty_hunter_faeto.branchId");
         return SCRIPT_CONTINUE;
     }

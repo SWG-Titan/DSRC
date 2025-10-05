@@ -327,19 +327,18 @@ public class tatooine_espa_jawadroid extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_espa_jawadroid_condition_onJawaTask(player, npc))
+        if (tatooine_espa_jawadroid_condition_onJawaTask(player, self))
         {
-            tatooine_espa_jawadroid_action_facePlayer(player, npc);
+            tatooine_espa_jawadroid_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_jawadroid_condition__defaultCondition(player, npc))
+            if (tatooine_espa_jawadroid_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -354,21 +353,21 @@ public class tatooine_espa_jawadroid extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_jawadroid.branchId", 1);
-                npcStartConversation(player, npc, "tatooine_espa_jawadroid", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_jawadroid", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_jawadroid_condition__defaultCondition(player, npc))
+        if (tatooine_espa_jawadroid_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_jawadroid_condition__defaultCondition(player, npc))
+            if (tatooine_espa_jawadroid_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -383,15 +382,15 @@ public class tatooine_espa_jawadroid extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_jawadroid.branchId", 9);
-                npcStartConversation(player, npc, "tatooine_espa_jawadroid", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_jawadroid", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -400,41 +399,40 @@ public class tatooine_espa_jawadroid extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_espa_jawadroid.branchId");
-        if (branchId == 1 && tatooine_espa_jawadroid_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && tatooine_espa_jawadroid_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && tatooine_espa_jawadroid_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tatooine_espa_jawadroid_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && tatooine_espa_jawadroid_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_espa_jawadroid_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && tatooine_espa_jawadroid_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tatooine_espa_jawadroid_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tatooine_espa_jawadroid_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_espa_jawadroid_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && tatooine_espa_jawadroid_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && tatooine_espa_jawadroid_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && tatooine_espa_jawadroid_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && tatooine_espa_jawadroid_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tatooine_espa_jawadroid_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tatooine_espa_jawadroid_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_espa_jawadroid.branchId");
         return SCRIPT_CONTINUE;
     }

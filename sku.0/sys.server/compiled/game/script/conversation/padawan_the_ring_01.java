@@ -1055,25 +1055,24 @@ public class padawan_the_ring_01 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (padawan_the_ring_01_condition_completedSuccess(player, npc))
+        if (padawan_the_ring_01_condition_completedSuccess(player, self))
         {
-            doAnimationAction(npc, "weeping");
+            doAnimationAction(self, "weeping");
             string_id message = new string_id(c_stringFile, "s_d0ed20dc");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (padawan_the_ring_01_condition_targetWasSpokenTo(player, npc))
+        if (padawan_the_ring_01_condition_targetWasSpokenTo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_112f3596");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_the_ring_01_condition__defaultCondition(player, npc))
+            if (padawan_the_ring_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1088,21 +1087,21 @@ public class padawan_the_ring_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5056dd2e");
                 }
                 utils.setScriptVar(player, "conversation.padawan_the_ring_01.branchId", 2);
-                npcStartConversation(player, npc, "padawan_the_ring_01", message, responses);
+                npcStartConversation(player, self, "padawan_the_ring_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_the_ring_01_condition_targetWasEliminated(player, npc))
+        if (padawan_the_ring_01_condition_targetWasEliminated(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_70e58d4e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_the_ring_01_condition__defaultCondition(player, npc))
+            if (padawan_the_ring_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1117,28 +1116,28 @@ public class padawan_the_ring_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6fd316c5");
                 }
                 utils.setScriptVar(player, "conversation.padawan_the_ring_01.branchId", 4);
-                npcStartConversation(player, npc, "padawan_the_ring_01", message, responses);
+                npcStartConversation(player, self, "padawan_the_ring_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_the_ring_01_condition_acceptedQuest(player, npc))
+        if (padawan_the_ring_01_condition_acceptedQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_c0eab960");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_the_ring_01_condition__defaultCondition(player, npc))
+            if (padawan_the_ring_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (padawan_the_ring_01_condition__defaultCondition(player, npc))
+            if (padawan_the_ring_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1157,29 +1156,29 @@ public class padawan_the_ring_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_23b61565");
                 }
                 utils.setScriptVar(player, "conversation.padawan_the_ring_01.branchId", 12);
-                npcStartConversation(player, npc, "padawan_the_ring_01", message, responses);
+                npcStartConversation(player, self, "padawan_the_ring_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_the_ring_01_condition_isTrialPlayer(player, npc))
+        if (padawan_the_ring_01_condition_isTrialPlayer(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_3924c1a9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_the_ring_01_condition__defaultCondition(player, npc))
+            if (padawan_the_ring_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (padawan_the_ring_01_condition__defaultCondition(player, npc))
+            if (padawan_the_ring_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1198,21 +1197,21 @@ public class padawan_the_ring_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7cb3d5a9");
                 }
                 utils.setScriptVar(player, "conversation.padawan_the_ring_01.branchId", 15);
-                npcStartConversation(player, npc, "padawan_the_ring_01", message, responses);
+                npcStartConversation(player, self, "padawan_the_ring_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_the_ring_01_condition__defaultCondition(player, npc))
+        if (padawan_the_ring_01_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_16c644b4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1221,89 +1220,88 @@ public class padawan_the_ring_01 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.padawan_the_ring_01.branchId");
-        if (branchId == 2 && padawan_the_ring_01_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && padawan_the_ring_01_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && padawan_the_ring_01_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && padawan_the_ring_01_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && padawan_the_ring_01_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && padawan_the_ring_01_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && padawan_the_ring_01_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && padawan_the_ring_01_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && padawan_the_ring_01_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && padawan_the_ring_01_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && padawan_the_ring_01_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && padawan_the_ring_01_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && padawan_the_ring_01_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && padawan_the_ring_01_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && padawan_the_ring_01_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && padawan_the_ring_01_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && padawan_the_ring_01_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && padawan_the_ring_01_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && padawan_the_ring_01_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && padawan_the_ring_01_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && padawan_the_ring_01_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && padawan_the_ring_01_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && padawan_the_ring_01_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && padawan_the_ring_01_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && padawan_the_ring_01_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && padawan_the_ring_01_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && padawan_the_ring_01_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && padawan_the_ring_01_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && padawan_the_ring_01_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && padawan_the_ring_01_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && padawan_the_ring_01_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && padawan_the_ring_01_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && padawan_the_ring_01_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && padawan_the_ring_01_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && padawan_the_ring_01_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && padawan_the_ring_01_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && padawan_the_ring_01_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && padawan_the_ring_01_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && padawan_the_ring_01_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && padawan_the_ring_01_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.padawan_the_ring_01.branchId");
         return SCRIPT_CONTINUE;
     }

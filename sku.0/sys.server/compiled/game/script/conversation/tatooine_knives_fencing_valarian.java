@@ -21,71 +21,61 @@ public class tatooine_knives_fencing_valarian extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_fencing");
         int finishTPreward = groundquests.getTaskId(questId1, "tatooine_knives_fencing_e3");
-        boolean onTask = questIsTaskActive(questId1, finishTPreward, player);
-        return onTask;
+        return questIsTaskActive(questId1, finishTPreward, player);
     }
     public boolean tatooine_knives_fencing_valarian_condition_QuestComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_fencing");
         int questId2 = questGetQuestId("quest/tatooine_knives_fencing_pt_2");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && !((features.isSpaceEdition(player))) || ((questIsQuestComplete(questId1, player)) && (questIsQuestComplete(questId2, player)));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && !((features.isSpaceEdition(player))) || ((questIsQuestComplete(questId1, player)) && (questIsQuestComplete(questId2, player)));
     }
     public boolean tatooine_knives_fencing_valarian_condition_completeTandP(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_thrust");
         int questId2 = questGetQuestId("quest/tatooine_knives_parry_pt2");
         int questId3 = questGetQuestId("quest/tatooine_knives_fencing_reward");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (questIsQuestComplete(questId2, player)) && (questIsQuestActive(questId3, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (questIsQuestComplete(questId2, player)) && (questIsQuestActive(questId3, player));
     }
     public boolean tatooine_knives_fencing_valarian_condition_physcoHasJTL(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_fencing");
-        boolean onTask = questIsQuestComplete(questId1, player) && features.isSpaceEdition(player);
-        return onTask;
+        return questIsQuestComplete(questId1, player) && features.isSpaceEdition(player);
     }
     public boolean tatooine_knives_fencing_valarian_condition_onPhysco(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_fencing");
         int finishBank = groundquests.getTaskId(questId1, "tatooine_knives_fencing_e85");
-        boolean onTask = questIsTaskActive(questId1, finishBank, player);
-        return onTask;
+        return questIsTaskActive(questId1, finishBank, player);
     }
     public boolean tatooine_knives_fencing_valarian_condition_thrustComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_thrust");
         int questId2 = questGetQuestId("quest/tatooine_knives_fencing_reward");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (questIsQuestActive(questId2, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (questIsQuestActive(questId2, player));
     }
     public boolean tatooine_knives_fencing_valarian_condition_parryComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_parry_pt2");
         int questId2 = questGetQuestId("quest/tatooine_knives_fencing_reward");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (questIsQuestActive(questId2, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (questIsQuestActive(questId2, player));
     }
     public boolean tatooine_knives_fencing_valarian_condition_onUna(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_fencing");
         int finishBank = groundquests.getTaskId(questId1, "tatooine_knives_fencing_e45");
-        boolean onTask = questIsTaskActive(questId1, finishBank, player);
-        return onTask;
+        return questIsTaskActive(questId1, finishBank, player);
     }
     public boolean tatooine_knives_fencing_valarian_condition_unaComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_fencing");
         int keelaQuestioned = groundquests.getTaskId(questId1, "tatooine_knives_fencing_e7");
-        boolean onTask = questIsTaskActive(questId1, keelaQuestioned, player);
-        return onTask;
+        return questIsTaskActive(questId1, keelaQuestioned, player);
     }
     public boolean tatooine_knives_fencing_valarian_condition_onKeela(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_fencing");
         int finishBank = groundquests.getTaskId(questId1, "tatooine_knives_fencing_e6");
-        boolean onTask = questIsTaskActive(questId1, finishBank, player);
-        return onTask;
+        return questIsTaskActive(questId1, finishBank, player);
     }
     public boolean tatooine_knives_fencing_valarian_condition_spaceCompleted(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -99,15 +89,13 @@ public class tatooine_knives_fencing_valarian extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_fencing_pt_2");
         int onspace = groundquests.getTaskId(questId1, "tatooine_knives_fencing_e17");
-        boolean onTask = questIsTaskActive(questId1, onspace, player);
-        return onTask;
+        return questIsTaskActive(questId1, onspace, player);
     }
     public boolean tatooine_knives_fencing_valarian_condition_physcoDead(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_fencing");
         int tatooine_knives_fencing_valarian_condition_physcoDead = groundquests.getTaskId(questId1, "tatooine_knives_fencing_e85");
-        boolean onTask = (questIsTaskComplete(questId1, tatooine_knives_fencing_valarian_condition_physcoDead, player));
-        return onTask;
+        return (questIsTaskComplete(questId1, tatooine_knives_fencing_valarian_condition_physcoDead, player));
     }
     public boolean tatooine_knives_fencing_valarian_condition_isThisDisabled(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -1094,18 +1082,17 @@ public class tatooine_knives_fencing_valarian extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_knives_fencing_valarian_condition_hasGetReparations(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_hasGetReparations(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_163");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1120,41 +1107,41 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_166");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 1);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_wave_event_active(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_wave_event_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_165");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_hasPrologContentQuest(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_hasPrologContentQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_100");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1177,29 +1164,29 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_158");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 4);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_isThisDisabled(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_isThisDisabled(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_62");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_QuestComplete(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_QuestComplete(player, self))
         {
-            doAnimationAction(npc, "bow3");
-            tatooine_knives_fencing_valarian_action_facePlayer(player, npc);
+            doAnimationAction(self, "bow3");
+            tatooine_knives_fencing_valarian_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_105");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1214,42 +1201,42 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_76");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 11);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_squadComplete(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_squadComplete(player, self))
         {
-            tatooine_knives_fencing_valarian_action_signalReward(player, npc);
+            tatooine_knives_fencing_valarian_action_signalReward(player, self);
             string_id message = new string_id(c_stringFile, "s_148");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_spaceCompleted(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_spaceCompleted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_140");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1272,28 +1259,28 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_143");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 14);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_failSpace(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_failSpace(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_54");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1312,44 +1299,44 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_57");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 17);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_onIntercept(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_onIntercept(player, self))
         {
-            doAnimationAction(npc, "dismiss");
-            tatooine_knives_fencing_valarian_action_facePlayer(player, npc);
+            doAnimationAction(self, "dismiss");
+            tatooine_knives_fencing_valarian_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_139");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_physcoHasJTL(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_physcoHasJTL(player, self))
         {
-            tatooine_knives_fencing_valarian_action_facePlayer(player, npc);
+            tatooine_knives_fencing_valarian_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_127");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1372,23 +1359,23 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_134");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 20);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_physcoDead(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_physcoDead(player, self))
         {
-            doAnimationAction(npc, "applause_excited");
-            tatooine_knives_fencing_valarian_action_signalPhyscoReward(player, npc);
+            doAnimationAction(self, "applause_excited");
+            tatooine_knives_fencing_valarian_action_signalPhyscoReward(player, self);
             string_id message = new string_id(c_stringFile, "s_130");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1403,23 +1390,23 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_74");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 24);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_onPhysco(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_onPhysco(player, self))
         {
-            doAnimationAction(npc, "scream");
-            tatooine_knives_fencing_valarian_action_facePlayer(player, npc);
+            doAnimationAction(self, "scream");
+            tatooine_knives_fencing_valarian_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_126");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1434,37 +1421,37 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_72");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 26);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_unaComplete(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_unaComplete(player, self))
         {
-            doAnimationAction(npc, "shiver");
-            tatooine_knives_fencing_valarian_action_facePlayer(player, npc);
+            doAnimationAction(self, "shiver");
+            tatooine_knives_fencing_valarian_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_117");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1487,22 +1474,22 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_121");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 28);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_onKeela(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_onKeela(player, self))
         {
-            tatooine_knives_fencing_valarian_action_facePlayer(player, npc);
+            tatooine_knives_fencing_valarian_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_118");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1517,23 +1504,23 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_69");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 32);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_onUna(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_onUna(player, self))
         {
-            doAnimationAction(npc, "backhand");
-            tatooine_knives_fencing_valarian_action_facePlayer(player, npc);
+            doAnimationAction(self, "backhand");
+            tatooine_knives_fencing_valarian_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_116");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1548,28 +1535,28 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_82");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 34);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition_TandPrewarded(player, npc))
+        if (tatooine_knives_fencing_valarian_condition_TandPrewarded(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_106");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1588,44 +1575,44 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_111");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 36);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+        if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "bow");
-            tatooine_knives_fencing_valarian_action_facePlayer(player, npc);
+            doAnimationAction(self, "bow");
+            tatooine_knives_fencing_valarian_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_94");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, npc))
+            if (tatooine_knives_fencing_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_knives_fencing_valarian_condition_thrustComplete(player, npc))
+            if (tatooine_knives_fencing_valarian_condition_thrustComplete(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_knives_fencing_valarian_condition_parryComplete(player, npc))
+            if (tatooine_knives_fencing_valarian_condition_parryComplete(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (tatooine_knives_fencing_valarian_condition_completeTandP(player, npc))
+            if (tatooine_knives_fencing_valarian_condition_completeTandP(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1652,15 +1639,15 @@ public class tatooine_knives_fencing_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_170");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId", 40);
-                npcStartConversation(player, npc, "tatooine_knives_fencing_valarian", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_fencing_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1669,101 +1656,100 @@ public class tatooine_knives_fencing_valarian extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId");
-        if (branchId == 1 && tatooine_knives_fencing_valarian_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && tatooine_knives_fencing_valarian_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && tatooine_knives_fencing_valarian_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tatooine_knives_fencing_valarian_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && tatooine_knives_fencing_valarian_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && tatooine_knives_fencing_valarian_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && tatooine_knives_fencing_valarian_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && tatooine_knives_fencing_valarian_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && tatooine_knives_fencing_valarian_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && tatooine_knives_fencing_valarian_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tatooine_knives_fencing_valarian_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tatooine_knives_fencing_valarian_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && tatooine_knives_fencing_valarian_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && tatooine_knives_fencing_valarian_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && tatooine_knives_fencing_valarian_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && tatooine_knives_fencing_valarian_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && tatooine_knives_fencing_valarian_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && tatooine_knives_fencing_valarian_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && tatooine_knives_fencing_valarian_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && tatooine_knives_fencing_valarian_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && tatooine_knives_fencing_valarian_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && tatooine_knives_fencing_valarian_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && tatooine_knives_fencing_valarian_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && tatooine_knives_fencing_valarian_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && tatooine_knives_fencing_valarian_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && tatooine_knives_fencing_valarian_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && tatooine_knives_fencing_valarian_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && tatooine_knives_fencing_valarian_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && tatooine_knives_fencing_valarian_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && tatooine_knives_fencing_valarian_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && tatooine_knives_fencing_valarian_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && tatooine_knives_fencing_valarian_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && tatooine_knives_fencing_valarian_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && tatooine_knives_fencing_valarian_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && tatooine_knives_fencing_valarian_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && tatooine_knives_fencing_valarian_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && tatooine_knives_fencing_valarian_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && tatooine_knives_fencing_valarian_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && tatooine_knives_fencing_valarian_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && tatooine_knives_fencing_valarian_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && tatooine_knives_fencing_valarian_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && tatooine_knives_fencing_valarian_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && tatooine_knives_fencing_valarian_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && tatooine_knives_fencing_valarian_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && tatooine_knives_fencing_valarian_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && tatooine_knives_fencing_valarian_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_knives_fencing_valarian.branchId");
         return SCRIPT_CONTINUE;
     }

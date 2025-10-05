@@ -329,56 +329,55 @@ public class restuss_rebel_space_destroy extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (restuss_rebel_space_destroy_condition_isImperialPlayer(player, npc))
+        if (restuss_rebel_space_destroy_condition_isImperialPlayer(player, self))
         {
-            restuss_rebel_space_destroy_action_eject(player, npc);
+            restuss_rebel_space_destroy_action_eject(player, self);
             string_id message = new string_id(c_stringFile, "s_49");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_isRSFPilot(player, npc))
+        if (restuss_rebel_space_destroy_condition_isRSFPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_41");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_completedKill2(player, npc))
+        if (restuss_rebel_space_destroy_condition_completedKill2(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             doAnimationAction(player, "salute1");
-            restuss_rebel_space_destroy_action_signalDone2(player, npc);
+            restuss_rebel_space_destroy_action_signalDone2(player, self);
             string_id message = new string_id(c_stringFile, "s_13");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_completedKill1(player, npc))
+        if (restuss_rebel_space_destroy_condition_completedKill1(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             doAnimationAction(player, "salute1");
-            restuss_rebel_space_destroy_action_signalDone(player, npc);
+            restuss_rebel_space_destroy_action_signalDone(player, self);
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_isFailedTwo(player, npc))
+        if (restuss_rebel_space_destroy_condition_isFailedTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_45");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -397,28 +396,28 @@ public class restuss_rebel_space_destroy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_34");
                 }
                 utils.setScriptVar(player, "conversation.restuss_rebel_space_destroy.branchId", 12);
-                npcStartConversation(player, npc, "restuss_rebel_space_destroy", message, responses);
+                npcStartConversation(player, self, "restuss_rebel_space_destroy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_isFailedOne(player, npc))
+        if (restuss_rebel_space_destroy_condition_isFailedOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_46");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -437,46 +436,46 @@ public class restuss_rebel_space_destroy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37");
                 }
                 utils.setScriptVar(player, "conversation.restuss_rebel_space_destroy.branchId", 15);
-                npcStartConversation(player, npc, "restuss_rebel_space_destroy", message, responses);
+                npcStartConversation(player, self, "restuss_rebel_space_destroy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_killActive2(player, npc))
+        if (restuss_rebel_space_destroy_condition_killActive2(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             doAnimationAction(player, "salute1");
             string_id message = new string_id(c_stringFile, "s_11");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_killActive1(player, npc))
+        if (restuss_rebel_space_destroy_condition_killActive1(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             doAnimationAction(player, "salute1");
             string_id message = new string_id(c_stringFile, "s_12");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_enoughKills(player, npc))
+        if (restuss_rebel_space_destroy_condition_enoughKills(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             doAnimationAction(player, "salute1");
             string_id message = new string_id(c_stringFile, "s_33");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -495,30 +494,30 @@ public class restuss_rebel_space_destroy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_42");
                 }
                 utils.setScriptVar(player, "conversation.restuss_rebel_space_destroy.branchId", 9);
-                npcStartConversation(player, npc, "restuss_rebel_space_destroy", message, responses);
+                npcStartConversation(player, self, "restuss_rebel_space_destroy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_inPhase2(player, npc))
+        if (restuss_rebel_space_destroy_condition_inPhase2(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             doAnimationAction(player, "salute1");
             string_id message = new string_id(c_stringFile, "s_28");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -537,30 +536,30 @@ public class restuss_rebel_space_destroy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_34");
                 }
                 utils.setScriptVar(player, "conversation.restuss_rebel_space_destroy.branchId", 12);
-                npcStartConversation(player, npc, "restuss_rebel_space_destroy", message, responses);
+                npcStartConversation(player, self, "restuss_rebel_space_destroy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition_inPhase1(player, npc))
+        if (restuss_rebel_space_destroy_condition_inPhase1(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             doAnimationAction(player, "salute1");
             string_id message = new string_id(c_stringFile, "s_25");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+            if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -579,22 +578,22 @@ public class restuss_rebel_space_destroy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37");
                 }
                 utils.setScriptVar(player, "conversation.restuss_rebel_space_destroy.branchId", 15);
-                npcStartConversation(player, npc, "restuss_rebel_space_destroy", message, responses);
+                npcStartConversation(player, self, "restuss_rebel_space_destroy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_rebel_space_destroy_condition__defaultCondition(player, npc))
+        if (restuss_rebel_space_destroy_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -603,29 +602,28 @@ public class restuss_rebel_space_destroy extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.restuss_rebel_space_destroy.branchId");
-        if (branchId == 5 && restuss_rebel_space_destroy_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && restuss_rebel_space_destroy_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && restuss_rebel_space_destroy_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && restuss_rebel_space_destroy_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && restuss_rebel_space_destroy_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && restuss_rebel_space_destroy_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && restuss_rebel_space_destroy_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && restuss_rebel_space_destroy_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && restuss_rebel_space_destroy_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && restuss_rebel_space_destroy_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.restuss_rebel_space_destroy.branchId");
         return SCRIPT_CONTINUE;
     }

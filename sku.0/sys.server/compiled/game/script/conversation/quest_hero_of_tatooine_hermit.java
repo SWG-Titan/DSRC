@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class quest_hero_of_tatooine_hermit extends script.base_script
+public class quest_hero_of_tatooine_hermit extends base_script
 {
     public quest_hero_of_tatooine_hermit()
     {
@@ -204,11 +204,10 @@ public class quest_hero_of_tatooine_hermit extends script.base_script
                 {
                     for (obj_id objContent : objContents) {
                         if (isIdValid(objContent)) {
-                            obj_id inventoryItem = objContent;
-                            String strItemTemplate = getTemplateName(inventoryItem);
+                            String strItemTemplate = getTemplateName(objContent);
                             if (strItemTemplate.equals("object/tangible/loot/quest/hero_of_tatooine/squill_skull.iff")) {
-                                setObjVar(inventoryItem, "hero_of_tatooine_skull_to_hermit", true);
-                                destroyObject(inventoryItem);
+                                setObjVar(objContent, "hero_of_tatooine_skull_to_hermit", true);
+                                destroyObject(objContent);
                                 groundquests.sendSignal(player, "hero_of_tatooine_main_02");
                                 if (badge.hasBadge(player, "poi_factoryliberation")) {
                                     groundquests.sendSignal(player, "hero_of_tatooine_main_altruism");
@@ -2266,18 +2265,17 @@ public class quest_hero_of_tatooine_hermit extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (quest_hero_of_tatooine_hermit_condition_IsOwedItems(player, npc))
+        if (quest_hero_of_tatooine_hermit_condition_IsOwedItems(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_63076377");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, npc))
+            if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2292,23 +2290,23 @@ public class quest_hero_of_tatooine_hermit extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6441a2a6");
                 }
                 utils.setScriptVar(player, "conversation.quest_hero_of_tatooine_hermit.branchId", 1);
-                npcStartConversation(player, npc, "quest_hero_of_tatooine_hermit", message, responses);
+                npcStartConversation(player, self, "quest_hero_of_tatooine_hermit", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (quest_hero_of_tatooine_hermit_condition_heroOfTatooineComplete(player, npc))
+        if (quest_hero_of_tatooine_hermit_condition_heroOfTatooineComplete(player, self))
         {
-            doAnimationAction(npc, "bow2");
-            quest_hero_of_tatooine_hermit_action_face_to(player, npc);
+            doAnimationAction(self, "bow2");
+            quest_hero_of_tatooine_hermit_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_7adceec5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, npc))
+            if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2323,50 +2321,50 @@ public class quest_hero_of_tatooine_hermit extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_cfb883ed");
                 }
                 utils.setScriptVar(player, "conversation.quest_hero_of_tatooine_hermit.branchId", 5);
-                npcStartConversation(player, npc, "quest_hero_of_tatooine_hermit", message, responses);
+                npcStartConversation(player, self, "quest_hero_of_tatooine_hermit", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (quest_hero_of_tatooine_hermit_condition_heroOfTatooineActive(player, npc))
+        if (quest_hero_of_tatooine_hermit_condition_heroOfTatooineActive(player, self))
         {
-            quest_hero_of_tatooine_hermit_action_face_to(player, npc);
+            quest_hero_of_tatooine_hermit_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_2a82993c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (quest_hero_of_tatooine_hermit_condition_questHasAllMarks(player, npc))
+            if (quest_hero_of_tatooine_hermit_condition_questHasAllMarks(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (quest_hero_of_tatooine_hermit_condition_hasSquillSkull(player, npc))
+            if (quest_hero_of_tatooine_hermit_condition_hasSquillSkull(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (quest_hero_of_tatooine_hermit_condition_OnSkullQuest(player, npc))
+            if (quest_hero_of_tatooine_hermit_condition_OnSkullQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (quest_hero_of_tatooine_hermit_condition_collectingMarks(player, npc))
+            if (quest_hero_of_tatooine_hermit_condition_collectingMarks(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, npc))
+            if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2397,23 +2395,23 @@ public class quest_hero_of_tatooine_hermit extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_da196589");
                 }
                 utils.setScriptVar(player, "conversation.quest_hero_of_tatooine_hermit.branchId", 7);
-                npcStartConversation(player, npc, "quest_hero_of_tatooine_hermit", message, responses);
+                npcStartConversation(player, self, "quest_hero_of_tatooine_hermit", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, npc))
+        if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
-            quest_hero_of_tatooine_hermit_action_face_to(player, npc);
+            doAnimationAction(self, "greet");
+            quest_hero_of_tatooine_hermit_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_48a263f0");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, npc))
+            if (quest_hero_of_tatooine_hermit_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2428,15 +2426,15 @@ public class quest_hero_of_tatooine_hermit extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1bb7b1eb");
                 }
                 utils.setScriptVar(player, "conversation.quest_hero_of_tatooine_hermit.branchId", 28);
-                npcStartConversation(player, npc, "quest_hero_of_tatooine_hermit", message, responses);
+                npcStartConversation(player, self, "quest_hero_of_tatooine_hermit", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2445,125 +2443,124 @@ public class quest_hero_of_tatooine_hermit extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.quest_hero_of_tatooine_hermit.branchId");
-        if (branchId == 1 && quest_hero_of_tatooine_hermit_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && quest_hero_of_tatooine_hermit_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && quest_hero_of_tatooine_hermit_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && quest_hero_of_tatooine_hermit_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && quest_hero_of_tatooine_hermit_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && quest_hero_of_tatooine_hermit_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && quest_hero_of_tatooine_hermit_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && quest_hero_of_tatooine_hermit_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && quest_hero_of_tatooine_hermit_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && quest_hero_of_tatooine_hermit_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && quest_hero_of_tatooine_hermit_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && quest_hero_of_tatooine_hermit_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && quest_hero_of_tatooine_hermit_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && quest_hero_of_tatooine_hermit_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && quest_hero_of_tatooine_hermit_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && quest_hero_of_tatooine_hermit_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && quest_hero_of_tatooine_hermit_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && quest_hero_of_tatooine_hermit_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && quest_hero_of_tatooine_hermit_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && quest_hero_of_tatooine_hermit_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && quest_hero_of_tatooine_hermit_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && quest_hero_of_tatooine_hermit_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && quest_hero_of_tatooine_hermit_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && quest_hero_of_tatooine_hermit_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && quest_hero_of_tatooine_hermit_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && quest_hero_of_tatooine_hermit_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && quest_hero_of_tatooine_hermit_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && quest_hero_of_tatooine_hermit_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && quest_hero_of_tatooine_hermit_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && quest_hero_of_tatooine_hermit_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && quest_hero_of_tatooine_hermit_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && quest_hero_of_tatooine_hermit_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && quest_hero_of_tatooine_hermit_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && quest_hero_of_tatooine_hermit_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && quest_hero_of_tatooine_hermit_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && quest_hero_of_tatooine_hermit_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && quest_hero_of_tatooine_hermit_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && quest_hero_of_tatooine_hermit_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && quest_hero_of_tatooine_hermit_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && quest_hero_of_tatooine_hermit_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && quest_hero_of_tatooine_hermit_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && quest_hero_of_tatooine_hermit_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && quest_hero_of_tatooine_hermit_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && quest_hero_of_tatooine_hermit_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && quest_hero_of_tatooine_hermit_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && quest_hero_of_tatooine_hermit_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && quest_hero_of_tatooine_hermit_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && quest_hero_of_tatooine_hermit_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && quest_hero_of_tatooine_hermit_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && quest_hero_of_tatooine_hermit_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && quest_hero_of_tatooine_hermit_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && quest_hero_of_tatooine_hermit_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && quest_hero_of_tatooine_hermit_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && quest_hero_of_tatooine_hermit_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && quest_hero_of_tatooine_hermit_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && quest_hero_of_tatooine_hermit_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && quest_hero_of_tatooine_hermit_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && quest_hero_of_tatooine_hermit_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.quest_hero_of_tatooine_hermit.branchId");
         return SCRIPT_CONTINUE;
     }

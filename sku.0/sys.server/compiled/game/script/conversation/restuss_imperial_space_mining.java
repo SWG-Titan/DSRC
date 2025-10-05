@@ -353,68 +353,67 @@ public class restuss_imperial_space_mining extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (restuss_imperial_space_mining_condition_isRebelPlayer(player, npc))
+        if (restuss_imperial_space_mining_condition_isRebelPlayer(player, self))
         {
-            restuss_imperial_space_mining_action_eject(player, npc);
+            restuss_imperial_space_mining_action_eject(player, self);
             string_id message = new string_id(c_stringFile, "s_41");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_space_mining_condition_completedSpaceMine2(player, npc))
+        if (restuss_imperial_space_mining_condition_completedSpaceMine2(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
-            restuss_imperial_space_mining_action_signalDone2(player, npc);
+            restuss_imperial_space_mining_action_signalDone2(player, self);
             string_id message = new string_id(c_stringFile, "s_13");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_space_mining_condition_completedSpaceMine1(player, npc))
+        if (restuss_imperial_space_mining_condition_completedSpaceMine1(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
-            restuss_imperial_space_mining_action_signalDone(player, npc);
+            restuss_imperial_space_mining_action_signalDone(player, self);
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_space_mining_condition_spaceMineActive2(player, npc))
+        if (restuss_imperial_space_mining_condition_spaceMineActive2(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_11");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_space_mining_condition_spaceMineActive1(player, npc))
+        if (restuss_imperial_space_mining_condition_spaceMineActive1(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_space_mining_condition_enoughOre(player, npc))
+        if (restuss_imperial_space_mining_condition_enoughOre(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_33");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_space_mining_condition__defaultCondition(player, npc))
+            if (restuss_imperial_space_mining_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_space_mining_condition__defaultCondition(player, npc))
+            if (restuss_imperial_space_mining_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -433,30 +432,30 @@ public class restuss_imperial_space_mining extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_42");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_space_mining.branchId", 6);
-                npcStartConversation(player, npc, "restuss_imperial_space_mining", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_space_mining", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_space_mining_condition_inPhase2(player, npc))
+        if (restuss_imperial_space_mining_condition_inPhase2(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_28");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_space_mining_condition__defaultCondition(player, npc))
+            if (restuss_imperial_space_mining_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_space_mining_condition__defaultCondition(player, npc))
+            if (restuss_imperial_space_mining_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -475,30 +474,30 @@ public class restuss_imperial_space_mining extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_34");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_space_mining.branchId", 9);
-                npcStartConversation(player, npc, "restuss_imperial_space_mining", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_space_mining", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_space_mining_condition_inPhase1(player, npc))
+        if (restuss_imperial_space_mining_condition_inPhase1(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_22");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_space_mining_condition__defaultCondition(player, npc))
+            if (restuss_imperial_space_mining_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_space_mining_condition__defaultCondition(player, npc))
+            if (restuss_imperial_space_mining_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -517,22 +516,22 @@ public class restuss_imperial_space_mining extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_29");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_space_mining.branchId", 12);
-                npcStartConversation(player, npc, "restuss_imperial_space_mining", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_space_mining", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_space_mining_condition__defaultCondition(player, npc))
+        if (restuss_imperial_space_mining_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_39");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -541,21 +540,20 @@ public class restuss_imperial_space_mining extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.restuss_imperial_space_mining.branchId");
-        if (branchId == 6 && restuss_imperial_space_mining_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && restuss_imperial_space_mining_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && restuss_imperial_space_mining_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && restuss_imperial_space_mining_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && restuss_imperial_space_mining_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && restuss_imperial_space_mining_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.restuss_imperial_space_mining.branchId");
         return SCRIPT_CONTINUE;
     }

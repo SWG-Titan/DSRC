@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class nova_orion_garrick_orion extends script.base_script
+public class nova_orion_garrick_orion extends base_script
 {
     public nova_orion_garrick_orion()
     {

@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class corellia_coronet_demmi_wot extends script.base_script
+public class corellia_coronet_demmi_wot extends base_script
 {
     public corellia_coronet_demmi_wot()
     {

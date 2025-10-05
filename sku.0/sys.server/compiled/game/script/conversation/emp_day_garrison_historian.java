@@ -657,45 +657,44 @@ public class emp_day_garrison_historian extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (emp_day_garrison_historian_condition_pastMyTasks(player, npc))
+        if (emp_day_garrison_historian_condition_pastMyTasks(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_95");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_garrison_historian_condition_hasTask2or3(player, npc))
+        if (emp_day_garrison_historian_condition_hasTask2or3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_97");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_garrison_historian_condition_hasTask2(player, npc))
+            if (emp_day_garrison_historian_condition_hasTask2(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (emp_day_garrison_historian_condition_hasTask3a(player, npc))
+            if (emp_day_garrison_historian_condition_hasTask3a(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (emp_day_garrison_historian_condition_hasTask3b(player, npc))
+            if (emp_day_garrison_historian_condition_hasTask3b(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (emp_day_garrison_historian_condition_hasTask3c(player, npc))
+            if (emp_day_garrison_historian_condition_hasTask3c(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -722,21 +721,21 @@ public class emp_day_garrison_historian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_118");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_garrison_historian.branchId", 2);
-                npcStartConversation(player, npc, "emp_day_garrison_historian", message, responses);
+                npcStartConversation(player, self, "emp_day_garrison_historian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_garrison_historian_condition_hasStartingTask(player, npc))
+        if (emp_day_garrison_historian_condition_hasStartingTask(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_122");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_garrison_historian_condition__defaultCondition(player, npc))
+            if (emp_day_garrison_historian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -751,21 +750,21 @@ public class emp_day_garrison_historian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_124");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_garrison_historian.branchId", 7);
-                npcStartConversation(player, npc, "emp_day_garrison_historian", message, responses);
+                npcStartConversation(player, self, "emp_day_garrison_historian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_garrison_historian_condition_hasDisks(player, npc))
+        if (emp_day_garrison_historian_condition_hasDisks(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_156");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_garrison_historian_condition__defaultCondition(player, npc))
+            if (emp_day_garrison_historian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -780,21 +779,21 @@ public class emp_day_garrison_historian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_158");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_garrison_historian.branchId", 17);
-                npcStartConversation(player, npc, "emp_day_garrison_historian", message, responses);
+                npcStartConversation(player, self, "emp_day_garrison_historian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_garrison_historian_condition__defaultCondition(player, npc))
+        if (emp_day_garrison_historian_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_170");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -803,49 +802,48 @@ public class emp_day_garrison_historian extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.emp_day_garrison_historian.branchId");
-        if (branchId == 2 && emp_day_garrison_historian_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && emp_day_garrison_historian_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && emp_day_garrison_historian_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && emp_day_garrison_historian_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && emp_day_garrison_historian_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && emp_day_garrison_historian_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && emp_day_garrison_historian_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && emp_day_garrison_historian_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && emp_day_garrison_historian_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && emp_day_garrison_historian_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && emp_day_garrison_historian_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && emp_day_garrison_historian_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && emp_day_garrison_historian_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && emp_day_garrison_historian_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && emp_day_garrison_historian_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && emp_day_garrison_historian_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && emp_day_garrison_historian_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && emp_day_garrison_historian_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && emp_day_garrison_historian_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && emp_day_garrison_historian_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.emp_day_garrison_historian.branchId");
         return SCRIPT_CONTINUE;
     }

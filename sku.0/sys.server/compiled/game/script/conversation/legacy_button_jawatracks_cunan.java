@@ -22,8 +22,7 @@ public class legacy_button_jawatracks_cunan extends script.base_script
         int legacy_button_jawatracks_cunan_condition_onBody = groundquests.getTaskId(questId1, "legacy_button_jawatracks_e2");
         int questId2 = questGetQuestId("quest/legacy_button_jawatracks_reb");
         int onBody2 = groundquests.getTaskId(questId2, "legacy_button_jawatracks_e2r");
-        boolean onTask = questIsTaskActive(questId1, legacy_button_jawatracks_cunan_condition_onBody, player) || questIsTaskActive(questId2, onBody2, player);
-        return onTask;
+        return questIsTaskActive(questId1, legacy_button_jawatracks_cunan_condition_onBody, player) || questIsTaskActive(questId2, onBody2, player);
     }
     public boolean legacy_button_jawatracks_cunan_condition_onDataPadRetreve(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -31,29 +30,25 @@ public class legacy_button_jawatracks_cunan extends script.base_script
         int legacy_button_jawatracks_cunan_condition_onBody = groundquests.getTaskId(questId1, "legacy_button_jawatracks_e7");
         int questId2 = questGetQuestId("quest/legacy_button_jawatracks_reb");
         int onBody2 = groundquests.getTaskId(questId2, "legacy_button_jawatracks_e7r");
-        boolean onTask = questIsTaskActive(questId1, legacy_button_jawatracks_cunan_condition_onBody, player) || questIsTaskActive(questId2, onBody2, player);
-        return onTask;
+        return questIsTaskActive(questId1, legacy_button_jawatracks_cunan_condition_onBody, player) || questIsTaskActive(questId2, onBody2, player);
     }
     public boolean legacy_button_jawatracks_cunan_condition_failRebHomestead(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_button_jawatracks_reb");
         int questId2 = questGetQuestId("quest/legacy_button_jawatracks_reb_pt2");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
     }
     public boolean legacy_button_jawatracks_cunan_condition_failImpHomestead(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_button_jawatracks");
         int questId2 = questGetQuestId("quest/legacy_button_jawatracks_pt2");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
     }
     public boolean legacy_button_jawatracks_cunan_condition_questToscheComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_button_jawatracks");
         int questId2 = questGetQuestId("quest/legacy_button_jawatracks_reb");
-        boolean OnTask = questIsQuestComplete(questId1, player) || questIsQuestComplete(questId2, player);
-        return OnTask;
+        return questIsQuestComplete(questId1, player) || questIsQuestComplete(questId2, player);
     }
     public boolean legacy_button_jawatracks_cunan_condition_noFlowers(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -63,8 +58,7 @@ public class legacy_button_jawatracks_cunan extends script.base_script
     {
         int questId1 = questGetQuestId("quest/legacy_button_jawatracks");
         int questId2 = questGetQuestId("quest/legacy_button_jawatracks_reb");
-        boolean OnTask = (questIsQuestActive(questId1, player)) || (questIsQuestActive(questId2, player));
-        return OnTask;
+        return (questIsQuestActive(questId1, player)) || (questIsQuestActive(questId2, player));
     }
     public void legacy_button_jawatracks_cunan_action_signalManager(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -792,41 +786,40 @@ public class legacy_button_jawatracks_cunan extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (legacy_button_jawatracks_cunan_condition_questToscheComplete(player, npc))
+        if (legacy_button_jawatracks_cunan_condition_questToscheComplete(player, self))
         {
-            doAnimationAction(npc, "shoo");
-            legacy_button_jawatracks_cunan_action_facePlayer(player, npc);
+            doAnimationAction(self, "shoo");
+            legacy_button_jawatracks_cunan_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_101");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, npc))
+            if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (legacy_button_jawatracks_cunan_condition_failImpHomestead(player, npc))
+            if (legacy_button_jawatracks_cunan_condition_failImpHomestead(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (legacy_button_jawatracks_cunan_condition_failRebHomestead(player, npc))
+            if (legacy_button_jawatracks_cunan_condition_failRebHomestead(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_button_jawatracks_cunan_condition_noFlowers(player, npc))
+            if (!legacy_button_jawatracks_cunan_condition_noFlowers(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -853,35 +846,35 @@ public class legacy_button_jawatracks_cunan extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_52");
                 }
                 utils.setScriptVar(player, "conversation.legacy_button_jawatracks_cunan.branchId", 1);
-                npcStartConversation(player, npc, "legacy_button_jawatracks_cunan", message, responses);
+                npcStartConversation(player, self, "legacy_button_jawatracks_cunan", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_button_jawatracks_cunan_condition_onDataPadRetreve(player, npc))
+        if (legacy_button_jawatracks_cunan_condition_onDataPadRetreve(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_145");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, npc))
+            if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, npc))
+            if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_button_jawatracks_cunan_condition_noFlowers(player, npc))
+            if (!legacy_button_jawatracks_cunan_condition_noFlowers(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -904,23 +897,23 @@ public class legacy_button_jawatracks_cunan extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_55");
                 }
                 utils.setScriptVar(player, "conversation.legacy_button_jawatracks_cunan.branchId", 7);
-                npcStartConversation(player, npc, "legacy_button_jawatracks_cunan", message, responses);
+                npcStartConversation(player, self, "legacy_button_jawatracks_cunan", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_button_jawatracks_cunan_condition_onBody(player, npc))
+        if (legacy_button_jawatracks_cunan_condition_onBody(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
-            legacy_button_jawatracks_cunan_action_facePlayer(player, npc);
+            doAnimationAction(self, "gesticulate_wildly");
+            legacy_button_jawatracks_cunan_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_144");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!legacy_button_jawatracks_cunan_condition_noFlowers(player, npc))
+            if (!legacy_button_jawatracks_cunan_condition_noFlowers(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -935,29 +928,29 @@ public class legacy_button_jawatracks_cunan extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_60");
                 }
                 utils.setScriptVar(player, "conversation.legacy_button_jawatracks_cunan.branchId", 12);
-                npcStartConversation(player, npc, "legacy_button_jawatracks_cunan", message, responses);
+                npcStartConversation(player, self, "legacy_button_jawatracks_cunan", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, npc))
+        if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, self))
         {
-            legacy_button_jawatracks_cunan_action_facePlayer(player, npc);
+            legacy_button_jawatracks_cunan_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_805");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_button_jawatracks_cunan_condition_onTracksQuest(player, npc))
+            if (legacy_button_jawatracks_cunan_condition_onTracksQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, npc))
+            if (legacy_button_jawatracks_cunan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -976,15 +969,15 @@ public class legacy_button_jawatracks_cunan extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_116");
                 }
                 utils.setScriptVar(player, "conversation.legacy_button_jawatracks_cunan.branchId", 14);
-                npcStartConversation(player, npc, "legacy_button_jawatracks_cunan", message, responses);
+                npcStartConversation(player, self, "legacy_button_jawatracks_cunan", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -993,65 +986,64 @@ public class legacy_button_jawatracks_cunan extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.legacy_button_jawatracks_cunan.branchId");
-        if (branchId == 1 && legacy_button_jawatracks_cunan_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && legacy_button_jawatracks_cunan_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && legacy_button_jawatracks_cunan_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && legacy_button_jawatracks_cunan_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && legacy_button_jawatracks_cunan_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && legacy_button_jawatracks_cunan_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && legacy_button_jawatracks_cunan_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && legacy_button_jawatracks_cunan_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && legacy_button_jawatracks_cunan_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && legacy_button_jawatracks_cunan_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && legacy_button_jawatracks_cunan_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && legacy_button_jawatracks_cunan_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && legacy_button_jawatracks_cunan_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && legacy_button_jawatracks_cunan_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && legacy_button_jawatracks_cunan_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && legacy_button_jawatracks_cunan_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && legacy_button_jawatracks_cunan_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && legacy_button_jawatracks_cunan_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && legacy_button_jawatracks_cunan_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && legacy_button_jawatracks_cunan_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && legacy_button_jawatracks_cunan_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && legacy_button_jawatracks_cunan_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && legacy_button_jawatracks_cunan_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && legacy_button_jawatracks_cunan_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && legacy_button_jawatracks_cunan_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && legacy_button_jawatracks_cunan_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && legacy_button_jawatracks_cunan_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && legacy_button_jawatracks_cunan_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.legacy_button_jawatracks_cunan.branchId");
         return SCRIPT_CONTINUE;
     }

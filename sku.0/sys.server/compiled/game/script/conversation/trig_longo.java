@@ -602,37 +602,36 @@ public class trig_longo extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (trig_longo_condition_hasCompletedQuestLine(player, npc))
+        if (trig_longo_condition_hasCompletedQuestLine(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_26");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trig_longo_condition_hasCompletedQuest2(player, npc))
+        if (trig_longo_condition_hasCompletedQuest2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_24");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trig_longo_condition_hasDeletedQuest2(player, npc))
+        if (trig_longo_condition_hasDeletedQuest2(player, self))
         {
-            trig_longo_action_giveQuest2(player, npc);
+            trig_longo_action_giveQuest2(player, self);
             string_id message = new string_id(c_stringFile, "s_22");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trig_longo_condition_hasTrigTask(player, npc))
+        if (trig_longo_condition_hasTrigTask(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_59");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trig_longo_condition__defaultCondition(player, npc))
+            if (trig_longo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -647,33 +646,33 @@ public class trig_longo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_61");
                 }
                 utils.setScriptVar(player, "conversation.trig_longo.branchId", 4);
-                npcStartConversation(player, npc, "trig_longo", message, responses);
+                npcStartConversation(player, self, "trig_longo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trig_longo_condition_isNotImmunized(player, npc))
+        if (trig_longo_condition_isNotImmunized(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_73");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trig_longo_condition_hasDeliveredRadioEpsilon(player, npc))
+        if (trig_longo_condition_hasDeliveredRadioEpsilon(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_25");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (trig_longo_condition__defaultCondition(player, npc))
+        if (trig_longo_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_60");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -682,45 +681,44 @@ public class trig_longo extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.trig_longo.branchId");
-        if (branchId == 4 && trig_longo_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && trig_longo_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && trig_longo_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && trig_longo_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && trig_longo_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && trig_longo_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && trig_longo_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && trig_longo_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && trig_longo_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && trig_longo_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && trig_longo_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && trig_longo_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && trig_longo_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && trig_longo_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && trig_longo_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && trig_longo_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && trig_longo_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && trig_longo_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.trig_longo.branchId");
         return SCRIPT_CONTINUE;
     }

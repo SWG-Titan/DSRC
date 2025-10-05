@@ -228,27 +228,26 @@ public class ep3_clone_relics_queen_wookie_informant_2 extends script.base_scrip
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_clone_relics_queen_wookie_informant_2_condition_knowWookie(player, npc))
+        if (ep3_clone_relics_queen_wookie_informant_2_condition_knowWookie(player, self))
         {
-            doAnimationAction(npc, "nervous");
-            ep3_clone_relics_queen_wookie_informant_2_action_cantUnderstand(player, npc);
+            doAnimationAction(self, "nervous");
+            ep3_clone_relics_queen_wookie_informant_2_action_cantUnderstand(player, self);
             string_id message = new string_id(c_stringFile, "s_81");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_queen_wookie_informant_2_condition_onSpaceMission(player, npc))
+        if (ep3_clone_relics_queen_wookie_informant_2_condition_onSpaceMission(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
+            doAnimationAction(self, "pound_fist_palm");
             string_id message = new string_id(c_stringFile, "s_83");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -263,29 +262,29 @@ public class ep3_clone_relics_queen_wookie_informant_2 extends script.base_scrip
                     responses[responseIndex++] = new string_id(c_stringFile, "s_85");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_queen_wookie_informant_2.branchId", 2);
-                npcStartConversation(player, npc, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_queen_wookie_informant_2_condition_atOutpost(player, npc))
+        if (ep3_clone_relics_queen_wookie_informant_2_condition_atOutpost(player, self))
         {
-            doAnimationAction(npc, "nervous");
+            doAnimationAction(self, "nervous");
             string_id message = new string_id(c_stringFile, "s_89");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -304,22 +303,22 @@ public class ep3_clone_relics_queen_wookie_informant_2 extends script.base_scrip
                     responses[responseIndex++] = new string_id(c_stringFile, "s_95");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_queen_wookie_informant_2.branchId", 4);
-                npcStartConversation(player, npc, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_queen_wookie_informant_2_condition_foundInformants(player, npc))
+        if (ep3_clone_relics_queen_wookie_informant_2_condition_foundInformants(player, self))
         {
-            doAnimationAction(npc, "nervous");
+            doAnimationAction(self, "nervous");
             string_id message = new string_id(c_stringFile, "s_99");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -334,22 +333,22 @@ public class ep3_clone_relics_queen_wookie_informant_2 extends script.base_scrip
                     responses[responseIndex++] = new string_id(c_stringFile, "s_101");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_queen_wookie_informant_2.branchId", 7);
-                npcStartConversation(player, npc, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_queen_wookie_informant_2_condition_onQuestTwo(player, npc))
+        if (ep3_clone_relics_queen_wookie_informant_2_condition_onQuestTwo(player, self))
         {
-            doAnimationAction(npc, "nervous");
+            doAnimationAction(self, "nervous");
             string_id message = new string_id(c_stringFile, "s_109");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -364,22 +363,22 @@ public class ep3_clone_relics_queen_wookie_informant_2 extends script.base_scrip
                     responses[responseIndex++] = new string_id(c_stringFile, "s_111");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_queen_wookie_informant_2.branchId", 10);
-                npcStartConversation(player, npc, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, npc))
+        if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "nervous");
+            doAnimationAction(self, "nervous");
             string_id message = new string_id(c_stringFile, "s_115");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_queen_wookie_informant_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -394,15 +393,15 @@ public class ep3_clone_relics_queen_wookie_informant_2 extends script.base_scrip
                     responses[responseIndex++] = new string_id(c_stringFile, "s_117");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_queen_wookie_informant_2.branchId", 12);
-                npcStartConversation(player, npc, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_queen_wookie_informant_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -411,33 +410,32 @@ public class ep3_clone_relics_queen_wookie_informant_2 extends script.base_scrip
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_clone_relics_queen_wookie_informant_2.branchId");
-        if (branchId == 2 && ep3_clone_relics_queen_wookie_informant_2_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_clone_relics_queen_wookie_informant_2_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && ep3_clone_relics_queen_wookie_informant_2_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_clone_relics_queen_wookie_informant_2_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_clone_relics_queen_wookie_informant_2_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_clone_relics_queen_wookie_informant_2_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_clone_relics_queen_wookie_informant_2_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_clone_relics_queen_wookie_informant_2_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_clone_relics_queen_wookie_informant_2_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_clone_relics_queen_wookie_informant_2_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_clone_relics_queen_wookie_informant_2_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_clone_relics_queen_wookie_informant_2_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_clone_relics_queen_wookie_informant_2.branchId");
         return SCRIPT_CONTINUE;
     }

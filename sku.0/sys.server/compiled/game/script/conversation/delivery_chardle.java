@@ -280,50 +280,49 @@ public class delivery_chardle extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (delivery_chardle_condition_noAntivirus(player, npc))
+        if (delivery_chardle_condition_noAntivirus(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (delivery_chardle_condition_tooLowLevel(player, npc))
+        if (delivery_chardle_condition_tooLowLevel(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_37");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (delivery_chardle_condition_hasNotFoundBeta(player, npc))
+        if (delivery_chardle_condition_hasNotFoundBeta(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (delivery_chardle_condition_hasEscortTask(player, npc))
+        if (delivery_chardle_condition_hasEscortTask(player, self))
         {
-            delivery_chardle_action_clearDeliveryQuest(player, npc);
+            delivery_chardle_action_clearDeliveryQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_16");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (delivery_chardle_condition_hasMeetingTask(player, npc))
+        if (delivery_chardle_condition_hasMeetingTask(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_15");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (delivery_chardle_condition_neverDelivered(player, npc))
+        if (delivery_chardle_condition_neverDelivered(player, self))
         {
-            doAnimationAction(npc, "thumb_up");
+            doAnimationAction(self, "thumb_up");
             string_id message = new string_id(c_stringFile, "s_73");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (delivery_chardle_condition__defaultCondition(player, npc))
+            if (delivery_chardle_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -338,21 +337,21 @@ public class delivery_chardle extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_96");
                 }
                 utils.setScriptVar(player, "conversation.delivery_chardle.branchId", 6);
-                npcStartConversation(player, npc, "delivery_chardle", message, responses);
+                npcStartConversation(player, self, "delivery_chardle", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (delivery_chardle_condition_hasDeliveredBefore(player, npc))
+        if (delivery_chardle_condition_hasDeliveredBefore(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (delivery_chardle_condition__defaultCondition(player, npc))
+            if (delivery_chardle_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -367,21 +366,21 @@ public class delivery_chardle extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_34");
                 }
                 utils.setScriptVar(player, "conversation.delivery_chardle.branchId", 12);
-                npcStartConversation(player, npc, "delivery_chardle", message, responses);
+                npcStartConversation(player, self, "delivery_chardle", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (delivery_chardle_condition__defaultCondition(player, npc))
+        if (delivery_chardle_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_60");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -390,33 +389,32 @@ public class delivery_chardle extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.delivery_chardle.branchId");
-        if (branchId == 6 && delivery_chardle_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && delivery_chardle_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && delivery_chardle_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && delivery_chardle_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && delivery_chardle_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && delivery_chardle_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && delivery_chardle_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && delivery_chardle_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && delivery_chardle_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && delivery_chardle_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && delivery_chardle_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && delivery_chardle_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.delivery_chardle.branchId");
         return SCRIPT_CONTINUE;
     }

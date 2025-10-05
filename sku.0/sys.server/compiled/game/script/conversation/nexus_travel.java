@@ -3,7 +3,7 @@ package script.conversation;
 import script.*;
 import script.library.*;
 
-public class nexus_travel extends script.base_script
+public class nexus_travel extends base_script
 {
     public nexus_travel()
     {

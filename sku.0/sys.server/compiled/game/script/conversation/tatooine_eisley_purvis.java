@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class tatooine_eisley_purvis extends script.base_script
+public class tatooine_eisley_purvis extends base_script
 {
     public tatooine_eisley_purvis()
     {
@@ -899,50 +899,49 @@ public class tatooine_eisley_purvis extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_eisley_purvis_condition_completedCombatQuests(player, npc))
+        if (tatooine_eisley_purvis_condition_completedCombatQuests(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_58");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_purvis_condition_goSeeMayor(player, npc))
+        if (tatooine_eisley_purvis_condition_goSeeMayor(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_132");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_purvis_condition_needsACombatQuest(player, npc))
+        if (tatooine_eisley_purvis_condition_needsACombatQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_136");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_purvis_condition_isOnCombatQuests(player, npc))
+        if (tatooine_eisley_purvis_condition_isOnCombatQuests(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_70");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_purvis_condition_completedRecon(player, npc))
+        if (tatooine_eisley_purvis_condition_completedRecon(player, self))
         {
-            tatooine_eisley_purvis_action_sendCompleteReconSignal(player, npc);
+            tatooine_eisley_purvis_action_sendCompleteReconSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_197");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_purvis_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_purvis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_eisley_purvis_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_purvis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -961,42 +960,42 @@ public class tatooine_eisley_purvis extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_203");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_purvis.branchId", 5);
-                npcStartConversation(player, npc, "tatooine_eisley_purvis", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_purvis", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_purvis_condition_completedOneRecon(player, npc))
+        if (tatooine_eisley_purvis_condition_completedOneRecon(player, self))
         {
-            tatooine_eisley_purvis_action_checkReconQuestStatus(player, npc);
+            tatooine_eisley_purvis_action_checkReconQuestStatus(player, self);
             string_id message = new string_id(c_stringFile, "s_66");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_purvis_condition__defaultCondition(player, npc))
+        if (tatooine_eisley_purvis_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_252");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_purvis_condition_senByMayor(player, npc))
+            if (tatooine_eisley_purvis_condition_senByMayor(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_eisley_purvis_condition_senByMayor(player, npc))
+            if (tatooine_eisley_purvis_condition_senByMayor(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!tatooine_eisley_purvis_condition_senByMayor(player, npc))
+            if (!tatooine_eisley_purvis_condition_senByMayor(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1019,15 +1018,15 @@ public class tatooine_eisley_purvis extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_44");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_purvis.branchId", 15);
-                npcStartConversation(player, npc, "tatooine_eisley_purvis", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_purvis", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1036,57 +1035,56 @@ public class tatooine_eisley_purvis extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_eisley_purvis.branchId");
-        if (branchId == 5 && tatooine_eisley_purvis_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_eisley_purvis_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && tatooine_eisley_purvis_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && tatooine_eisley_purvis_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && tatooine_eisley_purvis_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && tatooine_eisley_purvis_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && tatooine_eisley_purvis_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && tatooine_eisley_purvis_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tatooine_eisley_purvis_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tatooine_eisley_purvis_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tatooine_eisley_purvis_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tatooine_eisley_purvis_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && tatooine_eisley_purvis_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && tatooine_eisley_purvis_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && tatooine_eisley_purvis_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && tatooine_eisley_purvis_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && tatooine_eisley_purvis_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && tatooine_eisley_purvis_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && tatooine_eisley_purvis_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && tatooine_eisley_purvis_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && tatooine_eisley_purvis_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && tatooine_eisley_purvis_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && tatooine_eisley_purvis_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && tatooine_eisley_purvis_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_eisley_purvis.branchId");
         return SCRIPT_CONTINUE;
     }

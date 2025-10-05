@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class ep3_kachirho_lolo extends script.base_script
+public class ep3_kachirho_lolo extends base_script
 {
     public ep3_kachirho_lolo()
     {
@@ -558,32 +558,31 @@ public class ep3_kachirho_lolo extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_kachirho_lolo_condition_cannotSpeakWke(player, npc))
+        if (ep3_kachirho_lolo_condition_cannotSpeakWke(player, self))
         {
-            ep3_kachirho_lolo_action_vocalizeMed(player, npc);
+            ep3_kachirho_lolo_action_vocalizeMed(player, self);
             string_id message = new string_id(c_stringFile, "s_87");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_kachirho_lolo_condition_hasCompletedSpace(player, npc))
+        if (ep3_kachirho_lolo_condition_hasCompletedSpace(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_254");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_kachirho_lolo_condition__defaultCondition(player, npc))
+            if (ep3_kachirho_lolo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_kachirho_lolo_condition__defaultCondition(player, npc))
+            if (ep3_kachirho_lolo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -602,35 +601,35 @@ public class ep3_kachirho_lolo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_256");
                 }
                 utils.setScriptVar(player, "conversation.ep3_kachirho_lolo.branchId", 2);
-                npcStartConversation(player, npc, "ep3_kachirho_lolo", message, responses);
+                npcStartConversation(player, self, "ep3_kachirho_lolo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_kachirho_lolo_condition_hasBowcasterPieces(player, npc))
+        if (ep3_kachirho_lolo_condition_hasBowcasterPieces(player, self))
         {
-            ep3_kachirho_lolo_action_grantCraftingComponent(player, npc);
+            ep3_kachirho_lolo_action_grantCraftingComponent(player, self);
             string_id message = new string_id(c_stringFile, "s_88");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_kachirho_lolo_condition_hasFailedSpaceMission(player, npc))
+        if (ep3_kachirho_lolo_condition_hasFailedSpaceMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_89");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_kachirho_lolo_condition__defaultCondition(player, npc))
+            if (ep3_kachirho_lolo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_kachirho_lolo_condition__defaultCondition(player, npc))
+            if (ep3_kachirho_lolo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -649,27 +648,27 @@ public class ep3_kachirho_lolo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_106");
                 }
                 utils.setScriptVar(player, "conversation.ep3_kachirho_lolo.branchId", 6);
-                npcStartConversation(player, npc, "ep3_kachirho_lolo", message, responses);
+                npcStartConversation(player, self, "ep3_kachirho_lolo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_kachirho_lolo_condition_isOnMission(player, npc))
+        if (ep3_kachirho_lolo_condition_isOnMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_90");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_kachirho_lolo_condition_isReadyForLolo(player, npc))
+        if (ep3_kachirho_lolo_condition_isReadyForLolo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_91");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_kachirho_lolo_condition__defaultCondition(player, npc))
+            if (ep3_kachirho_lolo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -684,21 +683,21 @@ public class ep3_kachirho_lolo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_101");
                 }
                 utils.setScriptVar(player, "conversation.ep3_kachirho_lolo.branchId", 10);
-                npcStartConversation(player, npc, "ep3_kachirho_lolo", message, responses);
+                npcStartConversation(player, self, "ep3_kachirho_lolo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_kachirho_lolo_condition__defaultCondition(player, npc))
+        if (ep3_kachirho_lolo_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_100");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -707,61 +706,60 @@ public class ep3_kachirho_lolo extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_kachirho_lolo.branchId");
-        if (branchId == 2 && ep3_kachirho_lolo_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_kachirho_lolo_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_kachirho_lolo_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_kachirho_lolo_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_kachirho_lolo_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_kachirho_lolo_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_kachirho_lolo_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_kachirho_lolo_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_kachirho_lolo_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_kachirho_lolo_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && ep3_kachirho_lolo_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && ep3_kachirho_lolo_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && ep3_kachirho_lolo_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && ep3_kachirho_lolo_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_kachirho_lolo_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_kachirho_lolo_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_kachirho_lolo_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_kachirho_lolo_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_kachirho_lolo_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_kachirho_lolo_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_kachirho_lolo_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_kachirho_lolo_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && ep3_kachirho_lolo_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && ep3_kachirho_lolo_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_kachirho_lolo_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_kachirho_lolo_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_kachirho_lolo.branchId");
         return SCRIPT_CONTINUE;
     }

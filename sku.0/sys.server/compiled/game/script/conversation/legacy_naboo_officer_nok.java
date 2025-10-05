@@ -66,25 +66,24 @@ public class legacy_naboo_officer_nok extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (legacy_naboo_officer_nok_condition_isOnTyphoQuest(player, npc))
+        if (legacy_naboo_officer_nok_condition_isOnTyphoQuest(player, self))
         {
-            legacy_naboo_officer_nok_action_doogalSignal(player, npc);
+            legacy_naboo_officer_nok_action_doogalSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_officer_nok_condition__defaultCondition(player, npc))
+        if (legacy_naboo_officer_nok_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -93,9 +92,8 @@ public class legacy_naboo_officer_nok extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.legacy_naboo_officer_nok.branchId");
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.legacy_naboo_officer_nok.branchId");
         return SCRIPT_CONTINUE;
     }

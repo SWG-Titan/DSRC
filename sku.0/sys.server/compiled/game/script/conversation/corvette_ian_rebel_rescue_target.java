@@ -6,7 +6,7 @@ import script.library.factions;
 import script.library.group;
 import script.*;
 
-public class corvette_ian_rebel_rescue_target extends script.base_script
+public class corvette_ian_rebel_rescue_target extends base_script
 {
     public corvette_ian_rebel_rescue_target()
     {

@@ -21,22 +21,19 @@ public class tatooine_espa_watto extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tatooine_espa_wattos_bargain");
         int tat_espa_bargain_e1 = groundquests.getTaskId(questId1, "tat_espa_bargain_e1");
-        boolean onTask = questIsTaskActive(questId1, tat_espa_bargain_e1, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_espa_bargain_e1, player);
     }
     public boolean tatooine_espa_watto_condition_bargainTaskComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_espa_wattos_bargain");
         int tat_espa_bargain_e1 = groundquests.getTaskId(questId1, "tat_espa_bargain_e2");
-        boolean onTask = questIsTaskActive(questId1, tat_espa_bargain_e1, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_espa_bargain_e1, player);
     }
     public boolean tatooine_espa_watto_condition_onSquill(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_espa_squill_diving");
         int tat_espa_bargain_e1 = groundquests.getTaskId(questId1, "tat_espa_squill_e1");
-        boolean onTask = questIsTaskActive(questId1, tat_espa_bargain_e1, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_espa_bargain_e1, player);
     }
     public boolean tatooine_espa_watto_condition_squillComplete(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -96,8 +93,7 @@ public class tatooine_espa_watto extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tatooine_espa_pod_retrieval_v2");
         int tat_espa_pod_retrieval_e3 = groundquests.getTaskId(questId1, "tat_espa_pod_retrieval_e5");
-        boolean onTask = questIsTaskActive(questId1, tat_espa_pod_retrieval_e3, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_espa_pod_retrieval_e3, player);
     }
     public boolean tatooine_espa_watto_condition_onRepo(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -107,8 +103,7 @@ public class tatooine_espa_watto extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tatooine_espa_repo_man");
         int tat_espa_repo_man_e4 = groundquests.getTaskId(questId1, "tat_espa_repo_man_e4");
-        boolean onTask = questIsTaskActive(questId1, tat_espa_repo_man_e4, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_espa_repo_man_e4, player);
     }
     public boolean tatooine_espa_watto_condition_onJuiceDroid(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -121,14 +116,12 @@ public class tatooine_espa_watto extends script.base_script
     public boolean tatooine_espa_watto_condition_startWattoComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_watto_pointer");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean tatooine_espa_watto_condition_bargainComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_espa_wattos_bargain");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean tatooine_espa_watto_condition_bodyComplete(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -141,14 +134,12 @@ public class tatooine_espa_watto extends script.base_script
     public boolean tatooine_espa_watto_condition_podComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_espa_pod_retrieval");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean tatooine_espa_watto_condition_repoComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_espa_repo_man");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean tatooine_espa_watto_condition_lifeDayStapQuest(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -303,7 +294,7 @@ public class tatooine_espa_watto extends script.base_script
         }
         else 
         {
-            sendSystemMessageTestingOnly(player, "ERROR : No Naboo quest ObjVar Found!");
+            broadcast(player, "ERROR : No Naboo quest ObjVar Found!");
         }
     }
     public void tatooine_espa_watto_action_signalDroidRetrieved(obj_id player, obj_id npc) throws InterruptedException
@@ -3841,19 +3832,18 @@ public class tatooine_espa_watto extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_espa_watto_condition_lifeDayStapQuest(player, npc))
+        if (tatooine_espa_watto_condition_lifeDayStapQuest(player, self))
         {
-            tatooine_espa_watto_action_lifedayGreeting(player, npc);
+            tatooine_espa_watto_action_lifedayGreeting(player, self);
             string_id message = new string_id(c_stringFile, "s_306");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3871,27 +3861,27 @@ public class tatooine_espa_watto extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_espa_watto", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_espa_watto", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_wattoComplete(player, npc))
+        if (tatooine_espa_watto_condition_wattoComplete(player, self))
         {
-            doAnimationAction(npc, "shrug_hands");
+            doAnimationAction(self, "shrug_hands");
             string_id message = new string_id(c_stringFile, "s_240");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3906,23 +3896,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_241");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 6);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_onJuiceDroid(player, npc))
+        if (tatooine_espa_watto_condition_onJuiceDroid(player, self))
         {
-            doAnimationAction(npc, "squirm");
-            tatooine_espa_watto_action_signalPoweredDroid(player, npc);
+            doAnimationAction(self, "squirm");
+            tatooine_espa_watto_action_signalPoweredDroid(player, self);
             string_id message = new string_id(c_stringFile, "s_231");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3937,23 +3927,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_232");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 14);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_onTogether(player, npc))
+        if (tatooine_espa_watto_condition_onTogether(player, self))
         {
-            doAnimationAction(npc, "listen");
-            tatooine_espa_watto_action_clearOldTogether(player, npc);
+            doAnimationAction(self, "listen");
+            tatooine_espa_watto_action_clearOldTogether(player, self);
             string_id message = new string_id(c_stringFile, "s_216");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3968,22 +3958,22 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_217");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 19);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_onHead(player, npc))
+        if (tatooine_espa_watto_condition_onHead(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_211");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3998,23 +3988,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_212");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 23);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_squillComplete(player, npc))
+        if (tatooine_espa_watto_condition_squillComplete(player, self))
         {
-            doAnimationAction(npc, "greet");
-            tatooine_espa_watto_action_grantSquillReward(player, npc);
+            doAnimationAction(self, "greet");
+            tatooine_espa_watto_action_grantSquillReward(player, self);
             string_id message = new string_id(c_stringFile, "s_162");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4029,22 +4019,22 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_171");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 26);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_onSquill(player, npc))
+        if (tatooine_espa_watto_condition_onSquill(player, self))
         {
-            doAnimationAction(npc, "shrug_shoulders");
+            doAnimationAction(self, "shrug_shoulders");
             string_id message = new string_id(c_stringFile, "s_160");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4059,23 +4049,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_163");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 32);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_repoComplete(player, npc))
+        if (tatooine_espa_watto_condition_repoComplete(player, self))
         {
-            doAnimationAction(npc, "rub_chin_thoughtful");
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            doAnimationAction(self, "rub_chin_thoughtful");
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_342");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4090,23 +4080,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_343");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 35);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_repoTaskComplete(player, npc))
+        if (tatooine_espa_watto_condition_repoTaskComplete(player, self))
         {
-            doAnimationAction(npc, "greet");
-            tatooine_espa_watto_action_grantRepoReward(player, npc);
+            doAnimationAction(self, "greet");
+            tatooine_espa_watto_action_grantRepoReward(player, self);
             string_id message = new string_id(c_stringFile, "s_134");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4121,21 +4111,21 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_135");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 39);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_onRepo(player, npc))
+        if (tatooine_espa_watto_condition_onRepo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_129");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4150,21 +4140,21 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_130");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 44);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_podComplete(player, npc))
+        if (tatooine_espa_watto_condition_podComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_339");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4179,23 +4169,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_340");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 47);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_podTaskComplete(player, npc))
+        if (tatooine_espa_watto_condition_podTaskComplete(player, self))
         {
-            doAnimationAction(npc, "huh");
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            doAnimationAction(self, "huh");
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_121");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4210,21 +4200,21 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_122");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 49);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_onPod(player, npc))
+        if (tatooine_espa_watto_condition_onPod(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_96");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4239,22 +4229,22 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_98");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 53);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_legsComplete(player, npc))
+        if (tatooine_espa_watto_condition_legsComplete(player, self))
         {
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_332");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4269,23 +4259,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_333");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 57);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_legTaskComplete(player, npc))
+        if (tatooine_espa_watto_condition_legTaskComplete(player, self))
         {
-            doAnimationAction(npc, "greet");
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            doAnimationAction(self, "greet");
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_181");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4300,22 +4290,22 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_191");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 61);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_onLegs(player, npc))
+        if (tatooine_espa_watto_condition_onLegs(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             string_id message = new string_id(c_stringFile, "s_179");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4330,22 +4320,22 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_182");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 71);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_bodyComplete(player, npc))
+        if (tatooine_espa_watto_condition_bodyComplete(player, self))
         {
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_327");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4360,23 +4350,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_328");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 73);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_bodyTaskComplete(player, npc))
+        if (tatooine_espa_watto_condition_bodyTaskComplete(player, self))
         {
-            doAnimationAction(npc, "rub_chin_thoughtful");
-            tatooine_espa_watto_action_signalBodyComplete(player, npc);
+            doAnimationAction(self, "rub_chin_thoughtful");
+            tatooine_espa_watto_action_signalBodyComplete(player, self);
             string_id message = new string_id(c_stringFile, "s_174");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4391,22 +4381,22 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_175");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 76);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_onBody(player, npc))
+        if (tatooine_espa_watto_condition_onBody(player, self))
         {
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_197");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4421,22 +4411,22 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_199");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 79);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_bargainComplete(player, npc))
+        if (tatooine_espa_watto_condition_bargainComplete(player, self))
         {
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_324");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4451,23 +4441,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_325");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 82);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_bargainTaskComplete(player, npc))
+        if (tatooine_espa_watto_condition_bargainTaskComplete(player, self))
         {
-            doAnimationAction(npc, "greet");
-            tatooine_espa_watto_action_signalBargainComplete(player, npc);
+            doAnimationAction(self, "greet");
+            tatooine_espa_watto_action_signalBargainComplete(player, self);
             string_id message = new string_id(c_stringFile, "s_210");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4482,23 +4472,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_257");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 84);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_onBargain(player, npc))
+        if (tatooine_espa_watto_condition_onBargain(player, self))
         {
-            doAnimationAction(npc, "laugh");
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            doAnimationAction(self, "laugh");
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_287");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4513,22 +4503,22 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_289");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 90);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_startWattoComplete(player, npc))
+        if (tatooine_espa_watto_condition_startWattoComplete(player, self))
         {
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_317");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4543,23 +4533,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_318");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 93);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition_startWatto(player, npc))
+        if (tatooine_espa_watto_condition_startWatto(player, self))
         {
-            doAnimationAction(npc, "greet");
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            doAnimationAction(self, "greet");
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_304");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4574,23 +4564,23 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_312");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 97);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+        if (tatooine_espa_watto_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
-            tatooine_espa_watto_action_facePlayer(player, npc);
+            doAnimationAction(self, "greet");
+            tatooine_espa_watto_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_372");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_espa_watto_condition__defaultCondition(player, npc))
+            if (tatooine_espa_watto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4605,15 +4595,15 @@ public class tatooine_espa_watto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_374");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_espa_watto.branchId", 105);
-                npcStartConversation(player, npc, "tatooine_espa_watto", message, responses);
+                npcStartConversation(player, self, "tatooine_espa_watto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -4622,353 +4612,352 @@ public class tatooine_espa_watto extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_espa_watto.branchId");
-        if (branchId == 1 && tatooine_espa_watto_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && tatooine_espa_watto_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && tatooine_espa_watto_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tatooine_espa_watto_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && tatooine_espa_watto_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && tatooine_espa_watto_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && tatooine_espa_watto_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && tatooine_espa_watto_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tatooine_espa_watto_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tatooine_espa_watto_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tatooine_espa_watto_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tatooine_espa_watto_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && tatooine_espa_watto_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && tatooine_espa_watto_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && tatooine_espa_watto_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && tatooine_espa_watto_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tatooine_espa_watto_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tatooine_espa_watto_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && tatooine_espa_watto_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && tatooine_espa_watto_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && tatooine_espa_watto_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && tatooine_espa_watto_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && tatooine_espa_watto_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && tatooine_espa_watto_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && tatooine_espa_watto_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && tatooine_espa_watto_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && tatooine_espa_watto_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && tatooine_espa_watto_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && tatooine_espa_watto_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && tatooine_espa_watto_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && tatooine_espa_watto_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && tatooine_espa_watto_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && tatooine_espa_watto_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && tatooine_espa_watto_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && tatooine_espa_watto_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && tatooine_espa_watto_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && tatooine_espa_watto_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && tatooine_espa_watto_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && tatooine_espa_watto_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && tatooine_espa_watto_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && tatooine_espa_watto_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && tatooine_espa_watto_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && tatooine_espa_watto_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && tatooine_espa_watto_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && tatooine_espa_watto_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && tatooine_espa_watto_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && tatooine_espa_watto_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && tatooine_espa_watto_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && tatooine_espa_watto_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && tatooine_espa_watto_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && tatooine_espa_watto_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && tatooine_espa_watto_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && tatooine_espa_watto_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && tatooine_espa_watto_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && tatooine_espa_watto_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && tatooine_espa_watto_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && tatooine_espa_watto_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && tatooine_espa_watto_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && tatooine_espa_watto_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && tatooine_espa_watto_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && tatooine_espa_watto_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && tatooine_espa_watto_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && tatooine_espa_watto_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && tatooine_espa_watto_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && tatooine_espa_watto_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && tatooine_espa_watto_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && tatooine_espa_watto_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && tatooine_espa_watto_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && tatooine_espa_watto_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && tatooine_espa_watto_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && tatooine_espa_watto_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && tatooine_espa_watto_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && tatooine_espa_watto_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && tatooine_espa_watto_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && tatooine_espa_watto_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && tatooine_espa_watto_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && tatooine_espa_watto_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && tatooine_espa_watto_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && tatooine_espa_watto_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && tatooine_espa_watto_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && tatooine_espa_watto_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && tatooine_espa_watto_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && tatooine_espa_watto_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && tatooine_espa_watto_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && tatooine_espa_watto_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && tatooine_espa_watto_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && tatooine_espa_watto_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && tatooine_espa_watto_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && tatooine_espa_watto_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && tatooine_espa_watto_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && tatooine_espa_watto_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && tatooine_espa_watto_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && tatooine_espa_watto_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && tatooine_espa_watto_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && tatooine_espa_watto_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && tatooine_espa_watto_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && tatooine_espa_watto_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && tatooine_espa_watto_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && tatooine_espa_watto_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && tatooine_espa_watto_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && tatooine_espa_watto_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && tatooine_espa_watto_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && tatooine_espa_watto_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && tatooine_espa_watto_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && tatooine_espa_watto_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && tatooine_espa_watto_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && tatooine_espa_watto_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && tatooine_espa_watto_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && tatooine_espa_watto_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && tatooine_espa_watto_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && tatooine_espa_watto_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && tatooine_espa_watto_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && tatooine_espa_watto_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && tatooine_espa_watto_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && tatooine_espa_watto_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && tatooine_espa_watto_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && tatooine_espa_watto_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && tatooine_espa_watto_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && tatooine_espa_watto_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && tatooine_espa_watto_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && tatooine_espa_watto_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && tatooine_espa_watto_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && tatooine_espa_watto_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && tatooine_espa_watto_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && tatooine_espa_watto_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && tatooine_espa_watto_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && tatooine_espa_watto_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && tatooine_espa_watto_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && tatooine_espa_watto_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && tatooine_espa_watto_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && tatooine_espa_watto_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && tatooine_espa_watto_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && tatooine_espa_watto_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && tatooine_espa_watto_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && tatooine_espa_watto_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && tatooine_espa_watto_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && tatooine_espa_watto_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && tatooine_espa_watto_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && tatooine_espa_watto_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && tatooine_espa_watto_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && tatooine_espa_watto_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && tatooine_espa_watto_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && tatooine_espa_watto_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && tatooine_espa_watto_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 98 && tatooine_espa_watto_handleBranch98(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 98 && tatooine_espa_watto_handleBranch98(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 99 && tatooine_espa_watto_handleBranch99(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 99 && tatooine_espa_watto_handleBranch99(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 100 && tatooine_espa_watto_handleBranch100(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 100 && tatooine_espa_watto_handleBranch100(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 101 && tatooine_espa_watto_handleBranch101(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 101 && tatooine_espa_watto_handleBranch101(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 102 && tatooine_espa_watto_handleBranch102(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 102 && tatooine_espa_watto_handleBranch102(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 103 && tatooine_espa_watto_handleBranch103(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 103 && tatooine_espa_watto_handleBranch103(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 105 && tatooine_espa_watto_handleBranch105(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 105 && tatooine_espa_watto_handleBranch105(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 106 && tatooine_espa_watto_handleBranch106(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 106 && tatooine_espa_watto_handleBranch106(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 107 && tatooine_espa_watto_handleBranch107(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 107 && tatooine_espa_watto_handleBranch107(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 108 && tatooine_espa_watto_handleBranch108(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 108 && tatooine_espa_watto_handleBranch108(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 112 && tatooine_espa_watto_handleBranch112(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 112 && tatooine_espa_watto_handleBranch112(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 113 && tatooine_espa_watto_handleBranch113(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 113 && tatooine_espa_watto_handleBranch113(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 114 && tatooine_espa_watto_handleBranch114(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 114 && tatooine_espa_watto_handleBranch114(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 115 && tatooine_espa_watto_handleBranch115(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 115 && tatooine_espa_watto_handleBranch115(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_espa_watto.branchId");
         return SCRIPT_CONTINUE;
     }

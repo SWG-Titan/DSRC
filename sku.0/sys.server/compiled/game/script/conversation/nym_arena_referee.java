@@ -6,7 +6,7 @@ import script.library.chat;
 import script.library.groundquests;
 import script.library.utils;
 
-public class nym_arena_referee extends script.base_script
+public class nym_arena_referee extends base_script
 {
     public nym_arena_referee()
     {

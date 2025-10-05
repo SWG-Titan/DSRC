@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class corellia_imperial_tier4 extends script.base_script
+public class corellia_imperial_tier4 extends base_script
 {
     public corellia_imperial_tier4()
     {

@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class corellia_privateer_trainer extends script.base_script
+public class corellia_privateer_trainer extends base_script
 {
     public corellia_privateer_trainer()
     {
@@ -10972,40 +10972,39 @@ public class corellia_privateer_trainer extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_privateer_trainer_condition_hasVeryFirstQuest(player, npc))
+        if (corellia_privateer_trainer_condition_hasVeryFirstQuest(player, self))
         {
-            doAnimationAction(npc, "point_away");
+            doAnimationAction(self, "point_away");
             string_id message = new string_id(c_stringFile, "s_9e5f75be");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11032,43 +11031,43 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5e4ebfca");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 1);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_hasSpaceExpansion(player, npc))
+        if (!corellia_privateer_trainer_condition_hasSpaceExpansion(player, self))
         {
-            doAnimationAction(npc, "shake_head_no");
+            doAnimationAction(self, "shake_head_no");
             string_id message = new string_id(c_stringFile, "s_698d80f7");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_isRebelPilot(player, npc))
+        if (corellia_privateer_trainer_condition_isRebelPilot(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_c9f74b42");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_isImperialPilot(player, npc))
+        if (corellia_privateer_trainer_condition_isImperialPilot(player, self))
         {
-            doAnimationAction(npc, "standing_placate");
+            doAnimationAction(self, "standing_placate");
             string_id message = new string_id(c_stringFile, "s_15502961");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_isPilotButNotCorSec(player, npc))
+        if (corellia_privateer_trainer_condition_isPilotButNotCorSec(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             string_id message = new string_id(c_stringFile, "s_ff684aed");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11083,37 +11082,37 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c1ff5062");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 9);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_hasNoviceSkillBox(player, npc))
+        if (!corellia_privateer_trainer_condition_hasNoviceSkillBox(player, self))
         {
-            doAnimationAction(npc, "greet");
-            corellia_privateer_trainer_action_eraseClientPath(player, npc);
+            doAnimationAction(self, "greet");
+            corellia_privateer_trainer_action_eraseClientPath(player, self);
             string_id message = new string_id(c_stringFile, "s_f518ba4f");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11136,45 +11135,45 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4906b993");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 12);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_hasSpaceShip(player, npc))
+        if (!corellia_privateer_trainer_condition_hasSpaceShip(player, self))
         {
-            doAnimationAction(npc, "explain");
-            corellia_privateer_trainer_action_grantSpaceShip(player, npc);
+            doAnimationAction(self, "explain");
+            corellia_privateer_trainer_action_grantSpaceShip(player, self);
             string_id message = new string_id(c_stringFile, "s_149");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_hasCorSecQuest(player, npc))
+        if (corellia_privateer_trainer_condition_hasCorSecQuest(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_333f5da9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_hasAllTierOneSkills(player, npc))
+        if (corellia_privateer_trainer_condition_hasAllTierOneSkills(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_cd44e585");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_missionOneFailed(player, npc))
+        if (corellia_privateer_trainer_condition_missionOneFailed(player, self))
         {
-            doAnimationAction(npc, "dismiss");
-            corellia_privateer_trainer_action_grantMissionOne(player, npc);
+            doAnimationAction(self, "dismiss");
+            corellia_privateer_trainer_action_grantMissionOne(player, self);
             string_id message = new string_id(c_stringFile, "s_5cdbbd1f");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11189,23 +11188,23 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_133a724d");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 68);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_missionTwoFailed(player, npc))
+        if (corellia_privateer_trainer_condition_missionTwoFailed(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
-            corellia_privateer_trainer_action_grantMissionTwo(player, npc);
+            doAnimationAction(self, "pound_fist_palm");
+            corellia_privateer_trainer_action_grantMissionTwo(player, self);
             string_id message = new string_id(c_stringFile, "s_8b8a1542");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11220,23 +11219,23 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_168");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 71);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_missionThreeFailed(player, npc))
+        if (corellia_privateer_trainer_condition_missionThreeFailed(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
-            corellia_privateer_trainer_action_grantMissionThree(player, npc);
+            doAnimationAction(self, "point_accusingly");
+            corellia_privateer_trainer_action_grantMissionThree(player, self);
             string_id message = new string_id(c_stringFile, "s_844a124b");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11251,23 +11250,23 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_176");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 74);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_missionFourFailed(player, npc))
+        if (corellia_privateer_trainer_condition_missionFourFailed(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
-            corellia_privateer_trainer_action_grantMissionFour(player, npc);
+            doAnimationAction(self, "shake_head_disgust");
+            corellia_privateer_trainer_action_grantMissionFour(player, self);
             string_id message = new string_id(c_stringFile, "s_429077be");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11282,30 +11281,30 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_183");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 77);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_beenRewardedForQuestOne(player, npc))
+        if (!corellia_privateer_trainer_condition_beenRewardedForQuestOne(player, self))
         {
-            doAnimationAction(npc, "applause_polite");
-            corellia_privateer_trainer_action_rewardForQuestOne(player, npc);
+            doAnimationAction(self, "applause_polite");
+            corellia_privateer_trainer_action_rewardForQuestOne(player, self);
             string_id message = new string_id(c_stringFile, "s_f053b088");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11324,22 +11323,22 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3557fc9f");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 67);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_hasCompletedQuestOne(player, npc))
+        if (!corellia_privateer_trainer_condition_hasCompletedQuestOne(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             string_id message = new string_id(c_stringFile, "s_160");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11354,30 +11353,30 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_133a724d");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 68);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_beenRewardedForQuestTwo(player, npc))
+        if (!corellia_privateer_trainer_condition_beenRewardedForQuestTwo(player, self))
         {
-            doAnimationAction(npc, "salute1");
-            corellia_privateer_trainer_action_rewardForQuestTwo(player, npc);
+            doAnimationAction(self, "salute1");
+            corellia_privateer_trainer_action_rewardForQuestTwo(player, self);
             string_id message = new string_id(c_stringFile, "s_926359dd");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11396,23 +11395,23 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_257f178d");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 70);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_hasCompletedQuestTwo(player, npc))
+        if (!corellia_privateer_trainer_condition_hasCompletedQuestTwo(player, self))
         {
-            doAnimationAction(npc, "rub_chin_thoughtful");
+            doAnimationAction(self, "rub_chin_thoughtful");
             doAnimationAction(player, "nod_head_multiple");
             string_id message = new string_id(c_stringFile, "s_4801be96");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11427,30 +11426,30 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_168");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 71);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_beenRewardedForQuestThree(player, npc))
+        if (!corellia_privateer_trainer_condition_beenRewardedForQuestThree(player, self))
         {
-            doAnimationAction(npc, "bow");
-            corellia_privateer_trainer_action_rewardForQuestThree(player, npc);
+            doAnimationAction(self, "bow");
+            corellia_privateer_trainer_action_rewardForQuestThree(player, self);
             string_id message = new string_id(c_stringFile, "s_f8026f5d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11469,22 +11468,22 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_ebb99364");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 73);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_hasCompletedQuestThree(player, npc))
+        if (!corellia_privateer_trainer_condition_hasCompletedQuestThree(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             string_id message = new string_id(c_stringFile, "s_964fb39a");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11499,30 +11498,30 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_176");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 74);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_beenRewardedForQuestFour(player, npc))
+        if (!corellia_privateer_trainer_condition_beenRewardedForQuestFour(player, self))
         {
-            doAnimationAction(npc, "point_forward");
-            corellia_privateer_trainer_action_rewardForQuestFour(player, npc);
+            doAnimationAction(self, "point_forward");
+            corellia_privateer_trainer_action_rewardForQuestFour(player, self);
             string_id message = new string_id(c_stringFile, "s_dc993cdb");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11541,22 +11540,22 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_af264a19");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 76);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!corellia_privateer_trainer_condition_hasCompletedQuestFour(player, npc))
+        if (!corellia_privateer_trainer_condition_hasCompletedQuestFour(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
+            doAnimationAction(self, "pound_fist_palm");
             string_id message = new string_id(c_stringFile, "s_8e1ed7f0");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11571,22 +11570,22 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_183");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 77);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_isReadyForFirstTraining(player, npc))
+        if (corellia_privateer_trainer_condition_isReadyForFirstTraining(player, self))
         {
-            doAnimationAction(npc, "nod_head_multiple");
+            doAnimationAction(self, "nod_head_multiple");
             string_id message = new string_id(c_stringFile, "s_5e6c7400");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11601,22 +11600,22 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c06c7aa9");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 79);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition_isReadyForMoreTraining(player, npc))
+        if (corellia_privateer_trainer_condition_isReadyForMoreTraining(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             string_id message = new string_id(c_stringFile, "s_46ea46ad");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11631,44 +11630,44 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_229");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 81);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+        if (corellia_privateer_trainer_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             doAnimationAction(player, "salute1");
             string_id message = new string_id(c_stringFile, "s_a48c20c8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (corellia_privateer_trainer_condition__defaultCondition(player, npc))
+            if (corellia_privateer_trainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11695,15 +11694,15 @@ public class corellia_privateer_trainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_2883b989");
                 }
                 utils.setScriptVar(player, "conversation.corellia_privateer_trainer.branchId", 90);
-                npcStartConversation(player, npc, "corellia_privateer_trainer", message, responses);
+                npcStartConversation(player, self, "corellia_privateer_trainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -11712,225 +11711,224 @@ public class corellia_privateer_trainer extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_privateer_trainer.branchId");
-        if (branchId == 1 && corellia_privateer_trainer_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && corellia_privateer_trainer_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && corellia_privateer_trainer_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && corellia_privateer_trainer_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && corellia_privateer_trainer_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corellia_privateer_trainer_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && corellia_privateer_trainer_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && corellia_privateer_trainer_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && corellia_privateer_trainer_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && corellia_privateer_trainer_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && corellia_privateer_trainer_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && corellia_privateer_trainer_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_privateer_trainer_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_privateer_trainer_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && corellia_privateer_trainer_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && corellia_privateer_trainer_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && corellia_privateer_trainer_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && corellia_privateer_trainer_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && corellia_privateer_trainer_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && corellia_privateer_trainer_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && corellia_privateer_trainer_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && corellia_privateer_trainer_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && corellia_privateer_trainer_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && corellia_privateer_trainer_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && corellia_privateer_trainer_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && corellia_privateer_trainer_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && corellia_privateer_trainer_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && corellia_privateer_trainer_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && corellia_privateer_trainer_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && corellia_privateer_trainer_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && corellia_privateer_trainer_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && corellia_privateer_trainer_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && corellia_privateer_trainer_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && corellia_privateer_trainer_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && corellia_privateer_trainer_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && corellia_privateer_trainer_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && corellia_privateer_trainer_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && corellia_privateer_trainer_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && corellia_privateer_trainer_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && corellia_privateer_trainer_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && corellia_privateer_trainer_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && corellia_privateer_trainer_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && corellia_privateer_trainer_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && corellia_privateer_trainer_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && corellia_privateer_trainer_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && corellia_privateer_trainer_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && corellia_privateer_trainer_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && corellia_privateer_trainer_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && corellia_privateer_trainer_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && corellia_privateer_trainer_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && corellia_privateer_trainer_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && corellia_privateer_trainer_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && corellia_privateer_trainer_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && corellia_privateer_trainer_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && corellia_privateer_trainer_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && corellia_privateer_trainer_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && corellia_privateer_trainer_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && corellia_privateer_trainer_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && corellia_privateer_trainer_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && corellia_privateer_trainer_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && corellia_privateer_trainer_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && corellia_privateer_trainer_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && corellia_privateer_trainer_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && corellia_privateer_trainer_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && corellia_privateer_trainer_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && corellia_privateer_trainer_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && corellia_privateer_trainer_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && corellia_privateer_trainer_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && corellia_privateer_trainer_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && corellia_privateer_trainer_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && corellia_privateer_trainer_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && corellia_privateer_trainer_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && corellia_privateer_trainer_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && corellia_privateer_trainer_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && corellia_privateer_trainer_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && corellia_privateer_trainer_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && corellia_privateer_trainer_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && corellia_privateer_trainer_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && corellia_privateer_trainer_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && corellia_privateer_trainer_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && corellia_privateer_trainer_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && corellia_privateer_trainer_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && corellia_privateer_trainer_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && corellia_privateer_trainer_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && corellia_privateer_trainer_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && corellia_privateer_trainer_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && corellia_privateer_trainer_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && corellia_privateer_trainer_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && corellia_privateer_trainer_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && corellia_privateer_trainer_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && corellia_privateer_trainer_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && corellia_privateer_trainer_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && corellia_privateer_trainer_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && corellia_privateer_trainer_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && corellia_privateer_trainer_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && corellia_privateer_trainer_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && corellia_privateer_trainer_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && corellia_privateer_trainer_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && corellia_privateer_trainer_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && corellia_privateer_trainer_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && corellia_privateer_trainer_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && corellia_privateer_trainer_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && corellia_privateer_trainer_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && corellia_privateer_trainer_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && corellia_privateer_trainer_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && corellia_privateer_trainer_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && corellia_privateer_trainer_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && corellia_privateer_trainer_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_privateer_trainer.branchId");
         return SCRIPT_CONTINUE;
     }

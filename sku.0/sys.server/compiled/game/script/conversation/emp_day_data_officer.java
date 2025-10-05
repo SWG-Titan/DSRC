@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class emp_day_data_officer extends script.base_script
+public class emp_day_data_officer extends base_script
 {
     public emp_day_data_officer()
     {
@@ -322,30 +322,29 @@ public class emp_day_data_officer extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (emp_day_data_officer_condition_isRebel(player, npc))
+        if (emp_day_data_officer_condition_isRebel(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_298");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_data_officer_condition_notReadyForYou(player, npc))
+        if (emp_day_data_officer_condition_notReadyForYou(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_300");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_data_officer_condition_hasTask6(player, npc))
+        if (emp_day_data_officer_condition_hasTask6(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_302");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_data_officer_condition__defaultCondition(player, npc))
+            if (emp_day_data_officer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -360,21 +359,21 @@ public class emp_day_data_officer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_304");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_data_officer.branchId", 3);
-                npcStartConversation(player, npc, "emp_day_data_officer", message, responses);
+                npcStartConversation(player, self, "emp_day_data_officer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_data_officer_condition_hasTask5(player, npc))
+        if (emp_day_data_officer_condition_hasTask5(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_308");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_data_officer_condition__defaultCondition(player, npc))
+            if (emp_day_data_officer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -389,15 +388,15 @@ public class emp_day_data_officer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_310");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_data_officer.branchId", 5);
-                npcStartConversation(player, npc, "emp_day_data_officer", message, responses);
+                npcStartConversation(player, self, "emp_day_data_officer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -406,29 +405,28 @@ public class emp_day_data_officer extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.emp_day_data_officer.branchId");
-        if (branchId == 3 && emp_day_data_officer_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && emp_day_data_officer_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && emp_day_data_officer_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && emp_day_data_officer_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && emp_day_data_officer_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && emp_day_data_officer_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && emp_day_data_officer_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && emp_day_data_officer_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && emp_day_data_officer_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && emp_day_data_officer_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.emp_day_data_officer.branchId");
         return SCRIPT_CONTINUE;
     }

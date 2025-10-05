@@ -362,19 +362,18 @@ public class nexus_travel_away extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!nexus_travel_away_condition_hasFoundAurilia(player, npc))
+        if (!nexus_travel_away_condition_hasFoundAurilia(player, self))
         {
-            nexus_travel_away_action_grantFoundAurilia(player, npc);
+            nexus_travel_away_action_grantFoundAurilia(player, self);
             string_id message = new string_id(c_stringFile, "s_15");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nexus_travel_away_condition__defaultCondition(player, npc))
+            if (nexus_travel_away_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -389,28 +388,28 @@ public class nexus_travel_away extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_17");
                 }
                 utils.setScriptVar(player, "conversation.nexus_travel_away.branchId", 1);
-                npcStartConversation(player, npc, "nexus_travel_away", message, responses);
+                npcStartConversation(player, self, "nexus_travel_away", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nexus_travel_away_condition__defaultCondition(player, npc))
+        if (nexus_travel_away_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_10");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nexus_travel_away_condition__defaultCondition(player, npc))
+            if (nexus_travel_away_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (nexus_travel_away_condition__defaultCondition(player, npc))
+            if (nexus_travel_away_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -432,20 +431,20 @@ public class nexus_travel_away extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "nexus_travel_away", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "nexus_travel_away", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -454,25 +453,24 @@ public class nexus_travel_away extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.nexus_travel_away.branchId");
-        if (branchId == 1 && nexus_travel_away_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && nexus_travel_away_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && nexus_travel_away_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && nexus_travel_away_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && nexus_travel_away_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && nexus_travel_away_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && nexus_travel_away_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && nexus_travel_away_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.nexus_travel_away.branchId");
         return SCRIPT_CONTINUE;
     }

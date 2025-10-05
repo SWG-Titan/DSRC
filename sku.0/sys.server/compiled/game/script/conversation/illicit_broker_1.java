@@ -139,8 +139,7 @@ public class illicit_broker_1 extends script.base_script
         {
             utils.setScriptVar(player, "illicitContrabandTrade", contraband);
             string_id contrabandId = new string_id("static_item_n", contraband);
-            String contrabandItemName = getString(contrabandId);
-            return contrabandItemName;
+            return getString(contrabandId);
         }
         return "";
     }
@@ -914,56 +913,55 @@ public class illicit_broker_1 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (illicit_broker_1_condition_isNonSmuggler(player, npc))
+        if (illicit_broker_1_condition_isNonSmuggler(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (illicit_broker_1_condition_isDoingMission(player, npc))
+        if (illicit_broker_1_condition_isDoingMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!illicit_broker_1_condition_hasSomeContraband(player, npc))
+        if (!illicit_broker_1_condition_hasSomeContraband(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_49");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!illicit_broker_1_condition_hasMissionContraband(player, npc))
+        if (!illicit_broker_1_condition_hasMissionContraband(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_50");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (illicit_broker_1_condition_hasMissionContrabandBusiness(player, npc))
+        if (illicit_broker_1_condition_hasMissionContrabandBusiness(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_51");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (illicit_broker_1_condition__defaultCondition(player, npc))
+            if (illicit_broker_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (illicit_broker_1_condition_hasMissionContrabandToDeliver(player, npc))
+            if (illicit_broker_1_condition_hasMissionContrabandToDeliver(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!illicit_broker_1_condition_hasMissionContrabandToDeliver(player, npc))
+            if (!illicit_broker_1_condition_hasMissionContrabandToDeliver(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -989,35 +987,35 @@ public class illicit_broker_1 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(illicit_broker_1_tokenTO_contrabandName(player, npc));
-                npcStartConversation(player, npc, "illicit_broker_1", null, pp, responses);
+                pp.target.set(self);
+                pp.other.set(illicit_broker_1_tokenTO_contrabandName(player, self));
+                npcStartConversation(player, self, "illicit_broker_1", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(illicit_broker_1_tokenTO_contrabandName(player, npc));
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                pp.other.set(illicit_broker_1_tokenTO_contrabandName(player, self));
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (illicit_broker_1_condition_hasMissionContraband(player, npc))
+        if (illicit_broker_1_condition_hasMissionContraband(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_62");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (illicit_broker_1_condition__defaultCondition(player, npc))
+            if (illicit_broker_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (illicit_broker_1_condition__defaultCondition(player, npc))
+            if (illicit_broker_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1036,15 +1034,15 @@ public class illicit_broker_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_38");
                 }
                 utils.setScriptVar(player, "conversation.illicit_broker_1.branchId", 14);
-                npcStartConversation(player, npc, "illicit_broker_1", message, responses);
+                npcStartConversation(player, self, "illicit_broker_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1053,33 +1051,32 @@ public class illicit_broker_1 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.illicit_broker_1.branchId");
-        if (branchId == 5 && illicit_broker_1_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && illicit_broker_1_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && illicit_broker_1_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && illicit_broker_1_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && illicit_broker_1_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && illicit_broker_1_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && illicit_broker_1_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && illicit_broker_1_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && illicit_broker_1_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && illicit_broker_1_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && illicit_broker_1_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && illicit_broker_1_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.illicit_broker_1.branchId");
         return SCRIPT_CONTINUE;
     }

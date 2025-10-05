@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class c_ddroid_selan extends script.base_script
+public class c_ddroid_selan extends base_script
 {
     public c_ddroid_selan()
     {

@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class talus_dearic_coa_mark_hieks extends script.base_script
+public class talus_dearic_coa_mark_hieks extends base_script
 {
     public talus_dearic_coa_mark_hieks()
     {

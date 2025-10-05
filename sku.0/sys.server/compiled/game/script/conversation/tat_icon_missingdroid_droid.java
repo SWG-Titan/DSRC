@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class tat_icon_missingdroid_droid extends script.base_script
+public class tat_icon_missingdroid_droid extends base_script
 {
     public tat_icon_missingdroid_droid()
     {

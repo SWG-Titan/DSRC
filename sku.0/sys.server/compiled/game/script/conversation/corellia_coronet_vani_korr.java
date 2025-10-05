@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class corellia_coronet_vani_korr extends script.base_script
+public class corellia_coronet_vani_korr extends base_script
 {
     public corellia_coronet_vani_korr()
     {
@@ -1501,24 +1501,23 @@ public class corellia_coronet_vani_korr extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_coronet_vani_korr_condition_completedAct2StoryQuest(player, npc))
+        if (corellia_coronet_vani_korr_condition_completedAct2StoryQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_200");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_hasAct2StoryQuest(player, npc))
+        if (corellia_coronet_vani_korr_condition_hasAct2StoryQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_197");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1533,28 +1532,28 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_198");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 2);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_hasHideoutPointer(player, npc))
+        if (corellia_coronet_vani_korr_condition_hasHideoutPointer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_191");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_returning_mtpHideout07(player, npc))
+        if (corellia_coronet_vani_korr_condition_returning_mtpHideout07(player, self))
         {
-            corellia_coronet_vani_korr_action_signal_mtpHideout07(player, npc);
+            corellia_coronet_vani_korr_action_signal_mtpHideout07(player, self);
             string_id message = new string_id(c_stringFile, "s_161");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1569,47 +1568,47 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_189");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 5);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_active_mtpHideout07(player, npc))
+        if (corellia_coronet_vani_korr_condition_active_mtpHideout07(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_160");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_active_mtpHideout06(player, npc))
+        if (corellia_coronet_vani_korr_condition_active_mtpHideout06(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_159");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_active_mtpHideout05(player, npc))
+        if (corellia_coronet_vani_korr_condition_active_mtpHideout05(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_158");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_returning_mtpHideout04(player, npc))
+        if (corellia_coronet_vani_korr_condition_returning_mtpHideout04(player, self))
         {
-            corellia_coronet_vani_korr_action_signal_mtpHideout04(player, npc);
+            corellia_coronet_vani_korr_action_signal_mtpHideout04(player, self);
             string_id message = new string_id(c_stringFile, "s_152");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1628,41 +1627,41 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_156");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 10);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_active_mtpHideout04(player, npc))
+        if (corellia_coronet_vani_korr_condition_active_mtpHideout04(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_153");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_needs_mtpHideout04(player, npc))
+        if (corellia_coronet_vani_korr_condition_needs_mtpHideout04(player, self))
         {
-            corellia_coronet_vani_korr_action_grant_mtpHideout04Pointer(player, npc);
+            corellia_coronet_vani_korr_action_grant_mtpHideout04Pointer(player, self);
             string_id message = new string_id(c_stringFile, "s_195");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_active_mtpHideout03(player, npc))
+        if (corellia_coronet_vani_korr_condition_active_mtpHideout03(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_151");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_returning_mtpHideout02(player, npc))
+        if (corellia_coronet_vani_korr_condition_returning_mtpHideout02(player, self))
         {
-            corellia_coronet_vani_korr_action_signal_mtpHideout02(player, npc);
+            corellia_coronet_vani_korr_action_signal_mtpHideout02(player, self);
             string_id message = new string_id(c_stringFile, "s_146");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1677,28 +1676,28 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_147");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 16);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_active_mtpHideout02(player, npc))
+        if (corellia_coronet_vani_korr_condition_active_mtpHideout02(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_145");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_returning_mtpHideout01(player, npc))
+        if (corellia_coronet_vani_korr_condition_returning_mtpHideout01(player, self))
         {
-            corellia_coronet_vani_korr_action_signal_mtpHideout01(player, npc);
+            corellia_coronet_vani_korr_action_signal_mtpHideout01(player, self);
             string_id message = new string_id(c_stringFile, "s_142");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1713,34 +1712,34 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_143");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 20);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_active_mtpHideout01(player, npc))
+        if (corellia_coronet_vani_korr_condition_active_mtpHideout01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_141");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_readyForMtpHideout(player, npc))
+        if (corellia_coronet_vani_korr_condition_readyForMtpHideout(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_135");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1759,27 +1758,27 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_137");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 23);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_act1_completedAct1(player, npc))
+        if (corellia_coronet_vani_korr_condition_act1_completedAct1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_37");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_act1_gotPassword(player, npc))
+        if (corellia_coronet_vani_korr_condition_act1_gotPassword(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_39");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1794,28 +1793,28 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_60");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 26);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_act1_failedPassword(player, npc))
+        if (corellia_coronet_vani_korr_condition_act1_failedPassword(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_103");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1834,28 +1833,28 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_109");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 34);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_act1_gettingPassword(player, npc))
+        if (corellia_coronet_vani_korr_condition_act1_gettingPassword(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_59");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1874,21 +1873,21 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_105");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 37);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_act1_refusedPassword(player, npc))
+        if (corellia_coronet_vani_korr_condition_act1_refusedPassword(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_69");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1903,21 +1902,21 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_73");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 41);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_act1_finishedDatapads(player, npc))
+        if (corellia_coronet_vani_korr_condition_act1_finishedDatapads(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_71");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1932,34 +1931,34 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_73");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 41);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_act1_gettingDatapads(player, npc))
+        if (corellia_coronet_vani_korr_condition_act1_gettingDatapads(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_89");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_act1_refusedDatpads(player, npc))
+        if (corellia_coronet_vani_korr_condition_act1_refusedDatpads(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_91");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1978,28 +1977,28 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_180");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 51);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition_act1_hasViewScreen(player, npc))
+        if (corellia_coronet_vani_korr_condition_act1_hasViewScreen(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_93");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+            if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2018,21 +2017,21 @@ public class corellia_coronet_vani_korr extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_196");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId", 48);
-                npcStartConversation(player, npc, "corellia_coronet_vani_korr", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_vani_korr", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_vani_korr_condition__defaultCondition(player, npc))
+        if (corellia_coronet_vani_korr_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_204");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2041,125 +2040,124 @@ public class corellia_coronet_vani_korr extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId");
-        if (branchId == 2 && corellia_coronet_vani_korr_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && corellia_coronet_vani_korr_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && corellia_coronet_vani_korr_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && corellia_coronet_vani_korr_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_coronet_vani_korr_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_coronet_vani_korr_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && corellia_coronet_vani_korr_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && corellia_coronet_vani_korr_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && corellia_coronet_vani_korr_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && corellia_coronet_vani_korr_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && corellia_coronet_vani_korr_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && corellia_coronet_vani_korr_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && corellia_coronet_vani_korr_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && corellia_coronet_vani_korr_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && corellia_coronet_vani_korr_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && corellia_coronet_vani_korr_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && corellia_coronet_vani_korr_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && corellia_coronet_vani_korr_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && corellia_coronet_vani_korr_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && corellia_coronet_vani_korr_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && corellia_coronet_vani_korr_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && corellia_coronet_vani_korr_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && corellia_coronet_vani_korr_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && corellia_coronet_vani_korr_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && corellia_coronet_vani_korr_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && corellia_coronet_vani_korr_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && corellia_coronet_vani_korr_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && corellia_coronet_vani_korr_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && corellia_coronet_vani_korr_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && corellia_coronet_vani_korr_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && corellia_coronet_vani_korr_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && corellia_coronet_vani_korr_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && corellia_coronet_vani_korr_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && corellia_coronet_vani_korr_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && corellia_coronet_vani_korr_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && corellia_coronet_vani_korr_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && corellia_coronet_vani_korr_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && corellia_coronet_vani_korr_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && corellia_coronet_vani_korr_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && corellia_coronet_vani_korr_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && corellia_coronet_vani_korr_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && corellia_coronet_vani_korr_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && corellia_coronet_vani_korr_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && corellia_coronet_vani_korr_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && corellia_coronet_vani_korr_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && corellia_coronet_vani_korr_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && corellia_coronet_vani_korr_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && corellia_coronet_vani_korr_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && corellia_coronet_vani_korr_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && corellia_coronet_vani_korr_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && corellia_coronet_vani_korr_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && corellia_coronet_vani_korr_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && corellia_coronet_vani_korr_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && corellia_coronet_vani_korr_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && corellia_coronet_vani_korr_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && corellia_coronet_vani_korr_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && corellia_coronet_vani_korr_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && corellia_coronet_vani_korr_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_coronet_vani_korr.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -612,19 +612,18 @@ public class corellia_tyrena_kyran_silene extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_tyrena_kyran_silene_condition_completedSlaverArc(player, npc))
+        if (corellia_tyrena_kyran_silene_condition_completedSlaverArc(player, self))
         {
-            doAnimationAction(npc, "celebrate");
+            doAnimationAction(self, "celebrate");
             string_id message = new string_id(c_stringFile, "s_17");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -639,22 +638,22 @@ public class corellia_tyrena_kyran_silene extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_18");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_kyran_silene.branchId", 1);
-                npcStartConversation(player, npc, "corellia_tyrena_kyran_silene", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_kyran_silene", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_kyran_silene_condition_onReturnKyran(player, npc))
+        if (corellia_tyrena_kyran_silene_condition_onReturnKyran(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_51");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -669,29 +668,29 @@ public class corellia_tyrena_kyran_silene extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_52");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_kyran_silene.branchId", 3);
-                npcStartConversation(player, npc, "corellia_tyrena_kyran_silene", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_kyran_silene", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_kyran_silene_condition_completedMissingPersons(player, npc))
+        if (corellia_tyrena_kyran_silene_condition_completedMissingPersons(player, self))
         {
-            doAnimationAction(npc, "shrug_hands");
+            doAnimationAction(self, "shrug_hands");
             string_id message = new string_id(c_stringFile, "s_23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -710,22 +709,22 @@ public class corellia_tyrena_kyran_silene extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_43");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_kyran_silene.branchId", 10);
-                npcStartConversation(player, npc, "corellia_tyrena_kyran_silene", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_kyran_silene", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_kyran_silene_condition_onTalkKyran(player, npc))
+        if (corellia_tyrena_kyran_silene_condition_onTalkKyran(player, self))
         {
-            doAnimationAction(npc, "shrug_hands");
+            doAnimationAction(self, "shrug_hands");
             string_id message = new string_id(c_stringFile, "s_33");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -740,22 +739,22 @@ public class corellia_tyrena_kyran_silene extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_35");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_kyran_silene.branchId", 14);
-                npcStartConversation(player, npc, "corellia_tyrena_kyran_silene", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_kyran_silene", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, npc))
+        if (corellia_tyrena_kyran_silene_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "check_wrist_device");
+            doAnimationAction(self, "check_wrist_device");
             string_id message = new string_id(c_stringFile, "s_76");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -764,69 +763,68 @@ public class corellia_tyrena_kyran_silene extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_tyrena_kyran_silene.branchId");
-        if (branchId == 1 && corellia_tyrena_kyran_silene_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && corellia_tyrena_kyran_silene_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && corellia_tyrena_kyran_silene_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corellia_tyrena_kyran_silene_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && corellia_tyrena_kyran_silene_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && corellia_tyrena_kyran_silene_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && corellia_tyrena_kyran_silene_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && corellia_tyrena_kyran_silene_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_tyrena_kyran_silene_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_tyrena_kyran_silene_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && corellia_tyrena_kyran_silene_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && corellia_tyrena_kyran_silene_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && corellia_tyrena_kyran_silene_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && corellia_tyrena_kyran_silene_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_tyrena_kyran_silene_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_tyrena_kyran_silene_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && corellia_tyrena_kyran_silene_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && corellia_tyrena_kyran_silene_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && corellia_tyrena_kyran_silene_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && corellia_tyrena_kyran_silene_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && corellia_tyrena_kyran_silene_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && corellia_tyrena_kyran_silene_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && corellia_tyrena_kyran_silene_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && corellia_tyrena_kyran_silene_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && corellia_tyrena_kyran_silene_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && corellia_tyrena_kyran_silene_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && corellia_tyrena_kyran_silene_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && corellia_tyrena_kyran_silene_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && corellia_tyrena_kyran_silene_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && corellia_tyrena_kyran_silene_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_tyrena_kyran_silene.branchId");
         return SCRIPT_CONTINUE;
     }

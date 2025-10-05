@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class tusken_medical extends script.base_script
+public class tusken_medical extends base_script
 {
     public tusken_medical()
     {

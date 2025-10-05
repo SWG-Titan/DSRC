@@ -81,31 +81,30 @@ public class tatooine_eisley_majolnir extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_eisley_majolnir_condition_doneWithMe(player, npc))
+        if (tatooine_eisley_majolnir_condition_doneWithMe(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_24");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_majolnir_condition_readyForKit(player, npc))
+        if (tatooine_eisley_majolnir_condition_readyForKit(player, self))
         {
-            tatooine_eisley_majolnir_action_sendKitSignal(player, npc);
+            tatooine_eisley_majolnir_action_sendKitSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_18");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_majolnir_condition_facePlayer(player, npc))
+        if (tatooine_eisley_majolnir_condition_facePlayer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_65");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -114,9 +113,8 @@ public class tatooine_eisley_majolnir extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_eisley_majolnir.branchId");
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_eisley_majolnir.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -6,7 +6,7 @@ import script.library.jedi_trials;
 import script.library.utils;
 import script.*;
 
-public class padawan_architect_01 extends script.base_script
+public class padawan_architect_01 extends base_script
 {
     public padawan_architect_01()
     {
@@ -193,31 +193,30 @@ public class padawan_architect_01 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (padawan_architect_01_condition_completedSuccess(player, npc))
+        if (padawan_architect_01_condition_completedSuccess(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ac5709b0");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (padawan_architect_01_condition_isOnNextStep(player, npc))
+        if (padawan_architect_01_condition_isOnNextStep(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_91e6aa00");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_architect_01_condition_wasTargetEliminated(player, npc))
+            if (padawan_architect_01_condition_wasTargetEliminated(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (padawan_architect_01_condition_wasTargetSpokenTo(player, npc))
+            if (padawan_architect_01_condition_wasTargetSpokenTo(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -236,29 +235,29 @@ public class padawan_architect_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_88ac3394");
                 }
                 utils.setScriptVar(player, "conversation.padawan_architect_01.branchId", 2);
-                npcStartConversation(player, npc, "padawan_architect_01", message, responses);
+                npcStartConversation(player, self, "padawan_architect_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_architect_01_condition_isTrialPlayer(player, npc))
+        if (padawan_architect_01_condition_isTrialPlayer(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_7637308a");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_architect_01_condition__defaultCondition(player, npc))
+            if (padawan_architect_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (padawan_architect_01_condition__defaultCondition(player, npc))
+            if (padawan_architect_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -277,22 +276,22 @@ public class padawan_architect_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_cc9db25e");
                 }
                 utils.setScriptVar(player, "conversation.padawan_architect_01.branchId", 5);
-                npcStartConversation(player, npc, "padawan_architect_01", message, responses);
+                npcStartConversation(player, self, "padawan_architect_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_architect_01_condition__defaultCondition(player, npc))
+        if (padawan_architect_01_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "check_wrist_device");
+            doAnimationAction(self, "check_wrist_device");
             string_id message = new string_id(c_stringFile, "s_25d34a1e");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -301,17 +300,16 @@ public class padawan_architect_01 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.padawan_architect_01.branchId");
-        if (branchId == 2 && padawan_architect_01_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && padawan_architect_01_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && padawan_architect_01_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && padawan_architect_01_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.padawan_architect_01.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class jedi_robe_collection_giver extends script.base_script
+public class jedi_robe_collection_giver extends base_script
 {
     public jedi_robe_collection_giver()
     {

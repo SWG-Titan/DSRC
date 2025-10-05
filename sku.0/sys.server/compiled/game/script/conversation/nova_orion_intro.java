@@ -188,18 +188,17 @@ public class nova_orion_intro extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (nova_orion_intro_condition_questFinished(player, npc))
+        if (nova_orion_intro_condition_questFinished(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_orion_intro_condition__defaultCondition(player, npc))
+            if (nova_orion_intro_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -217,27 +216,27 @@ public class nova_orion_intro extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "nova_orion_intro", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "nova_orion_intro", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_orion_intro_condition_lastStep(player, npc))
+        if (nova_orion_intro_condition_lastStep(player, self))
         {
-            nova_orion_intro_action_finalSignal(player, npc);
+            nova_orion_intro_action_finalSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_orion_intro_condition__defaultCondition(player, npc))
+            if (nova_orion_intro_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -255,33 +254,33 @@ public class nova_orion_intro extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "nova_orion_intro", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "nova_orion_intro", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_orion_intro_condition_onquest(player, npc))
+        if (nova_orion_intro_condition_onquest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_orion_intro_condition__defaultCondition(player, npc))
+            if (nova_orion_intro_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (nova_orion_intro_condition__defaultCondition(player, npc))
+            if (nova_orion_intro_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -300,21 +299,21 @@ public class nova_orion_intro extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_14");
                 }
                 utils.setScriptVar(player, "conversation.nova_orion_intro.branchId", 4);
-                npcStartConversation(player, npc, "nova_orion_intro", message, responses);
+                npcStartConversation(player, self, "nova_orion_intro", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_orion_intro_condition_canTakeMission(player, npc))
+        if (nova_orion_intro_condition_canTakeMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_orion_intro_condition__defaultCondition(player, npc))
+            if (nova_orion_intro_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -329,21 +328,21 @@ public class nova_orion_intro extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_20");
                 }
                 utils.setScriptVar(player, "conversation.nova_orion_intro.branchId", 7);
-                npcStartConversation(player, npc, "nova_orion_intro", message, responses);
+                npcStartConversation(player, self, "nova_orion_intro", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_orion_intro_condition__defaultCondition(player, npc))
+        if (nova_orion_intro_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -352,29 +351,28 @@ public class nova_orion_intro extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.nova_orion_intro.branchId");
-        if (branchId == 1 && nova_orion_intro_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && nova_orion_intro_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && nova_orion_intro_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && nova_orion_intro_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && nova_orion_intro_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && nova_orion_intro_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && nova_orion_intro_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && nova_orion_intro_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && nova_orion_intro_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && nova_orion_intro_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.nova_orion_intro.branchId");
         return SCRIPT_CONTINUE;
     }

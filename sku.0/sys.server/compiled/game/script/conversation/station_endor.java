@@ -3404,73 +3404,72 @@ public class station_endor extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (station_endor_condition_isTooFar(player, npc))
+        if (station_endor_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_e1c14e1d");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_endor_condition__defaultCondition(player, npc))
+        if (station_endor_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_de3168cf");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_endor_condition__defaultCondition(player, npc))
+            if (station_endor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_endor_condition__defaultCondition(player, npc))
+            if (station_endor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_endor_condition_canAfford25(player, npc))
+            if (station_endor_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_endor_condition_readyForStoryOne(player, npc))
+            if (station_endor_condition_readyForStoryOne(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_endor_condition_readyForStoryTwo(player, npc))
+            if (station_endor_condition_readyForStoryTwo(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (station_endor_condition_readyForStoryThree(player, npc))
+            if (station_endor_condition_readyForStoryThree(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (station_endor_condition_isReadyForDutyMissions(player, npc))
+            if (station_endor_condition_isReadyForDutyMissions(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (station_endor_condition_canTakeQuest(player, npc))
+            if (station_endor_condition_canTakeQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3513,15 +3512,15 @@ public class station_endor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_80");
                 }
                 utils.setScriptVar(player, "conversation.station_endor.branchId", 2);
-                npcStartConversation(player, npc, "station_endor", message, responses);
+                npcStartConversation(player, self, "station_endor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -3530,81 +3529,80 @@ public class station_endor extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.station_endor.branchId");
-        if (branchId == 2 && station_endor_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && station_endor_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && station_endor_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && station_endor_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && station_endor_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && station_endor_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && station_endor_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && station_endor_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && station_endor_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && station_endor_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && station_endor_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && station_endor_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && station_endor_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && station_endor_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && station_endor_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && station_endor_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && station_endor_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && station_endor_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && station_endor_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && station_endor_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && station_endor_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && station_endor_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && station_endor_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && station_endor_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && station_endor_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && station_endor_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && station_endor_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && station_endor_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && station_endor_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && station_endor_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && station_endor_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && station_endor_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && station_endor_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && station_endor_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && station_endor_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && station_endor_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.station_endor.branchId");
         return SCRIPT_CONTINUE;
     }

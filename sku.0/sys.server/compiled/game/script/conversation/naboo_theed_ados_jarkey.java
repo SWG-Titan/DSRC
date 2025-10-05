@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class naboo_theed_ados_jarkey extends script.base_script
+public class naboo_theed_ados_jarkey extends base_script
 {
     public naboo_theed_ados_jarkey()
     {
@@ -119,24 +119,23 @@ public class naboo_theed_ados_jarkey extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (naboo_theed_ados_jarkey_condition_afterCorellianAle(player, npc))
+        if (naboo_theed_ados_jarkey_condition_afterCorellianAle(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_20");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_theed_ados_jarkey_condition_giveCorellianAle(player, npc))
+        if (naboo_theed_ados_jarkey_condition_giveCorellianAle(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_56");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_theed_ados_jarkey_condition__defaultCondition(player, npc))
+            if (naboo_theed_ados_jarkey_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -151,21 +150,21 @@ public class naboo_theed_ados_jarkey extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_58");
                 }
                 utils.setScriptVar(player, "conversation.naboo_theed_ados_jarkey.branchId", 2);
-                npcStartConversation(player, npc, "naboo_theed_ados_jarkey", message, responses);
+                npcStartConversation(player, self, "naboo_theed_ados_jarkey", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_theed_ados_jarkey_condition__defaultCondition(player, npc))
+        if (naboo_theed_ados_jarkey_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_43");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -174,17 +173,16 @@ public class naboo_theed_ados_jarkey extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.naboo_theed_ados_jarkey.branchId");
-        if (branchId == 2 && naboo_theed_ados_jarkey_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && naboo_theed_ados_jarkey_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && naboo_theed_ados_jarkey_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && naboo_theed_ados_jarkey_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.naboo_theed_ados_jarkey.branchId");
         return SCRIPT_CONTINUE;
     }

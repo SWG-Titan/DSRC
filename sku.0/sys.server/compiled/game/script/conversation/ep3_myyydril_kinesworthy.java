@@ -1208,24 +1208,23 @@ public class ep3_myyydril_kinesworthy extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_myyydril_kinesworthy_condition_hasCompletedQuestThree(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_hasCompletedQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4016");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition_hasCompletedTaskThree(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_hasCompletedTaskThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4018");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1240,21 +1239,21 @@ public class ep3_myyydril_kinesworthy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4020");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId", 2);
-                npcStartConversation(player, npc, "ep3_myyydril_kinesworthy", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_kinesworthy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition_isActiveTaskThree(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_isActiveTaskThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4032");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1269,21 +1268,21 @@ public class ep3_myyydril_kinesworthy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4034");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId", 6);
-                npcStartConversation(player, npc, "ep3_myyydril_kinesworthy", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_kinesworthy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition_hasCompletedQuestTwo(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_hasCompletedQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4038");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1298,21 +1297,21 @@ public class ep3_myyydril_kinesworthy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4040");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId", 8);
-                npcStartConversation(player, npc, "ep3_myyydril_kinesworthy", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_kinesworthy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition_hasCompletedTaskTwo(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_hasCompletedTaskTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4048");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1327,21 +1326,21 @@ public class ep3_myyydril_kinesworthy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4050");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId", 11);
-                npcStartConversation(player, npc, "ep3_myyydril_kinesworthy", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_kinesworthy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition_isActiveTaskTwo(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_isActiveTaskTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4062");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1356,21 +1355,21 @@ public class ep3_myyydril_kinesworthy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4064");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId", 15);
-                npcStartConversation(player, npc, "ep3_myyydril_kinesworthy", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_kinesworthy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition_hasCompletedQuestOne(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4068");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1385,22 +1384,22 @@ public class ep3_myyydril_kinesworthy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4070");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId", 17);
-                npcStartConversation(player, npc, "ep3_myyydril_kinesworthy", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_kinesworthy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition_hasCompletedTaskOne(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_hasCompletedTaskOne(player, self))
         {
-            ep3_myyydril_kinesworthy_action_giveSignal(player, npc);
+            ep3_myyydril_kinesworthy_action_giveSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_4102");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1415,21 +1414,21 @@ public class ep3_myyydril_kinesworthy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4104");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId", 26);
-                npcStartConversation(player, npc, "ep3_myyydril_kinesworthy", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_kinesworthy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition_isActiveTaskOne(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_isActiveTaskOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4112");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1444,21 +1443,21 @@ public class ep3_myyydril_kinesworthy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4114");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId", 29);
-                npcStartConversation(player, npc, "ep3_myyydril_kinesworthy", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_kinesworthy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition_hasCompletedOther(player, npc))
+        if (ep3_myyydril_kinesworthy_condition_hasCompletedOther(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4118");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1473,21 +1472,21 @@ public class ep3_myyydril_kinesworthy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4120");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId", 31);
-                npcStartConversation(player, npc, "ep3_myyydril_kinesworthy", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_kinesworthy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, npc))
+        if (ep3_myyydril_kinesworthy_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4172");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1496,141 +1495,140 @@ public class ep3_myyydril_kinesworthy extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId");
-        if (branchId == 2 && ep3_myyydril_kinesworthy_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_myyydril_kinesworthy_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && ep3_myyydril_kinesworthy_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_myyydril_kinesworthy_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && ep3_myyydril_kinesworthy_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_myyydril_kinesworthy_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_myyydril_kinesworthy_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_myyydril_kinesworthy_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_myyydril_kinesworthy_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_myyydril_kinesworthy_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_myyydril_kinesworthy_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_myyydril_kinesworthy_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_myyydril_kinesworthy_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_myyydril_kinesworthy_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_myyydril_kinesworthy_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_myyydril_kinesworthy_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && ep3_myyydril_kinesworthy_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && ep3_myyydril_kinesworthy_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_myyydril_kinesworthy_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_myyydril_kinesworthy_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_myyydril_kinesworthy_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_myyydril_kinesworthy_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_myyydril_kinesworthy_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_myyydril_kinesworthy_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && ep3_myyydril_kinesworthy_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && ep3_myyydril_kinesworthy_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_myyydril_kinesworthy_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_myyydril_kinesworthy_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_myyydril_kinesworthy_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_myyydril_kinesworthy_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && ep3_myyydril_kinesworthy_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && ep3_myyydril_kinesworthy_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_myyydril_kinesworthy_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_myyydril_kinesworthy_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && ep3_myyydril_kinesworthy_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && ep3_myyydril_kinesworthy_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && ep3_myyydril_kinesworthy_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && ep3_myyydril_kinesworthy_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && ep3_myyydril_kinesworthy_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && ep3_myyydril_kinesworthy_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && ep3_myyydril_kinesworthy_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && ep3_myyydril_kinesworthy_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && ep3_myyydril_kinesworthy_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && ep3_myyydril_kinesworthy_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && ep3_myyydril_kinesworthy_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && ep3_myyydril_kinesworthy_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && ep3_myyydril_kinesworthy_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && ep3_myyydril_kinesworthy_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && ep3_myyydril_kinesworthy_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && ep3_myyydril_kinesworthy_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && ep3_myyydril_kinesworthy_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && ep3_myyydril_kinesworthy_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && ep3_myyydril_kinesworthy_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && ep3_myyydril_kinesworthy_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && ep3_myyydril_kinesworthy_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && ep3_myyydril_kinesworthy_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && ep3_myyydril_kinesworthy_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && ep3_myyydril_kinesworthy_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && ep3_myyydril_kinesworthy_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && ep3_myyydril_kinesworthy_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && ep3_myyydril_kinesworthy_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && ep3_myyydril_kinesworthy_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && ep3_myyydril_kinesworthy_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && ep3_myyydril_kinesworthy_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && ep3_myyydril_kinesworthy_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && ep3_myyydril_kinesworthy_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_myyydril_kinesworthy.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -115,62 +115,61 @@ public class rtp_nien_nunb_main extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (rtp_nien_nunb_main_condition_notRebel(player, npc))
+        if (rtp_nien_nunb_main_condition_notRebel(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!rtp_nien_nunb_main_condition_completedLeia(player, npc))
+        if (!rtp_nien_nunb_main_condition_completedLeia(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_15");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_nien_nunb_main_condition_rebel_isOnLeave(player, npc))
+        if (rtp_nien_nunb_main_condition_rebel_isOnLeave(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_43");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_nien_nunb_main_condition_rtp_nein_nunb_01_complete(player, npc))
+        if (rtp_nien_nunb_main_condition_rtp_nein_nunb_01_complete(player, self))
         {
-            rtp_nien_nunb_main_action_rtp_nein_nunb_01_signal(player, npc);
+            rtp_nien_nunb_main_action_rtp_nein_nunb_01_signal(player, self);
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_nien_nunb_main_condition_rtp_nein_nunb_task02_active(player, npc))
+        if (rtp_nien_nunb_main_condition_rtp_nein_nunb_task02_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_20");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_nien_nunb_main_condition_rtp_nein_nunb_01_active(player, npc))
+        if (rtp_nien_nunb_main_condition_rtp_nein_nunb_01_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rtp_nien_nunb_main_condition__defaultCondition(player, npc))
+        if (rtp_nien_nunb_main_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rtp_nien_nunb_main_condition__defaultCondition(player, npc))
+            if (rtp_nien_nunb_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rtp_nien_nunb_main_condition__defaultCondition(player, npc))
+            if (rtp_nien_nunb_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -189,15 +188,15 @@ public class rtp_nien_nunb_main extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_40");
                 }
                 utils.setScriptVar(player, "conversation.rtp_nien_nunb_main.branchId", 7);
-                npcStartConversation(player, npc, "rtp_nien_nunb_main", message, responses);
+                npcStartConversation(player, self, "rtp_nien_nunb_main", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -206,13 +205,12 @@ public class rtp_nien_nunb_main extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.rtp_nien_nunb_main.branchId");
-        if (branchId == 7 && rtp_nien_nunb_main_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && rtp_nien_nunb_main_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.rtp_nien_nunb_main.branchId");
         return SCRIPT_CONTINUE;
     }

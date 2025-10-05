@@ -2849,26 +2849,25 @@ public class naboo_rebel_tier1_kiizete extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!naboo_rebel_tier1_kiizete_condition_hasSpaceExpansion(player, npc))
+        if (!naboo_rebel_tier1_kiizete_condition_hasSpaceExpansion(player, self))
         {
-            doAnimationAction(npc, "check_wrist_device");
+            doAnimationAction(self, "check_wrist_device");
             string_id message = new string_id(c_stringFile, "s_933941d0");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2887,44 +2886,44 @@ public class naboo_rebel_tier1_kiizete extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7fa15433");
                 }
                 utils.setScriptVar(player, "conversation.naboo_rebel_tier1_kiizete.branchId", 1);
-                npcStartConversation(player, npc, "naboo_rebel_tier1_kiizete", message, responses);
+                npcStartConversation(player, self, "naboo_rebel_tier1_kiizete", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_rebel_tier1_kiizete_condition_imp_isasking(player, npc))
+        if (naboo_rebel_tier1_kiizete_condition_imp_isasking(player, self))
         {
-            doAnimationAction(npc, "stop");
+            doAnimationAction(self, "stop");
             string_id message = new string_id(c_stringFile, "s_7a0420ae");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_rebel_tier1_kiizete_condition_isImperialPilot(player, npc))
+        if (naboo_rebel_tier1_kiizete_condition_isImperialPilot(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
-            naboo_rebel_tier1_kiizete_action_an_imp_is_asking(player, npc);
+            doAnimationAction(self, "shake_head_disgust");
+            naboo_rebel_tier1_kiizete_action_an_imp_is_asking(player, self);
             string_id message = new string_id(c_stringFile, "s_bdc96417");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_rebel_tier1_kiizete_condition_imp_isasking(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition_imp_isasking(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2947,44 +2946,44 @@ public class naboo_rebel_tier1_kiizete extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5e15545");
                 }
                 utils.setScriptVar(player, "conversation.naboo_rebel_tier1_kiizete.branchId", 7);
-                npcStartConversation(player, npc, "naboo_rebel_tier1_kiizete", message, responses);
+                npcStartConversation(player, self, "naboo_rebel_tier1_kiizete", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_rebel_tier1_kiizete_condition_q1_has_discussed(player, npc))
+        if (naboo_rebel_tier1_kiizete_condition_q1_has_discussed(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
+            doAnimationAction(self, "pound_fist_palm");
             string_id message = new string_id(c_stringFile, "s_b78a2c76");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_rebel_tier1_kiizete_condition_hasVeryFirstQuest(player, npc))
+        if (naboo_rebel_tier1_kiizete_condition_hasVeryFirstQuest(player, self))
         {
-            doAnimationAction(npc, "greet");
-            naboo_rebel_tier1_kiizete_action_q1_set_discussed(player, npc);
+            doAnimationAction(self, "greet");
+            naboo_rebel_tier1_kiizete_action_q1_set_discussed(player, self);
             string_id message = new string_id(c_stringFile, "s_65e8c460");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3007,29 +3006,29 @@ public class naboo_rebel_tier1_kiizete extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1162efff");
                 }
                 utils.setScriptVar(player, "conversation.naboo_rebel_tier1_kiizete.branchId", 14);
-                npcStartConversation(player, npc, "naboo_rebel_tier1_kiizete", message, responses);
+                npcStartConversation(player, self, "naboo_rebel_tier1_kiizete", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_rebel_tier1_kiizete_condition_hasFailedQuestOne(player, npc))
+        if (naboo_rebel_tier1_kiizete_condition_hasFailedQuestOne(player, self))
         {
-            doAnimationAction(npc, "slit_throat");
+            doAnimationAction(self, "slit_throat");
             string_id message = new string_id(c_stringFile, "s_17eec115");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3048,35 +3047,35 @@ public class naboo_rebel_tier1_kiizete extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5df1433d");
                 }
                 utils.setScriptVar(player, "conversation.naboo_rebel_tier1_kiizete.branchId", 29);
-                npcStartConversation(player, npc, "naboo_rebel_tier1_kiizete", message, responses);
+                npcStartConversation(player, self, "naboo_rebel_tier1_kiizete", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_rebel_tier1_kiizete_condition_hasCompletedQuestOne(player, npc))
+        if (naboo_rebel_tier1_kiizete_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_27b64c88");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3099,29 +3098,29 @@ public class naboo_rebel_tier1_kiizete extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_93f420a0");
                 }
                 utils.setScriptVar(player, "conversation.naboo_rebel_tier1_kiizete.branchId", 34);
-                npcStartConversation(player, npc, "naboo_rebel_tier1_kiizete", message, responses);
+                npcStartConversation(player, self, "naboo_rebel_tier1_kiizete", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+        if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_ca776e30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, npc))
+            if (naboo_rebel_tier1_kiizete_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3140,15 +3139,15 @@ public class naboo_rebel_tier1_kiizete extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_17edec66");
                 }
                 utils.setScriptVar(player, "conversation.naboo_rebel_tier1_kiizete.branchId", 42);
-                npcStartConversation(player, npc, "naboo_rebel_tier1_kiizete", message, responses);
+                npcStartConversation(player, self, "naboo_rebel_tier1_kiizete", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -3157,157 +3156,156 @@ public class naboo_rebel_tier1_kiizete extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.naboo_rebel_tier1_kiizete.branchId");
-        if (branchId == 1 && naboo_rebel_tier1_kiizete_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && naboo_rebel_tier1_kiizete_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && naboo_rebel_tier1_kiizete_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && naboo_rebel_tier1_kiizete_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && naboo_rebel_tier1_kiizete_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && naboo_rebel_tier1_kiizete_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && naboo_rebel_tier1_kiizete_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && naboo_rebel_tier1_kiizete_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && naboo_rebel_tier1_kiizete_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && naboo_rebel_tier1_kiizete_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && naboo_rebel_tier1_kiizete_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && naboo_rebel_tier1_kiizete_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && naboo_rebel_tier1_kiizete_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && naboo_rebel_tier1_kiizete_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && naboo_rebel_tier1_kiizete_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && naboo_rebel_tier1_kiizete_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && naboo_rebel_tier1_kiizete_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && naboo_rebel_tier1_kiizete_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && naboo_rebel_tier1_kiizete_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && naboo_rebel_tier1_kiizete_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && naboo_rebel_tier1_kiizete_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && naboo_rebel_tier1_kiizete_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && naboo_rebel_tier1_kiizete_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && naboo_rebel_tier1_kiizete_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && naboo_rebel_tier1_kiizete_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && naboo_rebel_tier1_kiizete_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && naboo_rebel_tier1_kiizete_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && naboo_rebel_tier1_kiizete_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && naboo_rebel_tier1_kiizete_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && naboo_rebel_tier1_kiizete_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && naboo_rebel_tier1_kiizete_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && naboo_rebel_tier1_kiizete_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && naboo_rebel_tier1_kiizete_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && naboo_rebel_tier1_kiizete_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && naboo_rebel_tier1_kiizete_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && naboo_rebel_tier1_kiizete_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && naboo_rebel_tier1_kiizete_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && naboo_rebel_tier1_kiizete_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && naboo_rebel_tier1_kiizete_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && naboo_rebel_tier1_kiizete_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && naboo_rebel_tier1_kiizete_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && naboo_rebel_tier1_kiizete_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && naboo_rebel_tier1_kiizete_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && naboo_rebel_tier1_kiizete_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && naboo_rebel_tier1_kiizete_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && naboo_rebel_tier1_kiizete_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && naboo_rebel_tier1_kiizete_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && naboo_rebel_tier1_kiizete_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && naboo_rebel_tier1_kiizete_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && naboo_rebel_tier1_kiizete_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && naboo_rebel_tier1_kiizete_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && naboo_rebel_tier1_kiizete_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && naboo_rebel_tier1_kiizete_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && naboo_rebel_tier1_kiizete_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && naboo_rebel_tier1_kiizete_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && naboo_rebel_tier1_kiizete_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && naboo_rebel_tier1_kiizete_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && naboo_rebel_tier1_kiizete_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && naboo_rebel_tier1_kiizete_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && naboo_rebel_tier1_kiizete_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && naboo_rebel_tier1_kiizete_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && naboo_rebel_tier1_kiizete_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && naboo_rebel_tier1_kiizete_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && naboo_rebel_tier1_kiizete_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && naboo_rebel_tier1_kiizete_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && naboo_rebel_tier1_kiizete_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && naboo_rebel_tier1_kiizete_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && naboo_rebel_tier1_kiizete_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && naboo_rebel_tier1_kiizete_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && naboo_rebel_tier1_kiizete_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && naboo_rebel_tier1_kiizete_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && naboo_rebel_tier1_kiizete_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && naboo_rebel_tier1_kiizete_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && naboo_rebel_tier1_kiizete_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.naboo_rebel_tier1_kiizete.branchId");
         return SCRIPT_CONTINUE;
     }

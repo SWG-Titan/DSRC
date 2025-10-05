@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class npe_pilot_training extends script.base_script
+public class npe_pilot_training extends base_script
 {
     public npe_pilot_training()
     {
@@ -600,38 +600,37 @@ public class npe_pilot_training extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_pilot_training_condition_noShip(player, npc))
+        if (npe_pilot_training_condition_noShip(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
-            npe_pilot_training_action_giveShip(player, npc);
+            npe_pilot_training_action_giveShip(player, self);
             string_id message = new string_id(c_stringFile, "s_59");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_startedEasy(player, npc))
+        if (npe_pilot_training_condition_startedEasy(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_46");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_isOnMission(player, npc))
+        if (npe_pilot_training_condition_isOnMission(player, self))
         {
-            npe_pilot_training_action_facePlayer(player, npc);
+            npe_pilot_training_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_235");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_training_condition__defaultCondition(player, npc))
+            if (npe_pilot_training_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -646,22 +645,22 @@ public class npe_pilot_training extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_297");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_training.branchId", 3);
-                npcStartConversation(player, npc, "npe_pilot_training", message, responses);
+                npcStartConversation(player, self, "npe_pilot_training", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_hasWonTrainMission3(player, npc))
+        if (npe_pilot_training_condition_hasWonTrainMission3(player, self))
         {
-            npe_pilot_training_action_facePlayer(player, npc);
+            npe_pilot_training_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_130");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_training_condition__defaultCondition(player, npc))
+            if (npe_pilot_training_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -676,22 +675,22 @@ public class npe_pilot_training extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_132");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_training.branchId", 5);
-                npcStartConversation(player, npc, "npe_pilot_training", message, responses);
+                npcStartConversation(player, self, "npe_pilot_training", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_hasFailedTrainMission3(player, npc))
+        if (npe_pilot_training_condition_hasFailedTrainMission3(player, self))
         {
-            npe_pilot_training_action_facePlayer(player, npc);
+            npe_pilot_training_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_148");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_training_condition__defaultCondition(player, npc))
+            if (npe_pilot_training_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -709,27 +708,27 @@ public class npe_pilot_training extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "npe_pilot_training", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "npe_pilot_training", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_hasWonTrainMission2(player, npc))
+        if (npe_pilot_training_condition_hasWonTrainMission2(player, self))
         {
-            npe_pilot_training_action_facePlayer(player, npc);
+            npe_pilot_training_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_152");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_training_condition__defaultCondition(player, npc))
+            if (npe_pilot_training_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -747,28 +746,28 @@ public class npe_pilot_training extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "npe_pilot_training", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "npe_pilot_training", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_hasFailedTrainMission2(player, npc))
+        if (npe_pilot_training_condition_hasFailedTrainMission2(player, self))
         {
-            doAnimationAction(npc, "sigh_deeply");
-            npe_pilot_training_action_facePlayer(player, npc);
+            doAnimationAction(self, "sigh_deeply");
+            npe_pilot_training_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_170");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_training_condition__defaultCondition(player, npc))
+            if (npe_pilot_training_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -783,22 +782,22 @@ public class npe_pilot_training extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_265");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_training.branchId", 15);
-                npcStartConversation(player, npc, "npe_pilot_training", message, responses);
+                npcStartConversation(player, self, "npe_pilot_training", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_hasWonTrainMission1(player, npc))
+        if (npe_pilot_training_condition_hasWonTrainMission1(player, self))
         {
-            npe_pilot_training_action_facePlayer(player, npc);
+            npe_pilot_training_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_174");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_training_condition__defaultCondition(player, npc))
+            if (npe_pilot_training_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -813,22 +812,22 @@ public class npe_pilot_training extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_176");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_training.branchId", 18);
-                npcStartConversation(player, npc, "npe_pilot_training", message, responses);
+                npcStartConversation(player, self, "npe_pilot_training", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_hasFailedTrainMission1(player, npc))
+        if (npe_pilot_training_condition_hasFailedTrainMission1(player, self))
         {
-            npe_pilot_training_action_facePlayer(player, npc);
+            npe_pilot_training_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_188");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_training_condition__defaultCondition(player, npc))
+            if (npe_pilot_training_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -843,30 +842,30 @@ public class npe_pilot_training extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_247");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_training.branchId", 21);
-                npcStartConversation(player, npc, "npe_pilot_training", message, responses);
+                npcStartConversation(player, self, "npe_pilot_training", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_onFirstQuest(player, npc))
+        if (npe_pilot_training_condition_onFirstQuest(player, self))
         {
-            npe_pilot_training_action_facePlayer(player, npc);
+            npe_pilot_training_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_56");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition_canTakeQuest(player, npc))
+        if (npe_pilot_training_condition_canTakeQuest(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
-            npe_pilot_training_action_facePlayer(player, npc);
+            doAnimationAction(self, "nod_head_once");
+            npe_pilot_training_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_training_condition__defaultCondition(player, npc))
+            if (npe_pilot_training_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -881,21 +880,21 @@ public class npe_pilot_training extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_65");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_training.branchId", 24);
-                npcStartConversation(player, npc, "npe_pilot_training", message, responses);
+                npcStartConversation(player, self, "npe_pilot_training", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_training_condition__defaultCondition(player, npc))
+        if (npe_pilot_training_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_77");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -904,73 +903,72 @@ public class npe_pilot_training extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_pilot_training.branchId");
-        if (branchId == 3 && npe_pilot_training_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && npe_pilot_training_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && npe_pilot_training_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && npe_pilot_training_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_pilot_training_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_pilot_training_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && npe_pilot_training_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && npe_pilot_training_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && npe_pilot_training_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && npe_pilot_training_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && npe_pilot_training_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && npe_pilot_training_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && npe_pilot_training_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && npe_pilot_training_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && npe_pilot_training_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && npe_pilot_training_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && npe_pilot_training_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && npe_pilot_training_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && npe_pilot_training_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && npe_pilot_training_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && npe_pilot_training_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && npe_pilot_training_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && npe_pilot_training_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && npe_pilot_training_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && npe_pilot_training_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && npe_pilot_training_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && npe_pilot_training_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && npe_pilot_training_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && npe_pilot_training_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && npe_pilot_training_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && npe_pilot_training_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && npe_pilot_training_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_pilot_training.branchId");
         return SCRIPT_CONTINUE;
     }

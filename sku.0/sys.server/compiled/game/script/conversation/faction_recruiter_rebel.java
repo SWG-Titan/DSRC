@@ -2569,18 +2569,17 @@ public class faction_recruiter_rebel extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (faction_recruiter_rebel_condition_onLeaveFromFriendlyFaction(player, npc))
+        if (faction_recruiter_rebel_condition_onLeaveFromFriendlyFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_216");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (faction_recruiter_rebel_condition__defaultCondition(player, npc))
+            if (faction_recruiter_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2595,54 +2594,54 @@ public class faction_recruiter_rebel extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_218");
                 }
                 utils.setScriptVar(player, "conversation.faction_recruiter_rebel.branchId", 1);
-                npcStartConversation(player, npc, "faction_recruiter_rebel", message, responses);
+                npcStartConversation(player, self, "faction_recruiter_rebel", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (faction_recruiter_rebel_condition_onLeaveFromEnemyFaction(player, npc))
+        if (faction_recruiter_rebel_condition_onLeaveFromEnemyFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_230");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (faction_recruiter_rebel_condition_isEnemyFaction(player, npc))
+        if (faction_recruiter_rebel_condition_isEnemyFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_232");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (faction_recruiter_rebel_condition_isInFaction(player, npc))
+        if (faction_recruiter_rebel_condition_isInFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_234");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (faction_recruiter_rebel_condition__defaultCondition(player, npc))
+            if (faction_recruiter_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (faction_recruiter_rebel_condition__defaultCondition(player, npc))
+            if (faction_recruiter_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (faction_recruiter_rebel_condition__defaultCondition(player, npc))
+            if (faction_recruiter_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (faction_recruiter_rebel_condition__defaultCondition(player, npc))
+            if (faction_recruiter_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2669,35 +2668,35 @@ public class faction_recruiter_rebel extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_330");
                 }
                 utils.setScriptVar(player, "conversation.faction_recruiter_rebel.branchId", 7);
-                npcStartConversation(player, npc, "faction_recruiter_rebel", message, responses);
+                npcStartConversation(player, self, "faction_recruiter_rebel", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!faction_recruiter_rebel_condition_isChangingFaction(player, npc))
+        if (!faction_recruiter_rebel_condition_isChangingFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_334");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (faction_recruiter_rebel_condition_isRebelMercForGcw(player, npc))
+            if (faction_recruiter_rebel_condition_isRebelMercForGcw(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (faction_recruiter_rebel_condition_canBeMerc(player, npc))
+            if (faction_recruiter_rebel_condition_canBeMerc(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (faction_recruiter_rebel_condition__defaultCondition(player, npc))
+            if (faction_recruiter_rebel_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2720,21 +2719,21 @@ public class faction_recruiter_rebel extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_348");
                 }
                 utils.setScriptVar(player, "conversation.faction_recruiter_rebel.branchId", 26);
-                npcStartConversation(player, npc, "faction_recruiter_rebel", message, responses);
+                npcStartConversation(player, self, "faction_recruiter_rebel", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (faction_recruiter_rebel_condition__defaultCondition(player, npc))
+        if (faction_recruiter_rebel_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_364");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2743,89 +2742,88 @@ public class faction_recruiter_rebel extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.faction_recruiter_rebel.branchId");
-        if (branchId == 1 && faction_recruiter_rebel_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && faction_recruiter_rebel_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && faction_recruiter_rebel_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && faction_recruiter_rebel_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && faction_recruiter_rebel_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && faction_recruiter_rebel_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && faction_recruiter_rebel_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && faction_recruiter_rebel_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && faction_recruiter_rebel_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && faction_recruiter_rebel_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && faction_recruiter_rebel_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && faction_recruiter_rebel_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && faction_recruiter_rebel_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && faction_recruiter_rebel_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && faction_recruiter_rebel_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && faction_recruiter_rebel_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && faction_recruiter_rebel_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && faction_recruiter_rebel_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && faction_recruiter_rebel_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && faction_recruiter_rebel_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && faction_recruiter_rebel_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && faction_recruiter_rebel_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && faction_recruiter_rebel_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && faction_recruiter_rebel_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && faction_recruiter_rebel_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && faction_recruiter_rebel_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && faction_recruiter_rebel_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && faction_recruiter_rebel_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && faction_recruiter_rebel_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && faction_recruiter_rebel_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && faction_recruiter_rebel_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && faction_recruiter_rebel_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && faction_recruiter_rebel_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && faction_recruiter_rebel_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && faction_recruiter_rebel_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && faction_recruiter_rebel_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && faction_recruiter_rebel_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && faction_recruiter_rebel_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && faction_recruiter_rebel_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && faction_recruiter_rebel_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.faction_recruiter_rebel.branchId");
         return SCRIPT_CONTINUE;
     }

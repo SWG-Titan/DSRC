@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class tatooine_knives_parry_larit extends script.base_script
+public class tatooine_knives_parry_larit extends base_script
 {
     public tatooine_knives_parry_larit()
     {
@@ -26,31 +26,27 @@ public class tatooine_knives_parry_larit extends script.base_script
         faceTo(npc, player);
         int questId1 = questGetQuestId("quest/tatooine_knives_parry");
         int finishJacket = groundquests.getTaskId(questId1, "tatooine_knives_parry_e5");
-        boolean onTask = questIsTaskActive(questId1, finishJacket, player);
-        return onTask;
+        return questIsTaskActive(questId1, finishJacket, player);
     }
     public boolean tatooine_knives_parry_larit_condition_questComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         faceTo(npc, player);
         int questId1 = questGetQuestId("quest/tatooine_knives_parry_pt2");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean tatooine_knives_parry_larit_condition_firstContact(obj_id player, obj_id npc) throws InterruptedException
     {
         faceTo(npc, player);
         int questId1 = questGetQuestId("quest/tatooine_knives_parry");
         int finishJackets = groundquests.getTaskId(questId1, "tatooine_knives_parry_e4");
-        boolean onTask = questIsTaskActive(questId1, finishJackets, player);
-        return onTask;
+        return questIsTaskActive(questId1, finishJackets, player);
     }
     public boolean tatooine_knives_parry_larit_condition_onJacketComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         faceTo(npc, player);
         int questId1 = questGetQuestId("quest/tatooine_knives_parry");
         int pistolComplete = groundquests.getTaskId(questId1, "tatooine_knives_parry_e5");
-        boolean onTask = (questIsTaskComplete(questId1, pistolComplete, player));
-        return onTask;
+        return (questIsTaskComplete(questId1, pistolComplete, player));
     }
     public void tatooine_knives_parry_larit_action_signalJacket(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -161,41 +157,40 @@ public class tatooine_knives_parry_larit extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_knives_parry_larit_condition_questComplete(player, npc))
+        if (tatooine_knives_parry_larit_condition_questComplete(player, self))
         {
-            doAnimationAction(npc, "spit_hands");
-            tatooine_knives_parry_larit_action_facePlayer(player, npc);
+            doAnimationAction(self, "spit_hands");
+            tatooine_knives_parry_larit_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_29");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_parry_larit_condition_onJacketComplete(player, npc))
+        if (tatooine_knives_parry_larit_condition_onJacketComplete(player, self))
         {
-            doAnimationAction(npc, "applause_excited");
-            tatooine_knives_parry_larit_action_signalJacketComplete(player, npc);
+            doAnimationAction(self, "applause_excited");
+            tatooine_knives_parry_larit_action_signalJacketComplete(player, self);
             string_id message = new string_id(c_stringFile, "s_28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_parry_larit_condition_onJacketTask(player, npc))
+        if (tatooine_knives_parry_larit_condition_onJacketTask(player, self))
         {
-            tatooine_knives_parry_larit_action_facePlayer(player, npc);
+            tatooine_knives_parry_larit_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_parry_larit_condition_firstContact(player, npc))
+        if (tatooine_knives_parry_larit_condition_firstContact(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_parry_larit_condition__defaultCondition(player, npc))
+            if (tatooine_knives_parry_larit_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -210,21 +205,21 @@ public class tatooine_knives_parry_larit extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_47");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_parry_larit.branchId", 4);
-                npcStartConversation(player, npc, "tatooine_knives_parry_larit", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_parry_larit", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_parry_larit_condition_facePlayer2(player, npc))
+        if (tatooine_knives_parry_larit_condition_facePlayer2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_49");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -233,17 +228,16 @@ public class tatooine_knives_parry_larit extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_knives_parry_larit.branchId");
-        if (branchId == 4 && tatooine_knives_parry_larit_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tatooine_knives_parry_larit_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tatooine_knives_parry_larit_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_knives_parry_larit_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_knives_parry_larit.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class newbie_ranged_combat extends script.base_script
+public class newbie_ranged_combat extends base_script
 {
     public newbie_ranged_combat()
     {

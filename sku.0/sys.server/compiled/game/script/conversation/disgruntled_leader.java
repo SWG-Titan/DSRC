@@ -230,19 +230,18 @@ public class disgruntled_leader extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (disgruntled_leader_condition_hasFinishedQuest(player, npc))
+        if (disgruntled_leader_condition_hasFinishedQuest(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
+            doAnimationAction(self, "gesticulate_wildly");
             string_id message = new string_id(c_stringFile, "s_16");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (disgruntled_leader_condition__defaultCondition(player, npc))
+            if (disgruntled_leader_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -257,30 +256,30 @@ public class disgruntled_leader extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_17");
                 }
                 utils.setScriptVar(player, "conversation.disgruntled_leader.branchId", 1);
-                npcStartConversation(player, npc, "disgruntled_leader", message, responses);
+                npcStartConversation(player, self, "disgruntled_leader", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (disgruntled_leader_condition_isWorkingOnIt(player, npc))
+        if (disgruntled_leader_condition_isWorkingOnIt(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
+            doAnimationAction(self, "gesticulate_wildly");
             doAnimationAction(player, "standing_placate");
             string_id message = new string_id(c_stringFile, "s_29");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (disgruntled_leader_condition_hasQuest(player, npc))
+        if (disgruntled_leader_condition_hasQuest(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
+            doAnimationAction(self, "gesticulate_wildly");
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (disgruntled_leader_condition__defaultCondition(player, npc))
+            if (disgruntled_leader_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -295,22 +294,22 @@ public class disgruntled_leader extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_10");
                 }
                 utils.setScriptVar(player, "conversation.disgruntled_leader.branchId", 4);
-                npcStartConversation(player, npc, "disgruntled_leader", message, responses);
+                npcStartConversation(player, self, "disgruntled_leader", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (disgruntled_leader_condition__defaultCondition(player, npc))
+        if (disgruntled_leader_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
+            doAnimationAction(self, "gesticulate_wildly");
             string_id message = new string_id(c_stringFile, "s_30");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -319,29 +318,28 @@ public class disgruntled_leader extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.disgruntled_leader.branchId");
-        if (branchId == 1 && disgruntled_leader_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && disgruntled_leader_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && disgruntled_leader_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && disgruntled_leader_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && disgruntled_leader_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && disgruntled_leader_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && disgruntled_leader_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && disgruntled_leader_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && disgruntled_leader_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && disgruntled_leader_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.disgruntled_leader.branchId");
         return SCRIPT_CONTINUE;
     }

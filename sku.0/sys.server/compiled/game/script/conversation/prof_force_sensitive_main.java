@@ -132,18 +132,17 @@ public class prof_force_sensitive_main extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (prof_force_sensitive_main_condition_playerOnFS21Reward(player, npc))
+        if (prof_force_sensitive_main_condition_playerOnFS21Reward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prof_force_sensitive_main_condition__defaultCondition(player, npc))
+            if (prof_force_sensitive_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -158,29 +157,29 @@ public class prof_force_sensitive_main extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_13");
                 }
                 utils.setScriptVar(player, "conversation.prof_force_sensitive_main.branchId", 1);
-                npcStartConversation(player, npc, "prof_force_sensitive_main", message, responses);
+                npcStartConversation(player, self, "prof_force_sensitive_main", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (prof_force_sensitive_main_condition_playerOnFS11Reward(player, npc))
+        if (prof_force_sensitive_main_condition_playerOnFS11Reward(player, self))
         {
-            prof_force_sensitive_main_action_facePlayer(player, npc);
+            prof_force_sensitive_main_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prof_force_sensitive_main_condition__defaultCondition(player, npc))
+            if (prof_force_sensitive_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (prof_force_sensitive_main_condition__defaultCondition(player, npc))
+            if (prof_force_sensitive_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -202,40 +201,40 @@ public class prof_force_sensitive_main extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "prof_force_sensitive_main", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "prof_force_sensitive_main", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (prof_force_sensitive_main_condition_playeronFS21(player, npc))
+        if (prof_force_sensitive_main_condition_playeronFS21(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_15");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prof_force_sensitive_main_condition_playerfinishedFS11Quest(player, npc))
+        if (prof_force_sensitive_main_condition_playerfinishedFS11Quest(player, self))
         {
-            prof_force_sensitive_main_action_facePlayer(player, npc);
+            prof_force_sensitive_main_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_17");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prof_force_sensitive_main_condition__defaultCondition(player, npc))
+        if (prof_force_sensitive_main_condition__defaultCondition(player, self))
         {
-            prof_force_sensitive_main_action_facePlayer(player, npc);
+            prof_force_sensitive_main_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -244,17 +243,16 @@ public class prof_force_sensitive_main extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.prof_force_sensitive_main.branchId");
-        if (branchId == 1 && prof_force_sensitive_main_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && prof_force_sensitive_main_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && prof_force_sensitive_main_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && prof_force_sensitive_main_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.prof_force_sensitive_main.branchId");
         return SCRIPT_CONTINUE;
     }

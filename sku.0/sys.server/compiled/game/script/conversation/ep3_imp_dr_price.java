@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class ep3_imp_dr_price extends script.base_script
+public class ep3_imp_dr_price extends base_script
 {
     public ep3_imp_dr_price()
     {
@@ -655,26 +655,25 @@ public class ep3_imp_dr_price extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_imp_dr_price_condition_hasCompletedQuest02(player, npc))
+        if (ep3_imp_dr_price_condition_hasCompletedQuest02(player, self))
         {
-            doAnimationAction(npc, "shrug_hands");
+            doAnimationAction(self, "shrug_hands");
             string_id message = new string_id(c_stringFile, "s_43");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_imp_dr_price_condition_isOnTask02(player, npc))
+        if (ep3_imp_dr_price_condition_isOnTask02(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_264");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_imp_dr_price_condition__defaultCondition(player, npc))
+            if (ep3_imp_dr_price_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -689,29 +688,29 @@ public class ep3_imp_dr_price extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_323");
                 }
                 utils.setScriptVar(player, "conversation.ep3_imp_dr_price.branchId", 2);
-                npcStartConversation(player, npc, "ep3_imp_dr_price", message, responses);
+                npcStartConversation(player, self, "ep3_imp_dr_price", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_imp_dr_price_condition_isOnQuest02(player, npc))
+        if (ep3_imp_dr_price_condition_isOnQuest02(player, self))
         {
-            doAnimationAction(npc, "standing_placate");
+            doAnimationAction(self, "standing_placate");
             string_id message = new string_id(c_stringFile, "s_42");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_imp_dr_price_condition_isOnTask01(player, npc))
+        if (ep3_imp_dr_price_condition_isOnTask01(player, self))
         {
-            doAnimationAction(npc, "point_forward");
+            doAnimationAction(self, "point_forward");
             string_id message = new string_id(c_stringFile, "s_266");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_imp_dr_price_condition__defaultCondition(player, npc))
+            if (ep3_imp_dr_price_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -726,29 +725,29 @@ public class ep3_imp_dr_price extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_315");
                 }
                 utils.setScriptVar(player, "conversation.ep3_imp_dr_price.branchId", 6);
-                npcStartConversation(player, npc, "ep3_imp_dr_price", message, responses);
+                npcStartConversation(player, self, "ep3_imp_dr_price", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_imp_dr_price_condition_isOnQuest01(player, npc))
+        if (ep3_imp_dr_price_condition_isOnQuest01(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_265");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_imp_dr_price_condition_isReadyForDrPrice(player, npc))
+        if (ep3_imp_dr_price_condition_isReadyForDrPrice(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
+            doAnimationAction(self, "wave_finger_warning");
             string_id message = new string_id(c_stringFile, "s_267");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_imp_dr_price_condition__defaultCondition(player, npc))
+            if (ep3_imp_dr_price_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -763,22 +762,22 @@ public class ep3_imp_dr_price extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_297");
                 }
                 utils.setScriptVar(player, "conversation.ep3_imp_dr_price.branchId", 12);
-                npcStartConversation(player, npc, "ep3_imp_dr_price", message, responses);
+                npcStartConversation(player, self, "ep3_imp_dr_price", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_imp_dr_price_condition__defaultCondition(player, npc))
+        if (ep3_imp_dr_price_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             string_id message = new string_id(c_stringFile, "s_268");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -787,65 +786,64 @@ public class ep3_imp_dr_price extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_imp_dr_price.branchId");
-        if (branchId == 2 && ep3_imp_dr_price_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_imp_dr_price_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && ep3_imp_dr_price_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_imp_dr_price_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_imp_dr_price_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_imp_dr_price_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_imp_dr_price_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_imp_dr_price_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_imp_dr_price_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_imp_dr_price_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_imp_dr_price_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_imp_dr_price_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_imp_dr_price_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_imp_dr_price_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && ep3_imp_dr_price_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && ep3_imp_dr_price_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && ep3_imp_dr_price_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && ep3_imp_dr_price_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_imp_dr_price_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_imp_dr_price_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_imp_dr_price_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_imp_dr_price_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_imp_dr_price_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_imp_dr_price_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_imp_dr_price_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_imp_dr_price_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_imp_dr_price_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_imp_dr_price_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_imp_dr_price.branchId");
         return SCRIPT_CONTINUE;
     }

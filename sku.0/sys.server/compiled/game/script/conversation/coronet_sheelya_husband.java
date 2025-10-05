@@ -333,38 +333,37 @@ public class coronet_sheelya_husband extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (coronet_sheelya_husband_condition_finishedCOquest(player, npc))
+        if (coronet_sheelya_husband_condition_finishedCOquest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (coronet_sheelya_husband_condition_onCOquest(player, npc))
+        if (coronet_sheelya_husband_condition_onCOquest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (coronet_sheelya_husband_condition_finishedKeyQuest(player, npc))
+        if (coronet_sheelya_husband_condition_finishedKeyQuest(player, self))
         {
-            coronet_sheelya_husband_action_sendKeySignal(player, npc);
+            coronet_sheelya_husband_action_sendKeySignal(player, self);
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coronet_sheelya_husband_condition__defaultCondition(player, npc))
+            if (coronet_sheelya_husband_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (coronet_sheelya_husband_condition__defaultCondition(player, npc))
+            if (coronet_sheelya_husband_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -383,34 +382,34 @@ public class coronet_sheelya_husband extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_14");
                 }
                 utils.setScriptVar(player, "conversation.coronet_sheelya_husband.branchId", 3);
-                npcStartConversation(player, npc, "coronet_sheelya_husband", message, responses);
+                npcStartConversation(player, self, "coronet_sheelya_husband", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coronet_sheelya_husband_condition_onKeyQuest(player, npc))
+        if (coronet_sheelya_husband_condition_onKeyQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (coronet_sheelya_husband_condition_finishedDiktat(player, npc))
+        if (coronet_sheelya_husband_condition_finishedDiktat(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (coronet_sheelya_husband_condition__defaultCondition(player, npc))
+            if (coronet_sheelya_husband_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (coronet_sheelya_husband_condition__defaultCondition(player, npc))
+            if (coronet_sheelya_husband_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -429,21 +428,21 @@ public class coronet_sheelya_husband extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.coronet_sheelya_husband.branchId", 9);
-                npcStartConversation(player, npc, "coronet_sheelya_husband", message, responses);
+                npcStartConversation(player, self, "coronet_sheelya_husband", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (coronet_sheelya_husband_condition__defaultCondition(player, npc))
+        if (coronet_sheelya_husband_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -452,29 +451,28 @@ public class coronet_sheelya_husband extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.coronet_sheelya_husband.branchId");
-        if (branchId == 3 && coronet_sheelya_husband_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && coronet_sheelya_husband_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && coronet_sheelya_husband_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && coronet_sheelya_husband_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && coronet_sheelya_husband_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && coronet_sheelya_husband_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && coronet_sheelya_husband_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && coronet_sheelya_husband_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && coronet_sheelya_husband_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && coronet_sheelya_husband_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.coronet_sheelya_husband.branchId");
         return SCRIPT_CONTINUE;
     }

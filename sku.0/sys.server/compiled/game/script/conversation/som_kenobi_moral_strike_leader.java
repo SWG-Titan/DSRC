@@ -1042,27 +1042,26 @@ public class som_kenobi_moral_strike_leader extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (som_kenobi_moral_strike_leader_condition_done(player, npc))
+        if (som_kenobi_moral_strike_leader_condition_done(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_171");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_moral_strike_leader_condition_missionDone(player, npc))
+        if (som_kenobi_moral_strike_leader_condition_missionDone(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_208");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_moral_strike_leader_condition__defaultCondition(player, npc))
+            if (som_kenobi_moral_strike_leader_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1077,36 +1076,36 @@ public class som_kenobi_moral_strike_leader extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_209");
                 }
                 utils.setScriptVar(player, "conversation.som_kenobi_moral_strike_leader.branchId", 2);
-                npcStartConversation(player, npc, "som_kenobi_moral_strike_leader", message, responses);
+                npcStartConversation(player, self, "som_kenobi_moral_strike_leader", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_moral_strike_leader_condition_onUploadTask(player, npc))
+        if (som_kenobi_moral_strike_leader_condition_onUploadTask(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_207");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_moral_strike_leader_condition_onTaskDestroy(player, npc))
+        if (som_kenobi_moral_strike_leader_condition_onTaskDestroy(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_140");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_moral_strike_leader_condition__defaultCondition(player, npc))
+            if (som_kenobi_moral_strike_leader_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_moral_strike_leader_condition__defaultCondition(player, npc))
+            if (som_kenobi_moral_strike_leader_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1125,30 +1124,30 @@ public class som_kenobi_moral_strike_leader extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_175");
                 }
                 utils.setScriptVar(player, "conversation.som_kenobi_moral_strike_leader.branchId", 6);
-                npcStartConversation(player, npc, "som_kenobi_moral_strike_leader", message, responses);
+                npcStartConversation(player, self, "som_kenobi_moral_strike_leader", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_moral_strike_leader_condition_onQuest(player, npc))
+        if (som_kenobi_moral_strike_leader_condition_onQuest(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             string_id message = new string_id(c_stringFile, "s_139");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_moral_strike_leader_condition__defaultCondition(player, npc))
+        if (som_kenobi_moral_strike_leader_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "point_forward");
+            doAnimationAction(self, "point_forward");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_110");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1157,89 +1156,88 @@ public class som_kenobi_moral_strike_leader extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.som_kenobi_moral_strike_leader.branchId");
-        if (branchId == 2 && som_kenobi_moral_strike_leader_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && som_kenobi_moral_strike_leader_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && som_kenobi_moral_strike_leader_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && som_kenobi_moral_strike_leader_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && som_kenobi_moral_strike_leader_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && som_kenobi_moral_strike_leader_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && som_kenobi_moral_strike_leader_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && som_kenobi_moral_strike_leader_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && som_kenobi_moral_strike_leader_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && som_kenobi_moral_strike_leader_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && som_kenobi_moral_strike_leader_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && som_kenobi_moral_strike_leader_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && som_kenobi_moral_strike_leader_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && som_kenobi_moral_strike_leader_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && som_kenobi_moral_strike_leader_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && som_kenobi_moral_strike_leader_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && som_kenobi_moral_strike_leader_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && som_kenobi_moral_strike_leader_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && som_kenobi_moral_strike_leader_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && som_kenobi_moral_strike_leader_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && som_kenobi_moral_strike_leader_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && som_kenobi_moral_strike_leader_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && som_kenobi_moral_strike_leader_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && som_kenobi_moral_strike_leader_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && som_kenobi_moral_strike_leader_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && som_kenobi_moral_strike_leader_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && som_kenobi_moral_strike_leader_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && som_kenobi_moral_strike_leader_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && som_kenobi_moral_strike_leader_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && som_kenobi_moral_strike_leader_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && som_kenobi_moral_strike_leader_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && som_kenobi_moral_strike_leader_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && som_kenobi_moral_strike_leader_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && som_kenobi_moral_strike_leader_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && som_kenobi_moral_strike_leader_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && som_kenobi_moral_strike_leader_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && som_kenobi_moral_strike_leader_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && som_kenobi_moral_strike_leader_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && som_kenobi_moral_strike_leader_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && som_kenobi_moral_strike_leader_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.som_kenobi_moral_strike_leader.branchId");
         return SCRIPT_CONTINUE;
     }

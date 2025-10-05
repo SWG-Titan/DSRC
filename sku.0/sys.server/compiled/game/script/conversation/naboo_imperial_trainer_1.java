@@ -8553,33 +8553,32 @@ public class naboo_imperial_trainer_1 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (naboo_imperial_trainer_1_condition_hasVeryFirstQuest(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasVeryFirstQuest(player, self))
         {
-            doAnimationAction(npc, "point_away");
+            doAnimationAction(self, "point_away");
             string_id message = new string_id(c_stringFile, "s_c19ed115");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8602,49 +8601,49 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4358efe9");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 1);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!naboo_imperial_trainer_1_condition_hasSpaceExp(player, npc))
+        if (!naboo_imperial_trainer_1_condition_hasSpaceExp(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_a8755a48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_isNeutralPilot(player, npc))
+        if (naboo_imperial_trainer_1_condition_isNeutralPilot(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
+            doAnimationAction(self, "wave_finger_warning");
             string_id message = new string_id(c_stringFile, "s_fc1001ba");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_isRebelPilot(player, npc))
+        if (naboo_imperial_trainer_1_condition_isRebelPilot(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
+            doAnimationAction(self, "gesticulate_wildly");
             string_id message = new string_id(c_stringFile, "s_6159d1a3");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_isNotImperial(player, npc))
+        if (naboo_imperial_trainer_1_condition_isNotImperial(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_87019da4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_isImperialNotMember(player, npc))
+        if (naboo_imperial_trainer_1_condition_isImperialNotMember(player, self))
         {
-            doAnimationAction(npc, "shake_head_no");
+            doAnimationAction(self, "shake_head_no");
             string_id message = new string_id(c_stringFile, "s_f6e10f56");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8659,22 +8658,22 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4854758d");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 9);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_lostShip(player, npc))
+        if (naboo_imperial_trainer_1_condition_lostShip(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_e106780b");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8689,50 +8688,50 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7d477c70");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 13);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_isWorkingForHolfheim(player, npc))
+        if (naboo_imperial_trainer_1_condition_isWorkingForHolfheim(player, self))
         {
-            doAnimationAction(npc, "point_away");
+            doAnimationAction(self, "point_away");
             string_id message = new string_id(c_stringFile, "s_1fa7fe89");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_isOnMission(player, npc))
+        if (naboo_imperial_trainer_1_condition_isOnMission(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_8c262163");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasCompletedSeries(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasCompletedSeries(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             string_id message = new string_id(c_stringFile, "s_2e935a2c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!naboo_imperial_trainer_1_condition_canBuySkill(player, npc))
+            if (!naboo_imperial_trainer_1_condition_canBuySkill(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition_canBuySkill(player, npc))
+            if (naboo_imperial_trainer_1_condition_canBuySkill(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8755,36 +8754,36 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_38");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 19);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasAllSkills(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasAllSkills(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_d25495b9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8807,29 +8806,29 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_24890a54");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 21);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_readyForSecondSkill(player, npc))
+        if (naboo_imperial_trainer_1_condition_readyForSecondSkill(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_7ae0d223");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8848,36 +8847,36 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_bf64734d");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 35);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_readyForDuty(player, npc))
+        if (naboo_imperial_trainer_1_condition_readyForDuty(player, self))
         {
-            doAnimationAction(npc, "standing_placate");
+            doAnimationAction(self, "standing_placate");
             string_id message = new string_id(c_stringFile, "s_d8487693");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!naboo_imperial_trainer_1_condition_canBuySkill(player, npc))
+            if (!naboo_imperial_trainer_1_condition_canBuySkill(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8900,36 +8899,36 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3b3aabc1");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 45);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasWonMission4(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasWonMission4(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_ec04a9b3");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8952,22 +8951,22 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_2a1af001");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 54);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasFailedMission4(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasFailedMission4(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_38becb2d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8982,22 +8981,22 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_59d306ec");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 77);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_readyForMission4(player, npc))
+        if (naboo_imperial_trainer_1_condition_readyForMission4(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_a6e045f3");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9012,36 +9011,36 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_651c4d7a");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 81);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasWonMission3(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasWonMission3(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_b6683056");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9064,29 +9063,29 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_43d18dec");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 89);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasFailedMission3(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasFailedMission3(player, self))
         {
-            naboo_imperial_trainer_1_action_animGestureWild(player, npc);
+            naboo_imperial_trainer_1_action_animGestureWild(player, self);
             string_id message = new string_id(c_stringFile, "s_d82fc96f");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9105,29 +9104,29 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_668cac00");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 110);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_readyForMission3(player, npc))
+        if (naboo_imperial_trainer_1_condition_readyForMission3(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_2bbdc667");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9146,36 +9145,36 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_8c9c5f1a");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 113);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasWonMission2(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasWonMission2(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_11dce039");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9198,29 +9197,29 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_e80d813e");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 125);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasAbortedMission2(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasAbortedMission2(player, self))
         {
-            naboo_imperial_trainer_1_action_animDisgust(player, npc);
+            naboo_imperial_trainer_1_action_animDisgust(player, self);
             string_id message = new string_id(c_stringFile, "s_ada6c751");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9239,29 +9238,29 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_19288eda");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 134);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasFailedMission2(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasFailedMission2(player, self))
         {
-            naboo_imperial_trainer_1_action_animDisgust(player, npc);
+            naboo_imperial_trainer_1_action_animDisgust(player, self);
             string_id message = new string_id(c_stringFile, "s_d66c56cf");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9280,43 +9279,43 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_330");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 138);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_readyForMission2(player, npc))
+        if (naboo_imperial_trainer_1_condition_readyForMission2(player, self))
         {
-            naboo_imperial_trainer_1_action_animPoliteApplause(player, npc);
+            naboo_imperial_trainer_1_action_animPoliteApplause(player, self);
             string_id message = new string_id(c_stringFile, "s_c15ca8cc");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9343,36 +9342,36 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_350");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 142);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasWonMission1(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasWonMission1(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_76892f68");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9395,22 +9394,22 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_a6069c84");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 151);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_hasFailedMission1(player, npc))
+        if (naboo_imperial_trainer_1_condition_hasFailedMission1(player, self))
         {
-            naboo_imperial_trainer_1_action_animDisgust(player, npc);
+            naboo_imperial_trainer_1_action_animDisgust(player, self);
             string_id message = new string_id(c_stringFile, "s_7724d1e6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9425,43 +9424,43 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_16fc739e");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 164);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition_readyForMission1(player, npc))
+        if (naboo_imperial_trainer_1_condition_readyForMission1(player, self))
         {
-            naboo_imperial_trainer_1_action_animBothSalute(player, npc);
+            naboo_imperial_trainer_1_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_64fb691f");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9488,37 +9487,37 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_b39049de");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 168);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+        if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "spit_hands");
-            naboo_imperial_trainer_1_action_eraseClientPath(player, npc);
+            doAnimationAction(self, "spit_hands");
+            naboo_imperial_trainer_1_action_eraseClientPath(player, self);
             string_id message = new string_id(c_stringFile, "s_5797c779");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_imperial_trainer_1_condition__defaultCondition(player, npc))
+            if (naboo_imperial_trainer_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9541,15 +9540,15 @@ public class naboo_imperial_trainer_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6fc304c8");
                 }
                 utils.setScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId", 182);
-                npcStartConversation(player, npc, "naboo_imperial_trainer_1", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_trainer_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -9558,553 +9557,552 @@ public class naboo_imperial_trainer_1 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId");
-        if (branchId == 1 && naboo_imperial_trainer_1_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && naboo_imperial_trainer_1_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && naboo_imperial_trainer_1_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && naboo_imperial_trainer_1_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && naboo_imperial_trainer_1_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && naboo_imperial_trainer_1_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && naboo_imperial_trainer_1_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && naboo_imperial_trainer_1_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && naboo_imperial_trainer_1_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && naboo_imperial_trainer_1_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && naboo_imperial_trainer_1_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && naboo_imperial_trainer_1_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && naboo_imperial_trainer_1_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && naboo_imperial_trainer_1_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && naboo_imperial_trainer_1_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && naboo_imperial_trainer_1_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && naboo_imperial_trainer_1_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && naboo_imperial_trainer_1_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && naboo_imperial_trainer_1_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && naboo_imperial_trainer_1_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && naboo_imperial_trainer_1_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && naboo_imperial_trainer_1_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && naboo_imperial_trainer_1_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && naboo_imperial_trainer_1_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && naboo_imperial_trainer_1_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && naboo_imperial_trainer_1_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && naboo_imperial_trainer_1_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && naboo_imperial_trainer_1_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && naboo_imperial_trainer_1_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && naboo_imperial_trainer_1_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && naboo_imperial_trainer_1_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && naboo_imperial_trainer_1_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && naboo_imperial_trainer_1_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && naboo_imperial_trainer_1_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && naboo_imperial_trainer_1_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && naboo_imperial_trainer_1_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && naboo_imperial_trainer_1_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && naboo_imperial_trainer_1_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && naboo_imperial_trainer_1_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && naboo_imperial_trainer_1_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && naboo_imperial_trainer_1_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && naboo_imperial_trainer_1_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && naboo_imperial_trainer_1_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && naboo_imperial_trainer_1_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && naboo_imperial_trainer_1_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && naboo_imperial_trainer_1_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && naboo_imperial_trainer_1_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && naboo_imperial_trainer_1_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && naboo_imperial_trainer_1_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && naboo_imperial_trainer_1_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && naboo_imperial_trainer_1_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && naboo_imperial_trainer_1_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && naboo_imperial_trainer_1_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && naboo_imperial_trainer_1_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && naboo_imperial_trainer_1_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && naboo_imperial_trainer_1_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && naboo_imperial_trainer_1_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && naboo_imperial_trainer_1_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && naboo_imperial_trainer_1_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && naboo_imperial_trainer_1_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && naboo_imperial_trainer_1_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && naboo_imperial_trainer_1_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && naboo_imperial_trainer_1_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && naboo_imperial_trainer_1_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && naboo_imperial_trainer_1_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && naboo_imperial_trainer_1_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && naboo_imperial_trainer_1_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && naboo_imperial_trainer_1_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && naboo_imperial_trainer_1_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && naboo_imperial_trainer_1_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && naboo_imperial_trainer_1_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && naboo_imperial_trainer_1_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && naboo_imperial_trainer_1_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && naboo_imperial_trainer_1_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && naboo_imperial_trainer_1_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && naboo_imperial_trainer_1_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && naboo_imperial_trainer_1_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && naboo_imperial_trainer_1_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && naboo_imperial_trainer_1_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && naboo_imperial_trainer_1_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && naboo_imperial_trainer_1_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && naboo_imperial_trainer_1_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && naboo_imperial_trainer_1_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && naboo_imperial_trainer_1_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && naboo_imperial_trainer_1_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && naboo_imperial_trainer_1_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && naboo_imperial_trainer_1_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && naboo_imperial_trainer_1_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && naboo_imperial_trainer_1_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && naboo_imperial_trainer_1_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && naboo_imperial_trainer_1_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && naboo_imperial_trainer_1_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && naboo_imperial_trainer_1_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && naboo_imperial_trainer_1_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && naboo_imperial_trainer_1_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && naboo_imperial_trainer_1_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && naboo_imperial_trainer_1_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && naboo_imperial_trainer_1_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && naboo_imperial_trainer_1_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && naboo_imperial_trainer_1_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && naboo_imperial_trainer_1_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && naboo_imperial_trainer_1_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && naboo_imperial_trainer_1_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && naboo_imperial_trainer_1_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && naboo_imperial_trainer_1_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && naboo_imperial_trainer_1_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && naboo_imperial_trainer_1_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && naboo_imperial_trainer_1_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && naboo_imperial_trainer_1_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && naboo_imperial_trainer_1_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && naboo_imperial_trainer_1_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && naboo_imperial_trainer_1_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && naboo_imperial_trainer_1_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && naboo_imperial_trainer_1_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && naboo_imperial_trainer_1_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && naboo_imperial_trainer_1_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && naboo_imperial_trainer_1_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && naboo_imperial_trainer_1_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && naboo_imperial_trainer_1_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && naboo_imperial_trainer_1_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 98 && naboo_imperial_trainer_1_handleBranch98(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 98 && naboo_imperial_trainer_1_handleBranch98(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 99 && naboo_imperial_trainer_1_handleBranch99(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 99 && naboo_imperial_trainer_1_handleBranch99(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 101 && naboo_imperial_trainer_1_handleBranch101(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 101 && naboo_imperial_trainer_1_handleBranch101(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 102 && naboo_imperial_trainer_1_handleBranch102(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 102 && naboo_imperial_trainer_1_handleBranch102(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 104 && naboo_imperial_trainer_1_handleBranch104(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 104 && naboo_imperial_trainer_1_handleBranch104(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 105 && naboo_imperial_trainer_1_handleBranch105(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 105 && naboo_imperial_trainer_1_handleBranch105(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 106 && naboo_imperial_trainer_1_handleBranch106(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 106 && naboo_imperial_trainer_1_handleBranch106(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 108 && naboo_imperial_trainer_1_handleBranch108(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 108 && naboo_imperial_trainer_1_handleBranch108(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 110 && naboo_imperial_trainer_1_handleBranch110(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 110 && naboo_imperial_trainer_1_handleBranch110(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 113 && naboo_imperial_trainer_1_handleBranch113(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 113 && naboo_imperial_trainer_1_handleBranch113(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 114 && naboo_imperial_trainer_1_handleBranch114(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 114 && naboo_imperial_trainer_1_handleBranch114(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 115 && naboo_imperial_trainer_1_handleBranch115(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 115 && naboo_imperial_trainer_1_handleBranch115(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 116 && naboo_imperial_trainer_1_handleBranch116(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 116 && naboo_imperial_trainer_1_handleBranch116(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 117 && naboo_imperial_trainer_1_handleBranch117(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 117 && naboo_imperial_trainer_1_handleBranch117(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 118 && naboo_imperial_trainer_1_handleBranch118(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 118 && naboo_imperial_trainer_1_handleBranch118(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 120 && naboo_imperial_trainer_1_handleBranch120(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 120 && naboo_imperial_trainer_1_handleBranch120(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 122 && naboo_imperial_trainer_1_handleBranch122(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 122 && naboo_imperial_trainer_1_handleBranch122(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 124 && naboo_imperial_trainer_1_handleBranch124(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 124 && naboo_imperial_trainer_1_handleBranch124(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 125 && naboo_imperial_trainer_1_handleBranch125(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 125 && naboo_imperial_trainer_1_handleBranch125(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 126 && naboo_imperial_trainer_1_handleBranch126(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 126 && naboo_imperial_trainer_1_handleBranch126(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 128 && naboo_imperial_trainer_1_handleBranch128(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 128 && naboo_imperial_trainer_1_handleBranch128(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 129 && naboo_imperial_trainer_1_handleBranch129(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 129 && naboo_imperial_trainer_1_handleBranch129(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 130 && naboo_imperial_trainer_1_handleBranch130(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 130 && naboo_imperial_trainer_1_handleBranch130(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 132 && naboo_imperial_trainer_1_handleBranch132(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 132 && naboo_imperial_trainer_1_handleBranch132(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 134 && naboo_imperial_trainer_1_handleBranch134(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 134 && naboo_imperial_trainer_1_handleBranch134(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 135 && naboo_imperial_trainer_1_handleBranch135(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 135 && naboo_imperial_trainer_1_handleBranch135(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 138 && naboo_imperial_trainer_1_handleBranch138(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 138 && naboo_imperial_trainer_1_handleBranch138(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 139 && naboo_imperial_trainer_1_handleBranch139(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 139 && naboo_imperial_trainer_1_handleBranch139(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 142 && naboo_imperial_trainer_1_handleBranch142(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 142 && naboo_imperial_trainer_1_handleBranch142(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 143 && naboo_imperial_trainer_1_handleBranch143(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 143 && naboo_imperial_trainer_1_handleBranch143(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 144 && naboo_imperial_trainer_1_handleBranch144(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 144 && naboo_imperial_trainer_1_handleBranch144(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 146 && naboo_imperial_trainer_1_handleBranch146(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 146 && naboo_imperial_trainer_1_handleBranch146(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 148 && naboo_imperial_trainer_1_handleBranch148(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 148 && naboo_imperial_trainer_1_handleBranch148(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 150 && naboo_imperial_trainer_1_handleBranch150(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 150 && naboo_imperial_trainer_1_handleBranch150(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 151 && naboo_imperial_trainer_1_handleBranch151(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 151 && naboo_imperial_trainer_1_handleBranch151(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 152 && naboo_imperial_trainer_1_handleBranch152(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 152 && naboo_imperial_trainer_1_handleBranch152(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 153 && naboo_imperial_trainer_1_handleBranch153(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 153 && naboo_imperial_trainer_1_handleBranch153(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 155 && naboo_imperial_trainer_1_handleBranch155(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 155 && naboo_imperial_trainer_1_handleBranch155(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 156 && naboo_imperial_trainer_1_handleBranch156(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 156 && naboo_imperial_trainer_1_handleBranch156(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 157 && naboo_imperial_trainer_1_handleBranch157(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 157 && naboo_imperial_trainer_1_handleBranch157(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 158 && naboo_imperial_trainer_1_handleBranch158(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 158 && naboo_imperial_trainer_1_handleBranch158(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 160 && naboo_imperial_trainer_1_handleBranch160(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 160 && naboo_imperial_trainer_1_handleBranch160(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 161 && naboo_imperial_trainer_1_handleBranch161(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 161 && naboo_imperial_trainer_1_handleBranch161(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 162 && naboo_imperial_trainer_1_handleBranch162(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 162 && naboo_imperial_trainer_1_handleBranch162(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 164 && naboo_imperial_trainer_1_handleBranch164(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 164 && naboo_imperial_trainer_1_handleBranch164(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 165 && naboo_imperial_trainer_1_handleBranch165(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 165 && naboo_imperial_trainer_1_handleBranch165(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 168 && naboo_imperial_trainer_1_handleBranch168(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 168 && naboo_imperial_trainer_1_handleBranch168(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 169 && naboo_imperial_trainer_1_handleBranch169(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 169 && naboo_imperial_trainer_1_handleBranch169(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 170 && naboo_imperial_trainer_1_handleBranch170(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 170 && naboo_imperial_trainer_1_handleBranch170(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 172 && naboo_imperial_trainer_1_handleBranch172(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 172 && naboo_imperial_trainer_1_handleBranch172(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 173 && naboo_imperial_trainer_1_handleBranch173(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 173 && naboo_imperial_trainer_1_handleBranch173(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 174 && naboo_imperial_trainer_1_handleBranch174(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 174 && naboo_imperial_trainer_1_handleBranch174(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 175 && naboo_imperial_trainer_1_handleBranch175(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 175 && naboo_imperial_trainer_1_handleBranch175(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 177 && naboo_imperial_trainer_1_handleBranch177(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 177 && naboo_imperial_trainer_1_handleBranch177(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 178 && naboo_imperial_trainer_1_handleBranch178(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 178 && naboo_imperial_trainer_1_handleBranch178(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 179 && naboo_imperial_trainer_1_handleBranch179(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 179 && naboo_imperial_trainer_1_handleBranch179(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 181 && naboo_imperial_trainer_1_handleBranch181(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 181 && naboo_imperial_trainer_1_handleBranch181(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 182 && naboo_imperial_trainer_1_handleBranch182(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 182 && naboo_imperial_trainer_1_handleBranch182(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 183 && naboo_imperial_trainer_1_handleBranch183(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 183 && naboo_imperial_trainer_1_handleBranch183(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 184 && naboo_imperial_trainer_1_handleBranch184(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 184 && naboo_imperial_trainer_1_handleBranch184(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 185 && naboo_imperial_trainer_1_handleBranch185(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 185 && naboo_imperial_trainer_1_handleBranch185(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 186 && naboo_imperial_trainer_1_handleBranch186(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 186 && naboo_imperial_trainer_1_handleBranch186(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 187 && naboo_imperial_trainer_1_handleBranch187(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 187 && naboo_imperial_trainer_1_handleBranch187(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 188 && naboo_imperial_trainer_1_handleBranch188(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 188 && naboo_imperial_trainer_1_handleBranch188(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 189 && naboo_imperial_trainer_1_handleBranch189(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 189 && naboo_imperial_trainer_1_handleBranch189(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 191 && naboo_imperial_trainer_1_handleBranch191(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 191 && naboo_imperial_trainer_1_handleBranch191(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 192 && naboo_imperial_trainer_1_handleBranch192(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 192 && naboo_imperial_trainer_1_handleBranch192(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 193 && naboo_imperial_trainer_1_handleBranch193(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 193 && naboo_imperial_trainer_1_handleBranch193(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 194 && naboo_imperial_trainer_1_handleBranch194(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 194 && naboo_imperial_trainer_1_handleBranch194(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 195 && naboo_imperial_trainer_1_handleBranch195(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 195 && naboo_imperial_trainer_1_handleBranch195(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 197 && naboo_imperial_trainer_1_handleBranch197(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 197 && naboo_imperial_trainer_1_handleBranch197(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 198 && naboo_imperial_trainer_1_handleBranch198(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 198 && naboo_imperial_trainer_1_handleBranch198(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 199 && naboo_imperial_trainer_1_handleBranch199(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 199 && naboo_imperial_trainer_1_handleBranch199(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 200 && naboo_imperial_trainer_1_handleBranch200(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 200 && naboo_imperial_trainer_1_handleBranch200(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 201 && naboo_imperial_trainer_1_handleBranch201(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 201 && naboo_imperial_trainer_1_handleBranch201(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 202 && naboo_imperial_trainer_1_handleBranch202(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 202 && naboo_imperial_trainer_1_handleBranch202(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.naboo_imperial_trainer_1.branchId");
         return SCRIPT_CONTINUE;
     }

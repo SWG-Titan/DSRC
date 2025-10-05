@@ -328,46 +328,45 @@ public class ep3_rryatt_krepauk extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_rryatt_krepauk_condition_cannotSpeakWookiee(player, npc))
+        if (ep3_rryatt_krepauk_condition_cannotSpeakWookiee(player, self))
         {
-            ep3_rryatt_krepauk_action_thinkWookieeConfusion(player, npc);
+            ep3_rryatt_krepauk_action_thinkWookieeConfusion(player, self);
             string_id message = new string_id(c_stringFile, "s_307");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_finishedKatarnHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_finishedKatarnHunt(player, self))
         {
-            ep3_rryatt_krepauk_action_doneKatarn(player, npc);
+            ep3_rryatt_krepauk_action_doneKatarn(player, self);
             string_id message = new string_id(c_stringFile, "s_309");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_onKatarnHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_onKatarnHunt(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_311");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_finishedEliteMinstygarHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_finishedEliteMinstygarHunt(player, self))
         {
-            ep3_rryatt_krepauk_action_doneEliteMinstyngar(player, npc);
+            ep3_rryatt_krepauk_action_doneEliteMinstyngar(player, self);
             string_id message = new string_id(c_stringFile, "s_313");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -386,35 +385,35 @@ public class ep3_rryatt_krepauk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_319");
                 }
                 utils.setScriptVar(player, "conversation.ep3_rryatt_krepauk.branchId", 4);
-                npcStartConversation(player, npc, "ep3_rryatt_krepauk", message, responses);
+                npcStartConversation(player, self, "ep3_rryatt_krepauk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_onEliteMinstyngarHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_onEliteMinstyngarHunt(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_323");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_finishedFeralWookieeHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_finishedFeralWookieeHunt(player, self))
         {
-            ep3_rryatt_krepauk_action_doneFeralWookiees(player, npc);
+            ep3_rryatt_krepauk_action_doneFeralWookiees(player, self);
             string_id message = new string_id(c_stringFile, "s_325");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -433,35 +432,35 @@ public class ep3_rryatt_krepauk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_331");
                 }
                 utils.setScriptVar(player, "conversation.ep3_rryatt_krepauk.branchId", 8);
-                npcStartConversation(player, npc, "ep3_rryatt_krepauk", message, responses);
+                npcStartConversation(player, self, "ep3_rryatt_krepauk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_onFeralWookieeHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_onFeralWookieeHunt(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_335");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_finishedExJediHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_finishedExJediHunt(player, self))
         {
-            ep3_rryatt_krepauk_action_doneExJedi(player, npc);
+            ep3_rryatt_krepauk_action_doneExJedi(player, self);
             string_id message = new string_id(c_stringFile, "s_337");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -480,35 +479,35 @@ public class ep3_rryatt_krepauk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_343");
                 }
                 utils.setScriptVar(player, "conversation.ep3_rryatt_krepauk.branchId", 12);
-                npcStartConversation(player, npc, "ep3_rryatt_krepauk", message, responses);
+                npcStartConversation(player, self, "ep3_rryatt_krepauk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_onExJediHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_onExJediHunt(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_347");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_finishedWallugaHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_finishedWallugaHunt(player, self))
         {
-            ep3_rryatt_krepauk_action_doneWallugas(player, npc);
+            ep3_rryatt_krepauk_action_doneWallugas(player, self);
             string_id message = new string_id(c_stringFile, "s_349");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -527,34 +526,34 @@ public class ep3_rryatt_krepauk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_355");
                 }
                 utils.setScriptVar(player, "conversation.ep3_rryatt_krepauk.branchId", 16);
-                npcStartConversation(player, npc, "ep3_rryatt_krepauk", message, responses);
+                npcStartConversation(player, self, "ep3_rryatt_krepauk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition_onWallugaHunt(player, npc))
+        if (ep3_rryatt_krepauk_condition_onWallugaHunt(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_359");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+        if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_361");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_rryatt_krepauk_condition__defaultCondition(player, npc))
+            if (ep3_rryatt_krepauk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -573,15 +572,15 @@ public class ep3_rryatt_krepauk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_376");
                 }
                 utils.setScriptVar(player, "conversation.ep3_rryatt_krepauk.branchId", 20);
-                npcStartConversation(player, npc, "ep3_rryatt_krepauk", message, responses);
+                npcStartConversation(player, self, "ep3_rryatt_krepauk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -590,33 +589,32 @@ public class ep3_rryatt_krepauk extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_rryatt_krepauk.branchId");
-        if (branchId == 4 && ep3_rryatt_krepauk_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_rryatt_krepauk_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_rryatt_krepauk_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_rryatt_krepauk_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_rryatt_krepauk_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_rryatt_krepauk_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_rryatt_krepauk_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_rryatt_krepauk_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_rryatt_krepauk_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_rryatt_krepauk_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_rryatt_krepauk_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_rryatt_krepauk_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_rryatt_krepauk.branchId");
         return SCRIPT_CONTINUE;
     }

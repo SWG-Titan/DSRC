@@ -995,26 +995,25 @@ public class disable_sidequest extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (disable_sidequest_condition_hasReward(player, npc))
+        if (disable_sidequest_condition_hasReward(player, self))
         {
-            disable_sidequest_action_animBothSalute(player, npc);
+            disable_sidequest_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_b451a4a3");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (disable_sidequest_condition_hasWonMission1(player, npc))
+        if (disable_sidequest_condition_hasWonMission1(player, self))
         {
-            disable_sidequest_action_animBothSalute(player, npc);
+            disable_sidequest_action_animBothSalute(player, self);
             string_id message = new string_id(c_stringFile, "s_c55d7e2");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (disable_sidequest_condition__defaultCondition(player, npc))
+            if (disable_sidequest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1029,22 +1028,22 @@ public class disable_sidequest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c9e7c48f");
                 }
                 setObjVar(player, "conversation.disable_sidequest.branchId", 2);
-                npcStartConversation(player, npc, "disable_sidequest", message, responses);
+                npcStartConversation(player, self, "disable_sidequest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (disable_sidequest_condition__defaultCondition(player, npc))
+        if (disable_sidequest_condition__defaultCondition(player, self))
         {
-            disable_sidequest_action_animNodHead(player, npc);
+            disable_sidequest_action_animNodHead(player, self);
             string_id message = new string_id(c_stringFile, "s_3c6ee0a0");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (disable_sidequest_condition__defaultCondition(player, npc))
+            if (disable_sidequest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1059,21 +1058,21 @@ public class disable_sidequest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6b12b256");
                 }
                 setObjVar(player, "conversation.disable_sidequest.branchId", 10);
-                npcStartConversation(player, npc, "disable_sidequest", message, responses);
+                npcStartConversation(player, self, "disable_sidequest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (disable_sidequest_condition_readyForMission2(player, npc))
+        if (disable_sidequest_condition_readyForMission2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5d0b3789");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (disable_sidequest_condition__defaultCondition(player, npc))
+            if (disable_sidequest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1088,15 +1087,15 @@ public class disable_sidequest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5d0b3789");
                 }
                 setObjVar(player, "conversation.disable_sidequest.branchId", 18);
-                npcStartConversation(player, npc, "disable_sidequest", message, responses);
+                npcStartConversation(player, self, "disable_sidequest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1105,97 +1104,96 @@ public class disable_sidequest extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = getIntObjVar(player, "conversation.disable_sidequest.branchId");
-        if (branchId == 2 && disable_sidequest_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && disable_sidequest_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && disable_sidequest_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && disable_sidequest_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && disable_sidequest_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && disable_sidequest_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && disable_sidequest_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && disable_sidequest_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && disable_sidequest_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && disable_sidequest_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && disable_sidequest_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && disable_sidequest_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && disable_sidequest_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && disable_sidequest_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && disable_sidequest_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && disable_sidequest_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && disable_sidequest_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && disable_sidequest_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && disable_sidequest_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && disable_sidequest_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && disable_sidequest_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && disable_sidequest_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && disable_sidequest_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && disable_sidequest_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && disable_sidequest_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && disable_sidequest_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && disable_sidequest_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && disable_sidequest_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && disable_sidequest_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && disable_sidequest_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && disable_sidequest_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && disable_sidequest_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && disable_sidequest_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && disable_sidequest_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && disable_sidequest_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && disable_sidequest_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && disable_sidequest_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && disable_sidequest_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && disable_sidequest_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && disable_sidequest_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && disable_sidequest_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && disable_sidequest_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && disable_sidequest_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && disable_sidequest_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         removeObjVar(player, "conversation.disable_sidequest.branchId");
         return SCRIPT_CONTINUE;
     }

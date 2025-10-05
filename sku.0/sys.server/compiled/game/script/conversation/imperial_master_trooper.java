@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class imperial_master_trooper extends script.base_script
+public class imperial_master_trooper extends base_script
 {
     public imperial_master_trooper()
     {

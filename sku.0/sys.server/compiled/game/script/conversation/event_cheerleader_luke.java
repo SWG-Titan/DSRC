@@ -780,42 +780,41 @@ public class event_cheerleader_luke extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (event_cheerleader_luke_condition_isImperial(player, npc))
+        if (event_cheerleader_luke_condition_isImperial(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_102");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (event_cheerleader_luke_condition_isNeutral(player, npc))
+        if (event_cheerleader_luke_condition_isNeutral(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_104");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (event_cheerleader_luke_condition_hasMaxQuests(player, npc))
+        if (event_cheerleader_luke_condition_hasMaxQuests(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_106");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (event_cheerleader_luke_condition_completedAll(player, npc))
+        if (event_cheerleader_luke_condition_completedAll(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_108");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (event_cheerleader_luke_condition_noMissionsComplete(player, npc))
+        if (event_cheerleader_luke_condition_noMissionsComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_110");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_cheerleader_luke_condition__defaultCondition(player, npc))
+            if (event_cheerleader_luke_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -830,70 +829,70 @@ public class event_cheerleader_luke extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_112");
                 }
                 utils.setScriptVar(player, "conversation.event_cheerleader_luke.branchId", 5);
-                npcStartConversation(player, npc, "event_cheerleader_luke", message, responses);
+                npcStartConversation(player, self, "event_cheerleader_luke", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (event_cheerleader_luke_condition_hasMinOne(player, npc))
+        if (event_cheerleader_luke_condition_hasMinOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_128");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_cheerleader_luke_condition_pve1Ready(player, npc))
+            if (event_cheerleader_luke_condition_pve1Ready(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (event_cheerleader_luke_condition_pvp1Ready(player, npc))
+            if (event_cheerleader_luke_condition_pvp1Ready(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (event_cheerleader_luke_condition_pve2Ready(player, npc))
+            if (event_cheerleader_luke_condition_pve2Ready(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (event_cheerleader_luke_condition_pvp2Ready(player, npc))
+            if (event_cheerleader_luke_condition_pvp2Ready(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (event_cheerleader_luke_condition_pve3Ready(player, npc))
+            if (event_cheerleader_luke_condition_pve3Ready(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (event_cheerleader_luke_condition_pvp3Ready(player, npc))
+            if (event_cheerleader_luke_condition_pvp3Ready(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (event_cheerleader_luke_condition_pve4Ready(player, npc))
+            if (event_cheerleader_luke_condition_pve4Ready(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (event_cheerleader_luke_condition_pvp4Ready(player, npc))
+            if (event_cheerleader_luke_condition_pvp4Ready(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -936,15 +935,15 @@ public class event_cheerleader_luke extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_194");
                 }
                 utils.setScriptVar(player, "conversation.event_cheerleader_luke.branchId", 10);
-                npcStartConversation(player, npc, "event_cheerleader_luke", message, responses);
+                npcStartConversation(player, self, "event_cheerleader_luke", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -953,61 +952,60 @@ public class event_cheerleader_luke extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.event_cheerleader_luke.branchId");
-        if (branchId == 5 && event_cheerleader_luke_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && event_cheerleader_luke_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && event_cheerleader_luke_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && event_cheerleader_luke_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && event_cheerleader_luke_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && event_cheerleader_luke_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && event_cheerleader_luke_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && event_cheerleader_luke_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && event_cheerleader_luke_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && event_cheerleader_luke_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && event_cheerleader_luke_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && event_cheerleader_luke_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && event_cheerleader_luke_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && event_cheerleader_luke_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && event_cheerleader_luke_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && event_cheerleader_luke_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && event_cheerleader_luke_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && event_cheerleader_luke_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && event_cheerleader_luke_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && event_cheerleader_luke_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && event_cheerleader_luke_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && event_cheerleader_luke_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && event_cheerleader_luke_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && event_cheerleader_luke_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && event_cheerleader_luke_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && event_cheerleader_luke_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.event_cheerleader_luke.branchId");
         return SCRIPT_CONTINUE;
     }

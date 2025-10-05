@@ -101,45 +101,44 @@ public class dera_darklighter extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (dera_darklighter_condition_doneWithDera(player, npc))
+        if (dera_darklighter_condition_doneWithDera(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_35");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (dera_darklighter_condition_returningToDera(player, npc))
+        if (dera_darklighter_condition_returningToDera(player, self))
         {
-            dera_darklighter_action_signal_endDera(player, npc);
+            dera_darklighter_action_signal_endDera(player, self);
             string_id message = new string_id(c_stringFile, "s_36");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (dera_darklighter_condition_workingWithDera(player, npc))
+        if (dera_darklighter_condition_workingWithDera(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (dera_darklighter_condition_startWithDera(player, npc))
+        if (dera_darklighter_condition_startWithDera(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
+            doAnimationAction(self, "shake_head_disgust");
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (dera_darklighter_condition__defaultCondition(player, npc))
+            if (dera_darklighter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (dera_darklighter_condition__defaultCondition(player, npc))
+            if (dera_darklighter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -158,21 +157,21 @@ public class dera_darklighter extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_39");
                 }
                 utils.setScriptVar(player, "conversation.dera_darklighter.branchId", 4);
-                npcStartConversation(player, npc, "dera_darklighter", message, responses);
+                npcStartConversation(player, self, "dera_darklighter", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (dera_darklighter_condition__defaultCondition(player, npc))
+        if (dera_darklighter_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -181,13 +180,12 @@ public class dera_darklighter extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.dera_darklighter.branchId");
-        if (branchId == 4 && dera_darklighter_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && dera_darklighter_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.dera_darklighter.branchId");
         return SCRIPT_CONTINUE;
     }

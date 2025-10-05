@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class water_treatment extends script.base_script
+public class water_treatment extends base_script
 {
     public water_treatment()
     {
@@ -498,27 +498,26 @@ public class water_treatment extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (water_treatment_condition_hasFinishedAllQuests(player, npc))
+        if (water_treatment_condition_hasFinishedAllQuests(player, self))
         {
             doAnimationAction(player, "udaman");
             string_id message = new string_id(c_stringFile, "s_57");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_isFinishingThirdQuest(player, npc))
+        if (water_treatment_condition_isFinishingThirdQuest(player, self))
         {
-            doAnimationAction(npc, "celebrate1");
-            water_treatment_action_finishUpFloc(player, npc);
+            doAnimationAction(self, "celebrate1");
+            water_treatment_action_finishUpFloc(player, self);
             string_id message = new string_id(c_stringFile, "s_17");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (water_treatment_condition__defaultCondition(player, npc))
+            if (water_treatment_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -533,30 +532,30 @@ public class water_treatment extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_18");
                 }
                 utils.setScriptVar(player, "conversation.water_treatment.branchId", 2);
-                npcStartConversation(player, npc, "water_treatment", message, responses);
+                npcStartConversation(player, self, "water_treatment", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_hasThirdQuest(player, npc))
+        if (water_treatment_condition_hasThirdQuest(player, self))
         {
-            doAnimationAction(npc, "yawn");
+            doAnimationAction(self, "yawn");
             doAnimationAction(player, "explain");
             string_id message = new string_id(c_stringFile, "s_62");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_hasNotFixedFlocculation(player, npc))
+        if (water_treatment_condition_hasNotFixedFlocculation(player, self))
         {
-            doAnimationAction(npc, "applause_excited");
+            doAnimationAction(self, "applause_excited");
             string_id message = new string_id(c_stringFile, "s_65");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (water_treatment_condition__defaultCondition(player, npc))
+            if (water_treatment_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -571,23 +570,23 @@ public class water_treatment extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_66");
                 }
                 utils.setScriptVar(player, "conversation.water_treatment.branchId", 6);
-                npcStartConversation(player, npc, "water_treatment", message, responses);
+                npcStartConversation(player, self, "water_treatment", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_isFinishingSecondQuest(player, npc))
+        if (water_treatment_condition_isFinishingSecondQuest(player, self))
         {
-            doAnimationAction(npc, "thank");
-            water_treatment_action_finishUpPressure(player, npc);
+            doAnimationAction(self, "thank");
+            water_treatment_action_finishUpPressure(player, self);
             string_id message = new string_id(c_stringFile, "s_14");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (water_treatment_condition__defaultCondition(player, npc))
+            if (water_treatment_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -602,37 +601,37 @@ public class water_treatment extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_16");
                 }
                 utils.setScriptVar(player, "conversation.water_treatment.branchId", 8);
-                npcStartConversation(player, npc, "water_treatment", message, responses);
+                npcStartConversation(player, self, "water_treatment", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_hasSecondQuest(player, npc))
+        if (water_treatment_condition_hasSecondQuest(player, self))
         {
             doAnimationAction(player, "slump_head");
             string_id message = new string_id(c_stringFile, "s_61");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_hasNotFixedSediment(player, npc))
+        if (water_treatment_condition_hasNotFixedSediment(player, self))
         {
-            doAnimationAction(npc, "nod_head_multiple");
+            doAnimationAction(self, "nod_head_multiple");
             string_id message = new string_id(c_stringFile, "s_64");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_isFinishingFirstQuest(player, npc))
+        if (water_treatment_condition_isFinishingFirstQuest(player, self))
         {
-            doAnimationAction(npc, "applause_polite");
-            water_treatment_action_finishUpMixingChamber(player, npc);
+            doAnimationAction(self, "applause_polite");
+            water_treatment_action_finishUpMixingChamber(player, self);
             string_id message = new string_id(c_stringFile, "s_27");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (water_treatment_condition__defaultCondition(player, npc))
+            if (water_treatment_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -647,37 +646,37 @@ public class water_treatment extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_29");
                 }
                 utils.setScriptVar(player, "conversation.water_treatment.branchId", 13);
-                npcStartConversation(player, npc, "water_treatment", message, responses);
+                npcStartConversation(player, self, "water_treatment", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_hasFirstQuest(player, npc))
+        if (water_treatment_condition_hasFirstQuest(player, self))
         {
-            doAnimationAction(npc, "shrug_hands");
+            doAnimationAction(self, "shrug_hands");
             string_id message = new string_id(c_stringFile, "s_58");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_hasNotFixedMixer(player, npc))
+        if (water_treatment_condition_hasNotFixedMixer(player, self))
         {
-            doAnimationAction(npc, "standing_placate");
+            doAnimationAction(self, "standing_placate");
             string_id message = new string_id(c_stringFile, "s_63");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition_hasInitialQuest(player, npc))
+        if (water_treatment_condition_hasInitialQuest(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
-            water_treatment_action_signalMeetingFirstTime(player, npc);
+            doAnimationAction(self, "gesticulate_wildly");
+            water_treatment_action_signalMeetingFirstTime(player, self);
             string_id message = new string_id(c_stringFile, "s_36");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (water_treatment_condition__defaultCondition(player, npc))
+            if (water_treatment_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -692,22 +691,22 @@ public class water_treatment extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_45");
                 }
                 utils.setScriptVar(player, "conversation.water_treatment.branchId", 18);
-                npcStartConversation(player, npc, "water_treatment", message, responses);
+                npcStartConversation(player, self, "water_treatment", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (water_treatment_condition__defaultCondition(player, npc))
+        if (water_treatment_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "sneeze");
+            doAnimationAction(self, "sneeze");
             string_id message = new string_id(c_stringFile, "s_74");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -716,57 +715,56 @@ public class water_treatment extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.water_treatment.branchId");
-        if (branchId == 2 && water_treatment_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && water_treatment_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && water_treatment_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && water_treatment_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && water_treatment_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && water_treatment_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && water_treatment_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && water_treatment_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && water_treatment_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && water_treatment_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && water_treatment_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && water_treatment_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && water_treatment_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && water_treatment_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && water_treatment_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && water_treatment_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && water_treatment_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && water_treatment_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && water_treatment_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && water_treatment_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && water_treatment_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && water_treatment_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && water_treatment_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && water_treatment_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.water_treatment.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -353,31 +353,30 @@ public class corellia_tyrena_gordo_zek extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_tyrena_gordo_zek_condition_completeForgotten(player, npc))
+        if (corellia_tyrena_gordo_zek_condition_completeForgotten(player, self))
         {
-            doAnimationAction(npc, "thank");
+            doAnimationAction(self, "thank");
             string_id message = new string_id(c_stringFile, "s_14");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_gordo_zek_condition_onForgotten(player, npc))
+        if (corellia_tyrena_gordo_zek_condition_onForgotten(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_12");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_gordo_zek_condition_returnGordo(player, npc))
+        if (corellia_tyrena_gordo_zek_condition_returnGordo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_15");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_gordo_zek_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_gordo_zek_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -392,21 +391,21 @@ public class corellia_tyrena_gordo_zek extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_16");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_gordo_zek.branchId", 3);
-                npcStartConversation(player, npc, "corellia_tyrena_gordo_zek", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_gordo_zek", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_gordo_zek_condition_talkGordo(player, npc))
+        if (corellia_tyrena_gordo_zek_condition_talkGordo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_26");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_gordo_zek_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_gordo_zek_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -421,22 +420,22 @@ public class corellia_tyrena_gordo_zek extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_28");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_gordo_zek.branchId", 8);
-                npcStartConversation(player, npc, "corellia_tyrena_gordo_zek", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_gordo_zek", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_gordo_zek_condition__defaultCondition(player, npc))
+        if (corellia_tyrena_gordo_zek_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "nervous");
+            doAnimationAction(self, "nervous");
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -445,41 +444,40 @@ public class corellia_tyrena_gordo_zek extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_tyrena_gordo_zek.branchId");
-        if (branchId == 3 && corellia_tyrena_gordo_zek_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corellia_tyrena_gordo_zek_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && corellia_tyrena_gordo_zek_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && corellia_tyrena_gordo_zek_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && corellia_tyrena_gordo_zek_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && corellia_tyrena_gordo_zek_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_tyrena_gordo_zek_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_tyrena_gordo_zek_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && corellia_tyrena_gordo_zek_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && corellia_tyrena_gordo_zek_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && corellia_tyrena_gordo_zek_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && corellia_tyrena_gordo_zek_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_tyrena_gordo_zek_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_tyrena_gordo_zek_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && corellia_tyrena_gordo_zek_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && corellia_tyrena_gordo_zek_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_tyrena_gordo_zek.branchId");
         return SCRIPT_CONTINUE;
     }

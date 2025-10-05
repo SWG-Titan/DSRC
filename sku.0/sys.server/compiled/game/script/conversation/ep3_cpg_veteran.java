@@ -523,52 +523,51 @@ public class ep3_cpg_veteran extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_cpg_veteran_condition_isTooFar(player, npc))
+        if (ep3_cpg_veteran_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_185");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cpg_veteran_condition_isAttacking(player, npc))
+        if (ep3_cpg_veteran_condition_isAttacking(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_156");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!ep3_cpg_veteran_condition_hasBadge_visited_Kachirho(player, npc))
+        if (!ep3_cpg_veteran_condition_hasBadge_visited_Kachirho(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_187");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cpg_veteran_condition_isOnQuest_escort_alpha(player, npc))
+        if (ep3_cpg_veteran_condition_isOnQuest_escort_alpha(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_233");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cpg_veteran_condition_isOnQuest_escort_bravo(player, npc))
+        if (ep3_cpg_veteran_condition_isOnQuest_escort_bravo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_235");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cpg_veteran_condition_isOnQuest_rescue_alpha(player, npc))
+        if (ep3_cpg_veteran_condition_isOnQuest_rescue_alpha(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_237");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!ep3_cpg_veteran_condition_isAttacking(player, npc))
+            if (!ep3_cpg_veteran_condition_isAttacking(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -583,38 +582,38 @@ public class ep3_cpg_veteran extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_239");
                 }
                 utils.setScriptVar(player, "conversation.ep3_cpg_veteran.branchId", 6);
-                npcStartConversation(player, npc, "ep3_cpg_veteran", message, responses);
+                npcStartConversation(player, self, "ep3_cpg_veteran", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cpg_veteran_condition_isOnQuest_AMBUSH(player, npc))
+        if (ep3_cpg_veteran_condition_isOnQuest_AMBUSH(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_243");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cpg_veteran_condition_hasFailedQuest_03(player, npc))
+        if (ep3_cpg_veteran_condition_hasFailedQuest_03(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_273");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!ep3_cpg_veteran_condition_isAttacking(player, npc))
+            if (!ep3_cpg_veteran_condition_isAttacking(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!ep3_cpg_veteran_condition_isAttacking(player, npc))
+            if (!ep3_cpg_veteran_condition_isAttacking(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -633,27 +632,27 @@ public class ep3_cpg_veteran extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_160");
                 }
                 utils.setScriptVar(player, "conversation.ep3_cpg_veteran.branchId", 10);
-                npcStartConversation(player, npc, "ep3_cpg_veteran", message, responses);
+                npcStartConversation(player, self, "ep3_cpg_veteran", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cpg_veteran_condition_hasFailedQuest_02(player, npc))
+        if (ep3_cpg_veteran_condition_hasFailedQuest_02(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_283");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cpg_veteran_condition_hasWon_assassinations(player, npc))
+        if (ep3_cpg_veteran_condition_hasWon_assassinations(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_165");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!ep3_cpg_veteran_condition_isOnQuest(player, npc))
+            if (!ep3_cpg_veteran_condition_isOnQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -671,26 +670,26 @@ public class ep3_cpg_veteran extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_cpg_veteran", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_cpg_veteran", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cpg_veteran_condition__defaultCondition(player, npc))
+        if (ep3_cpg_veteran_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_351");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!ep3_cpg_veteran_condition_isAttacking(player, npc))
+            if (!ep3_cpg_veteran_condition_isAttacking(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -705,15 +704,15 @@ public class ep3_cpg_veteran extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_168");
                 }
                 utils.setScriptVar(player, "conversation.ep3_cpg_veteran.branchId", 22);
-                npcStartConversation(player, npc, "ep3_cpg_veteran", message, responses);
+                npcStartConversation(player, self, "ep3_cpg_veteran", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -722,57 +721,56 @@ public class ep3_cpg_veteran extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_cpg_veteran.branchId");
-        if (branchId == 6 && ep3_cpg_veteran_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_cpg_veteran_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_cpg_veteran_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_cpg_veteran_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_cpg_veteran_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_cpg_veteran_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_cpg_veteran_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_cpg_veteran_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && ep3_cpg_veteran_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && ep3_cpg_veteran_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_cpg_veteran_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_cpg_veteran_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_cpg_veteran_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_cpg_veteran_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_cpg_veteran_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_cpg_veteran_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && ep3_cpg_veteran_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && ep3_cpg_veteran_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && ep3_cpg_veteran_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && ep3_cpg_veteran_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_cpg_veteran_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_cpg_veteran_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && ep3_cpg_veteran_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && ep3_cpg_veteran_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_cpg_veteran.branchId");
         return SCRIPT_CONTINUE;
     }

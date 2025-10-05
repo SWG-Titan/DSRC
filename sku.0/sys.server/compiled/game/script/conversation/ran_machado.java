@@ -267,28 +267,27 @@ public class ran_machado extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ran_machado_condition_hasCompletedReq(player, npc))
+        if (ran_machado_condition_hasCompletedReq(player, self))
         {
-            doAnimationAction(npc, "celebrate");
-            ran_machado_action_rewardPlayer(player, npc);
+            doAnimationAction(self, "celebrate");
+            ran_machado_action_rewardPlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_17");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ran_machado_condition_hasFailQuest(player, npc))
+        if (ran_machado_condition_hasFailQuest(player, self))
         {
-            doAnimationAction(npc, "backhand_threaten");
-            ran_machado_action_clearFail(player, npc);
+            doAnimationAction(self, "backhand_threaten");
+            ran_machado_action_clearFail(player, self);
             string_id message = new string_id(c_stringFile, "s_33");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ran_machado_condition__defaultCondition(player, npc))
+            if (ran_machado_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -306,34 +305,34 @@ public class ran_machado extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ran_machado", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ran_machado", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ran_machado_condition_hasQuestActive(player, npc))
+        if (ran_machado_condition_hasQuestActive(player, self))
         {
-            doAnimationAction(npc, "shakefist");
+            doAnimationAction(self, "shakefist");
             string_id message = new string_id(c_stringFile, "s_16");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ran_machado_condition_isElligibleSecondTime(player, npc))
+        if (ran_machado_condition_isElligibleSecondTime(player, self))
         {
-            doAnimationAction(npc, "celebrate");
+            doAnimationAction(self, "celebrate");
             string_id message = new string_id(c_stringFile, "s_18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ran_machado_condition__defaultCondition(player, npc))
+            if (ran_machado_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -348,22 +347,22 @@ public class ran_machado extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_19");
                 }
                 utils.setScriptVar(player, "conversation.ran_machado.branchId", 5);
-                npcStartConversation(player, npc, "ran_machado", message, responses);
+                npcStartConversation(player, self, "ran_machado", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ran_machado_condition_isElligibleFirstTime(player, npc))
+        if (ran_machado_condition_isElligibleFirstTime(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ran_machado_condition__defaultCondition(player, npc))
+            if (ran_machado_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -378,21 +377,21 @@ public class ran_machado extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_14");
                 }
                 utils.setScriptVar(player, "conversation.ran_machado.branchId", 7);
-                npcStartConversation(player, npc, "ran_machado", message, responses);
+                npcStartConversation(player, self, "ran_machado", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ran_machado_condition__defaultCondition(player, npc))
+        if (ran_machado_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_38");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -401,33 +400,32 @@ public class ran_machado extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ran_machado.branchId");
-        if (branchId == 2 && ran_machado_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ran_machado_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ran_machado_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ran_machado_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ran_machado_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ran_machado_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ran_machado_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ran_machado_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ran_machado_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ran_machado_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ran_machado_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ran_machado_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ran_machado.branchId");
         return SCRIPT_CONTINUE;
     }

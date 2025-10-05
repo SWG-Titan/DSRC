@@ -6,7 +6,7 @@ import script.library.chat;
 import script.library.trial;
 import script.library.utils;
 
-public class imp_p3_major extends script.base_script
+public class imp_p3_major extends base_script
 {
     public imp_p3_major()
     {

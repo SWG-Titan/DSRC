@@ -3,7 +3,7 @@ package script.conversation;
 import script.*;
 import script.library.*;
 
-public class camp_survivor extends script.base_script
+public class camp_survivor extends base_script
 {
     public camp_survivor()
     {
@@ -341,25 +341,24 @@ public class camp_survivor extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (camp_survivor_condition_isCloseToCamp(player, npc))
+        if (camp_survivor_condition_isCloseToCamp(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (camp_survivor_condition_isUnclaimedSpawner(player, npc))
+        if (camp_survivor_condition_isUnclaimedSpawner(player, self))
         {
-            camp_survivor_action_startDestroyTimer(player, npc);
+            camp_survivor_action_startDestroyTimer(player, self);
             string_id message = new string_id(c_stringFile, "s_73");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (camp_survivor_condition__defaultCondition(player, npc))
+            if (camp_survivor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -374,28 +373,28 @@ public class camp_survivor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_96");
                 }
                 utils.setScriptVar(player, "conversation.camp_survivor.branchId", 2);
-                npcStartConversation(player, npc, "camp_survivor", message, responses);
+                npcStartConversation(player, self, "camp_survivor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (camp_survivor_condition_isOwner(player, npc))
+        if (camp_survivor_condition_isOwner(player, self))
         {
-            camp_survivor_action_claimSpawner(player, npc);
+            camp_survivor_action_claimSpawner(player, self);
             string_id message = new string_id(c_stringFile, "s_8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (camp_survivor_condition__defaultCondition(player, npc))
+        if (camp_survivor_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_60");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -404,13 +403,12 @@ public class camp_survivor extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.camp_survivor.branchId");
-        if (branchId == 2 && camp_survivor_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && camp_survivor_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.camp_survivor.branchId");
         return SCRIPT_CONTINUE;
     }

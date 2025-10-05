@@ -6,7 +6,7 @@ import script.library.chat;
 import script.library.smuggler;
 import script.library.utils;
 
-public class junk_sneg_valarian extends script.base_script
+public class junk_sneg_valarian extends base_script
 {
     public junk_sneg_valarian()
     {
@@ -268,26 +268,25 @@ public class junk_sneg_valarian extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (junk_sneg_valarian_condition__defaultCondition(player, npc))
+        if (junk_sneg_valarian_condition__defaultCondition(player, self))
         {
-            junk_sneg_valarian_action_face_to(player, npc);
+            junk_sneg_valarian_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_6dbdfc7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (junk_sneg_valarian_condition__defaultCondition(player, npc))
+            if (junk_sneg_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (junk_sneg_valarian_condition__defaultCondition(player, npc))
+            if (junk_sneg_valarian_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -306,15 +305,15 @@ public class junk_sneg_valarian extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_50c8b3e1");
                 }
                 utils.setScriptVar(player, "conversation.junk_sneg_valarian.branchId", 1);
-                npcStartConversation(player, npc, "junk_sneg_valarian", message, responses);
+                npcStartConversation(player, self, "junk_sneg_valarian", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -323,25 +322,24 @@ public class junk_sneg_valarian extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.junk_sneg_valarian.branchId");
-        if (branchId == 1 && junk_sneg_valarian_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && junk_sneg_valarian_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && junk_sneg_valarian_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && junk_sneg_valarian_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && junk_sneg_valarian_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && junk_sneg_valarian_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && junk_sneg_valarian_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && junk_sneg_valarian_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.junk_sneg_valarian.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -827,25 +827,24 @@ public class mtp_hideout_bomb_tech extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (mtp_hideout_bomb_tech_condition_isElligibleForBombQuest(player, npc))
+        if (mtp_hideout_bomb_tech_condition_isElligibleForBombQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -864,21 +863,21 @@ public class mtp_hideout_bomb_tech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_20");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_bomb_tech.branchId", 1);
-                npcStartConversation(player, npc, "mtp_hideout_bomb_tech", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_bomb_tech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_bomb_tech_condition_hasBombActiveSignalWaiting(player, npc))
+        if (mtp_hideout_bomb_tech_condition_hasBombActiveSignalWaiting(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_58");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -893,21 +892,21 @@ public class mtp_hideout_bomb_tech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_60");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_bomb_tech.branchId", 15);
-                npcStartConversation(player, npc, "mtp_hideout_bomb_tech", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_bomb_tech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_bomb_tech_condition_bombQuestActiveButNotComplete(player, npc))
+        if (mtp_hideout_bomb_tech_condition_bombQuestActiveButNotComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_68");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -922,21 +921,21 @@ public class mtp_hideout_bomb_tech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_70");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_bomb_tech.branchId", 18);
-                npcStartConversation(player, npc, "mtp_hideout_bomb_tech", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_bomb_tech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_bomb_tech_condition_hasCompletedBombNotLok(player, npc))
+        if (mtp_hideout_bomb_tech_condition_hasCompletedBombNotLok(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_74");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -951,28 +950,28 @@ public class mtp_hideout_bomb_tech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_76");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_bomb_tech.branchId", 20);
-                npcStartConversation(player, npc, "mtp_hideout_bomb_tech", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_bomb_tech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_bomb_tech_condition_hasCompletedBothLokAndBomb(player, npc))
+        if (mtp_hideout_bomb_tech_condition_hasCompletedBothLokAndBomb(player, self))
         {
             doAnimationAction(player, "shrug_shoulders");
             string_id message = new string_id(c_stringFile, "s_92");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_bomb_tech_condition_hasCompletedBombLokActive(player, npc))
+        if (mtp_hideout_bomb_tech_condition_hasCompletedBombLokActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_94");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_bomb_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -987,21 +986,21 @@ public class mtp_hideout_bomb_tech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_96");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_bomb_tech.branchId", 26);
-                npcStartConversation(player, npc, "mtp_hideout_bomb_tech", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_bomb_tech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_bomb_tech_condition__defaultCondition(player, npc))
+        if (mtp_hideout_bomb_tech_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_100");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1010,89 +1009,88 @@ public class mtp_hideout_bomb_tech extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.mtp_hideout_bomb_tech.branchId");
-        if (branchId == 1 && mtp_hideout_bomb_tech_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && mtp_hideout_bomb_tech_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && mtp_hideout_bomb_tech_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && mtp_hideout_bomb_tech_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && mtp_hideout_bomb_tech_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && mtp_hideout_bomb_tech_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && mtp_hideout_bomb_tech_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && mtp_hideout_bomb_tech_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && mtp_hideout_bomb_tech_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && mtp_hideout_bomb_tech_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && mtp_hideout_bomb_tech_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && mtp_hideout_bomb_tech_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && mtp_hideout_bomb_tech_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && mtp_hideout_bomb_tech_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && mtp_hideout_bomb_tech_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && mtp_hideout_bomb_tech_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && mtp_hideout_bomb_tech_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && mtp_hideout_bomb_tech_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && mtp_hideout_bomb_tech_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && mtp_hideout_bomb_tech_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && mtp_hideout_bomb_tech_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && mtp_hideout_bomb_tech_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && mtp_hideout_bomb_tech_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && mtp_hideout_bomb_tech_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && mtp_hideout_bomb_tech_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && mtp_hideout_bomb_tech_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && mtp_hideout_bomb_tech_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && mtp_hideout_bomb_tech_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && mtp_hideout_bomb_tech_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && mtp_hideout_bomb_tech_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && mtp_hideout_bomb_tech_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && mtp_hideout_bomb_tech_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && mtp_hideout_bomb_tech_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && mtp_hideout_bomb_tech_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && mtp_hideout_bomb_tech_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && mtp_hideout_bomb_tech_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && mtp_hideout_bomb_tech_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && mtp_hideout_bomb_tech_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && mtp_hideout_bomb_tech_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && mtp_hideout_bomb_tech_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.mtp_hideout_bomb_tech.branchId");
         return SCRIPT_CONTINUE;
     }

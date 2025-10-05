@@ -3,7 +3,7 @@ package script.conversation;
 import script.*;
 import script.library.*;
 
-public class imperial_general extends script.base_script
+public class imperial_general extends base_script
 {
     public imperial_general()
     {
@@ -22,11 +22,6 @@ public class imperial_general extends script.base_script
     {
         faceTo(npc, player);
         return (factions.isImperial(player) || factions.isPlayerSameGcwFactionAsSchedulerObject(player, npc));
-    }
-    public boolean imperial_general_condition_isPlayerRebel(obj_id player, obj_id npc) throws InterruptedException
-    {
-        faceTo(npc, player);
-        return (factions.isRebel(player) || factions.isPlayerSameGcwFactionAsSchedulerObject(player, npc));
     }
     public boolean imperial_general_condition_isPlayerNeutral(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -85,14 +80,6 @@ public class imperial_general extends script.base_script
     {
         return (hasObjVar(npc, "offense") && getIntObjVar(npc, "offense") == 0);
     }
-    public boolean imperial_general_condition_generalIsRebel(obj_id player, obj_id npc) throws InterruptedException
-    {
-        return (hasObjVar(npc, "factionFlag") && getIntObjVar(npc, "factionFlag") == factions.FACTION_FLAG_REBEL);
-    }
-    public boolean imperial_general_condition_isGeneralRebAndOffense(obj_id player, obj_id npc) throws InterruptedException
-    {
-        return imperial_general_condition_isPlayerRebel(player, npc) && imperial_general_condition_generalIsRebel(player, npc) && imperial_general_condition_generalIsOffensive(player, npc);
-    }
     public boolean imperial_general_condition_isConstructionPhase(obj_id player, obj_id npc) throws InterruptedException
     {
         return (gcw.getGcwCityInvasionPhase(npc) == gcw.GCW_CITY_PHASE_CONSTRUCTION);
@@ -101,10 +88,6 @@ public class imperial_general extends script.base_script
     {
         return (gcw.getGcwCityInvasionPhase(npc) == gcw.GCW_CITY_PHASE_COMBAT);
     }
-    public boolean imperial_general_condition_isGeneralRebAndDefense(obj_id player, obj_id npc) throws InterruptedException
-    {
-        return imperial_general_condition_isPlayerRebel(player, npc) && imperial_general_condition_generalIsRebel(player, npc) && imperial_general_condition_generalIsDefensive(player, npc);
-    }
     public boolean imperial_general_condition_isGeneralImpAndOffense(obj_id player, obj_id npc) throws InterruptedException
     {
         return imperial_general_condition_isPlayerImperial(player, npc) && imperial_general_condition_generalIsImperial(player, npc) && imperial_general_condition_generalIsOffensive(player, npc);
@@ -112,10 +95,6 @@ public class imperial_general extends script.base_script
     public boolean imperial_general_condition_isGeneralImpAndDefense(obj_id player, obj_id npc) throws InterruptedException
     {
         return imperial_general_condition_isPlayerImperial(player, npc) && imperial_general_condition_generalIsImperial(player, npc) && imperial_general_condition_generalIsDefensive(player, npc);
-    }
-    public boolean imperial_general_condition_hasImperialQuest(obj_id player, obj_id npc) throws InterruptedException
-    {
-        return imperial_general_condition_isPlayerImperial(player, npc) && (imperial_general_condition_hasSpyScoutPatrolQuest(player, npc) || imperial_general_condition_hasSpyDestroyPatrolQuest(player, npc) || imperial_general_condition_hasSpyDestroyPatrolQuestNeedsExplosives(player, npc) || imperial_general_condition_hasDestroyBarricadeQuest(player, npc) || imperial_general_condition_hasDestroyTurretQuest(player, npc));
     }
     public boolean imperial_general_condition_hasSpyScoutPatrolQuest(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -1126,18 +1105,17 @@ public class imperial_general extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (imperial_general_condition_isPlayerNeutral(player, npc))
+        if (imperial_general_condition_isPlayerNeutral(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_25");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (imperial_general_condition__defaultCondition(player, npc))
+            if (imperial_general_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1152,98 +1130,98 @@ public class imperial_general extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_28");
                 }
                 utils.setScriptVar(player, "conversation.imperial_general.branchId", 1);
-                npcStartConversation(player, npc, "imperial_general", message, responses);
+                npcStartConversation(player, self, "imperial_general", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (imperial_general_condition_isGeneralImpAndOffense(player, npc))
+        if (imperial_general_condition_isGeneralImpAndOffense(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (imperial_general_condition_isEntertainerPlayer(player, npc))
+            if (imperial_general_condition_isEntertainerPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (imperial_general_condition_isTraderPlayer(player, npc))
+            if (imperial_general_condition_isTraderPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (imperial_general_condition_isCommandoPlayer(player, npc))
+            if (imperial_general_condition_isCommandoPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (imperial_general_condition_isForceSensitivePlayer(player, npc))
+            if (imperial_general_condition_isForceSensitivePlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (imperial_general_condition_isSmugglerPlayer(player, npc))
+            if (imperial_general_condition_isSmugglerPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (imperial_general_condition_isBountyHunterPlayer(player, npc))
+            if (imperial_general_condition_isBountyHunterPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (imperial_general_condition_isSpyPlayer(player, npc))
+            if (imperial_general_condition_isSpyPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (imperial_general_condition_isMedicPlayer(player, npc))
+            if (imperial_general_condition_isMedicPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse7 = true;
             }
             boolean hasResponse8 = false;
-            if (imperial_general_condition_isOfficerPlayer(player, npc))
+            if (imperial_general_condition_isOfficerPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse8 = true;
             }
             boolean hasResponse9 = false;
-            if (imperial_general_condition_hasSpyDestroyPatrolQuestNeedsExplosives(player, npc))
+            if (imperial_general_condition_hasSpyDestroyPatrolQuestNeedsExplosives(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse9 = true;
             }
             boolean hasResponse10 = false;
-            if (imperial_general_condition_hasSpyScoutPatrolQuest(player, npc))
+            if (imperial_general_condition_hasSpyScoutPatrolQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse10 = true;
             }
             boolean hasResponse11 = false;
-            if (imperial_general_condition_hasDestroyQuest(player, npc))
+            if (imperial_general_condition_hasDestroyQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1302,98 +1280,98 @@ public class imperial_general extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_320");
                 }
                 utils.setScriptVar(player, "conversation.imperial_general.branchId", 12);
-                npcStartConversation(player, npc, "imperial_general", message, responses);
+                npcStartConversation(player, self, "imperial_general", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (imperial_general_condition_isGeneralImpAndDefense(player, npc))
+        if (imperial_general_condition_isGeneralImpAndDefense(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_124");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (imperial_general_condition_isEntertainerPlayer(player, npc))
+            if (imperial_general_condition_isEntertainerPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (imperial_general_condition_isTraderPlayer(player, npc))
+            if (imperial_general_condition_isTraderPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (imperial_general_condition_isCommandoPlayer(player, npc))
+            if (imperial_general_condition_isCommandoPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (imperial_general_condition_isForceSensitivePlayer(player, npc))
+            if (imperial_general_condition_isForceSensitivePlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (imperial_general_condition_isSmugglerPlayer(player, npc))
+            if (imperial_general_condition_isSmugglerPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (imperial_general_condition_isBountyHunterPlayer(player, npc))
+            if (imperial_general_condition_isBountyHunterPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (imperial_general_condition_isMedicPlayer(player, npc))
+            if (imperial_general_condition_isMedicPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (imperial_general_condition_isSpyPlayer(player, npc))
+            if (imperial_general_condition_isSpyPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse7 = true;
             }
             boolean hasResponse8 = false;
-            if (imperial_general_condition_isOfficerPlayer(player, npc))
+            if (imperial_general_condition_isOfficerPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse8 = true;
             }
             boolean hasResponse9 = false;
-            if (imperial_general_condition_hasSpyDestroyPatrolQuestNeedsExplosives(player, npc))
+            if (imperial_general_condition_hasSpyDestroyPatrolQuestNeedsExplosives(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse9 = true;
             }
             boolean hasResponse10 = false;
-            if (imperial_general_condition_hasSpyScoutPatrolQuest(player, npc))
+            if (imperial_general_condition_hasSpyScoutPatrolQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse10 = true;
             }
             boolean hasResponse11 = false;
-            if (imperial_general_condition_hasSpyDestroyPatrolQuest(player, npc))
+            if (imperial_general_condition_hasSpyDestroyPatrolQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1452,21 +1430,21 @@ public class imperial_general extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_147");
                 }
                 utils.setScriptVar(player, "conversation.imperial_general.branchId", 39);
-                npcStartConversation(player, npc, "imperial_general", message, responses);
+                npcStartConversation(player, self, "imperial_general", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (imperial_general_condition__defaultCondition(player, npc))
+        if (imperial_general_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_310");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1475,37 +1453,36 @@ public class imperial_general extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.imperial_general.branchId");
-        if (branchId == 1 && imperial_general_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && imperial_general_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && imperial_general_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && imperial_general_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && imperial_general_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && imperial_general_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && imperial_general_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && imperial_general_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && imperial_general_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && imperial_general_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && imperial_general_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && imperial_general_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && imperial_general_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && imperial_general_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.imperial_general.branchId");
         return SCRIPT_CONTINUE;
     }

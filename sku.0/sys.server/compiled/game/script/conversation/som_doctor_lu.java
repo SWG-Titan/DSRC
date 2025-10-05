@@ -706,26 +706,25 @@ public class som_doctor_lu extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (som_doctor_lu_condition_hasWonMission(player, npc))
+        if (som_doctor_lu_condition_hasWonMission(player, self))
         {
-            doAnimationAction(npc, "bounce");
+            doAnimationAction(self, "bounce");
             string_id message = new string_id(c_stringFile, "s_46");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_doctor_lu_condition_hasWonThirdTask(player, npc))
+        if (som_doctor_lu_condition_hasWonThirdTask(player, self))
         {
-            doAnimationAction(npc, "wave1");
+            doAnimationAction(self, "wave1");
             string_id message = new string_id(c_stringFile, "s_43");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_doctor_lu_condition__defaultCondition(player, npc))
+            if (som_doctor_lu_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -740,22 +739,22 @@ public class som_doctor_lu extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_47");
                 }
                 utils.setScriptVar(player, "conversation.som_doctor_lu.branchId", 2);
-                npcStartConversation(player, npc, "som_doctor_lu", message, responses);
+                npcStartConversation(player, self, "som_doctor_lu", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_doctor_lu_condition_isOnThirdTask(player, npc))
+        if (som_doctor_lu_condition_isOnThirdTask(player, self))
         {
-            doAnimationAction(npc, "nervous");
+            doAnimationAction(self, "nervous");
             string_id message = new string_id(c_stringFile, "s_10");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_doctor_lu_condition__defaultCondition(player, npc))
+            if (som_doctor_lu_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -770,21 +769,21 @@ public class som_doctor_lu extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_44");
                 }
                 utils.setScriptVar(player, "conversation.som_doctor_lu.branchId", 5);
-                npcStartConversation(player, npc, "som_doctor_lu", message, responses);
+                npcStartConversation(player, self, "som_doctor_lu", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_doctor_lu_condition_hasWonSecondTask(player, npc))
+        if (som_doctor_lu_condition_hasWonSecondTask(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_14");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_doctor_lu_condition__defaultCondition(player, npc))
+            if (som_doctor_lu_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -799,22 +798,22 @@ public class som_doctor_lu extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_39");
                 }
                 utils.setScriptVar(player, "conversation.som_doctor_lu.branchId", 7);
-                npcStartConversation(player, npc, "som_doctor_lu", message, responses);
+                npcStartConversation(player, self, "som_doctor_lu", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_doctor_lu_condition_isOnSecondTask(player, npc))
+        if (som_doctor_lu_condition_isOnSecondTask(player, self))
         {
-            doAnimationAction(npc, "twitch");
+            doAnimationAction(self, "twitch");
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_doctor_lu_condition__defaultCondition(player, npc))
+            if (som_doctor_lu_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -829,22 +828,22 @@ public class som_doctor_lu extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37");
                 }
                 utils.setScriptVar(player, "conversation.som_doctor_lu.branchId", 10);
-                npcStartConversation(player, npc, "som_doctor_lu", message, responses);
+                npcStartConversation(player, self, "som_doctor_lu", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_doctor_lu_condition_hasWonFirstTask(player, npc))
+        if (som_doctor_lu_condition_hasWonFirstTask(player, self))
         {
-            doAnimationAction(npc, "bounce");
+            doAnimationAction(self, "bounce");
             string_id message = new string_id(c_stringFile, "s_24");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_doctor_lu_condition__defaultCondition(player, npc))
+            if (som_doctor_lu_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -859,22 +858,22 @@ public class som_doctor_lu extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27");
                 }
                 utils.setScriptVar(player, "conversation.som_doctor_lu.branchId", 12);
-                npcStartConversation(player, npc, "som_doctor_lu", message, responses);
+                npcStartConversation(player, self, "som_doctor_lu", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_doctor_lu_condition_isOnFirstTask(player, npc))
+        if (som_doctor_lu_condition_isOnFirstTask(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_60");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_doctor_lu_condition__defaultCondition(player, npc))
+            if (som_doctor_lu_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -889,22 +888,22 @@ public class som_doctor_lu extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_62");
                 }
                 utils.setScriptVar(player, "conversation.som_doctor_lu.branchId", 18);
-                npcStartConversation(player, npc, "som_doctor_lu", message, responses);
+                npcStartConversation(player, self, "som_doctor_lu", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_doctor_lu_condition__defaultCondition(player, npc))
+        if (som_doctor_lu_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "stop");
+            doAnimationAction(self, "stop");
             string_id message = new string_id(c_stringFile, "s_66");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_doctor_lu_condition__defaultCondition(player, npc))
+            if (som_doctor_lu_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -919,15 +918,15 @@ public class som_doctor_lu extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_68");
                 }
                 utils.setScriptVar(player, "conversation.som_doctor_lu.branchId", 20);
-                npcStartConversation(player, npc, "som_doctor_lu", message, responses);
+                npcStartConversation(player, self, "som_doctor_lu", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -936,85 +935,84 @@ public class som_doctor_lu extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.som_doctor_lu.branchId");
-        if (branchId == 2 && som_doctor_lu_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && som_doctor_lu_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && som_doctor_lu_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && som_doctor_lu_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && som_doctor_lu_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && som_doctor_lu_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && som_doctor_lu_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && som_doctor_lu_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && som_doctor_lu_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && som_doctor_lu_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && som_doctor_lu_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && som_doctor_lu_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && som_doctor_lu_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && som_doctor_lu_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && som_doctor_lu_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && som_doctor_lu_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && som_doctor_lu_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && som_doctor_lu_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && som_doctor_lu_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && som_doctor_lu_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && som_doctor_lu_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && som_doctor_lu_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && som_doctor_lu_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && som_doctor_lu_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && som_doctor_lu_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && som_doctor_lu_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && som_doctor_lu_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && som_doctor_lu_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && som_doctor_lu_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && som_doctor_lu_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && som_doctor_lu_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && som_doctor_lu_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && som_doctor_lu_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && som_doctor_lu_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && som_doctor_lu_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && som_doctor_lu_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && som_doctor_lu_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && som_doctor_lu_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.som_doctor_lu.branchId");
         return SCRIPT_CONTINUE;
     }

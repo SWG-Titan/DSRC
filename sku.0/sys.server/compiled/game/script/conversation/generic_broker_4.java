@@ -478,37 +478,36 @@ public class generic_broker_4 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (generic_broker_4_condition_isNonSmuggler(player, npc))
+        if (generic_broker_4_condition_isNonSmuggler(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (generic_broker_4_condition_isDoingMission(player, npc))
+        if (generic_broker_4_condition_isDoingMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!generic_broker_4_condition_missionTierRequirement(player, npc))
+        if (!generic_broker_4_condition_missionTierRequirement(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (generic_broker_4_condition__defaultCondition(player, npc))
+            if (generic_broker_4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (generic_broker_4_condition__defaultCondition(player, npc))
+            if (generic_broker_4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -527,42 +526,42 @@ public class generic_broker_4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_18");
                 }
                 utils.setScriptVar(player, "conversation.generic_broker_4.branchId", 3);
-                npcStartConversation(player, npc, "generic_broker_4", message, responses);
+                npcStartConversation(player, self, "generic_broker_4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (generic_broker_4_condition__defaultCondition(player, npc))
+        if (generic_broker_4_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_14");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (generic_broker_4_condition__defaultCondition(player, npc))
+            if (generic_broker_4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (generic_broker_4_condition__defaultCondition(player, npc))
+            if (generic_broker_4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (generic_broker_4_condition__defaultCondition(player, npc))
+            if (generic_broker_4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (generic_broker_4_condition_hasSomeContraband(player, npc))
+            if (generic_broker_4_condition_hasSomeContraband(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -589,15 +588,15 @@ public class generic_broker_4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_42");
                 }
                 utils.setScriptVar(player, "conversation.generic_broker_4.branchId", 6);
-                npcStartConversation(player, npc, "generic_broker_4", message, responses);
+                npcStartConversation(player, self, "generic_broker_4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -606,29 +605,28 @@ public class generic_broker_4 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.generic_broker_4.branchId");
-        if (branchId == 3 && generic_broker_4_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && generic_broker_4_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && generic_broker_4_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && generic_broker_4_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && generic_broker_4_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && generic_broker_4_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && generic_broker_4_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && generic_broker_4_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && generic_broker_4_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && generic_broker_4_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.generic_broker_4.branchId");
         return SCRIPT_CONTINUE;
     }

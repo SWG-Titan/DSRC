@@ -97,44 +97,43 @@ public class quest_u10_c3p0 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (quest_u10_c3p0_condition_quest_u10_01_side_complete(player, npc))
+        if (quest_u10_c3p0_condition_quest_u10_01_side_complete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (quest_u10_c3p0_condition_quest_u10_01_side_02_active(player, npc))
+        if (quest_u10_c3p0_condition_quest_u10_01_side_02_active(player, self))
         {
-            quest_u10_c3p0_action_quest_u10_01_side_signal(player, npc);
+            quest_u10_c3p0_action_quest_u10_01_side_signal(player, self);
             string_id message = new string_id(c_stringFile, "s_37");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (quest_u10_c3p0_condition_quest_u10_01_side_active(player, npc))
+        if (quest_u10_c3p0_condition_quest_u10_01_side_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (quest_u10_c3p0_condition__defaultCondition(player, npc))
+        if (quest_u10_c3p0_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_28");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (quest_u10_c3p0_condition__defaultCondition(player, npc))
+            if (quest_u10_c3p0_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (quest_u10_c3p0_condition__defaultCondition(player, npc))
+            if (quest_u10_c3p0_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -153,15 +152,15 @@ public class quest_u10_c3p0 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_42");
                 }
                 utils.setScriptVar(player, "conversation.quest_u10_c3p0.branchId", 4);
-                npcStartConversation(player, npc, "quest_u10_c3p0", message, responses);
+                npcStartConversation(player, self, "quest_u10_c3p0", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -170,13 +169,12 @@ public class quest_u10_c3p0 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.quest_u10_c3p0.branchId");
-        if (branchId == 4 && quest_u10_c3p0_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && quest_u10_c3p0_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.quest_u10_c3p0.branchId");
         return SCRIPT_CONTINUE;
     }

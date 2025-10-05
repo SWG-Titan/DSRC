@@ -218,25 +218,24 @@ public class bestine_artist01 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (bestine_artist01_condition_hasFeaturedArt_inEvent(player, npc))
+        if (bestine_artist01_condition_hasFeaturedArt_inEvent(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_21666bd5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!bestine_artist01_condition_hasAlreadyVoted(player, npc))
+            if (!bestine_artist01_condition_hasAlreadyVoted(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (bestine_artist01_condition_hasAlreadyVoted(player, npc))
+            if (bestine_artist01_condition_hasAlreadyVoted(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -255,28 +254,28 @@ public class bestine_artist01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_e7133472");
                 }
                 utils.setScriptVar(player, "conversation.bestine_artist01.branchId", 1);
-                npcStartConversation(player, npc, "bestine_artist01", message, responses);
+                npcStartConversation(player, self, "bestine_artist01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (bestine_artist01_condition_isActiveInEvent(player, npc))
+        if (bestine_artist01_condition_isActiveInEvent(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7afc26f5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!bestine_artist01_condition_hasAlreadyVoted(player, npc))
+            if (!bestine_artist01_condition_hasAlreadyVoted(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (bestine_artist01_condition_hasAlreadyVoted(player, npc))
+            if (bestine_artist01_condition_hasAlreadyVoted(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -295,27 +294,27 @@ public class bestine_artist01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4a276e66");
                 }
                 utils.setScriptVar(player, "conversation.bestine_artist01.branchId", 5);
-                npcStartConversation(player, npc, "bestine_artist01", message, responses);
+                npcStartConversation(player, self, "bestine_artist01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (bestine_artist01_condition_hasFeaturedArt(player, npc))
+        if (bestine_artist01_condition_hasFeaturedArt(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_b7a88f36");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (bestine_artist01_condition__defaultCondition(player, npc))
+        if (bestine_artist01_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_506f2192");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -324,17 +323,16 @@ public class bestine_artist01 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.bestine_artist01.branchId");
-        if (branchId == 1 && bestine_artist01_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && bestine_artist01_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && bestine_artist01_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && bestine_artist01_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.bestine_artist01.branchId");
         return SCRIPT_CONTINUE;
     }

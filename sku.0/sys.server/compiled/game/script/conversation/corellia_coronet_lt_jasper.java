@@ -1073,31 +1073,30 @@ public class corellia_coronet_lt_jasper extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_coronet_lt_jasper_condition_isLtJasperQuestDisabled(player, npc))
+        if (corellia_coronet_lt_jasper_condition_isLtJasperQuestDisabled(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_159");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_thankfulDiktatQuestComplete(player, npc))
+        if (corellia_coronet_lt_jasper_condition_thankfulDiktatQuestComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_86");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition_onNextSeries(player, npc))
+            if (corellia_coronet_lt_jasper_condition_onNextSeries(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!corellia_coronet_lt_jasper_condition_onNextSeries(player, npc))
+            if (!corellia_coronet_lt_jasper_condition_onNextSeries(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1116,22 +1115,22 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_164");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 2);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_thankfulDiktatEnding(player, npc))
+        if (corellia_coronet_lt_jasper_condition_thankfulDiktatEnding(player, self))
         {
-            doAnimationAction(npc, "feed_creature_medium");
+            doAnimationAction(self, "feed_creature_medium");
             string_id message = new string_id(c_stringFile, "s_167");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1146,28 +1145,28 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_169");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 5);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_thankfulDiktatQuestActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_thankfulDiktatQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_87");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_rogueBaseQuestComplete(player, npc))
+        if (corellia_coronet_lt_jasper_condition_rogueBaseQuestComplete(player, self))
         {
-            corellia_coronet_lt_jasper_action_endRogueBase(player, npc);
+            corellia_coronet_lt_jasper_action_endRogueBase(player, self);
             string_id message = new string_id(c_stringFile, "s_83");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1182,28 +1181,28 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_161");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 10);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_rogueBaseQuestActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_rogueBaseQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_84");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_goGoGadgetQuestComplete(player, npc))
+        if (corellia_coronet_lt_jasper_condition_goGoGadgetQuestComplete(player, self))
         {
-            corellia_coronet_lt_jasper_action_endGoGoGadget(player, npc);
+            corellia_coronet_lt_jasper_action_endGoGoGadget(player, self);
             string_id message = new string_id(c_stringFile, "s_72");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1218,35 +1217,35 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_73");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 13);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_goGoGadgetQuestActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_goGoGadgetQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_71");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_diktatSearchComplete(player, npc))
+        if (corellia_coronet_lt_jasper_condition_diktatSearchComplete(player, self))
         {
-            corellia_coronet_lt_jasper_action_endDiktatSearch(player, npc);
+            corellia_coronet_lt_jasper_action_endDiktatSearch(player, self);
             string_id message = new string_id(c_stringFile, "s_65");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1265,28 +1264,28 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_68");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 20);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_diktatSearchActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_diktatSearchActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_66");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_theMeetingQuestComplete(player, npc))
+        if (corellia_coronet_lt_jasper_condition_theMeetingQuestComplete(player, self))
         {
-            corellia_coronet_lt_jasper_action_endTheMeeting(player, npc);
+            corellia_coronet_lt_jasper_action_endTheMeeting(player, self);
             string_id message = new string_id(c_stringFile, "s_56");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1301,28 +1300,28 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_58");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 24);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_theMeetingQuestActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_theMeetingQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_57");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_foundEvidence(player, npc))
+        if (corellia_coronet_lt_jasper_condition_foundEvidence(player, self))
         {
-            corellia_coronet_lt_jasper_action_endInformant(player, npc);
+            corellia_coronet_lt_jasper_action_endInformant(player, self);
             string_id message = new string_id(c_stringFile, "s_48");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1337,41 +1336,41 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_170");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 29);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_theInformantQuestActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_theInformantQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_90");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_governmentWorkQuestActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_governmentWorkQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_92");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_farmAidQuestCompleted(player, npc))
+        if (corellia_coronet_lt_jasper_condition_farmAidQuestCompleted(player, self))
         {
-            corellia_coronet_lt_jasper_action_endFarmAid(player, npc);
+            corellia_coronet_lt_jasper_action_endFarmAid(player, self);
             string_id message = new string_id(c_stringFile, "s_94");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1390,35 +1389,35 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_100");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 37);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_farmAidQuestActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_farmAidQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_104");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_starportVandalsQuestCompleted(player, npc))
+        if (corellia_coronet_lt_jasper_condition_starportVandalsQuestCompleted(player, self))
         {
-            corellia_coronet_lt_jasper_action_endStarportVandal(player, npc);
+            corellia_coronet_lt_jasper_action_endStarportVandal(player, self);
             string_id message = new string_id(c_stringFile, "s_106");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1437,35 +1436,35 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_116");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 41);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_starportVandalsQuestActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_starportVandalsQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_120");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_missingShipmentQuestCompleted(player, npc))
+        if (corellia_coronet_lt_jasper_condition_missingShipmentQuestCompleted(player, self))
         {
-            corellia_coronet_lt_jasper_action_endMissingShipment(player, npc);
+            corellia_coronet_lt_jasper_action_endMissingShipment(player, self);
             string_id message = new string_id(c_stringFile, "s_122");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1484,34 +1483,34 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_132");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 46);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition_missingShipmentQuestActive(player, npc))
+        if (corellia_coronet_lt_jasper_condition_missingShipmentQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_136");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+        if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_138");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, npc))
+            if (corellia_coronet_lt_jasper_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1530,15 +1529,15 @@ public class corellia_coronet_lt_jasper extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_187");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId", 51);
-                npcStartConversation(player, npc, "corellia_coronet_lt_jasper", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_lt_jasper", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1547,105 +1546,104 @@ public class corellia_coronet_lt_jasper extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId");
-        if (branchId == 2 && corellia_coronet_lt_jasper_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && corellia_coronet_lt_jasper_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && corellia_coronet_lt_jasper_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && corellia_coronet_lt_jasper_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_coronet_lt_jasper_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_coronet_lt_jasper_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_coronet_lt_jasper_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_coronet_lt_jasper_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && corellia_coronet_lt_jasper_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && corellia_coronet_lt_jasper_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && corellia_coronet_lt_jasper_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && corellia_coronet_lt_jasper_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && corellia_coronet_lt_jasper_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && corellia_coronet_lt_jasper_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && corellia_coronet_lt_jasper_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && corellia_coronet_lt_jasper_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && corellia_coronet_lt_jasper_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && corellia_coronet_lt_jasper_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && corellia_coronet_lt_jasper_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && corellia_coronet_lt_jasper_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && corellia_coronet_lt_jasper_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && corellia_coronet_lt_jasper_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && corellia_coronet_lt_jasper_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && corellia_coronet_lt_jasper_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && corellia_coronet_lt_jasper_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && corellia_coronet_lt_jasper_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && corellia_coronet_lt_jasper_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && corellia_coronet_lt_jasper_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && corellia_coronet_lt_jasper_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && corellia_coronet_lt_jasper_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && corellia_coronet_lt_jasper_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && corellia_coronet_lt_jasper_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && corellia_coronet_lt_jasper_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && corellia_coronet_lt_jasper_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && corellia_coronet_lt_jasper_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && corellia_coronet_lt_jasper_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && corellia_coronet_lt_jasper_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && corellia_coronet_lt_jasper_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && corellia_coronet_lt_jasper_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && corellia_coronet_lt_jasper_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && corellia_coronet_lt_jasper_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && corellia_coronet_lt_jasper_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && corellia_coronet_lt_jasper_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && corellia_coronet_lt_jasper_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && corellia_coronet_lt_jasper_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && corellia_coronet_lt_jasper_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && corellia_coronet_lt_jasper_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && corellia_coronet_lt_jasper_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_coronet_lt_jasper.branchId");
         return SCRIPT_CONTINUE;
     }

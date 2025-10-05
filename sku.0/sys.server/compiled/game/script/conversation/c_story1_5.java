@@ -21,6 +21,16 @@ public class c_story1_5 extends script.base_script
         }
         return false;
     }
+
+    public boolean c_story1_5_condition_readyForReward(obj_id player, obj_id npc) throws InterruptedException
+    {
+        faceTo(npc, player);
+        if (groundquests.isTaskActive(player, "quest/c_syren5", "talkToEdgar"))
+        {
+            return true;
+        }
+        return false;
+    }
     public boolean c_story1_5_condition_isOnQuest(obj_id player, obj_id npc) throws InterruptedException
     {
         if (groundquests.isQuestActive(player, "quest/c_syren5"))
@@ -40,9 +50,10 @@ public class c_story1_5 extends script.base_script
         }
         return false;
     }
-    public boolean c_story1_5_condition_isThisDisabled(obj_id player, obj_id npc) throws InterruptedException
+
+    public void c_story1_5_action_sendRewardSignal(obj_id player, obj_id npc) throws InterruptedException
     {
-        return groundquests.isQuestDisabled("c_syren5");
+        groundquests.sendSignal(player, "completedImpSyren");
     }
     public void c_story1_5_action_grantSyren5Quest(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -873,12 +884,6 @@ public class c_story1_5 extends script.base_script
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_story1_5_condition__defaultCondition(player, npc))
-        {
-            string_id message = new string_id(c_stringFile, "s_82");
-            chat.chat(npc, player, message);
-            return SCRIPT_CONTINUE;
-        }
         if (c_story1_5_condition_finishedQuest(player, npc))
         {
             string_id message = new string_id(c_stringFile, "s_38");
@@ -906,6 +911,13 @@ public class c_story1_5 extends script.base_script
             {
                 chat.chat(npc, player, message);
             }
+            return SCRIPT_CONTINUE;
+        }
+        if (c_story1_5_condition_readyForReward(player, npc))
+        {
+            c_story1_5_action_sendRewardSignal(player, npc);
+            string_id message = new string_id(c_stringFile, "s_38");
+            chat.chat(npc, player, message);
             return SCRIPT_CONTINUE;
         }
         if (c_story1_5_condition_isOnQuest(player, npc))
@@ -952,6 +964,12 @@ public class c_story1_5 extends script.base_script
             {
                 chat.chat(npc, player, message);
             }
+            return SCRIPT_CONTINUE;
+        }
+        if (c_story1_5_condition__defaultCondition(player, npc))
+        {
+            string_id message = new string_id(c_stringFile, "s_82");
+            chat.chat(npc, player, message);
             return SCRIPT_CONTINUE;
         }
         chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");

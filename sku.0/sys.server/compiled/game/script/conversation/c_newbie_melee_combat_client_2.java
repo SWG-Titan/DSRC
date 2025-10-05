@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class c_newbie_melee_combat_client_2 extends script.base_script
+public class c_newbie_melee_combat_client_2 extends base_script
 {
     public c_newbie_melee_combat_client_2()
     {
@@ -94,35 +94,34 @@ public class c_newbie_melee_combat_client_2 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_newbie_melee_combat_client_2_condition_completedEscort(player, npc))
+        if (c_newbie_melee_combat_client_2_condition_completedEscort(player, self))
         {
-            doAnimationAction(npc, "goodbye");
+            doAnimationAction(self, "goodbye");
             doAnimationAction(player, "goodbye");
-            c_newbie_melee_combat_client_2_action_signalTalked2(player, npc);
+            c_newbie_melee_combat_client_2_action_signalTalked2(player, self);
             string_id message = new string_id(c_stringFile, "s_282");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_melee_combat_client_2_condition_onTaskEscort(player, npc))
+        if (c_newbie_melee_combat_client_2_condition_onTaskEscort(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_284");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_melee_combat_client_2_condition_onTaskTalk(player, npc))
+        if (c_newbie_melee_combat_client_2_condition_onTaskTalk(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_286");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_melee_combat_client_2_condition__defaultCondition(player, npc))
+            if (c_newbie_melee_combat_client_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -137,23 +136,23 @@ public class c_newbie_melee_combat_client_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_288");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_melee_combat_client_2.branchId", 3);
-                npcStartConversation(player, npc, "c_newbie_melee_combat_client_2", message, responses);
+                npcStartConversation(player, self, "c_newbie_melee_combat_client_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_melee_combat_client_2_condition__defaultCondition(player, npc))
+        if (c_newbie_melee_combat_client_2_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_292");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -162,13 +161,12 @@ public class c_newbie_melee_combat_client_2 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_newbie_melee_combat_client_2.branchId");
-        if (branchId == 3 && c_newbie_melee_combat_client_2_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && c_newbie_melee_combat_client_2_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_newbie_melee_combat_client_2.branchId");
         return SCRIPT_CONTINUE;
     }

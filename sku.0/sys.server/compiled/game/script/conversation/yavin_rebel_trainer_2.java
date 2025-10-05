@@ -5884,33 +5884,32 @@ public class yavin_rebel_trainer_2 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!yavin_rebel_trainer_2_condition_isPilot(player, npc))
+        if (!yavin_rebel_trainer_2_condition_isPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_e18f6059");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_readyTier3(player, npc))
+        if (yavin_rebel_trainer_2_condition_readyTier3(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             doAnimationAction(player, "salute1");
             string_id message = new string_id(c_stringFile, "s_71f6ca11");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5932,43 +5931,43 @@ public class yavin_rebel_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_isImperial(player, npc))
+        if (yavin_rebel_trainer_2_condition_isImperial(player, self))
         {
-            doAnimationAction(npc, "whisper");
-            yavin_rebel_trainer_2_action_face(player, npc);
+            doAnimationAction(self, "whisper");
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_9c34f0ad");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_isNeutralPilot(player, npc))
+        if (yavin_rebel_trainer_2_condition_isNeutralPilot(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
-            yavin_rebel_trainer_2_action_face(player, npc);
+            doAnimationAction(self, "wave_on_dismissing");
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_1a1b1cf0");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5987,22 +5986,22 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_e93cc431");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 6);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasNegativeFaction(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasNegativeFaction(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_418a4a24");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6020,26 +6019,26 @@ public class yavin_rebel_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!yavin_rebel_trainer_2_condition_onMyTrack(player, npc))
+        if (!yavin_rebel_trainer_2_condition_onMyTrack(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_56b0632");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6054,66 +6053,66 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1583743c");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 12);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_isRebelNonMember(player, npc))
+        if (yavin_rebel_trainer_2_condition_isRebelNonMember(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_30e8e9e0");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasCompletedTier3(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasCompletedTier3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_9ec42807");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_isOnMission(player, npc))
+        if (yavin_rebel_trainer_2_condition_isOnMission(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_94dbed1a");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_isOnAnotherMission(player, npc))
+        if (yavin_rebel_trainer_2_condition_isOnAnotherMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_f7f3ab80");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasFailedMission2(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasFailedMission2(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_3c9ecbe9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6136,29 +6135,29 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_b130ff0a");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 20);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasWonMission2(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasWonMission2(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_9777c464");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6177,30 +6176,30 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_8d66b6a5");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 25);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_readyForMission2(player, npc))
+        if (yavin_rebel_trainer_2_condition_readyForMission2(player, self))
         {
-            doAnimationAction(npc, "beckon");
-            yavin_rebel_trainer_2_action_face(player, npc);
+            doAnimationAction(self, "beckon");
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_27ad3073");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6222,35 +6221,35 @@ public class yavin_rebel_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasFailedMission3(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasFailedMission3(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
-            yavin_rebel_trainer_2_action_face(player, npc);
+            doAnimationAction(self, "pound_fist_palm");
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_7b57442");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6269,29 +6268,29 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_70");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 39);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasWonMission3(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasWonMission3(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_cdb6a148");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6310,24 +6309,24 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4471d2b");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 42);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_readyForMission3(player, npc))
+        if (yavin_rebel_trainer_2_condition_readyForMission3(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute1");
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_fddb83ca");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6345,34 +6344,34 @@ public class yavin_rebel_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasFailedMission4(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasFailedMission4(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_fcfc8bbb");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6391,29 +6390,29 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_80d8485c");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 65);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasWonMission4(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasWonMission4(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_865fdc7d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6432,36 +6431,36 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_21bdbf0f");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 68);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_readyForMission4(player, npc))
+        if (yavin_rebel_trainer_2_condition_readyForMission4(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_643292f4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6487,34 +6486,34 @@ public class yavin_rebel_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasWonMission1(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasWonMission1(player, self))
         {
-            yavin_rebel_trainer_2_action_giveRewardMission1(player, npc);
+            yavin_rebel_trainer_2_action_giveRewardMission1(player, self);
             string_id message = new string_id(c_stringFile, "s_2a29add6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6533,29 +6532,29 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c3e68b1f");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 90);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_hasFailedMission1(player, npc))
+        if (yavin_rebel_trainer_2_condition_hasFailedMission1(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_14086bc1");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6574,43 +6573,43 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_b585598c");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 99);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_readyForMission1(player, npc))
+        if (yavin_rebel_trainer_2_condition_readyForMission1(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_f88289a7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6637,43 +6636,43 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7065e138");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 104);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_canBuySkill(player, npc))
+        if (yavin_rebel_trainer_2_condition_canBuySkill(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_434cf40e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6700,36 +6699,36 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_fd447981");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 125);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_readyForDuty(player, npc))
+        if (yavin_rebel_trainer_2_condition_readyForDuty(player, self))
         {
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_6d80a4d8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (yavin_rebel_trainer_2_condition_isGm(player, npc))
+            if (yavin_rebel_trainer_2_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6752,45 +6751,45 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_313");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 137);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition_isCorrectRebelPilot(player, npc))
+        if (yavin_rebel_trainer_2_condition_isCorrectRebelPilot(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute1");
-            yavin_rebel_trainer_2_action_face(player, npc);
+            yavin_rebel_trainer_2_action_face(player, self);
             string_id message = new string_id(c_stringFile, "s_928a5ee3");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+            if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (yavin_rebel_trainer_2_condition_isGm(player, npc))
+            if (yavin_rebel_trainer_2_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6817,21 +6816,21 @@ public class yavin_rebel_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_378");
                 }
                 utils.setScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId", 160);
-                npcStartConversation(player, npc, "yavin_rebel_trainer_2", message, responses);
+                npcStartConversation(player, self, "yavin_rebel_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (yavin_rebel_trainer_2_condition__defaultCondition(player, npc))
+        if (yavin_rebel_trainer_2_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8740fd1");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -6840,337 +6839,336 @@ public class yavin_rebel_trainer_2 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId");
-        if (branchId == 2 && yavin_rebel_trainer_2_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && yavin_rebel_trainer_2_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && yavin_rebel_trainer_2_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && yavin_rebel_trainer_2_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && yavin_rebel_trainer_2_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && yavin_rebel_trainer_2_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && yavin_rebel_trainer_2_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && yavin_rebel_trainer_2_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && yavin_rebel_trainer_2_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && yavin_rebel_trainer_2_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && yavin_rebel_trainer_2_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && yavin_rebel_trainer_2_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && yavin_rebel_trainer_2_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && yavin_rebel_trainer_2_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && yavin_rebel_trainer_2_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && yavin_rebel_trainer_2_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && yavin_rebel_trainer_2_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && yavin_rebel_trainer_2_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && yavin_rebel_trainer_2_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && yavin_rebel_trainer_2_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && yavin_rebel_trainer_2_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && yavin_rebel_trainer_2_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && yavin_rebel_trainer_2_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && yavin_rebel_trainer_2_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && yavin_rebel_trainer_2_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && yavin_rebel_trainer_2_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && yavin_rebel_trainer_2_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && yavin_rebel_trainer_2_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && yavin_rebel_trainer_2_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && yavin_rebel_trainer_2_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && yavin_rebel_trainer_2_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && yavin_rebel_trainer_2_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && yavin_rebel_trainer_2_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && yavin_rebel_trainer_2_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && yavin_rebel_trainer_2_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && yavin_rebel_trainer_2_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && yavin_rebel_trainer_2_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && yavin_rebel_trainer_2_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && yavin_rebel_trainer_2_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && yavin_rebel_trainer_2_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && yavin_rebel_trainer_2_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && yavin_rebel_trainer_2_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && yavin_rebel_trainer_2_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && yavin_rebel_trainer_2_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && yavin_rebel_trainer_2_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && yavin_rebel_trainer_2_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && yavin_rebel_trainer_2_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && yavin_rebel_trainer_2_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && yavin_rebel_trainer_2_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && yavin_rebel_trainer_2_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && yavin_rebel_trainer_2_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && yavin_rebel_trainer_2_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && yavin_rebel_trainer_2_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && yavin_rebel_trainer_2_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && yavin_rebel_trainer_2_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && yavin_rebel_trainer_2_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && yavin_rebel_trainer_2_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && yavin_rebel_trainer_2_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && yavin_rebel_trainer_2_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && yavin_rebel_trainer_2_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && yavin_rebel_trainer_2_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && yavin_rebel_trainer_2_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && yavin_rebel_trainer_2_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && yavin_rebel_trainer_2_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && yavin_rebel_trainer_2_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && yavin_rebel_trainer_2_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && yavin_rebel_trainer_2_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && yavin_rebel_trainer_2_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && yavin_rebel_trainer_2_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && yavin_rebel_trainer_2_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && yavin_rebel_trainer_2_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && yavin_rebel_trainer_2_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && yavin_rebel_trainer_2_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && yavin_rebel_trainer_2_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && yavin_rebel_trainer_2_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && yavin_rebel_trainer_2_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && yavin_rebel_trainer_2_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && yavin_rebel_trainer_2_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && yavin_rebel_trainer_2_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && yavin_rebel_trainer_2_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && yavin_rebel_trainer_2_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && yavin_rebel_trainer_2_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && yavin_rebel_trainer_2_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && yavin_rebel_trainer_2_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && yavin_rebel_trainer_2_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && yavin_rebel_trainer_2_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && yavin_rebel_trainer_2_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && yavin_rebel_trainer_2_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && yavin_rebel_trainer_2_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && yavin_rebel_trainer_2_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && yavin_rebel_trainer_2_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && yavin_rebel_trainer_2_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && yavin_rebel_trainer_2_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && yavin_rebel_trainer_2_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && yavin_rebel_trainer_2_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && yavin_rebel_trainer_2_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && yavin_rebel_trainer_2_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && yavin_rebel_trainer_2_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 99 && yavin_rebel_trainer_2_handleBranch99(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 99 && yavin_rebel_trainer_2_handleBranch99(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 101 && yavin_rebel_trainer_2_handleBranch101(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 101 && yavin_rebel_trainer_2_handleBranch101(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 104 && yavin_rebel_trainer_2_handleBranch104(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 104 && yavin_rebel_trainer_2_handleBranch104(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 106 && yavin_rebel_trainer_2_handleBranch106(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 106 && yavin_rebel_trainer_2_handleBranch106(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 107 && yavin_rebel_trainer_2_handleBranch107(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 107 && yavin_rebel_trainer_2_handleBranch107(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 109 && yavin_rebel_trainer_2_handleBranch109(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 109 && yavin_rebel_trainer_2_handleBranch109(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 112 && yavin_rebel_trainer_2_handleBranch112(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 112 && yavin_rebel_trainer_2_handleBranch112(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 114 && yavin_rebel_trainer_2_handleBranch114(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 114 && yavin_rebel_trainer_2_handleBranch114(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 117 && yavin_rebel_trainer_2_handleBranch117(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 117 && yavin_rebel_trainer_2_handleBranch117(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 118 && yavin_rebel_trainer_2_handleBranch118(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 118 && yavin_rebel_trainer_2_handleBranch118(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 121 && yavin_rebel_trainer_2_handleBranch121(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 121 && yavin_rebel_trainer_2_handleBranch121(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 122 && yavin_rebel_trainer_2_handleBranch122(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 122 && yavin_rebel_trainer_2_handleBranch122(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 125 && yavin_rebel_trainer_2_handleBranch125(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 125 && yavin_rebel_trainer_2_handleBranch125(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 126 && yavin_rebel_trainer_2_handleBranch126(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 126 && yavin_rebel_trainer_2_handleBranch126(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 128 && yavin_rebel_trainer_2_handleBranch128(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 128 && yavin_rebel_trainer_2_handleBranch128(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 130 && yavin_rebel_trainer_2_handleBranch130(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 130 && yavin_rebel_trainer_2_handleBranch130(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 132 && yavin_rebel_trainer_2_handleBranch132(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 132 && yavin_rebel_trainer_2_handleBranch132(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 134 && yavin_rebel_trainer_2_handleBranch134(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 134 && yavin_rebel_trainer_2_handleBranch134(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 135 && yavin_rebel_trainer_2_handleBranch135(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 135 && yavin_rebel_trainer_2_handleBranch135(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 137 && yavin_rebel_trainer_2_handleBranch137(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 137 && yavin_rebel_trainer_2_handleBranch137(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 138 && yavin_rebel_trainer_2_handleBranch138(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 138 && yavin_rebel_trainer_2_handleBranch138(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 143 && yavin_rebel_trainer_2_handleBranch143(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 143 && yavin_rebel_trainer_2_handleBranch143(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 144 && yavin_rebel_trainer_2_handleBranch144(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 144 && yavin_rebel_trainer_2_handleBranch144(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 152 && yavin_rebel_trainer_2_handleBranch152(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 152 && yavin_rebel_trainer_2_handleBranch152(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 160 && yavin_rebel_trainer_2_handleBranch160(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 160 && yavin_rebel_trainer_2_handleBranch160(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 162 && yavin_rebel_trainer_2_handleBranch162(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 162 && yavin_rebel_trainer_2_handleBranch162(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 163 && yavin_rebel_trainer_2_handleBranch163(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 163 && yavin_rebel_trainer_2_handleBranch163(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 164 && yavin_rebel_trainer_2_handleBranch164(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 164 && yavin_rebel_trainer_2_handleBranch164(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 166 && yavin_rebel_trainer_2_handleBranch166(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 166 && yavin_rebel_trainer_2_handleBranch166(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 167 && yavin_rebel_trainer_2_handleBranch167(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 167 && yavin_rebel_trainer_2_handleBranch167(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 168 && yavin_rebel_trainer_2_handleBranch168(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 168 && yavin_rebel_trainer_2_handleBranch168(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 169 && yavin_rebel_trainer_2_handleBranch169(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 169 && yavin_rebel_trainer_2_handleBranch169(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 171 && yavin_rebel_trainer_2_handleBranch171(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 171 && yavin_rebel_trainer_2_handleBranch171(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.yavin_rebel_trainer_2.branchId");
         return SCRIPT_CONTINUE;
     }

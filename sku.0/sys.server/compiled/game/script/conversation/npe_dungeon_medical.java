@@ -11332,18 +11332,17 @@ public class npe_dungeon_medical extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_dungeon_medical_condition_hasCompletedFrelka(player, npc))
+        if (npe_dungeon_medical_condition_hasCompletedFrelka(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_105");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_dungeon_medical_condition__defaultCondition(player, npc))
+            if (npe_dungeon_medical_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11358,28 +11357,28 @@ public class npe_dungeon_medical extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_109");
                 }
                 utils.setScriptVar(player, "conversation.npe_dungeon_medical.branchId", 1);
-                npcStartConversation(player, npc, "npe_dungeon_medical", message, responses);
+                npcStartConversation(player, self, "npe_dungeon_medical", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_dungeon_medical_condition_hasCompletedQuestAphotic(player, npc))
+        if (npe_dungeon_medical_condition_hasCompletedQuestAphotic(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_146");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_dungeon_medical_condition__defaultCondition(player, npc))
+            if (npe_dungeon_medical_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_dungeon_medical_condition__defaultCondition(player, npc))
+            if (npe_dungeon_medical_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11398,21 +11397,21 @@ public class npe_dungeon_medical extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_150");
                 }
                 utils.setScriptVar(player, "conversation.npe_dungeon_medical.branchId", 2);
-                npcStartConversation(player, npc, "npe_dungeon_medical", message, responses);
+                npcStartConversation(player, self, "npe_dungeon_medical", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_dungeon_medical_condition_isAphoticActive(player, npc))
+        if (npe_dungeon_medical_condition_isAphoticActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_143");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_dungeon_medical_condition__defaultCondition(player, npc))
+            if (npe_dungeon_medical_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11427,22 +11426,22 @@ public class npe_dungeon_medical extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_144");
                 }
                 utils.setScriptVar(player, "conversation.npe_dungeon_medical.branchId", 12);
-                npcStartConversation(player, npc, "npe_dungeon_medical", message, responses);
+                npcStartConversation(player, self, "npe_dungeon_medical", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_dungeon_medical_condition_isQuestFrelkaActive(player, npc))
+        if (npe_dungeon_medical_condition_isQuestFrelkaActive(player, self))
         {
-            npe_dungeon_medical_action_faceToNoob(player, npc);
+            npe_dungeon_medical_action_faceToNoob(player, self);
             string_id message = new string_id(c_stringFile, "s_28");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_dungeon_medical_condition__defaultCondition(player, npc))
+            if (npe_dungeon_medical_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11457,21 +11456,21 @@ public class npe_dungeon_medical extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.npe_dungeon_medical.branchId", 14);
-                npcStartConversation(player, npc, "npe_dungeon_medical", message, responses);
+                npcStartConversation(player, self, "npe_dungeon_medical", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_dungeon_medical_condition_hasTemplate(player, npc))
+        if (npe_dungeon_medical_condition_hasTemplate(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_111");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_dungeon_medical_condition__defaultCondition(player, npc))
+            if (npe_dungeon_medical_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -11486,21 +11485,21 @@ public class npe_dungeon_medical extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_112");
                 }
                 utils.setScriptVar(player, "conversation.npe_dungeon_medical.branchId", 27);
-                npcStartConversation(player, npc, "npe_dungeon_medical", message, responses);
+                npcStartConversation(player, self, "npe_dungeon_medical", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_dungeon_medical_condition__defaultCondition(player, npc))
+        if (npe_dungeon_medical_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_121");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -11509,141 +11508,140 @@ public class npe_dungeon_medical extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_dungeon_medical.branchId");
-        if (branchId == 1 && npe_dungeon_medical_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && npe_dungeon_medical_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && npe_dungeon_medical_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_dungeon_medical_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && npe_dungeon_medical_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && npe_dungeon_medical_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && npe_dungeon_medical_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && npe_dungeon_medical_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_dungeon_medical_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_dungeon_medical_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && npe_dungeon_medical_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && npe_dungeon_medical_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && npe_dungeon_medical_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && npe_dungeon_medical_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && npe_dungeon_medical_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && npe_dungeon_medical_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && npe_dungeon_medical_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && npe_dungeon_medical_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && npe_dungeon_medical_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && npe_dungeon_medical_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && npe_dungeon_medical_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && npe_dungeon_medical_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && npe_dungeon_medical_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && npe_dungeon_medical_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && npe_dungeon_medical_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && npe_dungeon_medical_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && npe_dungeon_medical_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && npe_dungeon_medical_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && npe_dungeon_medical_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && npe_dungeon_medical_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && npe_dungeon_medical_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && npe_dungeon_medical_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && npe_dungeon_medical_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && npe_dungeon_medical_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && npe_dungeon_medical_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && npe_dungeon_medical_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && npe_dungeon_medical_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && npe_dungeon_medical_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && npe_dungeon_medical_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && npe_dungeon_medical_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && npe_dungeon_medical_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && npe_dungeon_medical_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && npe_dungeon_medical_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && npe_dungeon_medical_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && npe_dungeon_medical_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && npe_dungeon_medical_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && npe_dungeon_medical_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && npe_dungeon_medical_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && npe_dungeon_medical_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && npe_dungeon_medical_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && npe_dungeon_medical_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && npe_dungeon_medical_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && npe_dungeon_medical_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && npe_dungeon_medical_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && npe_dungeon_medical_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && npe_dungeon_medical_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && npe_dungeon_medical_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && npe_dungeon_medical_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && npe_dungeon_medical_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && npe_dungeon_medical_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && npe_dungeon_medical_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && npe_dungeon_medical_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && npe_dungeon_medical_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && npe_dungeon_medical_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && npe_dungeon_medical_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && npe_dungeon_medical_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_dungeon_medical.branchId");
         return SCRIPT_CONTINUE;
     }

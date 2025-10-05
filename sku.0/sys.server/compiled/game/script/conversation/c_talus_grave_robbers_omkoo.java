@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class c_talus_grave_robbers_omkoo extends script.base_script
+public class c_talus_grave_robbers_omkoo extends base_script
 {
     public c_talus_grave_robbers_omkoo()
     {
@@ -780,39 +780,38 @@ public class c_talus_grave_robbers_omkoo extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_talus_grave_robbers_omkoo_condition_finished(player, npc))
+        if (c_talus_grave_robbers_omkoo_condition_finished(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_93");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (c_talus_grave_robbers_omkoo_condition_wonQuest(player, npc))
+        if (c_talus_grave_robbers_omkoo_condition_wonQuest(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -834,34 +833,34 @@ public class c_talus_grave_robbers_omkoo extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "c_talus_grave_robbers_omkoo", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "c_talus_grave_robbers_omkoo", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_talus_grave_robbers_omkoo_condition_gotDocument(player, npc))
+        if (c_talus_grave_robbers_omkoo_condition_gotDocument(player, self))
         {
-            doAnimationAction(npc, "rub_chin_thoughtful");
+            doAnimationAction(self, "rub_chin_thoughtful");
             string_id message = new string_id(c_stringFile, "s_134");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -880,28 +879,28 @@ public class c_talus_grave_robbers_omkoo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_145");
                 }
                 utils.setScriptVar(player, "conversation.c_talus_grave_robbers_omkoo.branchId", 5);
-                npcStartConversation(player, npc, "c_talus_grave_robbers_omkoo", message, responses);
+                npcStartConversation(player, self, "c_talus_grave_robbers_omkoo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_talus_grave_robbers_omkoo_condition_gotKey(player, npc))
+        if (c_talus_grave_robbers_omkoo_condition_gotKey(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_135");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -920,30 +919,30 @@ public class c_talus_grave_robbers_omkoo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_137");
                 }
                 utils.setScriptVar(player, "conversation.c_talus_grave_robbers_omkoo.branchId", 7);
-                npcStartConversation(player, npc, "c_talus_grave_robbers_omkoo", message, responses);
+                npcStartConversation(player, self, "c_talus_grave_robbers_omkoo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_talus_grave_robbers_omkoo_condition_onQuest(player, npc))
+        if (c_talus_grave_robbers_omkoo_condition_onQuest(player, self))
         {
-            doAnimationAction(npc, "nod");
+            doAnimationAction(self, "nod");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_129");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -965,35 +964,35 @@ public class c_talus_grave_robbers_omkoo extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "c_talus_grave_robbers_omkoo", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "c_talus_grave_robbers_omkoo", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+        if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_106");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, npc))
+            if (c_talus_grave_robbers_omkoo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1015,20 +1014,20 @@ public class c_talus_grave_robbers_omkoo extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "c_talus_grave_robbers_omkoo", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "c_talus_grave_robbers_omkoo", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1037,53 +1036,52 @@ public class c_talus_grave_robbers_omkoo extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_talus_grave_robbers_omkoo.branchId");
-        if (branchId == 2 && c_talus_grave_robbers_omkoo_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && c_talus_grave_robbers_omkoo_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && c_talus_grave_robbers_omkoo_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && c_talus_grave_robbers_omkoo_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && c_talus_grave_robbers_omkoo_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && c_talus_grave_robbers_omkoo_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && c_talus_grave_robbers_omkoo_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && c_talus_grave_robbers_omkoo_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && c_talus_grave_robbers_omkoo_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && c_talus_grave_robbers_omkoo_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && c_talus_grave_robbers_omkoo_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && c_talus_grave_robbers_omkoo_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && c_talus_grave_robbers_omkoo_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && c_talus_grave_robbers_omkoo_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && c_talus_grave_robbers_omkoo_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && c_talus_grave_robbers_omkoo_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && c_talus_grave_robbers_omkoo_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && c_talus_grave_robbers_omkoo_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && c_talus_grave_robbers_omkoo_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && c_talus_grave_robbers_omkoo_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && c_talus_grave_robbers_omkoo_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && c_talus_grave_robbers_omkoo_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_talus_grave_robbers_omkoo.branchId");
         return SCRIPT_CONTINUE;
     }

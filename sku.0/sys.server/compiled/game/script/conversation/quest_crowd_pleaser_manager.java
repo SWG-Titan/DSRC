@@ -262,7 +262,7 @@ public class quest_crowd_pleaser_manager extends script.base_script
                 }
                 if (isGod(player))
                 {
-                    sendSystemMessageTestingOnly(player, "<GOD MODE> Failure timer override - You need only wait " + test_time + " seconds after a failure");
+                    broadcast(player, "<GOD MODE> Failure timer override - You need only wait " + test_time + " seconds after a failure");
                 }
             }
             if ((time - failed) < test_time)
@@ -293,7 +293,7 @@ public class quest_crowd_pleaser_manager extends script.base_script
                 }
                 if (isGod(player))
                 {
-                    sendSystemMessageTestingOnly(player, "<GOD MODE> Failure timer override - You need only wait " + test_time + " seconds after a failure");
+                    broadcast(player, "<GOD MODE> Failure timer override - You need only wait " + test_time + " seconds after a failure");
                 }
             }
             if ((time - failed) < test_time)

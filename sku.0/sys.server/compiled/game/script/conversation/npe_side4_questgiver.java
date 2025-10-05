@@ -319,33 +319,32 @@ public class npe_side4_questgiver extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_side4_questgiver_condition_playerCompletedQuest(player, npc))
+        if (npe_side4_questgiver_condition_playerCompletedQuest(player, self))
         {
-            npe_side4_questgiver_action_facePlayer(player, npc);
+            npe_side4_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_21");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_side4_questgiver_condition_playerOnQuest(player, npc))
+        if (npe_side4_questgiver_condition_playerOnQuest(player, self))
         {
-            npe_side4_questgiver_action_facePlayer(player, npc);
+            npe_side4_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_14");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!npe_side4_questgiver_condition_playerReadyForReward(player, npc))
+            if (!npe_side4_questgiver_condition_playerReadyForReward(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_side4_questgiver_condition_playerReadyForReward(player, npc))
+            if (npe_side4_questgiver_condition_playerReadyForReward(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -364,29 +363,29 @@ public class npe_side4_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_16");
                 }
                 utils.setScriptVar(player, "conversation.npe_side4_questgiver.branchId", 2);
-                npcStartConversation(player, npc, "npe_side4_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_side4_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_side4_questgiver_condition_playerCompletedMainQuest(player, npc))
+        if (npe_side4_questgiver_condition_playerCompletedMainQuest(player, self))
         {
-            npe_side4_questgiver_action_facePlayer(player, npc);
+            npe_side4_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_side4_questgiver_condition__defaultCondition(player, npc))
+            if (npe_side4_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_side4_questgiver_condition__defaultCondition(player, npc))
+            if (npe_side4_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -405,22 +404,22 @@ public class npe_side4_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_48");
                 }
                 utils.setScriptVar(player, "conversation.npe_side4_questgiver.branchId", 5);
-                npcStartConversation(player, npc, "npe_side4_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_side4_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_side4_questgiver_condition__defaultCondition(player, npc))
+        if (npe_side4_questgiver_condition__defaultCondition(player, self))
         {
-            npe_side4_questgiver_action_facePlayer(player, npc);
+            npe_side4_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_42");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -429,29 +428,28 @@ public class npe_side4_questgiver extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_side4_questgiver.branchId");
-        if (branchId == 2 && npe_side4_questgiver_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_side4_questgiver_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && npe_side4_questgiver_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && npe_side4_questgiver_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_side4_questgiver_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_side4_questgiver_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && npe_side4_questgiver_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && npe_side4_questgiver_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && npe_side4_questgiver_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && npe_side4_questgiver_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_side4_questgiver.branchId");
         return SCRIPT_CONTINUE;
     }

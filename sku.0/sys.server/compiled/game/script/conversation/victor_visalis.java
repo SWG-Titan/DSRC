@@ -2333,25 +2333,24 @@ public class victor_visalis extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (victor_visalis_condition_NoroomObj(player, npc))
+        if (victor_visalis_condition_NoroomObj(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ca4e3819");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2370,42 +2369,42 @@ public class victor_visalis extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_ee26e33e");
                 }
                 utils.setScriptVar(player, "conversation.victor_visalis.branchId", 1);
-                npcStartConversation(player, npc, "victor_visalis", message, responses);
+                npcStartConversation(player, self, "victor_visalis", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (victor_visalis_condition_CampObj(player, npc))
+        if (victor_visalis_condition_CampObj(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_c2b746c2");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2432,28 +2431,28 @@ public class victor_visalis extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_dea56128");
                 }
                 utils.setScriptVar(player, "conversation.victor_visalis.branchId", 5);
-                npcStartConversation(player, npc, "victor_visalis", message, responses);
+                npcStartConversation(player, self, "victor_visalis", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (victor_visalis_condition_OpponentObj(player, npc))
+        if (victor_visalis_condition_OpponentObj(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_26e91e91");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2472,28 +2471,28 @@ public class victor_visalis extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_67dbab18");
                 }
                 utils.setScriptVar(player, "conversation.victor_visalis.branchId", 11);
-                npcStartConversation(player, npc, "victor_visalis", message, responses);
+                npcStartConversation(player, self, "victor_visalis", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (victor_visalis_condition_NegativeqsOBJ(player, npc))
+        if (victor_visalis_condition_NegativeqsOBJ(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4e29a0ab");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (victor_visalis_condition_hasEvidence(player, npc))
+            if (victor_visalis_condition_hasEvidence(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2512,70 +2511,70 @@ public class victor_visalis extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_da9a29e9");
                 }
                 utils.setScriptVar(player, "conversation.victor_visalis.branchId", 14);
-                npcStartConversation(player, npc, "victor_visalis", message, responses);
+                npcStartConversation(player, self, "victor_visalis", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (victor_visalis_condition_inOffice(player, npc))
+        if (victor_visalis_condition_inOffice(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_a19e3981");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (victor_visalis_condition_CheckforTuskenHead(player, npc))
+            if (victor_visalis_condition_CheckforTuskenHead(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (victor_visalis_condition_ChkTuskenQuest(player, npc))
+            if (victor_visalis_condition_ChkTuskenQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (victor_visalis_condition_ChkTuskenQuest(player, npc))
+            if (victor_visalis_condition_ChkTuskenQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (victor_visalis_condition_ChkTuskenQuest(player, npc))
+            if (victor_visalis_condition_ChkTuskenQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (victor_visalis_condition_CheckforStones(player, npc))
+            if (victor_visalis_condition_CheckforStones(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (victor_visalis_condition_voted(player, npc))
+            if (victor_visalis_condition_voted(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (victor_visalis_condition_newElectionStarted(player, npc))
+            if (victor_visalis_condition_newElectionStarted(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2618,60 +2617,60 @@ public class victor_visalis extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_de1eacb3");
                 }
                 utils.setScriptVar(player, "conversation.victor_visalis.branchId", 20);
-                npcStartConversation(player, npc, "victor_visalis", message, responses);
+                npcStartConversation(player, self, "victor_visalis", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (victor_visalis_condition_notInOffice_noElection(player, npc))
+        if (victor_visalis_condition_notInOffice_noElection(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_57218e96");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (victor_visalis_condition_votedVictorCurrentElection(player, npc))
+        if (victor_visalis_condition_votedVictorCurrentElection(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_82dcbdca");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (victor_visalis_condition_votedSeanCurrentElection(player, npc))
+        if (victor_visalis_condition_votedSeanCurrentElection(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_66e44ee");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (victor_visalis_condition__defaultCondition(player, npc))
+        if (victor_visalis_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_aa1a9de6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (victor_visalis_condition__defaultCondition(player, npc))
+            if (victor_visalis_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2698,15 +2697,15 @@ public class victor_visalis extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_208");
                 }
                 utils.setScriptVar(player, "conversation.victor_visalis.branchId", 46);
-                npcStartConversation(player, npc, "victor_visalis", message, responses);
+                npcStartConversation(player, self, "victor_visalis", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2715,125 +2714,124 @@ public class victor_visalis extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.victor_visalis.branchId");
-        if (branchId == 1 && victor_visalis_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && victor_visalis_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && victor_visalis_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && victor_visalis_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && victor_visalis_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && victor_visalis_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && victor_visalis_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && victor_visalis_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && victor_visalis_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && victor_visalis_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && victor_visalis_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && victor_visalis_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && victor_visalis_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && victor_visalis_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && victor_visalis_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && victor_visalis_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && victor_visalis_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && victor_visalis_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && victor_visalis_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && victor_visalis_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && victor_visalis_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && victor_visalis_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && victor_visalis_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && victor_visalis_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && victor_visalis_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && victor_visalis_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && victor_visalis_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && victor_visalis_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && victor_visalis_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && victor_visalis_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && victor_visalis_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && victor_visalis_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && victor_visalis_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && victor_visalis_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && victor_visalis_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && victor_visalis_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && victor_visalis_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && victor_visalis_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && victor_visalis_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && victor_visalis_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && victor_visalis_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && victor_visalis_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && victor_visalis_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && victor_visalis_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && victor_visalis_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && victor_visalis_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && victor_visalis_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && victor_visalis_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && victor_visalis_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && victor_visalis_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && victor_visalis_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && victor_visalis_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && victor_visalis_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && victor_visalis_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && victor_visalis_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && victor_visalis_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && victor_visalis_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && victor_visalis_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.victor_visalis.branchId");
         return SCRIPT_CONTINUE;
     }

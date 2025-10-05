@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class mtp_hideout_food_supply_tech extends script.base_script
+public class mtp_hideout_food_supply_tech extends base_script
 {
     public mtp_hideout_food_supply_tech()
     {
@@ -501,18 +501,17 @@ public class mtp_hideout_food_supply_tech extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (mtp_hideout_food_supply_tech_condition_hasFailQuest(player, npc))
+        if (mtp_hideout_food_supply_tech_condition_hasFailQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_69");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -527,21 +526,21 @@ public class mtp_hideout_food_supply_tech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_70");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_food_supply_tech.branchId", 1);
-                npcStartConversation(player, npc, "mtp_hideout_food_supply_tech", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_food_supply_tech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_food_supply_tech_condition_questNotActiveCompleted(player, npc))
+        if (mtp_hideout_food_supply_tech_condition_questNotActiveCompleted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -556,21 +555,21 @@ public class mtp_hideout_food_supply_tech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_food_supply_tech.branchId", 3);
-                npcStartConversation(player, npc, "mtp_hideout_food_supply_tech", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_food_supply_tech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_food_supply_tech_condition_hasCompletedRagtagNoCoords(player, npc))
+        if (mtp_hideout_food_supply_tech_condition_hasCompletedRagtagNoCoords(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -585,21 +584,21 @@ public class mtp_hideout_food_supply_tech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_64");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_food_supply_tech.branchId", 15);
-                npcStartConversation(player, npc, "mtp_hideout_food_supply_tech", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_food_supply_tech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_food_supply_tech_condition_hasDefeatedRagtag(player, npc))
+        if (mtp_hideout_food_supply_tech_condition_hasDefeatedRagtag(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_56");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, npc))
+            if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -614,27 +613,27 @@ public class mtp_hideout_food_supply_tech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_58");
                 }
                 utils.setScriptVar(player, "conversation.mtp_hideout_food_supply_tech.branchId", 17);
-                npcStartConversation(player, npc, "mtp_hideout_food_supply_tech", message, responses);
+                npcStartConversation(player, self, "mtp_hideout_food_supply_tech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_food_supply_tech_condition_hasCompletedRagTagHasCoords(player, npc))
+        if (mtp_hideout_food_supply_tech_condition_hasCompletedRagTagHasCoords(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_72");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, npc))
+        if (mtp_hideout_food_supply_tech_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_74");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -643,53 +642,52 @@ public class mtp_hideout_food_supply_tech extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.mtp_hideout_food_supply_tech.branchId");
-        if (branchId == 1 && mtp_hideout_food_supply_tech_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && mtp_hideout_food_supply_tech_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && mtp_hideout_food_supply_tech_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && mtp_hideout_food_supply_tech_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && mtp_hideout_food_supply_tech_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && mtp_hideout_food_supply_tech_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && mtp_hideout_food_supply_tech_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && mtp_hideout_food_supply_tech_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && mtp_hideout_food_supply_tech_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && mtp_hideout_food_supply_tech_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && mtp_hideout_food_supply_tech_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && mtp_hideout_food_supply_tech_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && mtp_hideout_food_supply_tech_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && mtp_hideout_food_supply_tech_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && mtp_hideout_food_supply_tech_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && mtp_hideout_food_supply_tech_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && mtp_hideout_food_supply_tech_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && mtp_hideout_food_supply_tech_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && mtp_hideout_food_supply_tech_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && mtp_hideout_food_supply_tech_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && mtp_hideout_food_supply_tech_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && mtp_hideout_food_supply_tech_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.mtp_hideout_food_supply_tech.branchId");
         return SCRIPT_CONTINUE;
     }

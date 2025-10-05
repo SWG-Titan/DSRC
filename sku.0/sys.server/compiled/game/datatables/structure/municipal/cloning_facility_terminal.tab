@@ -24,3 +24,6 @@ object/building/military/small_imperial_cloning_facility_s02.iff	-5.2	0.1	-3.6	r
 object/building/player/city/cloning_corellia.iff	-12.2	-2.5	6.7	cloninglab	121		clone_droid
 object/building/player/city/cloning_naboo.iff	-12.2	-2.5	6.7	cloninglab	121		clone_droid
 object/building/player/city/cloning_tatooine.iff	-12.2	-2.5	6.7	cloninglab	121		clone_droid
+object/building/player/city/imp_cloning_corellia.iff	-12.2	-2.5	6.7	cloninglab	121		clone_droid
+object/building/player/city/reb_cloning_corellia.iff	-12.2	-2.5	6.7	cloninglab	121		clone_droid
+object/building/player/city/cloning_camo_tatooine.iff	-12.2	-2.5	6.7	cloninglab	121		clone_droid

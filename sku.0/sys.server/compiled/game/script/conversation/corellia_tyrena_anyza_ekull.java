@@ -373,19 +373,18 @@ public class corellia_tyrena_anyza_ekull extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_tyrena_anyza_ekull_condition_completeSlavemaster(player, npc))
+        if (corellia_tyrena_anyza_ekull_condition_completeSlavemaster(player, self))
         {
-            doAnimationAction(npc, "shiver");
+            doAnimationAction(self, "shiver");
             string_id message = new string_id(c_stringFile, "s_18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -400,22 +399,22 @@ public class corellia_tyrena_anyza_ekull extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_anyza_ekull.branchId", 1);
-                npcStartConversation(player, npc, "corellia_tyrena_anyza_ekull", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_anyza_ekull", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_anyza_ekull_condition_onReturnAnyza(player, npc))
+        if (corellia_tyrena_anyza_ekull_condition_onReturnAnyza(player, self))
         {
-            doAnimationAction(npc, "thank");
+            doAnimationAction(self, "thank");
             string_id message = new string_id(c_stringFile, "s_39");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -430,21 +429,21 @@ public class corellia_tyrena_anyza_ekull extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_40");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_anyza_ekull.branchId", 3);
-                npcStartConversation(player, npc, "corellia_tyrena_anyza_ekull", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_anyza_ekull", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_anyza_ekull_condition_onSlavemaster(player, npc))
+        if (corellia_tyrena_anyza_ekull_condition_onSlavemaster(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_19");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -459,22 +458,22 @@ public class corellia_tyrena_anyza_ekull extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_21");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_anyza_ekull.branchId", 6);
-                npcStartConversation(player, npc, "corellia_tyrena_anyza_ekull", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_anyza_ekull", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_anyza_ekull_condition_completeMissing(player, npc))
+        if (corellia_tyrena_anyza_ekull_condition_completeMissing(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_15");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, npc))
+            if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -489,21 +488,21 @@ public class corellia_tyrena_anyza_ekull extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_17");
                 }
                 utils.setScriptVar(player, "conversation.corellia_tyrena_anyza_ekull.branchId", 8);
-                npcStartConversation(player, npc, "corellia_tyrena_anyza_ekull", message, responses);
+                npcStartConversation(player, self, "corellia_tyrena_anyza_ekull", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, npc))
+        if (corellia_tyrena_anyza_ekull_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_52");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -512,49 +511,48 @@ public class corellia_tyrena_anyza_ekull extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_tyrena_anyza_ekull.branchId");
-        if (branchId == 1 && corellia_tyrena_anyza_ekull_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && corellia_tyrena_anyza_ekull_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && corellia_tyrena_anyza_ekull_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corellia_tyrena_anyza_ekull_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && corellia_tyrena_anyza_ekull_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && corellia_tyrena_anyza_ekull_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_tyrena_anyza_ekull_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_tyrena_anyza_ekull_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && corellia_tyrena_anyza_ekull_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && corellia_tyrena_anyza_ekull_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && corellia_tyrena_anyza_ekull_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && corellia_tyrena_anyza_ekull_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_tyrena_anyza_ekull_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_tyrena_anyza_ekull_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && corellia_tyrena_anyza_ekull_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && corellia_tyrena_anyza_ekull_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && corellia_tyrena_anyza_ekull_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && corellia_tyrena_anyza_ekull_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && corellia_tyrena_anyza_ekull_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && corellia_tyrena_anyza_ekull_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_tyrena_anyza_ekull.branchId");
         return SCRIPT_CONTINUE;
     }

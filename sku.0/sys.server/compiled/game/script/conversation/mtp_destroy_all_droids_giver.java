@@ -128,51 +128,50 @@ public class mtp_destroy_all_droids_giver extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (mtp_destroy_all_droids_giver_condition_returningQuestSuccess(player, npc))
+        if (mtp_destroy_all_droids_giver_condition_returningQuestSuccess(player, self))
         {
-            mtp_destroy_all_droids_giver_action_sendDroidSuccessSignal(player, npc);
+            mtp_destroy_all_droids_giver_action_sendDroidSuccessSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_destroy_all_droids_giver_condition_returningQuestFailure(player, npc))
+        if (mtp_destroy_all_droids_giver_condition_returningQuestFailure(player, self))
         {
-            mtp_destroy_all_droids_giver_action_sendDroidFailureSignal(player, npc);
+            mtp_destroy_all_droids_giver_action_sendDroidFailureSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_19");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_destroy_all_droids_giver_condition_alreadyHasQuest(player, npc))
+        if (mtp_destroy_all_droids_giver_condition_alreadyHasQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_destroy_all_droids_giver_condition_notYetReadyForAnother(player, npc))
+        if (mtp_destroy_all_droids_giver_condition_notYetReadyForAnother(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mtp_destroy_all_droids_giver_condition__defaultCondition(player, npc))
+        if (mtp_destroy_all_droids_giver_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_11");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mtp_destroy_all_droids_giver_condition__defaultCondition(player, npc))
+            if (mtp_destroy_all_droids_giver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mtp_destroy_all_droids_giver_condition__defaultCondition(player, npc))
+            if (mtp_destroy_all_droids_giver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -191,15 +190,15 @@ public class mtp_destroy_all_droids_giver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_17");
                 }
                 utils.setScriptVar(player, "conversation.mtp_destroy_all_droids_giver.branchId", 5);
-                npcStartConversation(player, npc, "mtp_destroy_all_droids_giver", message, responses);
+                npcStartConversation(player, self, "mtp_destroy_all_droids_giver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -208,13 +207,12 @@ public class mtp_destroy_all_droids_giver extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.mtp_destroy_all_droids_giver.branchId");
-        if (branchId == 5 && mtp_destroy_all_droids_giver_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && mtp_destroy_all_droids_giver_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.mtp_destroy_all_droids_giver.branchId");
         return SCRIPT_CONTINUE;
     }

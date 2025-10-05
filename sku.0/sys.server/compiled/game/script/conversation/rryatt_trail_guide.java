@@ -6,7 +6,7 @@ import script.library.chat;
 import script.library.groundquests;
 import script.library.utils;
 
-public class rryatt_trail_guide extends script.base_script
+public class rryatt_trail_guide extends base_script
 {
     public rryatt_trail_guide()
     {

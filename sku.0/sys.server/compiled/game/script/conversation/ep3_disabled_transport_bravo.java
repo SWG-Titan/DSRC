@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class ep3_disabled_transport_bravo extends script.base_script
+public class ep3_disabled_transport_bravo extends base_script
 {
     public ep3_disabled_transport_bravo()
     {

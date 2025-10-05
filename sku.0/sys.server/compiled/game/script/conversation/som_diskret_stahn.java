@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class som_diskret_stahn extends script.base_script
+public class som_diskret_stahn extends base_script
 {
     public som_diskret_stahn()
     {

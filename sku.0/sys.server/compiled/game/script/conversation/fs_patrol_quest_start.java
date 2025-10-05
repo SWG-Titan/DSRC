@@ -106,7 +106,7 @@ public class fs_patrol_quest_start extends script.base_script
         {
             if (DEBUGGING)
             {
-                sendSystemMessageTestingOnly(player, "fs_patrol_quest_" + i + " checking if active");
+                broadcast(player, "fs_patrol_quest_" + i + " checking if active");
             }
             if (quests.isActive("fs_patrol_quest_" + i, player))
             {
@@ -127,7 +127,7 @@ public class fs_patrol_quest_start extends script.base_script
                 }
                 if (DEBUGGING)
                 {
-                    sendSystemMessageTestingOnly(player, "Found for fs_patrol_quest_" + i + " current, currentpoint, count" + currentPatrol + currentPatrolPoint + waypointCount);
+                    broadcast(player, "Found for fs_patrol_quest_" + i + " current, currentpoint, count" + currentPatrol + currentPatrolPoint + waypointCount);
                 }
                 if (waypointCount >= 8 && currentPatrolPoint && currentPatrol)
                 {

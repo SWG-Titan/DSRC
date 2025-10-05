@@ -68,32 +68,31 @@ public class itp_emperor_merc_leader extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (itp_emperor_merc_leader_condition_emperorTask02Active(player, npc))
+        if (itp_emperor_merc_leader_condition_emperorTask02Active(player, self))
         {
-            itp_emperor_merc_leader_action_emperor02Signal(player, npc);
+            itp_emperor_merc_leader_action_emperor02Signal(player, self);
             string_id message = new string_id(c_stringFile, "s_5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (itp_emperor_merc_leader_condition_emperorTaskActive(player, npc))
+        if (itp_emperor_merc_leader_condition_emperorTaskActive(player, self))
         {
-            itp_emperor_merc_leader_action_emperorSignal(player, npc);
+            itp_emperor_merc_leader_action_emperorSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (itp_emperor_merc_leader_condition__defaultCondition(player, npc))
+        if (itp_emperor_merc_leader_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -102,9 +101,8 @@ public class itp_emperor_merc_leader extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.itp_emperor_merc_leader.branchId");
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.itp_emperor_merc_leader.branchId");
         return SCRIPT_CONTINUE;
     }

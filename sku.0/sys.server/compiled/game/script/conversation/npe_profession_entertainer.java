@@ -851,26 +851,25 @@ public class npe_profession_entertainer extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_profession_entertainer_condition_finishedEntertainer2Quest(player, npc))
+        if (npe_profession_entertainer_condition_finishedEntertainer2Quest(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_61");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_profession_entertainer_condition_onOrCompletedEnt2Quest(player, npc))
+            if (npe_profession_entertainer_condition_onOrCompletedEnt2Quest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!npe_profession_entertainer_condition_onOrCompletedEnt2Quest(player, npc))
+            if (!npe_profession_entertainer_condition_onOrCompletedEnt2Quest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -889,22 +888,22 @@ public class npe_profession_entertainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_89");
                 }
                 utils.setScriptVar(player, "conversation.npe_profession_entertainer.branchId", 14);
-                npcStartConversation(player, npc, "npe_profession_entertainer", message, responses);
+                npcStartConversation(player, self, "npe_profession_entertainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition_onEntertainer2Task(player, npc))
+        if (npe_profession_entertainer_condition_onEntertainer2Task(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_54");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_profession_entertainer_condition__defaultCondition(player, npc))
+            if (npe_profession_entertainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -919,21 +918,21 @@ public class npe_profession_entertainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_55");
                 }
                 utils.setScriptVar(player, "conversation.npe_profession_entertainer.branchId", 2);
-                npcStartConversation(player, npc, "npe_profession_entertainer", message, responses);
+                npcStartConversation(player, self, "npe_profession_entertainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition_needsHorn(player, npc))
+        if (npe_profession_entertainer_condition_needsHorn(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_profession_entertainer_condition__defaultCondition(player, npc))
+            if (npe_profession_entertainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -951,34 +950,34 @@ public class npe_profession_entertainer extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "npe_profession_entertainer", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "npe_profession_entertainer", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition_onEntertainer2quest(player, npc))
+        if (npe_profession_entertainer_condition_onEntertainer2quest(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_53");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition_finishedEntertainer1Quest(player, npc))
+        if (npe_profession_entertainer_condition_finishedEntertainer1Quest(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_profession_entertainer_condition__defaultCondition(player, npc))
+            if (npe_profession_entertainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -996,27 +995,27 @@ public class npe_profession_entertainer extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "npe_profession_entertainer", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "npe_profession_entertainer", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition_onEntertainer1Task(player, npc))
+        if (npe_profession_entertainer_condition_onEntertainer1Task(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_29");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_profession_entertainer_condition__defaultCondition(player, npc))
+            if (npe_profession_entertainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1031,29 +1030,29 @@ public class npe_profession_entertainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_30");
                 }
                 utils.setScriptVar(player, "conversation.npe_profession_entertainer.branchId", 12);
-                npcStartConversation(player, npc, "npe_profession_entertainer", message, responses);
+                npcStartConversation(player, self, "npe_profession_entertainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition_onEntertainer1quest(player, npc))
+        if (npe_profession_entertainer_condition_onEntertainer1quest(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_68");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition_finishedTrainingQuest(player, npc))
+        if (npe_profession_entertainer_condition_finishedTrainingQuest(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_70");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_profession_entertainer_condition__defaultCondition(player, npc))
+            if (npe_profession_entertainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1068,29 +1067,29 @@ public class npe_profession_entertainer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_72");
                 }
                 utils.setScriptVar(player, "conversation.npe_profession_entertainer.branchId", 18);
-                npcStartConversation(player, npc, "npe_profession_entertainer", message, responses);
+                npcStartConversation(player, self, "npe_profession_entertainer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition_onTrainingQuest(player, npc))
+        if (npe_profession_entertainer_condition_onTrainingQuest(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_84");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition_isEntertainer(player, npc))
+        if (npe_profession_entertainer_condition_isEntertainer(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_86");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_profession_entertainer_condition__defaultCondition(player, npc))
+            if (npe_profession_entertainer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1108,27 +1107,27 @@ public class npe_profession_entertainer extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "npe_profession_entertainer", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "npe_profession_entertainer", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_profession_entertainer_condition__defaultCondition(player, npc))
+        if (npe_profession_entertainer_condition__defaultCondition(player, self))
         {
-            npe_profession_entertainer_action_facePlayer(player, npc);
+            npe_profession_entertainer_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_96");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1137,77 +1136,76 @@ public class npe_profession_entertainer extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_profession_entertainer.branchId");
-        if (branchId == 1 && npe_profession_entertainer_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && npe_profession_entertainer_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && npe_profession_entertainer_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_profession_entertainer_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && npe_profession_entertainer_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && npe_profession_entertainer_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && npe_profession_entertainer_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && npe_profession_entertainer_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && npe_profession_entertainer_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && npe_profession_entertainer_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_profession_entertainer_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_profession_entertainer_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && npe_profession_entertainer_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && npe_profession_entertainer_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && npe_profession_entertainer_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && npe_profession_entertainer_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && npe_profession_entertainer_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && npe_profession_entertainer_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && npe_profession_entertainer_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && npe_profession_entertainer_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && npe_profession_entertainer_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && npe_profession_entertainer_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && npe_profession_entertainer_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && npe_profession_entertainer_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && npe_profession_entertainer_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && npe_profession_entertainer_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && npe_profession_entertainer_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && npe_profession_entertainer_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && npe_profession_entertainer_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && npe_profession_entertainer_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && npe_profession_entertainer_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && npe_profession_entertainer_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && npe_profession_entertainer_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && npe_profession_entertainer_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_profession_entertainer.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -20,15 +20,13 @@ public class tat_icon_missingdroid_tosche extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_lyrissa_to_tosche_e5 = groundquests.getTaskId(questId1, "tat_icon_lyrissa_to_tosche_e5");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_lyrissa_to_tosche_e5, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_lyrissa_to_tosche_e5, player);
     }
     public boolean tat_icon_missingdroid_tosche_condition_fixingJawa_e6_tosche2Lyrissa(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_tosche_to_lyrissa_e6 = groundquests.getTaskId(questId1, "tat_icon_tosche_to_lyrissa_e6");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_tosche_to_lyrissa_e6, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_tosche_to_lyrissa_e6, player);
     }
     public void tat_icon_missingdroid_tosche_action_signal_gotoLyrissa_e5(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -78,33 +76,32 @@ public class tat_icon_missingdroid_tosche extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tat_icon_missingdroid_tosche_condition_fixingJawa_e6_tosche2Lyrissa(player, npc))
+        if (tat_icon_missingdroid_tosche_condition_fixingJawa_e6_tosche2Lyrissa(player, self))
         {
-            doAnimationAction(npc, "point_up");
+            doAnimationAction(self, "point_up");
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tat_icon_missingdroid_tosche_condition_fixingJawa_e5_lyrissa2Tosche(player, npc))
+        if (tat_icon_missingdroid_tosche_condition_fixingJawa_e5_lyrissa2Tosche(player, self))
         {
-            tat_icon_missingdroid_tosche_action_signal_gotoLyrissa_e5(player, npc);
+            tat_icon_missingdroid_tosche_action_signal_gotoLyrissa_e5(player, self);
             string_id message = new string_id(c_stringFile, "s_5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tat_icon_missingdroid_tosche_condition__defaultCondition(player, npc))
+        if (tat_icon_missingdroid_tosche_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "point_up");
+            doAnimationAction(self, "point_up");
             string_id message = new string_id(c_stringFile, "s_8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -113,9 +110,8 @@ public class tat_icon_missingdroid_tosche extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tat_icon_missingdroid_tosche.branchId");
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tat_icon_missingdroid_tosche.branchId");
         return SCRIPT_CONTINUE;
     }

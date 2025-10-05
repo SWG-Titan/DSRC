@@ -4,7 +4,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.*;
 
-public class fs_village_convo4_f extends script.base_script
+public class fs_village_convo4_f extends base_script
 {
     public fs_village_convo4_f()
     {

@@ -20,14 +20,12 @@ public class yavin_fallenstar_pt_2_wuioe extends script.base_script
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt2");
         int yavin_fallenstar_e12_kill_smugglers = groundquests.getTaskId(questId1, "yavin_fallenstar_e12_kill_smugglers");
-        boolean onTask = (questIsTaskComplete(questId1, yavin_fallenstar_e12_kill_smugglers, player));
-        return onTask;
+        return (questIsTaskComplete(questId1, yavin_fallenstar_e12_kill_smugglers, player));
     }
     public boolean yavin_fallenstar_pt_2_wuioe_condition_fallenstar_pt2_complete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/yavin_fallenstar_pt2");
-        boolean OnTask = questIsQuestComplete(questId1, player);
-        return OnTask;
+        return questIsQuestComplete(questId1, player);
     }
     public void yavin_fallenstar_pt_2_wuioe_action_launchSignal(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -187,34 +185,33 @@ public class yavin_fallenstar_pt_2_wuioe extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (yavin_fallenstar_pt_2_wuioe_condition_fallenstar_pt2_complete(player, npc))
+        if (yavin_fallenstar_pt_2_wuioe_condition_fallenstar_pt2_complete(player, self))
         {
-            doAnimationAction(npc, "threaten_combat");
-            yavin_fallenstar_pt_2_wuioe_action_facePlayer(player, npc);
+            doAnimationAction(self, "threaten_combat");
+            yavin_fallenstar_pt_2_wuioe_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (yavin_fallenstar_pt_2_wuioe_condition__defaultCondition(player, npc))
+        if (yavin_fallenstar_pt_2_wuioe_condition__defaultCondition(player, self))
         {
-            yavin_fallenstar_pt_2_wuioe_action_facePlayer(player, npc);
+            yavin_fallenstar_pt_2_wuioe_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_141");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (yavin_fallenstar_pt_2_wuioe_condition__defaultCondition(player, npc))
+            if (yavin_fallenstar_pt_2_wuioe_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (yavin_fallenstar_pt_2_wuioe_condition_opcaCrewKilled(player, npc))
+            if (yavin_fallenstar_pt_2_wuioe_condition_opcaCrewKilled(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -233,15 +230,15 @@ public class yavin_fallenstar_pt_2_wuioe extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_143");
                 }
                 utils.setScriptVar(player, "conversation.yavin_fallenstar_pt_2_wuioe.branchId", 2);
-                npcStartConversation(player, npc, "yavin_fallenstar_pt_2_wuioe", message, responses);
+                npcStartConversation(player, self, "yavin_fallenstar_pt_2_wuioe", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -250,21 +247,20 @@ public class yavin_fallenstar_pt_2_wuioe extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.yavin_fallenstar_pt_2_wuioe.branchId");
-        if (branchId == 2 && yavin_fallenstar_pt_2_wuioe_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && yavin_fallenstar_pt_2_wuioe_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && yavin_fallenstar_pt_2_wuioe_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && yavin_fallenstar_pt_2_wuioe_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && yavin_fallenstar_pt_2_wuioe_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && yavin_fallenstar_pt_2_wuioe_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.yavin_fallenstar_pt_2_wuioe.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class rtp_qualdo_main extends script.base_script
+public class rtp_qualdo_main extends base_script
 {
     public rtp_qualdo_main()
     {

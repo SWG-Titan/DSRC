@@ -669,24 +669,23 @@ public class nova_rank3 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (nova_rank3_condition_finishedAll(player, npc))
+        if (nova_rank3_condition_finishedAll(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition_winQuest_04(player, npc))
+        if (nova_rank3_condition_winQuest_04(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -701,28 +700,28 @@ public class nova_rank3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_56");
                 }
                 utils.setScriptVar(player, "conversation.nova_rank3.branchId", 2);
-                npcStartConversation(player, npc, "nova_rank3", message, responses);
+                npcStartConversation(player, self, "nova_rank3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition_onQuest_04(player, npc))
+        if (nova_rank3_condition_onQuest_04(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_14");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -741,21 +740,21 @@ public class nova_rank3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_53");
                 }
                 utils.setScriptVar(player, "conversation.nova_rank3.branchId", 6);
-                npcStartConversation(player, npc, "nova_rank3", message, responses);
+                npcStartConversation(player, self, "nova_rank3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition_winQuest_03(player, npc))
+        if (nova_rank3_condition_winQuest_03(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -770,28 +769,28 @@ public class nova_rank3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_48");
                 }
                 utils.setScriptVar(player, "conversation.nova_rank3.branchId", 9);
-                npcStartConversation(player, npc, "nova_rank3", message, responses);
+                npcStartConversation(player, self, "nova_rank3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition_onQuest_03(player, npc))
+        if (nova_rank3_condition_onQuest_03(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_26");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -810,21 +809,21 @@ public class nova_rank3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_45");
                 }
                 utils.setScriptVar(player, "conversation.nova_rank3.branchId", 12);
-                npcStartConversation(player, npc, "nova_rank3", message, responses);
+                npcStartConversation(player, self, "nova_rank3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition_winQuest_02(player, npc))
+        if (nova_rank3_condition_winQuest_02(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -839,28 +838,28 @@ public class nova_rank3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_38");
                 }
                 utils.setScriptVar(player, "conversation.nova_rank3.branchId", 15);
-                npcStartConversation(player, npc, "nova_rank3", message, responses);
+                npcStartConversation(player, self, "nova_rank3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition_onQuest_02(player, npc))
+        if (nova_rank3_condition_onQuest_02(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_64");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -879,21 +878,21 @@ public class nova_rank3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_70");
                 }
                 utils.setScriptVar(player, "conversation.nova_rank3.branchId", 19);
-                npcStartConversation(player, npc, "nova_rank3", message, responses);
+                npcStartConversation(player, self, "nova_rank3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition_winQuest_01(player, npc))
+        if (nova_rank3_condition_winQuest_01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_74");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -908,28 +907,28 @@ public class nova_rank3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_76");
                 }
                 utils.setScriptVar(player, "conversation.nova_rank3.branchId", 22);
-                npcStartConversation(player, npc, "nova_rank3", message, responses);
+                npcStartConversation(player, self, "nova_rank3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition_onQuest_01(player, npc))
+        if (nova_rank3_condition_onQuest_01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_88");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -948,21 +947,21 @@ public class nova_rank3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_94");
                 }
                 utils.setScriptVar(player, "conversation.nova_rank3.branchId", 26);
-                npcStartConversation(player, npc, "nova_rank3", message, responses);
+                npcStartConversation(player, self, "nova_rank3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition_isNovaAligned(player, npc))
+        if (nova_rank3_condition_isNovaAligned(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_98");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_rank3_condition__defaultCondition(player, npc))
+            if (nova_rank3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -977,21 +976,21 @@ public class nova_rank3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_100");
                 }
                 utils.setScriptVar(player, "conversation.nova_rank3.branchId", 29);
-                npcStartConversation(player, npc, "nova_rank3", message, responses);
+                npcStartConversation(player, self, "nova_rank3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_rank3_condition__defaultCondition(player, npc))
+        if (nova_rank3_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_112");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1000,81 +999,80 @@ public class nova_rank3 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.nova_rank3.branchId");
-        if (branchId == 2 && nova_rank3_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && nova_rank3_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && nova_rank3_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && nova_rank3_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && nova_rank3_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && nova_rank3_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && nova_rank3_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && nova_rank3_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && nova_rank3_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && nova_rank3_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && nova_rank3_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && nova_rank3_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && nova_rank3_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && nova_rank3_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && nova_rank3_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && nova_rank3_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && nova_rank3_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && nova_rank3_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && nova_rank3_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && nova_rank3_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && nova_rank3_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && nova_rank3_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && nova_rank3_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && nova_rank3_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && nova_rank3_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && nova_rank3_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && nova_rank3_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && nova_rank3_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && nova_rank3_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && nova_rank3_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && nova_rank3_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && nova_rank3_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && nova_rank3_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && nova_rank3_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && nova_rank3_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && nova_rank3_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.nova_rank3.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -43,15 +43,13 @@ public class c_sink_reb extends script.base_script
     {
         int questId = questGetQuestId("quest/c_sink_reb");
         int safesignal = groundquests.getTaskId(questId, "safesignal");
-        boolean onTask = questIsTaskActive(questId, safesignal, player);
-        return onTask;
+        return questIsTaskActive(questId, safesignal, player);
     }
     public boolean c_sink_reb_condition_firstStepofQuest(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId = questGetQuestId("quest/c_sink_reb");
         int gotocrash = groundquests.getTaskId(questId, "gotocrash");
-        boolean onTask = questIsTaskActive(questId, gotocrash, player);
-        return onTask;
+        return questIsTaskActive(questId, gotocrash, player);
     }
     public boolean c_sink_reb_condition_gangKillStepDone(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -823,33 +821,32 @@ public class c_sink_reb extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_sink_reb_condition_IsImperial(player, npc))
+        if (c_sink_reb_condition_IsImperial(player, self))
         {
-            c_sink_reb_action_faceplayer(player, npc);
+            c_sink_reb_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1112");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_sink_reb_condition_isNeutral(player, npc))
+        if (c_sink_reb_condition_isNeutral(player, self))
         {
-            c_sink_reb_action_faceplayer(player, npc);
+            c_sink_reb_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1114");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_sink_reb_condition_IsRebel1(player, npc))
+        if (c_sink_reb_condition_IsRebel1(player, self))
         {
-            c_sink_reb_action_faceplayer(player, npc);
+            c_sink_reb_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1116");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_sink_reb_condition__defaultCondition(player, npc))
+            if (c_sink_reb_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -864,22 +861,22 @@ public class c_sink_reb extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1118");
                 }
                 utils.setScriptVar(player, "conversation.c_sink_reb.branchId", 3);
-                npcStartConversation(player, npc, "c_sink_reb", message, responses);
+                npcStartConversation(player, self, "c_sink_reb", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_sink_reb_condition_broughtPilotBack(player, npc))
+        if (c_sink_reb_condition_broughtPilotBack(player, self))
         {
-            c_sink_reb_action_faceplayer(player, npc);
+            c_sink_reb_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1130");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_sink_reb_condition__defaultCondition(player, npc))
+            if (c_sink_reb_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -894,21 +891,21 @@ public class c_sink_reb extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1132");
                 }
                 utils.setScriptVar(player, "conversation.c_sink_reb.branchId", 7);
-                npcStartConversation(player, npc, "c_sink_reb", message, responses);
+                npcStartConversation(player, self, "c_sink_reb", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_sink_reb_condition_firstStepofQuest(player, npc))
+        if (c_sink_reb_condition_firstStepofQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1164");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_sink_reb_condition__defaultCondition(player, npc))
+            if (c_sink_reb_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -923,35 +920,35 @@ public class c_sink_reb extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1166");
                 }
                 utils.setScriptVar(player, "conversation.c_sink_reb.branchId", 16);
-                npcStartConversation(player, npc, "c_sink_reb", message, responses);
+                npcStartConversation(player, self, "c_sink_reb", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_sink_reb_condition_gangKillStepActive(player, npc))
+        if (c_sink_reb_condition_gangKillStepActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1170");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_sink_reb_condition_noGangsKilledYet(player, npc))
+            if (c_sink_reb_condition_noGangsKilledYet(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!c_sink_reb_condition_noGangsKilledYet(player, npc))
+            if (!c_sink_reb_condition_noGangsKilledYet(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_sink_reb_condition_gangKillStepDone(player, npc))
+            if (c_sink_reb_condition_gangKillStepDone(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -974,35 +971,35 @@ public class c_sink_reb extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1180");
                 }
                 utils.setScriptVar(player, "conversation.c_sink_reb.branchId", 18);
-                npcStartConversation(player, npc, "c_sink_reb", message, responses);
+                npcStartConversation(player, self, "c_sink_reb", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_sink_reb_condition_spaceStepActive(player, npc))
+        if (c_sink_reb_condition_spaceStepActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1192");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_sink_reb_condition__defaultCondition(player, npc))
+            if (c_sink_reb_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_sink_reb_condition_spaceLost(player, npc))
+            if (c_sink_reb_condition_spaceLost(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_sink_reb_condition_spaceWon(player, npc))
+            if (c_sink_reb_condition_spaceWon(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1025,21 +1022,21 @@ public class c_sink_reb extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1202");
                 }
                 utils.setScriptVar(player, "conversation.c_sink_reb.branchId", 24);
-                npcStartConversation(player, npc, "c_sink_reb", message, responses);
+                npcStartConversation(player, self, "c_sink_reb", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_sink_reb_condition__defaultCondition(player, npc))
+        if (c_sink_reb_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1214");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_sink_reb_condition__defaultCondition(player, npc))
+            if (c_sink_reb_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1054,15 +1051,15 @@ public class c_sink_reb extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1216");
                 }
                 utils.setScriptVar(player, "conversation.c_sink_reb.branchId", 30);
-                npcStartConversation(player, npc, "c_sink_reb", message, responses);
+                npcStartConversation(player, self, "c_sink_reb", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1071,61 +1068,60 @@ public class c_sink_reb extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_sink_reb.branchId");
-        if (branchId == 3 && c_sink_reb_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && c_sink_reb_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && c_sink_reb_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && c_sink_reb_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && c_sink_reb_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && c_sink_reb_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && c_sink_reb_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && c_sink_reb_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && c_sink_reb_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && c_sink_reb_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && c_sink_reb_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && c_sink_reb_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && c_sink_reb_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && c_sink_reb_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && c_sink_reb_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && c_sink_reb_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && c_sink_reb_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && c_sink_reb_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && c_sink_reb_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && c_sink_reb_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && c_sink_reb_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && c_sink_reb_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && c_sink_reb_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && c_sink_reb_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && c_sink_reb_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && c_sink_reb_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_sink_reb.branchId");
         return SCRIPT_CONTINUE;
     }

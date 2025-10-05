@@ -8678,36 +8678,35 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!tatooine_privateer_trainer_shamdon_condition_isPilot(player, npc))
+        if (!tatooine_privateer_trainer_shamdon_condition_isPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_dab97824");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_isRebel(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_isRebel(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_isImperial(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_isImperial(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!tatooine_privateer_trainer_shamdon_condition_onMyTrack(player, npc))
+        if (!tatooine_privateer_trainer_shamdon_condition_onMyTrack(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_36bdb4df");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8722,29 +8721,29 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c1ff5062");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId", 4);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", message, responses);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!tatooine_privateer_trainer_shamdon_condition_hasWonTransQuest(player, npc))
+        if (!tatooine_privateer_trainer_shamdon_condition_hasWonTransQuest(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_b4790825");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8763,22 +8762,22 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_d01d0154");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId", 7);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", message, responses);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_gettingTransReward(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_gettingTransReward(player, self))
         {
-            doAnimationAction(npc, "shrug_hands");
+            doAnimationAction(self, "shrug_hands");
             string_id message = new string_id(c_stringFile, "s_8be95ab4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8793,69 +8792,69 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_d14c381d");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId", 13);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", message, responses);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_isOnQuest(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_isOnQuest(player, self))
         {
-            doAnimationAction(npc, "shake_head_no");
+            doAnimationAction(self, "shake_head_no");
             string_id message = new string_id(c_stringFile, "s_98adf66d");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_hasFailedMissionOne(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_hasFailedMissionOne(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
-            tatooine_privateer_trainer_shamdon_action_grantMissionOne(player, npc);
+            doAnimationAction(self, "pound_fist_palm");
+            tatooine_privateer_trainer_shamdon_action_grantMissionOne(player, self);
             string_id message = new string_id(c_stringFile, "s_3b48f08");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_hasFailedMissionTwo(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_hasFailedMissionTwo(player, self))
         {
-            doAnimationAction(npc, "point_away");
-            tatooine_privateer_trainer_shamdon_action_grantMissionTwo(player, npc);
+            doAnimationAction(self, "point_away");
+            tatooine_privateer_trainer_shamdon_action_grantMissionTwo(player, self);
             string_id message = new string_id(c_stringFile, "s_ae1a4b87");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_hasFailedMissionThree(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_hasFailedMissionThree(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
-            tatooine_privateer_trainer_shamdon_action_grantMisisonThree(player, npc);
+            doAnimationAction(self, "pound_fist_palm");
+            tatooine_privateer_trainer_shamdon_action_grantMisisonThree(player, self);
             string_id message = new string_id(c_stringFile, "s_a24306df");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_hasFailedMissionFour(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_hasFailedMissionFour(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
-            tatooine_privateer_trainer_shamdon_action_grantMissionFour(player, npc);
+            doAnimationAction(self, "shake_head_disgust");
+            tatooine_privateer_trainer_shamdon_action_grantMissionFour(player, self);
             string_id message = new string_id(c_stringFile, "s_e4c0ecd");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_isGettingRewardOne(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_isGettingRewardOne(player, self))
         {
-            doAnimationAction(npc, "applause_polite");
-            tatooine_privateer_trainer_shamdon_action_rewardForMissionOne(player, npc);
+            doAnimationAction(self, "applause_polite");
+            tatooine_privateer_trainer_shamdon_action_rewardForMissionOne(player, self);
             string_id message = new string_id(c_stringFile, "s_d9b1bd09");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8874,35 +8873,35 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_34e4d30");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId", 22);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", message, responses);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_isGettingRewardTwo(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_isGettingRewardTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_f520ab35");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8925,21 +8924,21 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9f5f269");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId", 31);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", message, responses);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_isGettingRewardThree(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_isGettingRewardThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5b1bed8b");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8954,28 +8953,28 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1fe46aff");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId", 44);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", message, responses);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_isGettingRewardFour(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_isGettingRewardFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7cb248ee");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8994,28 +8993,28 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_766563c7");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId", 54);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", message, responses);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_isReadyForMission(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_isReadyForMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_d6924ee9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9037,26 +9036,26 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_hasAllTier2Skills(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_hasAllTier2Skills(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_650a0c35");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9074,27 +9073,27 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition_isReadyForTraining(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition_isReadyForTraining(player, self))
         {
-            doAnimationAction(npc, "applause_polite");
+            doAnimationAction(self, "applause_polite");
             string_id message = new string_id(c_stringFile, "s_383435");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9112,34 +9111,34 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+        if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             string_id message = new string_id(c_stringFile, "s_5d262b71");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, npc))
+            if (tatooine_privateer_trainer_shamdon_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9158,15 +9157,15 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1aaeed53");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId", 94);
-                npcStartConversation(player, npc, "tatooine_privateer_trainer_shamdon", message, responses);
+                npcStartConversation(player, self, "tatooine_privateer_trainer_shamdon", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -9175,237 +9174,236 @@ public class tatooine_privateer_trainer_shamdon extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId");
-        if (branchId == 4 && tatooine_privateer_trainer_shamdon_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tatooine_privateer_trainer_shamdon_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tatooine_privateer_trainer_shamdon_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_privateer_trainer_shamdon_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && tatooine_privateer_trainer_shamdon_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && tatooine_privateer_trainer_shamdon_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && tatooine_privateer_trainer_shamdon_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && tatooine_privateer_trainer_shamdon_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && tatooine_privateer_trainer_shamdon_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && tatooine_privateer_trainer_shamdon_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tatooine_privateer_trainer_shamdon_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tatooine_privateer_trainer_shamdon_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && tatooine_privateer_trainer_shamdon_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && tatooine_privateer_trainer_shamdon_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && tatooine_privateer_trainer_shamdon_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && tatooine_privateer_trainer_shamdon_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && tatooine_privateer_trainer_shamdon_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && tatooine_privateer_trainer_shamdon_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && tatooine_privateer_trainer_shamdon_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && tatooine_privateer_trainer_shamdon_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && tatooine_privateer_trainer_shamdon_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && tatooine_privateer_trainer_shamdon_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && tatooine_privateer_trainer_shamdon_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && tatooine_privateer_trainer_shamdon_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && tatooine_privateer_trainer_shamdon_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && tatooine_privateer_trainer_shamdon_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && tatooine_privateer_trainer_shamdon_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && tatooine_privateer_trainer_shamdon_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && tatooine_privateer_trainer_shamdon_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && tatooine_privateer_trainer_shamdon_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && tatooine_privateer_trainer_shamdon_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && tatooine_privateer_trainer_shamdon_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && tatooine_privateer_trainer_shamdon_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && tatooine_privateer_trainer_shamdon_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && tatooine_privateer_trainer_shamdon_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && tatooine_privateer_trainer_shamdon_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && tatooine_privateer_trainer_shamdon_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && tatooine_privateer_trainer_shamdon_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && tatooine_privateer_trainer_shamdon_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && tatooine_privateer_trainer_shamdon_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && tatooine_privateer_trainer_shamdon_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && tatooine_privateer_trainer_shamdon_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && tatooine_privateer_trainer_shamdon_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && tatooine_privateer_trainer_shamdon_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && tatooine_privateer_trainer_shamdon_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && tatooine_privateer_trainer_shamdon_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && tatooine_privateer_trainer_shamdon_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && tatooine_privateer_trainer_shamdon_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && tatooine_privateer_trainer_shamdon_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && tatooine_privateer_trainer_shamdon_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && tatooine_privateer_trainer_shamdon_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && tatooine_privateer_trainer_shamdon_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && tatooine_privateer_trainer_shamdon_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && tatooine_privateer_trainer_shamdon_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && tatooine_privateer_trainer_shamdon_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && tatooine_privateer_trainer_shamdon_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && tatooine_privateer_trainer_shamdon_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && tatooine_privateer_trainer_shamdon_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && tatooine_privateer_trainer_shamdon_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && tatooine_privateer_trainer_shamdon_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && tatooine_privateer_trainer_shamdon_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && tatooine_privateer_trainer_shamdon_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && tatooine_privateer_trainer_shamdon_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && tatooine_privateer_trainer_shamdon_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && tatooine_privateer_trainer_shamdon_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && tatooine_privateer_trainer_shamdon_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && tatooine_privateer_trainer_shamdon_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && tatooine_privateer_trainer_shamdon_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && tatooine_privateer_trainer_shamdon_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && tatooine_privateer_trainer_shamdon_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && tatooine_privateer_trainer_shamdon_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && tatooine_privateer_trainer_shamdon_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && tatooine_privateer_trainer_shamdon_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && tatooine_privateer_trainer_shamdon_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && tatooine_privateer_trainer_shamdon_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && tatooine_privateer_trainer_shamdon_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && tatooine_privateer_trainer_shamdon_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && tatooine_privateer_trainer_shamdon_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && tatooine_privateer_trainer_shamdon_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && tatooine_privateer_trainer_shamdon_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && tatooine_privateer_trainer_shamdon_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && tatooine_privateer_trainer_shamdon_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && tatooine_privateer_trainer_shamdon_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && tatooine_privateer_trainer_shamdon_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && tatooine_privateer_trainer_shamdon_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && tatooine_privateer_trainer_shamdon_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && tatooine_privateer_trainer_shamdon_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && tatooine_privateer_trainer_shamdon_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && tatooine_privateer_trainer_shamdon_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && tatooine_privateer_trainer_shamdon_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && tatooine_privateer_trainer_shamdon_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && tatooine_privateer_trainer_shamdon_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && tatooine_privateer_trainer_shamdon_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && tatooine_privateer_trainer_shamdon_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && tatooine_privateer_trainer_shamdon_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && tatooine_privateer_trainer_shamdon_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && tatooine_privateer_trainer_shamdon_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && tatooine_privateer_trainer_shamdon_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && tatooine_privateer_trainer_shamdon_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && tatooine_privateer_trainer_shamdon_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && tatooine_privateer_trainer_shamdon_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && tatooine_privateer_trainer_shamdon_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && tatooine_privateer_trainer_shamdon_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && tatooine_privateer_trainer_shamdon_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && tatooine_privateer_trainer_shamdon_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && tatooine_privateer_trainer_shamdon_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && tatooine_privateer_trainer_shamdon_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && tatooine_privateer_trainer_shamdon_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && tatooine_privateer_trainer_shamdon_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && tatooine_privateer_trainer_shamdon_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && tatooine_privateer_trainer_shamdon_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && tatooine_privateer_trainer_shamdon_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && tatooine_privateer_trainer_shamdon_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && tatooine_privateer_trainer_shamdon_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_privateer_trainer_shamdon.branchId");
         return SCRIPT_CONTINUE;
     }

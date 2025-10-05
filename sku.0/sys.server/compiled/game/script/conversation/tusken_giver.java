@@ -341,24 +341,23 @@ public class tusken_giver extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tusken_giver_condition_doneQuest(player, npc))
+        if (tusken_giver_condition_doneQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tusken_giver_condition_lastLeg(player, npc))
+        if (tusken_giver_condition_lastLeg(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tusken_giver_condition__defaultCondition(player, npc))
+            if (tusken_giver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -373,21 +372,21 @@ public class tusken_giver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_22");
                 }
                 utils.setScriptVar(player, "conversation.tusken_giver.branchId", 2);
-                npcStartConversation(player, npc, "tusken_giver", message, responses);
+                npcStartConversation(player, self, "tusken_giver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tusken_giver_condition_onQuest(player, npc))
+        if (tusken_giver_condition_onQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tusken_giver_condition__defaultCondition(player, npc))
+            if (tusken_giver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -402,21 +401,21 @@ public class tusken_giver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_16");
                 }
                 utils.setScriptVar(player, "conversation.tusken_giver.branchId", 5);
-                npcStartConversation(player, npc, "tusken_giver", message, responses);
+                npcStartConversation(player, self, "tusken_giver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tusken_giver_condition_startQuest(player, npc))
+        if (tusken_giver_condition_startQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tusken_giver_condition__defaultCondition(player, npc))
+            if (tusken_giver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -431,21 +430,21 @@ public class tusken_giver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_32");
                 }
                 utils.setScriptVar(player, "conversation.tusken_giver.branchId", 9);
-                npcStartConversation(player, npc, "tusken_giver", message, responses);
+                npcStartConversation(player, self, "tusken_giver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tusken_giver_condition__defaultCondition(player, npc))
+        if (tusken_giver_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -454,41 +453,40 @@ public class tusken_giver extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tusken_giver.branchId");
-        if (branchId == 2 && tusken_giver_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tusken_giver_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && tusken_giver_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tusken_giver_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tusken_giver_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tusken_giver_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && tusken_giver_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && tusken_giver_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tusken_giver_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tusken_giver_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tusken_giver_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tusken_giver_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && tusken_giver_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && tusken_giver_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && tusken_giver_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && tusken_giver_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tusken_giver.branchId");
         return SCRIPT_CONTINUE;
     }

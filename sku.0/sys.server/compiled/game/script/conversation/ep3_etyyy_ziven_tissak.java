@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class ep3_etyyy_ziven_tissak extends script.base_script
+public class ep3_etyyy_ziven_tissak extends base_script
 {
     public ep3_etyyy_ziven_tissak()
     {

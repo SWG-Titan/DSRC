@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class hutt_informant extends script.base_script
+public class hutt_informant extends base_script
 {
     public hutt_informant()
     {

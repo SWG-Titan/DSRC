@@ -852,26 +852,25 @@ public class talus_dearic_jana extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (talus_dearic_jana_condition_completeAdaptiveBiology(player, npc))
+        if (talus_dearic_jana_condition_completeAdaptiveBiology(player, self))
         {
-            doAnimationAction(npc, "celebrate");
+            doAnimationAction(self, "celebrate");
             string_id message = new string_id(c_stringFile, "s_23");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_jana_condition_returnAdaptiveBiology(player, npc))
+        if (talus_dearic_jana_condition_returnAdaptiveBiology(player, self))
         {
-            doAnimationAction(npc, "clap_rousing");
+            doAnimationAction(self, "clap_rousing");
             string_id message = new string_id(c_stringFile, "s_22");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_jana_condition__defaultCondition(player, npc))
+            if (talus_dearic_jana_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -886,22 +885,22 @@ public class talus_dearic_jana extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_28");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_jana.branchId", 2);
-                npcStartConversation(player, npc, "talus_dearic_jana", message, responses);
+                npcStartConversation(player, self, "talus_dearic_jana", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_jana_condition_onAdaptiveBiology(player, npc))
+        if (talus_dearic_jana_condition_onAdaptiveBiology(player, self))
         {
-            doAnimationAction(npc, "shrug_hands");
+            doAnimationAction(self, "shrug_hands");
             string_id message = new string_id(c_stringFile, "s_21");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_jana_condition__defaultCondition(player, npc))
+            if (talus_dearic_jana_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -916,29 +915,29 @@ public class talus_dearic_jana extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_24");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_jana.branchId", 6);
-                npcStartConversation(player, npc, "talus_dearic_jana", message, responses);
+                npcStartConversation(player, self, "talus_dearic_jana", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_jana_condition__defaultCondition(player, npc))
+        if (talus_dearic_jana_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "shrug_hands");
+            doAnimationAction(self, "shrug_hands");
             string_id message = new string_id(c_stringFile, "s_17");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_jana_condition_onBetterGenetics(player, npc))
+            if (talus_dearic_jana_condition_onBetterGenetics(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (talus_dearic_jana_condition_notOnBetterGenetics(player, npc))
+            if (talus_dearic_jana_condition_notOnBetterGenetics(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -957,21 +956,21 @@ public class talus_dearic_jana extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_64");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_jana.branchId", 9);
-                npcStartConversation(player, npc, "talus_dearic_jana", message, responses);
+                npcStartConversation(player, self, "talus_dearic_jana", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_jana_condition__defaultCondition(player, npc))
+        if (talus_dearic_jana_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_88");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -980,85 +979,84 @@ public class talus_dearic_jana extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.talus_dearic_jana.branchId");
-        if (branchId == 2 && talus_dearic_jana_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && talus_dearic_jana_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && talus_dearic_jana_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && talus_dearic_jana_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && talus_dearic_jana_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && talus_dearic_jana_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && talus_dearic_jana_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && talus_dearic_jana_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && talus_dearic_jana_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && talus_dearic_jana_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && talus_dearic_jana_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && talus_dearic_jana_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && talus_dearic_jana_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && talus_dearic_jana_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && talus_dearic_jana_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && talus_dearic_jana_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && talus_dearic_jana_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && talus_dearic_jana_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && talus_dearic_jana_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && talus_dearic_jana_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && talus_dearic_jana_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && talus_dearic_jana_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && talus_dearic_jana_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && talus_dearic_jana_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && talus_dearic_jana_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && talus_dearic_jana_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && talus_dearic_jana_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && talus_dearic_jana_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && talus_dearic_jana_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && talus_dearic_jana_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && talus_dearic_jana_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && talus_dearic_jana_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && talus_dearic_jana_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && talus_dearic_jana_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && talus_dearic_jana_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && talus_dearic_jana_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && talus_dearic_jana_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && talus_dearic_jana_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.talus_dearic_jana.branchId");
         return SCRIPT_CONTINUE;
     }

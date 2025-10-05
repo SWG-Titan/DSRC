@@ -128,8 +128,7 @@ public class naboo_24_azure_cabal_loruna_01 extends script.base_script
     }
     public String naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(obj_id player, obj_id npc) throws InterruptedException
     {
-        String name = getFirstName(player);
-        return name;
+        return getFirstName(player);
     }
     public String naboo_24_azure_cabal_loruna_01_tokenTO_playersProfession(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -1864,44 +1863,43 @@ public class naboo_24_azure_cabal_loruna_01 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (naboo_24_azure_cabal_loruna_01_condition_onTaskRepeaterCooldown(player, npc))
+        if (naboo_24_azure_cabal_loruna_01_condition_onTaskRepeaterCooldown(player, self))
         {
-            naboo_24_azure_cabal_loruna_01_action_facePlayer(player, npc);
+            naboo_24_azure_cabal_loruna_01_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_110");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, npc));
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, self));
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_azure_cabal_loruna_01_condition_onTaskRepeaterGetQuest(player, npc))
+        if (naboo_24_azure_cabal_loruna_01_condition_onTaskRepeaterGetQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_116");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1924,34 +1922,34 @@ public class naboo_24_azure_cabal_loruna_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_152");
                 }
                 utils.setScriptVar(player, "conversation.naboo_24_azure_cabal_loruna_01.branchId", 2);
-                npcStartConversation(player, npc, "naboo_24_azure_cabal_loruna_01", message, responses);
+                npcStartConversation(player, self, "naboo_24_azure_cabal_loruna_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_azure_cabal_loruna_01_condition_hasCompletedAC_01_OnRepeater(player, npc))
+        if (naboo_24_azure_cabal_loruna_01_condition_hasCompletedAC_01_OnRepeater(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_155");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_azure_cabal_loruna_01_condition_hasCompletedAC_01_NotOnRepeater(player, npc))
+        if (naboo_24_azure_cabal_loruna_01_condition_hasCompletedAC_01_NotOnRepeater(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_145");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1970,30 +1968,30 @@ public class naboo_24_azure_cabal_loruna_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_157");
                 }
                 utils.setScriptVar(player, "conversation.naboo_24_azure_cabal_loruna_01.branchId", 10);
-                npcStartConversation(player, npc, "naboo_24_azure_cabal_loruna_01", message, responses);
+                npcStartConversation(player, self, "naboo_24_azure_cabal_loruna_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_azure_cabal_loruna_01_condition_onTaskAC_01_Return(player, npc))
+        if (naboo_24_azure_cabal_loruna_01_condition_onTaskAC_01_Return(player, self))
         {
-            doAnimationAction(npc, "bow");
-            naboo_24_azure_cabal_loruna_01_action_signalCompleteAC01(player, npc);
+            doAnimationAction(self, "bow");
+            naboo_24_azure_cabal_loruna_01_action_signalCompleteAC01(player, self);
             string_id message = new string_id(c_stringFile, "s_61");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2015,35 +2013,35 @@ public class naboo_24_azure_cabal_loruna_01 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, npc));
-                npcStartConversation(player, npc, "naboo_24_azure_cabal_loruna_01", null, pp, responses);
+                pp.target.set(self);
+                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, self));
+                npcStartConversation(player, self, "naboo_24_azure_cabal_loruna_01", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, npc));
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, self));
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_azure_cabal_loruna_01_condition_OnQuestAC_01(player, npc))
+        if (naboo_24_azure_cabal_loruna_01_condition_OnQuestAC_01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_81");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2065,49 +2063,49 @@ public class naboo_24_azure_cabal_loruna_01 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, npc));
-                npcStartConversation(player, npc, "naboo_24_azure_cabal_loruna_01", null, pp, responses);
+                pp.target.set(self);
+                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, self));
+                npcStartConversation(player, self, "naboo_24_azure_cabal_loruna_01", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, npc));
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, self));
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_azure_cabal_loruna_01_condition_canTakeQuestAC_01(player, npc))
+        if (naboo_24_azure_cabal_loruna_01_condition_canTakeQuestAC_01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_58");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+            if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2137,28 +2135,28 @@ public class naboo_24_azure_cabal_loruna_01 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, npc));
-                npcStartConversation(player, npc, "naboo_24_azure_cabal_loruna_01", null, pp, responses);
+                pp.target.set(self);
+                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, self));
+                npcStartConversation(player, self, "naboo_24_azure_cabal_loruna_01", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, npc));
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                pp.other.set(naboo_24_azure_cabal_loruna_01_tokenTO_playerFirstName(player, self));
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, npc))
+        if (naboo_24_azure_cabal_loruna_01_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_162");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2167,89 +2165,88 @@ public class naboo_24_azure_cabal_loruna_01 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.naboo_24_azure_cabal_loruna_01.branchId");
-        if (branchId == 2 && naboo_24_azure_cabal_loruna_01_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && naboo_24_azure_cabal_loruna_01_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && naboo_24_azure_cabal_loruna_01_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && naboo_24_azure_cabal_loruna_01_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && naboo_24_azure_cabal_loruna_01_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && naboo_24_azure_cabal_loruna_01_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && naboo_24_azure_cabal_loruna_01_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && naboo_24_azure_cabal_loruna_01_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && naboo_24_azure_cabal_loruna_01_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && naboo_24_azure_cabal_loruna_01_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && naboo_24_azure_cabal_loruna_01_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && naboo_24_azure_cabal_loruna_01_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && naboo_24_azure_cabal_loruna_01_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && naboo_24_azure_cabal_loruna_01_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && naboo_24_azure_cabal_loruna_01_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && naboo_24_azure_cabal_loruna_01_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && naboo_24_azure_cabal_loruna_01_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && naboo_24_azure_cabal_loruna_01_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && naboo_24_azure_cabal_loruna_01_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && naboo_24_azure_cabal_loruna_01_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && naboo_24_azure_cabal_loruna_01_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && naboo_24_azure_cabal_loruna_01_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && naboo_24_azure_cabal_loruna_01_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && naboo_24_azure_cabal_loruna_01_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && naboo_24_azure_cabal_loruna_01_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && naboo_24_azure_cabal_loruna_01_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && naboo_24_azure_cabal_loruna_01_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && naboo_24_azure_cabal_loruna_01_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && naboo_24_azure_cabal_loruna_01_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && naboo_24_azure_cabal_loruna_01_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && naboo_24_azure_cabal_loruna_01_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && naboo_24_azure_cabal_loruna_01_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && naboo_24_azure_cabal_loruna_01_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && naboo_24_azure_cabal_loruna_01_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && naboo_24_azure_cabal_loruna_01_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && naboo_24_azure_cabal_loruna_01_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && naboo_24_azure_cabal_loruna_01_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && naboo_24_azure_cabal_loruna_01_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && naboo_24_azure_cabal_loruna_01_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && naboo_24_azure_cabal_loruna_01_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.naboo_24_azure_cabal_loruna_01.branchId");
         return SCRIPT_CONTINUE;
     }

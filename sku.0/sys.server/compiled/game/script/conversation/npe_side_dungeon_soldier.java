@@ -330,19 +330,18 @@ public class npe_side_dungeon_soldier extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_side_dungeon_soldier_condition_taskComplete(player, npc))
+        if (npe_side_dungeon_soldier_condition_taskComplete(player, self))
         {
-            npe_side_dungeon_soldier_action_facePlayer(player, npc);
+            npe_side_dungeon_soldier_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_11");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_side_dungeon_soldier_condition__defaultCondition(player, npc))
+            if (npe_side_dungeon_soldier_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -357,22 +356,22 @@ public class npe_side_dungeon_soldier extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_12");
                 }
                 utils.setScriptVar(player, "conversation.npe_side_dungeon_soldier.branchId", 1);
-                npcStartConversation(player, npc, "npe_side_dungeon_soldier", message, responses);
+                npcStartConversation(player, self, "npe_side_dungeon_soldier", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_side_dungeon_soldier_condition_stillOnTask(player, npc))
+        if (npe_side_dungeon_soldier_condition_stillOnTask(player, self))
         {
-            npe_side_dungeon_soldier_action_facePlayer(player, npc);
+            npe_side_dungeon_soldier_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_16");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_side_dungeon_soldier_condition__defaultCondition(player, npc))
+            if (npe_side_dungeon_soldier_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -387,29 +386,29 @@ public class npe_side_dungeon_soldier extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_17");
                 }
                 utils.setScriptVar(player, "conversation.npe_side_dungeon_soldier.branchId", 4);
-                npcStartConversation(player, npc, "npe_side_dungeon_soldier", message, responses);
+                npcStartConversation(player, self, "npe_side_dungeon_soldier", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!npe_side_dungeon_soldier_condition_hasFinishedTemplate(player, npc))
+        if (!npe_side_dungeon_soldier_condition_hasFinishedTemplate(player, self))
         {
-            npe_side_dungeon_soldier_action_facePlayer(player, npc);
+            npe_side_dungeon_soldier_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_40");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_side_dungeon_soldier_condition_canTakeQuest(player, npc))
+        if (npe_side_dungeon_soldier_condition_canTakeQuest(player, self))
         {
-            npe_side_dungeon_soldier_action_facePlayer(player, npc);
+            npe_side_dungeon_soldier_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_22");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_side_dungeon_soldier_condition__defaultCondition(player, npc))
+            if (npe_side_dungeon_soldier_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -424,22 +423,22 @@ public class npe_side_dungeon_soldier extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_24");
                 }
                 utils.setScriptVar(player, "conversation.npe_side_dungeon_soldier.branchId", 7);
-                npcStartConversation(player, npc, "npe_side_dungeon_soldier", message, responses);
+                npcStartConversation(player, self, "npe_side_dungeon_soldier", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_side_dungeon_soldier_condition__defaultCondition(player, npc))
+        if (npe_side_dungeon_soldier_condition__defaultCondition(player, self))
         {
-            npe_side_dungeon_soldier_action_facePlayer(player, npc);
+            npe_side_dungeon_soldier_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -448,37 +447,36 @@ public class npe_side_dungeon_soldier extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_side_dungeon_soldier.branchId");
-        if (branchId == 1 && npe_side_dungeon_soldier_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && npe_side_dungeon_soldier_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && npe_side_dungeon_soldier_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_side_dungeon_soldier_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && npe_side_dungeon_soldier_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && npe_side_dungeon_soldier_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && npe_side_dungeon_soldier_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && npe_side_dungeon_soldier_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && npe_side_dungeon_soldier_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && npe_side_dungeon_soldier_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && npe_side_dungeon_soldier_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && npe_side_dungeon_soldier_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && npe_side_dungeon_soldier_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && npe_side_dungeon_soldier_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_side_dungeon_soldier.branchId");
         return SCRIPT_CONTINUE;
     }

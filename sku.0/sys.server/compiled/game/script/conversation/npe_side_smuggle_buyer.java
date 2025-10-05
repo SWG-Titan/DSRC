@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class npe_side_smuggle_buyer extends script.base_script
+public class npe_side_smuggle_buyer extends base_script
 {
     public npe_side_smuggle_buyer()
     {

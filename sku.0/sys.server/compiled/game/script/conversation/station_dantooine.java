@@ -9369,45 +9369,44 @@ public class station_dantooine extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (station_dantooine_condition_isTooFar(player, npc))
+        if (station_dantooine_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1b90bd5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_failedLandingMission(player, npc))
+        if (station_dantooine_condition_failedLandingMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_d7c1b26f");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9434,42 +9433,42 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_cc899cff");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 2);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_failedSmuggler(player, npc))
+        if (station_dantooine_condition_failedSmuggler(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_21255661");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9496,42 +9495,42 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_18");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 5);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_hasFailedRepair(player, npc))
+        if (station_dantooine_condition_hasFailedRepair(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5ac08819");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9558,42 +9557,42 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_29");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 8);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_failedLokDelivery(player, npc))
+        if (station_dantooine_condition_failedLokDelivery(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_53317e16");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9620,42 +9619,42 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_39");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 11);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_failedCorelliaDelivery(player, npc))
+        if (station_dantooine_condition_failedCorelliaDelivery(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ea0c00c7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9682,42 +9681,42 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_51");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 14);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_failedNabooDelivery(player, npc))
+        if (station_dantooine_condition_failedNabooDelivery(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_be141863");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9744,42 +9743,42 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_64");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 17);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_failedTatooineDelivery(player, npc))
+        if (station_dantooine_condition_failedTatooineDelivery(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8a3087d7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9806,50 +9805,50 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_77");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 20);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_completedLokDelivery(player, npc))
+        if (station_dantooine_condition_completedLokDelivery(player, self))
         {
-            station_dantooine_action_rewardLokPickup(player, npc);
+            station_dantooine_action_rewardLokPickup(player, self);
             string_id message = new string_id(c_stringFile, "s_1b496fe4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canTakeMissions(player, npc))
+            if (station_dantooine_condition_canTakeMissions(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition_rebelLanding(player, npc))
+            if (station_dantooine_condition_rebelLanding(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_dantooine_condition_canTakeSmuggler(player, npc))
+            if (station_dantooine_condition_canTakeSmuggler(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9880,50 +9879,50 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5f4f6d25");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 32);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_completedNabooDelivery(player, npc))
+        if (station_dantooine_condition_completedNabooDelivery(player, self))
         {
-            station_dantooine_action_rewardNabooPickup(player, npc);
+            station_dantooine_action_rewardNabooPickup(player, self);
             string_id message = new string_id(c_stringFile, "s_60117ea4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canTakeMissions(player, npc))
+            if (station_dantooine_condition_canTakeMissions(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition_rebelLanding(player, npc))
+            if (station_dantooine_condition_rebelLanding(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_dantooine_condition_canTakeSmuggler(player, npc))
+            if (station_dantooine_condition_canTakeSmuggler(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9954,50 +9953,50 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5f4f6d25");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 32);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_completedTatooineDelivery(player, npc))
+        if (station_dantooine_condition_completedTatooineDelivery(player, self))
         {
-            station_dantooine_action_rewardTatPickup(player, npc);
+            station_dantooine_action_rewardTatPickup(player, self);
             string_id message = new string_id(c_stringFile, "s_15716a1");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canTakeMissions(player, npc))
+            if (station_dantooine_condition_canTakeMissions(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition_rebelLanding(player, npc))
+            if (station_dantooine_condition_rebelLanding(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_dantooine_condition_canTakeSmuggler(player, npc))
+            if (station_dantooine_condition_canTakeSmuggler(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -10028,50 +10027,50 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5f4f6d25");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 32);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_completedCorelliaDelivery(player, npc))
+        if (station_dantooine_condition_completedCorelliaDelivery(player, self))
         {
-            station_dantooine_action_rewardCorelliaPickup(player, npc);
+            station_dantooine_action_rewardCorelliaPickup(player, self);
             string_id message = new string_id(c_stringFile, "s_b16218ce");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canTakeMissions(player, npc))
+            if (station_dantooine_condition_canTakeMissions(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition_rebelLanding(player, npc))
+            if (station_dantooine_condition_rebelLanding(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_dantooine_condition_canTakeSmuggler(player, npc))
+            if (station_dantooine_condition_canTakeSmuggler(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -10102,28 +10101,28 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5f4f6d25");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 32);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_wonLandingMission(player, npc))
+        if (station_dantooine_condition_wonLandingMission(player, self))
         {
-            station_dantooine_action_rewardLanding(player, npc);
+            station_dantooine_action_rewardLanding(player, self);
             string_id message = new string_id(c_stringFile, "s_f7587a6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_hasWonRepair(player, npc))
+        if (station_dantooine_condition_hasWonRepair(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1841fbde");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -10138,22 +10137,22 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5076c164");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 28);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition_wonSmuggler(player, npc))
+        if (station_dantooine_condition_wonSmuggler(player, self))
         {
-            station_dantooine_action_rewardSmuggler(player, npc);
+            station_dantooine_action_rewardSmuggler(player, self);
             string_id message = new string_id(c_stringFile, "s_2ba33f79");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -10168,49 +10167,49 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9553e32c");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 30);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dantooine_condition__defaultCondition(player, npc))
+        if (station_dantooine_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_73a08149");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dantooine_condition__defaultCondition(player, npc))
+            if (station_dantooine_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dantooine_condition_canAfford25(player, npc))
+            if (station_dantooine_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dantooine_condition_canTakeMissions(player, npc))
+            if (station_dantooine_condition_canTakeMissions(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dantooine_condition_rebelLanding(player, npc))
+            if (station_dantooine_condition_rebelLanding(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_dantooine_condition_canTakeSmuggler(player, npc))
+            if (station_dantooine_condition_canTakeSmuggler(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -10241,15 +10240,15 @@ public class station_dantooine extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5f4f6d25");
                 }
                 utils.setScriptVar(player, "conversation.station_dantooine.branchId", 32);
-                npcStartConversation(player, npc, "station_dantooine", message, responses);
+                npcStartConversation(player, self, "station_dantooine", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -10258,217 +10257,216 @@ public class station_dantooine extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.station_dantooine.branchId");
-        if (branchId == 2 && station_dantooine_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && station_dantooine_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && station_dantooine_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && station_dantooine_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && station_dantooine_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && station_dantooine_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && station_dantooine_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && station_dantooine_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && station_dantooine_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && station_dantooine_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && station_dantooine_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && station_dantooine_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && station_dantooine_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && station_dantooine_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && station_dantooine_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && station_dantooine_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && station_dantooine_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && station_dantooine_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && station_dantooine_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && station_dantooine_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && station_dantooine_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && station_dantooine_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && station_dantooine_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && station_dantooine_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && station_dantooine_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && station_dantooine_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && station_dantooine_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && station_dantooine_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && station_dantooine_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && station_dantooine_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && station_dantooine_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && station_dantooine_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && station_dantooine_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && station_dantooine_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && station_dantooine_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && station_dantooine_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && station_dantooine_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && station_dantooine_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && station_dantooine_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && station_dantooine_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && station_dantooine_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && station_dantooine_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && station_dantooine_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && station_dantooine_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && station_dantooine_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && station_dantooine_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && station_dantooine_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && station_dantooine_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && station_dantooine_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && station_dantooine_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && station_dantooine_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && station_dantooine_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && station_dantooine_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && station_dantooine_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && station_dantooine_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && station_dantooine_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && station_dantooine_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && station_dantooine_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && station_dantooine_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && station_dantooine_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && station_dantooine_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && station_dantooine_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && station_dantooine_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && station_dantooine_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && station_dantooine_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && station_dantooine_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && station_dantooine_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && station_dantooine_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && station_dantooine_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && station_dantooine_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && station_dantooine_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && station_dantooine_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && station_dantooine_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && station_dantooine_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && station_dantooine_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && station_dantooine_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && station_dantooine_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && station_dantooine_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && station_dantooine_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && station_dantooine_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && station_dantooine_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && station_dantooine_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && station_dantooine_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && station_dantooine_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && station_dantooine_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && station_dantooine_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && station_dantooine_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && station_dantooine_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && station_dantooine_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && station_dantooine_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 98 && station_dantooine_handleBranch98(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 98 && station_dantooine_handleBranch98(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 99 && station_dantooine_handleBranch99(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 99 && station_dantooine_handleBranch99(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 100 && station_dantooine_handleBranch100(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 100 && station_dantooine_handleBranch100(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 105 && station_dantooine_handleBranch105(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 105 && station_dantooine_handleBranch105(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 106 && station_dantooine_handleBranch106(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 106 && station_dantooine_handleBranch106(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 107 && station_dantooine_handleBranch107(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 107 && station_dantooine_handleBranch107(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 108 && station_dantooine_handleBranch108(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 108 && station_dantooine_handleBranch108(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.station_dantooine.branchId");
         return SCRIPT_CONTINUE;
     }

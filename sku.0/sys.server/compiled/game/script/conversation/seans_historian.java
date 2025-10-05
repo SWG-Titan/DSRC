@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class seans_historian extends script.base_script
+public class seans_historian extends base_script
 {
     public seans_historian()
     {

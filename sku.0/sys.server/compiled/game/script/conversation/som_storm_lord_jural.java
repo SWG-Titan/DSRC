@@ -947,26 +947,25 @@ public class som_storm_lord_jural extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (som_storm_lord_jural_condition_hasWonMission(player, npc))
+        if (som_storm_lord_jural_condition_hasWonMission(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_62");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_storm_lord_jural_condition_finishedTaskFour(player, npc))
+        if (som_storm_lord_jural_condition_finishedTaskFour(player, self))
         {
-            doAnimationAction(npc, "offer_affection");
+            doAnimationAction(self, "offer_affection");
             string_id message = new string_id(c_stringFile, "s_55");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_storm_lord_jural_condition__defaultCondition(player, npc))
+            if (som_storm_lord_jural_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -981,29 +980,29 @@ public class som_storm_lord_jural extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_63");
                 }
                 utils.setScriptVar(player, "conversation.som_storm_lord_jural.branchId", 2);
-                npcStartConversation(player, npc, "som_storm_lord_jural", message, responses);
+                npcStartConversation(player, self, "som_storm_lord_jural", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_storm_lord_jural_condition_isOnTaskFour(player, npc))
+        if (som_storm_lord_jural_condition_isOnTaskFour(player, self))
         {
-            doAnimationAction(npc, "whisper");
+            doAnimationAction(self, "whisper");
             string_id message = new string_id(c_stringFile, "s_8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_storm_lord_jural_condition_finishedTaskThree(player, npc))
+        if (som_storm_lord_jural_condition_finishedTaskThree(player, self))
         {
-            doAnimationAction(npc, "celebrate");
+            doAnimationAction(self, "celebrate");
             string_id message = new string_id(c_stringFile, "s_10");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_storm_lord_jural_condition__defaultCondition(player, npc))
+            if (som_storm_lord_jural_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1018,29 +1017,29 @@ public class som_storm_lord_jural extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_56");
                 }
                 utils.setScriptVar(player, "conversation.som_storm_lord_jural.branchId", 5);
-                npcStartConversation(player, npc, "som_storm_lord_jural", message, responses);
+                npcStartConversation(player, self, "som_storm_lord_jural", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_storm_lord_jural_condition_isOnTaskThree(player, npc))
+        if (som_storm_lord_jural_condition_isOnTaskThree(player, self))
         {
-            doAnimationAction(npc, "hug_self");
+            doAnimationAction(self, "hug_self");
             string_id message = new string_id(c_stringFile, "s_18");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_storm_lord_jural_condition_finishedTaskTwo(player, npc))
+        if (som_storm_lord_jural_condition_finishedTaskTwo(player, self))
         {
-            doAnimationAction(npc, "kisscheek");
+            doAnimationAction(self, "kisscheek");
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_storm_lord_jural_condition__defaultCondition(player, npc))
+            if (som_storm_lord_jural_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1055,29 +1054,29 @@ public class som_storm_lord_jural extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_45");
                 }
                 utils.setScriptVar(player, "conversation.som_storm_lord_jural.branchId", 10);
-                npcStartConversation(player, npc, "som_storm_lord_jural", message, responses);
+                npcStartConversation(player, self, "som_storm_lord_jural", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_storm_lord_jural_condition_isOnTaskTwo(player, npc))
+        if (som_storm_lord_jural_condition_isOnTaskTwo(player, self))
         {
-            doAnimationAction(npc, "weeping");
+            doAnimationAction(self, "weeping");
             string_id message = new string_id(c_stringFile, "s_32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_storm_lord_jural_condition_finishedTaskOne(player, npc))
+        if (som_storm_lord_jural_condition_finishedTaskOne(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_storm_lord_jural_condition__defaultCondition(player, npc))
+            if (som_storm_lord_jural_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1092,29 +1091,29 @@ public class som_storm_lord_jural extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37");
                 }
                 utils.setScriptVar(player, "conversation.som_storm_lord_jural.branchId", 17);
-                npcStartConversation(player, npc, "som_storm_lord_jural", message, responses);
+                npcStartConversation(player, self, "som_storm_lord_jural", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_storm_lord_jural_condition_isOnTaskOne(player, npc))
+        if (som_storm_lord_jural_condition_isOnTaskOne(player, self))
         {
-            doAnimationAction(npc, "weeping");
+            doAnimationAction(self, "weeping");
             string_id message = new string_id(c_stringFile, "s_72");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_storm_lord_jural_condition__defaultCondition(player, npc))
+        if (som_storm_lord_jural_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
+            doAnimationAction(self, "shake_head_disgust");
             string_id message = new string_id(c_stringFile, "s_74");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_storm_lord_jural_condition__defaultCondition(player, npc))
+            if (som_storm_lord_jural_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1129,15 +1128,15 @@ public class som_storm_lord_jural extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_76");
                 }
                 utils.setScriptVar(player, "conversation.som_storm_lord_jural.branchId", 23);
-                npcStartConversation(player, npc, "som_storm_lord_jural", message, responses);
+                npcStartConversation(player, self, "som_storm_lord_jural", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1146,97 +1145,96 @@ public class som_storm_lord_jural extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.som_storm_lord_jural.branchId");
-        if (branchId == 2 && som_storm_lord_jural_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && som_storm_lord_jural_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && som_storm_lord_jural_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && som_storm_lord_jural_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && som_storm_lord_jural_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && som_storm_lord_jural_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && som_storm_lord_jural_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && som_storm_lord_jural_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && som_storm_lord_jural_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && som_storm_lord_jural_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && som_storm_lord_jural_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && som_storm_lord_jural_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && som_storm_lord_jural_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && som_storm_lord_jural_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && som_storm_lord_jural_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && som_storm_lord_jural_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && som_storm_lord_jural_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && som_storm_lord_jural_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && som_storm_lord_jural_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && som_storm_lord_jural_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && som_storm_lord_jural_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && som_storm_lord_jural_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && som_storm_lord_jural_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && som_storm_lord_jural_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && som_storm_lord_jural_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && som_storm_lord_jural_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && som_storm_lord_jural_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && som_storm_lord_jural_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && som_storm_lord_jural_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && som_storm_lord_jural_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && som_storm_lord_jural_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && som_storm_lord_jural_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && som_storm_lord_jural_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && som_storm_lord_jural_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && som_storm_lord_jural_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && som_storm_lord_jural_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && som_storm_lord_jural_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && som_storm_lord_jural_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && som_storm_lord_jural_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && som_storm_lord_jural_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && som_storm_lord_jural_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && som_storm_lord_jural_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && som_storm_lord_jural_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && som_storm_lord_jural_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.som_storm_lord_jural.branchId");
         return SCRIPT_CONTINUE;
     }

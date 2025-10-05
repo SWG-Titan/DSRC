@@ -456,25 +456,24 @@ public class tatooine_eisley_reimos_v2 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_eisley_reimos_v2_condition_completedShippingOut(player, npc))
+        if (tatooine_eisley_reimos_v2_condition_completedShippingOut(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_eisley_reimos_v2_condition_lostButton(player, npc))
+            if (tatooine_eisley_reimos_v2_condition_lostButton(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -493,21 +492,21 @@ public class tatooine_eisley_reimos_v2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_35");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_reimos_v2.branchId", 1);
-                npcStartConversation(player, npc, "tatooine_eisley_reimos_v2", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_reimos_v2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_reimos_v2_condition_lostShippingOut(player, npc))
+        if (tatooine_eisley_reimos_v2_condition_lostShippingOut(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -522,21 +521,21 @@ public class tatooine_eisley_reimos_v2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_32");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_reimos_v2.branchId", 5);
-                npcStartConversation(player, npc, "tatooine_eisley_reimos_v2", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_reimos_v2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_reimos_v2_condition_onShippingOut(player, npc))
+        if (tatooine_eisley_reimos_v2_condition_onShippingOut(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_16");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -551,21 +550,21 @@ public class tatooine_eisley_reimos_v2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_30");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_reimos_v2.branchId", 7);
-                npcStartConversation(player, npc, "tatooine_eisley_reimos_v2", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_reimos_v2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_reimos_v2_condition_onDIv2(player, npc))
+        if (tatooine_eisley_reimos_v2_condition_onDIv2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_24");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -580,21 +579,21 @@ public class tatooine_eisley_reimos_v2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_reimos_v2.branchId", 9);
-                npcStartConversation(player, npc, "tatooine_eisley_reimos_v2", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_reimos_v2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_reimos_v2_condition_completedDelivery(player, npc))
+        if (tatooine_eisley_reimos_v2_condition_completedDelivery(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_42");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -609,21 +608,21 @@ public class tatooine_eisley_reimos_v2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_44");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_reimos_v2.branchId", 11);
-                npcStartConversation(player, npc, "tatooine_eisley_reimos_v2", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_reimos_v2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, npc))
+        if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_68");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_reimos_v2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -638,15 +637,15 @@ public class tatooine_eisley_reimos_v2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_70");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_reimos_v2.branchId", 18);
-                npcStartConversation(player, npc, "tatooine_eisley_reimos_v2", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_reimos_v2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -655,61 +654,60 @@ public class tatooine_eisley_reimos_v2 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_eisley_reimos_v2.branchId");
-        if (branchId == 1 && tatooine_eisley_reimos_v2_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && tatooine_eisley_reimos_v2_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && tatooine_eisley_reimos_v2_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_eisley_reimos_v2_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tatooine_eisley_reimos_v2_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_eisley_reimos_v2_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && tatooine_eisley_reimos_v2_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && tatooine_eisley_reimos_v2_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tatooine_eisley_reimos_v2_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tatooine_eisley_reimos_v2_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && tatooine_eisley_reimos_v2_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && tatooine_eisley_reimos_v2_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && tatooine_eisley_reimos_v2_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && tatooine_eisley_reimos_v2_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && tatooine_eisley_reimos_v2_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && tatooine_eisley_reimos_v2_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tatooine_eisley_reimos_v2_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tatooine_eisley_reimos_v2_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && tatooine_eisley_reimos_v2_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && tatooine_eisley_reimos_v2_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && tatooine_eisley_reimos_v2_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && tatooine_eisley_reimos_v2_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && tatooine_eisley_reimos_v2_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && tatooine_eisley_reimos_v2_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && tatooine_eisley_reimos_v2_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && tatooine_eisley_reimos_v2_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_eisley_reimos_v2.branchId");
         return SCRIPT_CONTINUE;
     }

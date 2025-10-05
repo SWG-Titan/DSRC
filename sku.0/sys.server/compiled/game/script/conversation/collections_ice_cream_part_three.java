@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class collections_ice_cream_part_three extends script.base_script
+public class collections_ice_cream_part_three extends base_script
 {
     public collections_ice_cream_part_three()
     {

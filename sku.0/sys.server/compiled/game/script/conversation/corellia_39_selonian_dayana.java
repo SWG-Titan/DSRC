@@ -95,39 +95,38 @@ public class corellia_39_selonian_dayana extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_39_selonian_dayana_condition_taskOneComplete(player, npc))
+        if (corellia_39_selonian_dayana_condition_taskOneComplete(player, self))
         {
-            corellia_39_selonian_dayana_action_taskOneCompletedSignal(player, npc);
+            corellia_39_selonian_dayana_action_taskOneCompletedSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_selonian_dayana_condition_taskOneActive(player, npc))
+        if (corellia_39_selonian_dayana_condition_taskOneActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_49");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_selonian_dayana_condition__defaultCondition(player, npc))
+        if (corellia_39_selonian_dayana_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "point_forward");
+            doAnimationAction(self, "point_forward");
             string_id message = new string_id(c_stringFile, "s_43");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_selonian_dayana_condition__defaultCondition(player, npc))
+            if (corellia_39_selonian_dayana_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_39_selonian_dayana_condition__defaultCondition(player, npc))
+            if (corellia_39_selonian_dayana_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -146,15 +145,15 @@ public class corellia_39_selonian_dayana extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_45");
                 }
                 utils.setScriptVar(player, "conversation.corellia_39_selonian_dayana.branchId", 3);
-                npcStartConversation(player, npc, "corellia_39_selonian_dayana", message, responses);
+                npcStartConversation(player, self, "corellia_39_selonian_dayana", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -163,13 +162,12 @@ public class corellia_39_selonian_dayana extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_39_selonian_dayana.branchId");
-        if (branchId == 3 && corellia_39_selonian_dayana_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corellia_39_selonian_dayana_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_39_selonian_dayana.branchId");
         return SCRIPT_CONTINUE;
     }

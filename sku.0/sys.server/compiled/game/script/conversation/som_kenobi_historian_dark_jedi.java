@@ -6,7 +6,7 @@ import script.library.jedi;
 import script.library.utils;
 import script.*;
 
-public class som_kenobi_historian_dark_jedi extends script.base_script
+public class som_kenobi_historian_dark_jedi extends base_script
 {
     public som_kenobi_historian_dark_jedi()
     {

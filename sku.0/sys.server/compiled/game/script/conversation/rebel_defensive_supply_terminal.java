@@ -3,7 +3,7 @@ package script.conversation;
 import script.*;
 import script.library.*;
 
-public class rebel_defensive_supply_terminal extends script.base_script
+public class rebel_defensive_supply_terminal extends base_script
 {
     public rebel_defensive_supply_terminal()
     {

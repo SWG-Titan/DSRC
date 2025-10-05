@@ -6,7 +6,7 @@ import script.library.space_flags;
 import script.library.space_quest;
 import script.*;
 
-public class nym_technician_1 extends script.base_script
+public class nym_technician_1 extends base_script
 {
     public nym_technician_1()
     {

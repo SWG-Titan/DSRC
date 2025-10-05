@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class legacy_button_damar extends script.base_script
+public class legacy_button_damar extends base_script
 {
     public legacy_button_damar()
     {

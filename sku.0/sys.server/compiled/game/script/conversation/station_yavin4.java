@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class station_yavin4 extends script.base_script
+public class station_yavin4 extends base_script
 {
     public station_yavin4()
     {
@@ -23258,38 +23258,37 @@ public class station_yavin4 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (station_yavin4_condition_isTooFar(player, npc))
+        if (station_yavin4_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_c3e92bf9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_failedOpening(player, npc))
+        if (station_yavin4_condition_failedOpening(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1642841a");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23312,29 +23311,29 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6c8ffad8");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 2);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_failedOpeningTwo(player, npc))
+        if (station_yavin4_condition_failedOpeningTwo(player, self))
         {
-            station_yavin4_action_grantStationAccess(player, npc);
+            station_yavin4_action_grantStationAccess(player, self);
             string_id message = new string_id(c_stringFile, "s_66b09324");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23353,42 +23352,42 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_12");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 4);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_failedDebrisAssassinate(player, npc))
+        if (station_yavin4_condition_failedDebrisAssassinate(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_b883f442");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23415,42 +23414,42 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c26109ef");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 5);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_failedMassassiOne(player, npc))
+        if (station_yavin4_condition_failedMassassiOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_382df536");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23477,42 +23476,42 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c65f1e3e");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 8);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_failedMassassiTwo(player, npc))
+        if (station_yavin4_condition_failedMassassiTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_bc357ddf");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23539,42 +23538,42 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_bc264042");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 12);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_failedMassassiClosing(player, npc))
+        if (station_yavin4_condition_failedMassassiClosing(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ea72067c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23601,42 +23600,42 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7771bbc9");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 15);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_failedImperialOne(player, npc))
+        if (station_yavin4_condition_failedImperialOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_f87400e1");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23663,42 +23662,42 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3c12de44");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 18);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_failedImperialTwo(player, npc))
+        if (station_yavin4_condition_failedImperialTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_f81ac626");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23725,42 +23724,42 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6ff7e194");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 21);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_failedSmugglerOne(player, npc))
+        if (station_yavin4_condition_failedSmugglerOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_d8fb3431");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23787,21 +23786,21 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36142d2b");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 24);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonOpening(player, npc))
+        if (station_yavin4_condition_wonOpening(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_b745173d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23816,22 +23815,22 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_86922104");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 27);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonOpeningTwo(player, npc))
+        if (station_yavin4_condition_wonOpeningTwo(player, self))
         {
-            station_yavin4_action_giveRewardOpeningTwo(player, npc);
+            station_yavin4_action_giveRewardOpeningTwo(player, self);
             string_id message = new string_id(c_stringFile, "s_4fe53802");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23846,22 +23845,22 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7fab133d");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 29);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonOpeningThree(player, npc))
+        if (station_yavin4_condition_wonOpeningThree(player, self))
         {
-            station_yavin4_action_giveRewardOpeningThree(player, npc);
+            station_yavin4_action_giveRewardOpeningThree(player, self);
             string_id message = new string_id(c_stringFile, "s_d0a3dd21");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23876,21 +23875,21 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_89");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 31);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonDebrisAssassinate(player, npc))
+        if (station_yavin4_condition_wonDebrisAssassinate(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4f34ceb5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23905,21 +23904,21 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_a5105d38");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 33);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonMassassiOne(player, npc))
+        if (station_yavin4_condition_wonMassassiOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_fb527baf");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23934,21 +23933,21 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_8ac5cbaf");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 35);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonMassassiTwo(player, npc))
+        if (station_yavin4_condition_wonMassassiTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_c1a784c7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -23963,43 +23962,43 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4ed46b5d");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 38);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonMassassiPatrolThree(player, npc))
+        if (station_yavin4_condition_wonMassassiPatrolThree(player, self))
         {
-            station_yavin4_action_setMassassiPatrolThree(player, npc);
+            station_yavin4_action_setMassassiPatrolThree(player, self);
             string_id message = new string_id(c_stringFile, "s_56df1754");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -24026,21 +24025,21 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_97155f17");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 40);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonMassassiClosing(player, npc))
+        if (station_yavin4_condition_wonMassassiClosing(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1be05588");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -24055,21 +24054,21 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_e6b2affe");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 43);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonImperialOne(player, npc))
+        if (station_yavin4_condition_wonImperialOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_27407967");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -24084,21 +24083,21 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_2c9ad69a");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 45);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonImperailTwo(player, npc))
+        if (station_yavin4_condition_wonImperailTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5171cf99");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -24113,21 +24112,21 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_362a48e0");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 47);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition_wonSmugglerOne(player, npc))
+        if (station_yavin4_condition_wonSmugglerOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ca8c30c3");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -24142,105 +24141,105 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6e605bd6");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 49);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_yavin4_condition__defaultCondition(player, npc))
+        if (station_yavin4_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_a8657d8a");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_yavin4_condition__defaultCondition(player, npc))
+            if (station_yavin4_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_yavin4_condition_canAfford25(player, npc))
+            if (station_yavin4_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_yavin4_condition_notOnOpening(player, npc))
+            if (station_yavin4_condition_notOnOpening(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_yavin4_condition_getDebrisAssassinate(player, npc))
+            if (station_yavin4_condition_getDebrisAssassinate(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_yavin4_condition_hasCompletedOpening(player, npc))
+            if (station_yavin4_condition_hasCompletedOpening(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (station_yavin4_condition_canTakeDuty(player, npc))
+            if (station_yavin4_condition_canTakeDuty(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (station_yavin4_condition_notOnMassassi(player, npc))
+            if (station_yavin4_condition_notOnMassassi(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (station_yavin4_condition_notOnImperial(player, npc))
+            if (station_yavin4_condition_notOnImperial(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse7 = true;
             }
             boolean hasResponse8 = false;
-            if (station_yavin4_condition_notOnSmuggler(player, npc))
+            if (station_yavin4_condition_notOnSmuggler(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse8 = true;
             }
             boolean hasResponse9 = false;
-            if (station_yavin4_condition_notOnMassassiTwo(player, npc))
+            if (station_yavin4_condition_notOnMassassiTwo(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse9 = true;
             }
             boolean hasResponse10 = false;
-            if (station_yavin4_condition_notOnMassassiClosing(player, npc))
+            if (station_yavin4_condition_notOnMassassiClosing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse10 = true;
             }
             boolean hasResponse11 = false;
-            if (station_yavin4_condition_notOnImperialTwo(player, npc))
+            if (station_yavin4_condition_notOnImperialTwo(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse11 = true;
             }
             boolean hasResponse12 = false;
-            if (station_yavin4_condition_canTakeQuest(player, npc))
+            if (station_yavin4_condition_canTakeQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -24303,15 +24302,15 @@ public class station_yavin4 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_266");
                 }
                 utils.setScriptVar(player, "conversation.station_yavin4.branchId", 51);
-                npcStartConversation(player, npc, "station_yavin4", message, responses);
+                npcStartConversation(player, self, "station_yavin4", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -24320,281 +24319,280 @@ public class station_yavin4 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.station_yavin4.branchId");
-        if (branchId == 2 && station_yavin4_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && station_yavin4_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && station_yavin4_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && station_yavin4_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && station_yavin4_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && station_yavin4_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && station_yavin4_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && station_yavin4_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && station_yavin4_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && station_yavin4_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && station_yavin4_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && station_yavin4_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && station_yavin4_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && station_yavin4_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && station_yavin4_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && station_yavin4_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && station_yavin4_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && station_yavin4_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && station_yavin4_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && station_yavin4_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && station_yavin4_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && station_yavin4_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && station_yavin4_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && station_yavin4_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && station_yavin4_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && station_yavin4_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && station_yavin4_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && station_yavin4_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && station_yavin4_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && station_yavin4_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && station_yavin4_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && station_yavin4_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && station_yavin4_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && station_yavin4_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && station_yavin4_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && station_yavin4_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && station_yavin4_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && station_yavin4_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && station_yavin4_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && station_yavin4_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && station_yavin4_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && station_yavin4_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && station_yavin4_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && station_yavin4_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && station_yavin4_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && station_yavin4_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && station_yavin4_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && station_yavin4_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && station_yavin4_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && station_yavin4_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && station_yavin4_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && station_yavin4_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && station_yavin4_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && station_yavin4_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && station_yavin4_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && station_yavin4_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && station_yavin4_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && station_yavin4_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && station_yavin4_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && station_yavin4_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && station_yavin4_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && station_yavin4_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && station_yavin4_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && station_yavin4_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && station_yavin4_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && station_yavin4_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && station_yavin4_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && station_yavin4_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && station_yavin4_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && station_yavin4_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && station_yavin4_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && station_yavin4_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && station_yavin4_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && station_yavin4_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && station_yavin4_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && station_yavin4_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && station_yavin4_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && station_yavin4_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && station_yavin4_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && station_yavin4_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && station_yavin4_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && station_yavin4_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && station_yavin4_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && station_yavin4_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && station_yavin4_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && station_yavin4_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && station_yavin4_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && station_yavin4_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && station_yavin4_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && station_yavin4_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && station_yavin4_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && station_yavin4_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && station_yavin4_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && station_yavin4_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && station_yavin4_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && station_yavin4_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && station_yavin4_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && station_yavin4_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && station_yavin4_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && station_yavin4_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && station_yavin4_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && station_yavin4_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && station_yavin4_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && station_yavin4_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && station_yavin4_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && station_yavin4_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && station_yavin4_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && station_yavin4_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && station_yavin4_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && station_yavin4_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && station_yavin4_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && station_yavin4_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && station_yavin4_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && station_yavin4_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && station_yavin4_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && station_yavin4_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && station_yavin4_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && station_yavin4_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && station_yavin4_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && station_yavin4_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && station_yavin4_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && station_yavin4_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 98 && station_yavin4_handleBranch98(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 98 && station_yavin4_handleBranch98(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 100 && station_yavin4_handleBranch100(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 100 && station_yavin4_handleBranch100(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 102 && station_yavin4_handleBranch102(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 102 && station_yavin4_handleBranch102(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 103 && station_yavin4_handleBranch103(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 103 && station_yavin4_handleBranch103(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 108 && station_yavin4_handleBranch108(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 108 && station_yavin4_handleBranch108(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 110 && station_yavin4_handleBranch110(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 110 && station_yavin4_handleBranch110(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 114 && station_yavin4_handleBranch114(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 114 && station_yavin4_handleBranch114(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.station_yavin4.branchId");
         return SCRIPT_CONTINUE;
     }

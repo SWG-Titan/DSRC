@@ -1347,47 +1347,46 @@ public class vana_sage extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (vana_sage_condition_hasCompletedThemePark(player, npc))
+        if (vana_sage_condition_hasCompletedThemePark(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_105");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition_allQuestsComplete(player, npc))
+        if (vana_sage_condition_allQuestsComplete(player, self))
         {
-            doAnimationAction(npc, "handshake_tandem");
+            doAnimationAction(self, "handshake_tandem");
             string_id message = new string_id(c_stringFile, "s_99");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition_hasCompletedPirate(player, npc))
+        if (vana_sage_condition_hasCompletedPirate(player, self))
         {
-            vana_sage_action_gotoJinkins(player, npc);
+            vana_sage_action_gotoJinkins(player, self);
             string_id message = new string_id(c_stringFile, "s_103");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition_hasReturnedWithDroid(player, npc))
+        if (vana_sage_condition_hasReturnedWithDroid(player, self))
         {
-            doAnimationAction(npc, "expect_tip");
+            doAnimationAction(self, "expect_tip");
             string_id message = new string_id(c_stringFile, "s_89");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (vana_sage_condition__defaultCondition(player, npc))
+            if (vana_sage_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1402,28 +1401,28 @@ public class vana_sage extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_90");
                 }
                 utils.setScriptVar(player, "conversation.vana_sage.branchId", 4);
-                npcStartConversation(player, npc, "vana_sage", message, responses);
+                npcStartConversation(player, self, "vana_sage", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition_hasntCompletedPirate(player, npc))
+        if (vana_sage_condition_hasntCompletedPirate(player, self))
         {
-            doAnimationAction(npc, "point_away");
+            doAnimationAction(self, "point_away");
             string_id message = new string_id(c_stringFile, "s_73");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition_metChosterNoPirateQuest(player, npc))
+        if (vana_sage_condition_metChosterNoPirateQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_72");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (vana_sage_condition__defaultCondition(player, npc))
+            if (vana_sage_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1438,22 +1437,22 @@ public class vana_sage extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_101");
                 }
                 utils.setScriptVar(player, "conversation.vana_sage.branchId", 7);
-                npcStartConversation(player, npc, "vana_sage", message, responses);
+                npcStartConversation(player, self, "vana_sage", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition_hasMetChoster(player, npc))
+        if (vana_sage_condition_hasMetChoster(player, self))
         {
-            vana_sage_action_finishChoster(player, npc);
+            vana_sage_action_finishChoster(player, self);
             string_id message = new string_id(c_stringFile, "s_67");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (vana_sage_condition__defaultCondition(player, npc))
+            if (vana_sage_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1468,21 +1467,21 @@ public class vana_sage extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_68");
                 }
                 utils.setScriptVar(player, "conversation.vana_sage.branchId", 8);
-                npcStartConversation(player, npc, "vana_sage", message, responses);
+                npcStartConversation(player, self, "vana_sage", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition_hasNotCompletedChoster(player, npc))
+        if (vana_sage_condition_hasNotCompletedChoster(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (vana_sage_condition__defaultCondition(player, npc))
+            if (vana_sage_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1497,30 +1496,30 @@ public class vana_sage extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_33");
                 }
                 utils.setScriptVar(player, "conversation.vana_sage.branchId", 12);
-                npcStartConversation(player, npc, "vana_sage", message, responses);
+                npcStartConversation(player, self, "vana_sage", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition_hasInitialQuestTask(player, npc))
+        if (vana_sage_condition_hasInitialQuestTask(player, self))
         {
-            doAnimationAction(npc, "nod");
-            vana_sage_action_finishInitialQuest(player, npc);
+            doAnimationAction(self, "nod");
+            vana_sage_action_finishInitialQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_24");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (vana_sage_condition__defaultCondition(player, npc))
+            if (vana_sage_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (vana_sage_condition__defaultCondition(player, npc))
+            if (vana_sage_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1542,27 +1541,27 @@ public class vana_sage extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "vana_sage", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "vana_sage", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition_playerIsHighLvl(player, npc))
+        if (vana_sage_condition_playerIsHighLvl(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             string_id message = new string_id(c_stringFile, "s_83");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (vana_sage_condition__defaultCondition(player, npc))
+            if (vana_sage_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1577,29 +1576,29 @@ public class vana_sage extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_85");
                 }
                 utils.setScriptVar(player, "conversation.vana_sage.branchId", 27);
-                npcStartConversation(player, npc, "vana_sage", message, responses);
+                npcStartConversation(player, self, "vana_sage", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!vana_sage_condition_playerIsHighLvl(player, npc))
+        if (!vana_sage_condition_playerIsHighLvl(player, self))
         {
-            doAnimationAction(npc, "shake_head_no");
+            doAnimationAction(self, "shake_head_no");
             string_id message = new string_id(c_stringFile, "s_102");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (vana_sage_condition__defaultCondition(player, npc))
+        if (vana_sage_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "shake_head_no");
+            doAnimationAction(self, "shake_head_no");
             string_id message = new string_id(c_stringFile, "s_106");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1608,89 +1607,88 @@ public class vana_sage extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.vana_sage.branchId");
-        if (branchId == 4 && vana_sage_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && vana_sage_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && vana_sage_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && vana_sage_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && vana_sage_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && vana_sage_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && vana_sage_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && vana_sage_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && vana_sage_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && vana_sage_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && vana_sage_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && vana_sage_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && vana_sage_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && vana_sage_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && vana_sage_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && vana_sage_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && vana_sage_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && vana_sage_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && vana_sage_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && vana_sage_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && vana_sage_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && vana_sage_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && vana_sage_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && vana_sage_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && vana_sage_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && vana_sage_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && vana_sage_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && vana_sage_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && vana_sage_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && vana_sage_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && vana_sage_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && vana_sage_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && vana_sage_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && vana_sage_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && vana_sage_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && vana_sage_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && vana_sage_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && vana_sage_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && vana_sage_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && vana_sage_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.vana_sage.branchId");
         return SCRIPT_CONTINUE;
     }

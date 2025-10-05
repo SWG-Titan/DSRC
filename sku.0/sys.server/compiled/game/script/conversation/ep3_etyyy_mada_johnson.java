@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class ep3_etyyy_mada_johnson extends script.base_script
+public class ep3_etyyy_mada_johnson extends base_script
 {
     public ep3_etyyy_mada_johnson()
     {
@@ -303,25 +303,24 @@ public class ep3_etyyy_mada_johnson extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_etyyy_mada_johnson_condition_hasCompletedBrodyQuest(player, npc))
+        if (ep3_etyyy_mada_johnson_condition_hasCompletedBrodyQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_252");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -340,34 +339,34 @@ public class ep3_etyyy_mada_johnson extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_474");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_mada_johnson.branchId", 1);
-                npcStartConversation(player, npc, "ep3_etyyy_mada_johnson", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_mada_johnson", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_mada_johnson_condition_returnToJohnsonSmith(player, npc))
+        if (ep3_etyyy_mada_johnson_condition_returnToJohnsonSmith(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_254");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_mada_johnson_condition_isShownPendant(player, npc))
+        if (ep3_etyyy_mada_johnson_condition_isShownPendant(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_256");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -386,34 +385,34 @@ public class ep3_etyyy_mada_johnson extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_266");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_mada_johnson.branchId", 5);
-                npcStartConversation(player, npc, "ep3_etyyy_mada_johnson", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_mada_johnson", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_mada_johnson_condition_hasCompletedWrelaac(player, npc))
+        if (ep3_etyyy_mada_johnson_condition_hasCompletedWrelaac(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_270");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_mada_johnson_condition_hasProof(player, npc))
+        if (ep3_etyyy_mada_johnson_condition_hasProof(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_272");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_mada_johnson_condition_needsProofForWrelaac(player, npc))
+        if (ep3_etyyy_mada_johnson_condition_needsProofForWrelaac(player, self))
         {
-            ep3_etyyy_mada_johnson_action_proofForWrelaac(player, npc);
+            ep3_etyyy_mada_johnson_action_proofForWrelaac(player, self);
             string_id message = new string_id(c_stringFile, "s_274");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -428,35 +427,35 @@ public class ep3_etyyy_mada_johnson extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_276");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_mada_johnson.branchId", 11);
-                npcStartConversation(player, npc, "ep3_etyyy_mada_johnson", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_mada_johnson", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_mada_johnson_condition_seekingWrelaac(player, npc))
+        if (ep3_etyyy_mada_johnson_condition_seekingWrelaac(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_280");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, npc))
+        if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_282");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_mada_johnson_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -475,15 +474,15 @@ public class ep3_etyyy_mada_johnson extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_296");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_mada_johnson.branchId", 14);
-                npcStartConversation(player, npc, "ep3_etyyy_mada_johnson", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_mada_johnson", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -492,33 +491,32 @@ public class ep3_etyyy_mada_johnson extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_etyyy_mada_johnson.branchId");
-        if (branchId == 1 && ep3_etyyy_mada_johnson_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && ep3_etyyy_mada_johnson_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ep3_etyyy_mada_johnson_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_etyyy_mada_johnson_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_etyyy_mada_johnson_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_etyyy_mada_johnson_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_etyyy_mada_johnson_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_etyyy_mada_johnson_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && ep3_etyyy_mada_johnson_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && ep3_etyyy_mada_johnson_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_etyyy_mada_johnson_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_etyyy_mada_johnson_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_etyyy_mada_johnson.branchId");
         return SCRIPT_CONTINUE;
     }

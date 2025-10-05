@@ -23,15 +23,13 @@ public class legacy_head_ev9d9 extends script.base_script
     {
         int questId1 = questGetQuestId("quest/legacy_head_start");
         int questId2 = questGetQuestId("quest/legacy_head_rod");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
     }
     public boolean legacy_head_ev9d9_condition_failedRemodel(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_head_rod");
         int questId2 = questGetQuestId("quest/legacy_head_remodel");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
     }
     public boolean legacy_head_ev9d9_condition_onRunawayGround(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -40,28 +38,24 @@ public class legacy_head_ev9d9 extends script.base_script
     public boolean legacy_head_ev9d9_condition_onRods(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_head_rod");
-        boolean OnTask = (questIsQuestActive(questId1, player));
-        return OnTask;
+        return (questIsQuestActive(questId1, player));
     }
     public boolean legacy_head_ev9d9_condition_onRemodel(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_head_remodel");
-        boolean OnTask = (questIsQuestActive(questId1, player));
-        return OnTask;
+        return (questIsQuestActive(questId1, player));
     }
     public boolean legacy_head_ev9d9_condition_failedReward(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_head_remodel");
         int questId2 = questGetQuestId("quest/legacy_head_ground");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) && (!(questIsQuestActive(questId2, player)) && !(questIsQuestComplete(questId2, player)));
     }
     public boolean legacy_head_ev9d9_condition_onStartEV(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_head_start");
         int ground = groundquests.getTaskId(questId1, "legacy_head_start_e11");
-        boolean onTask = (questIsTaskActive(questId1, ground, player));
-        return onTask;
+        return (questIsTaskActive(questId1, ground, player));
     }
     public boolean legacy_head_ev9d9_condition_hasPilotSkill(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -71,8 +65,7 @@ public class legacy_head_ev9d9 extends script.base_script
     {
         int questId1 = questGetQuestId("quest/legacy_head_remodel");
         int ground = groundquests.getTaskId(questId1, "legacy_head_remodel_e67");
-        boolean onTask = (questIsTaskActive(questId1, ground, player));
-        return onTask;
+        return (questIsTaskActive(questId1, ground, player));
     }
     public boolean legacy_head_ev9d9_condition_failedR3Space(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -81,8 +74,7 @@ public class legacy_head_ev9d9 extends script.base_script
     public boolean legacy_head_ev9d9_condition_onSpaceQuests(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/legacy_head_space");
-        boolean OnTask = (questIsQuestActive(questId1, player));
-        return OnTask;
+        return (questIsQuestActive(questId1, player));
     }
     public boolean legacy_head_ev9d9_condition_hasHead(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -1273,33 +1265,32 @@ public class legacy_head_ev9d9 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (legacy_head_ev9d9_condition_endEV9D9(player, npc))
+        if (legacy_head_ev9d9_condition_endEV9D9(player, self))
         {
-            legacy_head_ev9d9_action_cleanOldQuests(player, npc);
+            legacy_head_ev9d9_action_cleanOldQuests(player, self);
             string_id message = new string_id(c_stringFile, "s_99");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_QuestComplete(player, npc))
+        if (legacy_head_ev9d9_condition_QuestComplete(player, self))
         {
-            legacy_head_ev9d9_action_spaceRewardSignal(player, npc);
+            legacy_head_ev9d9_action_spaceRewardSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_36");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!legacy_head_ev9d9_condition_hasHead(player, npc))
+            if (!legacy_head_ev9d9_condition_hasHead(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (legacy_head_ev9d9_condition_hasHead(player, npc))
+            if (legacy_head_ev9d9_condition_hasHead(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1318,22 +1309,22 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_80");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 2);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_rewardQuestground(player, npc))
+        if (legacy_head_ev9d9_condition_rewardQuestground(player, self))
         {
-            legacy_head_ev9d9_action_facePlayer(player, npc);
+            legacy_head_ev9d9_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_38");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1348,36 +1339,36 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_117");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 5);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_onSpaceQuests(player, npc))
+        if (legacy_head_ev9d9_condition_onSpaceQuests(player, self))
         {
-            legacy_head_ev9d9_action_facePlayer(player, npc);
+            legacy_head_ev9d9_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_47");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (legacy_head_ev9d9_condition_failedR3Space(player, npc))
+            if (legacy_head_ev9d9_condition_failedR3Space(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (legacy_head_ev9d9_condition_winR3Space(player, npc))
+            if (legacy_head_ev9d9_condition_winR3Space(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1400,21 +1391,21 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_98");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 8);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_onRunawayGround(player, npc))
+        if (legacy_head_ev9d9_condition_onRunawayGround(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_123");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1429,29 +1420,29 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_90");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 12);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_remodelComplete(player, npc))
+        if (legacy_head_ev9d9_condition_remodelComplete(player, self))
         {
-            legacy_head_ev9d9_action_rewardRemodel(player, npc);
+            legacy_head_ev9d9_action_rewardRemodel(player, self);
             string_id message = new string_id(c_stringFile, "s_133");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1470,21 +1461,21 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_141");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 14);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_onRemodelReward(player, npc))
+        if (legacy_head_ev9d9_condition_onRemodelReward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_261");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1499,33 +1490,33 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_262");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 21);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_onRemodel(player, npc))
+        if (legacy_head_ev9d9_condition_onRemodel(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_127");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_onRods(player, npc))
+        if (legacy_head_ev9d9_condition_onRods(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_125");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_failedRunaways(player, npc))
+        if (legacy_head_ev9d9_condition_failedRunaways(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_224");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1540,21 +1531,21 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_226");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 25);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_failedRemodel(player, npc))
+        if (legacy_head_ev9d9_condition_failedRemodel(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_223");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition_failedRemodel(player, npc))
+            if (legacy_head_ev9d9_condition_failedRemodel(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1569,21 +1560,21 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_240");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 30);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_failedRod(player, npc))
+        if (legacy_head_ev9d9_condition_failedRod(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_196");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition_failedRod(player, npc))
+            if (legacy_head_ev9d9_condition_failedRod(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1598,21 +1589,21 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_216");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 32);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_failedReward(player, npc))
+        if (legacy_head_ev9d9_condition_failedReward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_244");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1627,29 +1618,29 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_246");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 34);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition_onStartEV(player, npc))
+        if (legacy_head_ev9d9_condition_onStartEV(player, self))
         {
-            legacy_head_ev9d9_action_facePlayer(player, npc);
+            legacy_head_ev9d9_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_79");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+            if (legacy_head_ev9d9_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1668,22 +1659,22 @@ public class legacy_head_ev9d9 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_174");
                 }
                 utils.setScriptVar(player, "conversation.legacy_head_ev9d9.branchId", 36);
-                npcStartConversation(player, npc, "legacy_head_ev9d9", message, responses);
+                npcStartConversation(player, self, "legacy_head_ev9d9", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_head_ev9d9_condition__defaultCondition(player, npc))
+        if (legacy_head_ev9d9_condition__defaultCondition(player, self))
         {
-            legacy_head_ev9d9_action_facePlayer(player, npc);
+            legacy_head_ev9d9_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_180");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1692,93 +1683,92 @@ public class legacy_head_ev9d9 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.legacy_head_ev9d9.branchId");
-        if (branchId == 2 && legacy_head_ev9d9_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && legacy_head_ev9d9_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && legacy_head_ev9d9_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && legacy_head_ev9d9_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && legacy_head_ev9d9_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && legacy_head_ev9d9_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && legacy_head_ev9d9_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && legacy_head_ev9d9_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && legacy_head_ev9d9_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && legacy_head_ev9d9_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && legacy_head_ev9d9_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && legacy_head_ev9d9_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && legacy_head_ev9d9_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && legacy_head_ev9d9_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && legacy_head_ev9d9_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && legacy_head_ev9d9_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && legacy_head_ev9d9_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && legacy_head_ev9d9_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && legacy_head_ev9d9_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && legacy_head_ev9d9_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && legacy_head_ev9d9_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && legacy_head_ev9d9_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && legacy_head_ev9d9_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && legacy_head_ev9d9_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && legacy_head_ev9d9_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && legacy_head_ev9d9_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && legacy_head_ev9d9_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && legacy_head_ev9d9_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && legacy_head_ev9d9_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && legacy_head_ev9d9_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && legacy_head_ev9d9_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && legacy_head_ev9d9_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && legacy_head_ev9d9_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && legacy_head_ev9d9_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && legacy_head_ev9d9_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && legacy_head_ev9d9_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && legacy_head_ev9d9_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && legacy_head_ev9d9_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && legacy_head_ev9d9_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && legacy_head_ev9d9_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && legacy_head_ev9d9_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && legacy_head_ev9d9_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.legacy_head_ev9d9.branchId");
         return SCRIPT_CONTINUE;
     }

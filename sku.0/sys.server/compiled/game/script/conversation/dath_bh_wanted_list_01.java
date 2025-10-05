@@ -2434,30 +2434,29 @@ public class dath_bh_wanted_list_01 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (dath_bh_wanted_list_01_condition_has_hate(player, npc))
+        if (dath_bh_wanted_list_01_condition_has_hate(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             string_id message = new string_id(c_stringFile, "s_3a71c840");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition_alreadyHasAQuest(player, npc))
+        if (dath_bh_wanted_list_01_condition_alreadyHasAQuest(player, self))
         {
-            doAnimationAction(npc, "shrug_shoulders");
+            doAnimationAction(self, "shrug_shoulders");
             string_id message = new string_id(c_stringFile, "s_6a1562ad");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (dath_bh_wanted_list_01_condition__defaultCondition(player, npc))
+            if (dath_bh_wanted_list_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2472,45 +2471,45 @@ public class dath_bh_wanted_list_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6c03db3");
                 }
                 setObjVar(player, "conversation.dath_bh_wanted_list_01.branchId", 2);
-                npcStartConversation(player, npc, "dath_bh_wanted_list_01", message, responses);
+                npcStartConversation(player, self, "dath_bh_wanted_list_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition_hasFailed_Quest_2(player, npc))
+        if (dath_bh_wanted_list_01_condition_hasFailed_Quest_2(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
-            dath_bh_wanted_list_01_action_giveQuest_Quest_2(player, npc);
+            doAnimationAction(self, "shake_head_disgust");
+            dath_bh_wanted_list_01_action_giveQuest_Quest_2(player, self);
             string_id message = new string_id(c_stringFile, "s_43d9d825");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition_hasFailed_Quest_1(player, npc))
+        if (dath_bh_wanted_list_01_condition_hasFailed_Quest_1(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
-            dath_bh_wanted_list_01_action_giveQuest_Quest_1(player, npc);
+            doAnimationAction(self, "shake_head_disgust");
+            dath_bh_wanted_list_01_action_giveQuest_Quest_1(player, self);
             string_id message = new string_id(c_stringFile, "s_9c098d52");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition_hasBeenRewarded_Quest_4(player, npc))
+        if (dath_bh_wanted_list_01_condition_hasBeenRewarded_Quest_4(player, self))
         {
-            doAnimationAction(npc, "rub_chin_thoughtful");
+            doAnimationAction(self, "rub_chin_thoughtful");
             string_id message = new string_id(c_stringFile, "s_89b2deb1");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (dath_bh_wanted_list_01_condition__defaultCondition(player, npc))
+            if (dath_bh_wanted_list_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (dath_bh_wanted_list_01_condition__defaultCondition(player, npc))
+            if (dath_bh_wanted_list_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2529,23 +2528,23 @@ public class dath_bh_wanted_list_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_ff607592");
                 }
                 setObjVar(player, "conversation.dath_bh_wanted_list_01.branchId", 6);
-                npcStartConversation(player, npc, "dath_bh_wanted_list_01", message, responses);
+                npcStartConversation(player, self, "dath_bh_wanted_list_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition_hasCompleted_Quest_4(player, npc))
+        if (dath_bh_wanted_list_01_condition_hasCompleted_Quest_4(player, self))
         {
-            doAnimationAction(npc, "snap_finger2");
-            dath_bh_wanted_list_01_action_giveReward_Quest_4(player, npc);
+            doAnimationAction(self, "snap_finger2");
+            dath_bh_wanted_list_01_action_giveReward_Quest_4(player, self);
             string_id message = new string_id(c_stringFile, "s_a6519855");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (dath_bh_wanted_list_01_condition__defaultCondition(player, npc))
+            if (dath_bh_wanted_list_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2563,27 +2562,27 @@ public class dath_bh_wanted_list_01 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "dath_bh_wanted_list_01", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "dath_bh_wanted_list_01", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition_hasCompleted_Quest_3(player, npc))
+        if (dath_bh_wanted_list_01_condition_hasCompleted_Quest_3(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_a366b511");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!dath_bh_wanted_list_01_condition_hasCompleted_Quest_4(player, npc))
+            if (!dath_bh_wanted_list_01_condition_hasCompleted_Quest_4(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2598,22 +2597,22 @@ public class dath_bh_wanted_list_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6bef416f");
                 }
                 setObjVar(player, "conversation.dath_bh_wanted_list_01.branchId", 11);
-                npcStartConversation(player, npc, "dath_bh_wanted_list_01", message, responses);
+                npcStartConversation(player, self, "dath_bh_wanted_list_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition_hasCompleted_Quest_2(player, npc))
+        if (dath_bh_wanted_list_01_condition_hasCompleted_Quest_2(player, self))
         {
-            doAnimationAction(npc, "rub_chin_thoughtful");
+            doAnimationAction(self, "rub_chin_thoughtful");
             string_id message = new string_id(c_stringFile, "s_fb42a64c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!dath_bh_wanted_list_01_condition_hasCompleted_Quest_3(player, npc))
+            if (!dath_bh_wanted_list_01_condition_hasCompleted_Quest_3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2628,22 +2627,22 @@ public class dath_bh_wanted_list_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_a019416c");
                 }
                 setObjVar(player, "conversation.dath_bh_wanted_list_01.branchId", 22);
-                npcStartConversation(player, npc, "dath_bh_wanted_list_01", message, responses);
+                npcStartConversation(player, self, "dath_bh_wanted_list_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition_hasCompleted_Quest_1(player, npc))
+        if (dath_bh_wanted_list_01_condition_hasCompleted_Quest_1(player, self))
         {
-            doAnimationAction(npc, "rub_chin_thoughtful");
+            doAnimationAction(self, "rub_chin_thoughtful");
             string_id message = new string_id(c_stringFile, "s_aa66418e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!dath_bh_wanted_list_01_condition_hasCompleted_Quest_2(player, npc))
+            if (!dath_bh_wanted_list_01_condition_hasCompleted_Quest_2(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2658,22 +2657,22 @@ public class dath_bh_wanted_list_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1287b3");
                 }
                 setObjVar(player, "conversation.dath_bh_wanted_list_01.branchId", 28);
-                npcStartConversation(player, npc, "dath_bh_wanted_list_01", message, responses);
+                npcStartConversation(player, self, "dath_bh_wanted_list_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition_hasSkill_BOUNTY_HUNTER(player, npc))
+        if (dath_bh_wanted_list_01_condition_hasSkill_BOUNTY_HUNTER(player, self))
         {
-            doAnimationAction(npc, "snap_finger2");
+            doAnimationAction(self, "snap_finger2");
             string_id message = new string_id(c_stringFile, "s_42a7f468");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!dath_bh_wanted_list_01_condition_hasCompleted_Quest_1(player, npc))
+            if (!dath_bh_wanted_list_01_condition_hasCompleted_Quest_1(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2691,27 +2690,27 @@ public class dath_bh_wanted_list_01 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "dath_bh_wanted_list_01", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "dath_bh_wanted_list_01", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (dath_bh_wanted_list_01_condition__defaultCondition(player, npc))
+        if (dath_bh_wanted_list_01_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_d030521");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2720,125 +2719,124 @@ public class dath_bh_wanted_list_01 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = getIntObjVar(player, "conversation.dath_bh_wanted_list_01.branchId");
-        if (branchId == 2 && dath_bh_wanted_list_01_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && dath_bh_wanted_list_01_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && dath_bh_wanted_list_01_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && dath_bh_wanted_list_01_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && dath_bh_wanted_list_01_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && dath_bh_wanted_list_01_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && dath_bh_wanted_list_01_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && dath_bh_wanted_list_01_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && dath_bh_wanted_list_01_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && dath_bh_wanted_list_01_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && dath_bh_wanted_list_01_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && dath_bh_wanted_list_01_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && dath_bh_wanted_list_01_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && dath_bh_wanted_list_01_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && dath_bh_wanted_list_01_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && dath_bh_wanted_list_01_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && dath_bh_wanted_list_01_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && dath_bh_wanted_list_01_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && dath_bh_wanted_list_01_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && dath_bh_wanted_list_01_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && dath_bh_wanted_list_01_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && dath_bh_wanted_list_01_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && dath_bh_wanted_list_01_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && dath_bh_wanted_list_01_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && dath_bh_wanted_list_01_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && dath_bh_wanted_list_01_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && dath_bh_wanted_list_01_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && dath_bh_wanted_list_01_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && dath_bh_wanted_list_01_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && dath_bh_wanted_list_01_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && dath_bh_wanted_list_01_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && dath_bh_wanted_list_01_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && dath_bh_wanted_list_01_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && dath_bh_wanted_list_01_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && dath_bh_wanted_list_01_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && dath_bh_wanted_list_01_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && dath_bh_wanted_list_01_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && dath_bh_wanted_list_01_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && dath_bh_wanted_list_01_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && dath_bh_wanted_list_01_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && dath_bh_wanted_list_01_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && dath_bh_wanted_list_01_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && dath_bh_wanted_list_01_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && dath_bh_wanted_list_01_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && dath_bh_wanted_list_01_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && dath_bh_wanted_list_01_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && dath_bh_wanted_list_01_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && dath_bh_wanted_list_01_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && dath_bh_wanted_list_01_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && dath_bh_wanted_list_01_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && dath_bh_wanted_list_01_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && dath_bh_wanted_list_01_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && dath_bh_wanted_list_01_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && dath_bh_wanted_list_01_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && dath_bh_wanted_list_01_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && dath_bh_wanted_list_01_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && dath_bh_wanted_list_01_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && dath_bh_wanted_list_01_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         removeObjVar(player, "conversation.dath_bh_wanted_list_01.branchId");
         return SCRIPT_CONTINUE;
     }

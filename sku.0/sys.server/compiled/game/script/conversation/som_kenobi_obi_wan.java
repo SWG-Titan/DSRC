@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class som_kenobi_obi_wan extends script.base_script
+public class som_kenobi_obi_wan extends base_script
 {
     public som_kenobi_obi_wan()
     {
@@ -3398,35 +3398,34 @@ public class som_kenobi_obi_wan extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (som_kenobi_obi_wan_condition_completedAll(player, npc))
+        if (som_kenobi_obi_wan_condition_completedAll(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_333");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_obi_wan_condition_atTheEntranceFailed(player, npc))
+        if (som_kenobi_obi_wan_condition_atTheEntranceFailed(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_313");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3448,33 +3447,33 @@ public class som_kenobi_obi_wan extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "som_kenobi_obi_wan", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "som_kenobi_obi_wan", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_obi_wan_condition_abandonedQuest3(player, npc))
+        if (som_kenobi_obi_wan_condition_abandonedQuest3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_335");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3496,33 +3495,33 @@ public class som_kenobi_obi_wan extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "som_kenobi_obi_wan", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "som_kenobi_obi_wan", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_obi_wan_condition_atTheEntrance(player, npc))
+        if (som_kenobi_obi_wan_condition_atTheEntrance(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_162");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3544,33 +3543,33 @@ public class som_kenobi_obi_wan extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "som_kenobi_obi_wan", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "som_kenobi_obi_wan", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_obi_wan_condition_finishedQuestSpared2(player, npc))
+        if (som_kenobi_obi_wan_condition_finishedQuestSpared2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_233");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3592,33 +3591,33 @@ public class som_kenobi_obi_wan extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "som_kenobi_obi_wan", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "som_kenobi_obi_wan", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_obi_wan_condition_finishedQuestKilled2(player, npc))
+        if (som_kenobi_obi_wan_condition_finishedQuestKilled2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_291");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3640,26 +3639,26 @@ public class som_kenobi_obi_wan extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "som_kenobi_obi_wan", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "som_kenobi_obi_wan", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_obi_wan_condition_finishedQuest1(player, npc))
+        if (som_kenobi_obi_wan_condition_finishedQuest1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_96");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3677,33 +3676,33 @@ public class som_kenobi_obi_wan extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "som_kenobi_obi_wan", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "som_kenobi_obi_wan", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_obi_wan_condition_onQuests(player, npc))
+        if (som_kenobi_obi_wan_condition_onQuests(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_227");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_obi_wan_condition_failedQuest1(player, npc))
+            if (som_kenobi_obi_wan_condition_failedQuest1(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3725,34 +3724,34 @@ public class som_kenobi_obi_wan extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "som_kenobi_obi_wan", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "som_kenobi_obi_wan", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_obi_wan_condition_startFirstQuest(player, npc))
+        if (som_kenobi_obi_wan_condition_startFirstQuest(player, self))
         {
-            doAnimationAction(npc, "point_forward");
+            doAnimationAction(self, "point_forward");
             string_id message = new string_id(c_stringFile, "s_106");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+            if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3774,30 +3773,30 @@ public class som_kenobi_obi_wan extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "som_kenobi_obi_wan", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "som_kenobi_obi_wan", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_obi_wan_condition__defaultCondition(player, npc))
+        if (som_kenobi_obi_wan_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_356");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -3806,289 +3805,288 @@ public class som_kenobi_obi_wan extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.som_kenobi_obi_wan.branchId");
-        if (branchId == 2 && som_kenobi_obi_wan_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && som_kenobi_obi_wan_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && som_kenobi_obi_wan_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && som_kenobi_obi_wan_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && som_kenobi_obi_wan_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && som_kenobi_obi_wan_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && som_kenobi_obi_wan_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && som_kenobi_obi_wan_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && som_kenobi_obi_wan_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && som_kenobi_obi_wan_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && som_kenobi_obi_wan_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && som_kenobi_obi_wan_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && som_kenobi_obi_wan_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && som_kenobi_obi_wan_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && som_kenobi_obi_wan_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && som_kenobi_obi_wan_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && som_kenobi_obi_wan_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && som_kenobi_obi_wan_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && som_kenobi_obi_wan_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && som_kenobi_obi_wan_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && som_kenobi_obi_wan_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && som_kenobi_obi_wan_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && som_kenobi_obi_wan_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && som_kenobi_obi_wan_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && som_kenobi_obi_wan_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && som_kenobi_obi_wan_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && som_kenobi_obi_wan_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && som_kenobi_obi_wan_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && som_kenobi_obi_wan_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && som_kenobi_obi_wan_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && som_kenobi_obi_wan_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && som_kenobi_obi_wan_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && som_kenobi_obi_wan_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && som_kenobi_obi_wan_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && som_kenobi_obi_wan_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && som_kenobi_obi_wan_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && som_kenobi_obi_wan_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && som_kenobi_obi_wan_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && som_kenobi_obi_wan_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && som_kenobi_obi_wan_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && som_kenobi_obi_wan_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && som_kenobi_obi_wan_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && som_kenobi_obi_wan_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && som_kenobi_obi_wan_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && som_kenobi_obi_wan_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && som_kenobi_obi_wan_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && som_kenobi_obi_wan_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && som_kenobi_obi_wan_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && som_kenobi_obi_wan_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && som_kenobi_obi_wan_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && som_kenobi_obi_wan_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && som_kenobi_obi_wan_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && som_kenobi_obi_wan_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && som_kenobi_obi_wan_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && som_kenobi_obi_wan_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && som_kenobi_obi_wan_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && som_kenobi_obi_wan_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && som_kenobi_obi_wan_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && som_kenobi_obi_wan_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && som_kenobi_obi_wan_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && som_kenobi_obi_wan_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && som_kenobi_obi_wan_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && som_kenobi_obi_wan_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && som_kenobi_obi_wan_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && som_kenobi_obi_wan_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && som_kenobi_obi_wan_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && som_kenobi_obi_wan_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && som_kenobi_obi_wan_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && som_kenobi_obi_wan_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && som_kenobi_obi_wan_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && som_kenobi_obi_wan_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && som_kenobi_obi_wan_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && som_kenobi_obi_wan_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && som_kenobi_obi_wan_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && som_kenobi_obi_wan_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && som_kenobi_obi_wan_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && som_kenobi_obi_wan_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && som_kenobi_obi_wan_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && som_kenobi_obi_wan_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && som_kenobi_obi_wan_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && som_kenobi_obi_wan_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && som_kenobi_obi_wan_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && som_kenobi_obi_wan_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && som_kenobi_obi_wan_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && som_kenobi_obi_wan_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && som_kenobi_obi_wan_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && som_kenobi_obi_wan_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && som_kenobi_obi_wan_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && som_kenobi_obi_wan_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && som_kenobi_obi_wan_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && som_kenobi_obi_wan_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && som_kenobi_obi_wan_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && som_kenobi_obi_wan_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && som_kenobi_obi_wan_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && som_kenobi_obi_wan_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && som_kenobi_obi_wan_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && som_kenobi_obi_wan_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && som_kenobi_obi_wan_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && som_kenobi_obi_wan_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && som_kenobi_obi_wan_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && som_kenobi_obi_wan_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && som_kenobi_obi_wan_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && som_kenobi_obi_wan_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && som_kenobi_obi_wan_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && som_kenobi_obi_wan_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && som_kenobi_obi_wan_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && som_kenobi_obi_wan_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && som_kenobi_obi_wan_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && som_kenobi_obi_wan_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && som_kenobi_obi_wan_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && som_kenobi_obi_wan_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && som_kenobi_obi_wan_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && som_kenobi_obi_wan_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && som_kenobi_obi_wan_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && som_kenobi_obi_wan_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && som_kenobi_obi_wan_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && som_kenobi_obi_wan_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && som_kenobi_obi_wan_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && som_kenobi_obi_wan_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && som_kenobi_obi_wan_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && som_kenobi_obi_wan_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && som_kenobi_obi_wan_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && som_kenobi_obi_wan_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && som_kenobi_obi_wan_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && som_kenobi_obi_wan_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && som_kenobi_obi_wan_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && som_kenobi_obi_wan_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && som_kenobi_obi_wan_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && som_kenobi_obi_wan_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && som_kenobi_obi_wan_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && som_kenobi_obi_wan_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && som_kenobi_obi_wan_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && som_kenobi_obi_wan_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && som_kenobi_obi_wan_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && som_kenobi_obi_wan_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && som_kenobi_obi_wan_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && som_kenobi_obi_wan_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && som_kenobi_obi_wan_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && som_kenobi_obi_wan_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && som_kenobi_obi_wan_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.som_kenobi_obi_wan.branchId");
         return SCRIPT_CONTINUE;
     }

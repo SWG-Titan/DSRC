@@ -4640,44 +4640,43 @@ public class c_prof_ent_questgiver extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!c_prof_ent_questgiver_condition_isPlayerEntertainer(player, npc))
+        if (!c_prof_ent_questgiver_condition_isPlayerEntertainer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_113");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_prof_ent_questgiver_condition_playerFinishedQuest(player, npc))
+        if (c_prof_ent_questgiver_condition_playerFinishedQuest(player, self))
         {
-            c_prof_ent_questgiver_action_facePlayer(player, npc);
+            c_prof_ent_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1160");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (!c_prof_ent_questgiver_condition_playerOnQuest(player, npc))
+        if (!c_prof_ent_questgiver_condition_playerOnQuest(player, self))
         {
-            doAnimationAction(npc, "greet");
-            c_prof_ent_questgiver_action_facePlayer(player, npc);
+            doAnimationAction(self, "greet");
+            c_prof_ent_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1162");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_prof_ent_questgiver_condition__defaultCondition(player, npc))
+            if (c_prof_ent_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_prof_ent_questgiver_condition__defaultCondition(player, npc))
+            if (c_prof_ent_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4699,48 +4698,48 @@ public class c_prof_ent_questgiver extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "c_prof_ent_questgiver", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "c_prof_ent_questgiver", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_prof_ent_questgiver_condition_playeronFirstPart(player, npc))
+        if (c_prof_ent_questgiver_condition_playeronFirstPart(player, self))
         {
-            c_prof_ent_questgiver_action_facePlayer(player, npc);
+            c_prof_ent_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1214");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!c_prof_ent_questgiver_condition_espaDone(player, npc))
+            if (!c_prof_ent_questgiver_condition_espaDone(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!c_prof_ent_questgiver_condition_bestineDone(player, npc))
+            if (!c_prof_ent_questgiver_condition_bestineDone(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!c_prof_ent_questgiver_condition_anchorDone(player, npc))
+            if (!c_prof_ent_questgiver_condition_anchorDone(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (c_prof_ent_questgiver_condition_playerFinishedFirstPart(player, npc))
+            if (c_prof_ent_questgiver_condition_playerFinishedFirstPart(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4767,29 +4766,29 @@ public class c_prof_ent_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1240");
                 }
                 utils.setScriptVar(player, "conversation.c_prof_ent_questgiver.branchId", 16);
-                npcStartConversation(player, npc, "c_prof_ent_questgiver", message, responses);
+                npcStartConversation(player, self, "c_prof_ent_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_prof_ent_questgiver_condition_playerOnPartyStep(player, npc))
+        if (c_prof_ent_questgiver_condition_playerOnPartyStep(player, self))
         {
-            c_prof_ent_questgiver_action_facePlayer(player, npc);
+            c_prof_ent_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1276");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_prof_ent_questgiver_condition_playerFinishedParty(player, npc))
+            if (c_prof_ent_questgiver_condition_playerFinishedParty(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!c_prof_ent_questgiver_condition_playerFinishedParty(player, npc))
+            if (!c_prof_ent_questgiver_condition_playerFinishedParty(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4808,15 +4807,15 @@ public class c_prof_ent_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1378");
                 }
                 utils.setScriptVar(player, "conversation.c_prof_ent_questgiver.branchId", 32);
-                npcStartConversation(player, npc, "c_prof_ent_questgiver", message, responses);
+                npcStartConversation(player, self, "c_prof_ent_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -4825,189 +4824,188 @@ public class c_prof_ent_questgiver extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_prof_ent_questgiver.branchId");
-        if (branchId == 3 && c_prof_ent_questgiver_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && c_prof_ent_questgiver_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && c_prof_ent_questgiver_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && c_prof_ent_questgiver_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && c_prof_ent_questgiver_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && c_prof_ent_questgiver_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && c_prof_ent_questgiver_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && c_prof_ent_questgiver_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && c_prof_ent_questgiver_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && c_prof_ent_questgiver_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && c_prof_ent_questgiver_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && c_prof_ent_questgiver_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && c_prof_ent_questgiver_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && c_prof_ent_questgiver_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && c_prof_ent_questgiver_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && c_prof_ent_questgiver_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && c_prof_ent_questgiver_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && c_prof_ent_questgiver_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && c_prof_ent_questgiver_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && c_prof_ent_questgiver_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && c_prof_ent_questgiver_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && c_prof_ent_questgiver_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && c_prof_ent_questgiver_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && c_prof_ent_questgiver_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && c_prof_ent_questgiver_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && c_prof_ent_questgiver_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && c_prof_ent_questgiver_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && c_prof_ent_questgiver_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && c_prof_ent_questgiver_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && c_prof_ent_questgiver_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && c_prof_ent_questgiver_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && c_prof_ent_questgiver_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && c_prof_ent_questgiver_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && c_prof_ent_questgiver_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && c_prof_ent_questgiver_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && c_prof_ent_questgiver_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && c_prof_ent_questgiver_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && c_prof_ent_questgiver_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && c_prof_ent_questgiver_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && c_prof_ent_questgiver_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && c_prof_ent_questgiver_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && c_prof_ent_questgiver_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && c_prof_ent_questgiver_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && c_prof_ent_questgiver_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && c_prof_ent_questgiver_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && c_prof_ent_questgiver_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && c_prof_ent_questgiver_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && c_prof_ent_questgiver_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && c_prof_ent_questgiver_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && c_prof_ent_questgiver_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && c_prof_ent_questgiver_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && c_prof_ent_questgiver_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && c_prof_ent_questgiver_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && c_prof_ent_questgiver_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && c_prof_ent_questgiver_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && c_prof_ent_questgiver_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && c_prof_ent_questgiver_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && c_prof_ent_questgiver_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && c_prof_ent_questgiver_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && c_prof_ent_questgiver_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && c_prof_ent_questgiver_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && c_prof_ent_questgiver_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && c_prof_ent_questgiver_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && c_prof_ent_questgiver_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && c_prof_ent_questgiver_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && c_prof_ent_questgiver_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && c_prof_ent_questgiver_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && c_prof_ent_questgiver_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && c_prof_ent_questgiver_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && c_prof_ent_questgiver_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && c_prof_ent_questgiver_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && c_prof_ent_questgiver_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && c_prof_ent_questgiver_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && c_prof_ent_questgiver_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && c_prof_ent_questgiver_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && c_prof_ent_questgiver_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && c_prof_ent_questgiver_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && c_prof_ent_questgiver_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && c_prof_ent_questgiver_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && c_prof_ent_questgiver_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && c_prof_ent_questgiver_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && c_prof_ent_questgiver_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && c_prof_ent_questgiver_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && c_prof_ent_questgiver_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && c_prof_ent_questgiver_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && c_prof_ent_questgiver_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && c_prof_ent_questgiver_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && c_prof_ent_questgiver_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && c_prof_ent_questgiver_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && c_prof_ent_questgiver_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_prof_ent_questgiver.branchId");
         return SCRIPT_CONTINUE;
     }

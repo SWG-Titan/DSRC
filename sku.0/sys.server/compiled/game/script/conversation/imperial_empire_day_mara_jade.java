@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class imperial_empire_day_mara_jade extends script.base_script
+public class imperial_empire_day_mara_jade extends base_script
 {
     public imperial_empire_day_mara_jade()
     {
@@ -2064,39 +2064,38 @@ public class imperial_empire_day_mara_jade extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (imperial_empire_day_mara_jade_condition_isRebelPlayer(player, npc))
+        if (imperial_empire_day_mara_jade_condition_isRebelPlayer(player, self))
         {
-            doAnimationAction(npc, "weeping");
+            doAnimationAction(self, "weeping");
             string_id message = new string_id(c_stringFile, "s_133");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (imperial_empire_day_mara_jade_condition_isNeutralPlayer(player, npc))
+        if (imperial_empire_day_mara_jade_condition_isNeutralPlayer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_134");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (imperial_empire_day_mara_jade_condition_hasAnIncompleteCombatMission(player, npc))
+        if (imperial_empire_day_mara_jade_condition_hasAnIncompleteCombatMission(player, self))
         {
-            imperial_empire_day_mara_jade_action_sendSignalToSpeak(player, npc);
+            imperial_empire_day_mara_jade_action_sendSignalToSpeak(player, self);
             string_id message = new string_id(c_stringFile, "s_79");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, npc))
+            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, npc))
+            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2115,32 +2114,32 @@ public class imperial_empire_day_mara_jade extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_84");
                 }
                 utils.setScriptVar(player, "conversation.imperial_empire_day_mara_jade.branchId", 3);
-                npcStartConversation(player, npc, "imperial_empire_day_mara_jade", message, responses);
+                npcStartConversation(player, self, "imperial_empire_day_mara_jade", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (imperial_empire_day_mara_jade_condition_completed7thQuestHasAutograph(player, npc))
+        if (imperial_empire_day_mara_jade_condition_completed7thQuestHasAutograph(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_165");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (imperial_empire_day_mara_jade_condition_completed7thQuestNoAutograph(player, npc))
+        if (imperial_empire_day_mara_jade_condition_completed7thQuestNoAutograph(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_157");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, npc))
+            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2158,26 +2157,26 @@ public class imperial_empire_day_mara_jade extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "imperial_empire_day_mara_jade", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "imperial_empire_day_mara_jade", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (imperial_empire_day_mara_jade_condition_hasNotStartedSecondMission(player, npc))
+        if (imperial_empire_day_mara_jade_condition_hasNotStartedSecondMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_53");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, npc))
+            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2192,27 +2191,27 @@ public class imperial_empire_day_mara_jade extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_55");
                 }
                 utils.setScriptVar(player, "conversation.imperial_empire_day_mara_jade.branchId", 24);
-                npcStartConversation(player, npc, "imperial_empire_day_mara_jade", message, responses);
+                npcStartConversation(player, self, "imperial_empire_day_mara_jade", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (imperial_empire_day_mara_jade_condition_hasNotCompletedMission1(player, npc))
+        if (imperial_empire_day_mara_jade_condition_hasNotCompletedMission1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_189");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (imperial_empire_day_mara_jade_condition__defaultCondition(player, npc))
+        if (imperial_empire_day_mara_jade_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_159");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, npc))
+            if (imperial_empire_day_mara_jade_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2227,15 +2226,15 @@ public class imperial_empire_day_mara_jade extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_167");
                 }
                 utils.setScriptVar(player, "conversation.imperial_empire_day_mara_jade.branchId", 43);
-                npcStartConversation(player, npc, "imperial_empire_day_mara_jade", message, responses);
+                npcStartConversation(player, self, "imperial_empire_day_mara_jade", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2244,153 +2243,152 @@ public class imperial_empire_day_mara_jade extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.imperial_empire_day_mara_jade.branchId");
-        if (branchId == 3 && imperial_empire_day_mara_jade_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && imperial_empire_day_mara_jade_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && imperial_empire_day_mara_jade_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && imperial_empire_day_mara_jade_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && imperial_empire_day_mara_jade_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && imperial_empire_day_mara_jade_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && imperial_empire_day_mara_jade_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && imperial_empire_day_mara_jade_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && imperial_empire_day_mara_jade_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && imperial_empire_day_mara_jade_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && imperial_empire_day_mara_jade_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && imperial_empire_day_mara_jade_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && imperial_empire_day_mara_jade_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && imperial_empire_day_mara_jade_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && imperial_empire_day_mara_jade_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && imperial_empire_day_mara_jade_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && imperial_empire_day_mara_jade_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && imperial_empire_day_mara_jade_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && imperial_empire_day_mara_jade_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && imperial_empire_day_mara_jade_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && imperial_empire_day_mara_jade_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && imperial_empire_day_mara_jade_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && imperial_empire_day_mara_jade_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && imperial_empire_day_mara_jade_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && imperial_empire_day_mara_jade_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && imperial_empire_day_mara_jade_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && imperial_empire_day_mara_jade_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && imperial_empire_day_mara_jade_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && imperial_empire_day_mara_jade_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && imperial_empire_day_mara_jade_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && imperial_empire_day_mara_jade_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && imperial_empire_day_mara_jade_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && imperial_empire_day_mara_jade_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && imperial_empire_day_mara_jade_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && imperial_empire_day_mara_jade_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && imperial_empire_day_mara_jade_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && imperial_empire_day_mara_jade_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && imperial_empire_day_mara_jade_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && imperial_empire_day_mara_jade_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && imperial_empire_day_mara_jade_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && imperial_empire_day_mara_jade_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && imperial_empire_day_mara_jade_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && imperial_empire_day_mara_jade_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && imperial_empire_day_mara_jade_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && imperial_empire_day_mara_jade_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && imperial_empire_day_mara_jade_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && imperial_empire_day_mara_jade_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && imperial_empire_day_mara_jade_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && imperial_empire_day_mara_jade_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && imperial_empire_day_mara_jade_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && imperial_empire_day_mara_jade_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && imperial_empire_day_mara_jade_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && imperial_empire_day_mara_jade_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && imperial_empire_day_mara_jade_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && imperial_empire_day_mara_jade_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && imperial_empire_day_mara_jade_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && imperial_empire_day_mara_jade_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && imperial_empire_day_mara_jade_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && imperial_empire_day_mara_jade_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && imperial_empire_day_mara_jade_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && imperial_empire_day_mara_jade_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && imperial_empire_day_mara_jade_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && imperial_empire_day_mara_jade_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && imperial_empire_day_mara_jade_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && imperial_empire_day_mara_jade_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && imperial_empire_day_mara_jade_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && imperial_empire_day_mara_jade_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && imperial_empire_day_mara_jade_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && imperial_empire_day_mara_jade_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && imperial_empire_day_mara_jade_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && imperial_empire_day_mara_jade_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && imperial_empire_day_mara_jade_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.imperial_empire_day_mara_jade.branchId");
         return SCRIPT_CONTINUE;
     }

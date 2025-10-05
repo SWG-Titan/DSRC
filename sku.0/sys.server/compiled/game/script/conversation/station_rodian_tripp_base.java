@@ -423,24 +423,23 @@ public class station_rodian_tripp_base extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (station_rodian_tripp_base_condition_isTooFar(player, npc))
+        if (station_rodian_tripp_base_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_204");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_rodian_tripp_base_condition__defaultCondition(player, npc))
+        if (station_rodian_tripp_base_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_578");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_rodian_tripp_base_condition__defaultCondition(player, npc))
+            if (station_rodian_tripp_base_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -455,15 +454,15 @@ public class station_rodian_tripp_base extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_180");
                 }
                 utils.setScriptVar(player, "conversation.station_rodian_tripp_base.branchId", 2);
-                npcStartConversation(player, npc, "station_rodian_tripp_base", message, responses);
+                npcStartConversation(player, self, "station_rodian_tripp_base", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -472,41 +471,40 @@ public class station_rodian_tripp_base extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.station_rodian_tripp_base.branchId");
-        if (branchId == 2 && station_rodian_tripp_base_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && station_rodian_tripp_base_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && station_rodian_tripp_base_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && station_rodian_tripp_base_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && station_rodian_tripp_base_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && station_rodian_tripp_base_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && station_rodian_tripp_base_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && station_rodian_tripp_base_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && station_rodian_tripp_base_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && station_rodian_tripp_base_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && station_rodian_tripp_base_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && station_rodian_tripp_base_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && station_rodian_tripp_base_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && station_rodian_tripp_base_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && station_rodian_tripp_base_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && station_rodian_tripp_base_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.station_rodian_tripp_base.branchId");
         return SCRIPT_CONTINUE;
     }

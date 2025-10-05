@@ -5,7 +5,7 @@ import script.library.anims;
 import script.library.chat;
 import script.*;
 
-public class sample extends script.base_script
+public class sample extends base_script
 {
     public sample()
     {

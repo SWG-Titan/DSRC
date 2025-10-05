@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class som_glyph_hunt extends script.base_script
+public class som_glyph_hunt extends base_script
 {
     public som_glyph_hunt()
     {

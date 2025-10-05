@@ -402,25 +402,24 @@ public class padawan_chef_01 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (padawan_chef_01_condition_completedSuccess(player, npc))
+        if (padawan_chef_01_condition_completedSuccess(player, self))
         {
-            doAnimationAction(npc, "weeping");
+            doAnimationAction(self, "weeping");
             string_id message = new string_id(c_stringFile, "s_e15ebf39");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (padawan_chef_01_condition_wasTargetEliminated(player, npc))
+        if (padawan_chef_01_condition_wasTargetEliminated(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_be6b7d06");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_chef_01_condition__defaultCondition(player, npc))
+            if (padawan_chef_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -435,21 +434,21 @@ public class padawan_chef_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7c9388b6");
                 }
                 utils.setScriptVar(player, "conversation.padawan_chef_01.branchId", 2);
-                npcStartConversation(player, npc, "padawan_chef_01", message, responses);
+                npcStartConversation(player, self, "padawan_chef_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_chef_01_condition_spokeToTarget(player, npc))
+        if (padawan_chef_01_condition_spokeToTarget(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_236213e1");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_chef_01_condition__defaultCondition(player, npc))
+            if (padawan_chef_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -464,28 +463,28 @@ public class padawan_chef_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_53e26aec");
                 }
                 utils.setScriptVar(player, "conversation.padawan_chef_01.branchId", 4);
-                npcStartConversation(player, npc, "padawan_chef_01", message, responses);
+                npcStartConversation(player, self, "padawan_chef_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_chef_01_condition_acceptedQuest(player, npc))
+        if (padawan_chef_01_condition_acceptedQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_39d844c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_chef_01_condition__defaultCondition(player, npc))
+            if (padawan_chef_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (padawan_chef_01_condition__defaultCondition(player, npc))
+            if (padawan_chef_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -504,28 +503,28 @@ public class padawan_chef_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3f4dfda1");
                 }
                 utils.setScriptVar(player, "conversation.padawan_chef_01.branchId", 6);
-                npcStartConversation(player, npc, "padawan_chef_01", message, responses);
+                npcStartConversation(player, self, "padawan_chef_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_chef_01_condition_isTrialPlayer(player, npc))
+        if (padawan_chef_01_condition_isTrialPlayer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_58e01006");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_chef_01_condition__defaultCondition(player, npc))
+            if (padawan_chef_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (padawan_chef_01_condition__defaultCondition(player, npc))
+            if (padawan_chef_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -544,22 +543,22 @@ public class padawan_chef_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9bcbdc35");
                 }
                 utils.setScriptVar(player, "conversation.padawan_chef_01.branchId", 9);
-                npcStartConversation(player, npc, "padawan_chef_01", message, responses);
+                npcStartConversation(player, self, "padawan_chef_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_chef_01_condition__defaultCondition(player, npc))
+        if (padawan_chef_01_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "weeping");
+            doAnimationAction(self, "weeping");
             string_id message = new string_id(c_stringFile, "s_32e459b5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -568,37 +567,36 @@ public class padawan_chef_01 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.padawan_chef_01.branchId");
-        if (branchId == 2 && padawan_chef_01_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && padawan_chef_01_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && padawan_chef_01_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && padawan_chef_01_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && padawan_chef_01_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && padawan_chef_01_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && padawan_chef_01_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && padawan_chef_01_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && padawan_chef_01_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && padawan_chef_01_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && padawan_chef_01_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && padawan_chef_01_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && padawan_chef_01_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && padawan_chef_01_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.padawan_chef_01.branchId");
         return SCRIPT_CONTINUE;
     }

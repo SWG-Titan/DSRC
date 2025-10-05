@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class corellia_cb_sinis extends script.base_script
+public class corellia_cb_sinis extends base_script
 {
     public corellia_cb_sinis()
     {

@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class tatooine_eisley_byxle extends script.base_script
+public class tatooine_eisley_byxle extends base_script
 {
     public tatooine_eisley_byxle()
     {

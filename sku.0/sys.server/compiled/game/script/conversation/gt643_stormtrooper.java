@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class gt643_stormtrooper extends script.base_script
+public class gt643_stormtrooper extends base_script
 {
     public gt643_stormtrooper()
     {

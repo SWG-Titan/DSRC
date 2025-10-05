@@ -152,24 +152,23 @@ public class naboo_theed_sgt_brunser extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (naboo_theed_sgt_brunser_condition_completedBoosterQuest(player, npc))
+        if (naboo_theed_sgt_brunser_condition_completedBoosterQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_37");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_theed_sgt_brunser_condition_lastStepBoosterQuest(player, npc))
+        if (naboo_theed_sgt_brunser_condition_lastStepBoosterQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_73");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_theed_sgt_brunser_condition__defaultCondition(player, npc))
+            if (naboo_theed_sgt_brunser_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -184,28 +183,28 @@ public class naboo_theed_sgt_brunser extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_74");
                 }
                 utils.setScriptVar(player, "conversation.naboo_theed_sgt_brunser.branchId", 2);
-                npcStartConversation(player, npc, "naboo_theed_sgt_brunser", message, responses);
+                npcStartConversation(player, self, "naboo_theed_sgt_brunser", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_theed_sgt_brunser_condition_onBoosterQuest(player, npc))
+        if (naboo_theed_sgt_brunser_condition_onBoosterQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_36");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_theed_sgt_brunser_condition_startBoosterQuest(player, npc))
+        if (naboo_theed_sgt_brunser_condition_startBoosterQuest(player, self))
         {
-            naboo_theed_sgt_brunser_action_endGotoBrunser(player, npc);
+            naboo_theed_sgt_brunser_action_endGotoBrunser(player, self);
             string_id message = new string_id(c_stringFile, "s_38");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_theed_sgt_brunser_condition__defaultCondition(player, npc))
+            if (naboo_theed_sgt_brunser_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -220,21 +219,21 @@ public class naboo_theed_sgt_brunser extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_39");
                 }
                 utils.setScriptVar(player, "conversation.naboo_theed_sgt_brunser.branchId", 5);
-                npcStartConversation(player, npc, "naboo_theed_sgt_brunser", message, responses);
+                npcStartConversation(player, self, "naboo_theed_sgt_brunser", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_theed_sgt_brunser_condition__defaultCondition(player, npc))
+        if (naboo_theed_sgt_brunser_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -243,21 +242,20 @@ public class naboo_theed_sgt_brunser extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.naboo_theed_sgt_brunser.branchId");
-        if (branchId == 2 && naboo_theed_sgt_brunser_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && naboo_theed_sgt_brunser_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && naboo_theed_sgt_brunser_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && naboo_theed_sgt_brunser_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && naboo_theed_sgt_brunser_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && naboo_theed_sgt_brunser_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.naboo_theed_sgt_brunser.branchId");
         return SCRIPT_CONTINUE;
     }

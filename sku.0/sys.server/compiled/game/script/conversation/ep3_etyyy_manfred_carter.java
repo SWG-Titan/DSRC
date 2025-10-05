@@ -224,31 +224,30 @@ public class ep3_etyyy_manfred_carter extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_etyyy_manfred_carter_condition_hasCompletedManfredQuests(player, npc))
+        if (ep3_etyyy_manfred_carter_condition_hasCompletedManfredQuests(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_566");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_manfred_carter_condition_finishedKillChissLeader(player, npc))
+        if (ep3_etyyy_manfred_carter_condition_finishedKillChissLeader(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_657");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -267,35 +266,35 @@ public class ep3_etyyy_manfred_carter extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_668");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_manfred_carter.branchId", 2);
-                npcStartConversation(player, npc, "ep3_etyyy_manfred_carter", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_manfred_carter", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_manfred_carter_condition_isKillingChissLeader(player, npc))
+        if (ep3_etyyy_manfred_carter_condition_isKillingChissLeader(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_658");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_manfred_carter_condition_finishedCollectChissChemicals(player, npc))
+        if (ep3_etyyy_manfred_carter_condition_finishedCollectChissChemicals(player, self))
         {
-            ep3_etyyy_manfred_carter_action_doneCollectChemicals(player, npc);
+            ep3_etyyy_manfred_carter_action_doneCollectChemicals(player, self);
             string_id message = new string_id(c_stringFile, "s_659");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -314,35 +313,35 @@ public class ep3_etyyy_manfred_carter extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_664");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_manfred_carter.branchId", 6);
-                npcStartConversation(player, npc, "ep3_etyyy_manfred_carter", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_manfred_carter", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_manfred_carter_condition_isCollectingChissChemicals(player, npc))
+        if (ep3_etyyy_manfred_carter_condition_isCollectingChissChemicals(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_660");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_manfred_carter_condition_finishedStealChissGoods(player, npc))
+        if (ep3_etyyy_manfred_carter_condition_finishedStealChissGoods(player, self))
         {
-            ep3_etyyy_manfred_carter_action_doneStealChissGoods(player, npc);
+            ep3_etyyy_manfred_carter_action_doneStealChissGoods(player, self);
             string_id message = new string_id(c_stringFile, "s_568");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -361,41 +360,41 @@ public class ep3_etyyy_manfred_carter extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_661");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_manfred_carter.branchId", 10);
-                npcStartConversation(player, npc, "ep3_etyyy_manfred_carter", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_manfred_carter", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_manfred_carter_condition_isDeliveringToKerssoc(player, npc))
+        if (ep3_etyyy_manfred_carter_condition_isDeliveringToKerssoc(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_574");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_manfred_carter_condition_isStealingChissGoods(player, npc))
+        if (ep3_etyyy_manfred_carter_condition_isStealingChissGoods(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_584");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_manfred_carter_condition_hasToTalkToManfred(player, npc))
+        if (ep3_etyyy_manfred_carter_condition_hasToTalkToManfred(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_590");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, npc))
+            if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -414,21 +413,21 @@ public class ep3_etyyy_manfred_carter extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_596");
                 }
                 utils.setScriptVar(player, "conversation.ep3_etyyy_manfred_carter.branchId", 15);
-                npcStartConversation(player, npc, "ep3_etyyy_manfred_carter", message, responses);
+                npcStartConversation(player, self, "ep3_etyyy_manfred_carter", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, npc))
+        if (ep3_etyyy_manfred_carter_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_600");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -437,25 +436,24 @@ public class ep3_etyyy_manfred_carter extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_etyyy_manfred_carter.branchId");
-        if (branchId == 2 && ep3_etyyy_manfred_carter_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_etyyy_manfred_carter_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_etyyy_manfred_carter_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_etyyy_manfred_carter_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_etyyy_manfred_carter_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_etyyy_manfred_carter_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_etyyy_manfred_carter_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_etyyy_manfred_carter_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_etyyy_manfred_carter.branchId");
         return SCRIPT_CONTINUE;
     }

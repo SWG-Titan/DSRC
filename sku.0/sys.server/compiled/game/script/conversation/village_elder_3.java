@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class village_elder_3 extends script.base_script
+public class village_elder_3 extends base_script
 {
     public village_elder_3()
     {

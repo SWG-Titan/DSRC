@@ -5181,41 +5181,40 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedAllQuests(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedAllQuests(player, self))
         {
-            doAnimationAction(npc, "hug_tandem");
+            doAnimationAction(self, "hug_tandem");
             doAnimationAction(player, "hug_tandem");
             string_id message = new string_id(c_stringFile, "s_306");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5245,34 +5244,34 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskFive(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskFive(player, self))
         {
-            doAnimationAction(npc, "catchbreath");
+            doAnimationAction(self, "catchbreath");
             string_id message = new string_id(c_stringFile, "s_439");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5291,35 +5290,35 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_910");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId", 8);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestFive(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestFive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_465");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5345,40 +5344,40 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedQuestFour(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedQuestFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_475");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5404,41 +5403,41 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskFour(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskFour(player, self))
         {
-            doAnimationAction(npc, "celebrate");
+            doAnimationAction(self, "celebrate");
             string_id message = new string_id(c_stringFile, "s_561");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5464,48 +5463,48 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestFour(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestFour(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             string_id message = new string_id(c_stringFile, "s_593");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5535,48 +5534,48 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedQuestThree(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedQuestThree(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             string_id message = new string_id(c_stringFile, "s_302");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5606,41 +5605,41 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskThree(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskThree(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_360");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5663,42 +5662,42 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_886");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId", 64);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestThree(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_679");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5725,36 +5724,36 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_882");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId", 70);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedQuestTwo(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedQuestTwo(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_693");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5780,41 +5779,41 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskTwo(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskTwo(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_739");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5837,36 +5836,36 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_874");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId", 86);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestTwo(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestTwo(player, self))
         {
-            doAnimationAction(npc, "huh");
+            doAnimationAction(self, "huh");
             string_id message = new string_id(c_stringFile, "s_668");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5889,35 +5888,35 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_870");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId", 92);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskOne(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_hasCompletedTaskOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_690");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -5940,43 +5939,43 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_866");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId", 95);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestOne(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition_isOnQuestOne(player, self))
         {
-            doAnimationAction(npc, "laugh_titter");
+            doAnimationAction(self, "laugh_titter");
             string_id message = new string_id(c_stringFile, "s_758");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6003,36 +6002,36 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_862");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId", 105);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+        if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_786");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_hasEp3(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_hasEp3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition_hasEp3(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition_hasEp3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_hunter_qakkee_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6055,15 +6054,15 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_856");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId", 116);
-                npcStartConversation(player, npc, "ep3_clone_relics_hunter_qakkee", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_hunter_qakkee", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -6072,317 +6071,316 @@ public class ep3_clone_relics_hunter_qakkee extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId");
-        if (branchId == 1 && ep3_clone_relics_hunter_qakkee_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && ep3_clone_relics_hunter_qakkee_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && ep3_clone_relics_hunter_qakkee_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_clone_relics_hunter_qakkee_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && ep3_clone_relics_hunter_qakkee_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_clone_relics_hunter_qakkee_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_clone_relics_hunter_qakkee_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_clone_relics_hunter_qakkee_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_clone_relics_hunter_qakkee_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_clone_relics_hunter_qakkee_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_clone_relics_hunter_qakkee_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_clone_relics_hunter_qakkee_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_clone_relics_hunter_qakkee_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_clone_relics_hunter_qakkee_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_clone_relics_hunter_qakkee_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_clone_relics_hunter_qakkee_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_clone_relics_hunter_qakkee_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_clone_relics_hunter_qakkee_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_clone_relics_hunter_qakkee_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_clone_relics_hunter_qakkee_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_clone_relics_hunter_qakkee_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_clone_relics_hunter_qakkee_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_clone_relics_hunter_qakkee_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_clone_relics_hunter_qakkee_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_clone_relics_hunter_qakkee_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_clone_relics_hunter_qakkee_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && ep3_clone_relics_hunter_qakkee_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && ep3_clone_relics_hunter_qakkee_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_clone_relics_hunter_qakkee_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_clone_relics_hunter_qakkee_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && ep3_clone_relics_hunter_qakkee_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && ep3_clone_relics_hunter_qakkee_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && ep3_clone_relics_hunter_qakkee_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && ep3_clone_relics_hunter_qakkee_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && ep3_clone_relics_hunter_qakkee_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && ep3_clone_relics_hunter_qakkee_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && ep3_clone_relics_hunter_qakkee_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && ep3_clone_relics_hunter_qakkee_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && ep3_clone_relics_hunter_qakkee_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && ep3_clone_relics_hunter_qakkee_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && ep3_clone_relics_hunter_qakkee_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && ep3_clone_relics_hunter_qakkee_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && ep3_clone_relics_hunter_qakkee_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && ep3_clone_relics_hunter_qakkee_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && ep3_clone_relics_hunter_qakkee_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && ep3_clone_relics_hunter_qakkee_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && ep3_clone_relics_hunter_qakkee_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && ep3_clone_relics_hunter_qakkee_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && ep3_clone_relics_hunter_qakkee_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && ep3_clone_relics_hunter_qakkee_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && ep3_clone_relics_hunter_qakkee_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && ep3_clone_relics_hunter_qakkee_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && ep3_clone_relics_hunter_qakkee_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && ep3_clone_relics_hunter_qakkee_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && ep3_clone_relics_hunter_qakkee_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && ep3_clone_relics_hunter_qakkee_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && ep3_clone_relics_hunter_qakkee_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && ep3_clone_relics_hunter_qakkee_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && ep3_clone_relics_hunter_qakkee_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && ep3_clone_relics_hunter_qakkee_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && ep3_clone_relics_hunter_qakkee_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && ep3_clone_relics_hunter_qakkee_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && ep3_clone_relics_hunter_qakkee_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && ep3_clone_relics_hunter_qakkee_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && ep3_clone_relics_hunter_qakkee_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && ep3_clone_relics_hunter_qakkee_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && ep3_clone_relics_hunter_qakkee_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && ep3_clone_relics_hunter_qakkee_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && ep3_clone_relics_hunter_qakkee_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && ep3_clone_relics_hunter_qakkee_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && ep3_clone_relics_hunter_qakkee_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && ep3_clone_relics_hunter_qakkee_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && ep3_clone_relics_hunter_qakkee_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && ep3_clone_relics_hunter_qakkee_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && ep3_clone_relics_hunter_qakkee_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && ep3_clone_relics_hunter_qakkee_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && ep3_clone_relics_hunter_qakkee_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && ep3_clone_relics_hunter_qakkee_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && ep3_clone_relics_hunter_qakkee_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && ep3_clone_relics_hunter_qakkee_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && ep3_clone_relics_hunter_qakkee_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && ep3_clone_relics_hunter_qakkee_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && ep3_clone_relics_hunter_qakkee_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && ep3_clone_relics_hunter_qakkee_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && ep3_clone_relics_hunter_qakkee_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && ep3_clone_relics_hunter_qakkee_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && ep3_clone_relics_hunter_qakkee_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && ep3_clone_relics_hunter_qakkee_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && ep3_clone_relics_hunter_qakkee_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && ep3_clone_relics_hunter_qakkee_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && ep3_clone_relics_hunter_qakkee_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && ep3_clone_relics_hunter_qakkee_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && ep3_clone_relics_hunter_qakkee_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && ep3_clone_relics_hunter_qakkee_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && ep3_clone_relics_hunter_qakkee_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && ep3_clone_relics_hunter_qakkee_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && ep3_clone_relics_hunter_qakkee_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && ep3_clone_relics_hunter_qakkee_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && ep3_clone_relics_hunter_qakkee_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && ep3_clone_relics_hunter_qakkee_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && ep3_clone_relics_hunter_qakkee_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && ep3_clone_relics_hunter_qakkee_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && ep3_clone_relics_hunter_qakkee_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && ep3_clone_relics_hunter_qakkee_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && ep3_clone_relics_hunter_qakkee_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && ep3_clone_relics_hunter_qakkee_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && ep3_clone_relics_hunter_qakkee_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && ep3_clone_relics_hunter_qakkee_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && ep3_clone_relics_hunter_qakkee_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && ep3_clone_relics_hunter_qakkee_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && ep3_clone_relics_hunter_qakkee_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && ep3_clone_relics_hunter_qakkee_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && ep3_clone_relics_hunter_qakkee_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && ep3_clone_relics_hunter_qakkee_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && ep3_clone_relics_hunter_qakkee_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && ep3_clone_relics_hunter_qakkee_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && ep3_clone_relics_hunter_qakkee_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && ep3_clone_relics_hunter_qakkee_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && ep3_clone_relics_hunter_qakkee_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && ep3_clone_relics_hunter_qakkee_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && ep3_clone_relics_hunter_qakkee_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && ep3_clone_relics_hunter_qakkee_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && ep3_clone_relics_hunter_qakkee_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && ep3_clone_relics_hunter_qakkee_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && ep3_clone_relics_hunter_qakkee_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && ep3_clone_relics_hunter_qakkee_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && ep3_clone_relics_hunter_qakkee_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && ep3_clone_relics_hunter_qakkee_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 99 && ep3_clone_relics_hunter_qakkee_handleBranch99(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 99 && ep3_clone_relics_hunter_qakkee_handleBranch99(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 101 && ep3_clone_relics_hunter_qakkee_handleBranch101(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 101 && ep3_clone_relics_hunter_qakkee_handleBranch101(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 104 && ep3_clone_relics_hunter_qakkee_handleBranch104(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 104 && ep3_clone_relics_hunter_qakkee_handleBranch104(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 105 && ep3_clone_relics_hunter_qakkee_handleBranch105(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 105 && ep3_clone_relics_hunter_qakkee_handleBranch105(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 109 && ep3_clone_relics_hunter_qakkee_handleBranch109(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 109 && ep3_clone_relics_hunter_qakkee_handleBranch109(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 116 && ep3_clone_relics_hunter_qakkee_handleBranch116(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 116 && ep3_clone_relics_hunter_qakkee_handleBranch116(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 117 && ep3_clone_relics_hunter_qakkee_handleBranch117(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 117 && ep3_clone_relics_hunter_qakkee_handleBranch117(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 118 && ep3_clone_relics_hunter_qakkee_handleBranch118(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 118 && ep3_clone_relics_hunter_qakkee_handleBranch118(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 120 && ep3_clone_relics_hunter_qakkee_handleBranch120(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 120 && ep3_clone_relics_hunter_qakkee_handleBranch120(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 121 && ep3_clone_relics_hunter_qakkee_handleBranch121(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 121 && ep3_clone_relics_hunter_qakkee_handleBranch121(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 124 && ep3_clone_relics_hunter_qakkee_handleBranch124(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 124 && ep3_clone_relics_hunter_qakkee_handleBranch124(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 126 && ep3_clone_relics_hunter_qakkee_handleBranch126(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 126 && ep3_clone_relics_hunter_qakkee_handleBranch126(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 127 && ep3_clone_relics_hunter_qakkee_handleBranch127(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 127 && ep3_clone_relics_hunter_qakkee_handleBranch127(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_clone_relics_hunter_qakkee.branchId");
         return SCRIPT_CONTINUE;
     }

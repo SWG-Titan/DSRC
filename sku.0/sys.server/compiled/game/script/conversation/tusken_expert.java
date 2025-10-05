@@ -3,6 +3,8 @@ package script.conversation;
 import script.*;
 import script.library.*;
 
+import java.util.Objects;
+
 public class tusken_expert extends script.base_script
 {
     public tusken_expert()
@@ -186,6 +188,25 @@ public class tusken_expert extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+
+    public int OnSawEmote(obj_id self, obj_id performer, String emote) throws InterruptedException
+    {
+        if (emote.equals("going"))
+        {
+            if (isPlayer(performer))
+            {
+                if (!utils.hasScriptVar(self, "moveIt"))
+                {
+                    utils.setScriptVar(self, "moveIt", 1);
+                    setMovementRun(self);
+                    setMovementPercent(self, 3.5f);
+                    chat.chat(self, "Ok ok, I'm hurrying!");
+                }
+            }
+        }
+        return SCRIPT_CONTINUE;
+    }
+
     public void setTriggerVolume(obj_id self) throws InterruptedException
     {
         createTriggerVolume("tusken_citizen", 6.0f, true);
@@ -212,59 +233,58 @@ public class tusken_expert extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tusken_expert_condition_allBuildingsHaveCrews(player, npc))
+        if (tusken_expert_condition_allBuildingsHaveCrews(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_29");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tusken_expert_condition__defaultCondition(player, npc))
+        if (tusken_expert_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tusken_expert_condition_clonecenterNeedsCrew(player, npc))
+            if (tusken_expert_condition_clonecenterNeedsCrew(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tusken_expert_condition_medcenterNeedsCrew(player, npc))
+            if (tusken_expert_condition_medcenterNeedsCrew(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (tusken_expert_condition_universityNeedsCrew(player, npc))
+            if (tusken_expert_condition_universityNeedsCrew(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (tusken_expert_condition_combathallNeedsCrew(player, npc))
+            if (tusken_expert_condition_combathallNeedsCrew(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (tusken_expert_condition_wattoNeedsCrew(player, npc))
+            if (tusken_expert_condition_wattoNeedsCrew(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (tusken_expert_condition_starportNeedsCrew(player, npc))
+            if (tusken_expert_condition_starportNeedsCrew(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -299,15 +319,15 @@ public class tusken_expert extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_25");
                 }
                 utils.setScriptVar(player, "conversation.tusken_expert.branchId", 2);
-                npcStartConversation(player, npc, "tusken_expert", message, responses);
+                npcStartConversation(player, self, "tusken_expert", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -316,13 +336,12 @@ public class tusken_expert extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tusken_expert.branchId");
-        if (branchId == 2 && tusken_expert_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tusken_expert_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tusken_expert.branchId");
         return SCRIPT_CONTINUE;
     }

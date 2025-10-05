@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class legacy_naboo_yane extends script.base_script
+public class legacy_naboo_yane extends base_script
 {
     public legacy_naboo_yane()
     {

@@ -663,35 +663,34 @@ public class rebel_life_day_vendor extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (rebel_life_day_vendor_condition_imperialPlayer(player, npc))
+        if (rebel_life_day_vendor_condition_imperialPlayer(player, self))
         {
-            doAnimationAction(npc, "scare");
+            doAnimationAction(self, "scare");
             string_id message = new string_id(c_stringFile, "s_50");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rebel_life_day_vendor_condition_alreadyWorking_2(player, npc))
+        if (rebel_life_day_vendor_condition_alreadyWorking_2(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
-            rebel_life_day_vendor_action_barkLeaders(player, npc);
+            rebel_life_day_vendor_action_barkLeaders(player, self);
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rebel_life_day_vendor_condition__defaultCondition(player, npc))
+            if (rebel_life_day_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rebel_life_day_vendor_condition_scoreBoardNotEmpty(player, npc))
+            if (rebel_life_day_vendor_condition_scoreBoardNotEmpty(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -713,43 +712,43 @@ public class rebel_life_day_vendor extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rebel_life_day_vendor", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rebel_life_day_vendor", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rebel_life_day_vendor_condition_lockedOut(player, npc))
+        if (rebel_life_day_vendor_condition_lockedOut(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
-            rebel_life_day_vendor_action_barkLeaders(player, npc);
+            rebel_life_day_vendor_action_barkLeaders(player, self);
             string_id message = new string_id(c_stringFile, "s_101");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rebel_life_day_vendor_condition__defaultCondition(player, npc))
+            if (rebel_life_day_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rebel_life_day_vendor_condition__defaultCondition(player, npc))
+            if (rebel_life_day_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (rebel_life_day_vendor_condition_scoreBoardNotEmpty(player, npc))
+            if (rebel_life_day_vendor_condition_scoreBoardNotEmpty(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -775,50 +774,50 @@ public class rebel_life_day_vendor extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rebel_life_day_vendor", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rebel_life_day_vendor", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rebel_life_day_vendor_condition_neutral(player, npc))
+        if (rebel_life_day_vendor_condition_neutral(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
-            rebel_life_day_vendor_action_barkLeaders(player, npc);
+            rebel_life_day_vendor_action_barkLeaders(player, self);
             string_id message = new string_id(c_stringFile, "s_83");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rebel_life_day_vendor_condition_alreadyWorking(player, npc))
+            if (rebel_life_day_vendor_condition_alreadyWorking(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rebel_life_day_vendor_condition__defaultCondition(player, npc))
+            if (rebel_life_day_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (rebel_life_day_vendor_condition__defaultCondition(player, npc))
+            if (rebel_life_day_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (rebel_life_day_vendor_condition_scoreBoardNotEmpty(player, npc))
+            if (rebel_life_day_vendor_condition_scoreBoardNotEmpty(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -848,43 +847,43 @@ public class rebel_life_day_vendor extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rebel_life_day_vendor", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rebel_life_day_vendor", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rebel_life_day_vendor_condition__defaultCondition(player, npc))
+        if (rebel_life_day_vendor_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
-            rebel_life_day_vendor_action_barkLeaders(player, npc);
+            rebel_life_day_vendor_action_barkLeaders(player, self);
             string_id message = new string_id(c_stringFile, "s_58");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rebel_life_day_vendor_condition_alreadyWorking(player, npc))
+            if (rebel_life_day_vendor_condition_alreadyWorking(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rebel_life_day_vendor_condition__defaultCondition(player, npc))
+            if (rebel_life_day_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (rebel_life_day_vendor_condition_scoreBoardNotEmpty(player, npc))
+            if (rebel_life_day_vendor_condition_scoreBoardNotEmpty(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -910,20 +909,20 @@ public class rebel_life_day_vendor extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "rebel_life_day_vendor", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "rebel_life_day_vendor", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -932,33 +931,32 @@ public class rebel_life_day_vendor extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.rebel_life_day_vendor.branchId");
-        if (branchId == 2 && rebel_life_day_vendor_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && rebel_life_day_vendor_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && rebel_life_day_vendor_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && rebel_life_day_vendor_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && rebel_life_day_vendor_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && rebel_life_day_vendor_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && rebel_life_day_vendor_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && rebel_life_day_vendor_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && rebel_life_day_vendor_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && rebel_life_day_vendor_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && rebel_life_day_vendor_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && rebel_life_day_vendor_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.rebel_life_day_vendor.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class som_kenobi_epo_qetora extends script.base_script
+public class som_kenobi_epo_qetora extends base_script
 {
     public som_kenobi_epo_qetora()
     {

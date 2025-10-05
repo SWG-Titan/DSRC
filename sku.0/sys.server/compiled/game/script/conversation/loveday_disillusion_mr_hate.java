@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class loveday_disillusion_mr_hate extends script.base_script
+public class loveday_disillusion_mr_hate extends base_script
 {
     public loveday_disillusion_mr_hate()
     {

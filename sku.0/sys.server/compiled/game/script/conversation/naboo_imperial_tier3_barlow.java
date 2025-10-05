@@ -4610,32 +4610,31 @@ public class naboo_imperial_tier3_barlow extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!naboo_imperial_tier3_barlow_condition_isCorrectFaction(player, npc))
+        if (!naboo_imperial_tier3_barlow_condition_isCorrectFaction(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_127f71ad");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_tier3_barlow_condition_setByInquisition(player, npc))
+        if (naboo_imperial_tier3_barlow_condition_setByInquisition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_a72db7d9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_imperial_tier3_barlow_condition__defaultCondition(player, npc))
+            if (naboo_imperial_tier3_barlow_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_imperial_tier3_barlow_condition__defaultCondition(player, npc))
+            if (naboo_imperial_tier3_barlow_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4654,29 +4653,29 @@ public class naboo_imperial_tier3_barlow extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_ca59425a");
                 }
                 setObjVar(player, "conversation.naboo_imperial_tier3_barlow.branchId", 2);
-                npcStartConversation(player, npc, "naboo_imperial_tier3_barlow", message, responses);
+                npcStartConversation(player, self, "naboo_imperial_tier3_barlow", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_tier3_barlow_condition_alreadyTalkedTo(player, npc))
+        if (naboo_imperial_tier3_barlow_condition_alreadyTalkedTo(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
+            doAnimationAction(self, "wave_finger_warning");
             string_id message = new string_id(c_stringFile, "s_f813490a");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_imperial_tier3_barlow_condition__defaultCondition(player, npc))
+        if (naboo_imperial_tier3_barlow_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_4355764f");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -4685,325 +4684,324 @@ public class naboo_imperial_tier3_barlow extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = getIntObjVar(player, "conversation.naboo_imperial_tier3_barlow.branchId");
-        if (branchId == 2 && naboo_imperial_tier3_barlow_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && naboo_imperial_tier3_barlow_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && naboo_imperial_tier3_barlow_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && naboo_imperial_tier3_barlow_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && naboo_imperial_tier3_barlow_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && naboo_imperial_tier3_barlow_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && naboo_imperial_tier3_barlow_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && naboo_imperial_tier3_barlow_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && naboo_imperial_tier3_barlow_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && naboo_imperial_tier3_barlow_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && naboo_imperial_tier3_barlow_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && naboo_imperial_tier3_barlow_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && naboo_imperial_tier3_barlow_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && naboo_imperial_tier3_barlow_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && naboo_imperial_tier3_barlow_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && naboo_imperial_tier3_barlow_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && naboo_imperial_tier3_barlow_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && naboo_imperial_tier3_barlow_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && naboo_imperial_tier3_barlow_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && naboo_imperial_tier3_barlow_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && naboo_imperial_tier3_barlow_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && naboo_imperial_tier3_barlow_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && naboo_imperial_tier3_barlow_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && naboo_imperial_tier3_barlow_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && naboo_imperial_tier3_barlow_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && naboo_imperial_tier3_barlow_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && naboo_imperial_tier3_barlow_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && naboo_imperial_tier3_barlow_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && naboo_imperial_tier3_barlow_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && naboo_imperial_tier3_barlow_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && naboo_imperial_tier3_barlow_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && naboo_imperial_tier3_barlow_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && naboo_imperial_tier3_barlow_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && naboo_imperial_tier3_barlow_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && naboo_imperial_tier3_barlow_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && naboo_imperial_tier3_barlow_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && naboo_imperial_tier3_barlow_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && naboo_imperial_tier3_barlow_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && naboo_imperial_tier3_barlow_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && naboo_imperial_tier3_barlow_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && naboo_imperial_tier3_barlow_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && naboo_imperial_tier3_barlow_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && naboo_imperial_tier3_barlow_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && naboo_imperial_tier3_barlow_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && naboo_imperial_tier3_barlow_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && naboo_imperial_tier3_barlow_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && naboo_imperial_tier3_barlow_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && naboo_imperial_tier3_barlow_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && naboo_imperial_tier3_barlow_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && naboo_imperial_tier3_barlow_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && naboo_imperial_tier3_barlow_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && naboo_imperial_tier3_barlow_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && naboo_imperial_tier3_barlow_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && naboo_imperial_tier3_barlow_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && naboo_imperial_tier3_barlow_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && naboo_imperial_tier3_barlow_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && naboo_imperial_tier3_barlow_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && naboo_imperial_tier3_barlow_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && naboo_imperial_tier3_barlow_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && naboo_imperial_tier3_barlow_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && naboo_imperial_tier3_barlow_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && naboo_imperial_tier3_barlow_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && naboo_imperial_tier3_barlow_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && naboo_imperial_tier3_barlow_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && naboo_imperial_tier3_barlow_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && naboo_imperial_tier3_barlow_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && naboo_imperial_tier3_barlow_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && naboo_imperial_tier3_barlow_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && naboo_imperial_tier3_barlow_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && naboo_imperial_tier3_barlow_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && naboo_imperial_tier3_barlow_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && naboo_imperial_tier3_barlow_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && naboo_imperial_tier3_barlow_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && naboo_imperial_tier3_barlow_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && naboo_imperial_tier3_barlow_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && naboo_imperial_tier3_barlow_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && naboo_imperial_tier3_barlow_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && naboo_imperial_tier3_barlow_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && naboo_imperial_tier3_barlow_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && naboo_imperial_tier3_barlow_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && naboo_imperial_tier3_barlow_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && naboo_imperial_tier3_barlow_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && naboo_imperial_tier3_barlow_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && naboo_imperial_tier3_barlow_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && naboo_imperial_tier3_barlow_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && naboo_imperial_tier3_barlow_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && naboo_imperial_tier3_barlow_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && naboo_imperial_tier3_barlow_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && naboo_imperial_tier3_barlow_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && naboo_imperial_tier3_barlow_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && naboo_imperial_tier3_barlow_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && naboo_imperial_tier3_barlow_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && naboo_imperial_tier3_barlow_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && naboo_imperial_tier3_barlow_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && naboo_imperial_tier3_barlow_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && naboo_imperial_tier3_barlow_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && naboo_imperial_tier3_barlow_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && naboo_imperial_tier3_barlow_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && naboo_imperial_tier3_barlow_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && naboo_imperial_tier3_barlow_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && naboo_imperial_tier3_barlow_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && naboo_imperial_tier3_barlow_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && naboo_imperial_tier3_barlow_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && naboo_imperial_tier3_barlow_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && naboo_imperial_tier3_barlow_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && naboo_imperial_tier3_barlow_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && naboo_imperial_tier3_barlow_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && naboo_imperial_tier3_barlow_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && naboo_imperial_tier3_barlow_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && naboo_imperial_tier3_barlow_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && naboo_imperial_tier3_barlow_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && naboo_imperial_tier3_barlow_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && naboo_imperial_tier3_barlow_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && naboo_imperial_tier3_barlow_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && naboo_imperial_tier3_barlow_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && naboo_imperial_tier3_barlow_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && naboo_imperial_tier3_barlow_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && naboo_imperial_tier3_barlow_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && naboo_imperial_tier3_barlow_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && naboo_imperial_tier3_barlow_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && naboo_imperial_tier3_barlow_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && naboo_imperial_tier3_barlow_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && naboo_imperial_tier3_barlow_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && naboo_imperial_tier3_barlow_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && naboo_imperial_tier3_barlow_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && naboo_imperial_tier3_barlow_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && naboo_imperial_tier3_barlow_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && naboo_imperial_tier3_barlow_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && naboo_imperial_tier3_barlow_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && naboo_imperial_tier3_barlow_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && naboo_imperial_tier3_barlow_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && naboo_imperial_tier3_barlow_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && naboo_imperial_tier3_barlow_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && naboo_imperial_tier3_barlow_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && naboo_imperial_tier3_barlow_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && naboo_imperial_tier3_barlow_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && naboo_imperial_tier3_barlow_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && naboo_imperial_tier3_barlow_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && naboo_imperial_tier3_barlow_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && naboo_imperial_tier3_barlow_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && naboo_imperial_tier3_barlow_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && naboo_imperial_tier3_barlow_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && naboo_imperial_tier3_barlow_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && naboo_imperial_tier3_barlow_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && naboo_imperial_tier3_barlow_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && naboo_imperial_tier3_barlow_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && naboo_imperial_tier3_barlow_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && naboo_imperial_tier3_barlow_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && naboo_imperial_tier3_barlow_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && naboo_imperial_tier3_barlow_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && naboo_imperial_tier3_barlow_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && naboo_imperial_tier3_barlow_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && naboo_imperial_tier3_barlow_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && naboo_imperial_tier3_barlow_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && naboo_imperial_tier3_barlow_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && naboo_imperial_tier3_barlow_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && naboo_imperial_tier3_barlow_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && naboo_imperial_tier3_barlow_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         removeObjVar(player, "conversation.naboo_imperial_tier3_barlow.branchId");
         return SCRIPT_CONTINUE;
     }

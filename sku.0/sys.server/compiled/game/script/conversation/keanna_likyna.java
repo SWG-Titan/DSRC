@@ -4,7 +4,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.*;
 
-public class keanna_likyna extends script.base_script
+public class keanna_likyna extends base_script
 {
     public keanna_likyna()
     {

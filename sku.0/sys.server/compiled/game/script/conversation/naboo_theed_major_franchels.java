@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class naboo_theed_major_franchels extends script.base_script
+public class naboo_theed_major_franchels extends base_script
 {
     public naboo_theed_major_franchels()
     {

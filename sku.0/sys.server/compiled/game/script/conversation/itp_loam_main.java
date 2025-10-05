@@ -148,57 +148,56 @@ public class itp_loam_main extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (itp_loam_main_condition_notImperial(player, npc))
+        if (itp_loam_main_condition_notImperial(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!itp_loam_main_condition_completedKaja(player, npc))
+        if (!itp_loam_main_condition_completedKaja(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_46");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (itp_loam_main_condition_imperial_isOnLeave(player, npc))
+        if (itp_loam_main_condition_imperial_isOnLeave(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_43");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (itp_loam_main_condition_itp_loam_02_complete(player, npc))
+        if (itp_loam_main_condition_itp_loam_02_complete(player, self))
         {
-            itp_loam_main_action_itp_loam_02_signal(player, npc);
+            itp_loam_main_action_itp_loam_02_signal(player, self);
             string_id message = new string_id(c_stringFile, "s_28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (itp_loam_main_condition_itp_loam_02_active(player, npc))
+        if (itp_loam_main_condition_itp_loam_02_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_16");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (itp_loam_main_condition_itp_loam_01_complete(player, npc))
+        if (itp_loam_main_condition_itp_loam_01_complete(player, self))
         {
-            itp_loam_main_action_itp_loam_01_signal(player, npc);
+            itp_loam_main_action_itp_loam_01_signal(player, self);
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (itp_loam_main_condition__defaultCondition(player, npc))
+            if (itp_loam_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (itp_loam_main_condition__defaultCondition(player, npc))
+            if (itp_loam_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -217,34 +216,34 @@ public class itp_loam_main extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.itp_loam_main.branchId", 6);
-                npcStartConversation(player, npc, "itp_loam_main", message, responses);
+                npcStartConversation(player, self, "itp_loam_main", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (itp_loam_main_condition_itp_loam_01_active(player, npc))
+        if (itp_loam_main_condition_itp_loam_01_active(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (itp_loam_main_condition__defaultCondition(player, npc))
+        if (itp_loam_main_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (itp_loam_main_condition__defaultCondition(player, npc))
+            if (itp_loam_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (itp_loam_main_condition__defaultCondition(player, npc))
+            if (itp_loam_main_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -263,15 +262,15 @@ public class itp_loam_main extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.itp_loam_main.branchId", 10);
-                npcStartConversation(player, npc, "itp_loam_main", message, responses);
+                npcStartConversation(player, self, "itp_loam_main", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -280,17 +279,16 @@ public class itp_loam_main extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.itp_loam_main.branchId");
-        if (branchId == 6 && itp_loam_main_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && itp_loam_main_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && itp_loam_main_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && itp_loam_main_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.itp_loam_main.branchId");
         return SCRIPT_CONTINUE;
     }

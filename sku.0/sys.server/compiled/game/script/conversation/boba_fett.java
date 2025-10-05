@@ -3195,25 +3195,24 @@ public class boba_fett extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (boba_fett_condition_onQuestSevenTaskNine(player, npc))
+        if (boba_fett_condition_onQuestSevenTaskNine(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_460");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3232,35 +3231,35 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_482");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 1);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_onQuestSeven(player, npc))
+        if (boba_fett_condition_onQuestSeven(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_484");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3283,35 +3282,35 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_494");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 7);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_completedQuestSix(player, npc))
+        if (boba_fett_condition_completedQuestSix(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_496");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3334,28 +3333,28 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_514");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 10);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_onQuestSixTaskTwo(player, npc))
+        if (boba_fett_condition_onQuestSixTaskTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_516");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3374,28 +3373,28 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_530");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 15);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_onQuestFiveOrSix(player, npc))
+        if (boba_fett_condition_onQuestFiveOrSix(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_532");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3414,28 +3413,28 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_542");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 19);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_hasCompletetedQuestFive(player, npc))
+        if (boba_fett_condition_hasCompletetedQuestFive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_153");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!boba_fett_condition_completedQuestSix(player, npc))
+            if (!boba_fett_condition_completedQuestSix(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3454,35 +3453,35 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_156");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 21);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_hasCompletedQuestFour(player, npc))
+        if (boba_fett_condition_hasCompletedQuestFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_544");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3505,28 +3504,28 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_566");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 24);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_onQuestFourTaskFive(player, npc))
+        if (boba_fett_condition_onQuestFourTaskFive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_568");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3545,35 +3544,35 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_606");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 30);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_onQuestFour(player, npc))
+        if (boba_fett_condition_onQuestFour(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_608");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3596,35 +3595,35 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_618");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 39);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_hasCompletedQuestThree(player, npc))
+        if (boba_fett_condition_hasCompletedQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_620");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3647,35 +3646,35 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_630");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 42);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_hasCompletedQuestOne(player, npc))
+        if (boba_fett_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_632");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3698,21 +3697,21 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_642");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 45);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_dungeonInactive(player, npc))
+        if (boba_fett_condition_dungeonInactive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_644");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3727,36 +3726,36 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_646");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 48);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition_AcknowledgeCheck(player, npc))
+        if (boba_fett_condition_AcknowledgeCheck(player, self))
         {
-            boba_fett_action_face_to(player, npc);
+            boba_fett_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_648");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!boba_fett_condition_completedQuestSeven(player, npc))
+            if (!boba_fett_condition_completedQuestSeven(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (boba_fett_condition_isGm(player, npc))
+            if (boba_fett_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3779,35 +3778,35 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_668");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 49);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (boba_fett_condition__defaultCondition(player, npc))
+        if (boba_fett_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_704");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (boba_fett_condition__defaultCondition(player, npc))
+            if (boba_fett_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!boba_fett_condition_completedQuestSeven(player, npc))
+            if (!boba_fett_condition_completedQuestSeven(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3830,15 +3829,15 @@ public class boba_fett extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_726");
                 }
                 utils.setScriptVar(player, "conversation.boba_fett.branchId", 63);
-                npcStartConversation(player, npc, "boba_fett", message, responses);
+                npcStartConversation(player, self, "boba_fett", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -3847,157 +3846,156 @@ public class boba_fett extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.boba_fett.branchId");
-        if (branchId == 1 && boba_fett_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && boba_fett_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && boba_fett_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && boba_fett_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && boba_fett_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && boba_fett_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && boba_fett_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && boba_fett_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && boba_fett_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && boba_fett_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && boba_fett_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && boba_fett_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && boba_fett_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && boba_fett_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && boba_fett_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && boba_fett_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && boba_fett_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && boba_fett_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && boba_fett_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && boba_fett_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && boba_fett_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && boba_fett_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && boba_fett_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && boba_fett_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && boba_fett_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && boba_fett_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && boba_fett_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && boba_fett_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && boba_fett_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && boba_fett_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && boba_fett_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && boba_fett_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && boba_fett_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && boba_fett_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && boba_fett_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && boba_fett_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && boba_fett_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && boba_fett_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && boba_fett_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && boba_fett_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && boba_fett_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && boba_fett_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && boba_fett_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && boba_fett_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && boba_fett_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && boba_fett_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && boba_fett_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && boba_fett_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && boba_fett_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && boba_fett_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && boba_fett_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && boba_fett_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && boba_fett_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && boba_fett_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && boba_fett_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && boba_fett_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && boba_fett_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && boba_fett_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && boba_fett_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && boba_fett_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && boba_fett_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && boba_fett_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && boba_fett_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && boba_fett_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && boba_fett_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && boba_fett_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && boba_fett_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && boba_fett_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && boba_fett_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && boba_fett_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && boba_fett_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && boba_fett_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && boba_fett_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && boba_fett_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.boba_fett.branchId");
         return SCRIPT_CONTINUE;
     }

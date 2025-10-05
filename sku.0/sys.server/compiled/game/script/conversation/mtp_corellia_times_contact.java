@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class mtp_corellia_times_contact extends script.base_script
+public class mtp_corellia_times_contact extends base_script
 {
     public mtp_corellia_times_contact()
     {

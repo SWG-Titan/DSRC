@@ -8,7 +8,7 @@ import script.library.utils;
 
 import java.util.Vector;
 
-public class outbreak_defense_stephon_sprocketfire_beta extends script.base_script
+public class outbreak_defense_stephon_sprocketfire_beta extends base_script
 {
     public outbreak_defense_stephon_sprocketfire_beta()
     {

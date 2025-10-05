@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class corellia_38_teilo_monnro extends script.base_script
+public class corellia_38_teilo_monnro extends base_script
 {
     public corellia_38_teilo_monnro()
     {

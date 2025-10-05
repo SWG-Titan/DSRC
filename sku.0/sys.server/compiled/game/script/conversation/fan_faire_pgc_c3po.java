@@ -15250,67 +15250,66 @@ public class fan_faire_pgc_c3po extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (fan_faire_pgc_c3po_condition__defaultCondition(player, npc))
+        if (fan_faire_pgc_c3po_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (fan_faire_pgc_c3po_condition__defaultCondition(player, npc))
+            if (fan_faire_pgc_c3po_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (fan_faire_pgc_c3po_condition__defaultCondition(player, npc))
+            if (fan_faire_pgc_c3po_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (fan_faire_pgc_c3po_condition__defaultCondition(player, npc))
+            if (fan_faire_pgc_c3po_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (fan_faire_pgc_c3po_condition__defaultCondition(player, npc))
+            if (fan_faire_pgc_c3po_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (fan_faire_pgc_c3po_condition__defaultCondition(player, npc))
+            if (fan_faire_pgc_c3po_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (fan_faire_pgc_c3po_condition__defaultCondition(player, npc))
+            if (fan_faire_pgc_c3po_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (fan_faire_pgc_c3po_condition__defaultCondition(player, npc))
+            if (fan_faire_pgc_c3po_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (fan_faire_pgc_c3po_condition_needsProfession(player, npc))
+            if (fan_faire_pgc_c3po_condition_needsProfession(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -15353,15 +15352,15 @@ public class fan_faire_pgc_c3po extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_66");
                 }
                 utils.setScriptVar(player, "conversation.fan_faire_pgc_c3po.branchId", 1);
-                npcStartConversation(player, npc, "fan_faire_pgc_c3po", message, responses);
+                npcStartConversation(player, self, "fan_faire_pgc_c3po", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -15370,77 +15369,76 @@ public class fan_faire_pgc_c3po extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.fan_faire_pgc_c3po.branchId");
-        if (branchId == 1 && fan_faire_pgc_c3po_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && fan_faire_pgc_c3po_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && fan_faire_pgc_c3po_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && fan_faire_pgc_c3po_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && fan_faire_pgc_c3po_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && fan_faire_pgc_c3po_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && fan_faire_pgc_c3po_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && fan_faire_pgc_c3po_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && fan_faire_pgc_c3po_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && fan_faire_pgc_c3po_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && fan_faire_pgc_c3po_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && fan_faire_pgc_c3po_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && fan_faire_pgc_c3po_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && fan_faire_pgc_c3po_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && fan_faire_pgc_c3po_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && fan_faire_pgc_c3po_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && fan_faire_pgc_c3po_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && fan_faire_pgc_c3po_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && fan_faire_pgc_c3po_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && fan_faire_pgc_c3po_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && fan_faire_pgc_c3po_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && fan_faire_pgc_c3po_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && fan_faire_pgc_c3po_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && fan_faire_pgc_c3po_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && fan_faire_pgc_c3po_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && fan_faire_pgc_c3po_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && fan_faire_pgc_c3po_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && fan_faire_pgc_c3po_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && fan_faire_pgc_c3po_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && fan_faire_pgc_c3po_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && fan_faire_pgc_c3po_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && fan_faire_pgc_c3po_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && fan_faire_pgc_c3po_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && fan_faire_pgc_c3po_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.fan_faire_pgc_c3po.branchId");
         return SCRIPT_CONTINUE;
     }

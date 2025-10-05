@@ -1523,63 +1523,62 @@ public class village_whip extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (village_whip_condition_not_eligible(player, npc))
+        if (village_whip_condition_not_eligible(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_b8360516");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase2_complete(player, npc))
+        if (village_whip_condition_phase2_complete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_a984d976");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase2_aborted(player, npc))
+        if (village_whip_condition_phase2_aborted(player, self))
         {
-            village_whip_action_phase2_continue_quest(player, npc);
+            village_whip_action_phase2_continue_quest(player, self);
             string_id message = new string_id(c_stringFile, "s_bfc5a85d");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase2_failed(player, npc))
+        if (village_whip_condition_phase2_failed(player, self))
         {
-            village_whip_action_phase2_continue_quest(player, npc);
+            village_whip_action_phase2_continue_quest(player, self);
             string_id message = new string_id(c_stringFile, "s_af518049");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase2_continue(player, npc))
+        if (village_whip_condition_phase2_continue(player, self))
         {
-            village_whip_action_phase2_continue_quest(player, npc);
+            village_whip_action_phase2_continue_quest(player, self);
             string_id message = new string_id(c_stringFile, "s_cc5225b7");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            pp.digitInteger = village_whip_tokenDI_supplies_left(player, npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            pp.digitInteger = village_whip_tokenDI_supplies_left(player, self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase2_inprogress(player, npc))
+        if (village_whip_condition_phase2_inprogress(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ed25aceb");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (village_whip_condition__defaultCondition(player, npc))
+            if (village_whip_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (village_whip_condition__defaultCondition(player, npc))
+            if (village_whip_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1598,21 +1597,21 @@ public class village_whip extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_24aab8ee");
                 }
                 utils.setScriptVar(player, "conversation.village_whip.branchId", 6);
-                npcStartConversation(player, npc, "village_whip", message, responses);
+                npcStartConversation(player, self, "village_whip", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase2_givequest(player, npc))
+        if (village_whip_condition_phase2_givequest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4d59f240");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (village_whip_condition__defaultCondition(player, npc))
+            if (village_whip_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1627,73 +1626,73 @@ public class village_whip extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_77e48d5b");
                 }
                 utils.setScriptVar(player, "conversation.village_whip.branchId", 9);
-                npcStartConversation(player, npc, "village_whip", message, responses);
+                npcStartConversation(player, self, "village_whip", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase1_complete(player, npc))
+        if (village_whip_condition_phase1_complete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ab0312ab");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase1_aborted(player, npc))
+        if (village_whip_condition_phase1_aborted(player, self))
         {
-            village_whip_action_phase1_continue_quest(player, npc);
+            village_whip_action_phase1_continue_quest(player, self);
             string_id message = new string_id(c_stringFile, "s_ccc7b5db");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase1_failed(player, npc))
+        if (village_whip_condition_phase1_failed(player, self))
         {
-            village_whip_action_phase1_continue_quest(player, npc);
+            village_whip_action_phase1_continue_quest(player, self);
             string_id message = new string_id(c_stringFile, "s_4d0a11ef");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase1_continue(player, npc))
+        if (village_whip_condition_phase1_continue(player, self))
         {
-            village_whip_action_phase1_continue_quest(player, npc);
+            village_whip_action_phase1_continue_quest(player, self);
             string_id message = new string_id(c_stringFile, "s_6862142d");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            pp.digitInteger = village_whip_tokenDI_villagers_left(player, npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            pp.digitInteger = village_whip_tokenDI_villagers_left(player, self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase1_inprogress(player, npc))
+        if (village_whip_condition_phase1_inprogress(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ea9470bd");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase1_givequest(player, npc))
+        if (village_whip_condition_phase1_givequest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_35ee8c91");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (village_whip_condition__defaultCondition(player, npc))
+            if (village_whip_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (village_whip_condition__defaultCondition(player, npc))
+            if (village_whip_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (village_whip_condition__defaultCondition(player, npc))
+            if (village_whip_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1716,45 +1715,45 @@ public class village_whip extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_455e077f");
                 }
                 utils.setScriptVar(player, "conversation.village_whip.branchId", 24);
-                npcStartConversation(player, npc, "village_whip", message, responses);
+                npcStartConversation(player, self, "village_whip", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_quest_completed(player, npc))
+        if (village_whip_condition_quest_completed(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_de007d6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_quest_accepted(player, npc))
+        if (village_whip_condition_quest_accepted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_bfdaca25");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase3(player, npc))
+        if (village_whip_condition_phase3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_e46c2ff7");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition_phase4(player, npc))
+        if (village_whip_condition_phase4(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32360540");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (village_whip_condition__defaultCondition(player, npc))
+        if (village_whip_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3c9eddca");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1763,77 +1762,76 @@ public class village_whip extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.village_whip.branchId");
-        if (branchId == 6 && village_whip_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && village_whip_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && village_whip_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && village_whip_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && village_whip_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && village_whip_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && village_whip_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && village_whip_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && village_whip_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && village_whip_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && village_whip_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && village_whip_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && village_whip_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && village_whip_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && village_whip_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && village_whip_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && village_whip_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && village_whip_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && village_whip_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && village_whip_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && village_whip_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && village_whip_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && village_whip_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && village_whip_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && village_whip_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && village_whip_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && village_whip_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && village_whip_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && village_whip_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && village_whip_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && village_whip_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && village_whip_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && village_whip_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && village_whip_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.village_whip.branchId");
         return SCRIPT_CONTINUE;
     }

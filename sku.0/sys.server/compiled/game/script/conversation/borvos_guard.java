@@ -444,52 +444,51 @@ public class borvos_guard extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (borvos_guard_condition_workingForBorvo(player, npc))
+        if (borvos_guard_condition_workingForBorvo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (borvos_guard_condition_finishedJobThree(player, npc))
+        if (borvos_guard_condition_finishedJobThree(player, self))
         {
-            borvos_guard_action_signalJobThreeDone(player, npc);
+            borvos_guard_action_signalJobThreeDone(player, self);
             string_id message = new string_id(c_stringFile, "s_31");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (borvos_guard_condition_onJobThree(player, npc))
+        if (borvos_guard_condition_onJobThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (borvos_guard_condition_finishedJobTwo(player, npc))
+        if (borvos_guard_condition_finishedJobTwo(player, self))
         {
-            borvos_guard_action_signalJobTwoDone(player, npc);
+            borvos_guard_action_signalJobTwoDone(player, self);
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (borvos_guard_condition__defaultCondition(player, npc))
+            if (borvos_guard_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (borvos_guard_condition__defaultCondition(player, npc))
+            if (borvos_guard_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (borvos_guard_condition__defaultCondition(player, npc))
+            if (borvos_guard_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -512,42 +511,42 @@ public class borvos_guard extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_23");
                 }
                 utils.setScriptVar(player, "conversation.borvos_guard.branchId", 4);
-                npcStartConversation(player, npc, "borvos_guard", message, responses);
+                npcStartConversation(player, self, "borvos_guard", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (borvos_guard_condition_onJobTwo(player, npc))
+        if (borvos_guard_condition_onJobTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_29");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (borvos_guard_condition_finishedJobONe(player, npc))
+        if (borvos_guard_condition_finishedJobONe(player, self))
         {
-            borvos_guard_action_signalJobOneDone(player, npc);
+            borvos_guard_action_signalJobOneDone(player, self);
             string_id message = new string_id(c_stringFile, "s_16");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (borvos_guard_condition__defaultCondition(player, npc))
+            if (borvos_guard_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (borvos_guard_condition__defaultCondition(player, npc))
+            if (borvos_guard_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (borvos_guard_condition__defaultCondition(player, npc))
+            if (borvos_guard_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -570,41 +569,41 @@ public class borvos_guard extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.borvos_guard.branchId", 8);
-                npcStartConversation(player, npc, "borvos_guard", message, responses);
+                npcStartConversation(player, self, "borvos_guard", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (borvos_guard_condition_onJobOne(player, npc))
+        if (borvos_guard_condition_onJobOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (borvos_guard_condition_isOnHuffQuest(player, npc))
+        if (borvos_guard_condition_isOnHuffQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_46");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (borvos_guard_condition__defaultCondition(player, npc))
+            if (borvos_guard_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (borvos_guard_condition__defaultCondition(player, npc))
+            if (borvos_guard_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (borvos_guard_condition__defaultCondition(player, npc))
+            if (borvos_guard_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -627,21 +626,21 @@ public class borvos_guard extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_60");
                 }
                 utils.setScriptVar(player, "conversation.borvos_guard.branchId", 12);
-                npcStartConversation(player, npc, "borvos_guard", message, responses);
+                npcStartConversation(player, self, "borvos_guard", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (borvos_guard_condition__defaultCondition(player, npc))
+        if (borvos_guard_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_64");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -650,33 +649,32 @@ public class borvos_guard extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.borvos_guard.branchId");
-        if (branchId == 4 && borvos_guard_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && borvos_guard_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && borvos_guard_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && borvos_guard_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && borvos_guard_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && borvos_guard_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && borvos_guard_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && borvos_guard_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && borvos_guard_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && borvos_guard_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && borvos_guard_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && borvos_guard_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.borvos_guard.branchId");
         return SCRIPT_CONTINUE;
     }

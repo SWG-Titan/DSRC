@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class npe_profession_trader extends script.base_script
+public class npe_profession_trader extends base_script
 {
     public npe_profession_trader()
     {

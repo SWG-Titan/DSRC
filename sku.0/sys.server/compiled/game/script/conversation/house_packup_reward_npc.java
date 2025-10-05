@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class house_packup_reward_npc extends script.base_script
+public class house_packup_reward_npc extends base_script
 {
     public house_packup_reward_npc()
     {
@@ -141,6 +141,7 @@ public class house_packup_reward_npc extends script.base_script
     {
         obj_id pInv = utils.getInventoryContainer(player);
         player_structure.housePackingPointDecrease(player);
+        static_item.createNewItemFunction("item_housepack_emperor_desk_lamp_01_01", pInv);
         static_item.createNewItemFunction("item_housepack_emperor_desk_lamp_01_01", pInv);
         CustomerServiceLog("HOUSE_PACKUP_REWARDS", player + "purchased a item_housepack_emperor_desk_lamp_01_01");
     }
@@ -28493,41 +28494,40 @@ public class house_packup_reward_npc extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (house_packup_reward_npc_condition_badgeMogulRecipient(player, npc))
+        if (house_packup_reward_npc_condition_badgeMogulRecipient(player, self))
         {
-            doAnimationAction(npc, "bow5");
+            doAnimationAction(self, "bow5");
             doAnimationAction(player, "pose_proudly");
             string_id message = new string_id(c_stringFile, "s_172");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (house_packup_reward_npc_condition_hasPoints(player, npc))
+            if (house_packup_reward_npc_condition_hasPoints(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -28557,49 +28557,49 @@ public class house_packup_reward_npc extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "house_packup_reward_npc", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "house_packup_reward_npc", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (house_packup_reward_npc_condition_badgeMasterRecipient(player, npc))
+        if (house_packup_reward_npc_condition_badgeMasterRecipient(player, self))
         {
-            doAnimationAction(npc, "bow3");
+            doAnimationAction(self, "bow3");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_152");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (house_packup_reward_npc_condition_hasPoints(player, npc))
+            if (house_packup_reward_npc_condition_hasPoints(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -28629,49 +28629,49 @@ public class house_packup_reward_npc extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "house_packup_reward_npc", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "house_packup_reward_npc", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (house_packup_reward_npc_condition_badgePackupRecipient(player, npc))
+        if (house_packup_reward_npc_condition_badgePackupRecipient(player, self))
         {
-            doAnimationAction(npc, "wave2");
+            doAnimationAction(self, "wave2");
             doAnimationAction(player, "bow");
             string_id message = new string_id(c_stringFile, "s_173");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (house_packup_reward_npc_condition_hasPoints(player, npc))
+            if (house_packup_reward_npc_condition_hasPoints(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -28701,49 +28701,49 @@ public class house_packup_reward_npc extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "house_packup_reward_npc", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "house_packup_reward_npc", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (house_packup_reward_npc_condition_hasPoints(player, npc))
+        if (house_packup_reward_npc_condition_hasPoints(player, self))
         {
-            doAnimationAction(npc, "bow2");
+            doAnimationAction(self, "bow2");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (house_packup_reward_npc_condition_hasPoints(player, npc))
+            if (house_packup_reward_npc_condition_hasPoints(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -28773,35 +28773,35 @@ public class house_packup_reward_npc extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "house_packup_reward_npc", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "house_packup_reward_npc", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+        if (house_packup_reward_npc_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "bow2");
+            doAnimationAction(self, "bow2");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_252");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (house_packup_reward_npc_condition__defaultCondition(player, npc))
+            if (house_packup_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -28820,15 +28820,15 @@ public class house_packup_reward_npc extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_280");
                 }
                 utils.setScriptVar(player, "conversation.house_packup_reward_npc.branchId", 75);
-                npcStartConversation(player, npc, "house_packup_reward_npc", message, responses);
+                npcStartConversation(player, self, "house_packup_reward_npc", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -28837,257 +28837,256 @@ public class house_packup_reward_npc extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.house_packup_reward_npc.branchId");
-        if (branchId == 1 && house_packup_reward_npc_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && house_packup_reward_npc_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && house_packup_reward_npc_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && house_packup_reward_npc_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && house_packup_reward_npc_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && house_packup_reward_npc_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && house_packup_reward_npc_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && house_packup_reward_npc_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && house_packup_reward_npc_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && house_packup_reward_npc_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && house_packup_reward_npc_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && house_packup_reward_npc_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && house_packup_reward_npc_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && house_packup_reward_npc_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && house_packup_reward_npc_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && house_packup_reward_npc_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && house_packup_reward_npc_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && house_packup_reward_npc_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && house_packup_reward_npc_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && house_packup_reward_npc_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && house_packup_reward_npc_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && house_packup_reward_npc_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && house_packup_reward_npc_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && house_packup_reward_npc_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && house_packup_reward_npc_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && house_packup_reward_npc_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && house_packup_reward_npc_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && house_packup_reward_npc_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && house_packup_reward_npc_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && house_packup_reward_npc_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && house_packup_reward_npc_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && house_packup_reward_npc_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && house_packup_reward_npc_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && house_packup_reward_npc_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && house_packup_reward_npc_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && house_packup_reward_npc_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && house_packup_reward_npc_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && house_packup_reward_npc_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && house_packup_reward_npc_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && house_packup_reward_npc_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && house_packup_reward_npc_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && house_packup_reward_npc_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && house_packup_reward_npc_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && house_packup_reward_npc_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && house_packup_reward_npc_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && house_packup_reward_npc_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && house_packup_reward_npc_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && house_packup_reward_npc_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && house_packup_reward_npc_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && house_packup_reward_npc_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && house_packup_reward_npc_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && house_packup_reward_npc_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && house_packup_reward_npc_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && house_packup_reward_npc_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && house_packup_reward_npc_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && house_packup_reward_npc_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && house_packup_reward_npc_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && house_packup_reward_npc_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && house_packup_reward_npc_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && house_packup_reward_npc_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && house_packup_reward_npc_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && house_packup_reward_npc_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && house_packup_reward_npc_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && house_packup_reward_npc_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && house_packup_reward_npc_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && house_packup_reward_npc_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && house_packup_reward_npc_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && house_packup_reward_npc_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && house_packup_reward_npc_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && house_packup_reward_npc_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && house_packup_reward_npc_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && house_packup_reward_npc_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && house_packup_reward_npc_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && house_packup_reward_npc_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && house_packup_reward_npc_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && house_packup_reward_npc_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && house_packup_reward_npc_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && house_packup_reward_npc_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && house_packup_reward_npc_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && house_packup_reward_npc_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && house_packup_reward_npc_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && house_packup_reward_npc_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && house_packup_reward_npc_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && house_packup_reward_npc_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && house_packup_reward_npc_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && house_packup_reward_npc_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && house_packup_reward_npc_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && house_packup_reward_npc_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && house_packup_reward_npc_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && house_packup_reward_npc_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && house_packup_reward_npc_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && house_packup_reward_npc_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && house_packup_reward_npc_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && house_packup_reward_npc_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && house_packup_reward_npc_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && house_packup_reward_npc_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && house_packup_reward_npc_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && house_packup_reward_npc_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && house_packup_reward_npc_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && house_packup_reward_npc_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && house_packup_reward_npc_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && house_packup_reward_npc_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && house_packup_reward_npc_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && house_packup_reward_npc_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && house_packup_reward_npc_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && house_packup_reward_npc_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && house_packup_reward_npc_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && house_packup_reward_npc_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && house_packup_reward_npc_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && house_packup_reward_npc_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && house_packup_reward_npc_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && house_packup_reward_npc_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && house_packup_reward_npc_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && house_packup_reward_npc_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && house_packup_reward_npc_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && house_packup_reward_npc_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && house_packup_reward_npc_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && house_packup_reward_npc_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && house_packup_reward_npc_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && house_packup_reward_npc_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && house_packup_reward_npc_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && house_packup_reward_npc_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && house_packup_reward_npc_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && house_packup_reward_npc_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.house_packup_reward_npc.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -2317,20 +2317,19 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedSpaceQuest(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedSpaceQuest(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_936");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2348,35 +2347,35 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestFour(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestFour(player, self))
         {
-            doAnimationAction(npc, "nervous");
+            doAnimationAction(self, "nervous");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_938");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2395,23 +2394,23 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1109");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 2);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onQuestFour(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onQuestFour(player, self))
         {
-            doAnimationAction(npc, "sigh_deeply");
+            doAnimationAction(self, "sigh_deeply");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_944");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2426,30 +2425,30 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1107");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 4);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestThree(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestThree(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_946");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2468,37 +2467,37 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1105");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 5);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onQuestThree(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onQuestThree(player, self))
         {
-            doAnimationAction(npc, "sigh_deeply");
+            doAnimationAction(self, "sigh_deeply");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_960");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2521,30 +2520,30 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1103");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 9);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestTwoFinal(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestTwoFinal(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_110");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2563,29 +2562,29 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_112");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 12);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestTwo(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestTwo(player, self))
         {
-            doAnimationAction(npc, "nervous");
+            doAnimationAction(self, "nervous");
             string_id message = new string_id(c_stringFile, "s_970");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2604,22 +2603,22 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1101");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 15);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onQuestTwo(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onQuestTwo(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
+            doAnimationAction(self, "gesticulate_wildly");
             string_id message = new string_id(c_stringFile, "s_992");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2634,37 +2633,37 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1099");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 21);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestOne(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_hasCompletedQuestOne(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_994");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2687,21 +2686,21 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1097");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 22);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_failedQuestOne(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_failedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_104");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2716,30 +2715,30 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_105");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 27);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onTaskOne(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onTaskOne(player, self))
         {
-            doAnimationAction(npc, "pose_proudly");
+            doAnimationAction(self, "pose_proudly");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_1014");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2758,37 +2757,37 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1095");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 29);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onQuestOne(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_onQuestOne(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_1078");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2811,23 +2810,23 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1093");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 44);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+        if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "pose_proudly");
+            doAnimationAction(self, "pose_proudly");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_1088");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_jedi_starfighter_imp_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2842,15 +2841,15 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1090");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId", 54);
-                npcStartConversation(player, npc, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_jedi_starfighter_imp_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2859,125 +2858,124 @@ public class ep3_clone_relics_jedi_starfighter_imp_commander extends script.base
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId");
-        if (branchId == 1 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && ep3_clone_relics_jedi_starfighter_imp_commander_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_clone_relics_jedi_starfighter_imp_commander.branchId");
         return SCRIPT_CONTINUE;
     }

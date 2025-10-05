@@ -6,7 +6,7 @@ import script.library.chat;
 import script.library.groundquests;
 import script.library.utils;
 
-public class cale_serasai extends script.base_script
+public class cale_serasai extends base_script
 {
     public cale_serasai()
     {

@@ -211,7 +211,7 @@ public class mtp_kissing_booth extends script.base_script
             int myRoll = rand(1, 100);
             if (isGod(giver))
             {
-                sendSystemMessageTestingOnly(giver, "you rolled: " + myRoll + " You must roll 10 or less for the debuff");
+                broadcast(giver, "you rolled: " + myRoll + " You must roll 10 or less for the debuff");
             }
             if (myRoll > 10)
             {

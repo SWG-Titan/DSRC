@@ -5,7 +5,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.library.utils;
 
-public class bm_vendor extends script.base_script
+public class bm_vendor extends base_script
 {
     public bm_vendor()
     {

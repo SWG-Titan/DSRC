@@ -294,39 +294,38 @@ public class trainer_beast_master extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (trainer_beast_master_condition_hasActiveBeast(player, npc))
+        if (trainer_beast_master_condition_hasActiveBeast(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (trainer_beast_master_condition_hasSkillsToUnlearn(player, npc))
+            if (trainer_beast_master_condition_hasSkillsToUnlearn(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!trainer_beast_master_condition_knowsProvoke(player, npc))
+            if (!trainer_beast_master_condition_knowsProvoke(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (trainer_beast_master_condition_knowsProvoke(player, npc))
+            if (trainer_beast_master_condition_knowsProvoke(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (trainer_beast_master_condition__defaultCondition(player, npc))
+            if (trainer_beast_master_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -353,21 +352,21 @@ public class trainer_beast_master extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_35");
                 }
                 utils.setScriptVar(player, "conversation.trainer_beast_master.branchId", 1);
-                npcStartConversation(player, npc, "trainer_beast_master", message, responses);
+                npcStartConversation(player, self, "trainer_beast_master", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (trainer_beast_master_condition__defaultCondition(player, npc))
+        if (trainer_beast_master_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_38");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -376,21 +375,20 @@ public class trainer_beast_master extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.trainer_beast_master.branchId");
-        if (branchId == 1 && trainer_beast_master_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && trainer_beast_master_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && trainer_beast_master_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && trainer_beast_master_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && trainer_beast_master_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && trainer_beast_master_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.trainer_beast_master.branchId");
         return SCRIPT_CONTINUE;
     }

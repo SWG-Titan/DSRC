@@ -452,75 +452,74 @@ public class restuss_imperial_ground_destroy_3 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (restuss_imperial_ground_destroy_3_condition_isPlayerRebel(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition_isPlayerRebel(player, self))
         {
-            restuss_imperial_ground_destroy_3_action_eject(player, npc);
+            restuss_imperial_ground_destroy_3_action_eject(player, self);
             string_id message = new string_id(c_stringFile, "s_66");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ground_destroy_3_condition_mission2Success(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition_mission2Success(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
-            restuss_imperial_ground_destroy_3_action_reward2(player, npc);
+            restuss_imperial_ground_destroy_3_action_reward2(player, self);
             string_id message = new string_id(c_stringFile, "s_39");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ground_destroy_3_condition_mission1Success(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition_mission1Success(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
-            restuss_imperial_ground_destroy_3_action_reward1(player, npc);
+            restuss_imperial_ground_destroy_3_action_reward1(player, self);
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ground_destroy_3_condition_mission1Active(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition_mission1Active(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_9");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ground_destroy_3_condition_mission2Active(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition_mission2Active(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_25");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ground_destroy_3_condition_completedMission2(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition_completedMission2(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_72");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -543,37 +542,37 @@ public class restuss_imperial_ground_destroy_3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_94");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_ground_destroy_3.branchId", 6);
-                npcStartConversation(player, npc, "restuss_imperial_ground_destroy_3", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_ground_destroy_3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ground_destroy_3_condition_completedMission1(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition_completedMission1(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_24");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -596,37 +595,37 @@ public class restuss_imperial_ground_destroy_3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_46");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_ground_destroy_3.branchId", 13);
-                npcStartConversation(player, npc, "restuss_imperial_ground_destroy_3", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_ground_destroy_3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ground_destroy_3_condition_stage3ready(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition_stage3ready(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_50");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (restuss_imperial_ground_destroy_3_condition_notCommando(player, npc))
+            if (restuss_imperial_ground_destroy_3_condition_notCommando(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (restuss_imperial_ground_destroy_3_condition_commando(player, npc))
+            if (restuss_imperial_ground_destroy_3_condition_commando(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, npc))
+            if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -649,30 +648,30 @@ public class restuss_imperial_ground_destroy_3 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_57");
                 }
                 utils.setScriptVar(player, "conversation.restuss_imperial_ground_destroy_3.branchId", 20);
-                npcStartConversation(player, npc, "restuss_imperial_ground_destroy_3", message, responses);
+                npcStartConversation(player, self, "restuss_imperial_ground_destroy_3", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ground_destroy_3_condition_playerImperial(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition_playerImperial(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_62");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, npc))
+        if (restuss_imperial_ground_destroy_3_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_68");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -681,29 +680,28 @@ public class restuss_imperial_ground_destroy_3 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.restuss_imperial_ground_destroy_3.branchId");
-        if (branchId == 6 && restuss_imperial_ground_destroy_3_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && restuss_imperial_ground_destroy_3_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && restuss_imperial_ground_destroy_3_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && restuss_imperial_ground_destroy_3_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && restuss_imperial_ground_destroy_3_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && restuss_imperial_ground_destroy_3_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && restuss_imperial_ground_destroy_3_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && restuss_imperial_ground_destroy_3_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && restuss_imperial_ground_destroy_3_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && restuss_imperial_ground_destroy_3_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.restuss_imperial_ground_destroy_3.branchId");
         return SCRIPT_CONTINUE;
     }

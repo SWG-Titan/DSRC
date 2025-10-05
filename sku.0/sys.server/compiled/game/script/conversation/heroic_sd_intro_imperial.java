@@ -94,37 +94,36 @@ public class heroic_sd_intro_imperial extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (heroic_sd_intro_imperial_condition_notImperialFaction(player, npc))
+        if (heroic_sd_intro_imperial_condition_notImperialFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (heroic_sd_intro_imperial_condition_returningQuest(player, npc))
+        if (heroic_sd_intro_imperial_condition_returningQuest(player, self))
         {
-            heroic_sd_intro_imperial_action_sendIntroSignal(player, npc);
+            heroic_sd_intro_imperial_action_sendIntroSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (heroic_sd_intro_imperial_condition_onQuest(player, npc))
+        if (heroic_sd_intro_imperial_condition_onQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (heroic_sd_intro_imperial_condition__defaultCondition(player, npc))
+        if (heroic_sd_intro_imperial_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_10");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (heroic_sd_intro_imperial_condition__defaultCondition(player, npc))
+            if (heroic_sd_intro_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -139,15 +138,15 @@ public class heroic_sd_intro_imperial extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_12");
                 }
                 utils.setScriptVar(player, "conversation.heroic_sd_intro_imperial.branchId", 4);
-                npcStartConversation(player, npc, "heroic_sd_intro_imperial", message, responses);
+                npcStartConversation(player, self, "heroic_sd_intro_imperial", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -156,13 +155,12 @@ public class heroic_sd_intro_imperial extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.heroic_sd_intro_imperial.branchId");
-        if (branchId == 4 && heroic_sd_intro_imperial_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && heroic_sd_intro_imperial_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.heroic_sd_intro_imperial.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class lf_safetyquestgiver extends script.base_script
+public class lf_safetyquestgiver extends base_script
 {
     public lf_safetyquestgiver()
     {

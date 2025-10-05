@@ -168,12 +168,12 @@ public class static_gcw_base_corellia_rebel_reward_npc extends script.base_scrip
     public void static_gcw_base_corellia_rebel_reward_npc_action_advanceRewardPhase(obj_id player, obj_id npc) throws InterruptedException
     {
         int newPhase = gcw.advancePub30StaticBaseCapturePhase(npc);
-        sendSystemMessageTestingOnly(player, "Reward phase advanced to " + newPhase);
+        broadcast(player, "Reward phase advanced to " + newPhase);
     }
     public void static_gcw_base_corellia_rebel_reward_npc_action_regressRewardPhase(obj_id player, obj_id npc) throws InterruptedException
     {
         int newPhase = gcw.regressPub30StaticBaseCapturePhase(npc);
-        sendSystemMessageTestingOnly(player, "Reward phase regressed to " + newPhase);
+        broadcast(player, "Reward phase regressed to " + newPhase);
     }
     public void static_gcw_base_corellia_rebel_reward_npc_action_reportRewardPhase(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -181,11 +181,11 @@ public class static_gcw_base_corellia_rebel_reward_npc extends script.base_scrip
         String next = gcw.getPub30TimeToNextPhaseString(npc);
         if (phase < 5)
         {
-            sendSystemMessageTestingOnly(player, "Current reward phase is: " + phase + ". Next reward phase in " + next);
+            broadcast(player, "Current reward phase is: " + phase + ". Next reward phase in " + next);
         }
         else 
         {
-            sendSystemMessageTestingOnly(player, "Current reward phase is: " + phase + ". This is the final phase");
+            broadcast(player, "Current reward phase is: " + phase + ". This is the final phase");
         }
     }
     public void static_gcw_base_corellia_rebel_reward_npc_action_grantDamageBoost4(obj_id player, obj_id npc) throws InterruptedException
@@ -1860,145 +1860,144 @@ public class static_gcw_base_corellia_rebel_reward_npc extends script.base_scrip
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!static_gcw_base_corellia_rebel_reward_npc_condition_inControlOfBase(player, npc))
+        if (!static_gcw_base_corellia_rebel_reward_npc_condition_inControlOfBase(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_15");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (static_gcw_base_corellia_rebel_reward_npc_condition_playerRebel(player, npc))
+        if (static_gcw_base_corellia_rebel_reward_npc_condition_playerRebel(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse7 = true;
             }
             boolean hasResponse8 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_5(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_5(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse8 = true;
             }
             boolean hasResponse9 = false;
-            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, npc))
+            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse9 = true;
             }
             boolean hasResponse10 = false;
-            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, npc))
+            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse10 = true;
             }
             boolean hasResponse11 = false;
-            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, npc))
+            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse11 = true;
             }
             boolean hasResponse12 = false;
-            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, npc))
+            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse12 = true;
             }
             boolean hasResponse13 = false;
-            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_5(player, npc))
+            if (!static_gcw_base_corellia_rebel_reward_npc_condition_reward_phase_5(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse13 = true;
             }
             boolean hasResponse14 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition_isGodPlayer(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition_isGodPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse14 = true;
             }
             boolean hasResponse15 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition_isGodPlayer(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition_isGodPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse15 = true;
             }
             boolean hasResponse16 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition_isGodPlayer(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition_isGodPlayer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse16 = true;
             }
             boolean hasResponse17 = false;
-            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, npc))
+            if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2081,21 +2080,21 @@ public class static_gcw_base_corellia_rebel_reward_npc extends script.base_scrip
                     responses[responseIndex++] = new string_id(c_stringFile, "s_223");
                 }
                 utils.setScriptVar(player, "conversation.static_gcw_base_corellia_rebel_reward_npc.branchId", 2);
-                npcStartConversation(player, npc, "static_gcw_base_corellia_rebel_reward_npc", message, responses);
+                npcStartConversation(player, self, "static_gcw_base_corellia_rebel_reward_npc", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, npc))
+        if (static_gcw_base_corellia_rebel_reward_npc_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_258");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2104,141 +2103,140 @@ public class static_gcw_base_corellia_rebel_reward_npc extends script.base_scrip
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.static_gcw_base_corellia_rebel_reward_npc.branchId");
-        if (branchId == 2 && static_gcw_base_corellia_rebel_reward_npc_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && static_gcw_base_corellia_rebel_reward_npc_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && static_gcw_base_corellia_rebel_reward_npc_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && static_gcw_base_corellia_rebel_reward_npc_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && static_gcw_base_corellia_rebel_reward_npc_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && static_gcw_base_corellia_rebel_reward_npc_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && static_gcw_base_corellia_rebel_reward_npc_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && static_gcw_base_corellia_rebel_reward_npc_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && static_gcw_base_corellia_rebel_reward_npc_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && static_gcw_base_corellia_rebel_reward_npc_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && static_gcw_base_corellia_rebel_reward_npc_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && static_gcw_base_corellia_rebel_reward_npc_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && static_gcw_base_corellia_rebel_reward_npc_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && static_gcw_base_corellia_rebel_reward_npc_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && static_gcw_base_corellia_rebel_reward_npc_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && static_gcw_base_corellia_rebel_reward_npc_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && static_gcw_base_corellia_rebel_reward_npc_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && static_gcw_base_corellia_rebel_reward_npc_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && static_gcw_base_corellia_rebel_reward_npc_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && static_gcw_base_corellia_rebel_reward_npc_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && static_gcw_base_corellia_rebel_reward_npc_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && static_gcw_base_corellia_rebel_reward_npc_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && static_gcw_base_corellia_rebel_reward_npc_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && static_gcw_base_corellia_rebel_reward_npc_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && static_gcw_base_corellia_rebel_reward_npc_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && static_gcw_base_corellia_rebel_reward_npc_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && static_gcw_base_corellia_rebel_reward_npc_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && static_gcw_base_corellia_rebel_reward_npc_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && static_gcw_base_corellia_rebel_reward_npc_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && static_gcw_base_corellia_rebel_reward_npc_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && static_gcw_base_corellia_rebel_reward_npc_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && static_gcw_base_corellia_rebel_reward_npc_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && static_gcw_base_corellia_rebel_reward_npc_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && static_gcw_base_corellia_rebel_reward_npc_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && static_gcw_base_corellia_rebel_reward_npc_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && static_gcw_base_corellia_rebel_reward_npc_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && static_gcw_base_corellia_rebel_reward_npc_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && static_gcw_base_corellia_rebel_reward_npc_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && static_gcw_base_corellia_rebel_reward_npc_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && static_gcw_base_corellia_rebel_reward_npc_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && static_gcw_base_corellia_rebel_reward_npc_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && static_gcw_base_corellia_rebel_reward_npc_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && static_gcw_base_corellia_rebel_reward_npc_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && static_gcw_base_corellia_rebel_reward_npc_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && static_gcw_base_corellia_rebel_reward_npc_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && static_gcw_base_corellia_rebel_reward_npc_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && static_gcw_base_corellia_rebel_reward_npc_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && static_gcw_base_corellia_rebel_reward_npc_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && static_gcw_base_corellia_rebel_reward_npc_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && static_gcw_base_corellia_rebel_reward_npc_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && static_gcw_base_corellia_rebel_reward_npc_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && static_gcw_base_corellia_rebel_reward_npc_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && static_gcw_base_corellia_rebel_reward_npc_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && static_gcw_base_corellia_rebel_reward_npc_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && static_gcw_base_corellia_rebel_reward_npc_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && static_gcw_base_corellia_rebel_reward_npc_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && static_gcw_base_corellia_rebel_reward_npc_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && static_gcw_base_corellia_rebel_reward_npc_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && static_gcw_base_corellia_rebel_reward_npc_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && static_gcw_base_corellia_rebel_reward_npc_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && static_gcw_base_corellia_rebel_reward_npc_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && static_gcw_base_corellia_rebel_reward_npc_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && static_gcw_base_corellia_rebel_reward_npc_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && static_gcw_base_corellia_rebel_reward_npc_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && static_gcw_base_corellia_rebel_reward_npc_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && static_gcw_base_corellia_rebel_reward_npc_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.static_gcw_base_corellia_rebel_reward_npc.branchId");
         return SCRIPT_CONTINUE;
     }

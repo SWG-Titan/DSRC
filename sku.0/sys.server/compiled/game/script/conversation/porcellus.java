@@ -296,26 +296,25 @@ public class porcellus extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (porcellus_condition_completedPorcellus(player, npc))
+        if (porcellus_condition_completedPorcellus(player, self))
         {
-            porcellus_action_facePlayer(player, npc);
+            porcellus_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (porcellus_condition_returningIngredients(player, npc))
+        if (porcellus_condition_returningIngredients(player, self))
         {
-            porcellus_action_sendFinishSignal(player, npc);
+            porcellus_action_sendFinishSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (porcellus_condition__defaultCondition(player, npc))
+            if (porcellus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -330,78 +329,78 @@ public class porcellus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_23");
                 }
                 utils.setScriptVar(player, "conversation.porcellus.branchId", 2);
-                npcStartConversation(player, npc, "porcellus", message, responses);
+                npcStartConversation(player, self, "porcellus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (porcellus_condition_gettingWine(player, npc))
+        if (porcellus_condition_gettingWine(player, self))
         {
-            porcellus_action_facePlayer(player, npc);
+            porcellus_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (porcellus_condition_gettingDessert(player, npc))
+        if (porcellus_condition_gettingDessert(player, self))
         {
-            porcellus_action_facePlayer(player, npc);
+            porcellus_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_12");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (porcellus_condition_gettingEntree(player, npc))
+        if (porcellus_condition_gettingEntree(player, self))
         {
-            porcellus_action_facePlayer(player, npc);
+            porcellus_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_14");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (porcellus_condition_gettingSalad(player, npc))
+        if (porcellus_condition_gettingSalad(player, self))
         {
-            porcellus_action_facePlayer(player, npc);
+            porcellus_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_16");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (porcellus_condition_gettingSoup(player, npc))
+        if (porcellus_condition_gettingSoup(player, self))
         {
-            porcellus_action_facePlayer(player, npc);
+            porcellus_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_18");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (porcellus_condition_gettingAppetizer(player, npc))
+        if (porcellus_condition_gettingAppetizer(player, self))
         {
-            porcellus_action_facePlayer(player, npc);
+            porcellus_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_20");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (porcellus_condition_completedEphantMon(player, npc))
+        if (porcellus_condition_completedEphantMon(player, self))
         {
-            porcellus_action_clearPointer(player, npc);
+            porcellus_action_clearPointer(player, self);
             string_id message = new string_id(c_stringFile, "s_22");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (porcellus_condition__defaultCondition(player, npc))
+            if (porcellus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (porcellus_condition__defaultCondition(player, npc))
+            if (porcellus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (porcellus_condition__defaultCondition(player, npc))
+            if (porcellus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -424,22 +423,22 @@ public class porcellus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_34");
                 }
                 utils.setScriptVar(player, "conversation.porcellus.branchId", 10);
-                npcStartConversation(player, npc, "porcellus", message, responses);
+                npcStartConversation(player, self, "porcellus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (porcellus_condition__defaultCondition(player, npc))
+        if (porcellus_condition__defaultCondition(player, self))
         {
-            porcellus_action_facePlayer(player, npc);
+            porcellus_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_46");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -448,25 +447,24 @@ public class porcellus extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.porcellus.branchId");
-        if (branchId == 2 && porcellus_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && porcellus_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && porcellus_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && porcellus_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && porcellus_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && porcellus_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && porcellus_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && porcellus_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.porcellus.branchId");
         return SCRIPT_CONTINUE;
     }

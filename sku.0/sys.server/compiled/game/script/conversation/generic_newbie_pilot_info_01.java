@@ -1194,65 +1194,64 @@ public class generic_newbie_pilot_info_01 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!generic_newbie_pilot_info_01_condition_hasSpaceExpansion(player, npc))
+        if (!generic_newbie_pilot_info_01_condition_hasSpaceExpansion(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
+            doAnimationAction(self, "shake_head_disgust");
             doAnimationAction(player, "shrug_hands");
             string_id message = new string_id(c_stringFile, "s_fae2eb08");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (generic_newbie_pilot_info_01_condition_remembersPlayer(player, npc))
+        if (generic_newbie_pilot_info_01_condition_remembersPlayer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_250fded0");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (generic_newbie_pilot_info_01_condition_isRebelPilot(player, npc))
+        if (generic_newbie_pilot_info_01_condition_isRebelPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_598fb819");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (generic_newbie_pilot_info_01_condition_isImperialPilot(player, npc))
+        if (generic_newbie_pilot_info_01_condition_isImperialPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1d489448");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (generic_newbie_pilot_info_01_condition_isPrivateerPilot(player, npc))
+        if (generic_newbie_pilot_info_01_condition_isPrivateerPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8b70941b");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (generic_newbie_pilot_info_01_condition__defaultCondition(player, npc))
+        if (generic_newbie_pilot_info_01_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_94e18e61");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (!generic_newbie_pilot_info_01_condition_hasSpaceShip(player, npc))
+            if (!generic_newbie_pilot_info_01_condition_hasSpaceShip(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (generic_newbie_pilot_info_01_condition__defaultCondition(player, npc))
+            if (generic_newbie_pilot_info_01_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (generic_newbie_pilot_info_01_condition_hasSpaceShip(player, npc))
+            if (generic_newbie_pilot_info_01_condition_hasSpaceShip(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1275,15 +1274,15 @@ public class generic_newbie_pilot_info_01 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_cf5fc0f");
                 }
                 utils.setScriptVar(player, "conversation.generic_newbie_pilot_info_01.branchId", 6);
-                npcStartConversation(player, npc, "generic_newbie_pilot_info_01", message, responses);
+                npcStartConversation(player, self, "generic_newbie_pilot_info_01", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1292,69 +1291,68 @@ public class generic_newbie_pilot_info_01 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.generic_newbie_pilot_info_01.branchId");
-        if (branchId == 6 && generic_newbie_pilot_info_01_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && generic_newbie_pilot_info_01_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && generic_newbie_pilot_info_01_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && generic_newbie_pilot_info_01_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && generic_newbie_pilot_info_01_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && generic_newbie_pilot_info_01_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && generic_newbie_pilot_info_01_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && generic_newbie_pilot_info_01_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && generic_newbie_pilot_info_01_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && generic_newbie_pilot_info_01_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && generic_newbie_pilot_info_01_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && generic_newbie_pilot_info_01_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && generic_newbie_pilot_info_01_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && generic_newbie_pilot_info_01_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && generic_newbie_pilot_info_01_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && generic_newbie_pilot_info_01_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && generic_newbie_pilot_info_01_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && generic_newbie_pilot_info_01_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && generic_newbie_pilot_info_01_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && generic_newbie_pilot_info_01_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && generic_newbie_pilot_info_01_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && generic_newbie_pilot_info_01_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && generic_newbie_pilot_info_01_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && generic_newbie_pilot_info_01_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && generic_newbie_pilot_info_01_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && generic_newbie_pilot_info_01_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && generic_newbie_pilot_info_01_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && generic_newbie_pilot_info_01_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && generic_newbie_pilot_info_01_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && generic_newbie_pilot_info_01_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.generic_newbie_pilot_info_01.branchId");
         return SCRIPT_CONTINUE;
     }

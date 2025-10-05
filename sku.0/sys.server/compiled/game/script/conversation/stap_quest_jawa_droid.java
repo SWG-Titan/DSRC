@@ -3,7 +3,7 @@ package script.conversation;
 import script.*;
 import script.library.*;
 
-public class stap_quest_jawa_droid extends script.base_script
+public class stap_quest_jawa_droid extends base_script
 {
     public stap_quest_jawa_droid()
     {

@@ -508,11 +508,55 @@ public class lifeday_vendor extends script.base_script
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info menuInfo) throws InterruptedException
     {
         int menu = menuInfo.addRootMenu(menu_info_types.CONVERSE_START, null);
+        menuInfo.addRootMenu(menu_info_types.SERVER_MENU1, new string_id("Retrieve Life Day Axe"));
         menu_info_data menuInfoData = menuInfo.getMenuItemById(menu);
         menuInfoData.setServerNotify(false);
         setCondition(self, CONDITION_CONVERSABLE);
         return SCRIPT_CONTINUE;
     }
+
+    public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
+    {
+        if (item == menu_info_types.SERVER_MENU1)
+        {
+            if (!hasObjVar(player, "lifeday.axe_23")) //@NOTE this is the axe object var for 2023 update next year
+            {
+                grantAxe(player);
+            }
+            else
+            {
+                broadcast(player, "You already received an axe this year.");
+            }
+        }
+        return SCRIPT_CONTINUE;
+    }
+
+    public void grantAxe(obj_id player) throws InterruptedException
+    {
+        obj_id pInv = utils.getInventoryContainer(player);
+        obj_id axe = createObject("object/weapon/melee/axe/axe_heavy_duty.iff", pInv, "");
+        setNoTrade(axe, true);
+        setObjVar(axe, "lifeday.axe_object", 1);
+        setObjVar(player, "lifeday.axe_23", 1);
+        setName(axe, "Life Day Axe");
+        setDescriptionString(axe, "This axe can be used to chop down Life Day trees for decoration or for a small amount of wood resources.");
+        broadcast(player, "You have received a Life Day Axe to chop down a tree.  Happy Life Day!");
+    }
+
+    public void setNoTrade(obj_id axe, boolean b)
+    {
+        if (b)
+        {
+            setObjVar(axe, "noTrade", 1);
+            attachScript(axe, "item.special.nomove");
+        }
+        else
+        {
+            removeObjVar(axe, "noTrade");
+            detachScript(axe, "item.special.nomove");
+        }
+    }
+
     public int OnIncapacitated(obj_id self, obj_id killer) throws InterruptedException
     {
         clearCondition(self, CONDITION_CONVERSABLE);
@@ -527,20 +571,19 @@ public class lifeday_vendor extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (lifeday_vendor_condition_questReturned(player, npc))
+        if (lifeday_vendor_condition_questReturned(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_14");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (lifeday_vendor_condition__defaultCondition(player, npc))
+            if (lifeday_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -558,35 +601,35 @@ public class lifeday_vendor extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "lifeday_vendor", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "lifeday_vendor", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (lifeday_vendor_condition_questCompleted(player, npc))
+        if (lifeday_vendor_condition_questCompleted(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_41");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (lifeday_vendor_condition__defaultCondition(player, npc))
+            if (lifeday_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (lifeday_vendor_condition__defaultCondition(player, npc))
+            if (lifeday_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -608,35 +651,35 @@ public class lifeday_vendor extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "lifeday_vendor", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "lifeday_vendor", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (lifeday_vendor_condition_questNotCompleted(player, npc))
+        if (lifeday_vendor_condition_questNotCompleted(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_35");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (lifeday_vendor_condition__defaultCondition(player, npc))
+            if (lifeday_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (lifeday_vendor_condition__defaultCondition(player, npc))
+            if (lifeday_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -658,28 +701,28 @@ public class lifeday_vendor extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "lifeday_vendor", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "lifeday_vendor", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (lifeday_vendor_condition__defaultCondition(player, npc))
+        if (lifeday_vendor_condition__defaultCondition(player, self))
         {
             doAnimationAction(player, "greet");
-            lifeday_vendor_action_showTokenVendorUI(player, npc);
+            lifeday_vendor_action_showTokenVendorUI(player, self);
             string_id message = new string_id(c_stringFile, "s_66");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -688,45 +731,44 @@ public class lifeday_vendor extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.lifeday_vendor.branchId");
-        if (branchId == 1 && lifeday_vendor_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && lifeday_vendor_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && lifeday_vendor_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && lifeday_vendor_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && lifeday_vendor_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && lifeday_vendor_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && lifeday_vendor_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && lifeday_vendor_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && lifeday_vendor_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && lifeday_vendor_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && lifeday_vendor_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && lifeday_vendor_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && lifeday_vendor_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && lifeday_vendor_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && lifeday_vendor_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && lifeday_vendor_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && lifeday_vendor_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && lifeday_vendor_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.lifeday_vendor.branchId");
         return SCRIPT_CONTINUE;
     }

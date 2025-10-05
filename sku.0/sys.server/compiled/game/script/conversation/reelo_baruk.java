@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class reelo_baruk extends script.base_script
+public class reelo_baruk extends base_script
 {
     public reelo_baruk()
     {
@@ -392,54 +392,53 @@ public class reelo_baruk extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (reelo_baruk_condition_completedReelosQuests(player, npc))
+        if (reelo_baruk_condition_completedReelosQuests(player, self))
         {
-            reelo_baruk_action_facePlayer(player, npc);
+            reelo_baruk_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (reelo_baruk_condition_DebtCollection_finished(player, npc))
+        if (reelo_baruk_condition_DebtCollection_finished(player, self))
         {
-            reelo_baruk_action_sendDoneSignal(player, npc);
+            reelo_baruk_action_sendDoneSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (reelo_baruk_condition_DebtCollection_active(player, npc))
+        if (reelo_baruk_condition_DebtCollection_active(player, self))
         {
-            reelo_baruk_action_facePlayer(player, npc);
+            reelo_baruk_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_35");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (reelo_baruk_condition_ValariansSoldiers_finished(player, npc))
+        if (reelo_baruk_condition_ValariansSoldiers_finished(player, self))
         {
-            reelo_baruk_action_facePlayer(player, npc);
+            reelo_baruk_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_34");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (reelo_baruk_condition_ValarianSoldiers_active(player, npc))
+        if (reelo_baruk_condition_ValarianSoldiers_active(player, self))
         {
-            reelo_baruk_action_facePlayer(player, npc);
+            reelo_baruk_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_33");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (reelo_baruk_condition_AlkharanQuest_finished(player, npc))
+        if (reelo_baruk_condition_AlkharanQuest_finished(player, self))
         {
-            reelo_baruk_action_facePlayer(player, npc);
+            reelo_baruk_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_29");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (reelo_baruk_condition__defaultCondition(player, npc))
+            if (reelo_baruk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -454,43 +453,43 @@ public class reelo_baruk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_51");
                 }
                 utils.setScriptVar(player, "conversation.reelo_baruk.branchId", 6);
-                npcStartConversation(player, npc, "reelo_baruk", message, responses);
+                npcStartConversation(player, self, "reelo_baruk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (reelo_baruk_condition_AlkharanQuest_active(player, npc))
+        if (reelo_baruk_condition_AlkharanQuest_active(player, self))
         {
-            reelo_baruk_action_facePlayer(player, npc);
+            reelo_baruk_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_17");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (reelo_baruk_condition__defaultCondition(player, npc))
+        if (reelo_baruk_condition__defaultCondition(player, self))
         {
-            reelo_baruk_action_facePlayer(player, npc);
+            reelo_baruk_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (reelo_baruk_condition__defaultCondition(player, npc))
+            if (reelo_baruk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (reelo_baruk_condition__defaultCondition(player, npc))
+            if (reelo_baruk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (reelo_baruk_condition__defaultCondition(player, npc))
+            if (reelo_baruk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -513,15 +512,15 @@ public class reelo_baruk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_100");
                 }
                 utils.setScriptVar(player, "conversation.reelo_baruk.branchId", 10);
-                npcStartConversation(player, npc, "reelo_baruk", message, responses);
+                npcStartConversation(player, self, "reelo_baruk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -530,37 +529,36 @@ public class reelo_baruk extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.reelo_baruk.branchId");
-        if (branchId == 6 && reelo_baruk_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && reelo_baruk_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && reelo_baruk_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && reelo_baruk_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && reelo_baruk_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && reelo_baruk_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && reelo_baruk_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && reelo_baruk_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && reelo_baruk_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && reelo_baruk_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && reelo_baruk_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && reelo_baruk_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && reelo_baruk_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && reelo_baruk_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.reelo_baruk.branchId");
         return SCRIPT_CONTINUE;
     }

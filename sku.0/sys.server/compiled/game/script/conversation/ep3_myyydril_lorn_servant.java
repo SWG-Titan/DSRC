@@ -6,7 +6,7 @@ import script.library.chat;
 import script.library.groundquests;
 import script.library.utils;
 
-public class ep3_myyydril_lorn_servant extends script.base_script
+public class ep3_myyydril_lorn_servant extends base_script
 {
     public ep3_myyydril_lorn_servant()
     {
@@ -276,50 +276,49 @@ public class ep3_myyydril_lorn_servant extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!ep3_myyydril_lorn_servant_condition_isValidforEncounter(player, npc))
+        if (!ep3_myyydril_lorn_servant_condition_isValidforEncounter(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_418");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_lorn_servant_condition_hasBadge(player, npc))
+        if (ep3_myyydril_lorn_servant_condition_hasBadge(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_430");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_lorn_servant_condition_hasCompletedTaskOne(player, npc))
+        if (ep3_myyydril_lorn_servant_condition_hasCompletedTaskOne(player, self))
         {
-            ep3_myyydril_lorn_servant_action_grantQuestTwo(player, npc);
+            ep3_myyydril_lorn_servant_action_grantQuestTwo(player, self);
             string_id message = new string_id(c_stringFile, "s_434");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_lorn_servant_condition_isTaskOneActive(player, npc))
+        if (ep3_myyydril_lorn_servant_condition_isTaskOneActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_438");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_lorn_servant_condition__defaultCondition(player, npc))
+        if (ep3_myyydril_lorn_servant_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_442");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_lorn_servant_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_lorn_servant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_myyydril_lorn_servant_condition_IfisGod(player, npc))
+            if (ep3_myyydril_lorn_servant_condition_IfisGod(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -338,15 +337,15 @@ public class ep3_myyydril_lorn_servant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_492");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_lorn_servant.branchId", 5);
-                npcStartConversation(player, npc, "ep3_myyydril_lorn_servant", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_lorn_servant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -355,29 +354,28 @@ public class ep3_myyydril_lorn_servant extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_myyydril_lorn_servant.branchId");
-        if (branchId == 5 && ep3_myyydril_lorn_servant_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_myyydril_lorn_servant_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_myyydril_lorn_servant_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_myyydril_lorn_servant_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_myyydril_lorn_servant_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_myyydril_lorn_servant_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_myyydril_lorn_servant_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_myyydril_lorn_servant_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_myyydril_lorn_servant_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_myyydril_lorn_servant_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_myyydril_lorn_servant.branchId");
         return SCRIPT_CONTINUE;
     }

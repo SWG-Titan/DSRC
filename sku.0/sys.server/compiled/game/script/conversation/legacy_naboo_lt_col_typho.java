@@ -1171,18 +1171,17 @@ public class legacy_naboo_lt_col_typho extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (legacy_naboo_lt_col_typho_condition_doneAll(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_doneAll(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_33");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1197,43 +1196,43 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_65");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 1);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_finishingPilotTwo(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_finishingPilotTwo(player, self))
         {
-            legacy_naboo_lt_col_typho_action_sendPilotTwoSignal(player, npc);
+            legacy_naboo_lt_col_typho_action_sendPilotTwoSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1260,43 +1259,43 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 11);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_finishingPilotOne(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_finishingPilotOne(player, self))
         {
-            legacy_naboo_lt_col_typho_action_sendPilotOneSignal(player, npc);
+            legacy_naboo_lt_col_typho_action_sendPilotOneSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_35");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1323,43 +1322,43 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 11);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_finishingPoliceTwo(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_finishingPoliceTwo(player, self))
         {
-            legacy_naboo_lt_col_typho_action_sendPoliceTwoSignal(player, npc);
+            legacy_naboo_lt_col_typho_action_sendPoliceTwoSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_36");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1386,43 +1385,43 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 11);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_finishingPoliceOne(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_finishingPoliceOne(player, self))
         {
-            legacy_naboo_lt_col_typho_action_sendPoliceOneSignal(player, npc);
+            legacy_naboo_lt_col_typho_action_sendPoliceOneSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_37");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1449,43 +1448,43 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 11);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_finishingMarineTwo(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_finishingMarineTwo(player, self))
         {
-            legacy_naboo_lt_col_typho_action_sendMarineTwoSignal(player, npc);
+            legacy_naboo_lt_col_typho_action_sendMarineTwoSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_38");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1512,43 +1511,43 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 11);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_finishingMarineOne(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_finishingMarineOne(player, self))
         {
-            legacy_naboo_lt_col_typho_action_sendMarineOneSignal(player, npc);
+            legacy_naboo_lt_col_typho_action_sendMarineOneSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_39");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1575,43 +1574,43 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 11);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_failedPilotTwo(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_failedPilotTwo(player, self))
         {
-            legacy_naboo_lt_col_typho_action_sendFailedPilotTwoSignal(player, npc);
+            legacy_naboo_lt_col_typho_action_sendFailedPilotTwoSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_67");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1638,43 +1637,43 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 11);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_failedPilotOne(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_failedPilotOne(player, self))
         {
-            legacy_naboo_lt_col_typho_action_sendFailedPilotOneSignal(player, npc);
+            legacy_naboo_lt_col_typho_action_sendFailedPilotOneSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_68");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1701,48 +1700,48 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 11);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_isWorkingForTypho(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_isWorkingForTypho(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_40");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_worksForTypho(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_worksForTypho(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_13");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, npc))
+            if (legacy_naboo_lt_col_typho_condition_readyForPooja(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePiloting(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_donePolicing(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, npc))
+            if (!legacy_naboo_lt_col_typho_condition_doneMarining(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1769,36 +1768,36 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 11);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition_readyForTypho(player, npc))
+        if (legacy_naboo_lt_col_typho_condition_readyForTypho(player, self))
         {
-            legacy_naboo_lt_col_typho_action_endPointerQuestToTypho(player, npc);
+            legacy_naboo_lt_col_typho_action_endPointerQuestToTypho(player, self);
             string_id message = new string_id(c_stringFile, "s_49");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (legacy_naboo_lt_col_typho_condition__defaultCondition(player, npc))
+            if (legacy_naboo_lt_col_typho_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (legacy_naboo_lt_col_typho_condition__defaultCondition(player, npc))
+            if (legacy_naboo_lt_col_typho_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (legacy_naboo_lt_col_typho_condition__defaultCondition(player, npc))
+            if (legacy_naboo_lt_col_typho_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1821,21 +1820,21 @@ public class legacy_naboo_lt_col_typho extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_59");
                 }
                 utils.setScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId", 22);
-                npcStartConversation(player, npc, "legacy_naboo_lt_col_typho", message, responses);
+                npcStartConversation(player, self, "legacy_naboo_lt_col_typho", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (legacy_naboo_lt_col_typho_condition__defaultCondition(player, npc))
+        if (legacy_naboo_lt_col_typho_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_66");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1844,53 +1843,52 @@ public class legacy_naboo_lt_col_typho extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId");
-        if (branchId == 1 && legacy_naboo_lt_col_typho_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && legacy_naboo_lt_col_typho_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && legacy_naboo_lt_col_typho_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && legacy_naboo_lt_col_typho_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && legacy_naboo_lt_col_typho_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && legacy_naboo_lt_col_typho_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && legacy_naboo_lt_col_typho_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && legacy_naboo_lt_col_typho_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && legacy_naboo_lt_col_typho_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && legacy_naboo_lt_col_typho_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && legacy_naboo_lt_col_typho_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && legacy_naboo_lt_col_typho_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && legacy_naboo_lt_col_typho_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && legacy_naboo_lt_col_typho_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && legacy_naboo_lt_col_typho_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && legacy_naboo_lt_col_typho_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && legacy_naboo_lt_col_typho_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && legacy_naboo_lt_col_typho_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && legacy_naboo_lt_col_typho_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && legacy_naboo_lt_col_typho_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && legacy_naboo_lt_col_typho_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && legacy_naboo_lt_col_typho_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.legacy_naboo_lt_col_typho.branchId");
         return SCRIPT_CONTINUE;
     }

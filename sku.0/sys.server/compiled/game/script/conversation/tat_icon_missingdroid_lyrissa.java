@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class tat_icon_missingdroid_lyrissa extends script.base_script
+public class tat_icon_missingdroid_lyrissa extends base_script
 {
     public tat_icon_missingdroid_lyrissa()
     {
@@ -42,43 +42,37 @@ public class tat_icon_missingdroid_lyrissa extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_droid_to_dren_e8 = groundquests.getTaskId(questId1, "tat_icon_droid_to_dren_e8");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_droid_to_dren_e8, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_droid_to_dren_e8, player);
     }
     public boolean tat_icon_missingdroid_lyrissa_condition_fixingJawa_e7_lyrissa2Droid(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_lyrissa_to_droid_e7 = groundquests.getTaskId(questId1, "tat_icon_lyrissa_to_droid_e7");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_lyrissa_to_droid_e7, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_lyrissa_to_droid_e7, player);
     }
     public boolean tat_icon_missingdroid_lyrissa_condition_fixingJawa_e6_tosche2Lyrissa(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_tosche_to_lyrissa_e6 = groundquests.getTaskId(questId1, "tat_icon_tosche_to_lyrissa_e6");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_tosche_to_lyrissa_e6, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_tosche_to_lyrissa_e6, player);
     }
     public boolean tat_icon_missingdroid_lyrissa_condition_fixingJawa_e5_lyrissa2Tosche(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_lyrissa_to_tosche_e5 = groundquests.getTaskId(questId1, "tat_icon_lyrissa_to_tosche_e5");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_lyrissa_to_tosche_e5, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_lyrissa_to_tosche_e5, player);
     }
     public boolean tat_icon_missingdroid_lyrissa_condition_fixingJawa_e4_dren2Lyrissa(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_dren_to_lyrissa_e4 = groundquests.getTaskId(questId1, "tat_icon_dren_to_lyrissa_e4");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_dren_to_lyrissa_e4, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_dren_to_lyrissa_e4, player);
     }
     public boolean tat_icon_missingdroid_lyrissa_condition_fixingjJawa_e3_droid2Dren(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tat_icon_fixingjawa_1");
         int tat_icon_droid_to_dren_e3 = groundquests.getTaskId(questId1, "tat_icon_droid_to_dren_e3");
-        boolean onTask = questIsTaskActive(questId1, tat_icon_droid_to_dren_e3, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_icon_droid_to_dren_e3, player);
     }
     public void tat_icon_missingdroid_lyrissa_action_facePlayer(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -724,26 +718,25 @@ public class tat_icon_missingdroid_lyrissa extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tat_icon_missingdroid_lyrissa_condition_fixingJawa_e8_droid2Dren(player, npc))
+        if (tat_icon_missingdroid_lyrissa_condition_fixingJawa_e8_droid2Dren(player, self))
         {
-            tat_icon_missingdroid_lyrissa_action_facePlayer(player, npc);
+            tat_icon_missingdroid_lyrissa_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_33");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -762,29 +755,29 @@ public class tat_icon_missingdroid_lyrissa extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_55");
                 }
                 utils.setScriptVar(player, "conversation.tat_icon_missingdroid_lyrissa.branchId", 1);
-                npcStartConversation(player, npc, "tat_icon_missingdroid_lyrissa", message, responses);
+                npcStartConversation(player, self, "tat_icon_missingdroid_lyrissa", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tat_icon_missingdroid_lyrissa_condition_fixingJawa_e7_lyrissa2Droid(player, npc))
+        if (tat_icon_missingdroid_lyrissa_condition_fixingJawa_e7_lyrissa2Droid(player, self))
         {
-            tat_icon_missingdroid_lyrissa_action_facePlayer(player, npc);
+            tat_icon_missingdroid_lyrissa_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_45");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -803,29 +796,29 @@ public class tat_icon_missingdroid_lyrissa extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_78");
                 }
                 utils.setScriptVar(player, "conversation.tat_icon_missingdroid_lyrissa.branchId", 8);
-                npcStartConversation(player, npc, "tat_icon_missingdroid_lyrissa", message, responses);
+                npcStartConversation(player, self, "tat_icon_missingdroid_lyrissa", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tat_icon_missingdroid_lyrissa_condition_fixingJawa_e5ore6(player, npc))
+        if (tat_icon_missingdroid_lyrissa_condition_fixingJawa_e5ore6(player, self))
         {
-            tat_icon_missingdroid_lyrissa_action_facePlayer(player, npc);
+            tat_icon_missingdroid_lyrissa_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_84");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -844,22 +837,22 @@ public class tat_icon_missingdroid_lyrissa extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_90");
                 }
                 utils.setScriptVar(player, "conversation.tat_icon_missingdroid_lyrissa.branchId", 14);
-                npcStartConversation(player, npc, "tat_icon_missingdroid_lyrissa", message, responses);
+                npcStartConversation(player, self, "tat_icon_missingdroid_lyrissa", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tat_icon_missingdroid_lyrissa_condition_fixingJawa_e4_dren2Lyrissa(player, npc))
+        if (tat_icon_missingdroid_lyrissa_condition_fixingJawa_e4_dren2Lyrissa(player, self))
         {
-            tat_icon_missingdroid_lyrissa_action_facePlayer(player, npc);
+            tat_icon_missingdroid_lyrissa_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_102");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, npc))
+            if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -874,21 +867,21 @@ public class tat_icon_missingdroid_lyrissa extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_104");
                 }
                 utils.setScriptVar(player, "conversation.tat_icon_missingdroid_lyrissa.branchId", 19);
-                npcStartConversation(player, npc, "tat_icon_missingdroid_lyrissa", message, responses);
+                npcStartConversation(player, self, "tat_icon_missingdroid_lyrissa", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, npc))
+        if (tat_icon_missingdroid_lyrissa_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_124");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -897,69 +890,68 @@ public class tat_icon_missingdroid_lyrissa extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tat_icon_missingdroid_lyrissa.branchId");
-        if (branchId == 1 && tat_icon_missingdroid_lyrissa_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && tat_icon_missingdroid_lyrissa_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && tat_icon_missingdroid_lyrissa_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tat_icon_missingdroid_lyrissa_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && tat_icon_missingdroid_lyrissa_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tat_icon_missingdroid_lyrissa_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && tat_icon_missingdroid_lyrissa_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && tat_icon_missingdroid_lyrissa_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && tat_icon_missingdroid_lyrissa_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && tat_icon_missingdroid_lyrissa_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tat_icon_missingdroid_lyrissa_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tat_icon_missingdroid_lyrissa_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tat_icon_missingdroid_lyrissa_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tat_icon_missingdroid_lyrissa_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && tat_icon_missingdroid_lyrissa_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && tat_icon_missingdroid_lyrissa_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tat_icon_missingdroid_lyrissa_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tat_icon_missingdroid_lyrissa_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && tat_icon_missingdroid_lyrissa_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && tat_icon_missingdroid_lyrissa_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && tat_icon_missingdroid_lyrissa_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && tat_icon_missingdroid_lyrissa_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && tat_icon_missingdroid_lyrissa_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && tat_icon_missingdroid_lyrissa_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && tat_icon_missingdroid_lyrissa_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && tat_icon_missingdroid_lyrissa_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && tat_icon_missingdroid_lyrissa_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && tat_icon_missingdroid_lyrissa_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && tat_icon_missingdroid_lyrissa_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && tat_icon_missingdroid_lyrissa_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tat_icon_missingdroid_lyrissa.branchId");
         return SCRIPT_CONTINUE;
     }

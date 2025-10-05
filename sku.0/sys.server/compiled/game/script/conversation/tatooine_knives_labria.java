@@ -19,22 +19,19 @@ public class tatooine_knives_labria extends script.base_script
     public boolean tatooine_knives_labria_condition_onQuest(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_thrust");
-        boolean OnTask = (questIsQuestActive(questId1, player));
-        return OnTask;
+        return (questIsQuestActive(questId1, player));
     }
     public boolean tatooine_knives_labria_condition_onTaskSnitch(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_thrust");
         int snitch = groundquests.getTaskId(questId1, "tatooine_knives_thrust_e4");
-        boolean onTask = questIsTaskActive(questId1, snitch, player);
-        return onTask;
+        return questIsTaskActive(questId1, snitch, player);
     }
     public boolean tatooine_knives_labria_condition_questComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_knives_parry_pt2");
         int questId2 = questGetQuestId("quest/tatooine_knives_thrust");
-        boolean OnTask = (questIsQuestComplete(questId1, player)) || (questIsQuestComplete(questId2, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player)) || (questIsQuestComplete(questId2, player));
     }
     public void tatooine_knives_labria_action_facePlayer(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -166,33 +163,32 @@ public class tatooine_knives_labria extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_knives_labria_condition_questComplete(player, npc))
+        if (tatooine_knives_labria_condition_questComplete(player, self))
         {
-            tatooine_knives_labria_action_facePlayer(player, npc);
+            tatooine_knives_labria_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_48");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!tatooine_knives_labria_condition_onTaskSnitch(player, npc))
+        if (!tatooine_knives_labria_condition_onTaskSnitch(player, self))
         {
-            tatooine_knives_labria_action_facePlayer(player, npc);
+            tatooine_knives_labria_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_39");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_labria_condition_onTaskSnitch(player, npc))
+        if (tatooine_knives_labria_condition_onTaskSnitch(player, self))
         {
-            tatooine_knives_labria_action_facePlayer(player, npc);
+            tatooine_knives_labria_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_41");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_knives_labria_condition__defaultCondition(player, npc))
+            if (tatooine_knives_labria_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -207,22 +203,22 @@ public class tatooine_knives_labria extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_42");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_knives_labria.branchId", 3);
-                npcStartConversation(player, npc, "tatooine_knives_labria", message, responses);
+                npcStartConversation(player, self, "tatooine_knives_labria", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_knives_labria_condition__defaultCondition(player, npc))
+        if (tatooine_knives_labria_condition__defaultCondition(player, self))
         {
-            tatooine_knives_labria_action_facePlayer(player, npc);
+            tatooine_knives_labria_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_13");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -231,17 +227,16 @@ public class tatooine_knives_labria extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_knives_labria.branchId");
-        if (branchId == 3 && tatooine_knives_labria_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_knives_labria_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && tatooine_knives_labria_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tatooine_knives_labria_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_knives_labria.branchId");
         return SCRIPT_CONTINUE;
     }

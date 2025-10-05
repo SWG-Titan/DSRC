@@ -401,38 +401,37 @@ public class ep3_cheyerooto extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_cheyerooto_condition_isWookieeNub(player, npc))
+        if (ep3_cheyerooto_condition_isWookieeNub(player, self))
         {
-            ep3_cheyerooto_action_schoolWookieeNub(player, npc);
+            ep3_cheyerooto_action_schoolWookieeNub(player, self);
             string_id message = new string_id(c_stringFile, "s_207");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cheyerooto_condition_hasCompletedRrwiiQuest(player, npc))
+        if (ep3_cheyerooto_condition_hasCompletedRrwiiQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_322");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cheyerooto_condition_isRootQuestActive(player, npc))
+        if (ep3_cheyerooto_condition_isRootQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_512");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_cheyerooto_condition_readyToCompleteRrwii(player, npc))
+            if (ep3_cheyerooto_condition_readyToCompleteRrwii(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_cheyerooto_condition__defaultCondition(player, npc))
+            if (ep3_cheyerooto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -451,21 +450,21 @@ public class ep3_cheyerooto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_518");
                 }
                 utils.setScriptVar(player, "conversation.ep3_cheyerooto.branchId", 3);
-                npcStartConversation(player, npc, "ep3_cheyerooto", message, responses);
+                npcStartConversation(player, self, "ep3_cheyerooto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cheyerooto_condition_hasCompletedWrhischQuest(player, npc))
+        if (ep3_cheyerooto_condition_hasCompletedWrhischQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_522");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_cheyerooto_condition__defaultCondition(player, npc))
+            if (ep3_cheyerooto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -480,21 +479,21 @@ public class ep3_cheyerooto extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_524");
                 }
                 utils.setScriptVar(player, "conversation.ep3_cheyerooto.branchId", 7);
-                npcStartConversation(player, npc, "ep3_cheyerooto", message, responses);
+                npcStartConversation(player, self, "ep3_cheyerooto", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cheyerooto_condition_isReadyToCompleteWrhisch(player, npc))
+        if (ep3_cheyerooto_condition_isReadyToCompleteWrhisch(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_532");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_cheyerooto_condition__defaultCondition(player, npc))
+            if (ep3_cheyerooto_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -512,26 +511,26 @@ public class ep3_cheyerooto extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_cheyerooto", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_cheyerooto", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_cheyerooto_condition__defaultCondition(player, npc))
+        if (ep3_cheyerooto_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_540");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -540,33 +539,32 @@ public class ep3_cheyerooto extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_cheyerooto.branchId");
-        if (branchId == 3 && ep3_cheyerooto_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_cheyerooto_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && ep3_cheyerooto_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_cheyerooto_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_cheyerooto_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_cheyerooto_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_cheyerooto_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_cheyerooto_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ep3_cheyerooto_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ep3_cheyerooto_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_cheyerooto_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_cheyerooto_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_cheyerooto.branchId");
         return SCRIPT_CONTINUE;
     }

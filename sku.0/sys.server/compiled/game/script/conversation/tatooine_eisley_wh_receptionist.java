@@ -20,8 +20,7 @@ public class tatooine_eisley_wh_receptionist extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_special_delivery");
         int tat_eisley_special_delivery_e4 = groundquests.getTaskId(questId1, "tat_eisley_special_delivery_e4");
-        boolean onTask = questIsTaskActive(questId1, tat_eisley_special_delivery_e4, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_eisley_special_delivery_e4, player);
     }
     public void tatooine_eisley_wh_receptionist_action_sdDelivery2(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -100,18 +99,17 @@ public class tatooine_eisley_wh_receptionist extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_eisley_wh_receptionist_condition_cargoDelivery2(player, npc))
+        if (tatooine_eisley_wh_receptionist_condition_cargoDelivery2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_wh_receptionist_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_wh_receptionist_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -126,21 +124,21 @@ public class tatooine_eisley_wh_receptionist extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_7");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_wh_receptionist.branchId", 1);
-                npcStartConversation(player, npc, "tatooine_eisley_wh_receptionist", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_wh_receptionist", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_wh_receptionist_condition__defaultCondition(player, npc))
+        if (tatooine_eisley_wh_receptionist_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_10");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_wh_receptionist_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_wh_receptionist_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -155,15 +153,15 @@ public class tatooine_eisley_wh_receptionist extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_12");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_wh_receptionist.branchId", 3);
-                npcStartConversation(player, npc, "tatooine_eisley_wh_receptionist", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_wh_receptionist", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -172,17 +170,16 @@ public class tatooine_eisley_wh_receptionist extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_eisley_wh_receptionist.branchId");
-        if (branchId == 1 && tatooine_eisley_wh_receptionist_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && tatooine_eisley_wh_receptionist_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && tatooine_eisley_wh_receptionist_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_eisley_wh_receptionist_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_eisley_wh_receptionist.branchId");
         return SCRIPT_CONTINUE;
     }

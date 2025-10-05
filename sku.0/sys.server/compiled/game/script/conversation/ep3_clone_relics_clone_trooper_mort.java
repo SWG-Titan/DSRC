@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class ep3_clone_relics_clone_trooper_mort extends script.base_script
+public class ep3_clone_relics_clone_trooper_mort extends base_script
 {
     public ep3_clone_relics_clone_trooper_mort()
     {
@@ -2946,27 +2946,26 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_clone_relics_clone_trooper_mort_condition_completedQuestSeries(player, npc))
+        if (ep3_clone_relics_clone_trooper_mort_condition_completedQuestSeries(player, self))
         {
-            doAnimationAction(npc, "handshake_tandem");
+            doAnimationAction(self, "handshake_tandem");
             doAnimationAction(player, "handshake_tandem");
             string_id message = new string_id(c_stringFile, "s_674");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2988,34 +2987,34 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_clone_trooper_mort_condition_finishedImperialQuest(player, npc))
+        if (ep3_clone_relics_clone_trooper_mort_condition_finishedImperialQuest(player, self))
         {
             doAnimationAction(player, "tiphat");
             string_id message = new string_id(c_stringFile, "s_684");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3037,34 +3036,34 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_clone_trooper_mort_condition_finishedNeutralQuest(player, npc))
+        if (ep3_clone_relics_clone_trooper_mort_condition_finishedNeutralQuest(player, self))
         {
             doAnimationAction(player, "tiphat");
             string_id message = new string_id(c_stringFile, "s_863");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3086,34 +3085,34 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_clone_trooper_mort_condition_finishedRebelQuest(player, npc))
+        if (ep3_clone_relics_clone_trooper_mort_condition_finishedRebelQuest(player, self))
         {
             doAnimationAction(player, "tiphat");
             string_id message = new string_id(c_stringFile, "s_889");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3135,33 +3134,33 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_clone_trooper_mort_condition_finishedQuest1(player, npc))
+        if (ep3_clone_relics_clone_trooper_mort_condition_finishedQuest1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_275");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3183,35 +3182,35 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "ep3_clone_relics_clone_trooper_mort", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_clone_trooper_mort_condition_retrievedLogs(player, npc))
+        if (ep3_clone_relics_clone_trooper_mort_condition_retrievedLogs(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_710");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3230,35 +3229,35 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_304");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_clone_trooper_mort.branchId", 27);
-                npcStartConversation(player, npc, "ep3_clone_relics_clone_trooper_mort", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_clone_trooper_mort", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_clone_trooper_mort_condition_onQuest1(player, npc))
+        if (ep3_clone_relics_clone_trooper_mort_condition_onQuest1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_763");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3281,35 +3280,35 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_311");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_clone_trooper_mort.branchId", 37);
-                npcStartConversation(player, npc, "ep3_clone_relics_clone_trooper_mort", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_clone_trooper_mort", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+        if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_773");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition_hasEp3(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition_hasEp3(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, npc))
+            if (ep3_clone_relics_clone_trooper_mort_condition_isGm(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3332,15 +3331,15 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_376");
                 }
                 utils.setScriptVar(player, "conversation.ep3_clone_relics_clone_trooper_mort.branchId", 48);
-                npcStartConversation(player, npc, "ep3_clone_relics_clone_trooper_mort", message, responses);
+                npcStartConversation(player, self, "ep3_clone_relics_clone_trooper_mort", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -3349,209 +3348,208 @@ public class ep3_clone_relics_clone_trooper_mort extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_clone_relics_clone_trooper_mort.branchId");
-        if (branchId == 1 && ep3_clone_relics_clone_trooper_mort_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && ep3_clone_relics_clone_trooper_mort_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && ep3_clone_relics_clone_trooper_mort_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_clone_relics_clone_trooper_mort_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && ep3_clone_relics_clone_trooper_mort_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_clone_relics_clone_trooper_mort_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ep3_clone_relics_clone_trooper_mort_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_clone_relics_clone_trooper_mort_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_clone_relics_clone_trooper_mort_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_clone_relics_clone_trooper_mort_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && ep3_clone_relics_clone_trooper_mort_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && ep3_clone_relics_clone_trooper_mort_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_clone_relics_clone_trooper_mort_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_clone_relics_clone_trooper_mort_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_clone_relics_clone_trooper_mort_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_clone_relics_clone_trooper_mort_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_clone_relics_clone_trooper_mort_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_clone_relics_clone_trooper_mort_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_clone_relics_clone_trooper_mort_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_clone_relics_clone_trooper_mort_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && ep3_clone_relics_clone_trooper_mort_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && ep3_clone_relics_clone_trooper_mort_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && ep3_clone_relics_clone_trooper_mort_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && ep3_clone_relics_clone_trooper_mort_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_clone_relics_clone_trooper_mort_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_clone_relics_clone_trooper_mort_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_clone_relics_clone_trooper_mort_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_clone_relics_clone_trooper_mort_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_clone_relics_clone_trooper_mort_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_clone_relics_clone_trooper_mort_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && ep3_clone_relics_clone_trooper_mort_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && ep3_clone_relics_clone_trooper_mort_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_clone_relics_clone_trooper_mort_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_clone_relics_clone_trooper_mort_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && ep3_clone_relics_clone_trooper_mort_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && ep3_clone_relics_clone_trooper_mort_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && ep3_clone_relics_clone_trooper_mort_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && ep3_clone_relics_clone_trooper_mort_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_clone_relics_clone_trooper_mort_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_clone_relics_clone_trooper_mort_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && ep3_clone_relics_clone_trooper_mort_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && ep3_clone_relics_clone_trooper_mort_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && ep3_clone_relics_clone_trooper_mort_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && ep3_clone_relics_clone_trooper_mort_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && ep3_clone_relics_clone_trooper_mort_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && ep3_clone_relics_clone_trooper_mort_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && ep3_clone_relics_clone_trooper_mort_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && ep3_clone_relics_clone_trooper_mort_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && ep3_clone_relics_clone_trooper_mort_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && ep3_clone_relics_clone_trooper_mort_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && ep3_clone_relics_clone_trooper_mort_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && ep3_clone_relics_clone_trooper_mort_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && ep3_clone_relics_clone_trooper_mort_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && ep3_clone_relics_clone_trooper_mort_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && ep3_clone_relics_clone_trooper_mort_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && ep3_clone_relics_clone_trooper_mort_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && ep3_clone_relics_clone_trooper_mort_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && ep3_clone_relics_clone_trooper_mort_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && ep3_clone_relics_clone_trooper_mort_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && ep3_clone_relics_clone_trooper_mort_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && ep3_clone_relics_clone_trooper_mort_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && ep3_clone_relics_clone_trooper_mort_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && ep3_clone_relics_clone_trooper_mort_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && ep3_clone_relics_clone_trooper_mort_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && ep3_clone_relics_clone_trooper_mort_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && ep3_clone_relics_clone_trooper_mort_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && ep3_clone_relics_clone_trooper_mort_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && ep3_clone_relics_clone_trooper_mort_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && ep3_clone_relics_clone_trooper_mort_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && ep3_clone_relics_clone_trooper_mort_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && ep3_clone_relics_clone_trooper_mort_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && ep3_clone_relics_clone_trooper_mort_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && ep3_clone_relics_clone_trooper_mort_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && ep3_clone_relics_clone_trooper_mort_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && ep3_clone_relics_clone_trooper_mort_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && ep3_clone_relics_clone_trooper_mort_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 57 && ep3_clone_relics_clone_trooper_mort_handleBranch57(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 57 && ep3_clone_relics_clone_trooper_mort_handleBranch57(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && ep3_clone_relics_clone_trooper_mort_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && ep3_clone_relics_clone_trooper_mort_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && ep3_clone_relics_clone_trooper_mort_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && ep3_clone_relics_clone_trooper_mort_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && ep3_clone_relics_clone_trooper_mort_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && ep3_clone_relics_clone_trooper_mort_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && ep3_clone_relics_clone_trooper_mort_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && ep3_clone_relics_clone_trooper_mort_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && ep3_clone_relics_clone_trooper_mort_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && ep3_clone_relics_clone_trooper_mort_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && ep3_clone_relics_clone_trooper_mort_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && ep3_clone_relics_clone_trooper_mort_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && ep3_clone_relics_clone_trooper_mort_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && ep3_clone_relics_clone_trooper_mort_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && ep3_clone_relics_clone_trooper_mort_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && ep3_clone_relics_clone_trooper_mort_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && ep3_clone_relics_clone_trooper_mort_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && ep3_clone_relics_clone_trooper_mort_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && ep3_clone_relics_clone_trooper_mort_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && ep3_clone_relics_clone_trooper_mort_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && ep3_clone_relics_clone_trooper_mort_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && ep3_clone_relics_clone_trooper_mort_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_clone_relics_clone_trooper_mort.branchId");
         return SCRIPT_CONTINUE;
     }

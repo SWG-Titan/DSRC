@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class station_dathomir extends script.base_script
+public class station_dathomir extends base_script
 {
     public station_dathomir()
     {
@@ -8878,52 +8878,51 @@ public class station_dathomir extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (station_dathomir_condition_isTooFar(player, npc))
+        if (station_dathomir_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_562");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_dathomir_condition_waitingAndNowUngated(player, npc))
+        if (station_dathomir_condition_waitingAndNowUngated(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_564");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dathomir_condition_canAfford25(player, npc))
+            if (station_dathomir_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dathomir_condition_eligibleForImperialQuests(player, npc))
+            if (station_dathomir_condition_eligibleForImperialQuests(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dathomir_condition_eligibleForPrivateerlQuests(player, npc))
+            if (station_dathomir_condition_eligibleForPrivateerlQuests(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_dathomir_condition_canTakeQuest(player, npc))
+            if (station_dathomir_condition_canTakeQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -8957,33 +8956,33 @@ public class station_dathomir extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "station_dathomir", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "station_dathomir", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dathomir_condition_WaitingButStillGated(player, npc))
+        if (station_dathomir_condition_WaitingButStillGated(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_566");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9005,33 +9004,33 @@ public class station_dathomir extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "station_dathomir", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "station_dathomir", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dathomir_condition_isRebelPilotDath(player, npc))
+        if (station_dathomir_condition_isRebelPilotDath(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_576");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9050,49 +9049,49 @@ public class station_dathomir extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_591");
                 }
                 utils.setScriptVar(player, "conversation.station_dathomir.branchId", 5);
-                npcStartConversation(player, npc, "station_dathomir", message, responses);
+                npcStartConversation(player, self, "station_dathomir", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dathomir_condition_canReceiveFullRepair(player, npc))
+        if (station_dathomir_condition_canReceiveFullRepair(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_608");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dathomir_condition_canAfford25(player, npc))
+            if (station_dathomir_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dathomir_condition_eligibleForImperialQuests(player, npc))
+            if (station_dathomir_condition_eligibleForImperialQuests(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dathomir_condition_eligibleForPrivateerlQuests(player, npc))
+            if (station_dathomir_condition_eligibleForPrivateerlQuests(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_dathomir_condition_canTakeQuest(player, npc))
+            if (station_dathomir_condition_canTakeQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9123,42 +9122,42 @@ public class station_dathomir extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_197");
                 }
                 utils.setScriptVar(player, "conversation.station_dathomir.branchId", 48);
-                npcStartConversation(player, npc, "station_dathomir", message, responses);
+                npcStartConversation(player, self, "station_dathomir", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dathomir_condition_isOnImpStoryQuest_01(player, npc))
+        if (station_dathomir_condition_isOnImpStoryQuest_01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_610");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dathomir_condition_canAfford25(player, npc))
+            if (station_dathomir_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9185,42 +9184,42 @@ public class station_dathomir extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_698");
                 }
                 utils.setScriptVar(player, "conversation.station_dathomir.branchId", 12);
-                npcStartConversation(player, npc, "station_dathomir", message, responses);
+                npcStartConversation(player, self, "station_dathomir", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dathomir_condition_isOnPrivStoryQuest_01(player, npc))
+        if (station_dathomir_condition_isOnPrivStoryQuest_01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_702");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dathomir_condition_canAfford25(player, npc))
+            if (station_dathomir_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9247,49 +9246,49 @@ public class station_dathomir extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_765");
                 }
                 utils.setScriptVar(player, "conversation.station_dathomir.branchId", 32);
-                npcStartConversation(player, npc, "station_dathomir", message, responses);
+                npcStartConversation(player, self, "station_dathomir", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_dathomir_condition__defaultCondition(player, npc))
+        if (station_dathomir_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_767");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_dathomir_condition__defaultCondition(player, npc))
+            if (station_dathomir_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_dathomir_condition_canAfford25(player, npc))
+            if (station_dathomir_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_dathomir_condition_eligibleForImperialQuests(player, npc))
+            if (station_dathomir_condition_eligibleForImperialQuests(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_dathomir_condition_eligibleForPrivateerlQuests(player, npc))
+            if (station_dathomir_condition_eligibleForPrivateerlQuests(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (station_dathomir_condition_canTakeQuest(player, npc))
+            if (station_dathomir_condition_canTakeQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -9320,15 +9319,15 @@ public class station_dathomir extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_197");
                 }
                 utils.setScriptVar(player, "conversation.station_dathomir.branchId", 48);
-                npcStartConversation(player, npc, "station_dathomir", message, responses);
+                npcStartConversation(player, self, "station_dathomir", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -9337,209 +9336,208 @@ public class station_dathomir extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.station_dathomir.branchId");
-        if (branchId == 2 && station_dathomir_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && station_dathomir_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && station_dathomir_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && station_dathomir_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && station_dathomir_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && station_dathomir_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && station_dathomir_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && station_dathomir_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && station_dathomir_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && station_dathomir_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && station_dathomir_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && station_dathomir_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && station_dathomir_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && station_dathomir_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && station_dathomir_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && station_dathomir_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && station_dathomir_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && station_dathomir_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && station_dathomir_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && station_dathomir_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && station_dathomir_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && station_dathomir_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && station_dathomir_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && station_dathomir_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && station_dathomir_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && station_dathomir_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && station_dathomir_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && station_dathomir_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && station_dathomir_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && station_dathomir_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && station_dathomir_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && station_dathomir_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && station_dathomir_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && station_dathomir_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && station_dathomir_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && station_dathomir_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && station_dathomir_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && station_dathomir_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && station_dathomir_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && station_dathomir_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && station_dathomir_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && station_dathomir_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && station_dathomir_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && station_dathomir_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && station_dathomir_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && station_dathomir_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && station_dathomir_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && station_dathomir_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && station_dathomir_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && station_dathomir_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && station_dathomir_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && station_dathomir_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && station_dathomir_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && station_dathomir_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && station_dathomir_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && station_dathomir_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && station_dathomir_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && station_dathomir_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && station_dathomir_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && station_dathomir_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && station_dathomir_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && station_dathomir_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && station_dathomir_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && station_dathomir_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && station_dathomir_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && station_dathomir_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && station_dathomir_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && station_dathomir_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && station_dathomir_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && station_dathomir_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && station_dathomir_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && station_dathomir_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && station_dathomir_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && station_dathomir_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && station_dathomir_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && station_dathomir_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && station_dathomir_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && station_dathomir_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && station_dathomir_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && station_dathomir_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && station_dathomir_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && station_dathomir_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && station_dathomir_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && station_dathomir_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && station_dathomir_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && station_dathomir_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && station_dathomir_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && station_dathomir_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && station_dathomir_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && station_dathomir_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && station_dathomir_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && station_dathomir_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && station_dathomir_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && station_dathomir_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && station_dathomir_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && station_dathomir_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && station_dathomir_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && station_dathomir_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 98 && station_dathomir_handleBranch98(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 98 && station_dathomir_handleBranch98(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.station_dathomir.branchId");
         return SCRIPT_CONTINUE;
     }

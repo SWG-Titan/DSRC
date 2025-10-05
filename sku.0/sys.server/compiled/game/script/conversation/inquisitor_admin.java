@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class inquisitor_admin extends script.base_script
+public class inquisitor_admin extends base_script
 {
     public inquisitor_admin()
     {
@@ -649,25 +649,24 @@ public class inquisitor_admin extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (inquisitor_admin_condition_hasCompletedKeyDeletedDungeon(player, npc))
+        if (inquisitor_admin_condition_hasCompletedKeyDeletedDungeon(player, self))
         {
-            inquisitor_admin_action_grantDungeonQuest(player, npc);
+            inquisitor_admin_action_grantDungeonQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_62");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (inquisitor_admin_condition_hasKey(player, npc))
+        if (inquisitor_admin_condition_hasKey(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_37");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (inquisitor_admin_condition__defaultCondition(player, npc))
+            if (inquisitor_admin_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -682,27 +681,27 @@ public class inquisitor_admin extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_38");
                 }
                 utils.setScriptVar(player, "conversation.inquisitor_admin.branchId", 2);
-                npcStartConversation(player, npc, "inquisitor_admin", message, responses);
+                npcStartConversation(player, self, "inquisitor_admin", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (inquisitor_admin_condition_hasFindKeyTaskActive(player, npc))
+        if (inquisitor_admin_condition_hasFindKeyTaskActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_50");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (inquisitor_admin_condition_hasPreviousQuests(player, npc))
+        if (inquisitor_admin_condition_hasPreviousQuests(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_73");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (inquisitor_admin_condition_hasQuestForInq(player, npc))
+            if (inquisitor_admin_condition_hasQuestForInq(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -717,28 +716,28 @@ public class inquisitor_admin extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_20");
                 }
                 utils.setScriptVar(player, "conversation.inquisitor_admin.branchId", 10);
-                npcStartConversation(player, npc, "inquisitor_admin", message, responses);
+                npcStartConversation(player, self, "inquisitor_admin", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (inquisitor_admin_condition_hasRadio(player, npc))
+        if (inquisitor_admin_condition_hasRadio(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_53");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (inquisitor_admin_condition__defaultCondition(player, npc))
+        if (inquisitor_admin_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "shoo");
+            doAnimationAction(self, "shoo");
             string_id message = new string_id(c_stringFile, "s_65");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -747,57 +746,56 @@ public class inquisitor_admin extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.inquisitor_admin.branchId");
-        if (branchId == 2 && inquisitor_admin_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && inquisitor_admin_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && inquisitor_admin_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && inquisitor_admin_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && inquisitor_admin_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && inquisitor_admin_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && inquisitor_admin_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && inquisitor_admin_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && inquisitor_admin_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && inquisitor_admin_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && inquisitor_admin_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && inquisitor_admin_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && inquisitor_admin_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && inquisitor_admin_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && inquisitor_admin_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && inquisitor_admin_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && inquisitor_admin_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && inquisitor_admin_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && inquisitor_admin_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && inquisitor_admin_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && inquisitor_admin_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && inquisitor_admin_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && inquisitor_admin_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && inquisitor_admin_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.inquisitor_admin.branchId");
         return SCRIPT_CONTINUE;
     }

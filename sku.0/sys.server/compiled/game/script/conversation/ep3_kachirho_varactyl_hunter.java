@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class ep3_kachirho_varactyl_hunter extends script.base_script
+public class ep3_kachirho_varactyl_hunter extends base_script
 {
     public ep3_kachirho_varactyl_hunter()
     {

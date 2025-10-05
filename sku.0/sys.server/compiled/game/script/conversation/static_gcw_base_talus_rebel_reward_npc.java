@@ -168,12 +168,12 @@ public class static_gcw_base_talus_rebel_reward_npc extends script.base_script
     public void static_gcw_base_talus_rebel_reward_npc_action_advanceRewardPhase(obj_id player, obj_id npc) throws InterruptedException
     {
         int newPhase = gcw.advancePub30StaticBaseCapturePhase(npc);
-        sendSystemMessageTestingOnly(player, "Reward phase advanced to " + newPhase);
+        broadcast(player, "Reward phase advanced to " + newPhase);
     }
     public void static_gcw_base_talus_rebel_reward_npc_action_regressRewardPhase(obj_id player, obj_id npc) throws InterruptedException
     {
         int newPhase = gcw.regressPub30StaticBaseCapturePhase(npc);
-        sendSystemMessageTestingOnly(player, "Reward phase regressed to " + newPhase);
+        broadcast(player, "Reward phase regressed to " + newPhase);
     }
     public void static_gcw_base_talus_rebel_reward_npc_action_reportRewardPhase(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -181,11 +181,11 @@ public class static_gcw_base_talus_rebel_reward_npc extends script.base_script
         String next = gcw.getPub30TimeToNextPhaseString(npc);
         if (phase < 5)
         {
-            sendSystemMessageTestingOnly(player, "Current reward phase is: " + phase + ". Next reward phase in " + next);
+            broadcast(player, "Current reward phase is: " + phase + ". Next reward phase in " + next);
         }
         else 
         {
-            sendSystemMessageTestingOnly(player, "Current reward phase is: " + phase + ". This is the final phase");
+            broadcast(player, "Current reward phase is: " + phase + ". This is the final phase");
         }
     }
     public String static_gcw_base_talus_rebel_reward_npc_tokenTO_timeToNext(obj_id player, obj_id npc) throws InterruptedException

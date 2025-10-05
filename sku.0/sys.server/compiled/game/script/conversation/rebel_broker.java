@@ -1442,33 +1442,32 @@ public class rebel_broker extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!rebel_broker_condition_hasSpaceExp(player, npc))
+        if (!rebel_broker_condition_hasSpaceExp(player, self))
         {
-            rebel_broker_action_brushedOffImp(player, npc);
+            rebel_broker_action_brushedOffImp(player, self);
             string_id message = new string_id(c_stringFile, "s_2a805b93");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rebel_broker_condition_isRebelPilot(player, npc))
+        if (rebel_broker_condition_isRebelPilot(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_b8e72ced");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rebel_broker_condition__defaultCondition(player, npc))
+            if (rebel_broker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rebel_broker_condition__defaultCondition(player, npc))
+            if (rebel_broker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1487,36 +1486,36 @@ public class rebel_broker extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3fd213c");
                 }
                 setObjVar(player, "conversation.rebel_broker.branchId", 2);
-                npcStartConversation(player, npc, "rebel_broker", message, responses);
+                npcStartConversation(player, self, "rebel_broker", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rebel_broker_condition_wasBrushedOff(player, npc))
+        if (rebel_broker_condition_wasBrushedOff(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
+            doAnimationAction(self, "wave_on_dismissing");
             string_id message = new string_id(c_stringFile, "s_ee2fdf32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rebel_broker_condition_isImperialFaction(player, npc))
+        if (rebel_broker_condition_isImperialFaction(player, self))
         {
-            doAnimationAction(npc, "stretch");
+            doAnimationAction(self, "stretch");
             string_id message = new string_id(c_stringFile, "s_c4b91b55");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rebel_broker_condition__defaultCondition(player, npc))
+            if (rebel_broker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (rebel_broker_condition__defaultCondition(player, npc))
+            if (rebel_broker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1535,27 +1534,27 @@ public class rebel_broker extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4c695dbd");
                 }
                 setObjVar(player, "conversation.rebel_broker.branchId", 10);
-                npcStartConversation(player, npc, "rebel_broker", message, responses);
+                npcStartConversation(player, self, "rebel_broker", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (rebel_broker_condition_isPilot(player, npc))
+        if (rebel_broker_condition_isPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_aad360f4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rebel_broker_condition__defaultCondition(player, npc))
+        if (rebel_broker_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_9fdd7cf3");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rebel_broker_condition__defaultCondition(player, npc))
+            if (rebel_broker_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1570,15 +1569,15 @@ public class rebel_broker extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_ca776e30");
                 }
                 setObjVar(player, "conversation.rebel_broker.branchId", 17);
-                npcStartConversation(player, npc, "rebel_broker", message, responses);
+                npcStartConversation(player, self, "rebel_broker", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1587,77 +1586,76 @@ public class rebel_broker extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = getIntObjVar(player, "conversation.rebel_broker.branchId");
-        if (branchId == 2 && rebel_broker_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && rebel_broker_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && rebel_broker_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && rebel_broker_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && rebel_broker_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && rebel_broker_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && rebel_broker_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && rebel_broker_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && rebel_broker_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && rebel_broker_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && rebel_broker_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && rebel_broker_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && rebel_broker_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && rebel_broker_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && rebel_broker_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && rebel_broker_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && rebel_broker_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && rebel_broker_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && rebel_broker_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && rebel_broker_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && rebel_broker_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && rebel_broker_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && rebel_broker_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && rebel_broker_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && rebel_broker_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && rebel_broker_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && rebel_broker_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && rebel_broker_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && rebel_broker_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && rebel_broker_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && rebel_broker_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && rebel_broker_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && rebel_broker_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && rebel_broker_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         removeObjVar(player, "conversation.rebel_broker.branchId");
         return SCRIPT_CONTINUE;
     }

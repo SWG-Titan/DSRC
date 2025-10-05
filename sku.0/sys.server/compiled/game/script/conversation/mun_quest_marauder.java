@@ -3404,24 +3404,23 @@ public class mun_quest_marauder extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (mun_quest_marauder_condition_finishedQ9(player, npc))
+        if (mun_quest_marauder_condition_finishedQ9(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_18");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onLastTaskQ9(player, npc))
+        if (mun_quest_marauder_condition_onLastTaskQ9(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_98");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3436,28 +3435,28 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_121");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 2);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onQuest9(player, npc))
+        if (mun_quest_marauder_condition_onQuest9(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_97");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3476,21 +3475,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_119");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 6);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_finishedQ8(player, npc))
+        if (mun_quest_marauder_condition_finishedQ8(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_99");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3505,21 +3504,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_115");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 10);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onLastTaskQ8(player, npc))
+        if (mun_quest_marauder_condition_onLastTaskQ8(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_100");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3534,28 +3533,28 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_111");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 11);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onQuest8(player, npc))
+        if (mun_quest_marauder_condition_onQuest8(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_101");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3574,21 +3573,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_108");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 16);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_finishedQ7(player, npc))
+        if (mun_quest_marauder_condition_finishedQ7(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_102");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3603,21 +3602,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_103");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 20);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onLastTaskQ7(player, npc))
+        if (mun_quest_marauder_condition_onLastTaskQ7(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_42");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3632,28 +3631,28 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_93");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 21);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onQuest7(player, npc))
+        if (mun_quest_marauder_condition_onQuest7(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_50");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3672,21 +3671,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_90");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 26);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_finishedQ6(player, npc))
+        if (mun_quest_marauder_condition_finishedQ6(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_59");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3701,21 +3700,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_87");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 30);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onLastTaskQ6(player, npc))
+        if (mun_quest_marauder_condition_onLastTaskQ6(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_62");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3730,28 +3729,28 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_83");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 31);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onQuest6(player, npc))
+        if (mun_quest_marauder_condition_onQuest6(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_70");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3770,21 +3769,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_80");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 36);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_finishedQ5(player, npc))
+        if (mun_quest_marauder_condition_finishedQ5(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_82");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3799,21 +3798,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_92");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 40);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onLastTaskQ5(player, npc))
+        if (mun_quest_marauder_condition_onLastTaskQ5(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_96");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3828,28 +3827,28 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_110");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 41);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onQuest5(player, npc))
+        if (mun_quest_marauder_condition_onQuest5(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_130");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3868,21 +3867,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_136");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 46);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_finishedQ4(player, npc))
+        if (mun_quest_marauder_condition_finishedQ4(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_142");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3897,21 +3896,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_144");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 50);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onLastTaskQ4(player, npc))
+        if (mun_quest_marauder_condition_onLastTaskQ4(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_146");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3926,28 +3925,28 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_148");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 51);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onQuest4(player, npc))
+        if (mun_quest_marauder_condition_onQuest4(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_158");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3966,21 +3965,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_164");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 56);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_finishedQ3(player, npc))
+        if (mun_quest_marauder_condition_finishedQ3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_170");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3995,21 +3994,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_172");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 60);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onLastTaskQ3(player, npc))
+        if (mun_quest_marauder_condition_onLastTaskQ3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_174");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4024,28 +4023,28 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_176");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 61);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onQuest3(player, npc))
+        if (mun_quest_marauder_condition_onQuest3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_186");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4064,21 +4063,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_192");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 66);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_finishedQ2(player, npc))
+        if (mun_quest_marauder_condition_finishedQ2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_198");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4093,21 +4092,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_200");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 70);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onLastTaskQ2(player, npc))
+        if (mun_quest_marauder_condition_onLastTaskQ2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_202");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4122,28 +4121,28 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_204");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 71);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onQuest2(player, npc))
+        if (mun_quest_marauder_condition_onQuest2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_218");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4162,21 +4161,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_230");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 76);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_finishedQ1(player, npc))
+        if (mun_quest_marauder_condition_finishedQ1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_241");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4191,21 +4190,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_244");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 80);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onLastTaskQ1(player, npc))
+        if (mun_quest_marauder_condition_onLastTaskQ1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_246");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4220,28 +4219,28 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_248");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 81);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_onQuest1(player, npc))
+        if (mun_quest_marauder_condition_onQuest1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_272");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4260,21 +4259,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_286");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 88);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition_isMunCrafterLvl86(player, npc))
+        if (mun_quest_marauder_condition_isMunCrafterLvl86(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_322");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (mun_quest_marauder_condition__defaultCondition(player, npc))
+            if (mun_quest_marauder_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4289,21 +4288,21 @@ public class mun_quest_marauder extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_324");
                 }
                 utils.setScriptVar(player, "conversation.mun_quest_marauder.branchId", 93);
-                npcStartConversation(player, npc, "mun_quest_marauder", message, responses);
+                npcStartConversation(player, self, "mun_quest_marauder", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (mun_quest_marauder_condition__defaultCondition(player, npc))
+        if (mun_quest_marauder_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_344");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -4312,273 +4311,272 @@ public class mun_quest_marauder extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.mun_quest_marauder.branchId");
-        if (branchId == 2 && mun_quest_marauder_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && mun_quest_marauder_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && mun_quest_marauder_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && mun_quest_marauder_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && mun_quest_marauder_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && mun_quest_marauder_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && mun_quest_marauder_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && mun_quest_marauder_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && mun_quest_marauder_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && mun_quest_marauder_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && mun_quest_marauder_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && mun_quest_marauder_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && mun_quest_marauder_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && mun_quest_marauder_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && mun_quest_marauder_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && mun_quest_marauder_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && mun_quest_marauder_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && mun_quest_marauder_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && mun_quest_marauder_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && mun_quest_marauder_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && mun_quest_marauder_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && mun_quest_marauder_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && mun_quest_marauder_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && mun_quest_marauder_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && mun_quest_marauder_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && mun_quest_marauder_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && mun_quest_marauder_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && mun_quest_marauder_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && mun_quest_marauder_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && mun_quest_marauder_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && mun_quest_marauder_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && mun_quest_marauder_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && mun_quest_marauder_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && mun_quest_marauder_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && mun_quest_marauder_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && mun_quest_marauder_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && mun_quest_marauder_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && mun_quest_marauder_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && mun_quest_marauder_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && mun_quest_marauder_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && mun_quest_marauder_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && mun_quest_marauder_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && mun_quest_marauder_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && mun_quest_marauder_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && mun_quest_marauder_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && mun_quest_marauder_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && mun_quest_marauder_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && mun_quest_marauder_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && mun_quest_marauder_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && mun_quest_marauder_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && mun_quest_marauder_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && mun_quest_marauder_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && mun_quest_marauder_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && mun_quest_marauder_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && mun_quest_marauder_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && mun_quest_marauder_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && mun_quest_marauder_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && mun_quest_marauder_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && mun_quest_marauder_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && mun_quest_marauder_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && mun_quest_marauder_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && mun_quest_marauder_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && mun_quest_marauder_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && mun_quest_marauder_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && mun_quest_marauder_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && mun_quest_marauder_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && mun_quest_marauder_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && mun_quest_marauder_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && mun_quest_marauder_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && mun_quest_marauder_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && mun_quest_marauder_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && mun_quest_marauder_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && mun_quest_marauder_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && mun_quest_marauder_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && mun_quest_marauder_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && mun_quest_marauder_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && mun_quest_marauder_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && mun_quest_marauder_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && mun_quest_marauder_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && mun_quest_marauder_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && mun_quest_marauder_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && mun_quest_marauder_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && mun_quest_marauder_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && mun_quest_marauder_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && mun_quest_marauder_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && mun_quest_marauder_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && mun_quest_marauder_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && mun_quest_marauder_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && mun_quest_marauder_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && mun_quest_marauder_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && mun_quest_marauder_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && mun_quest_marauder_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && mun_quest_marauder_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && mun_quest_marauder_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && mun_quest_marauder_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && mun_quest_marauder_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && mun_quest_marauder_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && mun_quest_marauder_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 72 && mun_quest_marauder_handleBranch72(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 72 && mun_quest_marauder_handleBranch72(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 73 && mun_quest_marauder_handleBranch73(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 73 && mun_quest_marauder_handleBranch73(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && mun_quest_marauder_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && mun_quest_marauder_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && mun_quest_marauder_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && mun_quest_marauder_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && mun_quest_marauder_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && mun_quest_marauder_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 80 && mun_quest_marauder_handleBranch80(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 80 && mun_quest_marauder_handleBranch80(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && mun_quest_marauder_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && mun_quest_marauder_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && mun_quest_marauder_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && mun_quest_marauder_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && mun_quest_marauder_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && mun_quest_marauder_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && mun_quest_marauder_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && mun_quest_marauder_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && mun_quest_marauder_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && mun_quest_marauder_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && mun_quest_marauder_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && mun_quest_marauder_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && mun_quest_marauder_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && mun_quest_marauder_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && mun_quest_marauder_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && mun_quest_marauder_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && mun_quest_marauder_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && mun_quest_marauder_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && mun_quest_marauder_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && mun_quest_marauder_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && mun_quest_marauder_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && mun_quest_marauder_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.mun_quest_marauder.branchId");
         return SCRIPT_CONTINUE;
     }

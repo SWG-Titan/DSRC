@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class restuss_imperial_ground_destroy_2 extends script.base_script
+public class restuss_imperial_ground_destroy_2 extends base_script
 {
     public restuss_imperial_ground_destroy_2()
     {

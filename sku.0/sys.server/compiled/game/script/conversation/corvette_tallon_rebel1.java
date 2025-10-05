@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class corvette_tallon_rebel1 extends script.base_script
+public class corvette_tallon_rebel1 extends base_script
 {
     public corvette_tallon_rebel1()
     {

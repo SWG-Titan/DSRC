@@ -60,19 +60,26 @@ public class heroic_token_vendor extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (heroic_token_vendor_condition__defaultCondition(player, npc))
+        if (heroic_token_vendor_condition__defaultCondition(player, self))
         {
-            heroic_token_vendor_action_showTokenVendorUI(player, npc);
-            string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            if (getCurrentSceneName().equals("tatooine"))
+            {
+                String message = "Welcome to Rally Point Nova. Would you like to see what I have for sale?";
+                chat.chat(self, message);
+            }
+            else
+            {
+                string_id message = new string_id(c_stringFile, "s_4");
+                chat.chat(self, player, message);
+            }
+            heroic_token_vendor_action_showTokenVendorUI(player, self);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -81,9 +88,8 @@ public class heroic_token_vendor extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.heroic_token_vendor.branchId");
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.heroic_token_vendor.branchId");
         return SCRIPT_CONTINUE;
     }

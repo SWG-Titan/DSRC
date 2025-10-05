@@ -80,3 +80,16 @@ object/building/dathomir/dathomir_quarantine_zone_starport.iff	20.34	0	17.76	WOR
 									object/creature/npc/theme_park/player_transport.iff	0	-9	0	WORLD_DELTA	-90	0	1	0
 									object/tangible/travel/ticket_collector/ticket_collector.iff	1	0.2	10	WORLD_DELTA	315	0	0	1
 									object/tangible/terminal/terminal_space.iff	-7.6	0	-19.5	r1	0	1	0	0
+object/building/player/city/shuttleport_camo_tatooine.iff	0	0	-10.5	WORLD_DELTA	300	60	1	1									
+									object/tangible/terminal/terminal_travel.iff	-6	-1	-14	WORLD_DELTA	0	1	0	0
+									object/creature/npc/theme_park/player_shuttle.iff	0	-0.6	-5	WORLD_DELTA	180	0	1	0
+									object/tangible/travel/ticket_collector/ticket_collector.iff	6	-1	-14	WORLD_DELTA	0	0	0	1
+object/building/player/city/imp_shuttleport_corellia.iff	0	0	-10.5	WORLD_DELTA	300	60	1	1									
+									object/tangible/terminal/terminal_travel.iff	-6	-1	-14	WORLD_DELTA	0	1	0	0
+									object/creature/npc/theme_park/player_shuttle.iff	0	-0.6	-5	WORLD_DELTA	180	0	1	0
+									object/tangible/travel/ticket_collector/ticket_collector.iff	6	-1	-14	WORLD_DELTA	0	0	0	1
+									object/tangible/terminal/terminal_space.iff	-8	-1	-14	WORLD_DELTA	0	1	0	0
+object/building/player/city/reb_shuttleport_corellia.iff	0	0	-10.5	WORLD_DELTA	300	60	1	1									
+									object/tangible/terminal/terminal_travel.iff	-6	-1	-14	WORLD_DELTA	0	1	0	0
+									object/creature/npc/theme_park/player_shuttle.iff	0	-0.6	-5	WORLD_DELTA	180	0	1	0
+									object/tangible/travel/ticket_collector/ticket_collector.iff	6	-1	-14	WORLD_DELTA	0	0	0	1

@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class ep3_rodian_hunter extends script.base_script
+public class ep3_rodian_hunter extends base_script
 {
     public ep3_rodian_hunter()
     {

@@ -97,37 +97,36 @@ public class ep3_trandoshan_slave_leader extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_trandoshan_slave_leader_condition_hasCompletedQuest01(player, npc))
+        if (ep3_trandoshan_slave_leader_condition_hasCompletedQuest01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_81");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_trandoshan_slave_leader_condition_isOnTask02(player, npc))
+        if (ep3_trandoshan_slave_leader_condition_isOnTask02(player, self))
         {
-            ep3_trandoshan_slave_leader_action_doSignal02(player, npc);
+            ep3_trandoshan_slave_leader_action_doSignal02(player, self);
             string_id message = new string_id(c_stringFile, "s_83");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_trandoshan_slave_leader_condition_hasCompletedTask01(player, npc))
+        if (ep3_trandoshan_slave_leader_condition_hasCompletedTask01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_85");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_trandoshan_slave_leader_condition_isOnTask01(player, npc))
+        if (ep3_trandoshan_slave_leader_condition_isOnTask01(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_87");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_trandoshan_slave_leader_condition__defaultCondition(player, npc))
+            if (ep3_trandoshan_slave_leader_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -142,21 +141,21 @@ public class ep3_trandoshan_slave_leader extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_89");
                 }
                 utils.setScriptVar(player, "conversation.ep3_trandoshan_slave_leader.branchId", 4);
-                npcStartConversation(player, npc, "ep3_trandoshan_slave_leader", message, responses);
+                npcStartConversation(player, self, "ep3_trandoshan_slave_leader", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_trandoshan_slave_leader_condition__defaultCondition(player, npc))
+        if (ep3_trandoshan_slave_leader_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_93");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -165,13 +164,12 @@ public class ep3_trandoshan_slave_leader extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_trandoshan_slave_leader.branchId");
-        if (branchId == 4 && ep3_trandoshan_slave_leader_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && ep3_trandoshan_slave_leader_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_trandoshan_slave_leader.branchId");
         return SCRIPT_CONTINUE;
     }

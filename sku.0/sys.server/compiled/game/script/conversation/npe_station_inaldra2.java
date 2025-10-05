@@ -632,31 +632,30 @@ public class npe_station_inaldra2 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_station_inaldra2_condition_finishedInaldraQuest(player, npc))
+        if (npe_station_inaldra2_condition_finishedInaldraQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_inaldra2_condition_onInaldraQuest(player, npc))
+        if (npe_station_inaldra2_condition_onInaldraQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_25");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_inaldra2_condition_onRewardStep(player, npc))
+            if (npe_station_inaldra2_condition_onRewardStep(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_station_inaldra2_condition__defaultCondition(player, npc))
+            if (npe_station_inaldra2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -675,28 +674,28 @@ public class npe_station_inaldra2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_27");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_inaldra2.branchId", 2);
-                npcStartConversation(player, npc, "npe_station_inaldra2", message, responses);
+                npcStartConversation(player, self, "npe_station_inaldra2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_inaldra2_condition_finishedMainQuest(player, npc))
+        if (npe_station_inaldra2_condition_finishedMainQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_14");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_inaldra2_condition__defaultCondition(player, npc))
+            if (npe_station_inaldra2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_station_inaldra2_condition__defaultCondition(player, npc))
+            if (npe_station_inaldra2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -715,49 +714,49 @@ public class npe_station_inaldra2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_50");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_inaldra2.branchId", 6);
-                npcStartConversation(player, npc, "npe_station_inaldra2", message, responses);
+                npcStartConversation(player, self, "npe_station_inaldra2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_station_inaldra2_condition__defaultCondition(player, npc))
+        if (npe_station_inaldra2_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_54");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_station_inaldra2_condition__defaultCondition(player, npc))
+            if (npe_station_inaldra2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_station_inaldra2_condition__defaultCondition(player, npc))
+            if (npe_station_inaldra2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (npe_station_inaldra2_condition__defaultCondition(player, npc))
+            if (npe_station_inaldra2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (npe_station_inaldra2_condition__defaultCondition(player, npc))
+            if (npe_station_inaldra2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (npe_station_inaldra2_condition__defaultCondition(player, npc))
+            if (npe_station_inaldra2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -788,15 +787,15 @@ public class npe_station_inaldra2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_74");
                 }
                 utils.setScriptVar(player, "conversation.npe_station_inaldra2.branchId", 12);
-                npcStartConversation(player, npc, "npe_station_inaldra2", message, responses);
+                npcStartConversation(player, self, "npe_station_inaldra2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -805,45 +804,44 @@ public class npe_station_inaldra2 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_station_inaldra2.branchId");
-        if (branchId == 2 && npe_station_inaldra2_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_station_inaldra2_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && npe_station_inaldra2_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && npe_station_inaldra2_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && npe_station_inaldra2_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && npe_station_inaldra2_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_station_inaldra2_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_station_inaldra2_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && npe_station_inaldra2_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && npe_station_inaldra2_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && npe_station_inaldra2_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && npe_station_inaldra2_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && npe_station_inaldra2_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && npe_station_inaldra2_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && npe_station_inaldra2_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && npe_station_inaldra2_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && npe_station_inaldra2_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && npe_station_inaldra2_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_station_inaldra2.branchId");
         return SCRIPT_CONTINUE;
     }

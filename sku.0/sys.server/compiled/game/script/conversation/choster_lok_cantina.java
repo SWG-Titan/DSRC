@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class choster_lok_cantina extends script.base_script
+public class choster_lok_cantina extends base_script
 {
     public choster_lok_cantina()
     {

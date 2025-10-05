@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class itp_thrawn_keeloo extends script.base_script
+public class itp_thrawn_keeloo extends base_script
 {
     public itp_thrawn_keeloo()
     {

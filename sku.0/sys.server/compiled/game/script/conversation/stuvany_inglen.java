@@ -1013,29 +1013,28 @@ public class stuvany_inglen extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (stuvany_inglen_condition_hasCompletedAll(player, npc))
+        if (stuvany_inglen_condition_hasCompletedAll(player, self))
         {
-            stuvany_inglen_action_correctAllCollectionErrors(player, npc);
+            stuvany_inglen_action_correctAllCollectionErrors(player, self);
             string_id message = new string_id(c_stringFile, "s_135");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasReturnedStealData(player, npc))
+        if (stuvany_inglen_condition_hasReturnedStealData(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_25");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (stuvany_inglen_condition__defaultCondition(player, npc))
+            if (stuvany_inglen_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1050,28 +1049,28 @@ public class stuvany_inglen extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_28");
                 }
                 utils.setScriptVar(player, "conversation.stuvany_inglen.branchId", 2);
-                npcStartConversation(player, npc, "stuvany_inglen", message, responses);
+                npcStartConversation(player, self, "stuvany_inglen", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasCompletedLabDataCollection(player, npc))
+        if (stuvany_inglen_condition_hasCompletedLabDataCollection(player, self))
         {
-            stuvany_inglen_action_BruteForceCompleteLabData(player, npc);
+            stuvany_inglen_action_BruteForceCompleteLabData(player, self);
             string_id message = new string_id(c_stringFile, "s_131");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasStealDataQuestNotComplete(player, npc))
+        if (stuvany_inglen_condition_hasStealDataQuestNotComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_26");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (stuvany_inglen_condition__defaultCondition(player, npc))
+            if (stuvany_inglen_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1086,21 +1085,21 @@ public class stuvany_inglen extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_30");
                 }
                 utils.setScriptVar(player, "conversation.stuvany_inglen.branchId", 9);
-                npcStartConversation(player, npc, "stuvany_inglen", message, responses);
+                npcStartConversation(player, self, "stuvany_inglen", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_canDoStealData(player, npc))
+        if (stuvany_inglen_condition_canDoStealData(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_27");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (stuvany_inglen_condition__defaultCondition(player, npc))
+            if (stuvany_inglen_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1115,27 +1114,27 @@ public class stuvany_inglen extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_32");
                 }
                 utils.setScriptVar(player, "conversation.stuvany_inglen.branchId", 11);
-                npcStartConversation(player, npc, "stuvany_inglen", message, responses);
+                npcStartConversation(player, self, "stuvany_inglen", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasntDoneData(player, npc))
+        if (stuvany_inglen_condition_hasntDoneData(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_125");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasReturnedStealOre(player, npc))
+        if (stuvany_inglen_condition_hasReturnedStealOre(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_37");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (stuvany_inglen_condition__defaultCondition(player, npc))
+            if (stuvany_inglen_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1153,33 +1152,33 @@ public class stuvany_inglen extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "stuvany_inglen", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "stuvany_inglen", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasCompletedMinedOreCollection(player, npc))
+        if (stuvany_inglen_condition_hasCompletedMinedOreCollection(player, self))
         {
-            stuvany_inglen_action_BruteForceCompleteMinedOre(player, npc);
+            stuvany_inglen_action_BruteForceCompleteMinedOre(player, self);
             string_id message = new string_id(c_stringFile, "s_130");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasStealOreQuestNotComplete(player, npc))
+        if (stuvany_inglen_condition_hasStealOreQuestNotComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_46");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (stuvany_inglen_condition__defaultCondition(player, npc))
+            if (stuvany_inglen_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1194,21 +1193,21 @@ public class stuvany_inglen extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_48");
                 }
                 utils.setScriptVar(player, "conversation.stuvany_inglen.branchId", 20);
-                npcStartConversation(player, npc, "stuvany_inglen", message, responses);
+                npcStartConversation(player, self, "stuvany_inglen", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_canDoStealOre(player, npc))
+        if (stuvany_inglen_condition_canDoStealOre(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_52");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (stuvany_inglen_condition__defaultCondition(player, npc))
+            if (stuvany_inglen_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1223,27 +1222,27 @@ public class stuvany_inglen extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_72");
                 }
                 utils.setScriptVar(player, "conversation.stuvany_inglen.branchId", 22);
-                npcStartConversation(player, npc, "stuvany_inglen", message, responses);
+                npcStartConversation(player, self, "stuvany_inglen", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasntDoneOre(player, npc))
+        if (stuvany_inglen_condition_hasntDoneOre(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_124");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasReturnedPrisoner(player, npc))
+        if (stuvany_inglen_condition_hasReturnedPrisoner(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_65");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (stuvany_inglen_condition__defaultCondition(player, npc))
+            if (stuvany_inglen_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1261,33 +1260,33 @@ public class stuvany_inglen extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "stuvany_inglen", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "stuvany_inglen", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasCompletedPrisonerRescueCollection(player, npc))
+        if (stuvany_inglen_condition_hasCompletedPrisonerRescueCollection(player, self))
         {
-            stuvany_inglen_action_BruteForceCompletePrisoner(player, npc);
+            stuvany_inglen_action_BruteForceCompletePrisoner(player, self);
             string_id message = new string_id(c_stringFile, "s_129");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasPrisonerQuestNotComplete(player, npc))
+        if (stuvany_inglen_condition_hasPrisonerQuestNotComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_100");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (stuvany_inglen_condition__defaultCondition(player, npc))
+            if (stuvany_inglen_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1305,26 +1304,26 @@ public class stuvany_inglen extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "stuvany_inglen", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "stuvany_inglen", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_canDoPrisoner(player, npc))
+        if (stuvany_inglen_condition_canDoPrisoner(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_106");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (stuvany_inglen_condition__defaultCondition(player, npc))
+            if (stuvany_inglen_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1342,32 +1341,32 @@ public class stuvany_inglen extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "stuvany_inglen", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "stuvany_inglen", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition_hasntDonePrisoner(player, npc))
+        if (stuvany_inglen_condition_hasntDonePrisoner(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_133");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (stuvany_inglen_condition__defaultCondition(player, npc))
+        if (stuvany_inglen_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_136");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1376,109 +1375,108 @@ public class stuvany_inglen extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.stuvany_inglen.branchId");
-        if (branchId == 2 && stuvany_inglen_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && stuvany_inglen_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && stuvany_inglen_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && stuvany_inglen_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && stuvany_inglen_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && stuvany_inglen_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && stuvany_inglen_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && stuvany_inglen_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && stuvany_inglen_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && stuvany_inglen_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && stuvany_inglen_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && stuvany_inglen_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && stuvany_inglen_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && stuvany_inglen_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && stuvany_inglen_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && stuvany_inglen_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && stuvany_inglen_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && stuvany_inglen_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && stuvany_inglen_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && stuvany_inglen_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && stuvany_inglen_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && stuvany_inglen_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && stuvany_inglen_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && stuvany_inglen_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && stuvany_inglen_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && stuvany_inglen_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && stuvany_inglen_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && stuvany_inglen_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && stuvany_inglen_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && stuvany_inglen_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && stuvany_inglen_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && stuvany_inglen_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && stuvany_inglen_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && stuvany_inglen_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && stuvany_inglen_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && stuvany_inglen_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && stuvany_inglen_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && stuvany_inglen_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && stuvany_inglen_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && stuvany_inglen_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && stuvany_inglen_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && stuvany_inglen_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && stuvany_inglen_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && stuvany_inglen_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && stuvany_inglen_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && stuvany_inglen_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && stuvany_inglen_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && stuvany_inglen_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && stuvany_inglen_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && stuvany_inglen_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.stuvany_inglen.branchId");
         return SCRIPT_CONTINUE;
     }

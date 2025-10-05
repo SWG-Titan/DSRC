@@ -359,19 +359,18 @@ public class talus_dearic_coa_braedic_ekirk extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (talus_dearic_coa_braedic_ekirk_condition_imperial_quest_complete(player, npc))
+        if (talus_dearic_coa_braedic_ekirk_condition_imperial_quest_complete(player, self))
         {
-            doAnimationAction(npc, "paper");
+            doAnimationAction(self, "paper");
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -386,29 +385,29 @@ public class talus_dearic_coa_braedic_ekirk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_braedic_ekirk.branchId", 1);
-                npcStartConversation(player, npc, "talus_dearic_coa_braedic_ekirk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_braedic_ekirk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_braedic_ekirk_condition_imperial_tasks_complete(player, npc))
+        if (talus_dearic_coa_braedic_ekirk_condition_imperial_tasks_complete(player, self))
         {
-            doAnimationAction(npc, "thank");
+            doAnimationAction(self, "thank");
             string_id message = new string_id(c_stringFile, "s_9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -427,22 +426,22 @@ public class talus_dearic_coa_braedic_ekirk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_braedic_ekirk.branchId", 3);
-                npcStartConversation(player, npc, "talus_dearic_coa_braedic_ekirk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_braedic_ekirk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_braedic_ekirk_condition_imperial_quest_accepted(player, npc))
+        if (talus_dearic_coa_braedic_ekirk_condition_imperial_quest_accepted(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
+            doAnimationAction(self, "shake_head_disgust");
             string_id message = new string_id(c_stringFile, "s_23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -457,28 +456,28 @@ public class talus_dearic_coa_braedic_ekirk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_38");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_braedic_ekirk.branchId", 7);
-                npcStartConversation(player, npc, "talus_dearic_coa_braedic_ekirk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_braedic_ekirk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_braedic_ekirk_condition_main_quest_accepted(player, npc))
+        if (talus_dearic_coa_braedic_ekirk_condition_main_quest_accepted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_40");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, npc))
+            if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -497,22 +496,22 @@ public class talus_dearic_coa_braedic_ekirk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_62");
                 }
                 utils.setScriptVar(player, "conversation.talus_dearic_coa_braedic_ekirk.branchId", 9);
-                npcStartConversation(player, npc, "talus_dearic_coa_braedic_ekirk", message, responses);
+                npcStartConversation(player, self, "talus_dearic_coa_braedic_ekirk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, npc))
+        if (talus_dearic_coa_braedic_ekirk_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_66");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -521,41 +520,40 @@ public class talus_dearic_coa_braedic_ekirk extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.talus_dearic_coa_braedic_ekirk.branchId");
-        if (branchId == 1 && talus_dearic_coa_braedic_ekirk_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && talus_dearic_coa_braedic_ekirk_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && talus_dearic_coa_braedic_ekirk_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && talus_dearic_coa_braedic_ekirk_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && talus_dearic_coa_braedic_ekirk_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && talus_dearic_coa_braedic_ekirk_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && talus_dearic_coa_braedic_ekirk_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && talus_dearic_coa_braedic_ekirk_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && talus_dearic_coa_braedic_ekirk_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && talus_dearic_coa_braedic_ekirk_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && talus_dearic_coa_braedic_ekirk_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && talus_dearic_coa_braedic_ekirk_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && talus_dearic_coa_braedic_ekirk_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && talus_dearic_coa_braedic_ekirk_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && talus_dearic_coa_braedic_ekirk_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && talus_dearic_coa_braedic_ekirk_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.talus_dearic_coa_braedic_ekirk.branchId");
         return SCRIPT_CONTINUE;
     }

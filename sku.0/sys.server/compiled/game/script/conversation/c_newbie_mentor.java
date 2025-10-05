@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class c_newbie_mentor extends script.base_script
+public class c_newbie_mentor extends base_script
 {
     public c_newbie_mentor()
     {
@@ -12138,20 +12138,19 @@ public class c_newbie_mentor extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!c_newbie_mentor_condition_questActiveOrComplete(player, npc))
+        if (!c_newbie_mentor_condition_questActiveOrComplete(player, self))
         {
-            doAnimationAction(npc, "greet");
-            c_newbie_mentor_action_faceplayer(player, npc);
+            doAnimationAction(self, "greet");
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_303");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12166,37 +12165,37 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_305");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 1);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnBankStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnBankStep(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_349");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnBankReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnBankReturn(player, self))
         {
-            doAnimationAction(npc, "greet");
-            c_newbie_mentor_action_faceplayer(player, npc);
+            doAnimationAction(self, "greet");
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_351");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12215,44 +12214,44 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_357");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 14);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnBazaarStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnBazaarStep(player, self))
         {
-            doAnimationAction(npc, "wave_finger_warning");
-            c_newbie_mentor_action_faceplayer(player, npc);
+            doAnimationAction(self, "wave_finger_warning");
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_369");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnBazaarReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnBazaarReturn(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_371");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12275,37 +12274,37 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_381");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 20);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnCloneStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnCloneStep(player, self))
         {
-            doAnimationAction(npc, "sigh_deeply");
-            c_newbie_mentor_action_faceplayer(player, npc);
+            doAnimationAction(self, "sigh_deeply");
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_401");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnCloneReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnCloneReturn(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_403");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12324,35 +12323,35 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_409");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 29);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnHealingBox1(player, npc))
+        if (c_newbie_mentor_condition_playerOnHealingBox1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_421");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnHealingLearned(player, npc))
+        if (c_newbie_mentor_condition_playerOnHealingLearned(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_423");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12371,36 +12370,36 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_435");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 35);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnKill(player, npc))
+        if (c_newbie_mentor_condition_playerOnKill(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_445");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnKillReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnKillReturn(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_448");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12419,38 +12418,38 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_461");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 41);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnHarvestStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnHarvestStep(player, self))
         {
-            doAnimationAction(npc, "point_away");
-            c_newbie_mentor_action_faceplayer(player, npc);
+            doAnimationAction(self, "point_away");
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_472");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnHarvestReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnHarvestReturn(player, self))
         {
-            doAnimationAction(npc, "nod");
-            c_newbie_mentor_action_faceplayer(player, npc);
+            doAnimationAction(self, "nod");
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_475");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12469,35 +12468,35 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_488");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 47);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnProfessionStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnProfessionStep(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_499");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnProfessionReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnProfessionReturn(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_501");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12516,36 +12515,36 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_518");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 53);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnCantinaStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnCantinaStep(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_537");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnCantinaPerform(player, npc))
+        if (c_newbie_mentor_condition_playerOnCantinaPerform(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_540");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnCantinaReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnCantinaReturn(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_543");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12560,36 +12559,36 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_545");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 61);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnMedCenterStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnMedCenterStep(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_564");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnMedCenterReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnMedCenterReturn(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_567");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12608,36 +12607,36 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_585");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 66);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnJunkStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnJunkStep(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_601");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnJunkReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnJunkReturn(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_604");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12656,35 +12655,35 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_616");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 74);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnVehicleInfo(player, npc))
+        if (c_newbie_mentor_condition_playerOnVehicleInfo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_632");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnVehicleAcquired(player, npc))
+        if (c_newbie_mentor_condition_playerOnVehicleAcquired(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_635");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12703,29 +12702,29 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_648");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 81);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnSurveyStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnSurveyStep(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_659");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnSurveyReturn(player, npc))
+        if (c_newbie_mentor_condition_playerOnSurveyReturn(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_661");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12740,29 +12739,29 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_664");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 87);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnCraftStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnCraftStep(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_680");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition_playerOnCraftReturn(player, npc))
+            if (c_newbie_mentor_condition_playerOnCraftReturn(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12781,28 +12780,28 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_709");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 91);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerLearnDroid(player, npc))
+        if (c_newbie_mentor_condition_playerLearnDroid(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_715");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnLearnGroup(player, npc))
+        if (c_newbie_mentor_condition_playerOnLearnGroup(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_718");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12817,36 +12816,36 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_721");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 99);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnShuttleStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnShuttleStep(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_740");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnAssociateStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnAssociateStep(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_743");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition_playerOnLastStep(player, npc))
+        if (c_newbie_mentor_condition_playerOnLastStep(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_746");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12861,57 +12860,57 @@ public class c_newbie_mentor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_749");
                 }
                 utils.setScriptVar(player, "conversation.c_newbie_mentor.branchId", 105);
-                npcStartConversation(player, npc, "c_newbie_mentor", message, responses);
+                npcStartConversation(player, self, "c_newbie_mentor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_newbie_mentor_condition__defaultCondition(player, npc))
+        if (c_newbie_mentor_condition__defaultCondition(player, self))
         {
-            c_newbie_mentor_action_faceplayer(player, npc);
+            c_newbie_mentor_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_1131");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (c_newbie_mentor_condition__defaultCondition(player, npc))
+            if (c_newbie_mentor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -12949,20 +12948,20 @@ public class c_newbie_mentor extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "c_newbie_mentor", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "c_newbie_mentor", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -12971,457 +12970,456 @@ public class c_newbie_mentor extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_newbie_mentor.branchId");
-        if (branchId == 1 && c_newbie_mentor_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && c_newbie_mentor_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && c_newbie_mentor_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && c_newbie_mentor_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && c_newbie_mentor_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && c_newbie_mentor_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && c_newbie_mentor_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && c_newbie_mentor_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && c_newbie_mentor_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && c_newbie_mentor_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && c_newbie_mentor_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && c_newbie_mentor_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && c_newbie_mentor_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && c_newbie_mentor_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && c_newbie_mentor_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && c_newbie_mentor_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && c_newbie_mentor_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && c_newbie_mentor_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && c_newbie_mentor_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && c_newbie_mentor_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && c_newbie_mentor_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && c_newbie_mentor_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && c_newbie_mentor_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && c_newbie_mentor_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && c_newbie_mentor_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && c_newbie_mentor_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && c_newbie_mentor_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && c_newbie_mentor_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && c_newbie_mentor_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && c_newbie_mentor_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && c_newbie_mentor_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && c_newbie_mentor_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && c_newbie_mentor_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && c_newbie_mentor_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && c_newbie_mentor_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && c_newbie_mentor_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && c_newbie_mentor_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && c_newbie_mentor_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && c_newbie_mentor_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && c_newbie_mentor_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && c_newbie_mentor_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && c_newbie_mentor_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && c_newbie_mentor_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && c_newbie_mentor_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && c_newbie_mentor_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && c_newbie_mentor_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && c_newbie_mentor_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && c_newbie_mentor_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && c_newbie_mentor_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && c_newbie_mentor_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && c_newbie_mentor_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && c_newbie_mentor_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && c_newbie_mentor_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && c_newbie_mentor_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && c_newbie_mentor_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && c_newbie_mentor_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && c_newbie_mentor_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && c_newbie_mentor_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && c_newbie_mentor_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && c_newbie_mentor_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && c_newbie_mentor_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && c_newbie_mentor_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && c_newbie_mentor_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && c_newbie_mentor_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && c_newbie_mentor_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && c_newbie_mentor_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && c_newbie_mentor_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && c_newbie_mentor_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && c_newbie_mentor_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && c_newbie_mentor_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 56 && c_newbie_mentor_handleBranch56(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 56 && c_newbie_mentor_handleBranch56(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && c_newbie_mentor_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && c_newbie_mentor_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && c_newbie_mentor_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && c_newbie_mentor_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && c_newbie_mentor_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && c_newbie_mentor_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 66 && c_newbie_mentor_handleBranch66(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 66 && c_newbie_mentor_handleBranch66(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 67 && c_newbie_mentor_handleBranch67(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 67 && c_newbie_mentor_handleBranch67(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && c_newbie_mentor_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && c_newbie_mentor_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && c_newbie_mentor_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && c_newbie_mentor_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && c_newbie_mentor_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && c_newbie_mentor_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && c_newbie_mentor_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && c_newbie_mentor_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && c_newbie_mentor_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && c_newbie_mentor_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && c_newbie_mentor_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && c_newbie_mentor_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && c_newbie_mentor_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && c_newbie_mentor_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && c_newbie_mentor_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && c_newbie_mentor_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && c_newbie_mentor_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && c_newbie_mentor_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && c_newbie_mentor_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && c_newbie_mentor_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && c_newbie_mentor_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && c_newbie_mentor_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && c_newbie_mentor_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && c_newbie_mentor_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && c_newbie_mentor_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && c_newbie_mentor_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && c_newbie_mentor_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && c_newbie_mentor_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && c_newbie_mentor_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && c_newbie_mentor_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && c_newbie_mentor_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && c_newbie_mentor_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && c_newbie_mentor_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && c_newbie_mentor_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 99 && c_newbie_mentor_handleBranch99(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 99 && c_newbie_mentor_handleBranch99(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 100 && c_newbie_mentor_handleBranch100(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 100 && c_newbie_mentor_handleBranch100(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 101 && c_newbie_mentor_handleBranch101(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 101 && c_newbie_mentor_handleBranch101(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 105 && c_newbie_mentor_handleBranch105(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 105 && c_newbie_mentor_handleBranch105(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 106 && c_newbie_mentor_handleBranch106(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 106 && c_newbie_mentor_handleBranch106(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 107 && c_newbie_mentor_handleBranch107(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 107 && c_newbie_mentor_handleBranch107(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 108 && c_newbie_mentor_handleBranch108(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 108 && c_newbie_mentor_handleBranch108(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 109 && c_newbie_mentor_handleBranch109(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 109 && c_newbie_mentor_handleBranch109(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 110 && c_newbie_mentor_handleBranch110(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 110 && c_newbie_mentor_handleBranch110(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 111 && c_newbie_mentor_handleBranch111(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 111 && c_newbie_mentor_handleBranch111(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 112 && c_newbie_mentor_handleBranch112(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 112 && c_newbie_mentor_handleBranch112(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 113 && c_newbie_mentor_handleBranch113(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 113 && c_newbie_mentor_handleBranch113(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 114 && c_newbie_mentor_handleBranch114(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 114 && c_newbie_mentor_handleBranch114(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 115 && c_newbie_mentor_handleBranch115(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 115 && c_newbie_mentor_handleBranch115(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 116 && c_newbie_mentor_handleBranch116(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 116 && c_newbie_mentor_handleBranch116(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 117 && c_newbie_mentor_handleBranch117(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 117 && c_newbie_mentor_handleBranch117(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 118 && c_newbie_mentor_handleBranch118(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 118 && c_newbie_mentor_handleBranch118(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 119 && c_newbie_mentor_handleBranch119(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 119 && c_newbie_mentor_handleBranch119(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 120 && c_newbie_mentor_handleBranch120(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 120 && c_newbie_mentor_handleBranch120(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 121 && c_newbie_mentor_handleBranch121(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 121 && c_newbie_mentor_handleBranch121(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 122 && c_newbie_mentor_handleBranch122(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 122 && c_newbie_mentor_handleBranch122(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 123 && c_newbie_mentor_handleBranch123(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 123 && c_newbie_mentor_handleBranch123(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 124 && c_newbie_mentor_handleBranch124(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 124 && c_newbie_mentor_handleBranch124(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 125 && c_newbie_mentor_handleBranch125(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 125 && c_newbie_mentor_handleBranch125(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 126 && c_newbie_mentor_handleBranch126(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 126 && c_newbie_mentor_handleBranch126(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 127 && c_newbie_mentor_handleBranch127(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 127 && c_newbie_mentor_handleBranch127(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 128 && c_newbie_mentor_handleBranch128(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 128 && c_newbie_mentor_handleBranch128(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 129 && c_newbie_mentor_handleBranch129(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 129 && c_newbie_mentor_handleBranch129(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 130 && c_newbie_mentor_handleBranch130(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 130 && c_newbie_mentor_handleBranch130(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 131 && c_newbie_mentor_handleBranch131(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 131 && c_newbie_mentor_handleBranch131(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 132 && c_newbie_mentor_handleBranch132(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 132 && c_newbie_mentor_handleBranch132(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 133 && c_newbie_mentor_handleBranch133(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 133 && c_newbie_mentor_handleBranch133(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 134 && c_newbie_mentor_handleBranch134(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 134 && c_newbie_mentor_handleBranch134(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 135 && c_newbie_mentor_handleBranch135(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 135 && c_newbie_mentor_handleBranch135(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 136 && c_newbie_mentor_handleBranch136(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 136 && c_newbie_mentor_handleBranch136(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 137 && c_newbie_mentor_handleBranch137(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 137 && c_newbie_mentor_handleBranch137(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 138 && c_newbie_mentor_handleBranch138(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 138 && c_newbie_mentor_handleBranch138(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 139 && c_newbie_mentor_handleBranch139(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 139 && c_newbie_mentor_handleBranch139(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 140 && c_newbie_mentor_handleBranch140(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 140 && c_newbie_mentor_handleBranch140(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 141 && c_newbie_mentor_handleBranch141(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 141 && c_newbie_mentor_handleBranch141(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 142 && c_newbie_mentor_handleBranch142(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 142 && c_newbie_mentor_handleBranch142(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 143 && c_newbie_mentor_handleBranch143(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 143 && c_newbie_mentor_handleBranch143(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 144 && c_newbie_mentor_handleBranch144(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 144 && c_newbie_mentor_handleBranch144(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 145 && c_newbie_mentor_handleBranch145(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 145 && c_newbie_mentor_handleBranch145(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 146 && c_newbie_mentor_handleBranch146(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 146 && c_newbie_mentor_handleBranch146(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 147 && c_newbie_mentor_handleBranch147(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 147 && c_newbie_mentor_handleBranch147(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 148 && c_newbie_mentor_handleBranch148(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 148 && c_newbie_mentor_handleBranch148(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 149 && c_newbie_mentor_handleBranch149(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 149 && c_newbie_mentor_handleBranch149(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 150 && c_newbie_mentor_handleBranch150(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 150 && c_newbie_mentor_handleBranch150(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 151 && c_newbie_mentor_handleBranch151(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 151 && c_newbie_mentor_handleBranch151(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 152 && c_newbie_mentor_handleBranch152(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 152 && c_newbie_mentor_handleBranch152(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 153 && c_newbie_mentor_handleBranch153(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 153 && c_newbie_mentor_handleBranch153(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 154 && c_newbie_mentor_handleBranch154(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 154 && c_newbie_mentor_handleBranch154(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 156 && c_newbie_mentor_handleBranch156(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 156 && c_newbie_mentor_handleBranch156(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_newbie_mentor.branchId");
         return SCRIPT_CONTINUE;
     }

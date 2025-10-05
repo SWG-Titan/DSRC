@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class ep3_clone_relics_clone_trooper_major_raev extends script.base_script
+public class ep3_clone_relics_clone_trooper_major_raev extends base_script
 {
     public ep3_clone_relics_clone_trooper_major_raev()
     {

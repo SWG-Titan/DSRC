@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class tatooine_eisley_kashi extends script.base_script
+public class tatooine_eisley_kashi extends base_script
 {
     public tatooine_eisley_kashi()
     {
@@ -20,39 +20,33 @@ public class tatooine_eisley_kashi extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_drensjustice");
         int tat_eisley_drensjustice_e1 = groundquests.getTaskId(questId1, "tat_eisley_drensjustice_e1");
-        boolean onTask = questIsTaskActive(questId1, tat_eisley_drensjustice_e1, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_eisley_drensjustice_e1, player);
     }
     public boolean tatooine_eisley_kashi_condition_heirQuestComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_heirloom");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean tatooine_eisley_kashi_condition_sodQuestComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_spice_of_death");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean tatooine_eisley_kashi_condition_haQuestComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_hidden_agenda");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean tatooine_eisley_kashi_condition_heirTaskComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_heirloom");
         int tat_eisley_heirloom_e2 = groundquests.getTaskId(questId1, "tat_eisley_heirloom_e2");
-        boolean onTask = questIsTaskActive(questId1, tat_eisley_heirloom_e2, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_eisley_heirloom_e2, player);
     }
     public boolean tatooine_eisley_kashi_condition_drenQuestComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_drensjustice");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public boolean tatooine_eisley_kashi_condition_blocker(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -979,25 +973,24 @@ public class tatooine_eisley_kashi extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_eisley_kashi_condition_blocker(player, npc))
+        if (tatooine_eisley_kashi_condition_blocker(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_115");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_kashi_condition_drenQuestComplete(player, npc))
+        if (tatooine_eisley_kashi_condition_drenQuestComplete(player, self))
         {
-            tatooine_eisley_kashi_action_facePlayer(player, npc);
+            tatooine_eisley_kashi_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_86");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_kashi_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_kashi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1012,22 +1005,22 @@ public class tatooine_eisley_kashi extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_87");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_kashi.branchId", 2);
-                npcStartConversation(player, npc, "tatooine_eisley_kashi", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_kashi", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_kashi_condition_drenOnTask(player, npc))
+        if (tatooine_eisley_kashi_condition_drenOnTask(player, self))
         {
-            tatooine_eisley_kashi_action_facePlayer(player, npc);
+            tatooine_eisley_kashi_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_83");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_kashi_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_kashi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1042,22 +1035,22 @@ public class tatooine_eisley_kashi extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_84");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_kashi.branchId", 5);
-                npcStartConversation(player, npc, "tatooine_eisley_kashi", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_kashi", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_kashi_condition_heirQuestComplete(player, npc))
+        if (tatooine_eisley_kashi_condition_heirQuestComplete(player, self))
         {
-            tatooine_eisley_kashi_action_facePlayer(player, npc);
+            tatooine_eisley_kashi_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_78");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_kashi_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_kashi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1072,22 +1065,22 @@ public class tatooine_eisley_kashi extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_79");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_kashi.branchId", 7);
-                npcStartConversation(player, npc, "tatooine_eisley_kashi", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_kashi", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_kashi_condition_haQuestComplete(player, npc))
+        if (tatooine_eisley_kashi_condition_haQuestComplete(player, self))
         {
-            tatooine_eisley_kashi_action_facePlayer(player, npc);
+            tatooine_eisley_kashi_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_21");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_kashi_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_kashi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1102,22 +1095,22 @@ public class tatooine_eisley_kashi extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_23");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_kashi.branchId", 12);
-                npcStartConversation(player, npc, "tatooine_eisley_kashi", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_kashi", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_kashi_condition_sodQuestComplete(player, npc))
+        if (tatooine_eisley_kashi_condition_sodQuestComplete(player, self))
         {
-            tatooine_eisley_kashi_action_facePlayer(player, npc);
+            tatooine_eisley_kashi_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_55");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_kashi_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_kashi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1132,22 +1125,22 @@ public class tatooine_eisley_kashi extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_59");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_kashi.branchId", 22);
-                npcStartConversation(player, npc, "tatooine_eisley_kashi", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_kashi", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_kashi_condition__defaultCondition(player, npc))
+        if (tatooine_eisley_kashi_condition__defaultCondition(player, self))
         {
-            tatooine_eisley_kashi_action_facePlayer(player, npc);
+            tatooine_eisley_kashi_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_104");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_kashi_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_kashi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1162,15 +1155,15 @@ public class tatooine_eisley_kashi extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_106");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_kashi.branchId", 29);
-                npcStartConversation(player, npc, "tatooine_eisley_kashi", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_kashi", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1179,93 +1172,92 @@ public class tatooine_eisley_kashi extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_eisley_kashi.branchId");
-        if (branchId == 2 && tatooine_eisley_kashi_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tatooine_eisley_kashi_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && tatooine_eisley_kashi_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_eisley_kashi_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tatooine_eisley_kashi_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_eisley_kashi_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && tatooine_eisley_kashi_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && tatooine_eisley_kashi_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && tatooine_eisley_kashi_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && tatooine_eisley_kashi_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tatooine_eisley_kashi_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tatooine_eisley_kashi_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tatooine_eisley_kashi_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tatooine_eisley_kashi_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && tatooine_eisley_kashi_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && tatooine_eisley_kashi_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && tatooine_eisley_kashi_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && tatooine_eisley_kashi_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tatooine_eisley_kashi_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tatooine_eisley_kashi_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && tatooine_eisley_kashi_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && tatooine_eisley_kashi_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && tatooine_eisley_kashi_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && tatooine_eisley_kashi_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && tatooine_eisley_kashi_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && tatooine_eisley_kashi_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && tatooine_eisley_kashi_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && tatooine_eisley_kashi_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && tatooine_eisley_kashi_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && tatooine_eisley_kashi_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && tatooine_eisley_kashi_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && tatooine_eisley_kashi_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && tatooine_eisley_kashi_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && tatooine_eisley_kashi_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && tatooine_eisley_kashi_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && tatooine_eisley_kashi_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && tatooine_eisley_kashi_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && tatooine_eisley_kashi_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && tatooine_eisley_kashi_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && tatooine_eisley_kashi_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && tatooine_eisley_kashi_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && tatooine_eisley_kashi_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_eisley_kashi.branchId");
         return SCRIPT_CONTINUE;
     }

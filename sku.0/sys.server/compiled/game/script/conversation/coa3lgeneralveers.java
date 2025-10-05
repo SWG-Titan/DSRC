@@ -5,7 +5,7 @@ import script.library.ai_lib;
 import script.library.badge;
 import script.library.chat;
 
-public class coa3lgeneralveers extends script.base_script
+public class coa3lgeneralveers extends base_script
 {
     public coa3lgeneralveers()
     {

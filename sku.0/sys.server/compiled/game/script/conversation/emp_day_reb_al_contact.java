@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class emp_day_reb_al_contact extends script.base_script
+public class emp_day_reb_al_contact extends base_script
 {
     public emp_day_reb_al_contact()
     {

@@ -777,82 +777,81 @@ public class halloween_vendor extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (halloween_vendor_condition__defaultCondition(player, npc))
+        if (halloween_vendor_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "nod_head_once");
+            doAnimationAction(self, "nod_head_once");
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (halloween_vendor_condition__defaultCondition(player, npc))
+            if (halloween_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (halloween_vendor_condition__defaultCondition(player, npc))
+            if (halloween_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (halloween_vendor_condition__defaultCondition(player, npc))
+            if (halloween_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (halloween_vendor_condition_noBadge(player, npc))
+            if (halloween_vendor_condition_noBadge(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse3 = true;
             }
             boolean hasResponse4 = false;
-            if (halloween_vendor_condition_doesntHaveThree(player, npc))
+            if (halloween_vendor_condition_doesntHaveThree(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse4 = true;
             }
             boolean hasResponse5 = false;
-            if (halloween_vendor_condition__defaultCondition(player, npc))
+            if (halloween_vendor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse5 = true;
             }
             boolean hasResponse6 = false;
-            if (halloween_vendor_condition_godMode(player, npc))
+            if (halloween_vendor_condition_godMode(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse6 = true;
             }
             boolean hasResponse7 = false;
-            if (halloween_vendor_condition_godMode(player, npc))
+            if (halloween_vendor_condition_godMode(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse7 = true;
             }
             boolean hasResponse8 = false;
-            if (halloween_vendor_condition_godMode(player, npc))
+            if (halloween_vendor_condition_godMode(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse8 = true;
             }
             boolean hasResponse9 = false;
-            if (halloween_vendor_condition_godMode(player, npc))
+            if (halloween_vendor_condition_godMode(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -903,15 +902,15 @@ public class halloween_vendor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_74");
                 }
                 utils.setScriptVar(player, "conversation.halloween_vendor.branchId", 1);
-                npcStartConversation(player, npc, "halloween_vendor", message, responses);
+                npcStartConversation(player, self, "halloween_vendor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -920,29 +919,28 @@ public class halloween_vendor extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.halloween_vendor.branchId");
-        if (branchId == 1 && halloween_vendor_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && halloween_vendor_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && halloween_vendor_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && halloween_vendor_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && halloween_vendor_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && halloween_vendor_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && halloween_vendor_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && halloween_vendor_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && halloween_vendor_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && halloween_vendor_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.halloween_vendor.branchId");
         return SCRIPT_CONTINUE;
     }

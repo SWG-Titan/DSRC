@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class corellia_coronet_times_editor extends script.base_script
+public class corellia_coronet_times_editor extends base_script
 {
     public corellia_coronet_times_editor()
     {
@@ -228,18 +228,17 @@ public class corellia_coronet_times_editor extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_coronet_times_editor_condition_deletedVandals2(player, npc))
+        if (corellia_coronet_times_editor_condition_deletedVandals2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_33");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_times_editor_condition__defaultCondition(player, npc))
+            if (corellia_coronet_times_editor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -254,22 +253,22 @@ public class corellia_coronet_times_editor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_34");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_times_editor.branchId", 1);
-                npcStartConversation(player, npc, "corellia_coronet_times_editor", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_times_editor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_times_editor_condition_starportVandalsEnd(player, npc))
+        if (corellia_coronet_times_editor_condition_starportVandalsEnd(player, self))
         {
-            corellia_coronet_times_editor_action_starportVandalsDemmiWot(player, npc);
+            corellia_coronet_times_editor_action_starportVandalsDemmiWot(player, self);
             string_id message = new string_id(c_stringFile, "s_19");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_times_editor_condition__defaultCondition(player, npc))
+            if (corellia_coronet_times_editor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -284,27 +283,27 @@ public class corellia_coronet_times_editor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_29");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_times_editor.branchId", 3);
-                npcStartConversation(player, npc, "corellia_coronet_times_editor", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_times_editor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_times_editor_condition_starportVandalsActive(player, npc))
+        if (corellia_coronet_times_editor_condition_starportVandalsActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_20");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_times_editor_condition_starportVandalsBegin(player, npc))
+        if (corellia_coronet_times_editor_condition_starportVandalsBegin(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_21");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_times_editor_condition__defaultCondition(player, npc))
+            if (corellia_coronet_times_editor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -319,21 +318,21 @@ public class corellia_coronet_times_editor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_22");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_times_editor.branchId", 6);
-                npcStartConversation(player, npc, "corellia_coronet_times_editor", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_times_editor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_times_editor_condition_hasViewScreenQuest(player, npc))
+        if (corellia_coronet_times_editor_condition_hasViewScreenQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_11");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_coronet_times_editor_condition__defaultCondition(player, npc))
+            if (corellia_coronet_times_editor_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -348,21 +347,21 @@ public class corellia_coronet_times_editor extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_13");
                 }
                 utils.setScriptVar(player, "conversation.corellia_coronet_times_editor.branchId", 8);
-                npcStartConversation(player, npc, "corellia_coronet_times_editor", message, responses);
+                npcStartConversation(player, self, "corellia_coronet_times_editor", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_coronet_times_editor_condition__defaultCondition(player, npc))
+        if (corellia_coronet_times_editor_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -371,33 +370,32 @@ public class corellia_coronet_times_editor extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_coronet_times_editor.branchId");
-        if (branchId == 1 && corellia_coronet_times_editor_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && corellia_coronet_times_editor_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && corellia_coronet_times_editor_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corellia_coronet_times_editor_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_coronet_times_editor_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_coronet_times_editor_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && corellia_coronet_times_editor_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && corellia_coronet_times_editor_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && corellia_coronet_times_editor_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && corellia_coronet_times_editor_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_coronet_times_editor_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_coronet_times_editor_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_coronet_times_editor.branchId");
         return SCRIPT_CONTINUE;
     }

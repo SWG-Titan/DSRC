@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class mtp_hideout_access_strilath_farles_01 extends script.base_script
+public class mtp_hideout_access_strilath_farles_01 extends base_script
 {
     public mtp_hideout_access_strilath_farles_01()
     {

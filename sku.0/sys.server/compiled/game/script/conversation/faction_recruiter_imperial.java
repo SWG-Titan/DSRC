@@ -2633,18 +2633,17 @@ public class faction_recruiter_imperial extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (faction_recruiter_imperial_condition_onLeaveFromFriendlyFaction(player, npc))
+        if (faction_recruiter_imperial_condition_onLeaveFromFriendlyFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_80");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (faction_recruiter_imperial_condition__defaultCondition(player, npc))
+            if (faction_recruiter_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2659,56 +2658,56 @@ public class faction_recruiter_imperial extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_294");
                 }
                 utils.setScriptVar(player, "conversation.faction_recruiter_imperial.branchId", 1);
-                npcStartConversation(player, npc, "faction_recruiter_imperial", message, responses);
+                npcStartConversation(player, self, "faction_recruiter_imperial", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (faction_recruiter_imperial_condition_onLeaveFromEnemyFaction(player, npc))
+        if (faction_recruiter_imperial_condition_onLeaveFromEnemyFaction(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
+            doAnimationAction(self, "shake_head_disgust");
             string_id message = new string_id(c_stringFile, "s_306");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (faction_recruiter_imperial_condition_isEnemyFaction(player, npc))
+        if (faction_recruiter_imperial_condition_isEnemyFaction(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             string_id message = new string_id(c_stringFile, "s_308");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (faction_recruiter_imperial_condition_isInFaction(player, npc))
+        if (faction_recruiter_imperial_condition_isInFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_310");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (faction_recruiter_imperial_condition__defaultCondition(player, npc))
+            if (faction_recruiter_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (faction_recruiter_imperial_condition__defaultCondition(player, npc))
+            if (faction_recruiter_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (faction_recruiter_imperial_condition__defaultCondition(player, npc))
+            if (faction_recruiter_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (faction_recruiter_imperial_condition__defaultCondition(player, npc))
+            if (faction_recruiter_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2735,35 +2734,35 @@ public class faction_recruiter_imperial extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_410");
                 }
                 utils.setScriptVar(player, "conversation.faction_recruiter_imperial.branchId", 7);
-                npcStartConversation(player, npc, "faction_recruiter_imperial", message, responses);
+                npcStartConversation(player, self, "faction_recruiter_imperial", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!faction_recruiter_imperial_condition_isChangingFaction(player, npc))
+        if (!faction_recruiter_imperial_condition_isChangingFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_414");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (faction_recruiter_imperial_condition_isImperialMercForGcw(player, npc))
+            if (faction_recruiter_imperial_condition_isImperialMercForGcw(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (faction_recruiter_imperial_condition_canBeMerc(player, npc))
+            if (faction_recruiter_imperial_condition_canBeMerc(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (faction_recruiter_imperial_condition__defaultCondition(player, npc))
+            if (faction_recruiter_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2786,21 +2785,21 @@ public class faction_recruiter_imperial extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_428");
                 }
                 utils.setScriptVar(player, "conversation.faction_recruiter_imperial.branchId", 27);
-                npcStartConversation(player, npc, "faction_recruiter_imperial", message, responses);
+                npcStartConversation(player, self, "faction_recruiter_imperial", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (faction_recruiter_imperial_condition__defaultCondition(player, npc))
+        if (faction_recruiter_imperial_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_444");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2809,89 +2808,88 @@ public class faction_recruiter_imperial extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.faction_recruiter_imperial.branchId");
-        if (branchId == 1 && faction_recruiter_imperial_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && faction_recruiter_imperial_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && faction_recruiter_imperial_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && faction_recruiter_imperial_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && faction_recruiter_imperial_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && faction_recruiter_imperial_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && faction_recruiter_imperial_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && faction_recruiter_imperial_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && faction_recruiter_imperial_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && faction_recruiter_imperial_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && faction_recruiter_imperial_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && faction_recruiter_imperial_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && faction_recruiter_imperial_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && faction_recruiter_imperial_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && faction_recruiter_imperial_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && faction_recruiter_imperial_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && faction_recruiter_imperial_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && faction_recruiter_imperial_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && faction_recruiter_imperial_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && faction_recruiter_imperial_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && faction_recruiter_imperial_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && faction_recruiter_imperial_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && faction_recruiter_imperial_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && faction_recruiter_imperial_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && faction_recruiter_imperial_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && faction_recruiter_imperial_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && faction_recruiter_imperial_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && faction_recruiter_imperial_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && faction_recruiter_imperial_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && faction_recruiter_imperial_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && faction_recruiter_imperial_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && faction_recruiter_imperial_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && faction_recruiter_imperial_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && faction_recruiter_imperial_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && faction_recruiter_imperial_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && faction_recruiter_imperial_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && faction_recruiter_imperial_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && faction_recruiter_imperial_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && faction_recruiter_imperial_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && faction_recruiter_imperial_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.faction_recruiter_imperial.branchId");
         return SCRIPT_CONTINUE;
     }

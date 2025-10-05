@@ -426,31 +426,30 @@ public class corellia_droid_factory_druno_kener extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_droid_factory_druno_kener_condition_finishedLastQuest(player, npc))
+        if (corellia_droid_factory_druno_kener_condition_finishedLastQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_droid_factory_druno_kener_condition_finishedTerminalQuest(player, npc))
+        if (corellia_droid_factory_druno_kener_condition_finishedTerminalQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_droid_factory_druno_kener_condition_readyToCompleteTerminalQuest(player, npc))
+        if (corellia_droid_factory_druno_kener_condition_readyToCompleteTerminalQuest(player, self))
         {
-            corellia_droid_factory_druno_kener_action_sendTerminalFinishedSignal(player, npc);
+            corellia_droid_factory_druno_kener_action_sendTerminalFinishedSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_droid_factory_druno_kener_condition__defaultCondition(player, npc))
+            if (corellia_droid_factory_druno_kener_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -465,27 +464,27 @@ public class corellia_droid_factory_druno_kener extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_10");
                 }
                 utils.setScriptVar(player, "conversation.corellia_droid_factory_druno_kener.branchId", 3);
-                npcStartConversation(player, npc, "corellia_droid_factory_druno_kener", message, responses);
+                npcStartConversation(player, self, "corellia_droid_factory_druno_kener", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_droid_factory_druno_kener_condition_terminalQuestActive(player, npc))
+        if (corellia_droid_factory_druno_kener_condition_terminalQuestActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_14");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_droid_factory_druno_kener_condition_readyForTerminalQuest(player, npc))
+        if (corellia_droid_factory_druno_kener_condition_readyForTerminalQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_16");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_droid_factory_druno_kener_condition__defaultCondition(player, npc))
+            if (corellia_droid_factory_druno_kener_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -500,22 +499,22 @@ public class corellia_droid_factory_druno_kener extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_18");
                 }
                 utils.setScriptVar(player, "conversation.corellia_droid_factory_druno_kener.branchId", 6);
-                npcStartConversation(player, npc, "corellia_droid_factory_druno_kener", message, responses);
+                npcStartConversation(player, self, "corellia_droid_factory_druno_kener", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_droid_factory_druno_kener_condition_readyToCompleteAntennaQuest(player, npc))
+        if (corellia_droid_factory_druno_kener_condition_readyToCompleteAntennaQuest(player, self))
         {
-            corellia_droid_factory_druno_kener_action_sendAntennaFinishedSignal(player, npc);
+            corellia_droid_factory_druno_kener_action_sendAntennaFinishedSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_droid_factory_druno_kener_condition__defaultCondition(player, npc))
+            if (corellia_droid_factory_druno_kener_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -530,27 +529,27 @@ public class corellia_droid_factory_druno_kener extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_47");
                 }
                 utils.setScriptVar(player, "conversation.corellia_droid_factory_druno_kener.branchId", 10);
-                npcStartConversation(player, npc, "corellia_droid_factory_druno_kener", message, responses);
+                npcStartConversation(player, self, "corellia_droid_factory_druno_kener", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_droid_factory_druno_kener_condition_isAntennaActive(player, npc))
+        if (corellia_droid_factory_druno_kener_condition_isAntennaActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_33");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_droid_factory_druno_kener_condition_readyForAntennaQuest(player, npc))
+        if (corellia_droid_factory_druno_kener_condition_readyForAntennaQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_35");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_droid_factory_druno_kener_condition__defaultCondition(player, npc))
+            if (corellia_droid_factory_druno_kener_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -565,15 +564,15 @@ public class corellia_droid_factory_druno_kener extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37");
                 }
                 utils.setScriptVar(player, "conversation.corellia_droid_factory_druno_kener.branchId", 12);
-                npcStartConversation(player, npc, "corellia_droid_factory_druno_kener", message, responses);
+                npcStartConversation(player, self, "corellia_droid_factory_druno_kener", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -582,33 +581,32 @@ public class corellia_droid_factory_druno_kener extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_droid_factory_druno_kener.branchId");
-        if (branchId == 3 && corellia_droid_factory_druno_kener_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corellia_droid_factory_druno_kener_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_droid_factory_druno_kener_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_droid_factory_druno_kener_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && corellia_droid_factory_druno_kener_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && corellia_droid_factory_druno_kener_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corellia_droid_factory_druno_kener_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corellia_droid_factory_druno_kener_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && corellia_droid_factory_druno_kener_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && corellia_droid_factory_druno_kener_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && corellia_droid_factory_druno_kener_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && corellia_droid_factory_druno_kener_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_droid_factory_druno_kener.branchId");
         return SCRIPT_CONTINUE;
     }

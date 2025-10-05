@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class corellia_privateer_trainer_2 extends script.base_script
+public class corellia_privateer_trainer_2 extends base_script
 {
     public corellia_privateer_trainer_2()
     {

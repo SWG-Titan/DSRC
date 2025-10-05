@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class quest_u10_hraykken_bender extends script.base_script
+public class quest_u10_hraykken_bender extends base_script
 {
     public quest_u10_hraykken_bender()
     {

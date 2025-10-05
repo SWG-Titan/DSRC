@@ -707,25 +707,24 @@ public class death_watch_technician extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (death_watch_technician_condition_ventOff(player, npc))
+        if (death_watch_technician_condition_ventOff(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8b67f49d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (death_watch_technician_condition__defaultCondition(player, npc))
+            if (death_watch_technician_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (death_watch_technician_condition__defaultCondition(player, npc))
+            if (death_watch_technician_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -744,28 +743,28 @@ public class death_watch_technician extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_d7a232dc");
                 }
                 utils.setScriptVar(player, "conversation.death_watch_technician.branchId", 1);
-                npcStartConversation(player, npc, "death_watch_technician", message, responses);
+                npcStartConversation(player, self, "death_watch_technician", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (death_watch_technician_condition_ventFailure(player, npc))
+        if (death_watch_technician_condition_ventFailure(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_bd52a08a");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (death_watch_technician_condition__defaultCondition(player, npc))
+            if (death_watch_technician_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (death_watch_technician_condition__defaultCondition(player, npc))
+            if (death_watch_technician_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -784,40 +783,40 @@ public class death_watch_technician extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3bc0260c");
                 }
                 utils.setScriptVar(player, "conversation.death_watch_technician.branchId", 11);
-                npcStartConversation(player, npc, "death_watch_technician", message, responses);
+                npcStartConversation(player, self, "death_watch_technician", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (death_watch_technician_condition_ventOn(player, npc))
+        if (death_watch_technician_condition_ventOn(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_ebfed4db");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (death_watch_technician_condition_ventOffNewPlayer(player, npc))
+        if (death_watch_technician_condition_ventOffNewPlayer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1fb416ce");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (death_watch_technician_condition_ventOffCompleted(player, npc))
+        if (death_watch_technician_condition_ventOffCompleted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3cab69e3");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (death_watch_technician_condition__defaultCondition(player, npc))
+            if (death_watch_technician_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (death_watch_technician_condition__defaultCondition(player, npc))
+            if (death_watch_technician_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -836,27 +835,27 @@ public class death_watch_technician extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_cbf95857");
                 }
                 utils.setScriptVar(player, "conversation.death_watch_technician.branchId", 17);
-                npcStartConversation(player, npc, "death_watch_technician", message, responses);
+                npcStartConversation(player, self, "death_watch_technician", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (death_watch_technician_condition_ventOnOldPlayer(player, npc))
+        if (death_watch_technician_condition_ventOnOldPlayer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_33381eda");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (death_watch_technician_condition__defaultCondition(player, npc))
+        if (death_watch_technician_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_cba682eb");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -865,45 +864,44 @@ public class death_watch_technician extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.death_watch_technician.branchId");
-        if (branchId == 1 && death_watch_technician_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && death_watch_technician_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && death_watch_technician_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && death_watch_technician_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && death_watch_technician_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && death_watch_technician_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && death_watch_technician_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && death_watch_technician_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && death_watch_technician_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && death_watch_technician_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && death_watch_technician_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && death_watch_technician_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && death_watch_technician_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && death_watch_technician_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && death_watch_technician_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && death_watch_technician_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && death_watch_technician_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && death_watch_technician_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.death_watch_technician.branchId");
         return SCRIPT_CONTINUE;
     }

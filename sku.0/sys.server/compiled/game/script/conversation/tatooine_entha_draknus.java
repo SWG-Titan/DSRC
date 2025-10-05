@@ -705,18 +705,17 @@ public class tatooine_entha_draknus extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_entha_draknus_condition_completedPod(player, npc))
+        if (tatooine_entha_draknus_condition_completedPod(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -734,27 +733,27 @@ public class tatooine_entha_draknus extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_entha_draknus", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition_completedRace3(player, npc))
+        if (tatooine_entha_draknus_condition_completedRace3(player, self))
         {
-            tatooine_entha_draknus_action_signalReturnDraknus(player, npc);
+            tatooine_entha_draknus_action_signalReturnDraknus(player, self);
             string_id message = new string_id(c_stringFile, "s_10");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -769,21 +768,21 @@ public class tatooine_entha_draknus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_75");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_draknus.branchId", 4);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_draknus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition_onRace3(player, npc))
+        if (tatooine_entha_draknus_condition_onRace3(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -798,22 +797,22 @@ public class tatooine_entha_draknus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_81");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_draknus.branchId", 7);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_draknus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition_completedRace2(player, npc))
+        if (tatooine_entha_draknus_condition_completedRace2(player, self))
         {
-            tatooine_entha_draknus_action_signalReturnDraknus(player, npc);
+            tatooine_entha_draknus_action_signalReturnDraknus(player, self);
             string_id message = new string_id(c_stringFile, "s_24");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -828,21 +827,21 @@ public class tatooine_entha_draknus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_83");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_draknus.branchId", 9);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_draknus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition_onRace2(player, npc))
+        if (tatooine_entha_draknus_condition_onRace2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_36");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -857,22 +856,22 @@ public class tatooine_entha_draknus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_91");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_draknus.branchId", 12);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_draknus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition_completedRace1(player, npc))
+        if (tatooine_entha_draknus_condition_completedRace1(player, self))
         {
-            tatooine_entha_draknus_action_signalReturnDraknus(player, npc);
+            tatooine_entha_draknus_action_signalReturnDraknus(player, self);
             string_id message = new string_id(c_stringFile, "s_40");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -890,26 +889,26 @@ public class tatooine_entha_draknus extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_entha_draknus", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition_onRace1(player, npc))
+        if (tatooine_entha_draknus_condition_onRace1(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_60");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -924,30 +923,30 @@ public class tatooine_entha_draknus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_62");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_draknus.branchId", 17);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_draknus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition_onTalkedAnKwee(player, npc))
+        if (tatooine_entha_draknus_condition_onTalkedAnKwee(player, self))
         {
-            doAnimationAction(npc, "explain");
-            tatooine_entha_draknus_action_signalGotoDraknus(player, npc);
+            doAnimationAction(self, "explain");
+            tatooine_entha_draknus_action_signalGotoDraknus(player, self);
             string_id message = new string_id(c_stringFile, "s_70");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -969,26 +968,26 @@ public class tatooine_entha_draknus extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_entha_draknus", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+        if (tatooine_entha_draknus_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_110");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1003,21 +1002,21 @@ public class tatooine_entha_draknus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_112");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_draknus.branchId", 25);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_draknus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+        if (tatooine_entha_draknus_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_57");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1032,21 +1031,21 @@ public class tatooine_entha_draknus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_79");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_draknus.branchId", 27);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_draknus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+        if (tatooine_entha_draknus_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_63");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1061,21 +1060,21 @@ public class tatooine_entha_draknus extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_87");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_entha_draknus.branchId", 29);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", message, responses);
+                npcStartConversation(player, self, "tatooine_entha_draknus", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+        if (tatooine_entha_draknus_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_97");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_entha_draknus_condition__defaultCondition(player, npc))
+            if (tatooine_entha_draknus_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1093,20 +1092,20 @@ public class tatooine_entha_draknus extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "tatooine_entha_draknus", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "tatooine_entha_draknus", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1115,93 +1114,92 @@ public class tatooine_entha_draknus extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_entha_draknus.branchId");
-        if (branchId == 1 && tatooine_entha_draknus_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && tatooine_entha_draknus_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && tatooine_entha_draknus_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tatooine_entha_draknus_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && tatooine_entha_draknus_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && tatooine_entha_draknus_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tatooine_entha_draknus_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_entha_draknus_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && tatooine_entha_draknus_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && tatooine_entha_draknus_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && tatooine_entha_draknus_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && tatooine_entha_draknus_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && tatooine_entha_draknus_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && tatooine_entha_draknus_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && tatooine_entha_draknus_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && tatooine_entha_draknus_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && tatooine_entha_draknus_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && tatooine_entha_draknus_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && tatooine_entha_draknus_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && tatooine_entha_draknus_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && tatooine_entha_draknus_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && tatooine_entha_draknus_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && tatooine_entha_draknus_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && tatooine_entha_draknus_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && tatooine_entha_draknus_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && tatooine_entha_draknus_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && tatooine_entha_draknus_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && tatooine_entha_draknus_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && tatooine_entha_draknus_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && tatooine_entha_draknus_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && tatooine_entha_draknus_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && tatooine_entha_draknus_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && tatooine_entha_draknus_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && tatooine_entha_draknus_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && tatooine_entha_draknus_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && tatooine_entha_draknus_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && tatooine_entha_draknus_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && tatooine_entha_draknus_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && tatooine_entha_draknus_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && tatooine_entha_draknus_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && tatooine_entha_draknus_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && tatooine_entha_draknus_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_entha_draknus.branchId");
         return SCRIPT_CONTINUE;
     }

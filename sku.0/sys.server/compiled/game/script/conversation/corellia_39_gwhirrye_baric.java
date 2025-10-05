@@ -125,36 +125,35 @@ public class corellia_39_gwhirrye_baric extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_39_gwhirrye_baric_condition_questComplete(player, npc))
+        if (corellia_39_gwhirrye_baric_condition_questComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_gwhirrye_baric_condition_seekCouncilLast(player, npc))
+        if (corellia_39_gwhirrye_baric_condition_seekCouncilLast(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_20");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_gwhirrye_baric_condition_seekCouncilActive(player, npc))
+        if (corellia_39_gwhirrye_baric_condition_seekCouncilActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_32");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_gwhirrye_baric_condition_seekCouncilFirst(player, npc))
+        if (corellia_39_gwhirrye_baric_condition_seekCouncilFirst(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_gwhirrye_baric_condition__defaultCondition(player, npc))
+            if (corellia_39_gwhirrye_baric_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -169,21 +168,21 @@ public class corellia_39_gwhirrye_baric extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.corellia_39_gwhirrye_baric.branchId", 4);
-                npcStartConversation(player, npc, "corellia_39_gwhirrye_baric", message, responses);
+                npcStartConversation(player, self, "corellia_39_gwhirrye_baric", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_gwhirrye_baric_condition__defaultCondition(player, npc))
+        if (corellia_39_gwhirrye_baric_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_43");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -192,17 +191,16 @@ public class corellia_39_gwhirrye_baric extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_39_gwhirrye_baric.branchId");
-        if (branchId == 4 && corellia_39_gwhirrye_baric_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && corellia_39_gwhirrye_baric_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && corellia_39_gwhirrye_baric_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && corellia_39_gwhirrye_baric_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_39_gwhirrye_baric.branchId");
         return SCRIPT_CONTINUE;
     }

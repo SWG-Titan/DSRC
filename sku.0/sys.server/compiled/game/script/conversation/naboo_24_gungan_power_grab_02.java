@@ -2262,28 +2262,27 @@ public class naboo_24_gungan_power_grab_02 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (naboo_24_gungan_power_grab_02_condition_hasCompletedJak(player, npc))
+        if (naboo_24_gungan_power_grab_02_condition_hasCompletedJak(player, self))
         {
-            doAnimationAction(npc, "thank");
-            naboo_24_gungan_power_grab_02_action_facePlayer(player, npc);
+            doAnimationAction(self, "thank");
+            naboo_24_gungan_power_grab_02_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_67");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_gungan_power_grab_02_condition_hasTaskReturnTranslator(player, npc))
+        if (naboo_24_gungan_power_grab_02_condition_hasTaskReturnTranslator(player, self))
         {
-            doAnimationAction(npc, "pose_proudly");
-            naboo_24_gungan_power_grab_02_action_signalTranslatorReturned(player, npc);
+            doAnimationAction(self, "pose_proudly");
+            naboo_24_gungan_power_grab_02_action_signalTranslatorReturned(player, self);
             string_id message = new string_id(c_stringFile, "s_61");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, npc))
+            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2298,30 +2297,30 @@ public class naboo_24_gungan_power_grab_02 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_62");
                 }
                 utils.setScriptVar(player, "conversation.naboo_24_gungan_power_grab_02.branchId", 2);
-                npcStartConversation(player, npc, "naboo_24_gungan_power_grab_02", message, responses);
+                npcStartConversation(player, self, "naboo_24_gungan_power_grab_02", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_gungan_power_grab_02_condition_hasQuestGPG2d(player, npc))
+        if (naboo_24_gungan_power_grab_02_condition_hasQuestGPG2d(player, self))
         {
-            naboo_24_gungan_power_grab_02_action_facePlayer(player, npc);
+            naboo_24_gungan_power_grab_02_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_72");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_gungan_power_grab_02_condition_hasCompletedJaksBusyWorkQuest(player, npc))
+        if (naboo_24_gungan_power_grab_02_condition_hasCompletedJaksBusyWorkQuest(player, self))
         {
-            doAnimationAction(npc, "celebrate");
-            naboo_24_gungan_power_grab_02_action_signalJaksBusyWorkComplete(player, npc);
+            doAnimationAction(self, "celebrate");
+            naboo_24_gungan_power_grab_02_action_signalJaksBusyWorkComplete(player, self);
             string_id message = new string_id(c_stringFile, "s_25");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, npc))
+            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2336,23 +2335,23 @@ public class naboo_24_gungan_power_grab_02 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_26");
                 }
                 utils.setScriptVar(player, "conversation.naboo_24_gungan_power_grab_02.branchId", 5);
-                npcStartConversation(player, npc, "naboo_24_gungan_power_grab_02", message, responses);
+                npcStartConversation(player, self, "naboo_24_gungan_power_grab_02", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_gungan_power_grab_02_condition_hasNotCompletedJaksBusyWorkQuest(player, npc))
+        if (naboo_24_gungan_power_grab_02_condition_hasNotCompletedJaksBusyWorkQuest(player, self))
         {
-            doAnimationAction(npc, "wave_on_dismissing");
-            naboo_24_gungan_power_grab_02_action_facePlayer(player, npc);
+            doAnimationAction(self, "wave_on_dismissing");
+            naboo_24_gungan_power_grab_02_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_69");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, npc))
+            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2367,23 +2366,23 @@ public class naboo_24_gungan_power_grab_02 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_81");
                 }
                 utils.setScriptVar(player, "conversation.naboo_24_gungan_power_grab_02.branchId", 12);
-                npcStartConversation(player, npc, "naboo_24_gungan_power_grab_02", message, responses);
+                npcStartConversation(player, self, "naboo_24_gungan_power_grab_02", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_gungan_power_grab_02_condition_hasTaskBroma2Jak_convince(player, npc))
+        if (naboo_24_gungan_power_grab_02_condition_hasTaskBroma2Jak_convince(player, self))
         {
-            doAnimationAction(npc, "greet");
-            naboo_24_gungan_power_grab_02_action_facePlayer(player, npc);
+            doAnimationAction(self, "greet");
+            naboo_24_gungan_power_grab_02_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_56");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, npc))
+            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2398,23 +2397,23 @@ public class naboo_24_gungan_power_grab_02 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_58");
                 }
                 utils.setScriptVar(player, "conversation.naboo_24_gungan_power_grab_02.branchId", 21);
-                npcStartConversation(player, npc, "naboo_24_gungan_power_grab_02", message, responses);
+                npcStartConversation(player, self, "naboo_24_gungan_power_grab_02", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_gungan_power_grab_02_condition_hasTaskBroma2Jak_meet(player, npc))
+        if (naboo_24_gungan_power_grab_02_condition_hasTaskBroma2Jak_meet(player, self))
         {
-            doAnimationAction(npc, "shrug_shoulders");
-            naboo_24_gungan_power_grab_02_action_facePlayer(player, npc);
+            doAnimationAction(self, "shrug_shoulders");
+            naboo_24_gungan_power_grab_02_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_60");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, npc))
+            if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2429,23 +2428,23 @@ public class naboo_24_gungan_power_grab_02 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_65");
                 }
                 utils.setScriptVar(player, "conversation.naboo_24_gungan_power_grab_02.branchId", 22);
-                npcStartConversation(player, npc, "naboo_24_gungan_power_grab_02", message, responses);
+                npcStartConversation(player, self, "naboo_24_gungan_power_grab_02", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, npc))
+        if (naboo_24_gungan_power_grab_02_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "dismiss");
-            naboo_24_gungan_power_grab_02_action_facePlayer(player, npc);
+            doAnimationAction(self, "dismiss");
+            naboo_24_gungan_power_grab_02_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_144");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2454,93 +2453,92 @@ public class naboo_24_gungan_power_grab_02 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.naboo_24_gungan_power_grab_02.branchId");
-        if (branchId == 2 && naboo_24_gungan_power_grab_02_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && naboo_24_gungan_power_grab_02_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && naboo_24_gungan_power_grab_02_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && naboo_24_gungan_power_grab_02_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && naboo_24_gungan_power_grab_02_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && naboo_24_gungan_power_grab_02_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && naboo_24_gungan_power_grab_02_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && naboo_24_gungan_power_grab_02_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && naboo_24_gungan_power_grab_02_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && naboo_24_gungan_power_grab_02_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && naboo_24_gungan_power_grab_02_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && naboo_24_gungan_power_grab_02_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && naboo_24_gungan_power_grab_02_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && naboo_24_gungan_power_grab_02_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && naboo_24_gungan_power_grab_02_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && naboo_24_gungan_power_grab_02_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && naboo_24_gungan_power_grab_02_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && naboo_24_gungan_power_grab_02_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && naboo_24_gungan_power_grab_02_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && naboo_24_gungan_power_grab_02_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && naboo_24_gungan_power_grab_02_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && naboo_24_gungan_power_grab_02_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && naboo_24_gungan_power_grab_02_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && naboo_24_gungan_power_grab_02_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && naboo_24_gungan_power_grab_02_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && naboo_24_gungan_power_grab_02_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && naboo_24_gungan_power_grab_02_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && naboo_24_gungan_power_grab_02_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && naboo_24_gungan_power_grab_02_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && naboo_24_gungan_power_grab_02_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && naboo_24_gungan_power_grab_02_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && naboo_24_gungan_power_grab_02_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && naboo_24_gungan_power_grab_02_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && naboo_24_gungan_power_grab_02_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && naboo_24_gungan_power_grab_02_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && naboo_24_gungan_power_grab_02_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && naboo_24_gungan_power_grab_02_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && naboo_24_gungan_power_grab_02_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && naboo_24_gungan_power_grab_02_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && naboo_24_gungan_power_grab_02_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && naboo_24_gungan_power_grab_02_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && naboo_24_gungan_power_grab_02_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.naboo_24_gungan_power_grab_02.branchId");
         return SCRIPT_CONTINUE;
     }

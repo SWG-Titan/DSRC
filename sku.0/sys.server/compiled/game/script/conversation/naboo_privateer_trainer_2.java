@@ -3873,36 +3873,35 @@ public class naboo_privateer_trainer_2 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!naboo_privateer_trainer_2_condition_isPilot(player, npc))
+        if (!naboo_privateer_trainer_2_condition_isPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_3db3463f");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_isRebelPilot(player, npc))
+        if (naboo_privateer_trainer_2_condition_isRebelPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7ac0f961");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_isImperialPilot(player, npc))
+        if (naboo_privateer_trainer_2_condition_isImperialPilot(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6c6f3940");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!naboo_privateer_trainer_2_condition_onMyTrack(player, npc))
+        if (!naboo_privateer_trainer_2_condition_onMyTrack(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_c89c3456");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3917,22 +3916,22 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c1ff5062");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 4);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!naboo_privateer_trainer_2_condition_hasAllTierOneSkills(player, npc))
+        if (!naboo_privateer_trainer_2_condition_hasAllTierOneSkills(player, self))
         {
-            doAnimationAction(npc, "bow");
+            doAnimationAction(self, "bow");
             string_id message = new string_id(c_stringFile, "s_394f0902");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3947,28 +3946,28 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_b0704da1");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 7);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_alreadyHasAQuest(player, npc))
+        if (naboo_privateer_trainer_2_condition_alreadyHasAQuest(player, self))
         {
-            doAnimationAction(npc, "rub_chin_thoughtful");
+            doAnimationAction(self, "rub_chin_thoughtful");
             string_id message = new string_id(c_stringFile, "s_e95a95a5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_isPilot_NOT_RSF_Tier2(player, npc))
+        if (naboo_privateer_trainer_2_condition_isPilot_NOT_RSF_Tier2(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_464cfc61");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3986,26 +3985,26 @@ public class naboo_privateer_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_hasAllTierTwoSkills(player, npc))
+        if (naboo_privateer_trainer_2_condition_hasAllTierTwoSkills(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_2d86b58b");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4023,28 +4022,28 @@ public class naboo_privateer_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_missionOneFailed(player, npc))
+        if (naboo_privateer_trainer_2_condition_missionOneFailed(player, self))
         {
-            doAnimationAction(npc, "shrug_hands");
-            naboo_privateer_trainer_2_action_giveAssassinateMission01(player, npc);
+            doAnimationAction(self, "shrug_hands");
+            naboo_privateer_trainer_2_action_giveAssassinateMission01(player, self);
             string_id message = new string_id(c_stringFile, "s_65042122");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4059,22 +4058,22 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_45");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 23);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_missionTwoFailed(player, npc))
+        if (naboo_privateer_trainer_2_condition_missionTwoFailed(player, self))
         {
-            naboo_privateer_trainer_2_action_giveDestroyMission02(player, npc);
+            naboo_privateer_trainer_2_action_giveDestroyMission02(player, self);
             string_id message = new string_id(c_stringFile, "s_6da2c92b");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4089,23 +4088,23 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_49");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 25);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_missionThreeFailed(player, npc))
+        if (naboo_privateer_trainer_2_condition_missionThreeFailed(player, self))
         {
-            doAnimationAction(npc, "pound_fist_palm");
-            naboo_privateer_trainer_2_action_giveRecoveryMission03(player, npc);
+            doAnimationAction(self, "pound_fist_palm");
+            naboo_privateer_trainer_2_action_giveRecoveryMission03(player, self);
             string_id message = new string_id(c_stringFile, "s_85263c6d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4120,23 +4119,23 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_c8f39347");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 27);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_missionFourFailed(player, npc))
+        if (naboo_privateer_trainer_2_condition_missionFourFailed(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
-            naboo_privateer_trainer_2_action_giveEscortMission04(player, npc);
+            doAnimationAction(self, "shake_head_disgust");
+            naboo_privateer_trainer_2_action_giveEscortMission04(player, self);
             string_id message = new string_id(c_stringFile, "s_287eca83");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4151,21 +4150,21 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_9817b9bb");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 29);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_isCollectingQuestOneReward(player, npc))
+        if (naboo_privateer_trainer_2_condition_isCollectingQuestOneReward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_43148596");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4180,30 +4179,30 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_370822d1");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 31);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_IsCollecintQuestTwoReward(player, npc))
+        if (naboo_privateer_trainer_2_condition_IsCollecintQuestTwoReward(player, self))
         {
-            doAnimationAction(npc, "bow2");
-            naboo_privateer_trainer_2_action_rewardForQuestTwo(player, npc);
+            doAnimationAction(self, "bow2");
+            naboo_privateer_trainer_2_action_rewardForQuestTwo(player, self);
             string_id message = new string_id(c_stringFile, "s_9abb9538");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4222,21 +4221,21 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_b45e2166");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 37);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_isCollectingQuestThreeReward(player, npc))
+        if (naboo_privateer_trainer_2_condition_isCollectingQuestThreeReward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_a0c23472");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4251,22 +4250,22 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_75");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 40);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_isCollectingQuestFourReward(player, npc))
+        if (naboo_privateer_trainer_2_condition_isCollectingQuestFourReward(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             string_id message = new string_id(c_stringFile, "s_afe7700f");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4281,28 +4280,28 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_588f56b2");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 44);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_isReadyForMission(player, npc))
+        if (naboo_privateer_trainer_2_condition_isReadyForMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8b529447");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4321,22 +4320,22 @@ public class naboo_privateer_trainer_2 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_1c2b565d");
                 }
                 utils.setScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId", 48);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", message, responses);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!naboo_privateer_trainer_2_condition_isReadyForMoreTraining(player, npc))
+        if (!naboo_privateer_trainer_2_condition_isReadyForMoreTraining(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             string_id message = new string_id(c_stringFile, "s_c5fcc7f5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4354,27 +4353,27 @@ public class naboo_privateer_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition_isReadyForMoreTraining(player, npc))
+        if (naboo_privateer_trainer_2_condition_isReadyForMoreTraining(player, self))
         {
-            doAnimationAction(npc, "salute1");
+            doAnimationAction(self, "salute1");
             string_id message = new string_id(c_stringFile, "s_76e6f264");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+            if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -4392,26 +4391,26 @@ public class naboo_privateer_trainer_2 extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "naboo_privateer_trainer_2", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "naboo_privateer_trainer_2", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_privateer_trainer_2_condition__defaultCondition(player, npc))
+        if (naboo_privateer_trainer_2_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_837686a5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -4420,273 +4419,272 @@ public class naboo_privateer_trainer_2 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId");
-        if (branchId == 4 && naboo_privateer_trainer_2_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && naboo_privateer_trainer_2_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && naboo_privateer_trainer_2_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && naboo_privateer_trainer_2_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && naboo_privateer_trainer_2_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && naboo_privateer_trainer_2_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && naboo_privateer_trainer_2_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && naboo_privateer_trainer_2_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && naboo_privateer_trainer_2_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && naboo_privateer_trainer_2_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && naboo_privateer_trainer_2_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && naboo_privateer_trainer_2_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && naboo_privateer_trainer_2_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && naboo_privateer_trainer_2_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && naboo_privateer_trainer_2_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && naboo_privateer_trainer_2_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && naboo_privateer_trainer_2_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && naboo_privateer_trainer_2_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && naboo_privateer_trainer_2_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && naboo_privateer_trainer_2_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && naboo_privateer_trainer_2_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && naboo_privateer_trainer_2_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && naboo_privateer_trainer_2_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && naboo_privateer_trainer_2_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && naboo_privateer_trainer_2_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && naboo_privateer_trainer_2_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && naboo_privateer_trainer_2_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && naboo_privateer_trainer_2_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && naboo_privateer_trainer_2_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && naboo_privateer_trainer_2_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && naboo_privateer_trainer_2_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && naboo_privateer_trainer_2_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && naboo_privateer_trainer_2_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && naboo_privateer_trainer_2_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && naboo_privateer_trainer_2_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && naboo_privateer_trainer_2_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && naboo_privateer_trainer_2_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && naboo_privateer_trainer_2_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && naboo_privateer_trainer_2_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && naboo_privateer_trainer_2_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && naboo_privateer_trainer_2_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && naboo_privateer_trainer_2_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && naboo_privateer_trainer_2_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && naboo_privateer_trainer_2_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && naboo_privateer_trainer_2_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && naboo_privateer_trainer_2_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && naboo_privateer_trainer_2_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && naboo_privateer_trainer_2_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && naboo_privateer_trainer_2_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && naboo_privateer_trainer_2_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && naboo_privateer_trainer_2_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && naboo_privateer_trainer_2_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && naboo_privateer_trainer_2_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && naboo_privateer_trainer_2_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && naboo_privateer_trainer_2_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && naboo_privateer_trainer_2_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && naboo_privateer_trainer_2_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && naboo_privateer_trainer_2_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 51 && naboo_privateer_trainer_2_handleBranch51(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 51 && naboo_privateer_trainer_2_handleBranch51(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && naboo_privateer_trainer_2_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && naboo_privateer_trainer_2_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && naboo_privateer_trainer_2_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && naboo_privateer_trainer_2_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 55 && naboo_privateer_trainer_2_handleBranch55(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 55 && naboo_privateer_trainer_2_handleBranch55(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && naboo_privateer_trainer_2_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && naboo_privateer_trainer_2_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && naboo_privateer_trainer_2_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && naboo_privateer_trainer_2_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 61 && naboo_privateer_trainer_2_handleBranch61(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 61 && naboo_privateer_trainer_2_handleBranch61(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 62 && naboo_privateer_trainer_2_handleBranch62(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 62 && naboo_privateer_trainer_2_handleBranch62(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 63 && naboo_privateer_trainer_2_handleBranch63(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 63 && naboo_privateer_trainer_2_handleBranch63(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && naboo_privateer_trainer_2_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && naboo_privateer_trainer_2_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 65 && naboo_privateer_trainer_2_handleBranch65(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 65 && naboo_privateer_trainer_2_handleBranch65(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && naboo_privateer_trainer_2_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && naboo_privateer_trainer_2_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 69 && naboo_privateer_trainer_2_handleBranch69(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 69 && naboo_privateer_trainer_2_handleBranch69(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 70 && naboo_privateer_trainer_2_handleBranch70(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 70 && naboo_privateer_trainer_2_handleBranch70(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 71 && naboo_privateer_trainer_2_handleBranch71(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 71 && naboo_privateer_trainer_2_handleBranch71(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && naboo_privateer_trainer_2_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && naboo_privateer_trainer_2_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && naboo_privateer_trainer_2_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && naboo_privateer_trainer_2_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && naboo_privateer_trainer_2_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && naboo_privateer_trainer_2_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && naboo_privateer_trainer_2_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && naboo_privateer_trainer_2_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && naboo_privateer_trainer_2_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && naboo_privateer_trainer_2_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 81 && naboo_privateer_trainer_2_handleBranch81(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 81 && naboo_privateer_trainer_2_handleBranch81(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 82 && naboo_privateer_trainer_2_handleBranch82(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 82 && naboo_privateer_trainer_2_handleBranch82(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 84 && naboo_privateer_trainer_2_handleBranch84(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 84 && naboo_privateer_trainer_2_handleBranch84(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 85 && naboo_privateer_trainer_2_handleBranch85(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 85 && naboo_privateer_trainer_2_handleBranch85(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 86 && naboo_privateer_trainer_2_handleBranch86(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 86 && naboo_privateer_trainer_2_handleBranch86(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && naboo_privateer_trainer_2_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && naboo_privateer_trainer_2_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && naboo_privateer_trainer_2_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && naboo_privateer_trainer_2_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && naboo_privateer_trainer_2_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && naboo_privateer_trainer_2_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 90 && naboo_privateer_trainer_2_handleBranch90(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 90 && naboo_privateer_trainer_2_handleBranch90(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 91 && naboo_privateer_trainer_2_handleBranch91(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 91 && naboo_privateer_trainer_2_handleBranch91(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 92 && naboo_privateer_trainer_2_handleBranch92(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 92 && naboo_privateer_trainer_2_handleBranch92(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && naboo_privateer_trainer_2_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && naboo_privateer_trainer_2_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 94 && naboo_privateer_trainer_2_handleBranch94(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 94 && naboo_privateer_trainer_2_handleBranch94(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 95 && naboo_privateer_trainer_2_handleBranch95(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 95 && naboo_privateer_trainer_2_handleBranch95(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 96 && naboo_privateer_trainer_2_handleBranch96(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 96 && naboo_privateer_trainer_2_handleBranch96(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && naboo_privateer_trainer_2_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && naboo_privateer_trainer_2_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 98 && naboo_privateer_trainer_2_handleBranch98(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 98 && naboo_privateer_trainer_2_handleBranch98(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.naboo_privateer_trainer_2.branchId");
         return SCRIPT_CONTINUE;
     }

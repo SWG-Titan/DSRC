@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class npe_imperial_questgiver extends script.base_script
+public class npe_imperial_questgiver extends base_script
 {
     public npe_imperial_questgiver()
     {

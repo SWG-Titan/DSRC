@@ -641,32 +641,31 @@ public class greeter_coronet_merchant extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (greeter_coronet_merchant_condition_notOnMissingShipment(player, npc))
+        if (greeter_coronet_merchant_condition_notOnMissingShipment(player, self))
         {
-            doAnimationAction(npc, "laugh_titter");
+            doAnimationAction(self, "laugh_titter");
             doAnimationAction(player, "shrug_shoulders");
             string_id message = new string_id(c_stringFile, "s_198d9a41");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_questComplete(player, npc))
+        if (greeter_coronet_merchant_condition_questComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_156");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_foundShipment(player, npc))
+        if (greeter_coronet_merchant_condition_foundShipment(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_124");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (greeter_coronet_merchant_condition__defaultCondition(player, npc))
+            if (greeter_coronet_merchant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -681,39 +680,39 @@ public class greeter_coronet_merchant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_125");
                 }
                 utils.setScriptVar(player, "conversation.greeter_coronet_merchant.branchId", 3);
-                npcStartConversation(player, npc, "greeter_coronet_merchant", message, responses);
+                npcStartConversation(player, self, "greeter_coronet_merchant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_goGetShipment(player, npc))
+        if (greeter_coronet_merchant_condition_goGetShipment(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_123");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_foundTomiBunker(player, npc))
+        if (greeter_coronet_merchant_condition_foundTomiBunker(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_122");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_intimidateRagtags(player, npc))
+        if (greeter_coronet_merchant_condition_intimidateRagtags(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_155");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_sawRagtagFighters(player, npc))
+        if (greeter_coronet_merchant_condition_sawRagtagFighters(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_109");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (greeter_coronet_merchant_condition__defaultCondition(player, npc))
+            if (greeter_coronet_merchant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -728,29 +727,29 @@ public class greeter_coronet_merchant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_114");
                 }
                 utils.setScriptVar(player, "conversation.greeter_coronet_merchant.branchId", 8);
-                npcStartConversation(player, npc, "greeter_coronet_merchant", message, responses);
+                npcStartConversation(player, self, "greeter_coronet_merchant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_failedSpacePatrol(player, npc))
+        if (greeter_coronet_merchant_condition_failedSpacePatrol(player, self))
         {
-            greeter_coronet_merchant_action_clearFailedPatrol(player, npc);
+            greeter_coronet_merchant_action_clearFailedPatrol(player, self);
             string_id message = new string_id(c_stringFile, "s_108");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (greeter_coronet_merchant_condition__defaultCondition(player, npc))
+            if (greeter_coronet_merchant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (greeter_coronet_merchant_condition__defaultCondition(player, npc))
+            if (greeter_coronet_merchant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -769,27 +768,27 @@ public class greeter_coronet_merchant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_111");
                 }
                 utils.setScriptVar(player, "conversation.greeter_coronet_merchant.branchId", 13);
-                npcStartConversation(player, npc, "greeter_coronet_merchant", message, responses);
+                npcStartConversation(player, self, "greeter_coronet_merchant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_hasSpacePatrol(player, npc))
+        if (greeter_coronet_merchant_condition_hasSpacePatrol(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_159");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_faliedSpaceQuest(player, npc))
+        if (greeter_coronet_merchant_condition_faliedSpaceQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_47");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (greeter_coronet_merchant_condition__defaultCondition(player, npc))
+            if (greeter_coronet_merchant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -804,29 +803,29 @@ public class greeter_coronet_merchant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_48");
                 }
                 utils.setScriptVar(player, "conversation.greeter_coronet_merchant.branchId", 17);
-                npcStartConversation(player, npc, "greeter_coronet_merchant", message, responses);
+                npcStartConversation(player, self, "greeter_coronet_merchant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_gotBothInvoiceAndSchedule(player, npc))
+        if (greeter_coronet_merchant_condition_gotBothInvoiceAndSchedule(player, self))
         {
-            greeter_coronet_merchant_action_signalPatrolMission(player, npc);
+            greeter_coronet_merchant_action_signalPatrolMission(player, self);
             string_id message = new string_id(c_stringFile, "s_103");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (greeter_coronet_merchant_condition__defaultCondition(player, npc))
+            if (greeter_coronet_merchant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (greeter_coronet_merchant_condition__defaultCondition(player, npc))
+            if (greeter_coronet_merchant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -845,40 +844,40 @@ public class greeter_coronet_merchant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_105");
                 }
                 utils.setScriptVar(player, "conversation.greeter_coronet_merchant.branchId", 20);
-                npcStartConversation(player, npc, "greeter_coronet_merchant", message, responses);
+                npcStartConversation(player, self, "greeter_coronet_merchant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_getSchedule(player, npc))
+        if (greeter_coronet_merchant_condition_getSchedule(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_100");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_getInvoice(player, npc))
+        if (greeter_coronet_merchant_condition_getInvoice(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_102");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition_getInvoiceAndSchedule(player, npc))
+        if (greeter_coronet_merchant_condition_getInvoiceAndSchedule(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_101");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (greeter_coronet_merchant_condition__defaultCondition(player, npc))
+        if (greeter_coronet_merchant_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_4a019574");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (greeter_coronet_merchant_condition__defaultCondition(player, npc))
+            if (greeter_coronet_merchant_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -893,15 +892,15 @@ public class greeter_coronet_merchant extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_80e2ba26");
                 }
                 utils.setScriptVar(player, "conversation.greeter_coronet_merchant.branchId", 28);
-                npcStartConversation(player, npc, "greeter_coronet_merchant", message, responses);
+                npcStartConversation(player, self, "greeter_coronet_merchant", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -910,61 +909,60 @@ public class greeter_coronet_merchant extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.greeter_coronet_merchant.branchId");
-        if (branchId == 3 && greeter_coronet_merchant_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && greeter_coronet_merchant_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && greeter_coronet_merchant_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && greeter_coronet_merchant_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && greeter_coronet_merchant_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && greeter_coronet_merchant_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && greeter_coronet_merchant_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && greeter_coronet_merchant_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && greeter_coronet_merchant_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && greeter_coronet_merchant_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && greeter_coronet_merchant_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && greeter_coronet_merchant_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && greeter_coronet_merchant_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && greeter_coronet_merchant_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && greeter_coronet_merchant_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && greeter_coronet_merchant_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && greeter_coronet_merchant_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && greeter_coronet_merchant_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && greeter_coronet_merchant_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && greeter_coronet_merchant_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && greeter_coronet_merchant_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && greeter_coronet_merchant_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && greeter_coronet_merchant_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && greeter_coronet_merchant_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && greeter_coronet_merchant_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && greeter_coronet_merchant_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.greeter_coronet_merchant.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -6,7 +6,7 @@ import script.library.space_quest;
 import script.library.utils;
 import script.*;
 
-public class ep3_trandoshan_fezrik_bendledon extends script.base_script
+public class ep3_trandoshan_fezrik_bendledon extends base_script
 {
     public ep3_trandoshan_fezrik_bendledon()
     {

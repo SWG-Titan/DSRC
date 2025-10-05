@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class ep3_clone_relics_queen_wookie_informant_1 extends script.base_script
+public class ep3_clone_relics_queen_wookie_informant_1 extends base_script
 {
     public ep3_clone_relics_queen_wookie_informant_1()
     {

@@ -2617,38 +2617,37 @@ public class station_naboo extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (station_naboo_condition_isTooFar(player, npc))
+        if (station_naboo_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_1951f1c1");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (station_naboo_condition_canDoImperialAccess(player, npc))
+        if (station_naboo_condition_canDoImperialAccess(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_98fa9519");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_naboo_condition__defaultCondition(player, npc))
+            if (station_naboo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_naboo_condition_needRepairs(player, npc))
+            if (station_naboo_condition_needRepairs(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_naboo_condition__defaultCondition(player, npc))
+            if (station_naboo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2671,42 +2670,42 @@ public class station_naboo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3bf3c89f");
                 }
                 utils.setScriptVar(player, "conversation.station_naboo.branchId", 2);
-                npcStartConversation(player, npc, "station_naboo", message, responses);
+                npcStartConversation(player, self, "station_naboo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (station_naboo_condition__defaultCondition(player, npc))
+        if (station_naboo_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_decdd151");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (station_naboo_condition__defaultCondition(player, npc))
+            if (station_naboo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (station_naboo_condition_canAfford25(player, npc))
+            if (station_naboo_condition_canAfford25(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (station_naboo_condition__defaultCondition(player, npc))
+            if (station_naboo_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (station_naboo_condition_canTakeQuest(player, npc))
+            if (station_naboo_condition_canTakeQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2733,15 +2732,15 @@ public class station_naboo extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_157");
                 }
                 utils.setScriptVar(player, "conversation.station_naboo.branchId", 5);
-                npcStartConversation(player, npc, "station_naboo", message, responses);
+                npcStartConversation(player, self, "station_naboo", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2750,101 +2749,100 @@ public class station_naboo extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.station_naboo.branchId");
-        if (branchId == 2 && station_naboo_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && station_naboo_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && station_naboo_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && station_naboo_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && station_naboo_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && station_naboo_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && station_naboo_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && station_naboo_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && station_naboo_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && station_naboo_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && station_naboo_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && station_naboo_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && station_naboo_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && station_naboo_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && station_naboo_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && station_naboo_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && station_naboo_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && station_naboo_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && station_naboo_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && station_naboo_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && station_naboo_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && station_naboo_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && station_naboo_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && station_naboo_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && station_naboo_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && station_naboo_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && station_naboo_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && station_naboo_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && station_naboo_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && station_naboo_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && station_naboo_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && station_naboo_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && station_naboo_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && station_naboo_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && station_naboo_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && station_naboo_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && station_naboo_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && station_naboo_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && station_naboo_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && station_naboo_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && station_naboo_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && station_naboo_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && station_naboo_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && station_naboo_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && station_naboo_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && station_naboo_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.station_naboo.branchId");
         return SCRIPT_CONTINUE;
     }

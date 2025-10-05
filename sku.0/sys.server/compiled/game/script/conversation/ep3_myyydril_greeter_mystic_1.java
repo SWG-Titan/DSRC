@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class ep3_myyydril_greeter_mystic_1 extends script.base_script
+public class ep3_myyydril_greeter_mystic_1 extends base_script
 {
     public ep3_myyydril_greeter_mystic_1()
     {
@@ -389,25 +389,24 @@ public class ep3_myyydril_greeter_mystic_1 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_myyydril_greeter_mystic_1_condition_hasLanguage(player, npc))
+        if (ep3_myyydril_greeter_mystic_1_condition_hasLanguage(player, self))
         {
-            ep3_myyydril_greeter_mystic_1_action_Language(player, npc);
+            ep3_myyydril_greeter_mystic_1_action_Language(player, self);
             string_id message = new string_id(c_stringFile, "s_678");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_greeter_mystic_1_condition_End(player, npc))
+        if (ep3_myyydril_greeter_mystic_1_condition_End(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_398");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -422,21 +421,21 @@ public class ep3_myyydril_greeter_mystic_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_400");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_greeter_mystic_1.branchId", 2);
-                npcStartConversation(player, npc, "ep3_myyydril_greeter_mystic_1", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_greeter_mystic_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_greeter_mystic_1_condition_Lorn(player, npc))
+        if (ep3_myyydril_greeter_mystic_1_condition_Lorn(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_408");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -451,21 +450,21 @@ public class ep3_myyydril_greeter_mystic_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_846");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_greeter_mystic_1.branchId", 5);
-                npcStartConversation(player, npc, "ep3_myyydril_greeter_mystic_1", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_greeter_mystic_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_greeter_mystic_1_condition_Doctor(player, npc))
+        if (ep3_myyydril_greeter_mystic_1_condition_Doctor(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_648");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -480,21 +479,21 @@ public class ep3_myyydril_greeter_mystic_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_417");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_greeter_mystic_1.branchId", 8);
-                npcStartConversation(player, npc, "ep3_myyydril_greeter_mystic_1", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_greeter_mystic_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_greeter_mystic_1_condition_Hero(player, npc))
+        if (ep3_myyydril_greeter_mystic_1_condition_Hero(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_423");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -509,21 +508,21 @@ public class ep3_myyydril_greeter_mystic_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_425");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_greeter_mystic_1.branchId", 11);
-                npcStartConversation(player, npc, "ep3_myyydril_greeter_mystic_1", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_greeter_mystic_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_greeter_mystic_1_condition_Caverns(player, npc))
+        if (ep3_myyydril_greeter_mystic_1_condition_Caverns(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_628");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -538,21 +537,21 @@ public class ep3_myyydril_greeter_mystic_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_434");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_greeter_mystic_1.branchId", 14);
-                npcStartConversation(player, npc, "ep3_myyydril_greeter_mystic_1", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_greeter_mystic_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_greeter_mystic_1_condition_Helping(player, npc))
+        if (ep3_myyydril_greeter_mystic_1_condition_Helping(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_440");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -567,27 +566,27 @@ public class ep3_myyydril_greeter_mystic_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_442");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_greeter_mystic_1.branchId", 17);
-                npcStartConversation(player, npc, "ep3_myyydril_greeter_mystic_1", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_greeter_mystic_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_greeter_mystic_1_condition_Kallaarac(player, npc))
+        if (ep3_myyydril_greeter_mystic_1_condition_Kallaarac(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_446");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, npc))
+        if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_448");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_greeter_mystic_1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -602,15 +601,15 @@ public class ep3_myyydril_greeter_mystic_1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_450");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_greeter_mystic_1.branchId", 20);
-                npcStartConversation(player, npc, "ep3_myyydril_greeter_mystic_1", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_greeter_mystic_1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -619,57 +618,56 @@ public class ep3_myyydril_greeter_mystic_1 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_myyydril_greeter_mystic_1.branchId");
-        if (branchId == 2 && ep3_myyydril_greeter_mystic_1_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && ep3_myyydril_greeter_mystic_1_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && ep3_myyydril_greeter_mystic_1_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_myyydril_greeter_mystic_1_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ep3_myyydril_greeter_mystic_1_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_myyydril_greeter_mystic_1_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && ep3_myyydril_greeter_mystic_1_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ep3_myyydril_greeter_mystic_1_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_myyydril_greeter_mystic_1_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_myyydril_greeter_mystic_1_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_myyydril_greeter_mystic_1_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_myyydril_greeter_mystic_1_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && ep3_myyydril_greeter_mystic_1_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && ep3_myyydril_greeter_mystic_1_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_myyydril_greeter_mystic_1_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_myyydril_greeter_mystic_1_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && ep3_myyydril_greeter_mystic_1_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && ep3_myyydril_greeter_mystic_1_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_myyydril_greeter_mystic_1_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_myyydril_greeter_mystic_1_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_myyydril_greeter_mystic_1_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_myyydril_greeter_mystic_1_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_myyydril_greeter_mystic_1_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_myyydril_greeter_mystic_1_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_myyydril_greeter_mystic_1.branchId");
         return SCRIPT_CONTINUE;
     }

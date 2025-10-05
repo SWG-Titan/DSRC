@@ -1348,31 +1348,30 @@ public class talus_nashal_agent extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (talus_nashal_agent_condition_onDroidBunkerGoto(player, npc))
+        if (talus_nashal_agent_condition_onDroidBunkerGoto(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_125");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_completeGenocide(player, npc))
+        if (talus_nashal_agent_condition_completeGenocide(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_254");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1391,21 +1390,21 @@ public class talus_nashal_agent extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_260");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_agent.branchId", 2);
-                npcStartConversation(player, npc, "talus_nashal_agent", message, responses);
+                npcStartConversation(player, self, "talus_nashal_agent", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_onGenocideReturn(player, npc))
+        if (talus_nashal_agent_condition_onGenocideReturn(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_272");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1420,21 +1419,21 @@ public class talus_nashal_agent extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_274");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_agent.branchId", 7);
-                npcStartConversation(player, npc, "talus_nashal_agent", message, responses);
+                npcStartConversation(player, self, "talus_nashal_agent", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_completedGenocideGate(player, npc))
+        if (talus_nashal_agent_condition_completedGenocideGate(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_286");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1449,27 +1448,27 @@ public class talus_nashal_agent extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_288");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_agent.branchId", 11);
-                npcStartConversation(player, npc, "talus_nashal_agent", message, responses);
+                npcStartConversation(player, self, "talus_nashal_agent", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_onGenocide(player, npc))
+        if (talus_nashal_agent_condition_onGenocide(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_324");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_completeGrimNeedGeno(player, npc))
+        if (talus_nashal_agent_condition_completeGrimNeedGeno(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_326");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1484,21 +1483,21 @@ public class talus_nashal_agent extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_328");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_agent.branchId", 22);
-                npcStartConversation(player, npc, "talus_nashal_agent", message, responses);
+                npcStartConversation(player, self, "talus_nashal_agent", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_onGrimReturn(player, npc))
+        if (talus_nashal_agent_condition_onGrimReturn(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_332");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1513,21 +1512,21 @@ public class talus_nashal_agent extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_334");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_agent.branchId", 24);
-                npcStartConversation(player, npc, "talus_nashal_agent", message, responses);
+                npcStartConversation(player, self, "talus_nashal_agent", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_completeRescue(player, npc))
+        if (talus_nashal_agent_condition_completeRescue(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_342");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1542,21 +1541,21 @@ public class talus_nashal_agent extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_344");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_agent.branchId", 27);
-                npcStartConversation(player, npc, "talus_nashal_agent", message, responses);
+                npcStartConversation(player, self, "talus_nashal_agent", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_afterTalkAgent(player, npc))
+        if (talus_nashal_agent_condition_afterTalkAgent(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_348");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1571,21 +1570,21 @@ public class talus_nashal_agent extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_350");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_agent.branchId", 29);
-                npcStartConversation(player, npc, "talus_nashal_agent", message, responses);
+                npcStartConversation(player, self, "talus_nashal_agent", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_onTalkAgent(player, npc))
+        if (talus_nashal_agent_condition_onTalkAgent(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_354");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1603,40 +1602,40 @@ public class talus_nashal_agent extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "talus_nashal_agent", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "talus_nashal_agent", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_completeMother(player, npc))
+        if (talus_nashal_agent_condition_completeMother(player, self))
         {
-            talus_nashal_agent_action_grantGotoDathnaeya(player, npc);
+            talus_nashal_agent_action_grantGotoDathnaeya(player, self);
             string_id message = new string_id(c_stringFile, "s_360");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_onFindWeakness(player, npc))
+        if (talus_nashal_agent_condition_onFindWeakness(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_362");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition_completePreviousArc(player, npc))
+        if (talus_nashal_agent_condition_completePreviousArc(player, self))
         {
-            talus_nashal_agent_action_pointerSignal(player, npc);
+            talus_nashal_agent_action_pointerSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_364");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (talus_nashal_agent_condition__defaultCondition(player, npc))
+            if (talus_nashal_agent_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1651,21 +1650,21 @@ public class talus_nashal_agent extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_366");
                 }
                 utils.setScriptVar(player, "conversation.talus_nashal_agent.branchId", 35);
-                npcStartConversation(player, npc, "talus_nashal_agent", message, responses);
+                npcStartConversation(player, self, "talus_nashal_agent", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (talus_nashal_agent_condition__defaultCondition(player, npc))
+        if (talus_nashal_agent_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_378");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1674,101 +1673,100 @@ public class talus_nashal_agent extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.talus_nashal_agent.branchId");
-        if (branchId == 2 && talus_nashal_agent_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && talus_nashal_agent_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && talus_nashal_agent_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && talus_nashal_agent_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && talus_nashal_agent_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && talus_nashal_agent_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && talus_nashal_agent_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && talus_nashal_agent_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && talus_nashal_agent_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && talus_nashal_agent_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && talus_nashal_agent_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && talus_nashal_agent_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && talus_nashal_agent_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && talus_nashal_agent_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && talus_nashal_agent_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && talus_nashal_agent_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && talus_nashal_agent_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && talus_nashal_agent_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && talus_nashal_agent_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && talus_nashal_agent_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && talus_nashal_agent_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && talus_nashal_agent_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && talus_nashal_agent_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && talus_nashal_agent_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && talus_nashal_agent_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && talus_nashal_agent_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && talus_nashal_agent_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && talus_nashal_agent_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && talus_nashal_agent_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && talus_nashal_agent_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && talus_nashal_agent_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && talus_nashal_agent_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && talus_nashal_agent_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && talus_nashal_agent_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && talus_nashal_agent_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && talus_nashal_agent_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && talus_nashal_agent_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && talus_nashal_agent_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && talus_nashal_agent_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && talus_nashal_agent_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && talus_nashal_agent_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && talus_nashal_agent_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && talus_nashal_agent_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && talus_nashal_agent_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && talus_nashal_agent_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && talus_nashal_agent_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.talus_nashal_agent.branchId");
         return SCRIPT_CONTINUE;
     }

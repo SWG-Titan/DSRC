@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class generic_newbie_pilot_info_gia_pei extends script.base_script
+public class generic_newbie_pilot_info_gia_pei extends base_script
 {
     public generic_newbie_pilot_info_gia_pei()
     {

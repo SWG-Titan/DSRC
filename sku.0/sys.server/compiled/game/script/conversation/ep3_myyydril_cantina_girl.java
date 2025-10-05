@@ -1114,30 +1114,29 @@ public class ep3_myyydril_cantina_girl extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ep3_myyydril_cantina_girl_condition_hasCompletedQuestTwo(player, npc))
+        if (ep3_myyydril_cantina_girl_condition_hasCompletedQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_350");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_cantina_girl_condition_isTaskActiveTwo(player, npc))
+        if (ep3_myyydril_cantina_girl_condition_isTaskActiveTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_326");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_cantina_girl_condition_hasCompletedQuestOne(player, npc))
+        if (ep3_myyydril_cantina_girl_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_333");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1152,22 +1151,22 @@ public class ep3_myyydril_cantina_girl extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_334");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_cantina_girl.branchId", 3);
-                npcStartConversation(player, npc, "ep3_myyydril_cantina_girl", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_cantina_girl", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_cantina_girl_condition_hasCompletedTaskOne(player, npc))
+        if (ep3_myyydril_cantina_girl_condition_hasCompletedTaskOne(player, self))
         {
-            ep3_myyydril_cantina_girl_action_giveSignal(player, npc);
+            ep3_myyydril_cantina_girl_action_giveSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_346");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1182,34 +1181,34 @@ public class ep3_myyydril_cantina_girl extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_347");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_cantina_girl.branchId", 5);
-                npcStartConversation(player, npc, "ep3_myyydril_cantina_girl", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_cantina_girl", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_cantina_girl_condition_isActiveTaskOne(player, npc))
+        if (ep3_myyydril_cantina_girl_condition_isActiveTaskOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_349");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_cantina_girl_condition_hasCompletedQuestOther(player, npc))
+        if (ep3_myyydril_cantina_girl_condition_hasCompletedQuestOther(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_341");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1228,35 +1227,35 @@ public class ep3_myyydril_cantina_girl extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_343");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_cantina_girl.branchId", 8);
-                npcStartConversation(player, npc, "ep3_myyydril_cantina_girl", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_cantina_girl", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, npc))
+        if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_300");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, npc))
+            if (ep3_myyydril_cantina_girl_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1279,15 +1278,15 @@ public class ep3_myyydril_cantina_girl extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_305");
                 }
                 utils.setScriptVar(player, "conversation.ep3_myyydril_cantina_girl.branchId", 12);
-                npcStartConversation(player, npc, "ep3_myyydril_cantina_girl", message, responses);
+                npcStartConversation(player, self, "ep3_myyydril_cantina_girl", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1296,105 +1295,104 @@ public class ep3_myyydril_cantina_girl extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ep3_myyydril_cantina_girl.branchId");
-        if (branchId == 3 && ep3_myyydril_cantina_girl_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && ep3_myyydril_cantina_girl_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && ep3_myyydril_cantina_girl_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && ep3_myyydril_cantina_girl_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ep3_myyydril_cantina_girl_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ep3_myyydril_cantina_girl_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ep3_myyydril_cantina_girl_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ep3_myyydril_cantina_girl_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && ep3_myyydril_cantina_girl_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && ep3_myyydril_cantina_girl_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && ep3_myyydril_cantina_girl_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && ep3_myyydril_cantina_girl_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && ep3_myyydril_cantina_girl_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && ep3_myyydril_cantina_girl_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && ep3_myyydril_cantina_girl_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && ep3_myyydril_cantina_girl_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && ep3_myyydril_cantina_girl_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && ep3_myyydril_cantina_girl_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && ep3_myyydril_cantina_girl_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && ep3_myyydril_cantina_girl_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && ep3_myyydril_cantina_girl_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && ep3_myyydril_cantina_girl_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && ep3_myyydril_cantina_girl_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && ep3_myyydril_cantina_girl_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && ep3_myyydril_cantina_girl_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && ep3_myyydril_cantina_girl_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && ep3_myyydril_cantina_girl_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && ep3_myyydril_cantina_girl_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && ep3_myyydril_cantina_girl_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && ep3_myyydril_cantina_girl_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && ep3_myyydril_cantina_girl_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && ep3_myyydril_cantina_girl_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && ep3_myyydril_cantina_girl_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && ep3_myyydril_cantina_girl_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && ep3_myyydril_cantina_girl_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && ep3_myyydril_cantina_girl_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && ep3_myyydril_cantina_girl_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && ep3_myyydril_cantina_girl_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && ep3_myyydril_cantina_girl_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && ep3_myyydril_cantina_girl_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && ep3_myyydril_cantina_girl_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && ep3_myyydril_cantina_girl_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && ep3_myyydril_cantina_girl_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && ep3_myyydril_cantina_girl_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && ep3_myyydril_cantina_girl_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && ep3_myyydril_cantina_girl_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && ep3_myyydril_cantina_girl_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && ep3_myyydril_cantina_girl_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ep3_myyydril_cantina_girl.branchId");
         return SCRIPT_CONTINUE;
     }

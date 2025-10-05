@@ -516,18 +516,17 @@ public class corellia_39_captain_baize extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corellia_39_captain_baize_condition_AllCompleted(player, npc))
+        if (corellia_39_captain_baize_condition_AllCompleted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_77");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_captain_baize_condition_needs40Pointer(player, npc))
+            if (corellia_39_captain_baize_condition_needs40Pointer(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -542,22 +541,22 @@ public class corellia_39_captain_baize extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_93");
                 }
                 utils.setScriptVar(player, "conversation.corellia_39_captain_baize.branchId", 1);
-                npcStartConversation(player, npc, "corellia_39_captain_baize", message, responses);
+                npcStartConversation(player, self, "corellia_39_captain_baize", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_eliteCouncilComplete(player, npc))
+        if (corellia_39_captain_baize_condition_eliteCouncilComplete(player, self))
         {
-            corellia_39_captain_baize_action_signal_eliteCouncilComplete(player, npc);
+            corellia_39_captain_baize_action_signal_eliteCouncilComplete(player, self);
             string_id message = new string_id(c_stringFile, "s_49");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_captain_baize_condition__defaultCondition(player, npc))
+            if (corellia_39_captain_baize_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -572,28 +571,28 @@ public class corellia_39_captain_baize extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_76");
                 }
                 utils.setScriptVar(player, "conversation.corellia_39_captain_baize.branchId", 3);
-                npcStartConversation(player, npc, "corellia_39_captain_baize", message, responses);
+                npcStartConversation(player, self, "corellia_39_captain_baize", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_eliteCouncilActive(player, npc))
+        if (corellia_39_captain_baize_condition_eliteCouncilActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_51");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_movingUpComplete(player, npc))
+        if (corellia_39_captain_baize_condition_movingUpComplete(player, self))
         {
-            corellia_39_captain_baize_action_signal_movingUpComplete(player, npc);
+            corellia_39_captain_baize_action_signal_movingUpComplete(player, self);
             string_id message = new string_id(c_stringFile, "s_42");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_captain_baize_condition__defaultCondition(player, npc))
+            if (corellia_39_captain_baize_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -608,54 +607,54 @@ public class corellia_39_captain_baize extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_47");
                 }
                 utils.setScriptVar(player, "conversation.corellia_39_captain_baize.branchId", 6);
-                npcStartConversation(player, npc, "corellia_39_captain_baize", message, responses);
+                npcStartConversation(player, self, "corellia_39_captain_baize", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_movingUpCoverUpB(player, npc))
+        if (corellia_39_captain_baize_condition_movingUpCoverUpB(player, self))
         {
-            corellia_39_captain_baize_action_regrant_movingUpB(player, npc);
+            corellia_39_captain_baize_action_regrant_movingUpB(player, self);
             string_id message = new string_id(c_stringFile, "s_39");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_movingUpCorsecTerminal(player, npc))
+        if (corellia_39_captain_baize_condition_movingUpCorsecTerminal(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_41");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_movingUpCoverUpA(player, npc))
+        if (corellia_39_captain_baize_condition_movingUpCoverUpA(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_38");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_movingUpSpiceComplete(player, npc))
+        if (corellia_39_captain_baize_condition_movingUpSpiceComplete(player, self))
         {
-            corellia_39_captain_baize_action_signal_movingUpSpice(player, npc);
+            corellia_39_captain_baize_action_signal_movingUpSpice(player, self);
             string_id message = new string_id(c_stringFile, "s_40");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_movingUpSpiceActive(player, npc))
+        if (corellia_39_captain_baize_condition_movingUpSpiceActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_71");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_assumedIdentityFailed(player, npc))
+        if (corellia_39_captain_baize_condition_assumedIdentityFailed(player, self))
         {
-            doAnimationAction(npc, "blame");
+            doAnimationAction(self, "blame");
             string_id message = new string_id(c_stringFile, "s_34");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_captain_baize_condition__defaultCondition(player, npc))
+            if (corellia_39_captain_baize_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -670,29 +669,29 @@ public class corellia_39_captain_baize extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_89");
                 }
                 utils.setScriptVar(player, "conversation.corellia_39_captain_baize.branchId", 14);
-                npcStartConversation(player, npc, "corellia_39_captain_baize", message, responses);
+                npcStartConversation(player, self, "corellia_39_captain_baize", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_assumedIdentityComplete(player, npc))
+        if (corellia_39_captain_baize_condition_assumedIdentityComplete(player, self))
         {
-            corellia_39_captain_baize_action_signal_assumedIdentityComplete(player, npc);
+            corellia_39_captain_baize_action_signal_assumedIdentityComplete(player, self);
             string_id message = new string_id(c_stringFile, "s_66");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_captain_baize_condition__defaultCondition(player, npc))
+            if (corellia_39_captain_baize_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corellia_39_captain_baize_condition__defaultCondition(player, npc))
+            if (corellia_39_captain_baize_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -711,34 +710,34 @@ public class corellia_39_captain_baize extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.corellia_39_captain_baize.branchId", 16);
-                npcStartConversation(player, npc, "corellia_39_captain_baize", message, responses);
+                npcStartConversation(player, self, "corellia_39_captain_baize", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_assumedIdentityContinuedB(player, npc))
+        if (corellia_39_captain_baize_condition_assumedIdentityContinuedB(player, self))
         {
-            corellia_39_captain_baize_action_regrant_assumedIdentityB(player, npc);
+            corellia_39_captain_baize_action_regrant_assumedIdentityB(player, self);
             string_id message = new string_id(c_stringFile, "s_35");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_assumedIdentityContinuedA(player, npc))
+        if (corellia_39_captain_baize_condition_assumedIdentityContinuedA(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_65");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_assumedIdentityTrinsComplete(player, npc))
+        if (corellia_39_captain_baize_condition_assumedIdentityTrinsComplete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_62");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_captain_baize_condition__defaultCondition(player, npc))
+            if (corellia_39_captain_baize_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -753,28 +752,28 @@ public class corellia_39_captain_baize extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_72");
                 }
                 utils.setScriptVar(player, "conversation.corellia_39_captain_baize.branchId", 22);
-                npcStartConversation(player, npc, "corellia_39_captain_baize", message, responses);
+                npcStartConversation(player, self, "corellia_39_captain_baize", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_assumedIdentityTrinsActive(player, npc))
+        if (corellia_39_captain_baize_condition_assumedIdentityTrinsActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_61");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_seekCouncilComplete(player, npc))
+        if (corellia_39_captain_baize_condition_seekCouncilComplete(player, self))
         {
-            corellia_39_captain_baize_action_signal_seekCouncilComplete(player, npc);
+            corellia_39_captain_baize_action_signal_seekCouncilComplete(player, self);
             string_id message = new string_id(c_stringFile, "s_56");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_captain_baize_condition__defaultCondition(player, npc))
+            if (corellia_39_captain_baize_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -789,28 +788,28 @@ public class corellia_39_captain_baize extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_57");
                 }
                 utils.setScriptVar(player, "conversation.corellia_39_captain_baize.branchId", 25);
-                npcStartConversation(player, npc, "corellia_39_captain_baize", message, responses);
+                npcStartConversation(player, self, "corellia_39_captain_baize", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_seekCouncilActive(player, npc))
+        if (corellia_39_captain_baize_condition_seekCouncilActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_55");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition_readyFor39(player, npc))
+        if (corellia_39_captain_baize_condition_readyFor39(player, self))
         {
-            corellia_39_captain_baize_action_signal_39Pointer(player, npc);
+            corellia_39_captain_baize_action_signal_39Pointer(player, self);
             string_id message = new string_id(c_stringFile, "s_60");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corellia_39_captain_baize_condition__defaultCondition(player, npc))
+            if (corellia_39_captain_baize_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -828,28 +827,28 @@ public class corellia_39_captain_baize extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(corellia_39_captain_baize_tokenTO_playersName(player, npc));
-                npcStartConversation(player, npc, "corellia_39_captain_baize", null, pp, responses);
+                pp.target.set(self);
+                pp.other.set(corellia_39_captain_baize_tokenTO_playersName(player, self));
+                npcStartConversation(player, self, "corellia_39_captain_baize", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                pp.other.set(corellia_39_captain_baize_tokenTO_playersName(player, npc));
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                pp.other.set(corellia_39_captain_baize_tokenTO_playersName(player, self));
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corellia_39_captain_baize_condition__defaultCondition(player, npc))
+        if (corellia_39_captain_baize_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_96");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -858,57 +857,56 @@ public class corellia_39_captain_baize extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corellia_39_captain_baize.branchId");
-        if (branchId == 1 && corellia_39_captain_baize_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && corellia_39_captain_baize_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && corellia_39_captain_baize_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corellia_39_captain_baize_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && corellia_39_captain_baize_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && corellia_39_captain_baize_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && corellia_39_captain_baize_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && corellia_39_captain_baize_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && corellia_39_captain_baize_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && corellia_39_captain_baize_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && corellia_39_captain_baize_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && corellia_39_captain_baize_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && corellia_39_captain_baize_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && corellia_39_captain_baize_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && corellia_39_captain_baize_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && corellia_39_captain_baize_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && corellia_39_captain_baize_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && corellia_39_captain_baize_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && corellia_39_captain_baize_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && corellia_39_captain_baize_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && corellia_39_captain_baize_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && corellia_39_captain_baize_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && corellia_39_captain_baize_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && corellia_39_captain_baize_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corellia_39_captain_baize.branchId");
         return SCRIPT_CONTINUE;
     }

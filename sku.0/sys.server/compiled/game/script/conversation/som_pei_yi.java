@@ -663,25 +663,24 @@ public class som_pei_yi extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (som_pei_yi_condition_hasDance(player, npc))
+        if (som_pei_yi_condition_hasDance(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_42");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_pei_yi_condition__defaultCondition(player, npc))
+            if (som_pei_yi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_pei_yi_condition__defaultCondition(player, npc))
+            if (som_pei_yi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -700,35 +699,35 @@ public class som_pei_yi extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_45");
                 }
                 utils.setScriptVar(player, "conversation.som_pei_yi.branchId", 1);
-                npcStartConversation(player, npc, "som_pei_yi", message, responses);
+                npcStartConversation(player, self, "som_pei_yi", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_pei_yi_condition__defaultCondition(player, npc))
+        if (som_pei_yi_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_15");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_pei_yi_condition__defaultCondition(player, npc))
+            if (som_pei_yi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_pei_yi_condition__defaultCondition(player, npc))
+            if (som_pei_yi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (som_pei_yi_condition__defaultCondition(player, npc))
+            if (som_pei_yi_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -751,15 +750,15 @@ public class som_pei_yi extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_86");
                 }
                 utils.setScriptVar(player, "conversation.som_pei_yi.branchId", 7);
-                npcStartConversation(player, npc, "som_pei_yi", message, responses);
+                npcStartConversation(player, self, "som_pei_yi", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -768,49 +767,48 @@ public class som_pei_yi extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.som_pei_yi.branchId");
-        if (branchId == 1 && som_pei_yi_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && som_pei_yi_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && som_pei_yi_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && som_pei_yi_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && som_pei_yi_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && som_pei_yi_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && som_pei_yi_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && som_pei_yi_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && som_pei_yi_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && som_pei_yi_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && som_pei_yi_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && som_pei_yi_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && som_pei_yi_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && som_pei_yi_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && som_pei_yi_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && som_pei_yi_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && som_pei_yi_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && som_pei_yi_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && som_pei_yi_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && som_pei_yi_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.som_pei_yi.branchId");
         return SCRIPT_CONTINUE;
     }

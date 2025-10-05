@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class station_avatar_platform extends script.base_script
+public class station_avatar_platform extends base_script
 {
     public station_avatar_platform()
     {

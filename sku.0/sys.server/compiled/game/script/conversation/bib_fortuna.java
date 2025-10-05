@@ -608,25 +608,24 @@ public class bib_fortuna extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (bib_fortuna_condition_completedBib(player, npc))
+        if (bib_fortuna_condition_completedBib(player, self))
         {
-            bib_fortuna_action_facePlayer(player, npc);
+            bib_fortuna_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (bib_fortuna_condition_killedRomoVax(player, npc))
+        if (bib_fortuna_condition_killedRomoVax(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (bib_fortuna_condition__defaultCondition(player, npc))
+            if (bib_fortuna_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -641,28 +640,28 @@ public class bib_fortuna extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_75");
                 }
                 utils.setScriptVar(player, "conversation.bib_fortuna.branchId", 2);
-                npcStartConversation(player, npc, "bib_fortuna", message, responses);
+                npcStartConversation(player, self, "bib_fortuna", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (bib_fortuna_condition_killingRomoVax(player, npc))
+        if (bib_fortuna_condition_killingRomoVax(player, self))
         {
-            bib_fortuna_action_facePlayer(player, npc);
+            bib_fortuna_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_10");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (bib_fortuna_condition_takeDisksToBib(player, npc))
+        if (bib_fortuna_condition_takeDisksToBib(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_12");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (bib_fortuna_condition__defaultCondition(player, npc))
+            if (bib_fortuna_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -677,43 +676,43 @@ public class bib_fortuna extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_39");
                 }
                 utils.setScriptVar(player, "conversation.bib_fortuna.branchId", 5);
-                npcStartConversation(player, npc, "bib_fortuna", message, responses);
+                npcStartConversation(player, self, "bib_fortuna", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (bib_fortuna_condition_dealingWithRomo(player, npc))
+        if (bib_fortuna_condition_dealingWithRomo(player, self))
         {
-            bib_fortuna_action_facePlayer(player, npc);
+            bib_fortuna_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_16");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (bib_fortuna_condition_completedBarada(player, npc))
+        if (bib_fortuna_condition_completedBarada(player, self))
         {
-            bib_fortuna_action_clearPointer(player, npc);
+            bib_fortuna_action_clearPointer(player, self);
             string_id message = new string_id(c_stringFile, "s_18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (bib_fortuna_condition__defaultCondition(player, npc))
+            if (bib_fortuna_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (bib_fortuna_condition__defaultCondition(player, npc))
+            if (bib_fortuna_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (bib_fortuna_condition__defaultCondition(player, npc))
+            if (bib_fortuna_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -736,22 +735,22 @@ public class bib_fortuna extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_28");
                 }
                 utils.setScriptVar(player, "conversation.bib_fortuna.branchId", 8);
-                npcStartConversation(player, npc, "bib_fortuna", message, responses);
+                npcStartConversation(player, self, "bib_fortuna", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (bib_fortuna_condition__defaultCondition(player, npc))
+        if (bib_fortuna_condition__defaultCondition(player, self))
         {
-            bib_fortuna_action_facePlayer(player, npc);
+            bib_fortuna_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_74");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -760,49 +759,48 @@ public class bib_fortuna extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.bib_fortuna.branchId");
-        if (branchId == 2 && bib_fortuna_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && bib_fortuna_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && bib_fortuna_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && bib_fortuna_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && bib_fortuna_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && bib_fortuna_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && bib_fortuna_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && bib_fortuna_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && bib_fortuna_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && bib_fortuna_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && bib_fortuna_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && bib_fortuna_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && bib_fortuna_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && bib_fortuna_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && bib_fortuna_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && bib_fortuna_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && bib_fortuna_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && bib_fortuna_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && bib_fortuna_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && bib_fortuna_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.bib_fortuna.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -69,3 +69,10 @@ lookup/tcg_military_transport	11	appearance/enclosed_military_vehicle.apt	client
 lookup/tcg_at_pt_walker	1	appearance/atpt.sat	clientdata/vehicle/tcg_at_pt.cdf
 lookup/tcg_republic_gunship	11	appearance/republic_gunship.apt	clientdata/vehicle/tcg_republic_gunship.cdf
 lookup/tcg_8_single_pod_airspeeder	1	appearance/single_pod_airspeeder.sat	clientdata/vehicle/single_pod_airspeeder.cdf
+lookup/tri_air_speeder	1	appearance/tri_air_speeder.apt	clientdata/vehicle/barc_speeder.iff
+lookup/city_explorer_s01	1	appearance/city_explorer_s01.apt	clientdata/vehicle/barc_speeder.iff
+lookup/hover_tank_red	1	appearance/hover_tank_red.apt	clientdata/vehicle/barc_speeder.iff
+lookup/hut_speeder_s01	1	appearance/hut_speeder_s01.apt	clientdata/vehicle/barc_speeder.iff
+lookup/imp_dart_s01	1	appearance/imp_dart_s01.apt	clientdata/vehicle/barc_speeder.iff
+lookup/sky_flyer_red	1	appearance/sky_flyer_red.apt	clientdata/vehicle/barc_speeder.iff
+lookup/speeder_bike_s001	1	appearance/speeder_bike_s001.apt	clientdata/vehicle/barc_speeder.iff

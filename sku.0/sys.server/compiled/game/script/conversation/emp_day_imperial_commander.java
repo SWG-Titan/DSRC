@@ -825,24 +825,23 @@ public class emp_day_imperial_commander extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (emp_day_imperial_commander_condition_isRebel(player, npc))
+        if (emp_day_imperial_commander_condition_isRebel(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_363");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_imperial_commander_condition_questCompleted(player, npc))
+        if (emp_day_imperial_commander_condition_questCompleted(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_365");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_imperial_commander_condition_noPrisonAccess(player, npc))
+            if (emp_day_imperial_commander_condition_noPrisonAccess(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -857,21 +856,21 @@ public class emp_day_imperial_commander extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_367");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_imperial_commander.branchId", 2);
-                npcStartConversation(player, npc, "emp_day_imperial_commander", message, responses);
+                npcStartConversation(player, self, "emp_day_imperial_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_imperial_commander_condition_hasTask8(player, npc))
+        if (emp_day_imperial_commander_condition_hasTask8(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_371");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_imperial_commander_condition__defaultCondition(player, npc))
+            if (emp_day_imperial_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -886,34 +885,34 @@ public class emp_day_imperial_commander extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_373");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_imperial_commander.branchId", 4);
-                npcStartConversation(player, npc, "emp_day_imperial_commander", message, responses);
+                npcStartConversation(player, self, "emp_day_imperial_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_imperial_commander_condition_notReadyForYou(player, npc))
+        if (emp_day_imperial_commander_condition_notReadyForYou(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_381");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_imperial_commander_condition_hasTask6(player, npc))
+        if (emp_day_imperial_commander_condition_hasTask6(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_383");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_imperial_commander_condition__defaultCondition(player, npc))
+            if (emp_day_imperial_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (emp_day_imperial_commander_condition__defaultCondition(player, npc))
+            if (emp_day_imperial_commander_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -932,21 +931,21 @@ public class emp_day_imperial_commander extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_427");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_imperial_commander.branchId", 8);
-                npcStartConversation(player, npc, "emp_day_imperial_commander", message, responses);
+                npcStartConversation(player, self, "emp_day_imperial_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_imperial_commander_condition_hasTask7(player, npc))
+        if (emp_day_imperial_commander_condition_hasTask7(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_431");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (emp_day_imperial_commander_condition_noPrisonAccess(player, npc))
+            if (emp_day_imperial_commander_condition_noPrisonAccess(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -961,21 +960,21 @@ public class emp_day_imperial_commander extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_433");
                 }
                 utils.setScriptVar(player, "conversation.emp_day_imperial_commander.branchId", 21);
-                npcStartConversation(player, npc, "emp_day_imperial_commander", message, responses);
+                npcStartConversation(player, self, "emp_day_imperial_commander", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (emp_day_imperial_commander_condition__defaultCondition(player, npc))
+        if (emp_day_imperial_commander_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_437");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -984,57 +983,56 @@ public class emp_day_imperial_commander extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.emp_day_imperial_commander.branchId");
-        if (branchId == 2 && emp_day_imperial_commander_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && emp_day_imperial_commander_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && emp_day_imperial_commander_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && emp_day_imperial_commander_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && emp_day_imperial_commander_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && emp_day_imperial_commander_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && emp_day_imperial_commander_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && emp_day_imperial_commander_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && emp_day_imperial_commander_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && emp_day_imperial_commander_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && emp_day_imperial_commander_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && emp_day_imperial_commander_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && emp_day_imperial_commander_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && emp_day_imperial_commander_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && emp_day_imperial_commander_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && emp_day_imperial_commander_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && emp_day_imperial_commander_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && emp_day_imperial_commander_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && emp_day_imperial_commander_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && emp_day_imperial_commander_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && emp_day_imperial_commander_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && emp_day_imperial_commander_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && emp_day_imperial_commander_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && emp_day_imperial_commander_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.emp_day_imperial_commander.branchId");
         return SCRIPT_CONTINUE;
     }

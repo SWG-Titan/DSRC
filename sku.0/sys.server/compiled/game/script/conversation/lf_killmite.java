@@ -533,33 +533,32 @@ public class lf_killmite extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (!lf_killmite_condition_questtaken(player, npc))
+        if (!lf_killmite_condition_questtaken(player, self))
         {
-            lf_killmite_action_faceplayer(player, npc);
+            lf_killmite_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_159");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (lf_killmite_condition__defaultCondition(player, npc))
+            if (lf_killmite_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (lf_killmite_condition__defaultCondition(player, npc))
+            if (lf_killmite_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (lf_killmite_condition__defaultCondition(player, npc))
+            if (lf_killmite_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -582,36 +581,36 @@ public class lf_killmite extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_183");
                 }
                 utils.setScriptVar(player, "conversation.lf_killmite.branchId", 1);
-                npcStartConversation(player, npc, "lf_killmite", message, responses);
+                npcStartConversation(player, self, "lf_killmite", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (lf_killmite_condition_ifquestinprogress(player, npc))
+        if (lf_killmite_condition_ifquestinprogress(player, self))
         {
-            lf_killmite_action_faceplayer(player, npc);
+            lf_killmite_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_188");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (lf_killmite_condition_ifquestiscompleted(player, npc))
+            if (lf_killmite_condition_ifquestiscompleted(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (lf_killmite_condition__defaultCondition(player, npc))
+            if (lf_killmite_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (lf_killmite_condition__defaultCondition(player, npc))
+            if (lf_killmite_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -634,22 +633,22 @@ public class lf_killmite extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_212");
                 }
                 utils.setScriptVar(player, "conversation.lf_killmite.branchId", 7);
-                npcStartConversation(player, npc, "lf_killmite", message, responses);
+                npcStartConversation(player, self, "lf_killmite", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (lf_killmite_condition_questrewarded(player, npc))
+        if (lf_killmite_condition_questrewarded(player, self))
         {
-            lf_killmite_action_faceplayer(player, npc);
+            lf_killmite_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_217");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -658,29 +657,28 @@ public class lf_killmite extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.lf_killmite.branchId");
-        if (branchId == 1 && lf_killmite_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && lf_killmite_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && lf_killmite_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && lf_killmite_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && lf_killmite_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && lf_killmite_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && lf_killmite_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && lf_killmite_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && lf_killmite_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && lf_killmite_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.lf_killmite.branchId");
         return SCRIPT_CONTINUE;
     }

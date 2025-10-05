@@ -193,7 +193,7 @@ public class fs_medic_puzzle_sick01 extends script.base_script
             {
                 if (DEBUGGING)
                 {
-                    sendSystemMessageTestingOnly(player, "Changing Symptoms yo");
+                    broadcast(player, "Changing Symptoms yo");
                 }
                 int cureSymptomOne = (int)utils.getFloatObjVar(item, CRAFT_VAR + CURE_SYMPTOM_ONE);
                 int cureSymptomTwo = (int)utils.getFloatObjVar(item, CRAFT_VAR + CURE_SYMPTOM_TWO);

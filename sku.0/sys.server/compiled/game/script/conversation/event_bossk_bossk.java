@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class event_bossk_bossk extends script.base_script
+public class event_bossk_bossk extends base_script
 {
     public event_bossk_bossk()
     {
@@ -795,33 +795,32 @@ public class event_bossk_bossk extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (event_bossk_bossk_condition_hasAnyQuest(player, npc))
+        if (event_bossk_bossk_condition_hasAnyQuest(player, self))
         {
-            doAnimationAction(npc, "gesticulate_wildly");
+            doAnimationAction(self, "gesticulate_wildly");
             string_id message = new string_id(c_stringFile, "s_163");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_bossk_bossk_condition_checkQ1(player, npc))
+            if (event_bossk_bossk_condition_checkQ1(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (event_bossk_bossk_condition_checkQ2(player, npc))
+            if (event_bossk_bossk_condition_checkQ2(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (event_bossk_bossk_condition_checkQ4(player, npc))
+            if (event_bossk_bossk_condition_checkQ4(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -844,36 +843,36 @@ public class event_bossk_bossk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_173");
                 }
                 utils.setScriptVar(player, "conversation.event_bossk_bossk.branchId", 1);
-                npcStartConversation(player, npc, "event_bossk_bossk", message, responses);
+                npcStartConversation(player, self, "event_bossk_bossk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (event_bossk_bossk_condition_finishedAll(player, npc))
+        if (event_bossk_bossk_condition_finishedAll(player, self))
         {
-            doAnimationAction(npc, "dismiss");
+            doAnimationAction(self, "dismiss");
             string_id message = new string_id(c_stringFile, "s_177");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (event_bossk_bossk_condition_finishedQ3(player, npc))
+        if (event_bossk_bossk_condition_finishedQ3(player, self))
         {
-            doAnimationAction(npc, "hands_behind_head");
+            doAnimationAction(self, "hands_behind_head");
             string_id message = new string_id(c_stringFile, "s_179");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_bossk_bossk_condition__defaultCondition(player, npc))
+            if (event_bossk_bossk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (event_bossk_bossk_condition__defaultCondition(player, npc))
+            if (event_bossk_bossk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -892,29 +891,29 @@ public class event_bossk_bossk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_201");
                 }
                 utils.setScriptVar(player, "conversation.event_bossk_bossk.branchId", 6);
-                npcStartConversation(player, npc, "event_bossk_bossk", message, responses);
+                npcStartConversation(player, self, "event_bossk_bossk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (event_bossk_bossk_condition_finishedQ2(player, npc))
+        if (event_bossk_bossk_condition_finishedQ2(player, self))
         {
-            doAnimationAction(npc, "hands_behind_head");
+            doAnimationAction(self, "hands_behind_head");
             string_id message = new string_id(c_stringFile, "s_205");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_bossk_bossk_condition__defaultCondition(player, npc))
+            if (event_bossk_bossk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (event_bossk_bossk_condition__defaultCondition(player, npc))
+            if (event_bossk_bossk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -933,29 +932,29 @@ public class event_bossk_bossk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_223");
                 }
                 utils.setScriptVar(player, "conversation.event_bossk_bossk.branchId", 13);
-                npcStartConversation(player, npc, "event_bossk_bossk", message, responses);
+                npcStartConversation(player, self, "event_bossk_bossk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (event_bossk_bossk_condition_finishedQ1(player, npc))
+        if (event_bossk_bossk_condition_finishedQ1(player, self))
         {
-            doAnimationAction(npc, "hands_behind_head");
+            doAnimationAction(self, "hands_behind_head");
             string_id message = new string_id(c_stringFile, "s_227");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_bossk_bossk_condition__defaultCondition(player, npc))
+            if (event_bossk_bossk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (event_bossk_bossk_condition__defaultCondition(player, npc))
+            if (event_bossk_bossk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -974,29 +973,29 @@ public class event_bossk_bossk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_249");
                 }
                 utils.setScriptVar(player, "conversation.event_bossk_bossk.branchId", 19);
-                npcStartConversation(player, npc, "event_bossk_bossk", message, responses);
+                npcStartConversation(player, self, "event_bossk_bossk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (event_bossk_bossk_condition__defaultCondition(player, npc))
+        if (event_bossk_bossk_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "poke");
+            doAnimationAction(self, "poke");
             string_id message = new string_id(c_stringFile, "s_253");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (event_bossk_bossk_condition__defaultCondition(player, npc))
+            if (event_bossk_bossk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (event_bossk_bossk_condition__defaultCondition(player, npc))
+            if (event_bossk_bossk_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1015,15 +1014,15 @@ public class event_bossk_bossk extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_271");
                 }
                 utils.setScriptVar(player, "conversation.event_bossk_bossk.branchId", 26);
-                npcStartConversation(player, npc, "event_bossk_bossk", message, responses);
+                npcStartConversation(player, self, "event_bossk_bossk", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1032,69 +1031,68 @@ public class event_bossk_bossk extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.event_bossk_bossk.branchId");
-        if (branchId == 1 && event_bossk_bossk_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && event_bossk_bossk_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && event_bossk_bossk_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && event_bossk_bossk_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && event_bossk_bossk_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && event_bossk_bossk_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && event_bossk_bossk_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && event_bossk_bossk_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && event_bossk_bossk_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && event_bossk_bossk_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && event_bossk_bossk_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && event_bossk_bossk_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && event_bossk_bossk_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && event_bossk_bossk_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && event_bossk_bossk_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && event_bossk_bossk_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && event_bossk_bossk_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && event_bossk_bossk_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && event_bossk_bossk_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && event_bossk_bossk_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && event_bossk_bossk_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && event_bossk_bossk_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && event_bossk_bossk_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && event_bossk_bossk_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && event_bossk_bossk_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && event_bossk_bossk_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && event_bossk_bossk_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && event_bossk_bossk_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && event_bossk_bossk_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && event_bossk_bossk_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.event_bossk_bossk.branchId");
         return SCRIPT_CONTINUE;
     }

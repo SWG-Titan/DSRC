@@ -267,37 +267,36 @@ public class npe_entertainer_1_questgiver extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_entertainer_1_questgiver_condition_playerCompletedQuest(player, npc))
+        if (npe_entertainer_1_questgiver_condition_playerCompletedQuest(player, self))
         {
-            npe_entertainer_1_questgiver_action_facePlayer(player, npc);
+            npe_entertainer_1_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_39");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (npe_entertainer_1_questgiver_condition_playerStartedQuest(player, npc))
+        if (npe_entertainer_1_questgiver_condition_playerStartedQuest(player, self))
         {
-            npe_entertainer_1_questgiver_action_facePlayer(player, npc);
+            npe_entertainer_1_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_30");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_entertainer_1_questgiver_condition_playerFinishedMainTask(player, npc))
+            if (npe_entertainer_1_questgiver_condition_playerFinishedMainTask(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_entertainer_1_questgiver_condition__defaultCondition(player, npc))
+            if (npe_entertainer_1_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -316,36 +315,36 @@ public class npe_entertainer_1_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_36");
                 }
                 utils.setScriptVar(player, "conversation.npe_entertainer_1_questgiver.branchId", 2);
-                npcStartConversation(player, npc, "npe_entertainer_1_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_entertainer_1_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_entertainer_1_questgiver_condition_notEntertainer(player, npc))
+        if (npe_entertainer_1_questgiver_condition_notEntertainer(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_43");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_entertainer_1_questgiver_condition_startingconversation(player, npc))
+        if (npe_entertainer_1_questgiver_condition_startingconversation(player, self))
         {
-            doAnimationAction(npc, "greet");
-            npe_entertainer_1_questgiver_action_facePlayer(player, npc);
+            doAnimationAction(self, "greet");
+            npe_entertainer_1_questgiver_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_14");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_entertainer_1_questgiver_condition__defaultCondition(player, npc))
+            if (npe_entertainer_1_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (npe_entertainer_1_questgiver_condition__defaultCondition(player, npc))
+            if (npe_entertainer_1_questgiver_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -364,22 +363,22 @@ public class npe_entertainer_1_questgiver extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_41");
                 }
                 utils.setScriptVar(player, "conversation.npe_entertainer_1_questgiver.branchId", 6);
-                npcStartConversation(player, npc, "npe_entertainer_1_questgiver", message, responses);
+                npcStartConversation(player, self, "npe_entertainer_1_questgiver", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_entertainer_1_questgiver_condition__defaultCondition(player, npc))
+        if (npe_entertainer_1_questgiver_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "greet");
+            doAnimationAction(self, "greet");
             string_id message = new string_id(c_stringFile, "s_46");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -388,25 +387,24 @@ public class npe_entertainer_1_questgiver extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_entertainer_1_questgiver.branchId");
-        if (branchId == 2 && npe_entertainer_1_questgiver_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_entertainer_1_questgiver_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_entertainer_1_questgiver_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_entertainer_1_questgiver_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && npe_entertainer_1_questgiver_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && npe_entertainer_1_questgiver_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && npe_entertainer_1_questgiver_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && npe_entertainer_1_questgiver_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_entertainer_1_questgiver.branchId");
         return SCRIPT_CONTINUE;
     }

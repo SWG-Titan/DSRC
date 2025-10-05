@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class loveday_matchmaker_droid extends script.base_script
+public class loveday_matchmaker_droid extends base_script
 {
     public loveday_matchmaker_droid()
     {

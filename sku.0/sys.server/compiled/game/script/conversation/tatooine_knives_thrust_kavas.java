@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class tatooine_knives_thrust_kavas extends script.base_script
+public class tatooine_knives_thrust_kavas extends base_script
 {
     public tatooine_knives_thrust_kavas()
     {

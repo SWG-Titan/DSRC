@@ -78,3 +78,50 @@ object/building/player/player_house_wod_ns_hut.iff		-1.5	3	6.3	180	9	0.5	6.2	180
 object/building/player/player_house_wod_sm_hut.iff		-1.9	3	5.4	180	9	0.5	6.2	180	
 object/building/player/player_house_jabbas_sail_barge.iff		1	3.3	-3.4	0	1.65	0.1	-4.8	0	
 object/building/player/player_house_tree_house_02.iff		-6.5	5	12.5	180	9.75	0.7	7.3	0	
+object/building/player/city/cityhall_camo_tatooine.iff	object/tangible/sign/municipal/municipal_sign_hanging_capitol.iff	8	4	21	180					
+object/building/player/city/cantina_camo_tatooine.iff	object/tangible/sign/municipal/municipal_sign_hanging_cantina.iff	5	3	11.95	180	10	0.5	15	360	
+object/building/player/city/hospital_camo_tatooine.iff	object/tangible/sign/municipal/municipal_sign_hanging_hospital.iff	8	2	11	180	10	0.2	-8	360	
+object/building/player/city/cloning_camo_tatooine.iff	object/tangible/sign/municipal/municipal_sign_hanging_cloning.iff	9.65	2	3	-90					
+object/building/player/city/cloning_camo_tatooine.iff	object/tangible/sign/player/house_address_tatooine.iff	11.5	3	-14	-90	12.15	0.2	10.4		
+object/building/player/city/imp_cityhall_corellia.iff	object/tangible/sign/municipal/municipal_sign_hanging_capitol.iff	8	4	21	180					
+object/building/player/city/imp_cantina_corellia.iff	object/tangible/sign/municipal/municipal_sign_hanging_cantina.iff	10	3	11.95	180	10	0.5	15	360	
+object/building/player/city/imp_hospital_corellia.iff	object/tangible/sign/municipal/municipal_sign_hanging_hospital.iff	8	2	11	180	10	0.2	-8	360	
+object/building/player/city/imp_cloning_corellia.iff	object/tangible/sign/municipal/municipal_sign_hanging_cloning.iff	9.65	2	3	-90					
+object/building/player/city/imp_theater_corellia.iff	object/tangible/sign/player/house_address_corellia.iff	11.5	2.85	-14	180	12.15	0.2	10.4		
+object/building/player/city/reb_cityhall_corellia.iff	object/tangible/sign/municipal/municipal_sign_hanging_capitol.iff	8	4	21	180					
+object/building/player/city/reb_cantina_corellia.iff	object/tangible/sign/municipal/municipal_sign_hanging_cantina.iff	10	3	11.95	180	10	0.5	15	360	
+object/building/player/city/reb_hospital_corellia.iff	object/tangible/sign/municipal/municipal_sign_hanging_hospital.iff	8	2	11	180	10	0.2	-8	360	
+object/building/player/city/reb_cloning_corellia.iff	object/tangible/sign/municipal/municipal_sign_hanging_cloning.iff	9.65	2	3	-90					
+object/building/player/city/reb_theater_corellia.iff	object/tangible/sign/player/house_address_corellia.iff	11.5	2.85	-14	180	12.15	0.2	10.4		
+object/building/player/player_reb_house_generic_large_window_s01.iff		-12.07	4	9.1	180	-14.48	0.5	18.53		
+object/building/player/player_reb_house_corellia_large_style_01.iff		11.94	2.25	14.51	180	-3.29	0.5	12.94		Y = UP/DOWN
+object/building/player/player_reb_house_generic_medium_windowed.iff		5.13	2.25	7.91	180	11.79	0.5	11.64		
+object/building/player/player_reb_house_generic_medium_style_01.iff		5.13	2.25	7.91	180	11.79	0.5	11.64		
+object/building/player/player_reb_house_generic_small_windowed.iff		-4.1	2.25	8.3	180	-7.56	0.5	11.64		
+object/building/player/player_reb_house_generic_small_style_02.iff		-4.29	2.25	8.2	180	-7.56	0.5	11.64		
+object/building/player/player_imp_house_generic_large_window_s01.iff		-12.07	4	9.1	180	-14.48	0.5	18.53		
+object/building/player/player_imp_house_corellia_large_style_01.iff		11.94	2.25	14.51	180	-3.29	0.5	12.94		Y = UP/DOWN
+object/building/player/player_imp_house_generic_medium_windowed.iff		5.13	2.25	7.91	180	11.79	0.5	11.64		
+object/building/player/player_imp_house_generic_medium_style_01.iff		5.13	2.25	7.91	180	11.79	0.5	11.64		
+object/building/player/player_imp_house_generic_small_windowed.iff		-4.1	2.25	8.3	180	-7.56	0.5	11.64		
+object/building/player/player_imp_house_generic_small_style_02.iff		-4.29	2.25	8.2	180	-7.56	0.5	11.64		
+object/building/player/player_imp_guildhall_generic_style_01.iff		4.15	1.25	21.5	180	9.1	0.2	22.25		You only need to change the float, then restart your planet to see the changes, login, cluster and client can be left up.
+object/building/player/player_reb_guildhall_generic_style_01.iff		4.15	1.25	21.5	180	9.1	0.2	22.25		You only need to change the float, then restart your planet to see the changes, login, cluster and client can be left up.
+object/building/player/player_house_full_vip.iff	object/tangible/sign/player/house_address_corellia.iff	3.2	1.4	12.5	90	0	6.9	8.3	0	
+object/building/player/player_guildhall_corellia_style_02.iff	object/tangible/sign/player/house_address_corellia.iff	4.15	1.25	22.1	90	9.1	0.2	22.25		Set sign to 0 0 0 then rotate appropriately using heading.
+object/building/player/player_mega_bunker.iff	object/tangible/sign/player/house_address_corellia.iff	3.2	1.4	12.5	90	0	6.9	8.3	0	
+object/building/player/player_guildhall_generic_style_02.iff		4.15	1.25	21.5	180	9.1	0.2	22.25		You only need to change the float, then restart your planet to see the changes, login, cluster and client can be left up.
+object/building/player/player_guildhall_naboo_style_02.iff	object/tangible/sign/player/house_address_naboo.iff	4.15	1.25	21.7	180	9.1	0.2	22.25		An alternate way is to make your character a trader, reload the table with changes, and switch the shop signs with default sign
+object/building/player/player_guildhall_tatooine_style_03.iff	object/tangible/sign/player/house_address_tatooine.iff	4.15	1.25	21.7	180	9.1	0.2	22.25		
+object/building/player/player_reb_guildhall_generic_style_02.iff		4.15	1.25	21.5	180	9.1	0.2	22.25		You only need to change the float, then restart your planet to see the changes, login, cluster and client can be left up.
+object/building/player/player_imp_guildhall_generic_style_02.iff		4.15	1.25	21.5	180	9.1	0.2	22.25		You only need to change the float, then restart your planet to see the changes, login, cluster and client can be left up.
+object/building/player/player_house_tatooine_large_style_02.iff		8	2	11	270	9.1	0.2	22.25		
+object/building/player/player_house_camo_tatooine_large_style_01.iff	object/tangible/sign/player/house_address_tatooine.iff	-0.8	2.25	16.2	180	-11.64	0.5	18.75		
+object/building/player/player_house_camo_tatooine_medium_style_01.iff	object/tangible/sign/player/house_address_tatooine.iff	-2	2.25	12.5	180	-11.4	0.5	15.59		
+object/building/player/player_house_camo_tatooine_small_window_style_01.iff	object/tangible/sign/player/house_address_tatooine.iff	4.46	2.25	7.89	180	4.07	0.5	11.5		
+object/building/player/player_house_camo_tatooine_small_style_01.iff	object/tangible/sign/player/house_address_tatooine.iff	4.46	2.25	7.89	180	4.07	0.5	11.5		
+object/building/player/player_house_camo_tatooine_small_style_02.iff	object/tangible/sign/player/house_address_tatooine.iff	4.2	2.25	7.89	180	3.92	0.5	11.65		
+object/building/player/player_house_camo_generic_large_window_s02.iff		1	4	-11.15	0	11.5	0.5	-15.7	180	X = right/left
+object/building/player/player_mandalorian_bunker_s01.iff	object/tangible/sign/player/house_address_corellia.iff	3.2	1.4	12.5	90	0	6.9	8.3	0	
+object/building/player/player_house_reb_bunker.iff	object/tangible/sign/player/house_address_corellia.iff	3.2	1.4	12.5	90	0	6.9	8.3	0	
+object/building/player/player_house_imp_bunker.iff	object/tangible/sign/player/house_address_corellia.iff	3.2	1.4	12.5	90	0	6.9	8.3	0	

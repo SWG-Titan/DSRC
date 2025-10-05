@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class naboo_deeja_peak_tanoa_vills extends script.base_script
+public class naboo_deeja_peak_tanoa_vills extends base_script
 {
     public naboo_deeja_peak_tanoa_vills()
     {
@@ -643,24 +643,23 @@ public class naboo_deeja_peak_tanoa_vills extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition_completedSequencerQuest(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition_completedSequencerQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_57");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition_finishedScannerQuest(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition_finishedScannerQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_20");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, npc))
+            if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -675,28 +674,28 @@ public class naboo_deeja_peak_tanoa_vills extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_87");
                 }
                 utils.setScriptVar(player, "conversation.naboo_deeja_peak_tanoa_vills.branchId", 2);
-                npcStartConversation(player, npc, "naboo_deeja_peak_tanoa_vills", message, responses);
+                npcStartConversation(player, self, "naboo_deeja_peak_tanoa_vills", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition_onScannerQuest(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition_onScannerQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_21");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition_finishedMissingQuest(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition_finishedMissingQuest(player, self))
         {
-            naboo_deeja_peak_tanoa_vills_action_endMissingQuest(player, npc);
+            naboo_deeja_peak_tanoa_vills_action_endMissingQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_56");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, npc))
+            if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -711,28 +710,28 @@ public class naboo_deeja_peak_tanoa_vills extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_58");
                 }
                 utils.setScriptVar(player, "conversation.naboo_deeja_peak_tanoa_vills.branchId", 5);
-                npcStartConversation(player, npc, "naboo_deeja_peak_tanoa_vills", message, responses);
+                npcStartConversation(player, self, "naboo_deeja_peak_tanoa_vills", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition_onMissingQuest(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition_onMissingQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_55");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition_finishedCrashQuest(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition_finishedCrashQuest(player, self))
         {
-            naboo_deeja_peak_tanoa_vills_action_endCrashQuest(player, npc);
+            naboo_deeja_peak_tanoa_vills_action_endCrashQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_52");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, npc))
+            if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -747,28 +746,28 @@ public class naboo_deeja_peak_tanoa_vills extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_53");
                 }
                 utils.setScriptVar(player, "conversation.naboo_deeja_peak_tanoa_vills.branchId", 10);
-                npcStartConversation(player, npc, "naboo_deeja_peak_tanoa_vills", message, responses);
+                npcStartConversation(player, self, "naboo_deeja_peak_tanoa_vills", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition_onCrashQuest(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition_onCrashQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_51");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition_finishedPartsQuest(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition_finishedPartsQuest(player, self))
         {
-            naboo_deeja_peak_tanoa_vills_action_endPartsQuest(player, npc);
+            naboo_deeja_peak_tanoa_vills_action_endPartsQuest(player, self);
             string_id message = new string_id(c_stringFile, "s_48");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, npc))
+            if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -783,28 +782,28 @@ public class naboo_deeja_peak_tanoa_vills extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_73");
                 }
                 utils.setScriptVar(player, "conversation.naboo_deeja_peak_tanoa_vills.branchId", 14);
-                npcStartConversation(player, npc, "naboo_deeja_peak_tanoa_vills", message, responses);
+                npcStartConversation(player, self, "naboo_deeja_peak_tanoa_vills", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition_onPartsQuest(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition_onPartsQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_47");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, npc))
+        if (naboo_deeja_peak_tanoa_vills_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "check_wrist_device");
+            doAnimationAction(self, "check_wrist_device");
             string_id message = new string_id(c_stringFile, "s_43");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (naboo_deeja_peak_tanoa_vills_condition_startSequencerQuest(player, npc))
+            if (naboo_deeja_peak_tanoa_vills_condition_startSequencerQuest(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -819,15 +818,15 @@ public class naboo_deeja_peak_tanoa_vills extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37");
                 }
                 utils.setScriptVar(player, "conversation.naboo_deeja_peak_tanoa_vills.branchId", 19);
-                npcStartConversation(player, npc, "naboo_deeja_peak_tanoa_vills", message, responses);
+                npcStartConversation(player, self, "naboo_deeja_peak_tanoa_vills", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -836,73 +835,72 @@ public class naboo_deeja_peak_tanoa_vills extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.naboo_deeja_peak_tanoa_vills.branchId");
-        if (branchId == 2 && naboo_deeja_peak_tanoa_vills_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && naboo_deeja_peak_tanoa_vills_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && naboo_deeja_peak_tanoa_vills_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && naboo_deeja_peak_tanoa_vills_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && naboo_deeja_peak_tanoa_vills_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && naboo_deeja_peak_tanoa_vills_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && naboo_deeja_peak_tanoa_vills_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && naboo_deeja_peak_tanoa_vills_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && naboo_deeja_peak_tanoa_vills_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && naboo_deeja_peak_tanoa_vills_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && naboo_deeja_peak_tanoa_vills_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && naboo_deeja_peak_tanoa_vills_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && naboo_deeja_peak_tanoa_vills_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && naboo_deeja_peak_tanoa_vills_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && naboo_deeja_peak_tanoa_vills_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && naboo_deeja_peak_tanoa_vills_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && naboo_deeja_peak_tanoa_vills_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && naboo_deeja_peak_tanoa_vills_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && naboo_deeja_peak_tanoa_vills_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && naboo_deeja_peak_tanoa_vills_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && naboo_deeja_peak_tanoa_vills_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && naboo_deeja_peak_tanoa_vills_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && naboo_deeja_peak_tanoa_vills_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && naboo_deeja_peak_tanoa_vills_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && naboo_deeja_peak_tanoa_vills_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && naboo_deeja_peak_tanoa_vills_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && naboo_deeja_peak_tanoa_vills_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && naboo_deeja_peak_tanoa_vills_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && naboo_deeja_peak_tanoa_vills_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && naboo_deeja_peak_tanoa_vills_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && naboo_deeja_peak_tanoa_vills_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && naboo_deeja_peak_tanoa_vills_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.naboo_deeja_peak_tanoa_vills.branchId");
         return SCRIPT_CONTINUE;
     }

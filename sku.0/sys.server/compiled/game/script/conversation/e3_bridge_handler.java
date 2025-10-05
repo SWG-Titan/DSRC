@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class e3_bridge_handler extends script.base_script
+public class e3_bridge_handler extends base_script
 {
     public e3_bridge_handler()
     {

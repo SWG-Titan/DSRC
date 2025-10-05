@@ -6,7 +6,7 @@ import script.library.factions;
 import script.library.utils;
 import script.*;
 
-public class lifeday04c extends script.base_script
+public class lifeday04c extends base_script
 {
     public lifeday04c()
     {

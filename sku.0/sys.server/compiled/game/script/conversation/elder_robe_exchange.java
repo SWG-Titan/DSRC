@@ -415,25 +415,24 @@ public class elder_robe_exchange extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (elder_robe_exchange_condition_completeRobeQuest(player, npc))
+        if (elder_robe_exchange_condition_completeRobeQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_28");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (elder_robe_exchange_condition__defaultCondition(player, npc))
+            if (elder_robe_exchange_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (elder_robe_exchange_condition__defaultCondition(player, npc))
+            if (elder_robe_exchange_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -455,61 +454,61 @@ public class elder_robe_exchange extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "elder_robe_exchange", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "elder_robe_exchange", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (elder_robe_exchange_condition_hasGivenRobe(player, npc))
+        if (elder_robe_exchange_condition_hasGivenRobe(player, self))
         {
-            elder_robe_exchange_action_sendSignalComplete(player, npc);
+            elder_robe_exchange_action_sendSignalComplete(player, self);
             string_id message = new string_id(c_stringFile, "s_31");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (elder_robe_exchange_condition_turnInRobeQuest(player, npc))
+        if (elder_robe_exchange_condition_turnInRobeQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_27");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (elder_robe_exchange_condition_isOnRobeQuest(player, npc))
+        if (elder_robe_exchange_condition_isOnRobeQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_29");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (elder_robe_exchange_condition_hasElderRobe(player, npc))
+        if (elder_robe_exchange_condition_hasElderRobe(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_8");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (elder_robe_exchange_condition__defaultCondition(player, npc))
+            if (elder_robe_exchange_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (elder_robe_exchange_condition__defaultCondition(player, npc))
+            if (elder_robe_exchange_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -528,21 +527,21 @@ public class elder_robe_exchange extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_40");
                 }
                 utils.setScriptVar(player, "conversation.elder_robe_exchange.branchId", 5);
-                npcStartConversation(player, npc, "elder_robe_exchange", message, responses);
+                npcStartConversation(player, self, "elder_robe_exchange", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (elder_robe_exchange_condition__defaultCondition(player, npc))
+        if (elder_robe_exchange_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -551,29 +550,28 @@ public class elder_robe_exchange extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.elder_robe_exchange.branchId");
-        if (branchId == 1 && elder_robe_exchange_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && elder_robe_exchange_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && elder_robe_exchange_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && elder_robe_exchange_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && elder_robe_exchange_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && elder_robe_exchange_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && elder_robe_exchange_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && elder_robe_exchange_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && elder_robe_exchange_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && elder_robe_exchange_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.elder_robe_exchange.branchId");
         return SCRIPT_CONTINUE;
     }

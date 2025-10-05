@@ -348,66 +348,65 @@ public class pvp_station_imperial extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (pvp_station_imperial_condition_isInYacht(player, npc))
+        if (pvp_station_imperial_condition_isInYacht(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_358253b2");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_imperial_condition_isPlayerRebel(player, npc))
+        if (pvp_station_imperial_condition_isPlayerRebel(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_f48e8567");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_imperial_condition_isImperialFactionWithMission(player, npc))
+        if (pvp_station_imperial_condition_isImperialFactionWithMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_e8cb2563");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_imperial_condition_isPlayerNeutral(player, npc))
+        if (pvp_station_imperial_condition_isPlayerNeutral(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_2e491159");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_imperial_condition_isTooFar(player, npc))
+        if (pvp_station_imperial_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_48f82131");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (pvp_station_imperial_condition__defaultCondition(player, npc))
+        if (pvp_station_imperial_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_afe52489");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (pvp_station_imperial_condition__defaultCondition(player, npc))
+            if (pvp_station_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (pvp_station_imperial_condition__defaultCondition(player, npc))
+            if (pvp_station_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (pvp_station_imperial_condition__defaultCondition(player, npc))
+            if (pvp_station_imperial_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -433,20 +432,20 @@ public class pvp_station_imperial extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "pvp_station_imperial", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "pvp_station_imperial", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -455,25 +454,24 @@ public class pvp_station_imperial extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = getIntObjVar(player, "conversation.pvp_station_imperial.branchId");
-        if (branchId == 6 && pvp_station_imperial_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && pvp_station_imperial_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && pvp_station_imperial_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && pvp_station_imperial_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && pvp_station_imperial_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && pvp_station_imperial_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && pvp_station_imperial_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && pvp_station_imperial_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         removeObjVar(player, "conversation.pvp_station_imperial.branchId");
         return SCRIPT_CONTINUE;
     }

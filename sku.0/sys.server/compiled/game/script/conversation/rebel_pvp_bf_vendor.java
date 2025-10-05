@@ -5,7 +5,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.library.utils;
 
-public class rebel_pvp_bf_vendor extends script.base_script
+public class rebel_pvp_bf_vendor extends base_script
 {
     public rebel_pvp_bf_vendor()
     {

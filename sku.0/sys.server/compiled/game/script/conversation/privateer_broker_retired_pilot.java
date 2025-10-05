@@ -4,7 +4,7 @@ import script.library.ai_lib;
 import script.library.chat;
 import script.*;
 
-public class privateer_broker_retired_pilot extends script.base_script
+public class privateer_broker_retired_pilot extends base_script
 {
     public privateer_broker_retired_pilot()
     {
@@ -1215,33 +1215,32 @@ public class privateer_broker_retired_pilot extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (privateer_broker_retired_pilot_condition__defaultCondition(player, npc))
+        if (privateer_broker_retired_pilot_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "check_wrist_device");
+            doAnimationAction(self, "check_wrist_device");
             string_id message = new string_id(c_stringFile, "s_75f774fd");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (privateer_broker_retired_pilot_condition__defaultCondition(player, npc))
+            if (privateer_broker_retired_pilot_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (privateer_broker_retired_pilot_condition__defaultCondition(player, npc))
+            if (privateer_broker_retired_pilot_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (privateer_broker_retired_pilot_condition__defaultCondition(player, npc))
+            if (privateer_broker_retired_pilot_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1264,15 +1263,15 @@ public class privateer_broker_retired_pilot extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5e303134");
                 }
                 setObjVar(player, "conversation.privateer_broker_retired_pilot.branchId", 1);
-                npcStartConversation(player, npc, "privateer_broker_retired_pilot", message, responses);
+                npcStartConversation(player, self, "privateer_broker_retired_pilot", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1281,85 +1280,84 @@ public class privateer_broker_retired_pilot extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = getIntObjVar(player, "conversation.privateer_broker_retired_pilot.branchId");
-        if (branchId == 1 && privateer_broker_retired_pilot_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && privateer_broker_retired_pilot_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && privateer_broker_retired_pilot_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && privateer_broker_retired_pilot_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && privateer_broker_retired_pilot_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && privateer_broker_retired_pilot_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && privateer_broker_retired_pilot_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && privateer_broker_retired_pilot_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && privateer_broker_retired_pilot_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && privateer_broker_retired_pilot_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && privateer_broker_retired_pilot_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && privateer_broker_retired_pilot_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && privateer_broker_retired_pilot_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && privateer_broker_retired_pilot_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && privateer_broker_retired_pilot_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && privateer_broker_retired_pilot_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && privateer_broker_retired_pilot_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && privateer_broker_retired_pilot_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && privateer_broker_retired_pilot_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && privateer_broker_retired_pilot_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && privateer_broker_retired_pilot_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && privateer_broker_retired_pilot_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && privateer_broker_retired_pilot_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && privateer_broker_retired_pilot_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && privateer_broker_retired_pilot_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && privateer_broker_retired_pilot_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && privateer_broker_retired_pilot_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && privateer_broker_retired_pilot_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && privateer_broker_retired_pilot_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && privateer_broker_retired_pilot_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && privateer_broker_retired_pilot_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && privateer_broker_retired_pilot_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && privateer_broker_retired_pilot_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && privateer_broker_retired_pilot_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && privateer_broker_retired_pilot_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && privateer_broker_retired_pilot_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && privateer_broker_retired_pilot_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && privateer_broker_retired_pilot_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         removeObjVar(player, "conversation.privateer_broker_retired_pilot.branchId");
         return SCRIPT_CONTINUE;
     }

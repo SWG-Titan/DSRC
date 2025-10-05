@@ -216,18 +216,17 @@ public class gate_keeper_quarantine_zone extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (gate_keeper_quarantine_zone_condition_hasFoundContingent(player, npc))
+        if (gate_keeper_quarantine_zone_condition_hasFoundContingent(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_27");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (gate_keeper_quarantine_zone_condition__defaultCondition(player, npc))
+            if (gate_keeper_quarantine_zone_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -242,21 +241,21 @@ public class gate_keeper_quarantine_zone extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_28");
                 }
                 utils.setScriptVar(player, "conversation.gate_keeper_quarantine_zone.branchId", 1);
-                npcStartConversation(player, npc, "gate_keeper_quarantine_zone", message, responses);
+                npcStartConversation(player, self, "gate_keeper_quarantine_zone", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (gate_keeper_quarantine_zone_condition_hasQuestTwo(player, npc))
+        if (gate_keeper_quarantine_zone_condition_hasQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_21");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (gate_keeper_quarantine_zone_condition__defaultCondition(player, npc))
+            if (gate_keeper_quarantine_zone_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -271,21 +270,21 @@ public class gate_keeper_quarantine_zone extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_22");
                 }
                 utils.setScriptVar(player, "conversation.gate_keeper_quarantine_zone.branchId", 2);
-                npcStartConversation(player, npc, "gate_keeper_quarantine_zone", message, responses);
+                npcStartConversation(player, self, "gate_keeper_quarantine_zone", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (gate_keeper_quarantine_zone_condition_hasCompletedQuestOne(player, npc))
+        if (gate_keeper_quarantine_zone_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (gate_keeper_quarantine_zone_condition__defaultCondition(player, npc))
+            if (gate_keeper_quarantine_zone_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -303,26 +302,26 @@ public class gate_keeper_quarantine_zone extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "gate_keeper_quarantine_zone", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "gate_keeper_quarantine_zone", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (gate_keeper_quarantine_zone_condition_hasQuestOne(player, npc))
+        if (gate_keeper_quarantine_zone_condition_hasQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_10");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (gate_keeper_quarantine_zone_condition__defaultCondition(player, npc))
+            if (gate_keeper_quarantine_zone_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -337,22 +336,22 @@ public class gate_keeper_quarantine_zone extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_12");
                 }
                 utils.setScriptVar(player, "conversation.gate_keeper_quarantine_zone.branchId", 4);
-                npcStartConversation(player, npc, "gate_keeper_quarantine_zone", message, responses);
+                npcStartConversation(player, self, "gate_keeper_quarantine_zone", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (gate_keeper_quarantine_zone_condition__defaultCondition(player, npc))
+        if (gate_keeper_quarantine_zone_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "shoo");
+            doAnimationAction(self, "shoo");
             string_id message = new string_id(c_stringFile, "s_30");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -361,33 +360,32 @@ public class gate_keeper_quarantine_zone extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.gate_keeper_quarantine_zone.branchId");
-        if (branchId == 1 && gate_keeper_quarantine_zone_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && gate_keeper_quarantine_zone_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && gate_keeper_quarantine_zone_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && gate_keeper_quarantine_zone_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && gate_keeper_quarantine_zone_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && gate_keeper_quarantine_zone_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && gate_keeper_quarantine_zone_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && gate_keeper_quarantine_zone_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && gate_keeper_quarantine_zone_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && gate_keeper_quarantine_zone_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && gate_keeper_quarantine_zone_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && gate_keeper_quarantine_zone_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.gate_keeper_quarantine_zone.branchId");
         return SCRIPT_CONTINUE;
     }

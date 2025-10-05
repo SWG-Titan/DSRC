@@ -6,7 +6,7 @@ import script.library.jedi_trials;
 import script.library.utils;
 import script.*;
 
-public class padawan_old_musician_02 extends script.base_script
+public class padawan_old_musician_02 extends base_script
 {
     public padawan_old_musician_02()
     {
@@ -536,20 +536,19 @@ public class padawan_old_musician_02 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (padawan_old_musician_02_condition_isTrialPlayer(player, npc))
+        if (padawan_old_musician_02_condition_isTrialPlayer(player, self))
         {
-            doAnimationAction(npc, "point_to_self");
-            padawan_old_musician_02_action_facePlayer(player, npc);
+            doAnimationAction(self, "point_to_self");
+            padawan_old_musician_02_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_cefcce06");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (padawan_old_musician_02_condition__defaultCondition(player, npc))
+            if (padawan_old_musician_02_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -564,22 +563,22 @@ public class padawan_old_musician_02 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_83a3fa55");
                 }
                 utils.setScriptVar(player, "conversation.padawan_old_musician_02.branchId", 1);
-                npcStartConversation(player, npc, "padawan_old_musician_02", message, responses);
+                npcStartConversation(player, self, "padawan_old_musician_02", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (padawan_old_musician_02_condition__defaultCondition(player, npc))
+        if (padawan_old_musician_02_condition__defaultCondition(player, self))
         {
-            padawan_old_musician_02_action_facePlayer(player, npc);
+            padawan_old_musician_02_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_5d25f30f");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -588,37 +587,36 @@ public class padawan_old_musician_02 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.padawan_old_musician_02.branchId");
-        if (branchId == 1 && padawan_old_musician_02_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && padawan_old_musician_02_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && padawan_old_musician_02_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && padawan_old_musician_02_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && padawan_old_musician_02_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && padawan_old_musician_02_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && padawan_old_musician_02_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && padawan_old_musician_02_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && padawan_old_musician_02_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && padawan_old_musician_02_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && padawan_old_musician_02_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && padawan_old_musician_02_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && padawan_old_musician_02_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && padawan_old_musician_02_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.padawan_old_musician_02.branchId");
         return SCRIPT_CONTINUE;
     }

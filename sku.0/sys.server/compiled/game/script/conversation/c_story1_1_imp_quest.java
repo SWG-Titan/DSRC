@@ -17,8 +17,7 @@ public class c_story1_1_imp_quest extends script.base_script
     {
         int questId1 = questGetQuestId("quest/c_story1_1_imp");
         int questId2 = questGetQuestId("quest/c_story1_2_imp");
-        boolean onQuest = questIsQuestActive(questId1, player) || questIsQuestComplete(questId1, player) || (questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
-        return onQuest;
+        return questIsQuestActive(questId1, player) || questIsQuestComplete(questId1, player) || (questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
     }
     public boolean c_story1_1_imp_quest_condition_playerIsReb(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -33,16 +32,14 @@ public class c_story1_1_imp_quest extends script.base_script
         int questId1 = questGetQuestId("quest/c_story1_1_imp");
         int questId2 = questGetQuestId("quest/c_story1_2_imp");
         int unlock = groundquests.getTaskId(questId1, "unlock");
-        boolean onQuest = questIsQuestActive(questId1, player) && questIsTaskComplete(questId1, unlock, player) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
-        return onQuest;
+        return questIsQuestActive(questId1, player) && questIsTaskComplete(questId1, unlock, player) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
     }
     public boolean c_story1_1_imp_quest_condition_questActivePreData(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/c_story1_1_imp");
         int questId2 = questGetQuestId("quest/c_story1_2_imp");
         int unlock = groundquests.getTaskId(questId1, "unlock");
-        boolean onQuest = questIsQuestActive(questId1, player) && !questIsTaskComplete(questId1, unlock, player) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
-        return onQuest;
+        return questIsQuestActive(questId1, player) && !questIsTaskComplete(questId1, unlock, player) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
     }
     public boolean c_story1_1_imp_quest_condition_questComplete(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -86,8 +83,7 @@ public class c_story1_1_imp_quest extends script.base_script
         int questId1 = questGetQuestId("quest/c_story1_1_imp");
         int questId2 = questGetQuestId("quest/c_story1_2_imp");
         int cliffhanger = groundquests.getTaskId(questId1, "cliffhanger");
-        boolean quest1Complete = (questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player)) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
-        return quest1Complete;
+        return (questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player)) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
     }
     public boolean c_story1_1_imp_quest_condition_completedS1Neutral(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -98,8 +94,7 @@ public class c_story1_1_imp_quest extends script.base_script
         int questId1 = questGetQuestId("quest/c_story1_1_neu");
         int questId2 = questGetQuestId("quest/c_story1_2_imp");
         int cliffhanger = groundquests.getTaskId(questId1, "cliffhanger");
-        boolean Quest1Complete = (questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player)) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
-        return Quest1Complete;
+        return (questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player)) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
     }
     public boolean c_story1_1_imp_quest_condition_completedS1Reb(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -110,8 +105,7 @@ public class c_story1_1_imp_quest extends script.base_script
         int questId1 = questGetQuestId("quest/c_story1_1_reb");
         int questId2 = questGetQuestId("quest/c_story1_2_imp");
         int cliffhanger = groundquests.getTaskId(questId1, "cliffhanger");
-        boolean Quest1Complete = (questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player)) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
-        return Quest1Complete;
+        return (questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player)) && !(questIsQuestActive(questId2, player) || questIsQuestComplete(questId2, player));
     }
     public boolean c_story1_1_imp_quest_condition_completedS1NewFactionReb(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -121,8 +115,7 @@ public class c_story1_1_imp_quest extends script.base_script
         }
         int questId1 = questGetQuestId("quest/c_story1_1_imp");
         int cliffhanger = groundquests.getTaskId(questId1, "cliffhanger");
-        boolean Quest1Complete = questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player);
-        return Quest1Complete;
+        return questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player);
     }
     public boolean c_story1_1_imp_quest_condition_completedS1NewFactionNeutral(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -132,8 +125,7 @@ public class c_story1_1_imp_quest extends script.base_script
         }
         int questId1 = questGetQuestId("quest/c_story1_1_imp");
         int cliffhanger = groundquests.getTaskId(questId1, "cliffhanger");
-        boolean Quest1Complete = questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player);
-        return Quest1Complete;
+        return questIsQuestComplete(questId1, player) || questIsTaskActive(questId1, cliffhanger, player);
     }
     public boolean c_story1_1_imp_quest_condition_quest2Active(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -1634,64 +1626,63 @@ public class c_story1_1_imp_quest extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (c_story1_1_imp_quest_condition_completedS1NewFactionReb(player, npc))
+        if (c_story1_1_imp_quest_condition_completedS1NewFactionReb(player, self))
         {
-            doAnimationAction(npc, "shake_head_disgust");
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            doAnimationAction(self, "shake_head_disgust");
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_219");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_completedS1NewFactionNeutral(player, npc))
+        if (c_story1_1_imp_quest_condition_completedS1NewFactionNeutral(player, self))
         {
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_222");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_playerIsNeutral(player, npc))
+        if (c_story1_1_imp_quest_condition_playerIsNeutral(player, self))
         {
-            doAnimationAction(npc, "shake_head_no");
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            doAnimationAction(self, "shake_head_no");
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_224");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_playerIsReb(player, npc))
+        if (c_story1_1_imp_quest_condition_playerIsReb(player, self))
         {
-            doAnimationAction(npc, "shoo");
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            doAnimationAction(self, "shoo");
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_226");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_completedS1Imp(player, npc))
+        if (c_story1_1_imp_quest_condition_completedS1Imp(player, self))
         {
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_286");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1714,36 +1705,36 @@ public class c_story1_1_imp_quest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_304");
                 }
                 utils.setScriptVar(player, "conversation.c_story1_1_imp_quest.branchId", 5);
-                npcStartConversation(player, npc, "c_story1_1_imp_quest", message, responses);
+                npcStartConversation(player, self, "c_story1_1_imp_quest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_completedS1Neutral(player, npc))
+        if (c_story1_1_imp_quest_condition_completedS1Neutral(player, self))
         {
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_308");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1766,36 +1757,36 @@ public class c_story1_1_imp_quest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_304");
                 }
                 utils.setScriptVar(player, "conversation.c_story1_1_imp_quest.branchId", 5);
-                npcStartConversation(player, npc, "c_story1_1_imp_quest", message, responses);
+                npcStartConversation(player, self, "c_story1_1_imp_quest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_completedS1Reb(player, npc))
+        if (c_story1_1_imp_quest_condition_completedS1Reb(player, self))
         {
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_310");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1818,36 +1809,36 @@ public class c_story1_1_imp_quest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_304");
                 }
                 utils.setScriptVar(player, "conversation.c_story1_1_imp_quest.branchId", 5);
-                npcStartConversation(player, npc, "c_story1_1_imp_quest", message, responses);
+                npcStartConversation(player, self, "c_story1_1_imp_quest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (!c_story1_1_imp_quest_condition_playerStartedQuest(player, npc))
+        if (!c_story1_1_imp_quest_condition_playerStartedQuest(player, self))
         {
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_228");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1870,43 +1861,43 @@ public class c_story1_1_imp_quest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_246");
                 }
                 utils.setScriptVar(player, "conversation.c_story1_1_imp_quest.branchId", 13);
-                npcStartConversation(player, npc, "c_story1_1_imp_quest", message, responses);
+                npcStartConversation(player, self, "c_story1_1_imp_quest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_questActivePreData(player, npc))
+        if (c_story1_1_imp_quest_condition_questActivePreData(player, self))
         {
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_250");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_story1_1_imp_quest_condition_notFoundCrash(player, npc))
+            if (c_story1_1_imp_quest_condition_notFoundCrash(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_story1_1_imp_quest_condition_foundData(player, npc))
+            if (c_story1_1_imp_quest_condition_foundData(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1933,36 +1924,36 @@ public class c_story1_1_imp_quest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_280");
                 }
                 utils.setScriptVar(player, "conversation.c_story1_1_imp_quest.branchId", 19);
-                npcStartConversation(player, npc, "c_story1_1_imp_quest", message, responses);
+                npcStartConversation(player, self, "c_story1_1_imp_quest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_questActivePostData(player, npc))
+        if (c_story1_1_imp_quest_condition_questActivePostData(player, self))
         {
-            doAnimationAction(npc, "point_forward");
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            doAnimationAction(self, "point_forward");
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_284");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_quest3Complete(player, npc))
+        if (c_story1_1_imp_quest_condition_quest3Complete(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_956");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1981,23 +1972,23 @@ public class c_story1_1_imp_quest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_89");
                 }
                 utils.setScriptVar(player, "conversation.c_story1_1_imp_quest.branchId", 29);
-                npcStartConversation(player, npc, "c_story1_1_imp_quest", message, responses);
+                npcStartConversation(player, self, "c_story1_1_imp_quest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_onTaskReturn(player, npc))
+        if (c_story1_1_imp_quest_condition_onTaskReturn(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_955");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2015,35 +2006,35 @@ public class c_story1_1_imp_quest extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "c_story1_1_imp_quest", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "c_story1_1_imp_quest", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_quest3Active(player, npc))
+        if (c_story1_1_imp_quest_condition_quest3Active(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
             string_id message = new string_id(c_stringFile, "s_329");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2062,38 +2053,38 @@ public class c_story1_1_imp_quest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_331");
                 }
                 utils.setScriptVar(player, "conversation.c_story1_1_imp_quest.branchId", 42);
-                npcStartConversation(player, npc, "c_story1_1_imp_quest", message, responses);
+                npcStartConversation(player, self, "c_story1_1_imp_quest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition_quest2Active(player, npc))
+        if (c_story1_1_imp_quest_condition_quest2Active(player, self))
         {
-            doAnimationAction(npc, "salute2");
+            doAnimationAction(self, "salute2");
             doAnimationAction(player, "salute2");
-            c_story1_1_imp_quest_action_completeQ2(player, npc);
+            c_story1_1_imp_quest_action_completeQ2(player, self);
             string_id message = new string_id(c_stringFile, "s_291");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+            if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2116,22 +2107,22 @@ public class c_story1_1_imp_quest extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_297");
                 }
                 utils.setScriptVar(player, "conversation.c_story1_1_imp_quest.branchId", 45);
-                npcStartConversation(player, npc, "c_story1_1_imp_quest", message, responses);
+                npcStartConversation(player, self, "c_story1_1_imp_quest", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (c_story1_1_imp_quest_condition__defaultCondition(player, npc))
+        if (c_story1_1_imp_quest_condition__defaultCondition(player, self))
         {
-            c_story1_1_imp_quest_action_faceplayer(player, npc);
+            c_story1_1_imp_quest_action_faceplayer(player, self);
             string_id message = new string_id(c_stringFile, "s_312");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2140,117 +2131,116 @@ public class c_story1_1_imp_quest extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.c_story1_1_imp_quest.branchId");
-        if (branchId == 5 && c_story1_1_imp_quest_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && c_story1_1_imp_quest_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && c_story1_1_imp_quest_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && c_story1_1_imp_quest_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && c_story1_1_imp_quest_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && c_story1_1_imp_quest_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && c_story1_1_imp_quest_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && c_story1_1_imp_quest_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && c_story1_1_imp_quest_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && c_story1_1_imp_quest_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && c_story1_1_imp_quest_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && c_story1_1_imp_quest_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && c_story1_1_imp_quest_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && c_story1_1_imp_quest_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && c_story1_1_imp_quest_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && c_story1_1_imp_quest_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && c_story1_1_imp_quest_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && c_story1_1_imp_quest_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && c_story1_1_imp_quest_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && c_story1_1_imp_quest_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && c_story1_1_imp_quest_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && c_story1_1_imp_quest_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && c_story1_1_imp_quest_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && c_story1_1_imp_quest_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && c_story1_1_imp_quest_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && c_story1_1_imp_quest_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && c_story1_1_imp_quest_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && c_story1_1_imp_quest_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && c_story1_1_imp_quest_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && c_story1_1_imp_quest_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && c_story1_1_imp_quest_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && c_story1_1_imp_quest_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && c_story1_1_imp_quest_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && c_story1_1_imp_quest_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && c_story1_1_imp_quest_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && c_story1_1_imp_quest_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && c_story1_1_imp_quest_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && c_story1_1_imp_quest_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && c_story1_1_imp_quest_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && c_story1_1_imp_quest_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && c_story1_1_imp_quest_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && c_story1_1_imp_quest_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && c_story1_1_imp_quest_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && c_story1_1_imp_quest_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && c_story1_1_imp_quest_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && c_story1_1_imp_quest_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && c_story1_1_imp_quest_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && c_story1_1_imp_quest_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && c_story1_1_imp_quest_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && c_story1_1_imp_quest_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && c_story1_1_imp_quest_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && c_story1_1_imp_quest_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 53 && c_story1_1_imp_quest_handleBranch53(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 53 && c_story1_1_imp_quest_handleBranch53(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.c_story1_1_imp_quest.branchId");
         return SCRIPT_CONTINUE;
     }

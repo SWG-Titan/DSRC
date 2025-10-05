@@ -345,32 +345,31 @@ public class prisoner_pirate_cave extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (prisoner_pirate_cave_condition_hasArrived(player, npc))
+        if (prisoner_pirate_cave_condition_hasArrived(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_16");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prisoner_pirate_cave_condition_isTravelingWithOwner(player, npc))
+        if (prisoner_pirate_cave_condition_isTravelingWithOwner(player, self))
         {
-            prisoner_pirate_cave_action_walkFaster(player, npc);
+            prisoner_pirate_cave_action_walkFaster(player, self);
             string_id message = new string_id(c_stringFile, "s_15");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prisoner_pirate_cave_condition_hasRescueTask(player, npc))
+        if (prisoner_pirate_cave_condition_hasRescueTask(player, self))
         {
-            doAnimationAction(npc, "scared");
+            doAnimationAction(self, "scared");
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (prisoner_pirate_cave_condition__defaultCondition(player, npc))
+            if (prisoner_pirate_cave_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -385,27 +384,27 @@ public class prisoner_pirate_cave extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_8");
                 }
                 utils.setScriptVar(player, "conversation.prisoner_pirate_cave.branchId", 3);
-                npcStartConversation(player, npc, "prisoner_pirate_cave", message, responses);
+                npcStartConversation(player, self, "prisoner_pirate_cave", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (prisoner_pirate_cave_condition_isTraveling(player, npc))
+        if (prisoner_pirate_cave_condition_isTraveling(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_19");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (prisoner_pirate_cave_condition__defaultCondition(player, npc))
+        if (prisoner_pirate_cave_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_18");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -414,17 +413,16 @@ public class prisoner_pirate_cave extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.prisoner_pirate_cave.branchId");
-        if (branchId == 3 && prisoner_pirate_cave_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && prisoner_pirate_cave_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && prisoner_pirate_cave_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && prisoner_pirate_cave_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.prisoner_pirate_cave.branchId");
         return SCRIPT_CONTINUE;
     }

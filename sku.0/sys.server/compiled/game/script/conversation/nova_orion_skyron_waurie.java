@@ -127,36 +127,35 @@ public class nova_orion_skyron_waurie extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (nova_orion_skyron_waurie_condition_doneWithSkyron(player, npc))
+        if (nova_orion_skyron_waurie_condition_doneWithSkyron(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (nova_orion_skyron_waurie_condition_returnRank2_04(player, npc))
+        if (nova_orion_skyron_waurie_condition_returnRank2_04(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (nova_orion_skyron_waurie_condition_onRank2_04(player, npc))
+        if (nova_orion_skyron_waurie_condition_onRank2_04(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_11");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (nova_orion_skyron_waurie_condition_qualifiesForSkyronQuest(player, npc))
+        if (nova_orion_skyron_waurie_condition_qualifiesForSkyronQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (nova_orion_skyron_waurie_condition__defaultCondition(player, npc))
+            if (nova_orion_skyron_waurie_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -171,21 +170,21 @@ public class nova_orion_skyron_waurie extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_12");
                 }
                 utils.setScriptVar(player, "conversation.nova_orion_skyron_waurie.branchId", 4);
-                npcStartConversation(player, npc, "nova_orion_skyron_waurie", message, responses);
+                npcStartConversation(player, self, "nova_orion_skyron_waurie", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (nova_orion_skyron_waurie_condition__defaultCondition(player, npc))
+        if (nova_orion_skyron_waurie_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_18");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -194,17 +193,16 @@ public class nova_orion_skyron_waurie extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.nova_orion_skyron_waurie.branchId");
-        if (branchId == 4 && nova_orion_skyron_waurie_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && nova_orion_skyron_waurie_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && nova_orion_skyron_waurie_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && nova_orion_skyron_waurie_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.nova_orion_skyron_waurie.branchId");
         return SCRIPT_CONTINUE;
     }

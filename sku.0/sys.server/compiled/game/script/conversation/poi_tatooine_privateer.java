@@ -944,42 +944,41 @@ public class poi_tatooine_privateer extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (poi_tatooine_privateer_condition_isTooFar(player, npc))
+        if (poi_tatooine_privateer_condition_isTooFar(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_fc740f6a");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_hasAnyQuest(player, npc))
+        if (poi_tatooine_privateer_condition_hasAnyQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_736584d8");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (!poi_tatooine_privateer_condition_isCorrectFaction(player, npc))
+        if (!poi_tatooine_privateer_condition_isCorrectFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_49904b3");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_isNegativeFaction(player, npc))
+        if (poi_tatooine_privateer_condition_isNegativeFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_f59dd698");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_failedQuestTwo(player, npc))
+        if (poi_tatooine_privateer_condition_failedQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_36d6852");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -994,21 +993,21 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_fcf8c341");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 5);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_failedQuestThree(player, npc))
+        if (poi_tatooine_privateer_condition_failedQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_42e25376");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1023,21 +1022,21 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5c3ad40f");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 8);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_failedQuestOne(player, npc))
+        if (poi_tatooine_privateer_condition_failedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_76924085");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1052,21 +1051,21 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_2d8a838b");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 11);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_collectingQuestOneReward(player, npc))
+        if (poi_tatooine_privateer_condition_collectingQuestOneReward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_e20422e9");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1081,21 +1080,21 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6613e8a2");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 14);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_collectingQuestThreeReward(player, npc))
+        if (poi_tatooine_privateer_condition_collectingQuestThreeReward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_8d1e636e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1110,21 +1109,21 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6fc5551a");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 17);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_collectingQuestTwoReward(player, npc))
+        if (poi_tatooine_privateer_condition_collectingQuestTwoReward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_50cdd468");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1139,21 +1138,21 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_e7cb1e01");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 20);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_hasCompletedQuestThree(player, npc))
+        if (poi_tatooine_privateer_condition_hasCompletedQuestThree(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_458d24ab");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1168,21 +1167,21 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_e4bd704d");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 22);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_hasCompletedQuestTwo(player, npc))
+        if (poi_tatooine_privateer_condition_hasCompletedQuestTwo(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_68496504");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1197,21 +1196,21 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_4dc8c70");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 25);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_hasCompletedQuestOne(player, npc))
+        if (poi_tatooine_privateer_condition_hasCompletedQuestOne(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_b71871d5");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1226,28 +1225,28 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6d43911a");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 31);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition_isCorrectFaction(player, npc))
+        if (poi_tatooine_privateer_condition_isCorrectFaction(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_4004b748");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1266,21 +1265,21 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_3a510008");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 37);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+        if (poi_tatooine_privateer_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_485816ee");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (poi_tatooine_privateer_condition__defaultCondition(player, npc))
+            if (poi_tatooine_privateer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1295,15 +1294,15 @@ public class poi_tatooine_privateer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_d3874dd0");
                 }
                 utils.setScriptVar(player, "conversation.poi_tatooine_privateer.branchId", 43);
-                npcStartConversation(player, npc, "poi_tatooine_privateer", message, responses);
+                npcStartConversation(player, self, "poi_tatooine_privateer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1312,101 +1311,100 @@ public class poi_tatooine_privateer extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.poi_tatooine_privateer.branchId");
-        if (branchId == 5 && poi_tatooine_privateer_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && poi_tatooine_privateer_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && poi_tatooine_privateer_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && poi_tatooine_privateer_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && poi_tatooine_privateer_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && poi_tatooine_privateer_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && poi_tatooine_privateer_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && poi_tatooine_privateer_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && poi_tatooine_privateer_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && poi_tatooine_privateer_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && poi_tatooine_privateer_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && poi_tatooine_privateer_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && poi_tatooine_privateer_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && poi_tatooine_privateer_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && poi_tatooine_privateer_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && poi_tatooine_privateer_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && poi_tatooine_privateer_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && poi_tatooine_privateer_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && poi_tatooine_privateer_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && poi_tatooine_privateer_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && poi_tatooine_privateer_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && poi_tatooine_privateer_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && poi_tatooine_privateer_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && poi_tatooine_privateer_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && poi_tatooine_privateer_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && poi_tatooine_privateer_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && poi_tatooine_privateer_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && poi_tatooine_privateer_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && poi_tatooine_privateer_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && poi_tatooine_privateer_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && poi_tatooine_privateer_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && poi_tatooine_privateer_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && poi_tatooine_privateer_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && poi_tatooine_privateer_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && poi_tatooine_privateer_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && poi_tatooine_privateer_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && poi_tatooine_privateer_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && poi_tatooine_privateer_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && poi_tatooine_privateer_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && poi_tatooine_privateer_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && poi_tatooine_privateer_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && poi_tatooine_privateer_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && poi_tatooine_privateer_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && poi_tatooine_privateer_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && poi_tatooine_privateer_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && poi_tatooine_privateer_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.poi_tatooine_privateer.branchId");
         return SCRIPT_CONTINUE;
     }

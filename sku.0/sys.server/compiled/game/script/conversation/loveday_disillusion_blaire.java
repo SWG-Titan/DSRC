@@ -6,7 +6,7 @@ import script.library.chat;
 import script.library.groundquests;
 import script.library.utils;
 
-public class loveday_disillusion_blaire extends script.base_script
+public class loveday_disillusion_blaire extends base_script
 {
     public loveday_disillusion_blaire()
     {
@@ -349,31 +349,30 @@ public class loveday_disillusion_blaire extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (loveday_disillusion_blaire_condition_questComplete(player, npc))
+        if (loveday_disillusion_blaire_condition_questComplete(player, self))
         {
-            loveday_disillusion_blaire_action_grantCollectionSlot(player, npc);
+            loveday_disillusion_blaire_action_grantCollectionSlot(player, self);
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_blaire_condition_undisillusioned(player, npc))
+        if (loveday_disillusion_blaire_condition_undisillusioned(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_49");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_blaire_condition_mrHateReturn(player, npc))
+        if (loveday_disillusion_blaire_condition_mrHateReturn(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (loveday_disillusion_blaire_condition__defaultCondition(player, npc))
+            if (loveday_disillusion_blaire_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -388,28 +387,28 @@ public class loveday_disillusion_blaire extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_37");
                 }
                 utils.setScriptVar(player, "conversation.loveday_disillusion_blaire.branchId", 3);
-                npcStartConversation(player, npc, "loveday_disillusion_blaire", message, responses);
+                npcStartConversation(player, self, "loveday_disillusion_blaire", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_blaire_condition_mrHateActive(player, npc))
+        if (loveday_disillusion_blaire_condition_mrHateActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_13");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_blaire_condition_loveNoteReturn(player, npc))
+        if (loveday_disillusion_blaire_condition_loveNoteReturn(player, self))
         {
-            loveday_disillusion_blaire_action_signalLoveNote(player, npc);
+            loveday_disillusion_blaire_action_signalLoveNote(player, self);
             string_id message = new string_id(c_stringFile, "s_21");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (loveday_disillusion_blaire_condition__defaultCondition(player, npc))
+            if (loveday_disillusion_blaire_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -424,28 +423,28 @@ public class loveday_disillusion_blaire extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_31");
                 }
                 utils.setScriptVar(player, "conversation.loveday_disillusion_blaire.branchId", 7);
-                npcStartConversation(player, npc, "loveday_disillusion_blaire", message, responses);
+                npcStartConversation(player, self, "loveday_disillusion_blaire", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_blaire_condition_loveNoteActive(player, npc))
+        if (loveday_disillusion_blaire_condition_loveNoteActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_23");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_blaire_condition_petLoverReturn(player, npc))
+        if (loveday_disillusion_blaire_condition_petLoverReturn(player, self))
         {
-            loveday_disillusion_blaire_action_signalPetLover(player, npc);
+            loveday_disillusion_blaire_action_signalPetLover(player, self);
             string_id message = new string_id(c_stringFile, "s_25");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (loveday_disillusion_blaire_condition__defaultCondition(player, npc))
+            if (loveday_disillusion_blaire_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -460,27 +459,27 @@ public class loveday_disillusion_blaire extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_29");
                 }
                 utils.setScriptVar(player, "conversation.loveday_disillusion_blaire.branchId", 12);
-                npcStartConversation(player, npc, "loveday_disillusion_blaire", message, responses);
+                npcStartConversation(player, self, "loveday_disillusion_blaire", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_blaire_condition_petLoverActive(player, npc))
+        if (loveday_disillusion_blaire_condition_petLoverActive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_41");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_blaire_condition_questStart(player, npc))
+        if (loveday_disillusion_blaire_condition_questStart(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_43");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (loveday_disillusion_blaire_condition__defaultCondition(player, npc))
+            if (loveday_disillusion_blaire_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -495,21 +494,21 @@ public class loveday_disillusion_blaire extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_45");
                 }
                 utils.setScriptVar(player, "conversation.loveday_disillusion_blaire.branchId", 15);
-                npcStartConversation(player, npc, "loveday_disillusion_blaire", message, responses);
+                npcStartConversation(player, self, "loveday_disillusion_blaire", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (loveday_disillusion_blaire_condition__defaultCondition(player, npc))
+        if (loveday_disillusion_blaire_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_50");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -518,37 +517,36 @@ public class loveday_disillusion_blaire extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.loveday_disillusion_blaire.branchId");
-        if (branchId == 3 && loveday_disillusion_blaire_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && loveday_disillusion_blaire_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && loveday_disillusion_blaire_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && loveday_disillusion_blaire_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && loveday_disillusion_blaire_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && loveday_disillusion_blaire_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && loveday_disillusion_blaire_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && loveday_disillusion_blaire_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && loveday_disillusion_blaire_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && loveday_disillusion_blaire_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && loveday_disillusion_blaire_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && loveday_disillusion_blaire_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && loveday_disillusion_blaire_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && loveday_disillusion_blaire_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.loveday_disillusion_blaire.branchId");
         return SCRIPT_CONTINUE;
     }

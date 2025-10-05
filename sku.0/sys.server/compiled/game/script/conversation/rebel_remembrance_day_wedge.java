@@ -3,6 +3,9 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
+import javax.annotation.processing.SupportedAnnotationTypes;
+
+@SuppressWarnings("InfiniteRecursion")
 public class rebel_remembrance_day_wedge extends script.base_script
 {
     public rebel_remembrance_day_wedge()
@@ -250,33 +253,32 @@ public class rebel_remembrance_day_wedge extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (rebel_remembrance_day_wedge_condition_isImperialPlayer(player, npc))
+        if (rebel_remembrance_day_wedge_condition_isImperialPlayer(player, self))
         {
-            rebel_remembrance_day_wedge_action_spawnTroopers(player, npc);
+            rebel_remembrance_day_wedge_action_spawnTroopers(player, self);
             string_id message = new string_id(c_stringFile, "s_26");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rebel_remembrance_day_wedge_condition_isNeutralPlayer(player, npc))
+        if (rebel_remembrance_day_wedge_condition_isNeutralPlayer(player, self))
         {
-            rebel_remembrance_day_wedge_action_faceTo(player, npc);
+            rebel_remembrance_day_wedge_action_faceTo(player, self);
             string_id message = new string_id(c_stringFile, "s_27");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (rebel_remembrance_day_wedge_condition__defaultCondition(player, npc))
+        if (rebel_remembrance_day_wedge_condition__defaultCondition(player, self))
         {
-            rebel_remembrance_day_wedge_action_faceTo(player, npc);
+            rebel_remembrance_day_wedge_action_faceTo(player, self);
             string_id message = new string_id(c_stringFile, "s_7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (rebel_remembrance_day_wedge_condition__defaultCondition(player, npc))
+            if (rebel_remembrance_day_wedge_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -291,15 +293,15 @@ public class rebel_remembrance_day_wedge extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_8");
                 }
                 utils.setScriptVar(player, "conversation.rebel_remembrance_day_wedge.branchId", 3);
-                npcStartConversation(player, npc, "rebel_remembrance_day_wedge", message, responses);
+                npcStartConversation(player, self, "rebel_remembrance_day_wedge", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -308,29 +310,28 @@ public class rebel_remembrance_day_wedge extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.rebel_remembrance_day_wedge.branchId");
-        if (branchId == 3 && rebel_remembrance_day_wedge_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && rebel_remembrance_day_wedge_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && rebel_remembrance_day_wedge_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && rebel_remembrance_day_wedge_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && rebel_remembrance_day_wedge_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && rebel_remembrance_day_wedge_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && rebel_remembrance_day_wedge_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && rebel_remembrance_day_wedge_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && rebel_remembrance_day_wedge_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && rebel_remembrance_day_wedge_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.rebel_remembrance_day_wedge.branchId");
         return SCRIPT_CONTINUE;
     }

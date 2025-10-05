@@ -3408,39 +3408,38 @@ public class corvette_crowley_rebel1 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corvette_crowley_rebel1_condition_dungeonInactive(player, npc))
+        if (corvette_crowley_rebel1_condition_dungeonInactive(player, self))
         {
-            corvette_crowley_rebel1_action_facePlayer(player, npc);
+            corvette_crowley_rebel1_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_b155820c");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corvette_crowley_rebel1_condition_notRebel(player, npc))
+        if (corvette_crowley_rebel1_condition_notRebel(player, self))
         {
-            corvette_crowley_rebel1_action_facePlayer(player, npc);
+            corvette_crowley_rebel1_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_c55f8e77");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corvette_crowley_rebel1_condition_earnedCorvetteReward(player, npc))
+        if (corvette_crowley_rebel1_condition_earnedCorvetteReward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_729d86e2");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corvette_crowley_rebel1_condition__defaultCondition(player, npc))
+            if (corvette_crowley_rebel1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corvette_crowley_rebel1_condition__defaultCondition(player, npc))
+            if (corvette_crowley_rebel1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3459,43 +3458,43 @@ public class corvette_crowley_rebel1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_823e1fa");
                 }
                 utils.setScriptVar(player, "conversation.corvette_crowley_rebel1.branchId", 3);
-                npcStartConversation(player, npc, "corvette_crowley_rebel1", message, responses);
+                npcStartConversation(player, self, "corvette_crowley_rebel1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corvette_crowley_rebel1_condition_onDifferentCorvetteQuest(player, npc))
+        if (corvette_crowley_rebel1_condition_onDifferentCorvetteQuest(player, self))
         {
-            corvette_crowley_rebel1_action_facePlayer(player, npc);
+            corvette_crowley_rebel1_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_2c449c28");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corvette_crowley_rebel1_condition_hasTravelTicket(player, npc))
+        if (corvette_crowley_rebel1_condition_hasTravelTicket(player, self))
         {
-            corvette_crowley_rebel1_action_facePlayer(player, npc);
+            corvette_crowley_rebel1_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_bcc53c45");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corvette_crowley_rebel1_condition__defaultCondition(player, npc))
+            if (corvette_crowley_rebel1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corvette_crowley_rebel1_condition__defaultCondition(player, npc))
+            if (corvette_crowley_rebel1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (corvette_crowley_rebel1_condition_hasStuff(player, npc))
+            if (corvette_crowley_rebel1_condition_hasStuff(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3518,36 +3517,36 @@ public class corvette_crowley_rebel1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_2f26b4c4");
                 }
                 utils.setScriptVar(player, "conversation.corvette_crowley_rebel1.branchId", 8);
-                npcStartConversation(player, npc, "corvette_crowley_rebel1", message, responses);
+                npcStartConversation(player, self, "corvette_crowley_rebel1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corvette_crowley_rebel1_condition_isOnQuest(player, npc))
+        if (corvette_crowley_rebel1_condition_isOnQuest(player, self))
         {
-            corvette_crowley_rebel1_action_facePlayer(player, npc);
+            corvette_crowley_rebel1_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_a4965b23");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corvette_crowley_rebel1_condition_hasStuff(player, npc))
+            if (corvette_crowley_rebel1_condition_hasStuff(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corvette_crowley_rebel1_condition__defaultCondition(player, npc))
+            if (corvette_crowley_rebel1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (corvette_crowley_rebel1_condition__defaultCondition(player, npc))
+            if (corvette_crowley_rebel1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3570,29 +3569,29 @@ public class corvette_crowley_rebel1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_39");
                 }
                 utils.setScriptVar(player, "conversation.corvette_crowley_rebel1.branchId", 14);
-                npcStartConversation(player, npc, "corvette_crowley_rebel1", message, responses);
+                npcStartConversation(player, self, "corvette_crowley_rebel1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corvette_crowley_rebel1_condition__defaultCondition(player, npc))
+        if (corvette_crowley_rebel1_condition__defaultCondition(player, self))
         {
-            corvette_crowley_rebel1_action_facePlayer(player, npc);
+            corvette_crowley_rebel1_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_84bd3f49");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corvette_crowley_rebel1_condition__defaultCondition(player, npc))
+            if (corvette_crowley_rebel1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corvette_crowley_rebel1_condition__defaultCondition(player, npc))
+            if (corvette_crowley_rebel1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3611,15 +3610,15 @@ public class corvette_crowley_rebel1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_df8ea53");
                 }
                 utils.setScriptVar(player, "conversation.corvette_crowley_rebel1.branchId", 23);
-                npcStartConversation(player, npc, "corvette_crowley_rebel1", message, responses);
+                npcStartConversation(player, self, "corvette_crowley_rebel1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -3628,69 +3627,68 @@ public class corvette_crowley_rebel1 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corvette_crowley_rebel1.branchId");
-        if (branchId == 3 && corvette_crowley_rebel1_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corvette_crowley_rebel1_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && corvette_crowley_rebel1_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && corvette_crowley_rebel1_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corvette_crowley_rebel1_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corvette_crowley_rebel1_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && corvette_crowley_rebel1_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && corvette_crowley_rebel1_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && corvette_crowley_rebel1_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && corvette_crowley_rebel1_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && corvette_crowley_rebel1_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && corvette_crowley_rebel1_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && corvette_crowley_rebel1_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && corvette_crowley_rebel1_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && corvette_crowley_rebel1_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && corvette_crowley_rebel1_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && corvette_crowley_rebel1_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && corvette_crowley_rebel1_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && corvette_crowley_rebel1_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && corvette_crowley_rebel1_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && corvette_crowley_rebel1_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && corvette_crowley_rebel1_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && corvette_crowley_rebel1_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && corvette_crowley_rebel1_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && corvette_crowley_rebel1_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && corvette_crowley_rebel1_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && corvette_crowley_rebel1_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && corvette_crowley_rebel1_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && corvette_crowley_rebel1_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && corvette_crowley_rebel1_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corvette_crowley_rebel1.branchId");
         return SCRIPT_CONTINUE;
     }

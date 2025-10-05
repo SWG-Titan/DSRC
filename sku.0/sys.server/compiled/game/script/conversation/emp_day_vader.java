@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class emp_day_vader extends script.base_script
+public class emp_day_vader extends base_script
 {
     public emp_day_vader()
     {

@@ -342,41 +342,40 @@ public class lifeday04b extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (lifeday04b_condition_hasNotStarted(player, npc))
+        if (lifeday04b_condition_hasNotStarted(player, self))
         {
-            doAnimationAction(npc, "refuse_offer_affection");
+            doAnimationAction(self, "refuse_offer_affection");
             string_id message = new string_id(c_stringFile, "s_5bd07d67");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (lifeday04b_condition_hasBeenRewarded(player, npc))
+        if (lifeday04b_condition_hasBeenRewarded(player, self))
         {
-            doAnimationAction(npc, "bow2");
+            doAnimationAction(self, "bow2");
             doAnimationAction(player, "nod_head_once");
             string_id message = new string_id(c_stringFile, "s_fe83540d");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (lifeday04b_condition_hasTalkedToCityGuy(player, npc))
+        if (lifeday04b_condition_hasTalkedToCityGuy(player, self))
         {
-            doAnimationAction(npc, "beckon");
+            doAnimationAction(self, "beckon");
             string_id message = new string_id(c_stringFile, "s_f0c65663");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (lifeday04b_condition__defaultCondition(player, npc))
+            if (lifeday04b_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (lifeday04b_condition__defaultCondition(player, npc))
+            if (lifeday04b_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -395,22 +394,22 @@ public class lifeday04b extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_6cd2786a");
                 }
                 utils.setScriptVar(player, "conversation.lifeday04b.branchId", 3);
-                npcStartConversation(player, npc, "lifeday04b", message, responses);
+                npcStartConversation(player, self, "lifeday04b", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (lifeday04b_condition_spokeWithEveryone(player, npc))
+        if (lifeday04b_condition_spokeWithEveryone(player, self))
         {
-            doAnimationAction(npc, "explain");
+            doAnimationAction(self, "explain");
             string_id message = new string_id(c_stringFile, "s_b874dc09");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (lifeday04b_condition__defaultCondition(player, npc))
+            if (lifeday04b_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -425,15 +424,15 @@ public class lifeday04b extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_ebbd31aa");
                 }
                 utils.setScriptVar(player, "conversation.lifeday04b.branchId", 6);
-                npcStartConversation(player, npc, "lifeday04b", message, responses);
+                npcStartConversation(player, self, "lifeday04b", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -442,25 +441,24 @@ public class lifeday04b extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.lifeday04b.branchId");
-        if (branchId == 3 && lifeday04b_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && lifeday04b_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && lifeday04b_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && lifeday04b_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && lifeday04b_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && lifeday04b_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && lifeday04b_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && lifeday04b_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.lifeday04b.branchId");
         return SCRIPT_CONTINUE;
     }

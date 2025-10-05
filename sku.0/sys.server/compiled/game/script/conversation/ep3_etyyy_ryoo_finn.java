@@ -6,7 +6,7 @@ import script.library.groundquests;
 import script.library.utils;
 import script.*;
 
-public class ep3_etyyy_ryoo_finn extends script.base_script
+public class ep3_etyyy_ryoo_finn extends base_script
 {
     public ep3_etyyy_ryoo_finn()
     {

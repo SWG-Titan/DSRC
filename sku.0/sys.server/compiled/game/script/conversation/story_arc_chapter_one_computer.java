@@ -697,18 +697,17 @@ public class story_arc_chapter_one_computer extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (story_arc_chapter_one_computer_condition_hasCompletedMission(player, npc))
+        if (story_arc_chapter_one_computer_condition_hasCompletedMission(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_13");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_chapter_one_computer_condition__defaultCondition(player, npc))
+            if (story_arc_chapter_one_computer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -723,22 +722,22 @@ public class story_arc_chapter_one_computer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_74");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_chapter_one_computer.branchId", 1);
-                npcStartConversation(player, npc, "story_arc_chapter_one_computer", message, responses);
+                npcStartConversation(player, self, "story_arc_chapter_one_computer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_chapter_one_computer_condition_hasCompletedFirstTask(player, npc))
+        if (story_arc_chapter_one_computer_condition_hasCompletedFirstTask(player, self))
         {
-            story_arc_chapter_one_computer_action_sendTransferSignal(player, npc);
+            story_arc_chapter_one_computer_action_sendTransferSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_7");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_chapter_one_computer_condition__defaultCondition(player, npc))
+            if (story_arc_chapter_one_computer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -753,21 +752,21 @@ public class story_arc_chapter_one_computer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_72");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_chapter_one_computer.branchId", 3);
-                npcStartConversation(player, npc, "story_arc_chapter_one_computer", message, responses);
+                npcStartConversation(player, self, "story_arc_chapter_one_computer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_chapter_one_computer_condition_isOnFirstTask(player, npc))
+        if (story_arc_chapter_one_computer_condition_isOnFirstTask(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_76");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_chapter_one_computer_condition__defaultCondition(player, npc))
+            if (story_arc_chapter_one_computer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -782,22 +781,22 @@ public class story_arc_chapter_one_computer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_77");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_chapter_one_computer.branchId", 5);
-                npcStartConversation(player, npc, "story_arc_chapter_one_computer", message, responses);
+                npcStartConversation(player, self, "story_arc_chapter_one_computer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_chapter_one_computer_condition_isOnStoryArc(player, npc))
+        if (story_arc_chapter_one_computer_condition_isOnStoryArc(player, self))
         {
-            story_arc_chapter_one_computer_action_startedComputerTalk(player, npc);
+            story_arc_chapter_one_computer_action_startedComputerTalk(player, self);
             string_id message = new string_id(c_stringFile, "s_16");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_chapter_one_computer_condition__defaultCondition(player, npc))
+            if (story_arc_chapter_one_computer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -812,22 +811,22 @@ public class story_arc_chapter_one_computer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_23");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_chapter_one_computer.branchId", 7);
-                npcStartConversation(player, npc, "story_arc_chapter_one_computer", message, responses);
+                npcStartConversation(player, self, "story_arc_chapter_one_computer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_chapter_one_computer_condition_abandonedFirstMission(player, npc))
+        if (story_arc_chapter_one_computer_condition_abandonedFirstMission(player, self))
         {
-            story_arc_chapter_one_computer_action_regrantMission(player, npc);
+            story_arc_chapter_one_computer_action_regrantMission(player, self);
             string_id message = new string_id(c_stringFile, "s_105");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_chapter_one_computer_condition__defaultCondition(player, npc))
+            if (story_arc_chapter_one_computer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -842,22 +841,22 @@ public class story_arc_chapter_one_computer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_70");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_chapter_one_computer.branchId", 22);
-                npcStartConversation(player, npc, "story_arc_chapter_one_computer", message, responses);
+                npcStartConversation(player, self, "story_arc_chapter_one_computer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_chapter_one_computer_condition_ChapOneFirstStep(player, npc))
+        if (story_arc_chapter_one_computer_condition_ChapOneFirstStep(player, self))
         {
-            story_arc_chapter_one_computer_action_fixTerminal(player, npc);
+            story_arc_chapter_one_computer_action_fixTerminal(player, self);
             string_id message = new string_id(c_stringFile, "s_80");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_chapter_one_computer_condition__defaultCondition(player, npc))
+            if (story_arc_chapter_one_computer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -872,21 +871,21 @@ public class story_arc_chapter_one_computer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_81");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_chapter_one_computer.branchId", 24);
-                npcStartConversation(player, npc, "story_arc_chapter_one_computer", message, responses);
+                npcStartConversation(player, self, "story_arc_chapter_one_computer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (story_arc_chapter_one_computer_condition__defaultCondition(player, npc))
+        if (story_arc_chapter_one_computer_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_86");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (story_arc_chapter_one_computer_condition__defaultCondition(player, npc))
+            if (story_arc_chapter_one_computer_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -901,15 +900,15 @@ public class story_arc_chapter_one_computer extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_87");
                 }
                 utils.setScriptVar(player, "conversation.story_arc_chapter_one_computer.branchId", 26);
-                npcStartConversation(player, npc, "story_arc_chapter_one_computer", message, responses);
+                npcStartConversation(player, self, "story_arc_chapter_one_computer", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -918,89 +917,88 @@ public class story_arc_chapter_one_computer extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.story_arc_chapter_one_computer.branchId");
-        if (branchId == 1 && story_arc_chapter_one_computer_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && story_arc_chapter_one_computer_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && story_arc_chapter_one_computer_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && story_arc_chapter_one_computer_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && story_arc_chapter_one_computer_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && story_arc_chapter_one_computer_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && story_arc_chapter_one_computer_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && story_arc_chapter_one_computer_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && story_arc_chapter_one_computer_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && story_arc_chapter_one_computer_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && story_arc_chapter_one_computer_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && story_arc_chapter_one_computer_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && story_arc_chapter_one_computer_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && story_arc_chapter_one_computer_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && story_arc_chapter_one_computer_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && story_arc_chapter_one_computer_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && story_arc_chapter_one_computer_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && story_arc_chapter_one_computer_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && story_arc_chapter_one_computer_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && story_arc_chapter_one_computer_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && story_arc_chapter_one_computer_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && story_arc_chapter_one_computer_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && story_arc_chapter_one_computer_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && story_arc_chapter_one_computer_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && story_arc_chapter_one_computer_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && story_arc_chapter_one_computer_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && story_arc_chapter_one_computer_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && story_arc_chapter_one_computer_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && story_arc_chapter_one_computer_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && story_arc_chapter_one_computer_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && story_arc_chapter_one_computer_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && story_arc_chapter_one_computer_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && story_arc_chapter_one_computer_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && story_arc_chapter_one_computer_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && story_arc_chapter_one_computer_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && story_arc_chapter_one_computer_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && story_arc_chapter_one_computer_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && story_arc_chapter_one_computer_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && story_arc_chapter_one_computer_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && story_arc_chapter_one_computer_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.story_arc_chapter_one_computer.branchId");
         return SCRIPT_CONTINUE;
     }

@@ -295,68 +295,67 @@ public class ree_yees extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (ree_yees_condition_completedReeYees(player, npc))
+        if (ree_yees_condition_completedReeYees(player, self))
         {
-            ree_yees_action_facePlayer(player, npc);
+            ree_yees_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ree_yees_condition_readyToFinish(player, npc))
+        if (ree_yees_condition_readyToFinish(player, self))
         {
-            ree_yees_action_sendCompletedSignal(player, npc);
+            ree_yees_action_sendCompletedSignal(player, self);
             string_id message = new string_id(c_stringFile, "s_86");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ree_yees_condition_collectingCandle(player, npc))
+        if (ree_yees_condition_collectingCandle(player, self))
         {
-            ree_yees_action_facePlayer(player, npc);
+            ree_yees_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_44");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ree_yees_condition_collectingBook(player, npc))
+        if (ree_yees_condition_collectingBook(player, self))
         {
-            ree_yees_action_facePlayer(player, npc);
+            ree_yees_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_34");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ree_yees_condition_collectingBell(player, npc))
+        if (ree_yees_condition_collectingBell(player, self))
         {
-            ree_yees_action_facePlayer(player, npc);
+            ree_yees_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_20");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (ree_yees_condition_completedReelo(player, npc))
+        if (ree_yees_condition_completedReelo(player, self))
         {
-            ree_yees_action_clearPointer(player, npc);
+            ree_yees_action_clearPointer(player, self);
             string_id message = new string_id(c_stringFile, "s_54");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (ree_yees_condition__defaultCondition(player, npc))
+            if (ree_yees_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (ree_yees_condition__defaultCondition(player, npc))
+            if (ree_yees_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (ree_yees_condition__defaultCondition(player, npc))
+            if (ree_yees_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -379,22 +378,22 @@ public class ree_yees extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_82");
                 }
                 utils.setScriptVar(player, "conversation.ree_yees.branchId", 6);
-                npcStartConversation(player, npc, "ree_yees", message, responses);
+                npcStartConversation(player, self, "ree_yees", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (ree_yees_condition__defaultCondition(player, npc))
+        if (ree_yees_condition__defaultCondition(player, self))
         {
-            ree_yees_action_facePlayer(player, npc);
+            ree_yees_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_85");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -403,25 +402,24 @@ public class ree_yees extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.ree_yees.branchId");
-        if (branchId == 6 && ree_yees_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && ree_yees_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && ree_yees_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && ree_yees_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && ree_yees_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && ree_yees_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && ree_yees_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && ree_yees_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.ree_yees.branchId");
         return SCRIPT_CONTINUE;
     }

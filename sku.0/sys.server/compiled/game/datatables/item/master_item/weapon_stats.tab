@@ -325,3 +325,7 @@ weapon_rifle_legendary_t21	1	1000	550	1100	0	energy	acid	30	80	1	100	0	64		int:w
 weapon_energy_lance_legendary	1	1000	800	1200	0	energy	electric	50	100	1	100	0	5		int:wp.canBeDisMantled=1		lvl88	1100	1100
 weapon_2h_sword_maul_legendary	1	1000	900	1350	0	energy	acid	20	100	1	100	0	5		int:wp.canBeDisMantled=1		lvl88	1165	1165
 weapon_stun_baton_legendary	1	1000	600	1300	0	energy	electric	75	100	1	100	0	5		int:wp.canBeDisMantled=1		lvl88	1100	1100
+weapon_ig24_sidearm_01_01	1	1000	945	1200	0	energy	electric	120	100	1	99	0	64	expertise_healing_all=5,expertise_critical_pistol=5,expertise_critical_niche_all=4,expertise_cooldown_line_of_heal=8,stamina_modified=25	string:wb_tracking=IG-24			1300	1300
+weapon_developer_pistol	1	1000	1154	1200	0	energy	heat	60	100	1	99	0	64	expertise_damage_weapon_2=3,expertise_critical_pistol=5,expertise_critical_niche_all=4,combat_strikethrough_chance=8,stamina_modified=50	int:gm=1,int:noTrade=1			1954	1954
+weapon_developer_carbine	1	1000	1154	1200	0	energy	heat	60	100	1	99	0	72	expertise_damage_weapon_1=3,expertise_critical_carbine=5,expertise_critical_niche_all=4,combat_strikethrough_chance=8,stamina_modified=50	int:gm=1,int:noTrade=1			1200	1250
+weapon_developer_rifle	1	1000	1154	1200	0	energy	heat	60	100	1	99	0	256	expertise_damage_weapon_0=3,expertise_critical_rifle=5,expertise_critical_niche_all=4,combat_strikethrough_chance=4,precision=25	int:gm=1,int:noTrade=1			1200	1250

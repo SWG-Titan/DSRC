@@ -2437,18 +2437,17 @@ public class blacksun_guri extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (blacksun_guri_condition_hasCompletedAll(player, npc))
+        if (blacksun_guri_condition_hasCompletedAll(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_130");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (blacksun_guri_condition__defaultCondition(player, npc))
+            if (blacksun_guri_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2466,26 +2465,26 @@ public class blacksun_guri extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "blacksun_guri", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "blacksun_guri", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (blacksun_guri_condition_hasCompletedMissions(player, npc))
+        if (blacksun_guri_condition_hasCompletedMissions(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_123");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (blacksun_guri_condition__defaultCondition(player, npc))
+            if (blacksun_guri_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2503,54 +2502,54 @@ public class blacksun_guri extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "blacksun_guri", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "blacksun_guri", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (blacksun_guri_condition_hasFoundStormtroopers(player, npc))
+        if (blacksun_guri_condition_hasFoundStormtroopers(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_122");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (blacksun_guri_condition_hasSecondQuestImperial(player, npc))
+        if (blacksun_guri_condition_hasSecondQuestImperial(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_121");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (blacksun_guri_condition_hasFirstQuestNeutral(player, npc))
+        if (blacksun_guri_condition_hasFirstQuestNeutral(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_74");
             prose_package pp = new prose_package();
             pp.stringId = message;
             pp.actor.set(player);
-            pp.target.set(npc);
-            chat.chat(npc, player, null, null, pp);
+            pp.target.set(self);
+            chat.chat(self, player, null, null, pp);
             return SCRIPT_CONTINUE;
         }
-        if (blacksun_guri_condition_isLiveConversion(player, npc))
+        if (blacksun_guri_condition_isLiveConversion(player, self))
         {
-            doAnimationAction(npc, "nod");
-            blacksun_guri_action_clearLiveConversion(player, npc);
+            doAnimationAction(self, "nod");
+            blacksun_guri_action_clearLiveConversion(player, self);
             string_id message = new string_id(c_stringFile, "s_27");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (blacksun_guri_condition__defaultCondition(player, npc))
+            if (blacksun_guri_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2568,26 +2567,26 @@ public class blacksun_guri extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "blacksun_guri", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "blacksun_guri", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (blacksun_guri_condition_hasDeletedLiveConversion(player, npc))
+        if (blacksun_guri_condition_hasDeletedLiveConversion(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_147");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (blacksun_guri_condition__defaultCondition(player, npc))
+            if (blacksun_guri_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -2602,21 +2601,21 @@ public class blacksun_guri extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_149");
                 }
                 utils.setScriptVar(player, "conversation.blacksun_guri.branchId", 52);
-                npcStartConversation(player, npc, "blacksun_guri", message, responses);
+                npcStartConversation(player, self, "blacksun_guri", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (blacksun_guri_condition__defaultCondition(player, npc))
+        if (blacksun_guri_condition__defaultCondition(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_157");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -2625,177 +2624,176 @@ public class blacksun_guri extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.blacksun_guri.branchId");
-        if (branchId == 1 && blacksun_guri_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && blacksun_guri_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && blacksun_guri_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && blacksun_guri_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && blacksun_guri_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && blacksun_guri_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && blacksun_guri_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && blacksun_guri_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && blacksun_guri_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && blacksun_guri_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && blacksun_guri_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && blacksun_guri_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && blacksun_guri_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && blacksun_guri_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && blacksun_guri_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && blacksun_guri_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && blacksun_guri_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && blacksun_guri_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && blacksun_guri_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && blacksun_guri_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && blacksun_guri_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && blacksun_guri_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && blacksun_guri_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && blacksun_guri_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && blacksun_guri_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && blacksun_guri_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && blacksun_guri_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && blacksun_guri_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && blacksun_guri_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && blacksun_guri_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && blacksun_guri_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && blacksun_guri_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && blacksun_guri_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && blacksun_guri_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && blacksun_guri_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && blacksun_guri_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && blacksun_guri_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && blacksun_guri_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && blacksun_guri_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && blacksun_guri_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 30 && blacksun_guri_handleBranch30(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 30 && blacksun_guri_handleBranch30(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && blacksun_guri_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && blacksun_guri_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && blacksun_guri_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && blacksun_guri_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && blacksun_guri_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && blacksun_guri_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && blacksun_guri_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && blacksun_guri_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && blacksun_guri_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && blacksun_guri_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && blacksun_guri_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && blacksun_guri_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 37 && blacksun_guri_handleBranch37(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 37 && blacksun_guri_handleBranch37(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && blacksun_guri_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && blacksun_guri_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 39 && blacksun_guri_handleBranch39(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 39 && blacksun_guri_handleBranch39(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 40 && blacksun_guri_handleBranch40(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 40 && blacksun_guri_handleBranch40(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 41 && blacksun_guri_handleBranch41(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 41 && blacksun_guri_handleBranch41(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && blacksun_guri_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && blacksun_guri_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && blacksun_guri_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && blacksun_guri_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && blacksun_guri_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && blacksun_guri_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && blacksun_guri_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && blacksun_guri_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && blacksun_guri_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && blacksun_guri_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && blacksun_guri_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && blacksun_guri_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && blacksun_guri_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && blacksun_guri_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && blacksun_guri_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && blacksun_guri_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && blacksun_guri_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && blacksun_guri_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 52 && blacksun_guri_handleBranch52(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 52 && blacksun_guri_handleBranch52(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.blacksun_guri.branchId");
         return SCRIPT_CONTINUE;
     }

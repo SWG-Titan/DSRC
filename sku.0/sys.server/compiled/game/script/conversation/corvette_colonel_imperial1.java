@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class corvette_colonel_imperial1 extends script.base_script
+public class corvette_colonel_imperial1 extends base_script
 {
     public corvette_colonel_imperial1()
     {
@@ -3451,37 +3451,36 @@ public class corvette_colonel_imperial1 extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (corvette_colonel_imperial1_condition_dungeonInactive(player, npc))
+        if (corvette_colonel_imperial1_condition_dungeonInactive(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_979b7ad4");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corvette_colonel_imperial1_condition_notImperial(player, npc))
+        if (corvette_colonel_imperial1_condition_notImperial(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_684f9e1");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corvette_colonel_imperial1_condition_earnedCorvetteReward(player, npc))
+        if (corvette_colonel_imperial1_condition_earnedCorvetteReward(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_c48932d");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corvette_colonel_imperial1_condition__defaultCondition(player, npc))
+            if (corvette_colonel_imperial1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corvette_colonel_imperial1_condition__defaultCondition(player, npc))
+            if (corvette_colonel_imperial1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3500,41 +3499,41 @@ public class corvette_colonel_imperial1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_a38773c1");
                 }
                 utils.setScriptVar(player, "conversation.corvette_colonel_imperial1.branchId", 3);
-                npcStartConversation(player, npc, "corvette_colonel_imperial1", message, responses);
+                npcStartConversation(player, self, "corvette_colonel_imperial1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corvette_colonel_imperial1_condition_onDifferentCorvetteQuest(player, npc))
+        if (corvette_colonel_imperial1_condition_onDifferentCorvetteQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_33f4749f");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (corvette_colonel_imperial1_condition_hasTravelTicket(player, npc))
+        if (corvette_colonel_imperial1_condition_hasTravelTicket(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_5c4b594c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corvette_colonel_imperial1_condition__defaultCondition(player, npc))
+            if (corvette_colonel_imperial1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corvette_colonel_imperial1_condition__defaultCondition(player, npc))
+            if (corvette_colonel_imperial1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (corvette_colonel_imperial1_condition_hasStuff(player, npc))
+            if (corvette_colonel_imperial1_condition_hasStuff(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3557,35 +3556,35 @@ public class corvette_colonel_imperial1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_2f26b4c4");
                 }
                 utils.setScriptVar(player, "conversation.corvette_colonel_imperial1.branchId", 8);
-                npcStartConversation(player, npc, "corvette_colonel_imperial1", message, responses);
+                npcStartConversation(player, self, "corvette_colonel_imperial1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corvette_colonel_imperial1_condition_isOnQuest(player, npc))
+        if (corvette_colonel_imperial1_condition_isOnQuest(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_18d01770");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corvette_colonel_imperial1_condition_hasStuff(player, npc))
+            if (corvette_colonel_imperial1_condition_hasStuff(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corvette_colonel_imperial1_condition__defaultCondition(player, npc))
+            if (corvette_colonel_imperial1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (corvette_colonel_imperial1_condition__defaultCondition(player, npc))
+            if (corvette_colonel_imperial1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3608,29 +3607,29 @@ public class corvette_colonel_imperial1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5dad02b");
                 }
                 utils.setScriptVar(player, "conversation.corvette_colonel_imperial1.branchId", 14);
-                npcStartConversation(player, npc, "corvette_colonel_imperial1", message, responses);
+                npcStartConversation(player, self, "corvette_colonel_imperial1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (corvette_colonel_imperial1_condition__defaultCondition(player, npc))
+        if (corvette_colonel_imperial1_condition__defaultCondition(player, self))
         {
-            corvette_colonel_imperial1_action_clearLocations(player, npc);
+            corvette_colonel_imperial1_action_clearLocations(player, self);
             string_id message = new string_id(c_stringFile, "s_d630c3b6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (corvette_colonel_imperial1_condition__defaultCondition(player, npc))
+            if (corvette_colonel_imperial1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (corvette_colonel_imperial1_condition__defaultCondition(player, npc))
+            if (corvette_colonel_imperial1_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -3649,15 +3648,15 @@ public class corvette_colonel_imperial1 extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5200ce80");
                 }
                 utils.setScriptVar(player, "conversation.corvette_colonel_imperial1.branchId", 23);
-                npcStartConversation(player, npc, "corvette_colonel_imperial1", message, responses);
+                npcStartConversation(player, self, "corvette_colonel_imperial1", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -3666,73 +3665,72 @@ public class corvette_colonel_imperial1 extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.corvette_colonel_imperial1.branchId");
-        if (branchId == 3 && corvette_colonel_imperial1_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && corvette_colonel_imperial1_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && corvette_colonel_imperial1_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && corvette_colonel_imperial1_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && corvette_colonel_imperial1_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && corvette_colonel_imperial1_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && corvette_colonel_imperial1_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && corvette_colonel_imperial1_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && corvette_colonel_imperial1_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && corvette_colonel_imperial1_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && corvette_colonel_imperial1_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && corvette_colonel_imperial1_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && corvette_colonel_imperial1_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && corvette_colonel_imperial1_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && corvette_colonel_imperial1_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && corvette_colonel_imperial1_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && corvette_colonel_imperial1_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && corvette_colonel_imperial1_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && corvette_colonel_imperial1_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && corvette_colonel_imperial1_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && corvette_colonel_imperial1_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && corvette_colonel_imperial1_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 24 && corvette_colonel_imperial1_handleBranch24(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 24 && corvette_colonel_imperial1_handleBranch24(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && corvette_colonel_imperial1_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && corvette_colonel_imperial1_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && corvette_colonel_imperial1_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && corvette_colonel_imperial1_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && corvette_colonel_imperial1_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && corvette_colonel_imperial1_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && corvette_colonel_imperial1_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && corvette_colonel_imperial1_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.corvette_colonel_imperial1.branchId");
         return SCRIPT_CONTINUE;
     }

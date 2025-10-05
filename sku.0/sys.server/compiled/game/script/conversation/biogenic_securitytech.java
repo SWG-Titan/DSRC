@@ -5,7 +5,7 @@ import script.library.chat;
 import script.library.utils;
 import script.*;
 
-public class biogenic_securitytech extends script.base_script
+public class biogenic_securitytech extends base_script
 {
     public biogenic_securitytech()
     {
@@ -6277,40 +6277,39 @@ public class biogenic_securitytech extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (biogenic_securitytech_condition_get_tracker_3(player, npc))
+        if (biogenic_securitytech_condition_get_tracker_3(player, self))
         {
-            biogenic_securitytech_action_face_to(player, npc);
+            biogenic_securitytech_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_71d4af18");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6337,36 +6336,36 @@ public class biogenic_securitytech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_5147321f");
                 }
                 utils.setScriptVar(player, "conversation.biogenic_securitytech.branchId", 1);
-                npcStartConversation(player, npc, "biogenic_securitytech", message, responses);
+                npcStartConversation(player, self, "biogenic_securitytech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (biogenic_securitytech_condition_get_tracker_2(player, npc))
+        if (biogenic_securitytech_condition_get_tracker_2(player, self))
         {
-            biogenic_securitytech_action_face_to(player, npc);
+            biogenic_securitytech_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_7397bf4e");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (biogenic_securitytech_condition_get_tracker_1(player, npc))
+        if (biogenic_securitytech_condition_get_tracker_1(player, self))
         {
-            biogenic_securitytech_action_face_to(player, npc);
+            biogenic_securitytech_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_9749167c");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6385,43 +6384,43 @@ public class biogenic_securitytech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_367aaeab");
                 }
                 utils.setScriptVar(player, "conversation.biogenic_securitytech.branchId", 13);
-                npcStartConversation(player, npc, "biogenic_securitytech", message, responses);
+                npcStartConversation(player, self, "biogenic_securitytech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (biogenic_securitytech_condition__defaultCondition(player, npc))
+        if (biogenic_securitytech_condition__defaultCondition(player, self))
         {
-            biogenic_securitytech_action_face_to(player, npc);
+            biogenic_securitytech_action_face_to(player, self);
             string_id message = new string_id(c_stringFile, "s_7df9e17e");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (biogenic_securitytech_condition__defaultCondition(player, npc))
+            if (biogenic_securitytech_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -6448,15 +6447,15 @@ public class biogenic_securitytech extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_d14c9940");
                 }
                 utils.setScriptVar(player, "conversation.biogenic_securitytech.branchId", 42);
-                npcStartConversation(player, npc, "biogenic_securitytech", message, responses);
+                npcStartConversation(player, self, "biogenic_securitytech", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -6465,389 +6464,388 @@ public class biogenic_securitytech extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.biogenic_securitytech.branchId");
-        if (branchId == 1 && biogenic_securitytech_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && biogenic_securitytech_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 2 && biogenic_securitytech_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && biogenic_securitytech_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && biogenic_securitytech_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && biogenic_securitytech_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && biogenic_securitytech_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && biogenic_securitytech_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && biogenic_securitytech_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && biogenic_securitytech_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && biogenic_securitytech_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && biogenic_securitytech_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && biogenic_securitytech_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && biogenic_securitytech_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && biogenic_securitytech_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && biogenic_securitytech_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && biogenic_securitytech_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && biogenic_securitytech_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && biogenic_securitytech_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && biogenic_securitytech_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && biogenic_securitytech_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && biogenic_securitytech_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && biogenic_securitytech_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && biogenic_securitytech_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && biogenic_securitytech_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && biogenic_securitytech_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && biogenic_securitytech_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && biogenic_securitytech_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && biogenic_securitytech_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && biogenic_securitytech_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && biogenic_securitytech_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && biogenic_securitytech_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && biogenic_securitytech_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && biogenic_securitytech_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 42 && biogenic_securitytech_handleBranch42(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 42 && biogenic_securitytech_handleBranch42(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 43 && biogenic_securitytech_handleBranch43(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 43 && biogenic_securitytech_handleBranch43(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 44 && biogenic_securitytech_handleBranch44(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 44 && biogenic_securitytech_handleBranch44(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 45 && biogenic_securitytech_handleBranch45(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 45 && biogenic_securitytech_handleBranch45(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 46 && biogenic_securitytech_handleBranch46(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 46 && biogenic_securitytech_handleBranch46(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 47 && biogenic_securitytech_handleBranch47(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 47 && biogenic_securitytech_handleBranch47(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 48 && biogenic_securitytech_handleBranch48(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 48 && biogenic_securitytech_handleBranch48(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 49 && biogenic_securitytech_handleBranch49(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 49 && biogenic_securitytech_handleBranch49(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 50 && biogenic_securitytech_handleBranch50(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 50 && biogenic_securitytech_handleBranch50(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 54 && biogenic_securitytech_handleBranch54(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 54 && biogenic_securitytech_handleBranch54(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 58 && biogenic_securitytech_handleBranch58(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 58 && biogenic_securitytech_handleBranch58(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 59 && biogenic_securitytech_handleBranch59(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 59 && biogenic_securitytech_handleBranch59(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 60 && biogenic_securitytech_handleBranch60(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 60 && biogenic_securitytech_handleBranch60(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 64 && biogenic_securitytech_handleBranch64(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 64 && biogenic_securitytech_handleBranch64(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 68 && biogenic_securitytech_handleBranch68(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 68 && biogenic_securitytech_handleBranch68(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 74 && biogenic_securitytech_handleBranch74(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 74 && biogenic_securitytech_handleBranch74(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 75 && biogenic_securitytech_handleBranch75(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 75 && biogenic_securitytech_handleBranch75(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 76 && biogenic_securitytech_handleBranch76(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 76 && biogenic_securitytech_handleBranch76(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 77 && biogenic_securitytech_handleBranch77(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 77 && biogenic_securitytech_handleBranch77(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 78 && biogenic_securitytech_handleBranch78(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 78 && biogenic_securitytech_handleBranch78(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 79 && biogenic_securitytech_handleBranch79(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 79 && biogenic_securitytech_handleBranch79(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 83 && biogenic_securitytech_handleBranch83(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 83 && biogenic_securitytech_handleBranch83(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 87 && biogenic_securitytech_handleBranch87(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 87 && biogenic_securitytech_handleBranch87(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 88 && biogenic_securitytech_handleBranch88(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 88 && biogenic_securitytech_handleBranch88(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 89 && biogenic_securitytech_handleBranch89(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 89 && biogenic_securitytech_handleBranch89(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 93 && biogenic_securitytech_handleBranch93(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 93 && biogenic_securitytech_handleBranch93(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 97 && biogenic_securitytech_handleBranch97(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 97 && biogenic_securitytech_handleBranch97(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 105 && biogenic_securitytech_handleBranch105(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 105 && biogenic_securitytech_handleBranch105(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 106 && biogenic_securitytech_handleBranch106(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 106 && biogenic_securitytech_handleBranch106(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 107 && biogenic_securitytech_handleBranch107(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 107 && biogenic_securitytech_handleBranch107(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 108 && biogenic_securitytech_handleBranch108(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 108 && biogenic_securitytech_handleBranch108(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 109 && biogenic_securitytech_handleBranch109(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 109 && biogenic_securitytech_handleBranch109(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 110 && biogenic_securitytech_handleBranch110(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 110 && biogenic_securitytech_handleBranch110(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 111 && biogenic_securitytech_handleBranch111(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 111 && biogenic_securitytech_handleBranch111(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 112 && biogenic_securitytech_handleBranch112(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 112 && biogenic_securitytech_handleBranch112(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 116 && biogenic_securitytech_handleBranch116(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 116 && biogenic_securitytech_handleBranch116(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 120 && biogenic_securitytech_handleBranch120(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 120 && biogenic_securitytech_handleBranch120(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 121 && biogenic_securitytech_handleBranch121(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 121 && biogenic_securitytech_handleBranch121(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 122 && biogenic_securitytech_handleBranch122(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 122 && biogenic_securitytech_handleBranch122(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 126 && biogenic_securitytech_handleBranch126(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 126 && biogenic_securitytech_handleBranch126(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 130 && biogenic_securitytech_handleBranch130(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 130 && biogenic_securitytech_handleBranch130(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 136 && biogenic_securitytech_handleBranch136(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 136 && biogenic_securitytech_handleBranch136(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 137 && biogenic_securitytech_handleBranch137(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 137 && biogenic_securitytech_handleBranch137(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 138 && biogenic_securitytech_handleBranch138(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 138 && biogenic_securitytech_handleBranch138(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 139 && biogenic_securitytech_handleBranch139(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 139 && biogenic_securitytech_handleBranch139(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 140 && biogenic_securitytech_handleBranch140(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 140 && biogenic_securitytech_handleBranch140(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 141 && biogenic_securitytech_handleBranch141(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 141 && biogenic_securitytech_handleBranch141(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 145 && biogenic_securitytech_handleBranch145(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 145 && biogenic_securitytech_handleBranch145(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 149 && biogenic_securitytech_handleBranch149(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 149 && biogenic_securitytech_handleBranch149(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 150 && biogenic_securitytech_handleBranch150(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 150 && biogenic_securitytech_handleBranch150(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 151 && biogenic_securitytech_handleBranch151(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 151 && biogenic_securitytech_handleBranch151(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 155 && biogenic_securitytech_handleBranch155(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 155 && biogenic_securitytech_handleBranch155(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 159 && biogenic_securitytech_handleBranch159(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 159 && biogenic_securitytech_handleBranch159(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 167 && biogenic_securitytech_handleBranch167(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 167 && biogenic_securitytech_handleBranch167(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 168 && biogenic_securitytech_handleBranch168(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 168 && biogenic_securitytech_handleBranch168(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 169 && biogenic_securitytech_handleBranch169(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 169 && biogenic_securitytech_handleBranch169(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 170 && biogenic_securitytech_handleBranch170(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 170 && biogenic_securitytech_handleBranch170(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 171 && biogenic_securitytech_handleBranch171(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 171 && biogenic_securitytech_handleBranch171(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 172 && biogenic_securitytech_handleBranch172(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 172 && biogenic_securitytech_handleBranch172(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 173 && biogenic_securitytech_handleBranch173(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 173 && biogenic_securitytech_handleBranch173(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 177 && biogenic_securitytech_handleBranch177(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 177 && biogenic_securitytech_handleBranch177(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 181 && biogenic_securitytech_handleBranch181(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 181 && biogenic_securitytech_handleBranch181(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 182 && biogenic_securitytech_handleBranch182(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 182 && biogenic_securitytech_handleBranch182(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 183 && biogenic_securitytech_handleBranch183(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 183 && biogenic_securitytech_handleBranch183(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 187 && biogenic_securitytech_handleBranch187(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 187 && biogenic_securitytech_handleBranch187(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 191 && biogenic_securitytech_handleBranch191(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 191 && biogenic_securitytech_handleBranch191(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 197 && biogenic_securitytech_handleBranch197(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 197 && biogenic_securitytech_handleBranch197(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 198 && biogenic_securitytech_handleBranch198(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 198 && biogenic_securitytech_handleBranch198(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 199 && biogenic_securitytech_handleBranch199(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 199 && biogenic_securitytech_handleBranch199(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 200 && biogenic_securitytech_handleBranch200(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 200 && biogenic_securitytech_handleBranch200(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 201 && biogenic_securitytech_handleBranch201(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 201 && biogenic_securitytech_handleBranch201(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 202 && biogenic_securitytech_handleBranch202(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 202 && biogenic_securitytech_handleBranch202(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 206 && biogenic_securitytech_handleBranch206(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 206 && biogenic_securitytech_handleBranch206(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 210 && biogenic_securitytech_handleBranch210(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 210 && biogenic_securitytech_handleBranch210(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 211 && biogenic_securitytech_handleBranch211(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 211 && biogenic_securitytech_handleBranch211(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 212 && biogenic_securitytech_handleBranch212(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 212 && biogenic_securitytech_handleBranch212(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 216 && biogenic_securitytech_handleBranch216(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 216 && biogenic_securitytech_handleBranch216(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 220 && biogenic_securitytech_handleBranch220(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 220 && biogenic_securitytech_handleBranch220(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.biogenic_securitytech.branchId");
         return SCRIPT_CONTINUE;
     }

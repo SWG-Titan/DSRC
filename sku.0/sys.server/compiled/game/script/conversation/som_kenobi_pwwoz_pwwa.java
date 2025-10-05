@@ -3,7 +3,7 @@ package script.conversation;
 import script.library.*;
 import script.*;
 
-public class som_kenobi_pwwoz_pwwa extends script.base_script
+public class som_kenobi_pwwoz_pwwa extends base_script
 {
     public som_kenobi_pwwoz_pwwa()
     {
@@ -1382,18 +1382,17 @@ public class som_kenobi_pwwoz_pwwa extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (som_kenobi_pwwoz_pwwa_condition_killPwwoz(player, npc))
+        if (som_kenobi_pwwoz_pwwa_condition_killPwwoz(player, self))
         {
             string_id message = new string_id(c_stringFile, "s_82");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1411,42 +1410,42 @@ public class som_kenobi_pwwoz_pwwa extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "som_kenobi_pwwoz_pwwa", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "som_kenobi_pwwoz_pwwa", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_pwwoz_pwwa_condition_keptCrystal(player, npc))
+        if (som_kenobi_pwwoz_pwwa_condition_keptCrystal(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
+            doAnimationAction(self, "point_accusingly");
             doAnimationAction(player, "sigh_deeply");
             string_id message = new string_id(c_stringFile, "s_225");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_pwwoz_pwwa_condition_gaveCrystal(player, npc))
+        if (som_kenobi_pwwoz_pwwa_condition_gaveCrystal(player, self))
         {
-            doAnimationAction(npc, "bow");
+            doAnimationAction(self, "bow");
             string_id message = new string_id(c_stringFile, "s_226");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1465,44 +1464,44 @@ public class som_kenobi_pwwoz_pwwa extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_228");
                 }
                 utils.setScriptVar(player, "conversation.som_kenobi_pwwoz_pwwa.branchId", 4);
-                npcStartConversation(player, npc, "som_kenobi_pwwoz_pwwa", message, responses);
+                npcStartConversation(player, self, "som_kenobi_pwwoz_pwwa", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_pwwoz_pwwa_condition_foundCrystal(player, npc))
+        if (som_kenobi_pwwoz_pwwa_condition_foundCrystal(player, self))
         {
-            doAnimationAction(npc, "celebrate");
+            doAnimationAction(self, "celebrate");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_173");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse2 = true;
             }
             boolean hasResponse3 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1529,44 +1528,44 @@ public class som_kenobi_pwwoz_pwwa extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_177");
                 }
                 utils.setScriptVar(player, "conversation.som_kenobi_pwwoz_pwwa.branchId", 13);
-                npcStartConversation(player, npc, "som_kenobi_pwwoz_pwwa", message, responses);
+                npcStartConversation(player, self, "som_kenobi_pwwoz_pwwa", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_pwwoz_pwwa_condition_onQuest(player, npc))
+        if (som_kenobi_pwwoz_pwwa_condition_onQuest(player, self))
         {
-            doAnimationAction(npc, "stamp_feet");
+            doAnimationAction(self, "stamp_feet");
             string_id message = new string_id(c_stringFile, "s_172");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+        if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
         {
-            doAnimationAction(npc, "bow");
+            doAnimationAction(self, "bow");
             doAnimationAction(player, "greet");
             string_id message = new string_id(c_stringFile, "s_110");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse0 = true;
             }
             boolean hasResponse1 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
                 hasResponse1 = true;
             }
             boolean hasResponse2 = false;
-            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, npc))
+            if (som_kenobi_pwwoz_pwwa_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1589,15 +1588,15 @@ public class som_kenobi_pwwoz_pwwa extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_113");
                 }
                 utils.setScriptVar(player, "conversation.som_kenobi_pwwoz_pwwa.branchId", 25);
-                npcStartConversation(player, npc, "som_kenobi_pwwoz_pwwa", message, responses);
+                npcStartConversation(player, self, "som_kenobi_pwwoz_pwwa", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1606,101 +1605,100 @@ public class som_kenobi_pwwoz_pwwa extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.som_kenobi_pwwoz_pwwa.branchId");
-        if (branchId == 1 && som_kenobi_pwwoz_pwwa_handleBranch1(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 1 && som_kenobi_pwwoz_pwwa_handleBranch1(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && som_kenobi_pwwoz_pwwa_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && som_kenobi_pwwoz_pwwa_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && som_kenobi_pwwoz_pwwa_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && som_kenobi_pwwoz_pwwa_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 7 && som_kenobi_pwwoz_pwwa_handleBranch7(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 7 && som_kenobi_pwwoz_pwwa_handleBranch7(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 9 && som_kenobi_pwwoz_pwwa_handleBranch9(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 9 && som_kenobi_pwwoz_pwwa_handleBranch9(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 11 && som_kenobi_pwwoz_pwwa_handleBranch11(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 11 && som_kenobi_pwwoz_pwwa_handleBranch11(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && som_kenobi_pwwoz_pwwa_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && som_kenobi_pwwoz_pwwa_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 14 && som_kenobi_pwwoz_pwwa_handleBranch14(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 14 && som_kenobi_pwwoz_pwwa_handleBranch14(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && som_kenobi_pwwoz_pwwa_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && som_kenobi_pwwoz_pwwa_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 18 && som_kenobi_pwwoz_pwwa_handleBranch18(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 18 && som_kenobi_pwwoz_pwwa_handleBranch18(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && som_kenobi_pwwoz_pwwa_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && som_kenobi_pwwoz_pwwa_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 21 && som_kenobi_pwwoz_pwwa_handleBranch21(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 21 && som_kenobi_pwwoz_pwwa_handleBranch21(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && som_kenobi_pwwoz_pwwa_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && som_kenobi_pwwoz_pwwa_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && som_kenobi_pwwoz_pwwa_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && som_kenobi_pwwoz_pwwa_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && som_kenobi_pwwoz_pwwa_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && som_kenobi_pwwoz_pwwa_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && som_kenobi_pwwoz_pwwa_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && som_kenobi_pwwoz_pwwa_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 27 && som_kenobi_pwwoz_pwwa_handleBranch27(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 27 && som_kenobi_pwwoz_pwwa_handleBranch27(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && som_kenobi_pwwoz_pwwa_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && som_kenobi_pwwoz_pwwa_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && som_kenobi_pwwoz_pwwa_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && som_kenobi_pwwoz_pwwa_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && som_kenobi_pwwoz_pwwa_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && som_kenobi_pwwoz_pwwa_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 33 && som_kenobi_pwwoz_pwwa_handleBranch33(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 33 && som_kenobi_pwwoz_pwwa_handleBranch33(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && som_kenobi_pwwoz_pwwa_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && som_kenobi_pwwoz_pwwa_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && som_kenobi_pwwoz_pwwa_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && som_kenobi_pwwoz_pwwa_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.som_kenobi_pwwoz_pwwa.branchId");
         return SCRIPT_CONTINUE;
     }

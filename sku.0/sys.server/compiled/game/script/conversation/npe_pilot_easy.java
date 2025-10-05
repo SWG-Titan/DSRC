@@ -947,26 +947,25 @@ public class npe_pilot_easy extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (npe_pilot_easy_condition_startedMedium(player, npc))
+        if (npe_pilot_easy_condition_startedMedium(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_70");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_isOnMission(player, npc))
+        if (npe_pilot_easy_condition_isOnMission(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_235");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -981,22 +980,22 @@ public class npe_pilot_easy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_297");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_easy.branchId", 2);
-                npcStartConversation(player, npc, "npe_pilot_easy", message, responses);
+                npcStartConversation(player, self, "npe_pilot_easy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_hasWonEasyMission4(player, npc))
+        if (npe_pilot_easy_condition_hasWonEasyMission4(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_62");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1011,22 +1010,22 @@ public class npe_pilot_easy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_287");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_easy.branchId", 4);
-                npcStartConversation(player, npc, "npe_pilot_easy", message, responses);
+                npcStartConversation(player, self, "npe_pilot_easy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_hasFailedEasyMission4(player, npc))
+        if (npe_pilot_easy_condition_hasFailedEasyMission4(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_126");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1041,22 +1040,22 @@ public class npe_pilot_easy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_293");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_easy.branchId", 12);
-                npcStartConversation(player, npc, "npe_pilot_easy", message, responses);
+                npcStartConversation(player, self, "npe_pilot_easy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_hasWonEasyMission3(player, npc))
+        if (npe_pilot_easy_condition_hasWonEasyMission3(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_130");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1071,22 +1070,22 @@ public class npe_pilot_easy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_132");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_easy.branchId", 15);
-                npcStartConversation(player, npc, "npe_pilot_easy", message, responses);
+                npcStartConversation(player, self, "npe_pilot_easy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_hasFailedEasyMission3(player, npc))
+        if (npe_pilot_easy_condition_hasFailedEasyMission3(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_148");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1104,27 +1103,27 @@ public class npe_pilot_easy extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "npe_pilot_easy", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "npe_pilot_easy", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_hasWonEasyMission2(player, npc))
+        if (npe_pilot_easy_condition_hasWonEasyMission2(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_152");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1142,28 +1141,28 @@ public class npe_pilot_easy extends script.base_script
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                npcStartConversation(player, npc, "npe_pilot_easy", null, pp, responses);
+                pp.target.set(self);
+                npcStartConversation(player, self, "npe_pilot_easy", null, pp, responses);
             }
             else 
             {
                 prose_package pp = new prose_package();
                 pp.stringId = message;
                 pp.actor.set(player);
-                pp.target.set(npc);
-                chat.chat(npc, player, null, null, pp);
+                pp.target.set(self);
+                chat.chat(self, player, null, null, pp);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_hasFailedEasyMission2(player, npc))
+        if (npe_pilot_easy_condition_hasFailedEasyMission2(player, self))
         {
-            doAnimationAction(npc, "sigh_deeply");
-            npe_pilot_easy_action_facePlayer(player, npc);
+            doAnimationAction(self, "sigh_deeply");
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_170");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1178,22 +1177,22 @@ public class npe_pilot_easy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_265");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_easy.branchId", 25);
-                npcStartConversation(player, npc, "npe_pilot_easy", message, responses);
+                npcStartConversation(player, self, "npe_pilot_easy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_hasWonEasyMission1(player, npc))
+        if (npe_pilot_easy_condition_hasWonEasyMission1(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_174");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1208,22 +1207,22 @@ public class npe_pilot_easy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_176");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_easy.branchId", 28);
-                npcStartConversation(player, npc, "npe_pilot_easy", message, responses);
+                npcStartConversation(player, self, "npe_pilot_easy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_hasFailedEasyMission1(player, npc))
+        if (npe_pilot_easy_condition_hasFailedEasyMission1(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_188");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1238,23 +1237,23 @@ public class npe_pilot_easy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_247");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_easy.branchId", 31);
-                npcStartConversation(player, npc, "npe_pilot_easy", message, responses);
+                npcStartConversation(player, self, "npe_pilot_easy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition_hasFinishedTraining(player, npc))
+        if (npe_pilot_easy_condition_hasFinishedTraining(player, self))
         {
-            doAnimationAction(npc, "point_accusingly");
-            npe_pilot_easy_action_facePlayer(player, npc);
+            doAnimationAction(self, "point_accusingly");
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_190");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1269,22 +1268,22 @@ public class npe_pilot_easy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_192");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_easy.branchId", 34);
-                npcStartConversation(player, npc, "npe_pilot_easy", message, responses);
+                npcStartConversation(player, self, "npe_pilot_easy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (npe_pilot_easy_condition__defaultCondition(player, npc))
+        if (npe_pilot_easy_condition__defaultCondition(player, self))
         {
-            npe_pilot_easy_action_facePlayer(player, npc);
+            npe_pilot_easy_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_87");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (npe_pilot_easy_condition__defaultCondition(player, npc))
+            if (npe_pilot_easy_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -1299,15 +1298,15 @@ public class npe_pilot_easy extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_89");
                 }
                 utils.setScriptVar(player, "conversation.npe_pilot_easy.branchId", 38);
-                npcStartConversation(player, npc, "npe_pilot_easy", message, responses);
+                npcStartConversation(player, self, "npe_pilot_easy", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -1316,109 +1315,108 @@ public class npe_pilot_easy extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.npe_pilot_easy.branchId");
-        if (branchId == 2 && npe_pilot_easy_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && npe_pilot_easy_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 4 && npe_pilot_easy_handleBranch4(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 4 && npe_pilot_easy_handleBranch4(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && npe_pilot_easy_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && npe_pilot_easy_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 6 && npe_pilot_easy_handleBranch6(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 6 && npe_pilot_easy_handleBranch6(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 8 && npe_pilot_easy_handleBranch8(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 8 && npe_pilot_easy_handleBranch8(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 10 && npe_pilot_easy_handleBranch10(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 10 && npe_pilot_easy_handleBranch10(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 12 && npe_pilot_easy_handleBranch12(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 12 && npe_pilot_easy_handleBranch12(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 13 && npe_pilot_easy_handleBranch13(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 13 && npe_pilot_easy_handleBranch13(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 15 && npe_pilot_easy_handleBranch15(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 15 && npe_pilot_easy_handleBranch15(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 16 && npe_pilot_easy_handleBranch16(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 16 && npe_pilot_easy_handleBranch16(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 17 && npe_pilot_easy_handleBranch17(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 17 && npe_pilot_easy_handleBranch17(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 19 && npe_pilot_easy_handleBranch19(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 19 && npe_pilot_easy_handleBranch19(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 20 && npe_pilot_easy_handleBranch20(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 20 && npe_pilot_easy_handleBranch20(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 22 && npe_pilot_easy_handleBranch22(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 22 && npe_pilot_easy_handleBranch22(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 23 && npe_pilot_easy_handleBranch23(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 23 && npe_pilot_easy_handleBranch23(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 25 && npe_pilot_easy_handleBranch25(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 25 && npe_pilot_easy_handleBranch25(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 26 && npe_pilot_easy_handleBranch26(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 26 && npe_pilot_easy_handleBranch26(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 28 && npe_pilot_easy_handleBranch28(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 28 && npe_pilot_easy_handleBranch28(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 29 && npe_pilot_easy_handleBranch29(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 29 && npe_pilot_easy_handleBranch29(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 31 && npe_pilot_easy_handleBranch31(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 31 && npe_pilot_easy_handleBranch31(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 32 && npe_pilot_easy_handleBranch32(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 32 && npe_pilot_easy_handleBranch32(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 34 && npe_pilot_easy_handleBranch34(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 34 && npe_pilot_easy_handleBranch34(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 35 && npe_pilot_easy_handleBranch35(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 35 && npe_pilot_easy_handleBranch35(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 36 && npe_pilot_easy_handleBranch36(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 36 && npe_pilot_easy_handleBranch36(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 38 && npe_pilot_easy_handleBranch38(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 38 && npe_pilot_easy_handleBranch38(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.npe_pilot_easy.branchId");
         return SCRIPT_CONTINUE;
     }

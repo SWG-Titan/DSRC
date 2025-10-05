@@ -20,21 +20,18 @@ public class tatooine_eisley_jano extends script.base_script
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_tdc");
         int tat_eisley_tdc_e5 = groundquests.getTaskId(questId1, "tat_eisley_tdc_e5");
-        boolean onTask = questIsTaskActive(questId1, tat_eisley_tdc_e5, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_eisley_tdc_e5, player);
     }
     public boolean tatooine_eisley_jano_condition_tdcOnTask4(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_tdc");
         int tat_eisley_tdc_e7 = groundquests.getTaskId(questId1, "tat_eisley_tdc_e7");
-        boolean onTask = questIsTaskActive(questId1, tat_eisley_tdc_e7, player);
-        return onTask;
+        return questIsTaskActive(questId1, tat_eisley_tdc_e7, player);
     }
     public boolean tatooine_eisley_jano_condition_tdcQuestComplete(obj_id player, obj_id npc) throws InterruptedException
     {
         int questId1 = questGetQuestId("quest/tatooine_eisley_tdc");
-        boolean OnTask = (questIsQuestComplete(questId1, player));
-        return OnTask;
+        return (questIsQuestComplete(questId1, player));
     }
     public void tatooine_eisley_jano_action_signalJanoDelivered1(obj_id player, obj_id npc) throws InterruptedException
     {
@@ -161,26 +158,25 @@ public class tatooine_eisley_jano extends script.base_script
     }
     public int OnStartNpcConversation(obj_id self, obj_id player) throws InterruptedException
     {
-        obj_id npc = self;
-        if (ai_lib.isInCombat(npc) || ai_lib.isInCombat(player))
+        if (ai_lib.isInCombat(self) || ai_lib.isInCombat(player))
         {
             return SCRIPT_OVERRIDE;
         }
-        if (tatooine_eisley_jano_condition_tdcQuestComplete(player, npc))
+        if (tatooine_eisley_jano_condition_tdcQuestComplete(player, self))
         {
-            tatooine_eisley_jano_action_facePlayer(player, npc);
+            tatooine_eisley_jano_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_17");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_jano_condition_tdcOnTask4(player, npc))
+        if (tatooine_eisley_jano_condition_tdcOnTask4(player, self))
         {
-            tatooine_eisley_jano_action_facePlayer(player, npc);
+            tatooine_eisley_jano_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_6");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_jano_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_jano_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -195,22 +191,22 @@ public class tatooine_eisley_jano extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_13");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_jano.branchId", 2);
-                npcStartConversation(player, npc, "tatooine_eisley_jano", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_jano", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_jano_condition_tdcOnTask3(player, npc))
+        if (tatooine_eisley_jano_condition_tdcOnTask3(player, self))
         {
-            tatooine_eisley_jano_action_facePlayer(player, npc);
+            tatooine_eisley_jano_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_11");
             int numberOfResponses = 0;
             boolean hasResponse = false;
             boolean hasResponse0 = false;
-            if (tatooine_eisley_jano_condition__defaultCondition(player, npc))
+            if (tatooine_eisley_jano_condition__defaultCondition(player, self))
             {
                 ++numberOfResponses;
                 hasResponse = true;
@@ -225,22 +221,22 @@ public class tatooine_eisley_jano extends script.base_script
                     responses[responseIndex++] = new string_id(c_stringFile, "s_18");
                 }
                 utils.setScriptVar(player, "conversation.tatooine_eisley_jano.branchId", 5);
-                npcStartConversation(player, npc, "tatooine_eisley_jano", message, responses);
+                npcStartConversation(player, self, "tatooine_eisley_jano", message, responses);
             }
             else 
             {
-                chat.chat(npc, player, message);
+                chat.chat(self, player, message);
             }
             return SCRIPT_CONTINUE;
         }
-        if (tatooine_eisley_jano_condition__defaultCondition(player, npc))
+        if (tatooine_eisley_jano_condition__defaultCondition(player, self))
         {
-            tatooine_eisley_jano_action_facePlayer(player, npc);
+            tatooine_eisley_jano_action_facePlayer(player, self);
             string_id message = new string_id(c_stringFile, "s_22");
-            chat.chat(npc, player, message);
+            chat.chat(self, player, message);
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  All conditions for OnStartNpcConversation were false.");
+        chat.chat(self, "Error:  All conditions for OnStartNpcConversation were false.");
         return SCRIPT_CONTINUE;
     }
     public int OnNpcConversationResponse(obj_id self, String conversationId, obj_id player, string_id response) throws InterruptedException
@@ -249,21 +245,20 @@ public class tatooine_eisley_jano extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id npc = self;
         int branchId = utils.getIntScriptVar(player, "conversation.tatooine_eisley_jano.branchId");
-        if (branchId == 2 && tatooine_eisley_jano_handleBranch2(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 2 && tatooine_eisley_jano_handleBranch2(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 3 && tatooine_eisley_jano_handleBranch3(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 3 && tatooine_eisley_jano_handleBranch3(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        if (branchId == 5 && tatooine_eisley_jano_handleBranch5(player, npc, response) == SCRIPT_CONTINUE)
+        if (branchId == 5 && tatooine_eisley_jano_handleBranch5(player, self, response) == SCRIPT_CONTINUE)
         {
             return SCRIPT_CONTINUE;
         }
-        chat.chat(npc, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
+        chat.chat(self, "Error:  Fell through all branches and responses for OnNpcConversationResponse.");
         utils.removeScriptVar(player, "conversation.tatooine_eisley_jano.branchId");
         return SCRIPT_CONTINUE;
     }
