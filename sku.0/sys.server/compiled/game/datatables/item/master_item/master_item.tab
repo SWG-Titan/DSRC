@@ -1,5 +1,5 @@
 name	template_name	type	unique	required_level	required_skill	creation_objvars	charges	tier	value	scripts	version	can_reverse_engineer	string_name	string_detail	comments
-s[unique]	s	e(weapon=1,armor=2,item=3,storyteller=4,object=5)[item]	i[0]	i	s	s	i	i	i[0]	s	i[1]	i[0]	c	c	c
+s[unique]	s	e(weapon=1,armor=2,item=3,storyteller=4,object=5)[item]	i[0]	i	s	s	i	i	i[0]	s	i[1]	i[0]	s	s	c
 weapon_pistol_02_01	object/weapon/ranged/pistol/pistol_d18.iff	weapon						2	45			1	Basic D18 Pistol	A basic pistol in dire need of cleaning.	level 5 required
 weapon_rifle_02_01	object/weapon/ranged/rifle/rifle_dlt20.iff	weapon						2	45			1	Basic DLT-20 Rifle	A basic rifle in dire need of cleaning.	level 5 required
 weapon_carbine_02_01	object/weapon/ranged/carbine/carbine_dh17.iff	weapon						2	45			1	Basic DH-17 Carbine	A basic carbine in dire need of cleaning.	level 5 required
