@@ -1,0 +1,339 @@
+LOOT_TABLE	NAME
+s	s[unspecified]
+creature/bantha_bonecracker_loot    	Bantha Bonecracker
+creature/creature_11_20 	Creature (11-20)
+creature/creature_1_10	Creature (01-10)
+creature/creature_21_30	Creature (21-30)
+creature/creature_31_40	Creature (31-40
+creature/creature_41_50	Creature (41-50)
+creature/creature_51_60	Creature (51-60)
+creature/creature_61_70	Creature (61-70)
+creature/creature_71_80	Creature (71-80)
+creature/creature_81_90	Creature (81-90)
+creature/deranged_mantigrue_loot	Deranged Mantigrue
+creature/elder_pugoriss_loot	Elder Purgoriss
+creature/elite_creature:elite_creature_11_20	Elite Creature (11-20)
+creature/elite_creature:elite_creature_1_10	Elite Creature (01-10)
+creature/elite_creature:elite_creature_21_30	Elite Creature (21-30)
+creature/elite_creature:elite_creature_31_40	Elite Creature (31-40)
+creature/elite_creature:elite_creature_51_60	Elite Creature (51-60)
+creature/elite_creature:elite_creature_61_70	Elite Creature (61-70)
+creature/elite_creature:elite_creature_71_80	Elite Creature (71-80)
+creature/elite_creature:elite_creature_81_90	Elite Creature (81-90)
+creature/elite_insect:elite_insect_71_80	Elite Insect (71-80)
+creature/elite_insect:elite_insect_81_90	Elite Insect (81-90)
+creature/erratic_swirl_prong_loot	Erratic Swirl Prong
+creature/flit_bloodsucker_loot	Bloodsucker Flit
+creature/giant_peko_peko_loot	Giant Peko-Peko
+creature/greater_gulginaw_loot	Greater Gulginaw
+creature/hostile_thune_mother_loot	Hostile Thune Mother
+creature/insect_11_20	Insect (11-20)
+creature/insect_1_10	Insect (01-10)
+creature/insect_21_30	Insect (21-30)
+creature/insect_31_40	Insect (31-40
+creature/insect_41_50	Insect (41-50)
+creature/insect_51_60	Insect (51-60)
+creature/insect_61_70	Insect (61-70)
+creature/insect_71_80	Insect (71-80)
+creature/krayt_dragon_high	Krayt Dragon (High)
+creature/krayt_dragon_low	Krayt Dragon (Low)
+creature/krayt_dragon_medium	Krayt Dragon (Medium)
+creature/narglatch_guardian_loot	Narglatch Guardian
+creature/peko_peko_albatross_high	Peko-Peko Albatross (High)
+creature/perlek_scavenger_loot	Perlek Scavenger
+creature/rancor_loot:bull_rancor_81_90	Bull Rancor (81-90)
+creature/rancor_loot:enraged_bull_rancor_81_90	Enraged Bull Rancor (81-90)
+creature/rancor_loot:enraged_rancor_81_90	Enraged Rancor (81-90)
+creature/rancor_loot:rancor_81_90	Rancor (81-90)
+creature/rancor_loot:rancor_monstrous_brute_81_90	Rancor Monstrous Brute (81-90)
+creature/razor_cat_eviscerator_loot	Razor Cat Eviscerator
+creature/rhoa_kwi_pack_leader_loot	Rhoa Kwi Pack Leader
+creature/ris_armor_components:dune_kimogila	RIS Armor (Kimogila)
+creature/ris_armor_components:gurk_king	RIS Armor (Gurk King)
+creature/ris_armor_components:peko_peko	RIS Armor (Peko-Peko)
+creature/ris_armor_components:woolamander	Woolamander
+creature/screaming_kai_tok_loot	Screaming Kai-Tok
+creature/skreeg_warrior_elite_loot	Skreeg Warrior (Elite)
+creature/whisper_bird_majestic_loot	Majestic Whisper Bird
+creature/wolf_kima_loot	Kima
+droid/droid_11_20	Droid (11-20)
+droid/droid_1_10	Droid (01-10)
+droid/droid_21_30	Droid (21-30)
+droid/droid_31_40	Droid (31-40
+droid/droid_41_50	Droid (41-50)
+droid/droid_51_60	Droid (51-60)
+droid/droid_61_70	Droid (61-70)
+droid/droid_71_80	Droid (71-80)
+droid/droid_81_90	Droid (81-90)
+droid/elite_droid:elite_droid_41_50	Elite Droid (41-50)
+droid/elite_droid:elite_droid_51_60	Elite Droid (51-60)
+droid/elite_droid:elite_droid_71_80	Elite Droid (71-80)
+droid/elite_droid:elite_droid_81_90	Elite Droid (81-90)
+droid/mtp_instance_droid	Meatlump Instance (Droid)
+generic_npc_1	Generic: NPE
+generic_npc_9	Generic: NPE (Level 9)
+heroic/echo_base_sharpshooter	Echo Base: Sharpshooter
+heroic/echo_base_wampa_boss	Echo Base: Unkajo
+heroic/heroic:axkva	Axkva Min: Final Boss
+heroic/heroic:echo_base_imperial_soldier	Echo Base: Imperial Soldier
+heroic/heroic:echo_base_rebel_soldier	Echo Base: Rebel Soldier
+heroic/heroic:echo_base_tauntaun_generic	Echo Base: Tauntaun
+heroic/heroic:echo_base_wampa_berserker	Echo Base: Wampa Berserker
+heroic/heroic:echo_base_wampa_generic	Echo Base: Wampa Generic
+heroic/heroic:exar_caretaker	Exar Kun: Caretaker
+heroic/heroic:exar_exar_kun	Exar Kun: Final Boss
+heroic/heroic:exar_hate_fist	Exar Kun: Hate Fist
+heroic/heroic:exar_minder	Exar Kun: Minder
+heroic/heroic:exar_open_hand	Exar Kun: Open Hand
+heroic/heroic:ig88	IG-88 Droid Factory
+heroic/heroic:sd_boss	ISD: FInal Boss
+heroic/heroic:sd_sub_1	ISD: First Boss
+heroic/heroic:sd_sub_2	ISD: Second Boss
+heroic/heroic:sd_sub_3	ISD: Third Boss
+heroic/heroic:tusken	ISD: Tusken King
+kashyyyk/avatar_platform:avatar_commando	Kashyyyk Content: Avatar
+kashyyyk/avatar_platform:avatar_harwakokok	Kashyyyk Content: Avatar
+kashyyyk/avatar_platform:avatar_trando	Kashyyyk Content: Avatar
+kashyyyk/avatar_platform:avatar_trando_cmd	Kashyyyk Content: Avatar
+kashyyyk/avatar_platform:avatar_trando_scale	Kashyyyk Content: Avatar
+kashyyyk/avatar_platform:avatar_wke	Kashyyyk Content: Avatar
+kashyyyk/etyyy_brightclaw	Kashyyyk Content: Etyyy
+kashyyyk/etyyy_greyclimber	Kashyyyk Content: Etyyy
+kashyyyk/etyyy_paleclaw	Kashyyyk Content: Etyyy
+kashyyyk/etyyy_silkthrower	Kashyyyk Content: Etyyy
+kashyyyk/etyyy_spiketop	Kashyyyk Content: Etyyy
+kashyyyk/etyyy_stoneleg	Kashyyyk Content: Etyyy
+kashyyyk/forest_exemplar	Kashyyyk Content: Dead Forest
+kashyyyk/forest_kerritamba	Kashyyyk Content: Dead Forest
+kashyyyk/forest_mouf	Kashyyyk Content: Dead Forest
+kashyyyk/forest_outcast	Kashyyyk Content: Dead Forest
+kashyyyk/forest_snake	Kashyyyk Content: Dead Forest
+kashyyyk/forest_steelhoof	Kashyyyk Content: Dead Forest
+kashyyyk/forest_vesad	Kashyyyk Content: Dead Forest
+kashyyyk/forest_warchief	Kashyyyk Content: Dead Forest
+kashyyyk/kashyyyk_bantha	Kashyyyk Content
+kashyyyk/kashyyyk_bolotaur	Kashyyyk Content
+kashyyyk/kashyyyk_fern_bicker	Kashyyyk Content
+kashyyyk/kashyyyk_jyykle_vulture	Kashyyyk Content
+kashyyyk/kashyyyk_kkryytch	Kashyyyk Content
+kashyyyk/kashyyyk_minstyngar	Kashyyyk Content
+kashyyyk/kashyyyk_mouf	Kashyyyk Content
+kashyyyk/kashyyyk_pug_jumper	Kashyyyk Content
+kashyyyk/kashyyyk_roroo	Kashyyyk Content
+kashyyyk/kashyyyk_sathog	Kashyyyk Content
+kashyyyk/kashyyyk_uller	Kashyyyk Content
+kashyyyk/kashyyyk_varactyl	Kashyyyk Content
+kashyyyk/kashyyyk_walluga	Kashyyyk Content
+kashyyyk/kashyyyk_webweaver	Kashyyyk Content
+kashyyyk/myyydril_deathswarm	Kashyyyk Content
+kashyyyk/myyydril_eviserator	Kashyyyk Content
+kashyyyk/myyydril_grievous	Kashyyyk Content
+kashyyyk/myyydril_nefarious	Kashyyyk Content
+kashyyyk/sayormi_cyrans	Kashyyyk Content
+kashyyyk/sayormi_monk	Kashyyyk Content
+kashyyyk/sayormi_queen	Kashyyyk Content
+kashyyyk/sayormi_warrior	Kashyyyk Content
+kashyyyk/sayormi_witch	Kashyyyk Content
+kashyyyk/urnsoris	Kashyyyk Content
+kashyyyk/uwari	Kashyyyk Content
+kashyyyk/wke_resistance	Kashyyyk Content
+kashyyyk/wke_resistance_commando	Kashyyyk Content
+kashyyyk/wke_resistance_leader	Kashyyyk Content
+mustafar/mustafar_ash_scale	Mustafar Content
+mustafar/mustafar_blackguard	Mustafar Content
+mustafar/mustafar_blistmok	Mustafar Content
+mustafar/mustafar_blistmok_shrieker	Mustafar Content
+mustafar/mustafar_blistmok_trampler	Mustafar Content
+mustafar/mustafar_cinderclaw	Mustafar Content
+mustafar/mustafar_coyn	Mustafar Content
+mustafar/mustafar_coyn_captain	Mustafar Content
+mustafar/mustafar_coyn_commander	Mustafar Content
+mustafar/mustafar_deathsting	Mustafar Content
+mustafar/mustafar_droid	Mustafar Content
+mustafar/mustafar_eradicator	Mustafar Content
+mustafar/mustafar_flea_smoldering	Mustafar Content
+mustafar/mustafar_jundak	Mustafar Content
+mustafar/mustafar_jundak_devourer	Mustafar Content
+mustafar/mustafar_lava_beetle	Mustafar Content
+mustafar/mustafar_lava_flea	Mustafar Content
+mustafar/mustafar_lava_lizard	Mustafar Content
+mustafar/mustafar_lislot	Mustafar Content
+mustafar/mustafar_mustafarian_bandit	Mustafar Content
+mustafar/mustafar_mustafarian_bandit_king	Mustafar Content
+mustafar/mustafar_narl	Mustafar Content
+mustafar/mustafar_npc	Mustafar Content
+mustafar/mustafar_orf_tulrus	Mustafar Content
+mustafar/mustafar_orf_xandank	Mustafar Content
+mustafar/mustafar_pulverizer	Mustafar Content
+mustafar/mustafar_ruins	Mustafar Content
+mustafar/mustafar_ruins_leader	Mustafar Content
+mustafar/mustafar_sansii	Mustafar Content
+mustafar/mustafar_scorching_terror	Mustafar Content
+mustafar/mustafar_sherkar_consort	Mustafar Content
+mustafar/mustafar_sinistros	Mustafar Content
+mustafar/mustafar_storm	Mustafar Content
+mustafar/mustafar_storm_lord	Mustafar Content
+mustafar/mustafar_storm_lord_prophet	Mustafar Content
+mustafar/mustafar_treasure	Mustafar Content
+mustafar/mustafar_tremor_foot	Mustafar Content
+mustafar/mustafar_trial_akprime	Mustafar Content
+mustafar/mustafar_trial_cmdr_mk2	Mustafar Content
+mustafar/mustafar_trial_col_or5	Mustafar Content
+mustafar/mustafar_trial_cym	Mustafar Content
+mustafar/mustafar_trial_devistator	Mustafar Content
+mustafar/mustafar_trial_doombringer	Mustafar Content
+mustafar/mustafar_trial_engineer	Mustafar Content
+mustafar/mustafar_trial_factory_guardian	Mustafar Content
+mustafar/mustafar_trial_foreman	Mustafar Content
+mustafar/mustafar_trial_forward_cmdr	Mustafar Content
+mustafar/mustafar_trial_hk47	Mustafar Content
+mustafar/mustafar_trial_oppressor	Mustafar Content
+mustafar/mustafar_trial_sherkar	Mustafar Content
+mustafar/mustafar_trial_taskmaster	Mustafar Content
+mustafar/mustafar_tulrus	Mustafar Content
+mustafar/mustafar_tulrus_drenched	Mustafar Content
+mustafar/mustafar_vansk	Mustafar Content
+mustafar/mustafar_voakar_duset	Mustafar Content
+mustafar/mustafar_xandank	Mustafar Content
+mustafar/mustafar_xandank_patriarch	Mustafar Content
+mustafar/mustafar_xandank_plated	Mustafar Content
+npc/borvo_acklay	Borvo's Acklay
+npc/boss_npc:boss_force_dark_npc_81_90	Force Sensitive Boss (Dark | 81-90)
+npc/boss_npc:boss_force_light_npc_81_90	Force Sensitive Boss (Light | 81-90)
+npc/boss_npc:boss_npc_51_60	Boss (51-60)
+npc/boss_npc:boss_npc_61_70	Boss (61-70)
+npc/boss_npc:boss_npc_71_80	Boss (71-80)
+npc/boss_npc:boss_npc_81_90	Boss (81-90)
+npc/corellian_slaver_clerk	Corellian Slaver: Clerk
+npc/corellian_slaver_faye_patrick	Corellian Slaver: Faye Patrick
+npc/elite_npc:elite_force_dark_npc_81_90	Force Sensitive (Dark | 81-90)
+npc/elite_npc:elite_force_light_npc_71_80	Force Sensitive (Dark | 81-90)
+npc/elite_npc:elite_force_light_npc_81_90	Force Sensitive (Dark | 81-90)
+npc/elite_npc:elite_npc_11_20	Elite NPC (11-20)
+npc/elite_npc:elite_npc_1_10	Elite NPC  (01-10)
+npc/elite_npc:elite_npc_21_30	Elite NPC  (21-30)
+npc/elite_npc:elite_npc_31_40	Elite NPC  (31-40
+npc/elite_npc:elite_npc_41_50	Elite NPC  (41-50)
+npc/elite_npc:elite_npc_51_60	Elite NPC  (51-60)
+npc/elite_npc:elite_npc_61_70	Elite NPC  (61-70)
+npc/elite_npc:elite_npc_71_80	Elite NPC  (71-80)
+npc/elite_npc:elite_npc_81_90	Elite NPC  (81-90)
+npc/elite_npc_31_40	Elite NPC*  (31-40)
+npc/elite_npc_31_41	Elite NPC*  (31-41)
+npc/elite_npc_31_42	Elite NPC*  (31-42)
+npc/elite_npc_31_43	Elite NPC*  (31-43)
+npc/elite_npc_61_70	Elite NPC*  (61-70)
+npc/elite_npc_71_80	Elite NPC*  (71-80)
+npc/geo_bunker:geonosian	Geonosian Bio-lab
+npc/geo_bunker:geonosian_acklay_bunker_boss	Geonosian Bio-lab: Acklay
+npc/geo_bunker:geonosian_droideka	Geonosian Bio-lab: Droideka
+npc/geo_bunker:geonosian_gaping_spider_fire	Geonosian Bio-lab: Gaping Fire Spider
+npc/geo_bunker:geonosian_humanoid	Geonosian Bio-lab: Humanoids
+npc/geo_bunker:geonosian_kliknik_strong	Geonosian Bio-lab: Kliknik (Strong)
+npc/geo_bunker:geonosian_kliknik_weak	Geonosian Bio-lab: Kliknik (Weak)
+npc/geo_bunker:geonosian_kwi	Geonosian Bio-lab: Kwi
+npc/geo_bunker:geonosian_mercenary	Geonosian Bio-lab: Mercenaries
+npc/geo_bunker:geonosian_probot	Geonosian Bio-lab: Probot
+npc/geo_bunker:geonosian_scientist	Geonosian Bio-lab: Scientist
+npc/mand_blksun_ext	Death Watch Bunker: Exterior
+npc/meatlump_merkie_howzat	Meatlump: Merkie Howzat
+npc/mission_bounty:bounty_boss	Bounty Hunter: Boss
+npc/mission_bounty:bounty_elite	Bounty Hunter: Elite
+npc/mission_bounty:bounty_low	Bounty Hunter: Low
+npc/mission_bounty:bounty_medium	Bounty Hunter: Medium
+npc/mtp_instance_npc	Meatlump: Instance
+npc/npc 71_70	NPC (71-70)
+npc/npc_11-20	NPC (11-20)
+npc/npc_11_20	NPC (11-20)
+npc/npc_1_10	NPC (01-10)
+npc/npc_21_30	NPC (21-30)
+npc/npc_31_40	NPC (31-40)
+npc/npc_31_40:force_dark	Force Senstive (31-40)
+npc/npc_41_50	NPC (41-50)
+npc/npc_51_60	NPC (51-60)
+npc/npc_61_60	NPC (61-60)
+npc/npc_61_70	NPC (61-70)
+npc/npc_71_80	NPC (71-80)
+npc/npc_71_80:force_dark	Force Senstive (71-80)
+npc/npc_71_80:force_light	Force Senstive (31-40)
+npc/npc_81_90	NPC (81-90)
+npc/npc_81_90:force_dark	Force Senstive (81-90)
+npc/npc_81_90:force_light	Force Senstive (81-90)
+npc/quest_spy_21	Spy Quest (Level 21)
+npc/skaak_tipper_jonni_skaak	Skaak Tipper: Jonni Skaak
+npc/tatooine_thranta_durr_roddack	Thranta: Durr Roddack
+npc/tusken:tusken_elite	Tusken: Elite
+npc/tusken:tusken_isolationist	Tusken: Isolationist
+npc/tusken:tusken_normal	Tusken: Normal
+npc/undead_11_20	Undead
+npc/undead_1_10	Undead
+npc/undead_21_30	Undead
+npc/undead_31_40	Undead
+npc/undead_41_50	Undead
+npc/undead_51_60	Undead
+npc/undead_61_70	Undead
+npc/undead_71_80	Undead
+npc/undead_81_90	Undead
+npc/undead_boss_11_20:level_15	Undead Boss
+npc/undead_boss_11_20:level_20	Undead Boss
+npc/undead_boss_1_10:level_05	Undead Boss
+npc/undead_boss_1_10:level_10	Undead Boss
+npc/undead_boss_21_30:level_25	Undead Boss
+npc/undead_boss_21_30:level_30	Undead Boss
+npc/undead_boss_31_40:level_35	Undead Boss
+npc/undead_boss_31_40:level_40	Undead Boss
+npc/undead_boss_41_50:level_45	Undead Boss
+npc/undead_boss_41_50:level_50	Undead Boss
+npc/undead_boss_51_60:level_55	Undead Boss
+npc/undead_boss_51_60:level_60	Undead Boss
+npc/undead_boss_61_70:level_65	Undead Boss
+npc/undead_boss_61_70:level_70	Undead Boss
+npc/undead_boss_71_80:level_75	Undead Boss
+npc/undead_boss_71_80:level_80	Undead Boss
+npc/undead_boss_81_90:cornburr	Undead Boss
+npc/undead_boss_81_90:level_85	Undead Boss
+npc/undead_boss_81_90:level_90	Undead Boss
+npc/undead_boss_81_90:level_95	Undead Boss
+npc/undead_boss_81_90:rancor	Undead Rancor
+npe/npe_dungeon_loot:loot_low	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_battle_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_blightbane_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_carax_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_construct_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_droid_4warning_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_droid_espy_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_droid_rescind_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_i10_probe_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_k3i_buzzer_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_malevolence_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_overlord_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_quietus_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_rakqua_bowman_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_rakqua_guard_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_rakqua_rifle_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_rakqua_shaman_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_rakqua_warrior_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_rakqua_witch_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_seeker_droid_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_venomstriker_loot	NPE Dungeon Loot
+npe/npe_dungeon_loot:npe_widow_loot	NPE Dungeon Loot
+npe/npe_station_loot:npe_droid	NPE Station Loot
+npe/npe_station_loot:npe_flyer	NPE Station Loot
+npe/npe_station_loot:npe_flyer_boss	NPE Station Loot
+npe/npe_station_loot:npe_genesis	NPE Station Loot
+npe/npe_station_loot:npe_genesis_boss	NPE Station Loot
+npe/npe_station_loot:npe_ground	NPE Station Loot
+npe/npe_station_loot:npe_ground_boss	NPE Station Loot
+npe/npe_station_loot:npe_insect	NPE Station Loot
+npe/npe_station_loot:npe_insect_boss	NPE Station Loot
+npe/npe_station_loot:npe_slicer	NPE Station Loot
+npe/npe_station_loot:npe_slicer_boss	NPE Station Loot
+npe/npe_station_loot:npe_thug	NPE Station Loot
+npe/npe_station_loot:npe_thug_boss	NPE Station Loot
+rls/comp_loot_binks	World Boss: Donk-Donk Binks
+rls/comp_loot_crusader	World Boss: The Crusader
+rls/comp_loot_generic	World Boss: Generic
+rls/comp_loot_ig24	World Boss: IG-24
+rls/comp_loot_krayt	World Boss: Elder Ancient Krayt Dragon
+rls/comp_loot_peko	World Boss: Mutatated Empress Peko-Peko
+rls/comp_loot_rolii	World Boss: Darth Rolii

@@ -1,0 +1,3 @@
+strItem	strKey	intProfession
+s	s	"e(trader=0,jedi=1,all=3)[all]"
+test	test	trader

@@ -1,0 +1,38 @@
+effect_name	effect_file	required_event	cooldown	hardpoint
+s	s	s	i[60]	s[root]
+Move Along	clienteffect/cr_parasite_explosion.cef	generic	60
+Fog Machine	clienteffect/halloween_fog_machine.cef	halloween	360
+Lifeday Celebration	clienteffect/pt_lifeday.cef	lifeday	3600
+Bat Swarm	clienteffect/item_bugs_bats.cef	halloween
+Bug Swarm: Bees	clienteffect/item_bugs_bees.cef	generic
+Bug Swarm: Butterflies	clienteffect/item_bugs_butterflies.cef	generic
+Bug Swarm: Flies	clienteffect/item_bugs_flies.cef	generic
+Bug Swarm: Glowzees	clienteffect/item_bugs_glowzees.cef	generic
+Bug Swarm: Moths	clienteffect/item_bugs_moths.cef	generic
+Explosion: Landmine	clienteffect/exp_ap_landmine.cef	generic	300
+Medical Trickery	clienteffect/player_clone_compile.cef	generic
+Beast Mastery Mishap	clienteffect/item_egg_splurt.cef	generic
+Jawa Fiesta	clienteffect/droid_effect_jawa_dance.cef	generic
+Performance: Boo	clienteffect/perform_boo.cef	generic
+Performance: Cheer	clienteffect/perform_cheer.cef	generic
+Performance: Clap	clienteffect/perform_clap.cef	generic
+Performance: Crickets	clienteffect/perform_crickets.cef	generic
+Tactical Smoke	clienteffect/eow_battle_smoke.cef	generic	300
+Camera Jolt (Light)	int_camshake_light.cef	generic	60
+Camera Jolt (Medium)	int_camshake_medium.cef	generic	60
+Camera Jolt (Heavy)	int_camshake_heavy.cef	generic	60
+Ion Cannon	clienteffect/ion_fire.cef	generic	300
+Eating (Masculine)	clienteffect/human_male_eat.cef	generic	12
+Eating (Feminine)	clienteffect/human_female_eat.cef	generic	12
+Beam Me Up, Bubba!	appearance/pt_transport_thruster.prt	generic	45
+Witches Vortex	appearance/pt_moon_vortex.prt	halloween	60
+Sparkle Feet	appearance/pt_magnaguard_sparks_hit.prt	generic	12
+Chilly Feet	appearance/pt_partydroid_dryice.prt	generic	10
+Sparky Feet	appearance/pt_ig88_electricfloor.prt	generic	60
+Fire Feet	appearance/pt_bor_fireplace.prt	generic	10
+Foot Soak	appearance/pt_splash.prt	generic	12
+Emergency Flare	appearance/pt_flare.prt	generic	10	head
+Hot Headed	appearance/pt_geyser_01_l0.prt	generic	100	head
+Cloud of Spice	appearance/pt_smoke_red_nowind.prt	generic	10
+Phat Lewts	appearance/pt_loot_disc_base.prt	generic	10	head
+Tactical Marker	appearance/pt_arrow_disc_temp.prt	generic	10	head

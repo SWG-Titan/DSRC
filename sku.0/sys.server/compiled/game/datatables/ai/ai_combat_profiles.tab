@@ -364,3 +364,16 @@ nyms_themepark_lapaz_boss		sp_dm_8	16	100		sp_dot_1	4	100		sp_cc_dot	13	100		sp_
 nyms_themepark_barnet_boss		ig88_droideka_shield	6	100		bh_dread_strike_5	12	100		bh_dm_cc_2	12	100		of_del_ae_dm_3	12	100		bh_ae_dm_1	12	100																
 nyms_themepark_foreman_boss		sm_dm_dot_1	8	100		me_dm_dot_1	10	100		me_dm_8	12	100		bm_kick_5	12	100																				
 nyms_themepark_controller_boss		bm_bolster_armor_5	8	100		bm_flank_3	10	100		bm_siphon_3	12	100		bm_slash_1	12	100																				
+tusken_iso_tribesman_melee		of_leg_strike_7	3	100		bh_dm_crit_8	6	100																																																		
+tusken_iso_tribesman_ranged		bh_dread_strike_5	3	100		bh_dm_8	6	100		bh_relentless_1	9	100																																														
+tusken_iso_warrior_melee		of_vortex_5	3	100		sp_hd_melee_6	6	100		bh_dm_crit_8	9	100																																														
+tusken_iso_warrior_ranged		bh_dm_cc_3	3	100		bh_dm_crit_8	6	100		bh_dm_8	9	100																																														
+tusken_iso_shaman		of_vortex_5	3	100		sp_hd_melee_6	6	100		me_bacta_resistance_1	9	100		tusken_ritual_1	12	100																																										
+tusken_iso_s_warrior_melee		of_vortex_5	3	100		sp_hd_melee_6	6	100		sm_ae_dm_melee_6	9	100		tusken_ritual_1	20	100	once																																									
+tusken_iso_s_warrior_ranged		bh_dm_crit_8	3	100		bh_dm_8	6	100		sp_dot_5	9	100		bh_sniper_6	20	100																																										
+world_boss_krayt		bm_trample	2	100	once	bm_bite_5	6	100		bm_dampen_pain_5	8	100	once	bm_stomp_5	15	100	once
+world_boss_darth_gizmo		fs_dm_cc_3	8			fs_sweep_4	8			fs_dm_5	26			fs_ae_dm_cc_5	11			fs_buff_def_1_6	5		once
+world_boss_paxvizla		ig88_droideka_shield	120	100		ig88_droideka_electrify	15	100
+world_boss_peko		bm_wing_buffet_5	8	100		bm_claw_5	4	100		bm_slash_5	3	100	once	bm_slash_5	22	100
+world_boss_donkdonk_binks		of_dm_boss	4			of_ae_dm_boss	8			of_del_ae_dm_boss	12
+world_boss_ig24		ig88_droideka_shield	4			bh_dread_strike_5	8			co_ae_dm_3	12

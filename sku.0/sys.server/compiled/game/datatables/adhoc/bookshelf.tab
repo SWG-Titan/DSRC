@@ -1,0 +1,15 @@
+book_type	book_template	book_cost
+s	s	i
+Book (Black)	object/tangible/book/black.iff	2000
+Book (Blue)	object/tangible/book/blue.iff	2000
+Book (Brown)	object/tangible/book/brown.iff	2000
+Book (Cerulean)	object/tangible/book/cerulean.iff	2000
+Book (Gold)	object/tangible/book/gold.iff	2000
+Book (Green)	object/tangible/book/green.iff	2000
+Book (Orange)	object/tangible/book/orange.iff	2000
+Book (Purple)	object/tangible/book/purple.iff	2000
+Book (Red)	object/tangible/book/red.iff	2000
+Book (Teal)	object/tangible/book/teal.iff	2000
+Tome	object/tangible/book/tome.iff	2000
+Newspaper	object/tangible/book/newspaper.iff	5000
+Bulletin Board	object/tangible/book/bulletin_board.iff	10000
