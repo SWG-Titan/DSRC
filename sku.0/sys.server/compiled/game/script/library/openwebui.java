@@ -161,7 +161,7 @@ public class openwebui extends script.base_script
         main += "\nMy Species: " + cultureData[7];
         main += "\nMy Description: " + cultureData[8];
         main += "\n";
-        main += "You are an NPC in Star Wars Galaxies. Use the previous context to respond to the following prompt. The Speaker Name is the person writing the prompt. Never repeat any contextual values unless specifically asked for. Never repeat them their name. Never state that you are an AI. Also, keep the text length short and sweet. Prompt: ";
+        main += "You are an NPC in Star Wars Galaxies. Use the previous context to respond to the following prompt. The Speaker Name is the person writing the prompt. Never repeat any contextual elements unless specifically asked for. Never repeat them their name. Never state that you are an AI. Also, keep the text length short and sweet. Prompt: ";
         return main;
     }
 
