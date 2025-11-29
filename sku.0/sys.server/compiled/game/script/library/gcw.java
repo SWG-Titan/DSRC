@@ -1275,7 +1275,7 @@ public class gcw extends script.base_script
         {
             return;
         }
-        float multiplier = utils.stringToFloat(getConfigSetting("GameServer", "gcwPointBonus"));
+        float multiplier = utils.getIntBonusValue("gcw_points");
         if (multiplier > 1)
         {
             pointValue *= multiplier;

@@ -2491,65 +2491,71 @@ public class loot extends script.base_script
         // get the attacker who did the most damage.
         obj_id player = getObjIdObjVar(target, xp.VAR_TOP_GROUP);
 
+        //get Tatooine for bonus checks
+        obj_id tatooine = getPlanetByName("tatooine");
         // make sure the attacker is a player.
-        if(!isValidId(player) || !isPlayer(player)){
+        if (!isValidId(player) || !isPlayer(player))
+        {
             return false;
         }
 
         // if they're AFK then skip to the next.
-        if(isAwayFromKeyBoard(player)) return false;
+        if (isAwayFromKeyBoard(player)) return false;
 
         // get custom settings from the configuration
-        boolean rlsEnabled = Boolean.parseBoolean(getConfigSetting("GameServer", "rlsEnabled"));
+        boolean rlsEnabled = getBooleanObjVar(tatooine, "bonus.rls.status");
         if (!rlsEnabled) return false;
 
         // get RLS Chance - default: 1%
-        String rlsc = getConfigSetting("GameServer", "rlsDropChance");
+        String rlsc = getStringObjVar(tatooine, "bonus.rls.rlsDropChance");
         double rlsChance = rlsc == null ? 0.005d : Double.parseDouble(rlsc) / 100;
 
         // did they qualify for a RLS chest?
         double rollValue = Math.random();
-        if(rollValue > rlsChance){
+        if (rollValue > rlsChance)
+        {
             // did not qualify due to roll out of range.
             return false;
         }
-        LOG("rare_loot", "Player (" + player + ") qualified for an RLS chest (chance: " + rlsChance + " roll: " + rollValue + ")");
+        LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") qualified for an RLS chest (chance: " + rlsChance + " roll: " + rollValue + ")");
 
-        String lb = getConfigSetting("GameServer", "rlsMaxLevelsBelowPlayerLevel");
-        int levelsBelow = lb == null ? 6 : Math.abs(Integer.parseInt(lb));
-        String la = getConfigSetting("GameServer", "rlsMaxLevelsAbovePlayerLevel");
-        int levelsAbove = la == null ? 6 : Math.abs(Integer.parseInt(la));
-        String rdc = getConfigSetting("GameServer", "rlsRareDropChance");
-        int rareDropChance = rdc == null ? 70 : Math.abs(Integer.parseInt(rdc));
-        String edc = getConfigSetting("GameServer", "rlsExceptionalDropChance");
-        int exceptionalDropChance = edc == null ? 25 : Math.abs(Integer.parseInt(edc));
-        String ldc = getConfigSetting("GameServer", "rlsLegendaryDropChance");
-        int legendaryDropChance = ldc == null ? 5 : Math.abs(Integer.parseInt(ldc));
-        String dist = getConfigSetting("GameServer", "rlsMinDistanceFromLastLoot");
-        int minDistanceFromLast = dist == null ? 0 : Math.abs(Integer.parseInt(dist));
-        String tmpTime = getConfigSetting("GameServer", "rlsMinTimeBetweenAwards");
+        int MaxLevelsBelowPlayerLevel = getIntObjVar(tatooine, "bonus.rls.maxDifferenceBelow");
+        int MaxLevelsAbovePlayerLevel = getIntObjVar(tatooine, "bonus.rls.maxDifferenceAbove");
+        int RareDropChance = getIntObjVar(tatooine, "bonus.rls.rare");
+        int ExceptionalDropChance = getIntObjVar(tatooine, "bonus.rls.exceptional");
+        int LegendaryDropChance = getIntObjVar(tatooine, "bonus.rls.legendary");
+        int MinDistance = getIntObjVar(tatooine, "bonus.rls.minDistance");
+        int MinTimeBetweenAwards = getIntObjVar(tatooine, "bonus.rls.minTime");
+        int levelsBelow = MaxLevelsBelowPlayerLevel;
+        int levelsAbove = MaxLevelsAbovePlayerLevel;
+        int rareDropChance = RareDropChance;
+        int exceptionalDropChance = ExceptionalDropChance;
+        int legendaryDropChance = LegendaryDropChance;
+        int minDistanceFromLast = MinDistance;
 
-        // check to make sure player is far enough away from the last looted location (if set)
         location targetLocation = getLocation(target);
-        if(minDistanceFromLast > 0 && hasObjVar(player, "loot.rls.lastLootedLocation")){
+        if (minDistanceFromLast > 0 && hasObjVar(player, "loot.rls.lastLootedLocation"))
+        {
             location last = getLocationObjVar(player, "loot.rls.lastLootedLocation");
             float distanceFromLast = getDistance(last, targetLocation);
-            if(distanceFromLast <= minDistanceFromLast){
-                LOG("rare_loot", "Player (" + player + ") last looted a chest only " + distanceFromLast + " meters away - which is too close to this current location.");
+            if (distanceFromLast <= minDistanceFromLast)
+            {
+                LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") last looted a chest only " + distanceFromLast + " meters away - which is too close to this current location.");
                 return false;
             }
         }
 
-        // make sure it's been longer than minimum time required between chests (default 15 minutes) since last looted chest
-        int rlsMinTimeBetweenAwards = (tmpTime == null ? 15 * 60 : Integer.parseInt(tmpTime));
-        if(hasObjVar(player, "loot.rls.lastChestAwardTime")) {
+        int rlsMinTimeBetweenAwards = MinTimeBetweenAwards * 60;
+        if (hasObjVar(player, "loot.rls.lastChestAwardTime"))
+        {
             int lastLootTime = getIntObjVar(player, "loot.rls.lastChestAwardTime");
             int elapsedTime = getGameTime() - lastLootTime;
-            LOG("rare_loot", "Player (" + player + ") last looted a chest " + elapsedTime + " game seconds ago (should be greater than " + rlsMinTimeBetweenAwards + ")!");
+            LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") last looted a chest " + elapsedTime + " game seconds ago (should be greater than " + rlsMinTimeBetweenAwards + ")!");
             if (elapsedTime < rlsMinTimeBetweenAwards) return false;
         }
-        else{
-            LOG("rare_loot", "Player (" + player + ") is looting their first RLS chest!");
+        else
+        {
+            LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") is looting their first RLS chest!");
         }
 
         // make sure the level range is appropriate for this attacker.
@@ -2557,42 +2563,48 @@ public class loot extends script.base_script
         int mobLevel = getLevel(target);
         int mobMinLevel = playerLevel - levelsBelow;
         int mobMaxLevel = playerLevel + levelsAbove;
-        if(mobLevel < mobMinLevel || mobLevel > mobMaxLevel) return false;
+        if (mobLevel < mobMinLevel || mobLevel > mobMaxLevel) return false;
 
         int bonus = 0;
-        // make sure the player has an extremely more difficult time to loot a chest if they're still going through the tutorial
-        if (hasObjVar(player, "npe")) {
-            bonus -= 500;
+        // @Note: This is to deny all chests on Tansarii Point Station
+        if (hasObjVar(player, "npe"))
+        {
+            LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") is on Tansarii Point Station and is being denied an RLS chest.");
+            return false;
         }
 
         // give the player a bonus if the mob is higher than their own level, lower bonus if mob is a lower level
         bonus += 10 * (mobLevel - playerLevel);
 
         // give the player a bonus if the mob is a silver or gold - only if they're equal to or higher than player's level
-        if (mobLevel >= playerLevel) {
-            LOG("rare_loot", "Player (" + player + ") killed an NPC that is equal to or greater than their level and is being evaluated for an RLS award!");
+        if (mobLevel >= playerLevel)
+        {
+            LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") killed an NPC that is equal to or greater than their level and is being evaluated for an RLS award!");
             String creatureName = ai_lib.getCreatureName(target);
-            if (creatureName.equals("")) return false;
+            if (creatureName.isEmpty()) return false;
 
-            switch (dataTableGetInt("datatables/mob/creatures.iff", creatureName, "difficultyClass")) {
+            switch (dataTableGetInt("datatables/mob/creatures.iff", creatureName, "difficultyClass"))
+            {
                 case 1:
-                    if (creatureName.startsWith("heroic_")) {
-                        LOG("rare_loot", "Player (" + player + ") killed a silver NPC and is being evaluated for an RLS award!");
+                    if (creatureName.startsWith("heroic_"))
+                    {
+                        LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") killed a silver NPC and is being evaluated for an RLS award!");
                         bonus += 10;
                     }
                     break;
                 case 2:
-                    if (creatureName.startsWith("heroic_")) {
-                        LOG("rare_loot", "Player (" + player + ") killed a gold NPC and is being evaluated for an RLS award!");
+                    if (creatureName.startsWith("heroic_"))
+                    {
+                        LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") killed a gold NPC and is being evaluated for an RLS award!");
                         bonus += 50;
                     }
                     break;
             }
         }
 
-        LOG("rare_loot", "Player (" + player + ") has a bonus of " + bonus + " and is applying that to their RLS award roll");
-        double rareLootRoll = (rand(1, 1000 - bonus) / 10);
-        LOG("rare_loot", "Player (" + player + ") just rolled a " + rareLootRoll + " value toward their RLS award (*with bonus*)!");
+        LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") has a bonus of " + bonus + " and is applying that to their RLS award roll");
+        double rareLootRoll = ((double) rand(1, 1000 - bonus) / 10);
+        LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") just rolled a " + rareLootRoll + " value toward their RLS award (*with bonus*)!");
 
         // now determine what kind of chest is dropped - default to rare quality.
         // DEFAULTS:
@@ -2603,16 +2615,17 @@ public class loot extends script.base_script
         String type = "RARE";
 
         // evaluate Rare drop chance first, then Exceptional... if it's not either of those two, then it's Rare.
-        if (rareLootRoll <= legendaryDropChance) {
+        if (rareLootRoll <= legendaryDropChance)
+        {
             lootType = 3;
             type = "LEGENDARY";
         }
-        else if (rareLootRoll <= exceptionalDropChance) {
+        else if (rareLootRoll <= exceptionalDropChance)
+        {
             lootType = 2;
             type = "EXCEPTIONAL";
         }
-        LOG("rare_loot", "Player (" + player + ") just qualified for a " + type + " RLS chest!");
-
+        LOG("ethereal", "[Rare Loot]: Player " + getPlayerFullName(player) + " just qualified for a " + type + " RLS chest!");
         obj_id chest = createRareLootChest(target, lootType);
 
         setObjVar(player, "loot.rls.lastChestAwardTime", getGameTime());
@@ -2621,9 +2634,44 @@ public class loot extends script.base_script
 
         playClientEffectLoc(target, RLS_EFFECT, targetLocation, 1.0f);
         playClientEffectLoc(target, RLS_SOUND, targetLocation, 1.0f);
-
+        boolean enableGroupRLS = getBooleanObjVar(tatooine, "bonus.rls.groupRLS");
+        if (enableGroupRLS)
+        {
+            if (group.isGrouped(player))
+            {
+                obj_id[] groupMembers = group.getGroupMemberIds(group.getGroupObject(player));
+                for (obj_id groupMember : groupMembers)
+                {
+                    if (groupMember != player && getDistance(player, groupMember ) < 64 && isPlayerActive(groupMember)) //check to make sure it doesn't count the player who looted it from getting another, and that the player is within 64m of the original looter, and make sure they are active.
+                    {
+                        if (getPlayerStationId(player) == getPlayerStationId(groupMember))
+                        {
+                            LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(player) + ") and group member (" + getPlayerFullName(groupMember) + ") are on the same station and are being denied an RLS chest.");
+                            return false;
+                        }
+                        else
+                        {
+                            int groupChance = 45; // 45% chance for group members to get a chest.
+                            if (rand(0, 100) <= groupChance)
+                            {
+                                location groupMemberLoc = getLocation(groupMember);
+                                obj_id groupChest = createRareLootChest(groupMember, lootType);
+                                setObjVar(groupMember, "loot.rls.lastChestAwardTime", getGameTime());
+                                setObjVar(groupMember, "loot.rls.lastLootedChest", groupChest);
+                                setObjVar(groupMember, "loot.rls.lastLootedLocation", groupMemberLoc);
+                                playClientEffectLoc(groupMember, RLS_EFFECT, groupMemberLoc, 1.0f);
+                                playClientEffectLoc(groupMember, RLS_SOUND, groupMemberLoc, 1.0f);
+                                LOG("ethereal", "[Rare Loot]: Player (" + getPlayerFullName(groupMember) + ") just qualified for a RLS chest since they won the group chance roll and were in a group with the original recipient: " + getPlayerFullName(player));
+                            }
+                        }
+                    }
+                }
+            }
+            LOG("ethereal", "[Rare Loot]: Group leader (" + getPlayerFullName(player) + ") just looted a RLS chest and been awarded a chest for each group member.");
+        }
         return true;
     }
+
     public static obj_id createRareLootChest(obj_id creature, int lootType) throws InterruptedException {
         obj_id chest = static_item.createNewItemFunction(CHEST_BASE + lootType, utils.getInventoryContainer(creature));
         LOG("rare_loot", "Just created item #" + chest + " in the inventory of creature " + creature);

@@ -118,7 +118,9 @@ public class chassis_npc extends base_script
             if (utils.getContainingPlayer(deed) == player)
             {
                 float mass = getFloatObjVar(deed, "ship_chassis.mass");
+                mass = mass * utils.getFloatBonusValue("ship_creation");
                 float hp = getFloatObjVar(deed, "ship_chassis.hp");
+                hp = hp * utils.getFloatBonusValue("ship_creation");
                 obj_id pcd = space_crafting.createDeedFromBlueprints(player, type, inv, mass, hp);
                 if (isIdValid(pcd))
                 {

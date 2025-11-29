@@ -943,6 +943,13 @@ public class player_developer extends base_script
                 broadcast(self, "Credit loot drop payout bonus set to " + bonus + "x");
                 LOG("ethereal", "[Server Bonuses]: " + getName(self) + " set the credit loot drop bonus to " + bonus + "x");
             }
+            else if (flag.equalsIgnoreCase("creature_harvesting"))
+            {
+                int bonus = stringToInt(tok.nextToken());
+                setObjVar(tatooine, "bonus.creature_harvesting", bonus);
+                broadcast(self, "Creature Harvesting bonus set to " + bonus + "x");
+                LOG("ethereal", "[Server Bonuses]: " + getName(self) + " set the Bounty Mission bonus to " + bonus + "x");
+            }
             else if (flag.equalsIgnoreCase("rls"))
             {
                 String subflag = tok.nextToken();
@@ -1044,6 +1051,7 @@ public class player_developer extends base_script
             setObjVar(tatooine, "bonus.mission_pve", 1);
             setObjVar(tatooine, "bonus.mission_jedi_bounty", 1);
             setObjVar(tatooine, "bonus.cashLoot", 1);
+            setObjVar(tatooine, "bonus.creature_harvesting", 1);
             setObjVar(tatooine, "bonus.rls.maxDifferenceBelow", 10);
             setObjVar(tatooine, "bonus.rls.maxDifferenceAbove", 10);
             setObjVar(tatooine, "bonus.rls.rare", 65);//           ***MUST***
@@ -1078,6 +1086,7 @@ public class player_developer extends base_script
             int mission_pve = getIntObjVar(tatooine, "bonus.mission_pve");
             int mission_jedi_bounty = getIntObjVar(tatooine, "bonus.mission_jedi_bounty");
             int cashLoot = getIntObjVar(tatooine, "bonus.cashLoot");
+            int creatureHarvesting = getIntObjVar(tatooine, "bonus.creature_harvesting");
             String rlsStatus = getStringObjVar(tatooine, "bonus.rls.rlsDropChance");
             int rlsMaxLevelsBelowPlayerLevel = getIntObjVar(tatooine, "bonus.rls.maxDifferenceBelow");
             int rlsMaxLevelsAbovePlayerLevel = getIntObjVar(tatooine, "bonus.rls.maxDifferenceAbove");
@@ -1109,6 +1118,8 @@ public class player_developer extends base_script
             prompt = prompt + "\\#DAA450Loot Bonuses\\#.\n";
             prompt = prompt + "\tLooted Credit Bonus: " + cashLoot + "x\n";
             prompt = prompt + "\tJunk Dealer Bonus: " + jd_bonus + "x\n\n";
+            prompt = prompt + "\\#DAA450Creature Harvesting\\#.\n";
+            prompt = prompt + "\tCreature Harvesting Bonus: " + creatureHarvesting;
             prompt = prompt + "\\#DAA450RLS Status and Bonuses\\#.\n";
             prompt = prompt + "\tRLS is: " + (rls ? "Enabled" : "Disabled") + "\n";
             prompt = prompt + "\tGroup Loot System is: " + (rlsGroup ? "Enabled" : "Disabled") + "\n";

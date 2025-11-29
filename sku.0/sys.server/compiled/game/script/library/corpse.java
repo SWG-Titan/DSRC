@@ -743,6 +743,8 @@ public class corpse extends script.base_script
             amt = params.getInt(resourceType);
             amt += amt * bonusHarvest;
             amt = (int)(amt * skillEfficiency);
+            //stack on bonus
+            amt += utils.getIntBonusValue("creature_harvest");
             if (group.isGrouped(player))
             {
                 obj_id[] groupMembers = getGroupMemberIds(getGroupObject(player));
