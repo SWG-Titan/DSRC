@@ -5,7 +5,7 @@ package script.content.renown;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Tuesday, 2/25/2025, at 11:25 PM, 
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

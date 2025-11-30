@@ -7,7 +7,7 @@ package script.library;/*
 Only players with a standing of 5000 or higher can use the renown system.
 You can gain renown, but you cannot lose it. So if a player drops below 5000, the renown isn't jeopardized.
 @Created: Tuesday, 2/25/2025, at 10:25 PM, 
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

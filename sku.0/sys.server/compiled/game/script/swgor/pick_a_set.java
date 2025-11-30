@@ -5,7 +5,7 @@ package script.swgor;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Monday, 1/13/2025, at 5:08 PM, 
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

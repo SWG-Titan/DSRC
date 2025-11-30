@@ -5,7 +5,7 @@ package script.content;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Saturday, 1/25/2025, at 10:12 AM, 
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

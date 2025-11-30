@@ -5,7 +5,7 @@ package script.systems.mechanic;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Monday, 2/24/2025, at 12:49 AM, 
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

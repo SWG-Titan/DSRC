@@ -5,7 +5,7 @@ package script.content.npe2;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Friday, 2/7/2025, at 7:31 PM, 
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

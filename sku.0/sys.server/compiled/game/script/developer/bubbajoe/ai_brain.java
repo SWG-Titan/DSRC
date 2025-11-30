@@ -5,7 +5,7 @@ package script.developer.bubbajoe;/*
 @Requirements: codellama and open webui.
 @Notes: Object can be tangible or mobile.
 @Created: Wednesday, 1/29/2025, at 6:15 PM,
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

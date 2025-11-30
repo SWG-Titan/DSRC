@@ -5,7 +5,7 @@ package script.player;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Thursday, 1/30/2025, at 1:26 PM, 
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

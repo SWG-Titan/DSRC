@@ -5,7 +5,7 @@ package script.content.jcs;/*
 @Requirements: mapped_strings & 3.1
 @Notes: Only one toy buff can be active at a time.
 @Created: Monday, 2/24/2025, at 3:06 PM, 
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 

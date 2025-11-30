@@ -5,7 +5,7 @@ package script.library;/*
 @Requirements: <no requirements>
 @Notes: <no notes>
 @Created: Wednesday, 1/29/2025, at 9:09 PM,
-@Copyright © SWG: New Beginnings 2025.
+@Copyright © SWG: Titan 2025.
     Unauthorized usage, viewing or sharing of this file is prohibited.
 */
 
