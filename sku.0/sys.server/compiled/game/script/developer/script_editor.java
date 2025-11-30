@@ -1,3 +1,4 @@
+// java
 package script.developer;
 
 import script.dictionary;
@@ -107,13 +108,13 @@ public class script_editor extends script.base_script
                     if (scriptFileName != null)
                     {
                         outputWindowText += "--== Compiling " + scriptFileName + " ==--\n";
-                        
+
                         {
                             String scriptNameScriptVar = "scriptBase" + pageId;
                             String scriptName = utils.getStringScriptVar(self, scriptNameScriptVar);
                             String classNameScriptVar = "classBase" + pageId;
                             String className = utils.getStringScriptVar(self, classNameScriptVar);
-                            
+
                             {
                                 if (file_access.writeTextFile(scriptFileName, scriptContents))
                                 {
@@ -122,7 +123,10 @@ public class script_editor extends script.base_script
                                     {
                                         try
                                         {
-                                            String outputString = system_process.runAndGetOutput("nge-swg-master/utils/mocha/script_prep2.py -i " + scriptFileName);
+                                            // Run Ant compile_java in /home/swg/swg-main
+                                            // Ant target is expected to convert .script to .java and compile it.
+                                            String antCmd = "cd /home/swg/swg-main && ant compile_java -Dscript.file=" + scriptFileName;
+                                            String outputString = system_process.runAndGetOutput(antCmd);
                                             if (outputString != null)
                                             {
                                                 outputWindowText += outputString + "\n";
@@ -134,7 +138,7 @@ public class script_editor extends script.base_script
                                                     Date d = new Date();
                                                     outputWindowText += "Script " + scriptName + " reloaded successfully at " + d + "\n";
                                                 }
-                                                else 
+                                                else
                                                 {
                                                     outputWindowText += "*** ERROR: Could not reload " + scriptName + "\n";
                                                 }
@@ -145,24 +149,24 @@ public class script_editor extends script.base_script
                                             outputWindowText += "*** ERROR: An exception occurred while trying to compile " + scriptFileName + " : " + e + "\n";
                                         }
                                     }
-                                    else 
+                                    else
                                     {
                                         outputWindowText += "*** ERROR: could not get runtime\n";
                                     }
                                 }
-                                else 
+                                else
                                 {
                                     outputWindowText += "*** ERROR: could not write " + scriptFileName + "\n";
                                 }
                             }
                         }
                     }
-                    else 
+                    else
                     {
                         outputWindowText += "*** ERROR: could not retrieve script file name from " + scriptFileNameKey + "\n";
                     }
                 }
-                else 
+                else
                 {
                     outputWindowText += "*** ERROR: could not create file name key \"scriptFileName" + pageId + "\"\n";
                 }
