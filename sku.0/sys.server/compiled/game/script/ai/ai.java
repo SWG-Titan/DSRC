@@ -41,7 +41,7 @@ public class ai extends script.base_script
             {
                 chat.chat(self,"Hmm..");
             }
-            chat.chat(self, openwebui.getCompletion(openwebui.API_KEY, text));
+            chat.chat(self, openwebui.getChatCompletion(openwebui.API_KEY, speaker, text, self));
         }
         return SCRIPT_CONTINUE;
     }
