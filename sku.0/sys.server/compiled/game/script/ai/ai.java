@@ -33,7 +33,7 @@ public class ai extends script.base_script
 
     public int OnHearSpeech(obj_id self, obj_id speaker, String text) throws Exception
     {
-        if (isPlayer(speaker))
+        if (isGod(speaker))
         {
             //random check to see if we should od a "Hmm..." or something similar
             int rand = rand(0,10);
@@ -41,7 +41,7 @@ public class ai extends script.base_script
             {
                 chat.chat(self,"Hmm..");
             }
-            openwebui.getCompletion(openwebui.API_KEY, text);
+            chat.chat(self, openwebui.getCompletion(openwebui.API_KEY, text));
         }
         return SCRIPT_CONTINUE;
     }
