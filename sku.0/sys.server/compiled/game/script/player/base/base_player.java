@@ -3,6 +3,12 @@ package script.player.base;
 import script.*;
 import script.library.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.http.HttpClient;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
@@ -1343,12 +1349,12 @@ public class base_player extends script.base_script
                 // Standard galaxy message
                 if (hasObjVar(planetId, "galaxyMessage"))
                 {
-                    String strGalaxyMessage = "\\#FF0000" + utils.getStringObjVar(planetId, "galaxyMessage") + "\\#FFFFFF";
+                    String strGalaxyMessage = "\\#FF0000" + getMotdJson() + "\\#FFFFFF";
                     sendConsoleMessage(self, strGalaxyMessage);
                 }
                 else
                 {
-                    String strGalaxyMessage = "\\#FF0000" + "Welcome to SWG: Titan" + "\\#FFFFFF";
+                    String strGalaxyMessage = "\\#FF0000" + getMotdJson() + "\\#FFFFFF";
                     sendConsoleMessage(self, strGalaxyMessage);
                 }
 
@@ -1681,6 +1687,44 @@ public class base_player extends script.base_script
         disconnectPlayer(self);
         return SCRIPT_CONTINUE;
     }
+
+    public String getMotdJson() {
+        try {
+            URL url = new URL("https://swgtitan.org/motd.json");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(5000);
+
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream(), java.nio.charset.StandardCharsets.UTF_8));
+
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null)
+                sb.append(line);
+            reader.close();
+
+            String json = sb.toString();
+            String title = "";
+            String key = "\"title\"";
+            int idx = json.indexOf(key);
+            if (idx != -1) {
+                int start = json.indexOf(":", idx) + 1;
+                int end = json.indexOf(",", start);
+                if (end == -1) end = json.indexOf("}", start);
+                if (start != -1 && end != -1) {
+                    title = json.substring(start, end).replaceAll("[\"{}]", "").trim();
+                }
+            }
+            return title;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Welcome to SWG: Titan";
+        }
+    }
+
+
     public int ctsCompletedForCharacter(obj_id self, dictionary params) throws InterruptedException
     {
         if (utils.hasScriptVar(self, cts.SCRIPTVAR_CTS_ITEM_ID))
