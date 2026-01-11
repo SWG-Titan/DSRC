@@ -136,6 +136,7 @@ public class menu_info_types
 	public static final int ITEM_UNEQUIP_APPEARANCE    = index++;
 	public static final int OPEN_STORYTELLER_RECIPE    = index++;
 	public static final int GOD_TELEPORT			   = index++;
+	public static final int ITEM_MOVEMENT_MODE			   = index++;
 
 
 	/// do not add any constants between here and SERVER_DIVIDER
