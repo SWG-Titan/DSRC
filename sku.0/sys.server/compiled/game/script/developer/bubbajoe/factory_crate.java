@@ -10,6 +10,7 @@ package script.developer.bubbajoe;/*
 */
 
 import script.library.utils;
+import script.library.craftinglib;
 import script.menu_info;
 import script.menu_info_types;
 import script.obj_id;
@@ -48,34 +49,18 @@ public class factory_crate extends script.base_script
         return SCRIPT_CONTINUE;
     }
 
-    public int generateFactoryCrate(obj_id self, obj_id inventory)
+    public int generateFactoryCrate(obj_id self, obj_id inventory) throws InterruptedException
     {
-        if (!isIdValid(inventory) || !exists(inventory))
+        // Use the new library function for factory crate generation
+        obj_id crate = craftinglib.generateFactoryCrate(self, inventory, 250);
+        if (crate != null)
         {
-            return SCRIPT_CONTINUE;
+            // Add any specific attributes from the original implementation
+            setObjVar(crate, "crafting.crafting_attributes.crafting:charges", rand(3, 9));
+            setObjVar(crate, "crafting.crafting_attributes.crafting:complexity", rand(3, 36));
+            setObjVar(crate, "crafting.crafting_attributes.crafting:hitPoints", 1000f);
+            setObjVar(crate, "crafting.crafting_attributes.crafting:xp", rand(1f, 100f));
         }
-        if (!isIdValid(self) || !exists(self))
-        {
-            return SCRIPT_CONTINUE;
-        }
-        String crateTemplate = "object/factory/factory_crate_clothing.iff";
-        obj_id crate = createObject(crateTemplate, inventory, "");
-        setObjVar(crate, "crafting.source_schematic", self);
-        setObjVar(crate, "crafting.crafting_attributes.crafting:charges", rand(3, 9));
-        setObjVar(crate, "crafting.crafting_attributes.crafting:complexity", rand(3, 36));
-        setObjVar(crate, "crafting.crafting_attributes.crafting:hitPoints", 1000f);
-        setObjVar(crate, "crafting.crafting_attributes.crafting:xp", rand(1f, 100f));
-        setObjVar(crate, "draftSchematic", getTemplateCrcCreatedFromSchematic(self.toString()));
-        setName(crate, getEncodedName(self));
-        String[] scriptsToCopy = getScriptList(self);
-        for (String scriptToCopy : scriptsToCopy)
-        {
-            if (!hasScript(crate, scriptToCopy))
-            {
-                attachScript(crate, scriptToCopy);
-            }
-        }
-        setCount(crate, 250);
         return SCRIPT_CONTINUE;
     }
 }
