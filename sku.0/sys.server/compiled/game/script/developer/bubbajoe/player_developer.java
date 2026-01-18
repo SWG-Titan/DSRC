@@ -5843,25 +5843,18 @@ public class player_developer extends base_script
         setSUIProperty(creaturePid, "Prompt.lblPrompt", "Font", "bold_22");
     }
 
-    public int generateFactoryCrate(obj_id self, obj_id inventory, obj_id manufacturing_schematic)
+    public int generateFactoryCrate(obj_id self, obj_id inventory, obj_id manufacturing_schematic) throws InterruptedException
     {
-        if (!isIdValid(inventory) || !exists(inventory))
+        // Use the new library function for factory crate generation
+        obj_id crate = craftinglib.generateFactoryCrate(manufacturing_schematic, inventory, 1000);
+        if (crate != null)
         {
-            return SCRIPT_CONTINUE;
+            // Add any developer-specific attributes if needed
+            setObjVar(crate, "crafting.crafting_attributes.crafting:charges", rand(3, 9));
+            setObjVar(crate, "crafting.crafting_attributes.crafting:complexity", 100f);
+            setObjVar(crate, "crafting.crafting_attributes.crafting:hitPoints", 1000f);
+            setObjVar(crate, "crafting.crafting_attributes.crafting:xp", rand(1f, 100f));
         }
-        if (!isIdValid(manufacturing_schematic) || !exists(manufacturing_schematic))
-        {
-            return SCRIPT_CONTINUE;
-        }
-        String crateTemplate = "object/factory/factory_crate_electronics.iff";
-        obj_id crate = createObject(crateTemplate, inventory, "");
-        setObjVar(crate, "crafting.source_schematic", manufacturing_schematic);
-        setObjVar(crate, "crafting.crafting_attributes.crafting:charges", rand(3, 9));
-        setObjVar(crate, "crafting.crafting_attributes.crafting:complexity", 100f);
-        setObjVar(crate, "crafting.crafting_attributes.crafting:hitPoints", 1000f);
-        setObjVar(crate, "crafting.crafting_attributes.crafting:xp", rand(1f, 100f));
-        setObjVar(crate, "draftSchematic", getDraftSchematicCrc(manufacturing_schematic));
-        setCount(crate, 1000);
         return SCRIPT_CONTINUE;
     }
 

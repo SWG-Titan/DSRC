@@ -1925,4 +1925,233 @@ public class craftinglib extends script.base_script
         }
         return false;
     }
+
+    /**
+     * Generates a factory crate from a manufacturing schematic or prototype object.
+     * This function creates a factory crate in the specified container with attributes
+     * copied from the source schematic or prototype.
+     *
+     * @param sourceObject The manufacturing schematic or prototype object to create a crate from
+     * @param targetContainer The container (usually inventory) where the crate will be created
+     * @param count The number of items the crate should contain
+     * @return The created factory crate obj_id, or null if creation failed
+     */
+    public static obj_id generateFactoryCrate(obj_id sourceObject, obj_id targetContainer, int count) throws InterruptedException
+    {
+        if (!isIdValid(sourceObject) || !exists(sourceObject))
+        {
+            return null;
+        }
+        if (!isIdValid(targetContainer) || !exists(targetContainer))
+        {
+            return null;
+        }
+        if (count <= 0)
+        {
+            count = 1;
+        }
+
+        // Determine the appropriate crate template based on the source object's template
+        String sourceTemplate = getTemplateName(sourceObject);
+        String crateTemplate = determineCrateTemplate(sourceTemplate);
+
+        // Create the factory crate
+        obj_id crate = createObject(crateTemplate, targetContainer, "");
+        if (!isIdValid(crate))
+        {
+            return null;
+        }
+
+        // Set the source schematic reference
+        setObjVar(crate, "crafting.source_schematic", sourceObject);
+
+        // Copy crafting attributes from source if they exist
+        if (hasObjVar(sourceObject, "crafting.crafting_attributes"))
+        {
+            obj_var_list ovl = getObjVarList(sourceObject, "crafting.crafting_attributes");
+            for (int i = 0; i < ovl.getNumItems(); i++)
+            {
+                obj_var ov = ovl.getObjVar(i);
+                setObjVar(crate, "crafting.crafting_attributes." + ov.getName(), ov);
+            }
+        }
+
+        // Set draft schematic CRC if available
+        if (hasObjVar(sourceObject, "draftSchematic"))
+        {
+            setObjVar(crate, "draftSchematic", getIntObjVar(sourceObject, "draftSchematic"));
+        }
+
+        // Set the crate count
+        setCount(crate, count);
+
+        // Copy the name from source object
+        String crateName = getEncodedName(sourceObject);
+        if (crateName != null && !crateName.isEmpty())
+        {
+            setName(crate, crateName);
+        }
+
+        // Copy any relevant scripts from source
+        String[] scriptsToCopy = getScriptList(sourceObject);
+        for (String scriptToCopy : scriptsToCopy)
+        {
+            // Only copy non-crafting session scripts
+            if (!scriptToCopy.contains("crafting") && !hasScript(crate, scriptToCopy))
+            {
+                attachScript(crate, scriptToCopy);
+            }
+        }
+
+        return crate;
+    }
+
+    /**
+     * Converts an existing item into a factory crate.
+     * This function takes an item and packages it into a factory crate format,
+     * allowing mass production or storage of identical items.
+     *
+     * @param item The item to convert into a factory crate
+     * @param targetContainer The container where the crate will be created
+     * @param count The number of items the crate should represent
+     * @return The created factory crate obj_id, or null if conversion failed
+     */
+    public static obj_id makeIntoFactoryCrate(obj_id item, obj_id targetContainer, int count) throws InterruptedException
+    {
+        if (!isIdValid(item) || !exists(item))
+        {
+            return null;
+        }
+        if (!isIdValid(targetContainer) || !exists(targetContainer))
+        {
+            return null;
+        }
+        if (count <= 0)
+        {
+            count = 1;
+        }
+
+        // Determine the appropriate crate template based on the item's template
+        String itemTemplate = getTemplateName(item);
+        String crateTemplate = determineCrateTemplate(itemTemplate);
+
+        // Create the factory crate
+        obj_id crate = createObject(crateTemplate, targetContainer, "");
+        if (!isIdValid(crate))
+        {
+            return null;
+        }
+
+        // Store the original item as a reference/prototype
+        setObjVar(crate, "crafting.prototype_object", item);
+        setObjVar(crate, "crafting.item_template", itemTemplate);
+
+        // Copy all objvars from the item to the crate
+        obj_var_list ovl = getObjVarList(item, "");
+        if (ovl != null)
+        {
+            for (int i = 0; i < ovl.getNumItems(); i++)
+            {
+                obj_var ov = ovl.getObjVar(i);
+                String varName = ov.getName();
+                // Skip certain objvars that shouldn't be copied
+                if (!varName.startsWith("crafting.") && !varName.equals("volume"))
+                {
+                    setObjVar(crate, "item_data." + varName, ov);
+                }
+            }
+        }
+
+        // Set the crate count
+        setCount(crate, count);
+
+        // Copy the name from the original item
+        String itemName = getEncodedName(item);
+        if (itemName != null && !itemName.isEmpty())
+        {
+            setName(crate, itemName);
+        }
+
+        // Store crafter information if available
+        if (hasObjVar(item, "crafting.crafter"))
+        {
+            setObjVar(crate, "crafting.crafter", getObjIdObjVar(item, "crafting.crafter"));
+        }
+
+        return crate;
+    }
+
+    /**
+     * Determines the appropriate factory crate template based on the source template.
+     * Helper function for generateFactoryCrate and makeIntoFactoryCrate.
+     *
+     * @param sourceTemplate The template name of the source object
+     * @return The appropriate factory crate template path
+     */
+    private static String determineCrateTemplate(String sourceTemplate) throws InterruptedException
+    {
+        // Default crate template
+        String crateTemplate = "object/factory/factory_crate_generic.iff";
+
+        if (sourceTemplate == null || sourceTemplate.isEmpty())
+        {
+            return crateTemplate;
+        }
+
+        // Determine crate type based on object category
+        if (sourceTemplate.contains("/weapon/"))
+        {
+            crateTemplate = "object/factory/factory_crate_weapon.iff";
+        }
+        else if (sourceTemplate.contains("/armor/"))
+        {
+            crateTemplate = "object/factory/factory_crate_armor.iff";
+        }
+        else if (sourceTemplate.contains("/clothing/"))
+        {
+            crateTemplate = "object/factory/factory_crate_clothing.iff";
+        }
+        else if (sourceTemplate.contains("/food/"))
+        {
+            crateTemplate = "object/factory/factory_crate_food.iff";
+        }
+        else if (sourceTemplate.contains("/chemical/"))
+        {
+            crateTemplate = "object/factory/factory_crate_chemicals.iff";
+        }
+        else if (sourceTemplate.contains("/electronics/") || sourceTemplate.contains("/electronic/"))
+        {
+            crateTemplate = "object/factory/factory_crate_electronics.iff";
+        }
+        else if (sourceTemplate.contains("/furniture/"))
+        {
+            crateTemplate = "object/factory/factory_crate_furniture.iff";
+        }
+        else if (sourceTemplate.contains("/installation/"))
+        {
+            crateTemplate = "object/factory/factory_crate_installation.iff";
+        }
+        else if (sourceTemplate.contains("/instrument/"))
+        {
+            crateTemplate = "object/factory/factory_crate_generic.iff";
+        }
+        else if (sourceTemplate.contains("/medicine/"))
+        {
+            crateTemplate = "object/factory/factory_crate_generic.iff";
+        }
+        else if (sourceTemplate.contains("/ship/") || sourceTemplate.contains("/space/"))
+        {
+            crateTemplate = "object/factory/factory_crate_generic.iff";
+        }
+        else if (sourceTemplate.contains("/structure/"))
+        {
+            crateTemplate = "object/factory/factory_crate_installation.iff";
+        }
+        else if (sourceTemplate.contains("/vehicle/"))
+        {
+            crateTemplate = "object/factory/factory_crate_generic.iff";
+        }
+
+        return crateTemplate;
+    }
 }
