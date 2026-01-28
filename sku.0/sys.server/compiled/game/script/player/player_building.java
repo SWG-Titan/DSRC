@@ -792,7 +792,7 @@ public class player_building extends script.base_script
                 {
                     distance = dist_int;
                 }
-                if (distance < 1 || distance > 500)
+                if (distance < 1 || distance > 500 && !isGod(self))
                 {
                     sendSystemMessage(self, new string_id(STF, "movefurniture_params"));
                     return SCRIPT_CONTINUE;
@@ -825,7 +825,7 @@ public class player_building extends script.base_script
                 {
                     distance = dist_int;
                 }
-                if (distance < 1 || distance > 500)
+                if (distance < 1 || distance > 500 && !isGod(self))
                 {
                     sendSystemMessage(self, new string_id(STF, "movefurniture_params"));
                     return SCRIPT_CONTINUE;
