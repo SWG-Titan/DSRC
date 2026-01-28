@@ -451,43 +451,55 @@ public class player_titan extends base_script
 
     public void listAllContentStatuses(obj_id self) throws InterruptedException
     {
-        String prompt = "";
-        prompt += "Content:\n";
-        prompt += "\n";
-        prompt += "\tWorld Bosses\n";
-        prompt += "\t\tElder Ancient Krayt Dragon: " + getDungeonStatus("world_boss.krayt") + "\n";
-        prompt += "\t\tMutated Peko-Peko Empress: " + getDungeonStatus("world_boss.peko") + "\n";
-        prompt += "\t\tDarth Rolii: " + getDungeonStatus("world_boss.gizmo") + "\n";
-        prompt += "\t\tThe Crusader: " + getDungeonStatus("world_boss.pax") + "\n";
-        prompt += "\t\tDonk-Donk Binks: " + getDungeonStatus("world_boss.donkdonk_binks") + "\n";
-        prompt += "\t\tIG-24: " + getDungeonStatus("world_boss.ig24") + "\n";
-        prompt += "\tDungeons\n";
-        prompt += "\t\tGeonosian Bio-lab (Players: " + getObjVar(getPlanetByName("tatooine"), "dungeon_finder.geo_count") + "\n";
-       // prompt += "\t\t\tAcklay: " + getDungeonStatus("dungeon.geo_madbio.acklay") + "\n";
-        //prompt += "\t\t\tReek: " + getDungeonStatus("dungeon.geo_madbio.reek") + "\n";
-        //prompt += "\t\t\tNexu: " + getDungeonStatus("dungeon.geo_madbio.nexu") + "\n\n";
-        prompt += "\t\tDeath Watch Bunker (Players: " + getObjVar(getPlanetByName("tatooine"), "dungeon_finder.dwb_count") + "\n";
-        prompt += "\t\t\tDeath Watch Overlord: " + getDungeonStatus("dungeon.death_watch_bunker.overlord") + "\n\n";
-        prompt += "\tOpen-World\n";
-        prompt += "\t\tEmperor's Hand: " + getDungeonStatus("open_world.hand") + "\n";
+        StringBuilder sb = new StringBuilder();
 
+        // Header
+        sb.append("\\#FFFFFF=== CONTENT STATUS ===\\#.\n\n");
+
+        // World Bosses Section
+        sb.append("\\#00BFFF[ World Bosses ]\\#.\n");
+        appendBossStatus(sb, "Elder Ancient Krayt Dragon", "world_boss.krayt");
+        appendBossStatus(sb, "Mutated Peko-Peko Empress", "world_boss.peko");
+        appendBossStatus(sb, "Darth Rolii", "world_boss.gizmo");
+        appendBossStatus(sb, "The Crusader", "world_boss.pax");
+        appendBossStatus(sb, "Donk-Donk Binks", "world_boss.donkdonk_binks");
+        appendBossStatus(sb, "IG-24", "world_boss.ig24");
+        appendBossStatus(sb, "Dhanak the Kessel Runner", "world_boss.dhanak");
+        sb.append("\n");
+
+        // Dungeons Section
+        sb.append("\\#00BFFF[ Dungeons ]\\#.\n");
+        appendDungeonWithCount(sb, "Geonosian Bio-lab", "geo_count");
+        appendDungeonWithCount(sb, "Death Watch Bunker", "dwb_count");
+        appendBossStatus(sb, "  \\#AAAAAA>\\#. Death Watch Overlord", "dungeon.death_watch_bunker.overlord");
+        sb.append("\n");
+
+        // Open World Section
+        sb.append("\\#00BFFF[ Open World ]\\#.\n");
+        appendBossStatus(sb, "Emperor's Hand", "open_world.hand");
         if (restoredContent)
         {
-            //prompt += "\t\tEmperor's Hand: " + getDungeonStatus("world_boss.emperors_hand") + "\n\n";
-            prompt += "\t\tAurra Sing: " + getDungeonStatus("world_boss.aurra_sing") + "\n\n"; //@TODO: replace when Aurra Sing is added
+            appendBossStatus(sb, "Aurra Sing", "world_boss.aurra_sing");
         }
+        sb.append("\n");
+
+        // Dynamic Dungeons Section (if enabled)
         if (restoredContent)
         {
-            prompt += "\tDynamic Dungeons\n";
-            prompt += "\t\tCzerka Hideout: " + getDungeonStatus("dynamic_dungeon.czerka") + "\n";
-            prompt += "\t\tMos Eisley Caverns: " + getDungeonStatus("dynamic_dungeon.caverns") + "\n\n";
+            sb.append("\\#00BFFF[ Dynamic Dungeons ]\\#.\n");
+            appendBossStatus(sb, "Czerka Hideout", "dynamic_dungeon.czerka");
+            appendBossStatus(sb, "Mos Eisley Caverns", "dynamic_dungeon.caverns");
+            sb.append("\n");
         }
 
-        String finalPrompt = prompt;
+        // Footer
+        sb.append("\\#888888Last Updated: ").append(getCalendarTimeStringLocal_YYYYMMDDHHMMSS(getCalendarTime())).append("\\#.");
+
+        String finalPrompt = sb.toString();
         int page = sui.msgbox(self, self, finalPrompt);
         setSUIProperty(page, sui.MSGBOX_PROMPT, "Text", finalPrompt);
         setSUIProperty(page, sui.MSGBOX_PROMPT, "Font", "bold_22");
-        setSUIProperty(page, sui.MSGBOX_TITLE, "Text", "Content Listings: " + getClusterName());
+        setSUIProperty(page, sui.MSGBOX_TITLE, "Text", "Content Status: " + getClusterName());
         setSUIProperty(page, sui.MSGBOX_PROMPT, "Editable", "false");
         setSUIProperty(page, sui.MSGBOX_PROMPT, "GetsInput", "false");
         subscribeToSUIEvent(page, sui_event_type.SET_onButton, "%btnOk%", "noHandler");
@@ -495,6 +507,19 @@ public class player_titan extends base_script
         setSUIProperty(page, "btnRevert", "Visible", "false");
         setSUIProperty(page, "btnOk", "Visible", "false");
         showSUIPage(page);
+    }
+
+    private void appendBossStatus(StringBuilder sb, String bossName, String statusKey)
+    {
+        sb.append("  ").append(bossName).append(": ").append(getDungeonStatus(statusKey)).append("\n");
+    }
+
+    private void appendDungeonWithCount(StringBuilder sb, String dungeonName, String countKey)
+    {
+        obj_id tatooine = getPlanetByName("tatooine");
+        Object playerCount = getObjVar(tatooine, "dungeon_finder." + countKey);
+        String countStr = (playerCount != null) ? playerCount.toString() : "0";
+        sb.append("  ").append(dungeonName).append(" \\#888888(Players: ").append(countStr).append(")\\#.\n");
     }
 
     public String getDungeonStatus(String dungeonName)

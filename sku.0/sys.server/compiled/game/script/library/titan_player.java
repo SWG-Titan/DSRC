@@ -39,6 +39,7 @@ public class titan_player extends base_script
     public static int WORLD_BOSS_AURRA = 5;
     public static int WORLD_BOSS_EMPERORS_HAND = 6;
     public static int WORLD_BOSS_IG24 = 7;
+    public static int WORLD_BOSS_DHANAK = 8;
     public static String[] ADMIN_PREFIXES = {
             "Dev-", "Admin-", "CSR-", "QA-", "IA-", "GM-", "Event-"
     };
@@ -842,6 +843,12 @@ public class titan_player extends base_script
                 String droidString = "Nym has requested aid in powering off a rogue product from IG-88's Droid Factory. The Lok Revenants are paying a handsome price for this droid's servo-motor!";
                 titan_player.sendWorldBossUpdateToDiscord(target, droidString, "Bounty Hunters' Guild", true, false, false);
                 broadcastGalaxy(droidString);
+                break;
+            case 8:
+                String dhanakString = "A notorious spice smuggler from Kessel named Dhanak has been cornered on Mustafar. The Hutts and the Empire both want him dead - the bounty is astronomical!";
+                titan_player.sendWorldBossUpdateToDiscord(target, dhanakString, "Bounty Hunters' Guild", true, false, false);
+                broadcastGalaxy(dhanakString);
+                break;
         }
     }
 

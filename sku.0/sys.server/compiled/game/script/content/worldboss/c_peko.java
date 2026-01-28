@@ -23,8 +23,15 @@ import script.obj_id;
 
 public class c_peko extends script.base_script
 {
-    public static final String VOLUME_NAME = "aggressive_area";
-    public String[] SQUAWK_MSGS = {
+    // Boss Configuration
+    private static final String BOSS_KEY = "peko";
+    private static final String BOSS_NAME = "Mutated Peko-Peko Empress";
+    private static final String TITLE_NAME = "Vanquisher of the Peko-Peko";
+    private static final String TITLE_SKILL = "title_world_boss_peko";
+    private static final String ADD_CREATURE = "peko_peko";
+    private static final String ELITE_ADD_CREATURE = "peko_peko_albatross_high";
+
+    private static final String[] SQUAWK_MSGS = {
             "<LOUD AVIAN NOISES>",
             "<ANGRY AVIAN NOISES>",
             "<UPSET AVIAN NOISES>",
@@ -35,14 +42,9 @@ public class c_peko extends script.base_script
 
     public int OnAttach(obj_id self) throws InterruptedException
     {
-        setName(self, "Mutated Peko-Peko Empress");
+        setName(self, BOSS_NAME);
         setDescriptionString(self, "A powerful and mutated Peko-Peko.");
-        obj_id tatooine = getPlanetByName("tatooine");
-        if (hasObjVar(tatooine, "dungeon_finder.world_boss.peko"))
-        {
-            removeObjVar(tatooine, "dungeon_finder.world_boss.peko");
-        }
-        setObjVar(tatooine, "dungeon_finder.world_boss.peko", "Active");
+        worldboss.markBossActive(BOSS_KEY);
         titan_utils.markAsEventSpawn(self);
         titan_player.doWorldBossAnnounce(self, titan_player.WORLD_BOSS_PEKO);
         return SCRIPT_CONTINUE;
@@ -60,188 +62,117 @@ public class c_peko extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        obj_id tatooine = getPlanetByName("tatooine");
-        if (hasObjVar(tatooine, "dungeon_finder.world_boss.peko"))
-        {
-            removeObjVar(tatooine, "dungeon_finder.world_boss.peko");
-        }
-        setObjVar(tatooine, "dungeon_finder.world_boss.peko", "Inactive");
-        titan_player.doWorldBossDeathMsg(self, killer); //only thing that is needed.
+        worldboss.markBossInactive(BOSS_KEY);
+        titan_player.doWorldBossDeathMsg(self, killer);
         return SCRIPT_CONTINUE;
     }
 
     public int OnCreatureDamaged(obj_id self, obj_id attacker, obj_id wpn, int[] damage) throws InterruptedException
     {
-        obj_id[] players = getPlayerCreaturesInRange(self, 64.0f);
-        int health = getHealth(self);
-        int maxHealth = getMaxHealth(self);
-        int percentHealth = (health * 100) / maxHealth;
         if (attacker == self)
         {
             return SCRIPT_CONTINUE;
         }
-        if (!utils.hasScriptVar(self, "chirp"))
+
+        obj_id[] players = getPlayerCreaturesInRange(self, worldboss.DEFAULT_COMBAT_RANGE);
+
+        // Initial chirp
+        if (worldboss.shouldTriggerPhase(self, 100, "chirp"))
         {
-            chat.chat(self, SQUAWK_MSGS[rand(0, SQUAWK_MSGS.length - 1)]);
-            utils.setScriptVar(self, "chirp", 1);
+            chat.chat(self, worldboss.getRandomMessage(SQUAWK_MSGS));
         }
-        if (percentHealth <= 75)
+
+        // Phase 1: 75% - Spawn adds
+        if (worldboss.shouldTriggerPhase(self, 75, "hasSpawned"))
         {
-            if (!utils.hasScriptVar(self, "hasSpawned"))
-            {
-                titan_player.createCircleSpawn(self, self, "peko_peko", 12, 24);
-                utils.setScriptVar(self, "hasSpawned", 1);
-                return SCRIPT_CONTINUE;
-            }
+            titan_player.createCircleSpawn(self, self, ADD_CREATURE, 12, 24);
+            return SCRIPT_CONTINUE;
         }
-        if (percentHealth <= 50)
+
+        // Phase 2: 50% - Knock back players
+        if (worldboss.shouldTriggerPhase(self, 50, "hasKnockedBack"))
         {
-            if (!utils.hasScriptVar(self, "hasKnockedBack"))
-            {
-                chat.chat(self, SQUAWK_MSGS[rand(0, SQUAWK_MSGS.length - 1)]);
-                staggerPlayers(self, players);
-                utils.setScriptVar(self, "hasKnockedBack", 1);
-            }
+            chat.chat(self, worldboss.getRandomMessage(SQUAWK_MSGS));
+            staggerPlayers(self, players);
         }
-        if (percentHealth <= 25)
+
+        // Phase 3: 25% - Disarm players
+        if (worldboss.shouldTriggerPhase(self, 25, "hasDisarmed"))
         {
-            if (!utils.hasScriptVar(self, "hasDisarmed"))
+            chat.chat(self, worldboss.getRandomMessage(SQUAWK_MSGS));
+            for (obj_id player : players)
             {
-                chat.chat(self, SQUAWK_MSGS[rand(0, SQUAWK_MSGS.length - 1)]);
-                for (obj_id who : players)
+                obj_id heldWeapon = getCurrentWeapon(player);
+                if (isIdValid(heldWeapon))
                 {
-                    obj_id heldWeapon = getCurrentWeapon(who);
-                    if (isIdValid(heldWeapon))
-                    {
-                        broadcast(who, "The most recent attack from " + getFirstName(attacker) + " caused the Mutated Peko-Peko Empress to disarm you with a wind gust!");
-                        putIn(heldWeapon, utils.getInventoryContainer(who));
-                    }
+                    broadcast(player, "The most recent attack from " + getFirstName(attacker) + " caused the Mutated Peko-Peko Empress to disarm you with a wind gust!");
+                    putIn(heldWeapon, utils.getInventoryContainer(player));
                 }
-                utils.setScriptVar(self, "hasDisarmed", 1);
             }
         }
-        if (percentHealth <= 10)
+
+        // Phase 4: 10% - Last stand with elite adds
+        if (worldboss.shouldTriggerPhase(self, 10, "hasLastStand"))
         {
-            if (!utils.hasScriptVar(self, "hasLastStand"))
-            {
-                buff.removeAllBuffs(self);
-                titan_player.createCircleSpawn(self, self, "peko_peko_albatross_high", 4, 24);
-                staggerPlayers(self, players);
-                for (obj_id who : players)
-                {
-                    broadcast(who, "The Mutated Peko-Peko Empress has called upon her fledglings to aid her in her final stand!");
-                }
-                utils.setScriptVar(self, "hasLastStand", 1);
-            }
+            buff.removeAllBuffs(self);
+            titan_player.createCircleSpawn(self, self, ELITE_ADD_CREATURE, 4, 24);
+            staggerPlayers(self, players);
+            worldboss.broadcastToPlayers(players, "The Mutated Peko-Peko Empress has called upon her fledglings to aid her in her final stand!");
         }
+
         return SCRIPT_CONTINUE;
     }
 
-    public void staggerPlayers(obj_id self, obj_id[] targets) throws InterruptedException
+    private void staggerPlayers(obj_id self, obj_id[] targets) throws InterruptedException
     {
-        float MAX_DISTANCE = titan_player.WORLD_BOSS_CREDIT_RANGE + 12f; //bring them outside the credit range, so if they are drags, they will need to manually run back.
+        float maxDistance = titan_player.WORLD_BOSS_CREDIT_RANGE + 12f; // bring them outside the credit range
         playClientEffectObj(targets, "clienteffect/cr_bodyfall_huge.cef", self, "");
-        if (targets == null)
+
+        if (targets == null || targets.length == 0)
         {
             return;
         }
-        for (obj_id iTarget : targets)
+
+        for (obj_id target : targets)
         {
-            int playerHealth = getHealth(iTarget);
-            int playerAction = getAction(iTarget);
+            if (!isIdValid(target))
+            {
+                continue;
+            }
+
+            int playerHealth = getHealth(target);
+            int playerAction = getAction(target);
             int statDrain = playerHealth / 2;
             int actionDrain = playerAction / 2;
-            setHealth(iTarget, playerHealth - statDrain);
-            setAction(iTarget, playerAction - actionDrain);
-            location stagger = getLocation(iTarget);
-            stagger.x = stagger.x + rand(-MAX_DISTANCE, MAX_DISTANCE);
-            stagger.z = stagger.z + rand(-MAX_DISTANCE, MAX_DISTANCE);
+            setHealth(target, playerHealth - statDrain);
+            setAction(target, playerAction - actionDrain);
+
+            location stagger = getLocation(target);
+            stagger.x = stagger.x + rand(-maxDistance, maxDistance);
+            stagger.z = stagger.z + rand(-maxDistance, maxDistance);
             stagger.y = getHeightAtLocation(stagger.x, stagger.z);
             stagger.area = getCurrentSceneName();
-            warpPlayer(iTarget, stagger.area, stagger.x, stagger.y, stagger.z, null, 0, 0, 0);
-            broadcast(iTarget, "The wind from the Mutated Peko-Peko's wings have knocked you back!");
-            if (buff.hasBuff(iTarget, "co_position_secured"))
+            warpPlayer(target, stagger.area, stagger.x, stagger.y, stagger.z, null, 0, 0, 0);
+            broadcast(target, "The wind from the Mutated Peko-Peko's wings have knocked you back!");
+
+            // Remove position buffs that could prevent proper knockback
+            if (buff.hasBuff(target, "co_position_secured"))
             {
-                buff.removeBuff(iTarget, "co_position_secured");
+                buff.removeBuff(target, "co_position_secured");
             }
-            if (buff.hasBuff(iTarget, "co_base_of_operations"))
+            if (buff.hasBuff(target, "co_base_of_operations"))
             {
-                buff.removeBuff(iTarget, "co_base_of_operations");
+                buff.removeBuff(target, "co_base_of_operations");
             }
-            sendConsoleCommand("/stopFollow", iTarget);
-            faceTo(iTarget, self);
+
+            sendConsoleCommand("/stopFollow", target);
+            faceTo(target, self);
         }
     }
 
     public int aiCorpsePrepared(obj_id self, dictionary params) throws InterruptedException
     {
-        obj_id landedDeathBlow = getObjIdObjVar(self, xp.VAR_LANDED_DEATHBLOW);
-        obj_id[] players = getPlayerCreaturesInRange(self, titan_player.WORLD_BOSS_CREDIT_RANGE);
-        String jediElderSignal = "trial_of_the_elders_wb";
-        String jediElderQuest = "quest/trial_of_the_elder";
-        String jediElderTaskName = "slayer_world_boss";
-        for (obj_id player : players)
-        {
-            if (isIdValid(player))
-            {
-                if (utils.getPlayerProfession(player) == utils.FORCE_SENSITIVE)
-                {
-                    if (groundquests.isQuestActive(player, jediElderQuest) && groundquests.isTaskActive(player, jediElderQuest, jediElderTaskName))
-                    {
-                        groundquests.sendSignal(player, jediElderSignal);
-                    }
-                }
-            }
-        }
-        obj_id[] finalList = station_lib.processPlayerListAndRemoveDuplicates(players);
-        for (obj_id player : finalList)
-        {
-            if (isIdValid(player))
-            {
-                obj_id token = static_item.createNewItemFunction("item_world_boss_token_01_01", player);
-                if (isIdValid(token))
-                {
-                    int multiplier = utils.getIntBonusValue("wb");
-                    int newCount = 5 * multiplier;
-                    setCount(token, newCount);
-                    sendSystemMessage(player, "You have received " + color("DAA520", String.valueOf(newCount)) + " World Boss Tokens.", null);
-                }
-                else
-                {
-                    LOG("ethereal", "[World Boss System]: No valid ID for deathblower. Not handing out bonus tokens.");
-                }
-                showLootBox(player, new obj_id[]{token});
-                if (!hasObjVar(player, "wb.peko"))
-                {
-                    setObjVar(player, "wb.peko", 1);
-                }
-                else
-                {
-                    int count = getIntObjVar(player, "wb.peko");
-                    if (count >= 10 && !hasObjVar(player, "wb.peko_title"))
-                    {
-                        broadcast(player, "You have received the title " + color("DAA520", "Vanquisher of the Peko-Peko") + " for killing the Mutated Peko-Peko Empress 10 times!");
-                        grantSkill(player, "title_world_boss_peko");
-                        setObjVar(player, "wb.peko_title", 1);
-                    }
-                    else
-                    {
-                        setObjVar(player, "wb.peko", count + 1);
-                    }
-                }
-            }
-        }
-        if (isIdValid(landedDeathBlow))
-        {
-            obj_id victorInv = utils.getInventoryContainer(landedDeathBlow);
-            static_item.createNewItemFunction("item_world_boss_token_01_01", victorInv, 5);
-            broadcast(landedDeathBlow, "You have received " + color("DAA520", "5") + " World Boss Tokens for landing the final blow!");
-        }
+        worldboss.handleCorpseRewards(self, BOSS_KEY, TITLE_NAME, TITLE_SKILL, BOSS_NAME);
         return SCRIPT_CONTINUE;
-    }
-
-    public String color(String color, String text) throws InterruptedException
-    {
-        return "\\#" + color + text + "\\#.";
     }
 }
