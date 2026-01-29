@@ -1,0 +1,27 @@
+item	token43	limit	class	note
+s	i	i[0]	i[0]	c
+item_content_mustafar_beacon	30	1		Mustafarian Instance Beacon
+item_tcg_loot_reward_series3_mustafar_travel_advertisement	30			Travel Advertisement: Mustafar
+item_publish_gift_29_mustafar_04_01	150			It came from mustafar!
+item_content_mustafar_lootbox	30			Content: Mustafar Lootbox
+item_content_mustafar_lootbox_static	150	1		Content: Mustafar Lootbox Tamers
+item_content_mustafar_lootbox_static_s02	150	1		Content: Mustafar Lootbox Lava Crystal
+item_tow_schematic_vehicle_02_02	150			Vehicle Deed: Desert Skiff
+item_content_mustafar_toy_ball	5			Toy Ball
+weapon_tow_rifle_lightning_cannon_04_01	150			Guardian Lightning Cannon
+item_tow_crystal_uber_05_01	150			Shard of Ferocity
+item_jedi_robe_06_01	100			Jedi Master Cloak (Brown)
+item_jedi_robe_06_02	100			Jedi Master Cloak (Black)
+item_color_crystal_02_28	150	1	7	Kenobi's Legacy
+item_color_crystal_02_18	150	1	7	Prowess of Plo Koon
+item_tow_foreman_burst_run_04_01	75			Sprint Enhancement Stim
+item_tow_proc_melee_03_01	100			Mustafarian Blade globe
+item_tow_proc_ranged_03_01	100			Mustafarian Distance globe
+item_tow_foreman_fire_absorb_04_01	60	1
+item_tow_fwd_commander_stim_05_01	60	1
+item_tow_mafosa_mez_immune_06_01	60	1
+item_tow_schematic_psg_05_01	150	1
+object/tangible/container/general/satchel.iff	2			Satchel
+item_tow_schematic_saber_03_01	150			ToOW Saber 2
+item_tow_schematic_saber_03_02	150			ToOW Saber 2
+object/tangible/deed/player_house_deed/mustafar_house_lg.iff	250			Mustafarian Bunker

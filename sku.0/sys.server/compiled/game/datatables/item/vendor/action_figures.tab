@@ -1,0 +1,31 @@
+item	cash	class	note	script	faction	factionCost	badge	collectionCompleted
+s[none]	i[0]	i[0]	c	s	s	i	s	s
+action_figure_toy_3po	50000							new_prof_chronicle_master
+action_figure_toy_awing	50000							kill_rebel_fighter_awing_01
+action_figure_toy_b1	50000							exp_nab_gungan_sacred_place
+action_figure_toy_boba	50000							treasure_hunter_mandalore_mask
+action_figure_toy_bwing	50000							kill_rebel_fighter_bwing_01
+action_figure_toy_chewbacca	50000						bdg_thm_park_rebel_badge	exp_kash_kachirho_found
+action_figure_toy_han	50000						bdg_thm_park_rebel_badge	bdg_exp_cor_bela_vistal_fountain
+action_figure_toy_hk47	50000							bdg_must_victory_volcano
+action_figure_toy_ig88	50000							posed_ig88_reward
+action_figure_toy_jabba	50000						bdg_thm_park_jabba_badge
+action_figure_toy_jango	50000							treasure_hunter_mandalore_mask
+action_figure_toy_lambda_shuttle	50000						bdg_thm_park_imperial_badge
+action_figure_toy_lando	50000							new_prof_smuggler_master
+action_figure_toy_leia	50000						bdg_thm_park_rebel_badge	bdg_exp_cor_rebel_hideout
+action_figure_toy_luke	50000						bdg_thm_park_rebel_badge	exp_tat_lars_homestead
+action_figure_toy_maul	50000
+action_figure_toy_r2	50000						bdg_thm_park_rebel_badge
+action_figure_toy_stormtrooper	50000						bdg_thm_park_imperial_badge
+action_figure_toy_tie_bomber	50000
+action_figure_toy_tie_fighter	50000							kill_imperial_tie_fighter_01
+action_figure_toy_tie_interceptor	50000							kill_imperial_tie_interceptor_01
+action_figure_toy_vader	50000						bdg_thm_park_imperial_badge
+action_figure_toy_vt49	50000
+action_figure_toy_xwing	50000							kill_rebel_fighter_xwing_01
+action_figure_toy_ykl37r	50000
+action_figure_toy_yt1300	50000
+action_figure_toy_yt2400	50000
+action_figure_toy_ywing	50000							kill_rebel_bomber_ywing_01
+action_figure_cloth	15000

@@ -1,0 +1,7 @@
+item	cash	class	script	note	faction	factionCost	badge
+s[none]	i[0]	i[0]	s	c	s[jabba]	i[100]	s
+curio_toolkit_vehicle_speed	250000					1000	bdg_thm_park_jabba_badge
+curio_toolkit_vehicle_acceleration	250000					1000	bdg_thm_park_jabba_badge
+curio_toolkit_vehicle_deceleration	250000					1000	bdg_thm_park_jabba_badge
+item_tow_schematic_vehicle_02_02	1000000					1000	bdg_thm_park_jabba_badge
+curio_toolkit_lava_resistance	1000000					1000	bdg_thm_park_jabba_badge

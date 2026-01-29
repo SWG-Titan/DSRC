@@ -1,0 +1,6 @@
+item	cash	class	script	note	faction	factionCost	badge
+s[none]	i[0]	i[0]	s	c	s	i	s
+account_character_slot	10000000				jabba	4000	bdg_thm_park_jabba_badge
+character_heroic_unlock	5000000				jabba	1000	bdg_thm_park_jabba_badge
+item_mail_opt_in_3_reward	15000				jabba	50	bdg_thm_park_jabba_badge
+item_auto_level_90_buddy_conversion	5000000				jabba	1000	bdg_thm_park_jabba_badge

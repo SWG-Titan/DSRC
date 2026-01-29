@@ -1,0 +1,14 @@
+item	cash	token42	limit	class	script	note	faction	factionCost
+s[none]	i[0]	i[0]	i[0]	i[0]	s	c	s	i
+item_city_extractor_deed	100000	1				Bio-logical Extractor	townsperson	50
+item_content_new_light	25000	0				Light	townsperson	50
+item_content_new_rug	15000	0				Rug Kit	townsperson	50
+item_loot_roll_bonus	100000	5				Holographic Item Synthesizer	bounty_guild	100
+item_content_bunker_house_01	2500000	500				Bunker (Small)	bounty_guild	100
+object/tangible/survey_tool/survey_tool_all_s01.iff	10000	25				All Resource Survey Tool	bounty_guild	100
+object/tangible/deed/harvester_deed/creature_harvester_deed.iff	3000000	200				Creature Harvester	bounty_guild	100
+object/tangible/veteran_reward/resource.iff	100000	50				Veteran Resource Crate	bounty_guild	100
+item_content_offhand_bactatank	50000	50	1	3		Bacta Disperal Tank	bounty_guild	100
+item_content_junk_cache_small	18000	5	1			Junk Cache: Small	townsperson	50
+item_content_junk_cache_large	65000	5	1			Junk Cache: Large	townsperson	50
+object/tangible/container/general/satchel.iff	2500	1				Satchel	townsperson	50
