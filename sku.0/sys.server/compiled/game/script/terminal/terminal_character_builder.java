@@ -1835,7 +1835,7 @@ public class terminal_character_builder extends script.base_script
 
     public int OnObjectMenuSelect(final obj_id self, obj_id player, int item) throws InterruptedException
     {
-        if (item == menu_info_types.ITEM_USE && (isGod(player) || checkConfigSetting("builderEnabled")))
+        if (item == menu_info_types.ITEM_USE)// || checkConfigSetting("builderEnabled")))
         {
             LOG("ethereal", "[Mystical Frog]: Player " + getPlayerFullName(player) + " started the Mystical Frog at " + getLocation(self).toReadableFormat(true));
             startCharacterBuilder(player);
