@@ -10,8 +10,13 @@ kinetic	resistances	expertise_innate_protection_kinetic	5	1	250
 energy	resistances	expertise_innate_protection_energy	5	1	250	
 elemental	resistances	elemental_resistance	5	1	250	
 crafting	trade	crafting_assembly	5	2	1	
-crafting_success	trade	crafting_critical_success_bonus	2	5	1	
-hand_sampling	trade	expertise_resource_sampling_increase	5	2	2	harvest_faire  
+creature_harvesting	trade	creature_harvesting	1	5	25	
+harvest_faire	trade	expertise_harvester_collection_increase	1	10	15	
+reverse_engineering_chance	trade	expertise_reverse_engineering_bonus	1	5	5	
+crafting	trade	crafting_assembly	1	10	5	
+crafting_success	trade	crafting_critical_success_bonus	1	5	5	
+hand_sampling	trade	expertise_resource_sampling_increase	1	10	15	
+resource_quality	trade	expertise_resource_quality_increase	1	10	3	
 critical_hit	combat	expertise_critical_niche_all	1	5	3	
 critical_hit_defense	combat	expertise_critical_hit_reduction	1	5	3	
 dodge	combat	expertise_glancing_blow_all	1	5	3	
