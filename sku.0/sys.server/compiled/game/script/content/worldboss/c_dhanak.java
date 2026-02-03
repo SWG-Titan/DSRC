@@ -197,7 +197,7 @@ public class c_dhanak extends script.base_script
 
     private void thermalDetonator(obj_id self, obj_id[] targets) throws InterruptedException
     {
-        if (targets == null || targets.length == 0)
+        if (targets == null)
         {
             return;
         }
