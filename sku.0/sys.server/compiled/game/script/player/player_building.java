@@ -396,6 +396,27 @@ public class player_building extends script.base_script
             sendSystemMessage(self, message);
             return SCRIPT_CONTINUE;
         }
+        java.util.StringTokenizer stBypass = new java.util.StringTokenizer(params);
+        if (stBypass.countTokens() >= 5)
+        {
+            String first = (stBypass.nextToken()).toUpperCase();
+            if ("BYPASS".equals(first))
+            {
+                try
+                {
+                    float qw = Float.parseFloat(stBypass.nextToken());
+                    float qx = Float.parseFloat(stBypass.nextToken());
+                    float qy = Float.parseFloat(stBypass.nextToken());
+                    float qz = Float.parseFloat(stBypass.nextToken());
+                    setQuaternion(target, qw, qx, qy, qz);
+                    messageTo(target, "furniture_rotated", null, 1.0f, false);
+                    return SCRIPT_CONTINUE;
+                }
+                catch (NumberFormatException ignored)
+                {
+                }
+            }
+        }
         boolean canRollAndPitch = (player_structure.canRotateFurnitureInPitchRollAxes(self) || isGod(self));
         java.util.StringTokenizer st = new java.util.StringTokenizer(params);
         if (st.countTokens() == 0)
@@ -725,6 +746,32 @@ public class player_building extends script.base_script
             string_id message = new string_id("player_structure", "cant_move_while_entertaining");
             sendSystemMessage(self, message);
             return SCRIPT_CONTINUE;
+        }
+        java.util.StringTokenizer stBypass = new java.util.StringTokenizer(params);
+        if (stBypass.countTokens() >= 4)
+        {
+            String first = (stBypass.nextToken()).toUpperCase();
+            if ("BYPASS".equals(first))
+            {
+                try
+                {
+                    float x = Float.parseFloat(stBypass.nextToken());
+                    float y = Float.parseFloat(stBypass.nextToken());
+                    float z = Float.parseFloat(stBypass.nextToken());
+                    location loc = getLocation(target);
+                    loc.x = x;
+                    loc.y = y;
+                    loc.z = z;
+                    setLocation(target, loc);
+                    dictionary parameters = new dictionary();
+                    parameters.put("newLoc", loc);
+                    messageTo(target, "furniture_moved", parameters, 1.0f, false);
+                    return SCRIPT_CONTINUE;
+                }
+                catch (NumberFormatException ignored)
+                {
+                }
+            }
         }
         java.util.StringTokenizer st = new java.util.StringTokenizer(params);
         if (st.countTokens() == 0)
