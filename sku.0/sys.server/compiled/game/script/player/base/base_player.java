@@ -11924,15 +11924,7 @@ public class base_player extends script.base_script
         if (isIdValid(playerCurrentMount))
         {
             vehicle.applyVehicleBuffs(self, playerCurrentMount);
-            if (vehicle.isHoverVehicle(playerCurrentMount) && !vehicle.isJetPackVehicle(playerCurrentMount) && !isSpaceScene())
-            {
-                showAirspeederPanel(self, true);
-                setObjVar(playerCurrentMount, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER, self);
-                if (!hasScript(self, "player.player_vehicle"))
-                {
-                    attachScript(self, "player.player_vehicle");
-                }
-            }
+            // Panel visibility is driven by vehicle handleAirspeederCheck (RIDING_MOUNT state), not by buff
         }
         return SCRIPT_CONTINUE;
     }

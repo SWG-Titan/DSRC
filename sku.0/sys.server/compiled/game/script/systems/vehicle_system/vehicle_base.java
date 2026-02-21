@@ -134,8 +134,8 @@ public class vehicle_base extends script.base_script
             return SCRIPT_CONTINUE;
         }
         boolean hasPanelRider = hasObjVar(self, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER);
-        // Airspeeder mode is triggered by the Enter Skyway button, not by reaching a height threshold
-        if (!hasPanelRider && isPlayer(rider) && getLevel(rider) >= 90 && hasObjVar(rider, "airspeeder.pilot_license") && getIntObjVar(rider, "airspeeder.pilot_license") == 1)
+        // Show panel when server detects player is riding this hover vehicle (RIDING_MOUNT state); client-server message only
+        if (!hasPanelRider && isPlayer(rider))
         {
             showAirspeederPanel(rider, true);
             setObjVar(self, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER, rider);
