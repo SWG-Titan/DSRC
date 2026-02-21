@@ -10,7 +10,8 @@ actOfWar	commandClicky	normal	actOfWar	failSpecialAttack			1	actOfWar	1	0	1	1	1	
 addAllowedPlayer		immediate		failAdmin	addAllowedPlayer			admin																				1	1		0	1												1																	0	0	0	0										none					0		40	csr	0										
 addBannedPlayer		immediate		failAdmin	addBannedPlayer			admin																				1	1		0	1												1																	0	0	0	0										none					0		40	csr	0										
 addFriend		immediate			addFriend																							1	1		0	1												1																														none					0				0
-airspeederControl		immediate	onAirspeederControl																						0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0			0	0	0	1		1		0		1	1	1	0	1	1	1	1	1	0	0	1									0		0	0	0	0								none					0				0										
+airspeederControl		immediate	onAirspeederControl																						0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0			0	0	0	1		1		0		1	1	1	0	1	1	1	1	1	0	0	1									0		0	0	0	0								player.player_vehicle				0				0										
+showSkywayPanel		immediate	cmdShowSkywayPanel																							1	1		0	1												1																														none					0				0										
 addIgnore		immediate			addIgnore																							1	1		0	1												1																														none					0				0										
 addMapLocation		immediate			addMapLocation																							1	1		0	1												1																														none	0				0				0										
 addPower		immediate	cmdAddPower				0																								0	1												1																														none					0				0										

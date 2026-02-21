@@ -11936,6 +11936,29 @@ public class base_player extends script.base_script
         }
         return SCRIPT_CONTINUE;
     }
+    public int cmdShowSkywayPanel(obj_id self, obj_id target, String params, float defaultTime) throws InterruptedException
+    {
+        obj_id mount = getMountId(self);
+        if (isIdValid(mount) && vehicle.isHoverVehicle(mount) && !vehicle.isJetPackVehicle(mount) && !isSpaceScene())
+        {
+            boolean hasPanel = hasObjVar(mount, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER) && getObjIdObjVar(mount, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER) == self;
+            if (hasPanel)
+            {
+                showAirspeederPanel(self, false);
+                removeObjVar(mount, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER);
+            }
+            else if (getLevel(self) >= 90 && hasObjVar(self, "airspeeder.pilot_license") && getIntObjVar(self, "airspeeder.pilot_license") == 1)
+            {
+                showAirspeederPanel(self, true);
+                setObjVar(mount, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER, self);
+                if (!hasScript(self, "player.player_vehicle"))
+                {
+                    attachScript(self, "player.player_vehicle");
+                }
+            }
+        }
+        return SCRIPT_CONTINUE;
+    }
     public int handleDailyMissionReset(obj_id self, dictionary params) throws InterruptedException
     {
         missions.clearDailyObjVars(self);
