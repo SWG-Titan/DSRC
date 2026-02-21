@@ -10767,6 +10767,18 @@ public class base_class
         }
 
         /**
+         * Sets the collidable flag on an object (e.g. for airspeeder mode vehicles).
+         * @param target        object we want to set
+         * @param collidable    true to enable collision, false to disable
+         * @return true on success, false on error
+         */
+        private static native boolean _setObjectCollidable(long target, boolean collidable);
+        public static boolean setObjectCollidable(obj_id target, boolean collidable)
+        {
+            return _setObjectCollidable(getLongWithNull(target), collidable);
+        }
+
+        /**
          * Sets the insured flag on an object.
          * @param target            object we want to set
          * @param insured           the new insured state of the object
@@ -18955,6 +18967,18 @@ public class base_class
     public static boolean enterClientStructurePlacementMode(obj_id player, obj_id deed, String serverObjectTemplateName)
     {
         return _enterClientStructurePlacementMode(getLongWithNull(player), getLongWithNull(deed), serverObjectTemplateName);
+    }
+
+    /**
+     *  Show or hide the airspeeder/skyway panel on the client.
+     *
+     * @param player object id of the player
+     * @param show true to show, false to hide
+     */
+    private static native boolean _showAirspeederPanel(long player, boolean show);
+    public static boolean showAirspeederPanel(obj_id player, boolean show)
+    {
+        return _showAirspeederPanel(getLongWithNull(player), show);
     }
 
     /**

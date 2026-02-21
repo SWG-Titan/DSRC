@@ -93,6 +93,62 @@ public class vehicle_base extends script.base_script
     {
         return SCRIPT_CONTINUE;
     }
+    public int handleAirspeederCheck(obj_id self, dictionary params) throws InterruptedException
+    {
+        obj_id rider = getRiderId(self);
+        if (!isIdValid(rider))
+        {
+            if (hasObjVar(self, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER))
+            {
+                obj_id panelRider = getObjIdObjVar(self, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER);
+                if (isIdValid(panelRider))
+                {
+                    showAirspeederPanel(panelRider, false);
+                }
+                removeObjVar(self, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER);
+            }
+            if (hasObjVar(self, vehicle.OBJVAR_AIRSPEEDER_ACTIVE))
+            {
+                vehicle.exitAirspeederMode(self);
+            }
+            return SCRIPT_CONTINUE;
+        }
+        if (!vehicle.isHoverVehicle(self) || vehicle.isJetPackVehicle(self))
+        {
+            messageTo(self, "handleAirspeederCheck", null, 0.5f, false);
+            return SCRIPT_CONTINUE;
+        }
+        if (isSpaceScene())
+        {
+            messageTo(self, "handleAirspeederCheck", null, 0.5f, false);
+            return SCRIPT_CONTINUE;
+        }
+        location loc = getLocation(self);
+        if (loc == null || isIdValid(loc.cell))
+        {
+            messageTo(self, "handleAirspeederCheck", null, 0.5f, false);
+            return SCRIPT_CONTINUE;
+        }
+        float terrainHeight = getHeightAtLocation(loc.x, loc.z);
+        float heightAboveTerrain = loc.y - terrainHeight;
+        float exitThreshold = vehicle.AIRSPEEDER_HEIGHT_THRESHOLD - vehicle.AIRSPEEDER_EXIT_HYSTERESIS;
+        boolean inAirspeeder = hasObjVar(self, vehicle.OBJVAR_AIRSPEEDER_ACTIVE);
+        if (heightAboveTerrain >= vehicle.AIRSPEEDER_HEIGHT_THRESHOLD && !inAirspeeder)
+        {
+            vehicle.enterAirspeederMode(self);
+        }
+        else if (heightAboveTerrain < exitThreshold && inAirspeeder)
+        {
+            vehicle.exitAirspeederMode(self);
+        }
+        if (!hasObjVar(self, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER) && isPlayer(rider) && getLevel(rider) >= 90 && hasObjVar(rider, "airspeeder.pilot_license") && getIntObjVar(rider, "airspeeder.pilot_license") == 1)
+        {
+            showAirspeederPanel(rider, true);
+            setObjVar(self, vehicle.OBJVAR_AIRSPEEDER_PANEL_RIDER, rider);
+        }
+        messageTo(self, "handleAirspeederCheck", null, 0.5f, false);
+        return SCRIPT_CONTINUE;
+    }
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
         if (isDead(self) || ai_lib.aiIsDead(player) || self == null || self == obj_id.NULL_ID || !isIdValid(self))
@@ -344,6 +400,10 @@ public class vehicle_base extends script.base_script
     }
     public int OnObjectDisabled(obj_id self, obj_id killer) throws InterruptedException
     {
+        if (hasObjVar(self, vehicle.OBJVAR_AIRSPEEDER_ACTIVE))
+        {
+            vehicle.exitAirspeederMode(self);
+        }
         obj_id owner = getMaster(self);
         if (isIdValid(owner))
         {
@@ -420,6 +480,10 @@ public class vehicle_base extends script.base_script
                 setObjVar(petControlDevice, "pet.timeStored", getGameTime());
                 callable.setCDCallable(petControlDevice, null);
             }
+        }
+        if (hasObjVar(self, vehicle.OBJVAR_AIRSPEEDER_ACTIVE))
+        {
+            vehicle.exitAirspeederMode(self);
         }
         return SCRIPT_CONTINUE;
     }

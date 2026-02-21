@@ -800,6 +800,7 @@ public class vehicle extends script.base_script
             int strafe = dataTableGetInt(datatable, row, "strafe");
             setStrafe(vehicle, strafe != 0);
         }
+        messageTo(vehicle, "handleAirspeederCheck", null, 0.5f, false);
     }
     public static boolean mountPermissionCheck(obj_id vehicle, obj_id rider, boolean verbose) throws InterruptedException
     {
@@ -907,6 +908,53 @@ public class vehicle extends script.base_script
         }
         return template.equals("object/mobile/vehicle/tcg_hk47_jetpack.iff");
     }
+    public static boolean isHoverVehicle(obj_id vehicle) throws InterruptedException
+    {
+        if (!isValidId(vehicle))
+            return false;
+        int got = getObjType(vehicle);
+        return (got == GOT_vehicle_hover || got == GOT_vehicle_hover_ai);
+    }
+    public static void enterAirspeederMode(obj_id vehicle) throws InterruptedException
+    {
+        if (!isValidId(vehicle) || hasObjVar(vehicle, OBJVAR_AIRSPEEDER_ACTIVE))
+            return;
+        float savedHover = getHoverHeight(vehicle);
+        float savedSpeed = getMaximumSpeed(vehicle);
+        setObjVar(vehicle, OBJVAR_AIRSPEEDER_ACTIVE, 1);
+        setObjVar(vehicle, OBJVAR_AIRSPEEDER_SAVED_HOVER, savedHover);
+        setObjVar(vehicle, OBJVAR_AIRSPEEDER_SAVED_SPEED, savedSpeed);
+        setHoverHeight(vehicle, AIRSPEEDER_HOVER_HEIGHT);
+        setMaximumSpeed(vehicle, savedSpeed * AIRSPEEDER_SPEED_MULTIPLIER);
+        setObjectCollidable(vehicle, false);
+    }
+    public static void exitAirspeederMode(obj_id vehicle) throws InterruptedException
+    {
+        if (!isValidId(vehicle) || !hasObjVar(vehicle, OBJVAR_AIRSPEEDER_ACTIVE))
+            return;
+        removeObjVar(vehicle, OBJVAR_AIRSPEEDER_ACTIVE);
+        if (hasObjVar(vehicle, OBJVAR_AIRSPEEDER_SAVED_HOVER))
+        {
+            float savedHover = getFloatObjVar(vehicle, OBJVAR_AIRSPEEDER_SAVED_HOVER);
+            setHoverHeight(vehicle, savedHover);
+            removeObjVar(vehicle, OBJVAR_AIRSPEEDER_SAVED_HOVER);
+        }
+        if (hasObjVar(vehicle, OBJVAR_AIRSPEEDER_SAVED_SPEED))
+        {
+            float savedSpeed = getFloatObjVar(vehicle, OBJVAR_AIRSPEEDER_SAVED_SPEED);
+            setMaximumSpeed(vehicle, savedSpeed);
+            removeObjVar(vehicle, OBJVAR_AIRSPEEDER_SAVED_SPEED);
+        }
+        setObjectCollidable(vehicle, true);
+    }
+    public static final float AIRSPEEDER_HEIGHT_THRESHOLD = 10.0f;
+    public static final float AIRSPEEDER_EXIT_HYSTERESIS = 0.5f;
+    public static final float AIRSPEEDER_HOVER_HEIGHT = 15.0f;
+    public static final float AIRSPEEDER_SPEED_MULTIPLIER = 1.5f;
+    public static final String OBJVAR_AIRSPEEDER_ACTIVE = "airspeeder.active";
+    public static final String OBJVAR_AIRSPEEDER_SAVED_HOVER = "airspeeder.savedHoverHeight";
+    public static final String OBJVAR_AIRSPEEDER_SAVED_SPEED = "airspeeder.savedMaxSpeed";
+    public static final String OBJVAR_AIRSPEEDER_PANEL_RIDER = "airspeeder.panelRider";
     public static void applyVehicleBuffs(obj_id player, obj_id vehicle) throws InterruptedException
     {
         String template = getTemplateName(vehicle);
