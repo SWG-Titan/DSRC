@@ -283,7 +283,7 @@ public class vehicle_base extends script.base_script
         }
         if (vehicle.isHoverVehicle(self) && !vehicle.isJetPackVehicle(self) && !isSpaceScene())
         {
-            mi.addRootMenu(menu_info_types.SERVER_MENU2, new string_id(MENU_FILE, "menu_advanced_piloting"));
+            mi.addRootMenu(menu_info_types.SERVER_MENU2, string_id.unlocalized("Advanced Piloting"));
         }
         if (ai_lib.isInCombat(player) || pet_lib.wasInCombatRecently(self, player, false))
         {

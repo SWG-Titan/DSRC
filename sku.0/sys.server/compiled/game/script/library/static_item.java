@@ -164,9 +164,25 @@ public class static_item extends script.base_script
         }
         if (exists(object) && !hasObjVar(object, "playerQuest"))
         {
-            setName(object, new string_id("static_item_n", itemName));
+            String stringName = itemData.getString("string_name");
+            if (stringName != null && !stringName.equals(""))
+            {
+                setName(object, stringName);
+            }
+            else
+            {
+                setName(object, new string_id("static_item_n", itemName));
+            }
         }
-        setDescriptionStringId(object, new string_id("static_item_d", itemName));
+        String stringDetail = itemData.getString("string_detail");
+        if (stringDetail != null && !stringDetail.equals(""))
+        {
+            setDescriptionString(object, stringDetail);
+        }
+        else
+        {
+            setDescriptionStringId(object, new string_id("static_item_d", itemName));
+        }
         LOG("npe", "MAKING THING");
         switch (itemData.getInt("type"))
         {
@@ -423,10 +439,13 @@ public class static_item extends script.base_script
         int type = itemData.getInt("type");
         setObjVarString(newObject, itemData.getString("objvar"), type);
         setScriptString(newObject, itemData.getString("scripts"), type);
-        String name = getString(new string_id("static_item_n", itemName)) + getString(new string_id("storyteller", "token_label"));
+        dictionary masterItemData = getMasterItemDictionary(itemName);
+        String stringName = masterItemData != null ? masterItemData.getString("string_name") : null;
+        String baseName = (stringName != null && !stringName.equals("")) ? stringName : getString(new string_id("static_item_n", itemName));
+        String name = baseName + getString(new string_id("storyteller", "token_label"));
         if (pgc_quests.isPgcRelicObject(newObject))
         {
-            name = getString(new string_id("static_item_n", itemName));
+            name = baseName;
         }
         setName(newObject, name);
         return true;
@@ -1093,6 +1112,18 @@ public class static_item extends script.base_script
         String at = "@obj_attr_n:";
         int free = 0;
         dictionary itemData = static_item.getMergedItemDictionary(staticItemName);
+        String stringName = itemData.getString("string_name");
+        if (stringName != null && !stringName.equals(""))
+        {
+            names[free] = "display_name";
+            attribs[free++] = stringName;
+        }
+        String stringDetail = itemData.getString("string_detail");
+        if (stringDetail != null && !stringDetail.equals(""))
+        {
+            names[free] = "display_description";
+            attribs[free++] = stringDetail;
+        }
         int levelRequired = itemData.getInt("required_level");
         names[free] = "healing_combat_level_required";
         attribs[free++] = "" + levelRequired;
@@ -1173,6 +1204,18 @@ public class static_item extends script.base_script
         String at = "@obj_attr_n:";
         int free = 0;
         dictionary itemData = static_item.getMergedItemDictionary(staticItemName);
+        String stringName = itemData.getString("string_name");
+        if (stringName != null && !stringName.equals(""))
+        {
+            names[free] = "display_name";
+            attribs[free++] = stringName;
+        }
+        String stringDetail = itemData.getString("string_detail");
+        if (stringDetail != null && !stringDetail.equals(""))
+        {
+            names[free] = "display_description";
+            attribs[free++] = stringDetail;
+        }
         int levelRequired = itemData.getInt("required_level");
         names[free] = "healing_combat_level_required";
         attribs[free++] = "" + levelRequired;
@@ -1236,6 +1279,18 @@ public class static_item extends script.base_script
         String at = "@obj_attr_n:";
         int free = 0;
         dictionary itemData = static_item.getMergedItemDictionary(item_name);
+        String stringName = itemData.getString("string_name");
+        if (stringName != null && !stringName.equals(""))
+        {
+            names[free] = "display_name";
+            attribs[free++] = stringName;
+        }
+        String stringDetail = itemData.getString("string_detail");
+        if (stringDetail != null && !stringDetail.equals(""))
+        {
+            names[free] = "display_description";
+            attribs[free++] = stringDetail;
+        }
         int requiredLevelToEquip = itemData.getInt("required_level");
         if (requiredLevelToEquip != 0)
         {
