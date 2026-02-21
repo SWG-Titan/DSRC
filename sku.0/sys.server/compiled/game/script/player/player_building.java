@@ -408,6 +408,27 @@ public class player_building extends script.base_script
                     float qx = Float.parseFloat(stBypass.nextToken());
                     float qy = Float.parseFloat(stBypass.nextToken());
                     float qz = Float.parseFloat(stBypass.nextToken());
+                    if (!Float.isFinite(qw) || !Float.isFinite(qx) || !Float.isFinite(qy) || !Float.isFinite(qz))
+                    {
+                        return SCRIPT_CONTINUE;
+                    }
+                    float magSq = qw * qw + qx * qx + qy * qy + qz * qz;
+                    if (magSq < 0.0001f || magSq > 100.0f)
+                    {
+                        return SCRIPT_CONTINUE;
+                    }
+                    if (Math.abs(magSq - 1.0f) > 0.01f)
+                    {
+                        float mag = (float) Math.sqrt(magSq);
+                        qw /= mag;
+                        qx /= mag;
+                        qy /= mag;
+                        qz /= mag;
+                    }
+                    qw = Math.round(qw * 10000.0f) / 10000.0f;
+                    qx = Math.round(qx * 10000.0f) / 10000.0f;
+                    qy = Math.round(qy * 10000.0f) / 10000.0f;
+                    qz = Math.round(qz * 10000.0f) / 10000.0f;
                     setQuaternion(target, qw, qx, qy, qz);
                     messageTo(target, "furniture_rotated", null, 1.0f, false);
                     return SCRIPT_CONTINUE;
@@ -758,6 +779,19 @@ public class player_building extends script.base_script
                     float x = Float.parseFloat(stBypass.nextToken());
                     float y = Float.parseFloat(stBypass.nextToken());
                     float z = Float.parseFloat(stBypass.nextToken());
+                    if (!Float.isFinite(x) || !Float.isFinite(y) || !Float.isFinite(z))
+                    {
+                        sendSystemMessage(self, new string_id(STF, "movefurniture_params"));
+                        return SCRIPT_CONTINUE;
+                    }
+                    if (x < -100000.0f || x > 100000.0f || z < -100000.0f || z > 100000.0f || y < -10000.0f || y > 10000.0f)
+                    {
+                        sendSystemMessage(self, new string_id(STF, "movefurniture_params"));
+                        return SCRIPT_CONTINUE;
+                    }
+                    x = Math.round(x * 10000.0f) / 10000.0f;
+                    y = Math.round(y * 10000.0f) / 10000.0f;
+                    z = Math.round(z * 10000.0f) / 10000.0f;
                     location loc = getLocation(target);
                     loc.x = x;
                     loc.y = y;
