@@ -984,7 +984,7 @@ guildTextChatRoomRejoin		immediate			guildTextChatRoomRejoin																				
 handleClientLogin		immediate	handleClientLogin																									1	1		0	1												1																														none
 harmful		immediate	cmdHarmful	failAdmin				admin																				1	1		0	1												1																												gm.cmd		required	0				0		40	csr	0
 harmless		immediate	cmdHarmless	failAdmin				admin																				1	1		0	1												1																												gm.cmd		required	0				0		40	csr	0
-harvestCorpse		normal	cmdHarvestCorpse	cmdHarvestCorpseFail			1		1	1	1	1	1	1	1	1	1	1	0	0	0	0	1	0	1	1	0			0	0	0	1	1	0	0	1	0	1	1	1	0	0	1	0	1	1	0	0	0									1		0	0	0	0								player.skill.outdoorsman		required				skill_outdoorsman	0	16			1	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL
+harvestCorpse		normal	cmdHarvestCorpse	cmdHarvestCorpseFail			1		1	1	1	1	1	1	1	1	1	1	0	0	0	0	1	0	1	1	0			0	0	0	1	1	0	0	1	0	1	1	1	0	0	1	0	1	1	0	0	0									1		0	0	0	0								player.skill.outdoorsman		required				skill_outdoorsman	0	16			1
 harvesterActivate		immediate			harvesterActivate		0																					1	1		0	1					0							1																														optional				resource	0				0
 harvesterDeactivate		immediate			harvesterDeactivate		0																					1	1		0	1					0							1																														optional				resource	0				0
 harvesterDiscardHopper		immediate			harvesterDiscardHopper		0																					1	1		0	1					0							1																														optional				resource	0				0
@@ -1722,7 +1722,7 @@ sm_spot_a_sucker_3	commandClicky	normal	sm_spot_a_sucker_3	failSpecialAttack			1
 sm_spot_a_sucker_4	commandClicky	normal	sm_spot_a_sucker_4	failSpecialAttack			1	sm_spot_a_sucker_4	1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0	0								enemy	required		2		combat_ranged	0			combat	1	ALL	HEAVY	sm_spot_a_sucker	0	0.25	45			1
 sm_summon_medic	commandClicky	normal	sm_summon_medic	failSpecialAttack			1	sm_summon_medic	1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0	0								other	optional		2		combat_ranged	0			combat	1	ALL	HEAVY	sm_call_favor	0	0.25	300			1
 sm_summon_smuggler	commandClicky	normal	sm_summon_smuggler	failSpecialAttack			1	sm_summon_smuggler	1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0	0								other	optional		2		combat_ranged	0			combat	1	ALL	HEAVY	sm_call_favor	0	0.25	300			1
-smokebomb		normal	cmdSmokeBomb					smokebomb	1	0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0			0	0	0	0	1	0	0	0	0	1	1	1	0	0	0	0	0	0	0	0	0									0		0	0	0	0								player.skill.performcommands		none	0	2		perform	0				1	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL
+smokebomb		normal	cmdSmokeBomb					smokebomb	1	0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0			0	0	0	0	1	0	0	0	0	1	1	1	0	0	0	0	0	0	0	0	0									0		0	0	0	0								player.skill.performcommands		none	0	2		perform	0				1
 smokeGrenade	commandClicky	normal	smokeGrenade	failSpecialAttack			1	smokeGrenade	1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0	0								other	none		2		combat_ranged	0			combat	1	ALL	HEAVY	smoke_grenade	0	0.25	3			1
 snoop		immediate		failAdmin	admin_snoop			admin																				1	1		0	1												1																														none	0				0		40	csr	0
 social		immediate			social																										0	1						0						1									1								0	0	0	0										optional					0				0
@@ -1894,7 +1894,7 @@ togglePetAutoRepeatOff	commandClicky	immediate	togglePetAutoRepeatOff											
 togglePetAutoRepeatOn	commandClicky	immediate	togglePetAutoRepeatOn																												0
 tomb_guard_cleave	commandClicky	normal	tomb_guard_cleave	failSpecialAttack			1		1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	1	1	1	1	1	0	0									0		0	0	0	0	0								other	optional		2		combat_ranged		96		combat	1	ALL			0	0	0				1
 tomb_guard_toss	commandClicky	normal	tomb_guard_toss	failSpecialAttack			1		1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	1	1	1	1	1	0	0									0		0	0	0	0	0								other	optional		2		combat_ranged		96		combat	1	ALL			0	0	0				1
-trader_heal	commandClicky	normal	trader_heal	failSpecialAttack			1	trader_heal	1	0	1	1	1	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	1	1	1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0	1	1	1	1	1	1	1	1	0	1	0	0	0	0	0	1	1	1	1	1	1		other	optional		2		combat_ranged	0	0		combat	1	MELEE	NONE	trader_heal	0	0	15			0	NULL
+trader_heal	commandClicky	normal	trader_heal	failSpecialAttack			1	trader_heal	1	0	1	1	1	0	1	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	1	1	1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0	1	1	1	1	1	1	1	1	0	1	0	0	0	0	0	1	1	1	1	1	1		other	optional		2		combat_ranged	0	0		combat	1	MELEE	NONE	trader_heal	0	0	15			0
 trainPet		normal	cmdTrainPet				0.5																		0	0	0				0	1				0		0						1	0	0	0	0	0			0							0		0	0	0	0										optional		2						pet	0									1
 trample_random	commandClicky	normal	trample_random	failSpecialAttack			1		1	0	1	1	1	0	1	1	0	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	1	1	1	1	1	0	0									0		0	0	0	0	0								other	optional		2		combat_ranged	0	74		combat					0	0	0				1
 trandoshan_ability_1	commandClicky	normal	trandoshan_ability_1	failSpecialAttack			1	trandoshan_ability_1	1	0	1	1	1	0	1	1	0	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0	0								other	none		2		combat_ranged				combat	1	ALL		species_ability		0.25	600			1
@@ -1940,10 +1940,8 @@ zabrak_ability_1	commandClicky	normal	zabrak_ability_1	failSpecialAttack			1	zab
 botExecute		immediate	cmdBotExecute																												0	1												1																														none									0
 botSetup		immediate	cmdBotSetup																												0	1												1																														none									0
 botReset		immediate	cmdBotReset																												0	1												1																														none									0
-manageLoot		immediate	manageLoot				1		1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0	0	0								none					0			other	0										0
+manageLoot		immediate	manageLoot				1		1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0										none					0			other	0										0
 vehicleMechanic	commandClicky	immediate	cmdVehicleMechanic				1																		1						0													0															1															optional		2			0			travel	0
 readyCheck	commandClicky	immediate	cmdReadyCheck				1		1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0										none		2			0			other	0										0
 groupToggleOverride	commandClicky	immediate	cmdGroupLootToggle				1		1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0										none		2			0			other	0										0
 toggleEnzymes	commandClicky	immediate	enzymeLootToggle				1		1	0	1	1	1	0	1	1	1	0	0	0	0	0	0	0	0	0	0			0	0	1	1		1	0	0	1	1	1	1	0	1	0	1	1	1	1	0	0									0		0	0	0	0										none					0			other	0										0
-airspeederControl		immediate	onAirspeederControl																							0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0			0	0	0	1		1		0		1	1	1	1	0	0	0	1	1	0	0	1							none																			0
-showSkywayPanel		immediate	cmdShowSkywayPanel																								1	1		0	1												1																															none
