@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\creature\camera\shared_intro_camera.tpf
+
+@base object/creature/npc/base/base_npc_theme_park.iff
+
+@class object_template 0
+
+sharedTemplate = "object/creature/camera/shared_intro_camera.iff"

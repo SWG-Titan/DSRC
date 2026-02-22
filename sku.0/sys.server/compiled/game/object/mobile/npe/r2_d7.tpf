@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\mobile\npe\shared_r2_d7.tpf
+
+@base object/mobile/skeleton/astromech.iff
+
+@class object_template 0
+
+sharedTemplate = "object/mobile/npe/shared_r2_d7.iff"

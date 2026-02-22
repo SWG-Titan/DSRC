@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\tangible\deed\player_house_deed\shared_imp_generic_house_small_floor_02_deed.tpf
+
+@base object/tangible/deed/base/deed_building_base.iff
+
+@class tangible_object_template 1
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/deed/player_house_deed/shared_imp_generic_house_small_floor_02_deed.iff"

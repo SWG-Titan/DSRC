@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\guild\base\shared_guild_default.tpf
+
+@base object/guild/base/base_guild.iff
+
+@class object_template 0
+
+sharedTemplate = "object/guild/base/shared_guild_default.iff"

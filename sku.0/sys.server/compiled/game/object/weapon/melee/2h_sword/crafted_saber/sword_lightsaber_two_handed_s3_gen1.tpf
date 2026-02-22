@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\weapon\melee\2h_sword\crafted_saber\shared_sword_lightsaber_two_handed_s3_gen1.tpf
+
+@base object/weapon/melee/2h_sword/crafted_saber/sword_lightsaber_two_handed_gen1.iff
+
+@class object_template 0
+
+sharedTemplate = "object/weapon/melee/2h_sword/crafted_saber/shared_sword_lightsaber_two_handed_s3_gen1.iff"

@@ -10,7 +10,7 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1847828235	0	object/building/endor/endr_lake_rail4m.iff	0	90.0488	6.05	1726.69	0.92388	0	-0.382683	0		$|
 -565923755	0	object/building/endor/endr_lake_rail8m.iff	0	88.6611	6.05	1730.96	-0.382683	0	0.92388	0		$|
 -1927376940	0	object/building/endor/endor_tiki_torch.iff	0	114.766	6.22307	1733.47	0	0	1	0		$|
--694282569	0	object/building/eif/yt2400_ground.iff	0	190.894	1.43376	1725.59	-0.585806	0	0.810451	0		$|
+-694282569	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	190.894	1.43376	1725.59	-0.585806	0	0.810451	0		$|
 -556911782	-694282569	object/cell/cell.iff	1	0	0	0	1	0	0	0		$|
 -231542615	-694282569	object/cell/cell.iff	2	0	0	0	1	0	0	0		$|
 -976317925	-694282569	object/cell/cell.iff	3	0	0	0	1	0	0	0		$|
@@ -162,7 +162,7 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -547631987	0	object/static/structure/general/camp_lawn_chair_s01.iff	0	113.1	6.23284	1712.8	1	0	0	0		$|
 -941954754	0	object/static/structure/general/camp_lawn_chair_s01.iff	0	114.298	6.23284	1712.78	0.992201	0	-0.124648	0		$|
 -990038731	0	object/static/structure/general/camp_lawn_chair_s01.iff	0	115.631	6.23284	1713.3	0.955271	0	-0.295732	0		$|
--1583250337	0	object/static/item/mandalorian_banner.iff	0	126.336	7.19688	1734.09	0.707107	0	-0.707106	0		$|
+-1583250337	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	126.336	7.19688	1734.09	0.707107	0	-0.707106	0		$|
 -543283708	0	object/building/poi/base/base_poi_large.iff	0	112.333	6.22181	1719.69	1	0	0	0		$|
 -892094787	0	object/building/mustafar/structures/must_jeditemple_platform_med.iff	0	112.284	5.67576	1719.89	1	0	0	0		$|
 -1227429020	0	object/building/mustafar/structures/must_jeditemple_wall_high.iff	0	115.637	-5.15197	1786.48	-0.0174524	0	0.999848	0		$|
@@ -173,7 +173,7 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1676495907	0	object/building/endor/endr_lake_rail4m.iff	0	90.0488	6.05	1726.69	0.92388	0	-0.382683	0		$|
 -5742861	0	object/building/endor/endr_lake_rail8m.iff	0	88.6611	6.05	1730.96	-0.382683	0	0.92388	0		$|
 -5287943	0	object/building/endor/endor_tiki_torch.iff	0	114.766	6.22307	1733.47	0	0	1	0		$|
--1850418493	0	object/building/eif/yt2400_ground.iff	0	190.894	1.43376	1725.59	-0.585806	0	0.810451	0		$|
+-1850418493	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	190.894	1.43376	1725.59	-0.585806	0	0.810451	0		$|
 -1053284267	-1850418493	object/cell/cell.iff	1	0	0	0	1	0	0	0		$|
 -1087666448	-1850418493	object/cell/cell.iff	2	0	0	0	1	0	0	0		$|
 -1952257171	-1850418493	object/cell/cell.iff	3	0	0	0	1	0	0	0		$|
@@ -325,4 +325,4 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -792200356	0	object/static/structure/general/camp_lawn_chair_s01.iff	0	113.1	6.23284	1712.8	1	0	0	0		$|
 -2021053199	0	object/static/structure/general/camp_lawn_chair_s01.iff	0	114.298	6.23284	1712.78	0.992201	0	-0.124648	0		$|
 -1655834901	0	object/static/structure/general/camp_lawn_chair_s01.iff	0	115.631	6.23284	1713.3	0.955271	0	-0.295732	0		$|
--2002742556	0	object/static/item/mandalorian_banner.iff	0	126.336	7.19688	1734.09	0.707107	0	-0.707106	0		$|
+-2002742556	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	126.336	7.19688	1734.09	0.707107	0	-0.707106	0		$|

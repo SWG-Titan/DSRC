@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\manufacture_schematic\base\shared_manufacture_schematic_default.tpf
+
+@base object/manufacture_schematic/base/base_manufacture_schematic.iff
+
+@class object_template 0
+
+sharedTemplate = "object/manufacture_schematic/base/shared_manufacture_schematic_default.iff"

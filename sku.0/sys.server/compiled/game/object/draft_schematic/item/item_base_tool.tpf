@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\draft_schematic\item\shared_item_base_tool.tpf
+
+@base object/draft_schematic/base/base_draft_schematic.iff
+
+@class object_template 0
+
+sharedTemplate = "object/draft_schematic/item/shared_item_base_tool.iff"

@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\mobile\som\shared_ruins_leader.tpf
+
+@base object/mobile/skeleton/humanoid.iff
+
+@class object_template 0
+
+sharedTemplate = "object/mobile/som/shared_ruins_leader.iff"

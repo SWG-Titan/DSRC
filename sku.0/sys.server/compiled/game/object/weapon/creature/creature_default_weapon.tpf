@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\weapon\creature\shared_creature_default_weapon.tpf
+
+@base object/weapon/base/base_creature_weapon.iff
+
+@class object_template 0
+
+sharedTemplate = "object/weapon/creature/shared_creature_default_weapon.iff"

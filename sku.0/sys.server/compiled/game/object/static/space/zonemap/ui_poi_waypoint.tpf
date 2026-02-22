@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\static\space\zonemap\shared_ui_poi_waypoint.tpf
+
+@base object/static/space/base/static_space_base.iff
+
+@class static_object_template 0
+
+@class object_template 0
+
+sharedTemplate = "object/static/space/zonemap/shared_ui_poi_waypoint.iff"

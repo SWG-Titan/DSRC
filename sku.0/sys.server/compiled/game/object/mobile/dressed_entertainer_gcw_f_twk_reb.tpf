@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\mobile\shared_dressed_entertainer_gcw_f_twk_reb.tpf
+
+@base object/mobile/skeleton/humanoid.iff
+
+@class object_template 0
+
+sharedTemplate = "object/mobile/shared_dressed_entertainer_gcw_f_twk_reb.iff"

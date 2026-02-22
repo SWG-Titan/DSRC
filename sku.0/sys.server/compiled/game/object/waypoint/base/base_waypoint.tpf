@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\waypoint\base\shared_base_waypoint.tpf
+
+@base object/intangible/base/base_intangible.iff
+
+@class object_template 0
+
+sharedTemplate = "object/waypoint/base/shared_base_waypoint.iff"

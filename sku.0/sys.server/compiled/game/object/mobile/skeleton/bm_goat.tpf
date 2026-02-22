@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\mobile\skeleton\shared_bm_goat.tpf
+
+@base object/mobile/bm_mobile.iff
+
+@class object_template 0
+
+sharedTemplate = "object/mobile/skeleton/shared_bm_goat.iff"

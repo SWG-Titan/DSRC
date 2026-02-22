@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\tangible\sign\player\base\shared_shop_sign_base.tpf
+
+@base object/tangible/sign/player/base/player_sign_base.iff
+
+@class tangible_object_template 1
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/sign/player/base/shared_shop_sign_base.iff"

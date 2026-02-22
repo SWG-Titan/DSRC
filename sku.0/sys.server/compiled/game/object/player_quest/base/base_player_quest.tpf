@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\player_quest\base\shared_base_player_quest.tpf
+
+@base object/tangible/base/tangible_base.iff
+
+@class object_template 0
+
+sharedTemplate = "object/player_quest/base/shared_base_player_quest.iff"

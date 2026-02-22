@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\tangible\ship\crafted\engine\shared_engine_novaldex_eventhorizon.tpf
+
+@base object/tangible/ship/components/base/ship_component_loot_base.iff
+
+@class tangible_object_template 1
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/ship/crafted/engine/shared_engine_novaldex_eventhorizon.iff"

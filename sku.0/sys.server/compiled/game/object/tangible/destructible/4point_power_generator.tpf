@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\tangible\destructible\shared_4point_power_generator.tpf
+
+@base object/tangible/lair/base/lair_base.iff
+
+@class tangible_object_template 1
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/destructible/shared_4point_power_generator.iff"

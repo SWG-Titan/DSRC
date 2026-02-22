@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\tangible\ship\attachment\wing\shared_lambda_wing_r.tpf
+
+@base object/tangible/ship/attachment/base/base_ship_attachment.iff
+
+@class tangible_object_template 1
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/ship/attachment/wing/shared_lambda_wing_r.iff"

@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\ship\base\shared_ship_transport_base.tpf
+
+@base object/ship/base/ship_base.iff
+
+@class object_template 0
+
+sharedTemplate = "object/ship/base/shared_ship_transport_base.iff"

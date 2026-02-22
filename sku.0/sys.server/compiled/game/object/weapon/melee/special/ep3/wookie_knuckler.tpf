@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\weapon\melee\special\ep3\shared_wookie_knuckler.tpf
+
+@base object/weapon/melee/base/base_melee.iff
+
+@class object_template 0
+
+sharedTemplate = "object/weapon/melee/special/ep3/shared_wookie_knuckler.iff"

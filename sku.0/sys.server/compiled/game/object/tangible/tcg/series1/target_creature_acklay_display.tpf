@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\tangible\tcg\series1\shared_target_creature_acklay_display.tpf
+
+@base object/static/structure/base/static_structure_base.iff
+
+@class tangible_object_template 1
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/tcg/series1/shared_target_creature_acklay_display.iff"

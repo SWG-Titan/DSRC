@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\installation\mining_liquid\shared_resource_harvester.tpf
+
+@base object/installation/base/installation_base.iff
+
+@class object_template 0
+
+sharedTemplate = "object/installation/mining_liquid/shared_resource_harvester.iff"

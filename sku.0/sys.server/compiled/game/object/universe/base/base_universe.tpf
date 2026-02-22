@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\universe\base\shared_base_universe.tpf
+
+@base object/object/base/base_object.iff
+
+@class object_template 0
+
+sharedTemplate = "object/universe/base/shared_base_universe.iff"

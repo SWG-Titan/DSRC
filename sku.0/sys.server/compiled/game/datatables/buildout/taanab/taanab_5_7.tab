@@ -214,8 +214,8 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1416962376	0	object/static/structure/tatooine/palette_supply_06.iff	0	2019.78	45	1476.44	0.92388	0	0.382683	0		$|
 -1907927179	0	object/static/structure/tatooine/palette_supply_06.iff	0	2022.29	45	1478.08	0.446198	0	0.894934	0		$|
 -1517196923	0	object/static/installation/mockup_farm_flora_style_1.iff	0	2010.75	46	1527.98	0.382683	0	0.92388	0		$|
--1213832370	0	object/tangible/furniture/decorative/cargo_container_s01.iff	0	2032.37	45	1584	0.977144	0	0.212578	0		$|
--1807842458	0	object/tangible/furniture/decorative/cargo_container_s01.iff	0	2042.42	45	1584	0.977144	0	0.212578	0		$|
+-1213832370	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	2032.37	45	1584	0.977144	0	0.212578	0		$|
+-1807842458	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	2042.42	45	1584	0.977144	0	0.212578	0		$|
 -1173119406	0	object/static/installation/mockup_power_generator_photo_bio_style_1.iff	0	2029.27	45	1609	-2.38419e-07	0	1	0		$|
 -2140514387	0	object/static/installation/mockup_power_generator_photo_bio_style_1.iff	0	2042.22	45	1609	-2.38419e-07	0	1	0		$|
 -99179545	0	object/static/installation/mockup_power_generator_photo_bio_style_1.iff	0	2029.27	45	1601	-2.38419e-07	0	1	0		$|
@@ -228,7 +228,7 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -511182280	0	object/static/installation/mockup_farm_flora_style_1.iff	0	2000.5	46.45	1523.28	0.382683	0	0.92388	0		$|
 -1763831653	0	object/tangible/deed/vehicle_deed/hoverlifter_speeder.iff	0	2035.16	44.729	1572.23	0.420705	0	0.907198	0		$|
 -1057245553	0	object/static/structure/tatooine/palette_supply_06.iff	0	1994.95	47.8707	1501.26	0.300706	0	0.953717	0		$|
--187630280	0	object/building/military/landing_pad.iff	0	1991.15	46.3783	1504.98	-0.518315	0	0.85519	0		$|
+-187630280	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	1991.15	46.3783	1504.98	-0.518315	0	0.85519	0		$|
 -1918968145	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2013.03	44.9235	1488.67	0.766044	0	0.642788	0		$|
 -278059252	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2015.34	44.9235	1484.85	1	0	0	0		$|
 -804661704	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2016.03	45.7659	1489.92	1	0	0	0		$|
@@ -244,7 +244,7 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1800559733	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2016.47	44.8826	1489.94	1	0	0	0		$|
 -989176014	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2017.27	44.8826	1489.92	1	0	0	0		$|
 -99858528	0	object/building/poi/base/base_poi_small.iff	0	2038.73	45	1603.24	1	0	0	0		$|
--475396024	0	object/building/military/landing_pad.iff	0	1985.22	48.0176	1567.57	0.809248	0	-0.587468	0		$|
+-475396024	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	1985.22	48.0176	1567.57	0.809248	0	-0.587468	0		$|
 -166571549	0	object/static/vehicle/player_shuttle.iff	0	1987.76	47.921	1503.75	0.978454	0	0.206466	0		$|
 -1008557808	0	object/static/structure/general/palette_supply_02.iff	0	1991.49	47.8833	1499.99	1	0	0	0		$|
 -175033873	0	object/static/structure/tatooine/palette_supply_06.iff	0	2028.92	45	1474.39	-0.656059	0	0.75471	0		$|
@@ -256,7 +256,7 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1907249538	0	object/building/player/player_house_tcg_rebel_spire.iff	0	1982.1	46.3032	1533.83	0.382683	0	0.92388	0		$|
 -152259559	-1907249538	object/cell/cell.iff	1	0	0	0	1	0	0	0		$|
 -1367988389	-1907249538	object/cell/cell.iff	2	0	0	0	1	0	0	0		$|
--260442791	0	object/building/military/landing_platform.iff	0	2040	45	1524	0.707107	0	-0.707107	0		$|
+-260442791	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	2040	45	1524	0.707107	0	-0.707107	0		$|
 -31522106	0	object/building/naboo/filler_building_naboo_style_3.iff	0	2000	45	1204	1	0	0	0		$|
 -361495523	0	object/building/naboo/guild_commerce_naboo_style_01.iff	0	1875	45	1249	0.707108	0	0.707106	0		$|
 -414947945	-361495523	object/cell/cell.iff	1	0	0	0	1	0	0	0		$|
@@ -471,8 +471,8 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1642387124	0	object/static/structure/tatooine/palette_supply_06.iff	0	2019.78	45	1476.44	0.92388	0	0.382683	0		$|
 -1280382248	0	object/static/structure/tatooine/palette_supply_06.iff	0	2022.29	45	1478.08	0.446198	0	0.894934	0		$|
 -1890029114	0	object/static/installation/mockup_farm_flora_style_1.iff	0	2010.75	46	1527.98	0.382683	0	0.92388	0		$|
--125421370	0	object/tangible/furniture/decorative/cargo_container_s01.iff	0	2032.37	45	1584	0.977144	0	0.212578	0		$|
--235606195	0	object/tangible/furniture/decorative/cargo_container_s01.iff	0	2042.42	45	1584	0.977144	0	0.212578	0		$|
+-125421370	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	2032.37	45	1584	0.977144	0	0.212578	0		$|
+-235606195	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	2042.42	45	1584	0.977144	0	0.212578	0		$|
 -924115011	0	object/static/installation/mockup_power_generator_photo_bio_style_1.iff	0	2029.27	45	1609	-2.38419e-07	0	1	0		$|
 -1618740213	0	object/static/installation/mockup_power_generator_photo_bio_style_1.iff	0	2042.22	45	1609	-2.38419e-07	0	1	0		$|
 -904264446	0	object/static/installation/mockup_power_generator_photo_bio_style_1.iff	0	2029.27	45	1601	-2.38419e-07	0	1	0		$|
@@ -485,7 +485,7 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -894056953	0	object/static/installation/mockup_farm_flora_style_1.iff	0	2000.5	46.45	1523.28	0.382683	0	0.92388	0		$|
 -933668070	0	object/tangible/deed/vehicle_deed/hoverlifter_speeder.iff	0	2035.16	44.729	1572.23	0.420705	0	0.907198	0		$|
 -1024816309	0	object/static/structure/tatooine/palette_supply_06.iff	0	1994.95	47.8707	1501.26	0.300706	0	0.953717	0		$|
--1468084576	0	object/building/military/landing_pad.iff	0	1991.15	46.3783	1504.98	-0.518315	0	0.85519	0		$|
+-1468084576	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	1991.15	46.3783	1504.98	-0.518315	0	0.85519	0		$|
 -140217237	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2013.03	44.9235	1488.67	0.766044	0	0.642788	0		$|
 -1587493582	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2015.34	44.9235	1484.85	1	0	0	0		$|
 -1708840355	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2016.03	45.7659	1489.92	1	0	0	0		$|
@@ -501,7 +501,7 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1503244830	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2016.47	44.8826	1489.94	1	0	0	0		$|
 -1165601349	0	object/static/structure/tatooine/debris_tatt_drum_storage_1.iff	0	2017.27	44.8826	1489.92	1	0	0	0		$|
 -1468498298	0	object/building/poi/base/base_poi_small.iff	0	2038.73	45	1603.24	1	0	0	0		$|
--152431970	0	object/building/military/landing_pad.iff	0	1985.22	48.0176	1567.57	0.809248	0	-0.587468	0		$|
+-152431970	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	1985.22	48.0176	1567.57	0.809248	0	-0.587468	0		$|
 -532866950	0	object/static/vehicle/player_shuttle.iff	0	1987.76	47.921	1503.75	0.978454	0	0.206466	0		$|
 -138009554	0	object/static/structure/general/palette_supply_02.iff	0	1991.49	47.8833	1499.99	1	0	0	0		$|
 -1991698494	0	object/static/structure/tatooine/palette_supply_06.iff	0	2028.92	45	1474.39	-0.656059	0	0.75471	0		$|
@@ -513,4 +513,4 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -8382809	0	object/building/player/player_house_tcg_rebel_spire.iff	0	1982.1	46.3032	1533.83	0.382683	0	0.92388	0		$|
 -1932775541	-8382809	object/cell/cell.iff	1	0	0	0	1	0	0	0		$|
 -1990157455	-8382809	object/cell/cell.iff	2	0	0	0	1	0	0	0		$|
--992922554	0	object/building/military/landing_platform.iff	0	2040	45	1524	0.707107	0	-0.707107	0		$|
+-992922554	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	2040	45	1524	0.707107	0	-0.707107	0		$|

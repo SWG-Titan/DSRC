@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\static\structure\general\shared_repairdroidhead.tpf
+
+@base object/static/structure/base/static_structure_base.iff
+
+@class static_object_template 0
+
+@class object_template 0
+
+sharedTemplate = "object/static/structure/general/shared_repairdroidhead.iff"

@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\static\terrain\tatooine\shared_rock_spire_lumpy_tatooine.tpf
+
+@base object/static/terrain/base/static_terrain_base.iff
+
+@class static_object_template 0
+
+@class object_template 0
+
+sharedTemplate = "object/static/terrain/tatooine/shared_rock_spire_lumpy_tatooine.iff"

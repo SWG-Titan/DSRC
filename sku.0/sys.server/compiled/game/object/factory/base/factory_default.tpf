@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\factory\base\shared_factory_default.tpf
+
+@base object/factory/base/base_factory.iff
+
+@class object_template 0
+
+sharedTemplate = "object/factory/base/shared_factory_default.iff"

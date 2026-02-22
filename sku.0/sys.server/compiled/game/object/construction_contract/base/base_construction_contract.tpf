@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\construction_contract\base\shared_base_construction_contract.tpf
+
+@base object/intangible/base/base_intangible.iff
+
+@class object_template 0
+
+sharedTemplate = "object/construction_contract/base/shared_base_construction_contract.iff"

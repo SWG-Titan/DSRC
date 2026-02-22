@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\weapon\ranged\pistol\shared_pistol_scout_blaster_ammo_test_2.tpf
+
+@base object/weapon/ranged/base/base_ranged_weapon.iff
+
+@class object_template 0
+
+sharedTemplate = "object/weapon/ranged/pistol/shared_pistol_scout_blaster_ammo_test_2.iff"

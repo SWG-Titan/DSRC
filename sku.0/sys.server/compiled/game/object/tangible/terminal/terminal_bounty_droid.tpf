@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\tangible\terminal\shared_terminal_bounty_droid.tpf
+
+@base object/tangible/terminal/base/base_terminal.iff
+
+@class tangible_object_template 1
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/terminal/shared_terminal_bounty_droid.iff"

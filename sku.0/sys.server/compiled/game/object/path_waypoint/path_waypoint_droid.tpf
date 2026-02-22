@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\path_waypoint\shared_path_waypoint_droid.tpf
+
+@base object/path_waypoint/base/path_waypoint_base.iff
+
+@class object_template 0
+
+sharedTemplate = "object/path_waypoint/shared_path_waypoint_droid.iff"

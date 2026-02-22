@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\tangible\loot\loot_schematic\shared_death_watch_pistol_de10_schematic.tpf
+
+@base object/tangible/base/tangible_base.iff
+
+@class tangible_object_template 1
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/loot/loot_schematic/shared_death_watch_pistol_de10_schematic.iff"

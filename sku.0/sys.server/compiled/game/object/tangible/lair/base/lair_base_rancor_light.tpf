@@ -1,0 +1,10 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\tangible\lair\base\shared_lair_base_rancor_light.tpf
+
+@base object/tangible/lair/base/lair_base.iff
+
+@class tangible_object_template 1
+
+@class object_template 0
+
+sharedTemplate = "object/tangible/lair/base/shared_lair_base_rancor_light.iff"

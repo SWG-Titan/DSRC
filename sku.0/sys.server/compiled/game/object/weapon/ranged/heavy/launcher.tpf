@@ -1,0 +1,8 @@
+// Auto-generated server stub for shared template
+// Source: dsrc\sku.0\sys.shared\compiled\game\object\weapon\ranged\heavy\shared_launcher.tpf
+
+@base object/weapon/ranged/heavy/base/heavy_weapon_base.iff
+
+@class object_template 0
+
+sharedTemplate = "object/weapon/ranged/heavy/shared_launcher.iff"
