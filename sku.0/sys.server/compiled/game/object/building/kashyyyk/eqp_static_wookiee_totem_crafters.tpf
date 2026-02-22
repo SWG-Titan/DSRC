@@ -1,7 +1,7 @@
 // Auto-generated server stub for shared template
 // Source: dsrc\sku.0\sys.shared\compiled\game\object\building\kashyyyk\shared_eqp_static_wookiee_totem_crafters.tpf
 
-@base object/static/structure/base/static_structure_base.iff
+@base object/building/base/base_building.iff
 
 @class building_object_template 1
 

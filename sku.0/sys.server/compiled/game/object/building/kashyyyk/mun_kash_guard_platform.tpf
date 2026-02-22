@@ -7,7 +7,7 @@
 // 1/27/2005 by Cinco Barnes
 
 
-@base object/static/structure/base/static_structure_base.iff
+@base object/building/base/base_building.iff
 
 @class static_object_template 0
 

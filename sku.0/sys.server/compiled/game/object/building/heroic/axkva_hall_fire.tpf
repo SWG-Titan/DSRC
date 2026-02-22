@@ -2,7 +2,7 @@
 // by Cinco Barnes 04082003
 // new waypoint appearances, by TBailey 05032005
 
-@base object/static/structure/base/static_structure_base.iff
+@base object/building/base/base_building.iff
 
 @class static_object_template 0
 

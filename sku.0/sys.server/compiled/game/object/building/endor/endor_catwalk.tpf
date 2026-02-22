@@ -1,8 +1,11 @@
 // This file ws written by the template editor @ 1:07:04 PM -  Mon Dec 16 2002
 
-@base object/static/structure/base/static_structure_base.iff
+@base object/building/base/base_building.iff
 
-@class static_object_template 0
+@class building_object_template 1
+
+isPublic = false
+@class tangible_object_template 2
 
 @class object_template 4
 
