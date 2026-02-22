@@ -1,24 +1,24 @@
 spawns	name	room	loc_x	loc_y	loc_z	script	convo_script	yaw	mood	respawn_time	spawn_objvar	spawn_objvar_value	spawn_objvar2	spawn_objvar_value2	special_room	special_room_script	room_objvar	room_objvar_name	room_objvar_value	building_id	scriptOne	scriptTwo	scriptThree
 s	s	s	f	f	f	s	s	f	s	i	s	s	s	s	s	s	s	s	s	i	s	s	s
-crackdown_rebel_colonel		core	10	-11	-20	theme_park.script_spawner.spawner_methods.ss_setup		20		180	spawn_objvar	customs								1256066			
-crackdown_rebel_comm_operator		core	15	-11	-21	theme_park.script_spawner.spawner_methods.ss_setup		-1		180										1256066			
-crackdown_rebel_command_security_guard		core	20	-11	-21	theme_park.script_spawner.spawner_methods.ss_setup		-20		180										1256066			
-crackdown_rebel_squad_leader		core	13	-13	-16	theme_park.script_spawner.spawner_methods.ss_setup		18		180										1256066			
-crackdown_rebel_soldier		foyer	13	-13	2	theme_park.script_spawner.spawner_methods.ss_setup		17		180										1256066			
-crackdown_rebel_soldier		foyer	17	-13	12	theme_park.script_spawner.spawner_methods.ss_setup		-88		180										1256066			
-crackdown_rebel_medic		hallway	6	-13	11	theme_park.script_spawner.spawner_methods.ss_setup		-175		180										1256066			
-crackdown_rebel_sharpshooter		hallway	-4	-13	13	theme_park.script_spawner.spawner_methods.ss_setup		157		180										1256066			
-crackdown_rebel_army_captain		room2	-5	-13	-12	theme_park.script_spawner.spawner_methods.ss_setup		25		180										1256066			
-crackdown_rebel_soldier		room2	-6	-13	6	theme_park.script_spawner.spawner_methods.ss_setup		148		180	spawn_objvar	customs								1256066			
-crackdown_rebel_cadet		room2	-6	-13	-4	theme_park.script_spawner.spawner_methods.ss_setup		58		180										1256066			
-crackdown_rebel_rifleman		room1	7	-6	-7	theme_park.script_spawner.spawner_methods.ss_setup		-12		180										1256066			
-crackdown_rebel_rifleman		room1	1	-6	-6	theme_park.script_spawner.spawner_methods.ss_setup		115		180										1256066			
-crackdown_rebel_sergeant		hall1	0	0	3.5	theme_park.script_spawner.spawner_methods.ss_setup		4		180										1256066			
-crackdown_rebel_master_sergeant		mainhall	0	0	-4	theme_park.script_spawner.spawner_methods.ss_setup		2		180	spawn_objvar	customs								1250080			
-crackdown_rebel_sergeant		room3	-4	0	-3	theme_park.script_spawner.spawner_methods.ss_setup		96		180										1250080			
-crackdown_rebel_medic		room1	4	0	1.5	theme_park.script_spawner.spawner_methods.ss_setup		-90		180										1250080			
-crackdown_rebel_army_captain		room2	4	0	-2	theme_park.script_spawner.spawner_methods.ss_setup		-108		180	spawn_objvar	customs								1250087			
-crackdown_rebel_warrant_officer_ii		mainhall	0	0	-4.5	theme_park.script_spawner.spawner_methods.ss_setup		0		180										1250087			
+crackdown_rebel_colonel		core	10	-11	-20	theme_park.script_spawner.spawner_methods.ss_setup		20		180	spawn_objvar	customs								0			
+crackdown_rebel_comm_operator		core	15	-11	-21	theme_park.script_spawner.spawner_methods.ss_setup		-1		180										0			
+crackdown_rebel_command_security_guard		core	20	-11	-21	theme_park.script_spawner.spawner_methods.ss_setup		-20		180										0			
+crackdown_rebel_squad_leader		core	13	-13	-16	theme_park.script_spawner.spawner_methods.ss_setup		18		180										0			
+crackdown_rebel_soldier		foyer	13	-13	2	theme_park.script_spawner.spawner_methods.ss_setup		17		180										0			
+crackdown_rebel_soldier		foyer	17	-13	12	theme_park.script_spawner.spawner_methods.ss_setup		-88		180										0			
+crackdown_rebel_medic		hallway	6	-13	11	theme_park.script_spawner.spawner_methods.ss_setup		-175		180										0			
+crackdown_rebel_sharpshooter		hallway	-4	-13	13	theme_park.script_spawner.spawner_methods.ss_setup		157		180										0			
+crackdown_rebel_army_captain		room2	-5	-13	-12	theme_park.script_spawner.spawner_methods.ss_setup		25		180										0			
+crackdown_rebel_soldier		room2	-6	-13	6	theme_park.script_spawner.spawner_methods.ss_setup		148		180	spawn_objvar	customs								0			
+crackdown_rebel_cadet		room2	-6	-13	-4	theme_park.script_spawner.spawner_methods.ss_setup		58		180										0			
+crackdown_rebel_rifleman		room1	7	-6	-7	theme_park.script_spawner.spawner_methods.ss_setup		-12		180										0			
+crackdown_rebel_rifleman		room1	1	-6	-6	theme_park.script_spawner.spawner_methods.ss_setup		115		180										0			
+crackdown_rebel_sergeant		hall1	0	0	3.5	theme_park.script_spawner.spawner_methods.ss_setup		4		180										0			
+crackdown_rebel_master_sergeant		world	-2580	5	2110	theme_park.script_spawner.spawner_methods.ss_setup		2		180	spawn_objvar	customs											
+crackdown_rebel_sergeant		world	-2585	5	2115	theme_park.script_spawner.spawner_methods.ss_setup		96		180											
+crackdown_rebel_medic		world	-2575	5	2105	theme_park.script_spawner.spawner_methods.ss_setup		-90		180											
+crackdown_rebel_army_captain		world	-2620	5	2150	theme_park.script_spawner.spawner_methods.ss_setup		-108		180	spawn_objvar	customs											
+crackdown_rebel_warrant_officer_ii		world	-2625	5	2155	theme_park.script_spawner.spawner_methods.ss_setup		0		180											
 crackdown_rebel_rifleman		world	-2755	5	2029	theme_park.script_spawner.spawner_methods.ss_setup		140		180	spawn_objvar	default											
 crackdown_rebel_squad_leader		world	-2776	5	1987	theme_park.script_spawner.spawner_methods.ss_setup		83		180	spawn_objvar	city_wander											
 crackdown_rebel_rifleman		world	-2711	5	2027	theme_park.script_spawner.spawner_methods.ss_setup		144		180	spawn_objvar	city_wander											
