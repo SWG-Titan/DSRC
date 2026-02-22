@@ -610,4 +610,3 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -54087420	0	object/tangible/quest/som_crystal_marker_05.iff	0	1672.54	5.71105	3530.45	1	0	0	0	item.container.base.base_container:quest.task.ground.retrieve_item_on_item	$|
 -1912164261	0	object/tangible/collection/rare_melee_malevolent_heavy_sword.iff	0	846.511	84.1482	1012.5	0.101424	-0.594322	0.734715	-0.310953	systems.collections.consume_click	collection.slotName|4|col_rare_melee_04:malevolent_heavy_sword_01|$|
 -669144978	0	object/tangible/collection/rare_melee_hk_47_sword.iff	0	1251.74	202.872	1996.33	0.0281055	0.74077	0.669058	-0.0532095	systems.collections.consume_click	collection.slotName|4|col_rare_melee_04:hk_47_sword_01|$|
--774325041	0	object/tangible/collection/beetle_flame.iff	0	3268.64	11.6524	72.7277	-0.491511	0.513118	0.493857	0.501231		$|
