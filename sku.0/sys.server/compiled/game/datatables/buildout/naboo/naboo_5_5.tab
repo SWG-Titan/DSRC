@@ -30,7 +30,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -50946400	-186406306	object/tangible/ground_spawning/patrol_waypoint.iff	9	15.6911	-13.7584	12.4864	1	0	0	0	systems.spawning.patrol_point_setup	ignoreInBuildoutArray|0|1|pointName|4|drennic_patrol_11146500_1|registerWithController|0|1|$|
 -1540719710	-754224577	object/cell/cell.iff	10	0	0	0	1	0	0	0		$|
 -1452889040	-1540719710	object/tangible/ground_spawning/area_spawner.iff	10	15.1911	-13.7584	-11.0025	-0.0337784	0	0.999429	0	systems.spawning.spawner_area	fltMaxSpawnTime|2|90.000000|fltMinSpawnTime|2|75.000000|fltRadius|2|3.000000|intDefaultBehavior|0|2|intGoodLocationSpawner|0|0|intSpawnCount|0|3|intSpawnSystem|0|1|registerWithController|0|1|strName|4|drennic_guard|strSpawnerType|4|area|strSpawns|4|naboo_peacewar_drennic_guard|$|
--1623050787	-1540719710	object/tangible/ground_spawning/area_spawner.iff	10	15.1911	-13.7584	-11.0025	-0.0337784	0	0.999429	0	systems.spawning.spawner_area	fltMaxSpawnTime|2|120.000000|fltMinSpawnTime|2|90.000000|fltRadius|2|1.000000|intDefaultBehavior|0|2|intGoodLocationSpawner|0|0|intSpawnCount|0|1|intSpawnSystem|0|1|registerWithController|0|1|strName|4|drenn|strSpawnerType|4|area|strSpawns|4|naboo_peacewar_drenn|$|
 -1398736849	0	object/static/structure/military/military_column_med_imperial_style_01.iff	0	358.816	12.6367	2029.49	1	0	0	0		$|
 -66720628	0	object/static/structure/military/military_column_med_imperial_style_01.iff	0	375.905	12.5533	2029.57	1	0	0	0		$|
 -1605216687	0	object/static/structure/military/military_wall_weak_imperial_16_style_01.iff	0	367.377	12.447	2029.6	1	0	0	0		$|

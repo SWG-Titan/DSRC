@@ -70,7 +70,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1948313463	-507892488	object/tangible/poi/spawnegg/interior_spawnegg.iff	11	85.93671417	-46.49344635	-145.9938965	1	0	0	0		intRandomYaw|0|1|$|
 -1331595969	-507892488	object/tangible/poi/spawnegg/interior_spawnegg.iff	11	87.36112976	-46.68423843	-138.3641815	1	0	0	0		intRandomYaw|0|1|$|
 -1939786804	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	1214.183594	80.89487457	106.6294327	1	0	0	0		$|
--1376581304	0	object/building/general/rori_kobola_cave.iff	0	1222.54	97.8349	135.031	-0.435683	0	0.9001	0		$|
 -327503350	-1376581304	object/cell/cell.iff	1	0	0	0	1	0	0	0		$|
 -1408844359	-327503350	object/tangible/container/loot/placable_loot_crate.iff	0	-6116.51	-28.1306	-9.62569	-0.688354	0.110746	0.708756	-0.107558		$|
 -850991870	-1376581304	object/cell/cell.iff	2	0	0	0	1	0	0	0		$|

@@ -36,7 +36,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1674091023	-641399737	object/tangible/poi/spawnegg/interior_spawnegg.iff	11	-92.81098175	-100.9314957	-97.42961884	1	0	0	0		intRandomYaw|0|1|$|
 -1182814570	-641399737	object/tangible/poi/spawnegg/interior_spawnegg.iff	11	-101.2669754	-100.6716843	-123.7068481	1	0	0	0		intRandomYaw|0|1|$|
 -882045225	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	876.6038208	85.60910034	1236.91748	1	0	0	0		$|
--1550073655	0	object/building/general/rori_bat_cave.iff	0	848.8	99.5441	1263.75	0.382683	0	0.92388	0		$|
 -409244986	-1550073655	object/cell/cell.iff	1	0	0	0	1	0	0	0		$|
 -280675418	-1550073655	object/cell/cell.iff	2	0	0	0	1	0	0	0		$|
 -2133527664	-1550073655	object/cell/cell.iff	3	0	0	0	1	0	0	0		$|

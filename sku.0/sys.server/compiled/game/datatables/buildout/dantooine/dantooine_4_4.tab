@@ -75,7 +75,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1517888095	0	object/tangible/weather_object/weather_object_base.iff	0	0	195	0	1	0	0	0		$|
 -366350694	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	1920.781349	3.561879635	1653.595032	1	0	0	0		$|
 -797489960	0	object/tangible/poi/spawnegg/exterior_spawnegg.iff	0	1890.59552	5.094076157	1653.942169	1	0	0	0		$|
--819222594	0	object/building/general/dantooine_kunga_cave.iff	0	1908.8	25.692	1695.01	-3.20013e-08	0	1	0		$|
 -245990504	-819222594	object/cell/cell.iff	1	0	0	0	1	0	0	0		$|
 -296982175	-819222594	object/cell/cell.iff	2	0	0	0	1	0	0	0		$|
 -1370878343	-296982175	object/tangible/container/loot/placable_loot_crate.iff	0	2005.66	-32.821	2021.04	0.895493	-0.00827479	0.405285	0.18376		$|
@@ -110,11 +109,3 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -136033243	-819222594	object/cell/cell.iff	28	0	0	0	1	0	0	0		$|
 -679576211	-819222594	object/cell/cell.iff	29	0	0	0	1	0	0	0		$|
 -755838250	-679576211	object/tangible/container/loot/placable_loot_crate.iff	0	1980.02	-64.6895	1815.36	0.707107	0	0.707107	0		$|
--1994147924	0	object/static/structure/dantooine/dant_large_rock_hut.iff	0	1901.49	7.21525	1636.56	-0.0257937	0	0.999667	0		$|
--839384774	0	object/static/structure/dantooine/dant_totem_pole.iff	0	1878.3	8.70643	1622.26	1	0	0	0		$|
--783878158	0	object/static/structure/dantooine/dant_totem_pole.iff	0	1927.09	6.92169	1622.31	1	0	0	0		$|
--1779966207	0	object/static/structure/dantooine/dant_small_mudhut.iff	0	1884.98	7.60797	1639.41	0.891568	0	0.452886	0		$|
--1000427004	0	object/static/structure/dantooine/dant_rack_spears.iff	0	1907.26	6.96016	1641.77	0.924909	0	-0.380188	0		$|
--581695765	0	object/static/structure/dantooine/dant_rack_spears.iff	0	1908.44	6.95685	1642.6	0.924909	0	-0.380188	0		$|
--1621756186	0	object/static/structure/dantooine/dant_hide_tanning_s01.iff	0	1893.14	6.61071	1639.75	1	0	0	0		$|
--1796579464	0	object/static/structure/dantooine/dant_hide_tanning_s02.iff	0	1895.19	6.86281	1639.31	1	0	0	0		$|

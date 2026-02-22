@@ -388,5 +388,4 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -15117656	0	object/building/kashyyyk/rryatt_world_root_a1.iff	0	795.6	-15	328.996	0.277121	0	0.960835	0		$|
 -15117655	0	object/building/kashyyyk/poi_kash_rryatt_rope_lift_rope_half.iff	0	306.15	-1.88751	493.001	0.891596	-0.383385	0.240822	0.00881068		$|
 -15117654	0	object/building/kashyyyk/poi_kash_rryatt_rope_lift_rope_half.iff	0	303.13	-1.6016	494.014	0.891596	-0.383385	0.240822	0.00881068		$|
--492775029	0	object/tangible/collection/rare_melee_wke_heartlance.iff	0	972.275	-22.6118	425.343	0.589788	0	0	0.807558	systems.collections.consume_click	collection.slotName|4|col_rare_melee_04:wke_heartlance_01|$|
 -1427247243	0	object/tangible/collection/rare_heavy_void.iff	0	409.693	-22.1757	215.35	0.530738	0.0550053	-0.0345466	0.845043	systems.collections.consume_click	collection.slotName|4|col_rare_heavy_01:the_void_01|$|

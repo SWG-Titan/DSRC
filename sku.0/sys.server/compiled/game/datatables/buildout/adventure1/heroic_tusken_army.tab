@@ -240,7 +240,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1406965676	-1481106405	object/cell/cell.iff	8	0	0	0	1	0	0	0		$|
 -278304465	-1481106405	object/cell/cell.iff	9	0	0	0	1	0	0	0		$|
 -2026621493	-1481106405	object/cell/cell.iff	10	0	0	0	1	0	0	0		$|
--1478345472	0	object/static/structure/tatooine/wall_pristine_tatooine_small_style_01.iff	0	1173.67	5	1082.93	0.796084	0	0.605186	0		$|
 -1476042795	0	object/static/structure/tatooine/pillar_pristine_large_style_01.iff	0	947.246	5	727.33	0.795603	0	0.605819	0		$|
 -1470572346	0	object/building/tatooine/filler_building_tatt_style01_07.iff	0	897.165	5	1027.78	0.998488	0	-0.0549724	0	structure.filler.filler	$|
 -1459649740	0	object/static/structure/tatooine/pillar_pristine_small_style_01.iff	0	1164.4	5	738.272	0.922997	0	0.384808	0		$|
@@ -304,7 +303,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -1328812736	0	object/static/structure/tatooine/debris_tatt_pipe_narrow_1.iff	0	1132.17	5	916.71	-0.362357	0	0.932039	0		$|
 -1328493446	0	object/static/structure/tatooine/wall_cleft_tatooine_large_style_01.iff	0	1242.88	5	1005.78	0.986679	0	-0.162679	0		$|
 -1327868783	0	object/building/tatooine/filler_building_tatt_style01_08.iff	0	1135.28	5	715.38	0.927396	0	-0.374082	0	structure.filler.filler	$|
--1326470515	0	object/static/worldbuilding/sign/thm_sign_garage.iff	0	1164.98	5	1025.46	0.816773	0	-0.576959	0	systems.sign.sign:object.sign	$|
 -1325922991	0	object/static/structure/tatooine/orchard_tatooine_style_02.iff	0	907.532	5	1157.43	0.786917	0	0.617059	0		$|
 -1323873543	0	object/static/structure/tatooine/debris_tatt_drum_storage_2.iff	0	1017.57	5	1208.46	0.992198	0	0.124672	0		$|
 -1322859122	0	object/static/structure/tatooine/shed_junkshop_watto.iff	0	1060.13	5	1207.28	1	0	0	0		$|
@@ -615,7 +613,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -602194306	0	object/building/tatooine/filler_building_block_64x32_style_01.iff	0	1033.77	5	631.46	0.0741347	0	0.997248	0	structure.filler.filler	$|
 -601852257	0	object/static/structure/tatooine/pillar_ruined_large_style_01.iff	0	1051	5	1068.77	0.0557692	0	0.998444	0		$|
 -594642879	0	object/static/structure/tatooine/pillar_pristine_small_style_01.iff	0	1076.99	5	663.879	-0.618312	0	0.785932	0		$|
--593203302	0	object/static/structure/tatooine/wall_pristine_tatooine_small_style_01.iff	0	1181.22	5	1085.05	0.796084	0	0.605186	0		$|
 -591237096	0	object/tangible/furniture/tatooine/frn_tato_tbl_cafe_table_style_01.iff	0	1131.69	5	1044.87	0.967462	0	-0.253015	0		$|
 -590023416	0	object/static/structure/tatooine/wall_ruined_tatooine_large_style_02.iff	0	1098.47	5	691.98	0.969109	0	-0.246633	0		$|
 -581977934	0	object/static/structure/tatooine/debris_tatt_pipe_narrow_2.iff	0	934.847	5	705.64	0.992198	0	-0.124675	0		$|
@@ -677,7 +674,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -486956163	0	object/static/item/item_con_tato_bowl_full_s02.iff	0	1144.01	5	872.69	0.431181	0	0.902266	0		$|
 -486557745	0	object/static/structure/tatooine/stone_hovel_tatooine_style_01.iff	0	1041.33	5	1073.41	0.921061	0	0.389418	0		$|
 -482972935	0	object/static/structure/tatooine/debris_tatt_crate_metal_1.iff	0	1075.84	5	1271.72	1	0	0	0		$|
--482884126	0	object/static/structure/tatooine/wall_archway_tatooine_wide_style_01.iff	0	1233.8	5	1033.73	0.149052	0	0.988829	0		$|
 -475816663	0	object/static/structure/tatooine/stone_hovel_tatooine_style_01.iff	0	1154.25	5	866	0.956802	0	-0.290741	0		$|
 -475509994	0	object/static/structure/general/streetlamp_small_style_02.iff	0	1141.53	5	975.41	1	0	0	0		$|
 -473149157	0	object/tangible/furniture/tatooine/frn_tato_tbl_cafe_table_style_01.iff	0	1143.37	5	1081.29	0.808027	0	0.589145	0		$|
@@ -714,7 +710,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -397919408	0	object/tangible/crafting/station/public_food_station.iff	0	1021.42	5	902.83	0.878683	0	-0.477405	0	systems.crafting.base_station	crafting.private|0|0|crafting.station|0|1|crafting.type|0|8644|$|
 -395765377	0	object/static/structure/tatooine/pillar_damaged_large_style_01.iff	0	1084.01	5	1211.22	0.700285	0	0.713864	0		$|
 -392320631	0	object/static/structure/tatooine/pillar_pristine_large_style_01.iff	0	1175.37	5	1084.12	-0.59815	0	0.801384	0		$|
--392051717	0	object/static/structure/tatooine/wall_archway_tatooine_wide_style_01.iff	0	1238.84	5	1017.49	0.149052	0	0.988829	0		$|
 -392019962	0	object/static/structure/tatooine/orchard_tatooine_style_02.iff	0	975.649	5	835.977	1	0	0	0		$|
 -388078042	0	object/static/structure/tatooine/wall_pristine_tatooine_large_style_02.iff	0	1003.37	5	864.81	0.857709	0	-0.514136	0		$|
 -386715830	0	object/static/item/item_bread_loaf.iff	0	1144.15	5	873.16	1	0	0	0		$|
@@ -842,7 +837,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -70345359	0	object/static/structure/tatooine/antenna_tatt_style_1.iff	0	1022.57	5	1101.4	1	0	0	0		$|
 -67978929	0	object/static/structure/tatooine/debris_tatt_pipe_narrow_1.iff	0	999.543	5	1113.76	0.453594	0	0.891209	0		$|
 -62481746	0	object/static/structure/tatooine/palette_tatooine_style_01.iff	0	1355.77	5	867.87	0.99639	0	0.084898	0		$|
--60860441	0	object/static/structure/tatooine/wall_pristine_tatooine_small_style_01.iff	0	1181.22	5	1085.07	0.796084	0	0.605186	0		$|
 -60542693	0	object/static/structure/general/streetlamp_small_style_02.iff	0	1028.58	5	760.655	1	0	0	0		$|
 -56012844	0	object/static/item/item_container_weapon.iff	0	1349.48	5	891.91	-0.0799119	0	0.996802	0		$|
 -55303332	0	object/tangible/crafting/station/public_clothing_station.iff	0	1017.58	5	897.34	0.958899	0	0.283747	0	systems.crafting.base_station	crafting.private|0|0|crafting.station|0|1|crafting.type|0|10|$|
@@ -857,7 +851,6 @@ i	i	h	i	f	f	f	f	f	f	f	s	p
 -39865890	0	object/static/structure/tatooine/debris_tatt_drum_storage_2.iff	0	1076.42	5	1229.88	1	0	0	0		$|
 -39452080	0	object/static/structure/tatooine/pillar_pristine_small_style_01.iff	0	1193.52	5	762.296	0.488872	0	0.872355	0		$|
 -37899922	0	object/static/item/item_dye_kit.iff	0	1143.35	5	875.16	0.595096	0	0.803654	0		$|
--32129822	0	object/static/structure/tatooine/wall_pristine_tatooine_small_style_01.iff	0	1173.66	5	1082.91	0.796084	0	0.605186	0		$|
 -28487613	0	object/static/structure/tatooine/stone_hovel_tatooine_style_01.iff	0	1131.83	5	690.333	0.682221	0	0.731146	0		$|
 -27255088	0	object/building/tatooine/filler_building_tatt_style01_06.iff	0	1085.26	5	1070.96	0.983843	0	-0.179031	0	structure.filler.filler	$|
 -26401656	0	object/static/structure/tatooine/pillar_damaged_large_style_01.iff	0	1230.67	5	1042.15	-0.585743	0	0.810497	0		$|
