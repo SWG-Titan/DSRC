@@ -1,12 +1,7 @@
 package script.systems.spawning;
 
-import script.dictionary;
-import script.library.ai_lib;
-import script.library.create;
-import script.library.spawning;
-import script.library.utils;
-import script.location;
-import script.obj_id;
+import script.*;
+import script.library.*;
 
 public class spawner_area extends script.base_script
 {
@@ -47,6 +42,11 @@ public class spawner_area extends script.base_script
     }
     public int doSpawnEvent(obj_id self, dictionary params) throws InterruptedException
     {
+        if (hasObjVar(self, "spawner_lock"))
+        {
+            setName(self, "(LOCKED SPAWNER: " + getStringObjVar(self, "strSpawns") + ")");
+            return SCRIPT_CONTINUE;
+        }
         if (!spawning.checkSpawnCount(self))
         {
             return SCRIPT_CONTINUE;
@@ -228,13 +228,10 @@ public class spawner_area extends script.base_script
     {
         return true;
     }
-    public int OnDestroy(obj_id self) throws InterruptedException
-    {
-        if (utils.hasScriptVar(self, "debugSpawnList"))
-        {
+    public int OnDestroy(obj_id self) throws InterruptedException {
+        if (utils.hasScriptVar(self, "debugSpawnList")) {
             obj_id[] spawns = utils.getObjIdArrayScriptVar(self, "debugSpawnList");
-            if (spawns == null || spawns.length == 0)
-            {
+            if (spawns == null) {
                 return SCRIPT_CONTINUE;
             }
             for (obj_id spawn : spawns) {
@@ -242,6 +239,35 @@ public class spawner_area extends script.base_script
                     messageTo(spawn, "selfDestruct", null, 5, false);
                 }
             }
+        }
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
+    {
+        int dad = mi.addRootMenu(menu_info_types.SERVER_MENU10, new string_id("Spawner Controls"));
+        mi.addSubMenu(dad, menu_info_types.SERVER_MENU11, new string_id("Force Spawn"));
+        mi.addSubMenu(dad, menu_info_types.SERVER_MENU12, new string_id("Toggle Spawner"));
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
+    {
+        if (item == menu_info_types.SERVER_MENU11)
+        {
+            messageTo(self, "doSpawnEvent", null, 2.0f, false);
+            return SCRIPT_CONTINUE;
+        }
+        if (item == menu_info_types.SERVER_MENU11) {
+            boolean status = getBooleanObjVar(self, "spawner_lock");
+            if (status)
+            {
+                removeObjVar(self, "spawner_lock");
+            }
+            else {
+                setObjVar(self,"spawner_lock", true);
+            }
+            return SCRIPT_CONTINUE;
         }
         return SCRIPT_CONTINUE;
     }
