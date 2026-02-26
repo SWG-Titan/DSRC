@@ -59,7 +59,7 @@ public class nym_elevator_down extends script.base_script
     {
         String stronghold = "6595508";
         obj_id building = utils.stringToObjId(stronghold);
-        if (!isValidId(building))
+        if (!isValidId(building) || !exists(building))
         {
             return SCRIPT_CONTINUE;
         }
