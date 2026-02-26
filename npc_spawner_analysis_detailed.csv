@@ -1,0 +1,49 @@
+Scene,BuildoutFile,CurrentObjId,Container,CellIndex,PosX,PosY,PosZ,CurrentObjVars,MatchesDataTable,Action
+corellia,corellia_2_3,-1127136126,-34497133,1,-4.2,0.625,-3.54,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+corellia,corellia_4_2,-996724559,0,0,1910,28,1425,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+corellia,corellia_4_2,-1907927179,-1416962376,12,-44.7,2.6,35.2,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+corellia,corellia_4_2,-1173119406,-1807842458,14,-56.6,1,8.6,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+corellia,corellia_4_2,-510693921,0,0,1911,28,1425,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+corellia,corellia_4_2,-356245136,-1173792438,10,0,1.75,-14,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+corellia,corellia_4_2,-1352526075,-1798186635,11,1.4,1.7,-21.2,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+corellia,corellia_4_2,-105489642,0,0,1909,28,1425,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_1_7,-839730076,-1057285909,2,-2.9,1,-8.2,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_1_7,-1720325307,-1057285909,2,-0.8,1,-0.5,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_2_3,-1556862676,-555016066,1,0,0.1,-5.7,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_2_3,-34004951,0,0,1920.2,3,1711,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_2_3,-759823199,0,0,1922,3,1711,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_4_6,-1978261515,-1334587254,2,-9.3787,0.625,2.9884,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_4_6,-1720325307,0,0,1424.515,3,433.772,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_4_6,-1819263809,0,0,1422.316,3,433.188,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_4_6,-1344509769,0,0,1422.543,3,431.408,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+dantooine,dantooine_5_1,-496930446,0,0,1569,4,1774,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+endor,endor_6_3,-941954754,-1617855107,1,-3.7,0.625,-6.8,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+naboo,naboo_2_7,-1405126237,0,0,1309.21,6,52.7671,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+naboo,naboo_2_7,-1214265081,0,0,628,6,307,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+naboo,naboo_2_7,-582945043,0,0,1309.1,6,51.7729,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+naboo,naboo_2_7,-458641998,0,0,1313.01,6,44.0093,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+naboo,naboo_2_7,8346113,1688859,10,0.800999,12.0109,6.36823,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,3725475,1688860,11,1.29871,21,-44.2894,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,1456896,1688861,12,30.3745,23.0013,-32.3904,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,1456918,1688861,12,29.1187,23.0015,-30.5979,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,1456919,1688861,12,29.3493,23.2154,-34.4641,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,4295512,1688867,18,40.4219,33,-93.7486,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,4295591,1688873,24,-45.6677,33,-93.9157,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,3725474,1692101,2,-0.238734,0.749357,-71.8383,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,3725472,1692103,4,16.0073,8.00004,-54.1014,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,4795491,1692104,5,-29.0468,7.94179,-43.9591,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_2_7,4795492,1692104,5,-35.5259,7.94179,-43.8901,space.content_tools.npc_spawner,YES,OK
+naboo,naboo_6_3,-1674091023,0,0,396,292,199,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+naboo,naboo_7_8,-1517196923,-247414913,1,0,1.75,-14,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+talus,talus_3_6,-1998115094,-1370878343,1,0.023,0.125,-5,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+talus,talus_3_6,-2049076531,-634427143,1,-4.00,0.125,-3.683,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+tatooine,tatooine_2_1,4275677,1177487,22,8.11982,2,34.2394,space.content_tools.npc_spawner,YES,OK
+tatooine,tatooine_3_6,-601981178,-596802758,13,-28.69707,0,9.063158,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+tatooine,tatooine_4_3,-1352526075,-727431475,3,-21.47,3.223,27.3,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+tatooine,tatooine_4_3,-34004951,-1237855479,1,0,1.75,-14,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+tatooine,tatooine_6_2,3795724,1076952,11,-3.61827,0.00999999,-8.8941,space.content_tools.npc_spawner,YES,OK
+tatooine,tatooine_6_2,-1408844359,-327503350,1,-20.64399,-0.9,24.3188,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+tatooine,tatooine_6_2,-1579429420,-850991870,1,-28.69707,-0.5,9.063158,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+yavin4,yavin4_6_1,-310702828,-487332026,1,0.023,0.125,-5,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+yavin4,yavin4_6_1,-356245136,-1331168788,1,0.023,0.125,-5,space.content_tools.npc_spawner,NO,ADD spawn.id objvar
+yavin4,yavin4_6_1,-1364012511,-782361704,1,-4.00,0.125,-3.683,space.content_tools.npc_spawner,NO,ADD spawn.id objvar

@@ -11464,6 +11464,7 @@ public class base_class
         public static final int CONDITION_SPAWNED_CREATURE         = 0x04000000;
         public static final int CONDITION_HOLIDAY_INTERESTING      = 0x08000000;
         public static final int CONDITION_LOCKED                   = 0x10000000;
+        public static final int CONDITION_MAGIC_PAINTING_URL       = 0x20000000;
 
         /**
          * Returns an object's condition flags.

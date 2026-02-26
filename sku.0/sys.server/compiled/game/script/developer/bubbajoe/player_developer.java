@@ -1665,6 +1665,24 @@ public class player_developer extends base_script
             LOG("ethereal", "[Developer]: ***" + getName(self) + "*** used /developer socketize " + amount + " on " + getName(target));
             return SCRIPT_CONTINUE;
         }
+        else if (cmd.equalsIgnoreCase("magicPaintingUrl"))
+        {
+            if (!tok.hasMoreTokens())
+            {
+                broadcast(self, "Usage: /developer magicPaintingUrl <url>");
+                return SCRIPT_CONTINUE;
+            }
+
+            String url = tok.nextToken();
+            setCondition(target, CONDITION_MAGIC_PAINTING_URL);
+            setObjVar(target, "texture.url", url);
+            setObjVar(target, "texture.mode", "IMAGE_ONLY");
+
+            broadcast(self, "Enabled magic painting URL on target: " + getName(target));
+            broadcast(self, "URL: " + url);
+            LOG("ethereal", "[Developer]: ***" + getName(self) + "*** used /developer magicPaintingUrl " + url + " on " + getName(target));
+            return SCRIPT_CONTINUE;
+        }
         else if (cmd.equalsIgnoreCase("craft"))
         {
             String template = tok.nextToken();
