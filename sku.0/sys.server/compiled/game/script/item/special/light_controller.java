@@ -151,32 +151,34 @@ public class light_controller extends script.base_script
             return SCRIPT_CONTINUE;
         }
 
-        switch (item)
+        if (item == menu_info_types.SERVER_MENU1)
         {
-            case menu_info_types.SERVER_MENU1:
-                utils.setScriptVar(player, "lightswitch.allRooms", false);
-                utils.setScriptVar(player, "lightswitch.structure", structure);
-                showColorPicker(self, player);
-                break;
-            case menu_info_types.SERVER_MENU2:
-                utils.setScriptVar(player, "lightswitch.allRooms", true);
-                utils.setScriptVar(player, "lightswitch.structure", structure);
-                showColorPicker(self, player);
-                break;
-            case menu_info_types.SERVER_MENU3:
-                utils.setScriptVar(player, "lightswitch.allRooms", false);
-                utils.setScriptVar(player, "lightswitch.structure", structure);
-                showBrightnessPicker(self, player);
-                break;
-            case menu_info_types.SERVER_MENU4:
-                utils.setScriptVar(player, "lightswitch.allRooms", true);
-                utils.setScriptVar(player, "lightswitch.structure", structure);
-                showBrightnessPicker(self, player);
-                break;
-            case menu_info_types.SERVER_MENU5:
-                resetAllLights(player, structure);
-                sendSystemMessage(player, "All lights have been reset to default.", null);
-                break;
+            utils.setScriptVar(player, "lightswitch.allRooms", false);
+            utils.setScriptVar(player, "lightswitch.structure", structure);
+            showColorPicker(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU2)
+        {
+            utils.setScriptVar(player, "lightswitch.allRooms", true);
+            utils.setScriptVar(player, "lightswitch.structure", structure);
+            showColorPicker(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU3)
+        {
+            utils.setScriptVar(player, "lightswitch.allRooms", false);
+            utils.setScriptVar(player, "lightswitch.structure", structure);
+            showBrightnessPicker(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU4)
+        {
+            utils.setScriptVar(player, "lightswitch.allRooms", true);
+            utils.setScriptVar(player, "lightswitch.structure", structure);
+            showBrightnessPicker(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU5)
+        {
+            resetAllLights(player, structure);
+            sendSystemMessage(player, "All lights have been reset to default.", null);
         }
 
         return SCRIPT_CONTINUE;
