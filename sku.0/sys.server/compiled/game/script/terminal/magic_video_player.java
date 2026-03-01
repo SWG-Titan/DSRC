@@ -19,6 +19,7 @@ public class magic_video_player extends script.base_script
     private static final int MENU_VIDEO_SPAWN_SPEAKER = menu_info_types.SERVER_MENU35;
     private static final int MENU_VIDEO_TOGGLE_LOOP = menu_info_types.SERVER_MENU36;
     private static final int MENU_VIDEO_TOGGLE_ASPECT = menu_info_types.SERVER_MENU37;
+    private static final int MENU_VIDEO_PLAY = menu_info_types.SERVER_MENU38;
 
     private static final String OBJVAR_STREAM_URL = "stream.url";
     private static final String OBJVAR_TIMESTAMP = "timestamp";
@@ -44,6 +45,8 @@ public class magic_video_player extends script.base_script
 
         boolean canModify = canModifyVideoPlayer(player);
 
+        boolean isPlaying = hasCondition(self, CONDITION_MAGIC_VIDEO_PLAYER) && !currentUrl.isEmpty();
+
         if (canModify)
         {
             mi.addSubMenu(root, MENU_VIDEO_SET_URL, string_id.unlocalized("Set URL"));
@@ -67,11 +70,15 @@ public class magic_video_player extends script.base_script
                     aspectState = "16:9";
             }
             mi.addSubMenu(root, MENU_VIDEO_TOGGLE_ASPECT, string_id.unlocalized("Aspect: " + aspectState));
-            mi.addSubMenu(root, MENU_VIDEO_STOP, string_id.unlocalized("Stop Video"));
+
+            if (isPlaying)
+                mi.addSubMenu(root, MENU_VIDEO_STOP, string_id.unlocalized("Stop Video"));
+            else if (!currentUrl.isEmpty())
+                mi.addSubMenu(root, MENU_VIDEO_PLAY, string_id.unlocalized("Play Video"));
         }
 
         String urlDisplay = currentUrl.length() > 40 ? currentUrl.substring(0, 40) + "..." : currentUrl;
-        mi.addSubMenu(root, MENU_VIDEO_INFO, string_id.unlocalized("Now Playing: " + (urlDisplay.isEmpty() ? "(none)" : urlDisplay)));
+        mi.addSubMenu(root, MENU_VIDEO_INFO, string_id.unlocalized("Now Playing: " + (isPlaying ? (urlDisplay.isEmpty() ? "(none)" : urlDisplay) : "(stopped)")));
 
         return SCRIPT_CONTINUE;
     }
@@ -133,11 +140,21 @@ public class magic_video_player extends script.base_script
         }
         else if (item == MENU_VIDEO_STOP)
         {
-            removeObjVar(self, OBJVAR_STREAM_URL);
-            removeObjVar(self, OBJVAR_TIMESTAMP);
-            removeObjVar(self, OBJVAR_STREAM_LOOP);
-            removeObjVar(self, OBJVAR_STREAM_ASPECT);
+            clearCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
             sendSystemMessage(player, string_id.unlocalized("Video stopped."));
+            return SCRIPT_CONTINUE;
+        }
+        else if (item == MENU_VIDEO_PLAY)
+        {
+            if (hasObjVar(self, OBJVAR_STREAM_URL))
+            {
+                setCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
+                sendSystemMessage(player, string_id.unlocalized("Video playing."));
+            }
+            else
+            {
+                sendSystemMessage(player, string_id.unlocalized("No URL set. Use Set URL first."));
+            }
             return SCRIPT_CONTINUE;
         }
 
@@ -172,6 +189,13 @@ public class magic_video_player extends script.base_script
 
         url = url.trim();
         setObjVar(self, OBJVAR_STREAM_URL, url);
+        if (!hasObjVar(self, OBJVAR_TIMESTAMP))
+            setObjVar(self, OBJVAR_TIMESTAMP, "0");
+        if (!hasObjVar(self, OBJVAR_STREAM_LOOP))
+            setObjVar(self, OBJVAR_STREAM_LOOP, "1");
+        if (!hasObjVar(self, OBJVAR_STREAM_ASPECT))
+            setObjVar(self, OBJVAR_STREAM_ASPECT, "4:3");
+        setCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
         sendSystemMessage(player, string_id.unlocalized("Video URL set to: " + url));
         LOG("video_player", "[VideoPlayer] " + getName(player) + " (" + player + ") set stream URL on " + self + " to: " + url);
 

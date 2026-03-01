@@ -27,7 +27,8 @@ public class player_video_player extends script.base_script
     private static final int MENU_VP_TOGGLE_LOOP = menu_info_types.SERVER_MENU44;
     private static final int MENU_VP_TOGGLE_ASPECT = menu_info_types.SERVER_MENU45;
     private static final int MENU_VP_STOP = menu_info_types.SERVER_MENU46;
-    private static final int MENU_VP_INFO = menu_info_types.SERVER_MENU47;
+    private static final int MENU_VP_PLAY = menu_info_types.SERVER_MENU47;
+    private static final int MENU_VP_INFO = menu_info_types.SERVER_MENU48;
 
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
@@ -65,10 +66,16 @@ public class player_video_player extends script.base_script
                 aspectState = "16:9";
         }
         mi.addSubMenu(root, MENU_VP_TOGGLE_ASPECT, string_id.unlocalized("Aspect: " + aspectState));
-        mi.addSubMenu(root, MENU_VP_STOP, string_id.unlocalized("Stop Video"));
+
+        boolean isPlaying = hasCondition(self, CONDITION_MAGIC_VIDEO_PLAYER) && !currentUrl.isEmpty();
+
+        if (isPlaying)
+            mi.addSubMenu(root, MENU_VP_STOP, string_id.unlocalized("Stop Video"));
+        else if (!currentUrl.isEmpty())
+            mi.addSubMenu(root, MENU_VP_PLAY, string_id.unlocalized("Play Video"));
 
         String urlDisplay = currentUrl.length() > 40 ? currentUrl.substring(0, 40) + "..." : currentUrl;
-        mi.addSubMenu(root, MENU_VP_INFO, string_id.unlocalized("Now Playing: " + (urlDisplay.isEmpty() ? "(none)" : urlDisplay)));
+        mi.addSubMenu(root, MENU_VP_INFO, string_id.unlocalized("Now Playing: " + (isPlaying ? (urlDisplay.isEmpty() ? "(none)" : urlDisplay) : "(stopped)")));
 
         return SCRIPT_CONTINUE;
     }
@@ -131,11 +138,20 @@ public class player_video_player extends script.base_script
         else if (item == MENU_VP_STOP)
         {
             clearCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
-            removeObjVar(self, OBJVAR_STREAM_URL);
-            removeObjVar(self, OBJVAR_TIMESTAMP);
-            removeObjVar(self, OBJVAR_STREAM_LOOP);
-            removeObjVar(self, OBJVAR_STREAM_ASPECT);
             sendSystemMessage(player, string_id.unlocalized("Video stopped."));
+            return SCRIPT_CONTINUE;
+        }
+        else if (item == MENU_VP_PLAY)
+        {
+            if (hasObjVar(self, OBJVAR_STREAM_URL))
+            {
+                setCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
+                sendSystemMessage(player, string_id.unlocalized("Video playing."));
+            }
+            else
+            {
+                sendSystemMessage(player, string_id.unlocalized("No URL set. Use Set URL first."));
+            }
             return SCRIPT_CONTINUE;
         }
 
