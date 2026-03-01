@@ -7605,6 +7605,20 @@ public class base_class
         return _setCellLabelOffset(getLongWithNull(target), x, y, z);
     }
     /**
+     * Sets the light color and brightness for all baked lights in a cell.
+     * @param cellId        the id of the cell
+     * @param r             red component (0.0 - 1.0)
+     * @param g             green component (0.0 - 1.0)
+     * @param b             blue component (0.0 - 1.0)
+     * @param brightness    brightness multiplier (0.0 - 2.0)
+     * @return true on success
+     */
+    private static native boolean _setCellLight(long cellId, float r, float g, float b, float brightness);
+    public static boolean setCellLight(obj_id cellId, float r, float g, float b, float brightness)
+    {
+        return _setCellLight(getLongWithNull(cellId), r, g, b, brightness);
+    }
+    /**
      * Gets the object id of a cell in a building given a cell name.
      * @param building      the object id of the top level building.
      * @param cellName      the name of the cell whose id we are getting.

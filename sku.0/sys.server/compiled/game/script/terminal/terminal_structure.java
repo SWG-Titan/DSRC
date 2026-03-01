@@ -55,6 +55,7 @@ public class terminal_structure extends script.base_script
     public static final string_id SID_STRUCTURE_DECOR = new string_id("player_structure", "structure_decor_menu");
     public static final string_id SID_STRUCTURE_ADD_DECOR = new string_id("player_structure", "structure_add_decor");
     public static final string_id SID_STRUCTURE_REMOVE_DECOR = new string_id("player_structure", "structure_remove_decor");
+    public static final string_id SID_TERMINAL_LIGHTSWITCH = new string_id("player_structure", "lightswitch");
     public static final String STRUCTURE_MARK = "turnstile.structureMark";
     public static final string_id SID_MAYOR_HOUSE_SIGN_DISPLAY = new string_id("city/city", "installation_owner");
     public static final string_id SID_SHOW_MAYOR_OWNER = new string_id("city/city", "installation_owner_option");
@@ -193,6 +194,7 @@ public class terminal_structure extends script.base_script
                     mi.addSubMenu(management_root, menu_info_types.SERVER_MENU13, SID_SEARCH_FOR_HOUSE_ITEMS);
                     mi.addSubMenu(management_root, menu_info_types.SERVER_MENU9, SID_MOVE_FIRST_ITEM);
                     mi.addSubMenu(management_root, menu_info_types.SERVER_MENU2, SID_DELETE_ALL_ITEMS);
+                    mi.addSubMenu(management_root, menu_info_types.SERVER_MENU17, SID_TERMINAL_LIGHTSWITCH);
                     if (player_structure.isOwner(structure, player))
                     {
                         if (hasObjVar(structure, player_structure.OBJVAR_STRUCTURE_STORAGE_INCREASE))
@@ -573,6 +575,14 @@ public class terminal_structure extends script.base_script
         else if (item == menu_info_types.SERVER_MENU16)
         {
             blog("about to REMOVE DECOR");
+        }
+        else if (item == menu_info_types.SERVER_MENU17)
+        {
+            if (!player_structure.isBuilding(structure))
+            {
+                return SCRIPT_CONTINUE;
+            }
+            lightswitch.grantLightController(self, player, structure);
         }
         else if (item == menu_info_types.DICE_ROLL)
         {
