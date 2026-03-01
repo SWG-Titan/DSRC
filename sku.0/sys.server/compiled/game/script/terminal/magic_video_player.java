@@ -3,6 +3,7 @@ package script.terminal;
 import script.dictionary;
 import script.library.sui;
 import script.library.utils;
+import script.location;
 import script.menu_info;
 import script.menu_info_types;
 import script.obj_id;
