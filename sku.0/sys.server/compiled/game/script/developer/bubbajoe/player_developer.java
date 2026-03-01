@@ -1710,24 +1710,15 @@ public class player_developer extends base_script
             if (scale < 0.1f) scale = 0.1f;
             if (scale > 20.0f) scale = 20.0f;
 
-            location loc = getLocation(self);
-            obj_id tv = createObject("object/tangible/painting/painting_starmap.iff", loc);
+            obj_id tv = spawnVideoPlayer(self, url, scale, true);
             if (!isIdValid(tv))
             {
                 broadcast(self, "Failed to create television object.");
                 return SCRIPT_CONTINUE;
             }
 
-            setCondition(tv, CONDITION_MAGIC_VIDEO_PLAYER);
-            setObjVar(tv, "stream.url", url);
-            setObjVar(tv, "timestamp", "0");
-            setObjVar(tv, "stream.loop", "1");
-            setName(tv, "Video Player");
-            setScale(tv, scale);
-
             broadcast(self, "Spawned video player at your location.");
             broadcast(self, "URL: " + url + " | Scale: " + scale);
-            LOG("ethereal", "[Developer]: ***" + getName(self) + "*** used /developer spawnTelevision " + url + " scale=" + scale);
             return SCRIPT_CONTINUE;
         }
         else if (cmd.equalsIgnoreCase("setCondition"))

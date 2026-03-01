@@ -7237,4 +7237,67 @@ public class utils extends script.base_script
     {
         return getIntObjVar(getPlanetByName("tatooine"), "bonus." + account);
     }
+
+    public static obj_id spawnVideoPlayer(obj_id spawner, String url, float scale, boolean autoPlay) throws InterruptedException
+    {
+        if (!isIdValid(spawner))
+            return null;
+
+        if (url == null || url.trim().isEmpty())
+            return null;
+
+        url = url.trim();
+
+        if (scale < 0.1f) scale = 0.1f;
+        if (scale > 20.0f) scale = 20.0f;
+
+        location loc = getLocation(spawner);
+        if (loc == null)
+            return null;
+
+        obj_id tv = createObject("object/tangible/painting/painting_starmap.iff", loc);
+        if (!isIdValid(tv))
+            return null;
+
+        setObjVar(tv, "stream.url", url);
+        setObjVar(tv, "timestamp", "0");
+        setObjVar(tv, "stream.loop", "1");
+        setObjVar(tv, "stream.aspect", "4:3");
+        setObjVar(tv, "stream.startTime", String.valueOf(getCalendarTime()));
+        setName(tv, "Video Player");
+        setScale(tv, scale);
+        attachScript(tv, "terminal.magic_video_player");
+
+        if (autoPlay)
+            setCondition(tv, CONDITION_MAGIC_VIDEO_PLAYER);
+
+        LOG("video_player", "[spawnVideoPlayer] " + getName(spawner) + " (" + spawner + ") spawned video player " + tv + " url=" + url + " scale=" + scale);
+        return tv;
+    }
+
+    public static obj_id spawnVideoPlayer(obj_id spawner, String url) throws InterruptedException
+    {
+        return spawnVideoPlayer(spawner, url, 1.0f, true);
+    }
+
+    public static obj_id spawnVideoSpeaker(obj_id spawner, obj_id videoPlayer) throws InterruptedException
+    {
+        if (!isIdValid(spawner) || !isIdValid(videoPlayer))
+            return null;
+
+        location loc = getLocation(spawner);
+        if (loc == null)
+            return null;
+
+        obj_id speaker = createObject("object/tangible/loot/misc/speaker_s01.iff", loc);
+        if (!isIdValid(speaker))
+            return null;
+
+        setObjVar(speaker, "video_emitter.parent_id", videoPlayer.toString());
+        setName(speaker, "Video Speaker");
+        attachScript(speaker, "terminal.magic_video_emitter");
+
+        LOG("video_player", "[spawnVideoSpeaker] " + getName(spawner) + " (" + spawner + ") spawned speaker " + speaker + " linked to " + videoPlayer);
+        return speaker;
+    }
 }

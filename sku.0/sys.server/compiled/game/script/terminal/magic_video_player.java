@@ -3,7 +3,6 @@ package script.terminal;
 import script.dictionary;
 import script.library.sui;
 import script.library.utils;
-import script.location;
 import script.menu_info;
 import script.menu_info_types;
 import script.obj_id;
@@ -20,10 +19,6 @@ public class magic_video_player extends script.base_script
     private static final String OBJVAR_STREAM_LOOP = "stream.loop";
     private static final String OBJVAR_STREAM_ASPECT = "stream.aspect";
     private static final String OBJVAR_STREAM_START_TIME = "stream.startTime";
-    private static final String OBJVAR_EMITTER_PARENT_ID = "video_emitter.parent_id";
-
-    private static final String SPEAKER_TEMPLATE = "object/tangible/loot/misc/speaker_s01.iff";
-
     private static final String MASTER_ENTERTAINER_SKILL = "social_entertainer_master";
 
     private static final String SV_PREFIX = "video_mgmt.";
@@ -418,17 +413,13 @@ public class magic_video_player extends script.base_script
 
     private void executeSpawnSpeaker(obj_id self, obj_id player) throws InterruptedException
     {
-        location loc = getLocation(player);
-        obj_id speaker = createObject(SPEAKER_TEMPLATE, loc);
+        obj_id speaker = utils.spawnVideoSpeaker(player, self);
         if (!isIdValid(speaker))
         {
             sendSystemMessage(player, string_id.unlocalized("Failed to create speaker object."));
             return;
         }
-        setObjVar(speaker, OBJVAR_EMITTER_PARENT_ID, self.toString());
-        setName(speaker, "Video Speaker");
         sendSystemMessage(player, string_id.unlocalized("Speaker spawned and linked to this video player."));
-        LOG("video_player", "[VideoPlayer] " + getName(player) + " spawned speaker " + speaker + " linked to " + self);
     }
 
     // ======================================================================

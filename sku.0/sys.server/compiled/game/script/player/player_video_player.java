@@ -2,6 +2,7 @@ package script.player;
 
 import script.dictionary;
 import script.library.sui;
+import script.library.utils;
 import script.location;
 import script.menu_info;
 import script.menu_info_types;
@@ -12,15 +13,11 @@ public class player_video_player extends script.base_script
 {
     private static final String REQUIRED_SKILL = "class_entertainer_phase4_master";
 
-    private static final String SPEAKER_TEMPLATE = "object/tangible/loot/misc/speaker_s01.iff";
-
     private static final String OBJVAR_STREAM_URL = "stream.url";
     private static final String OBJVAR_TIMESTAMP = "timestamp";
     private static final String OBJVAR_STREAM_LOOP = "stream.loop";
     private static final String OBJVAR_STREAM_ASPECT = "stream.aspect";
     private static final String OBJVAR_STREAM_START_TIME = "stream.startTime";
-    private static final String OBJVAR_EMITTER_PARENT_ID = "video_emitter.parent_id";
-
     private static final int MENU_VP_ROOT = menu_info_types.SERVER_MENU40;
     private static final int MENU_VP_SET_URL = menu_info_types.SERVER_MENU41;
     private static final int MENU_VP_SET_TIMESTAMP = menu_info_types.SERVER_MENU42;
@@ -101,17 +98,13 @@ public class player_video_player extends script.base_script
         }
         else if (item == MENU_VP_SPAWN_SPEAKER)
         {
-            location loc = getLocation(player);
-            obj_id speaker = createObject(SPEAKER_TEMPLATE, loc);
+            obj_id speaker = utils.spawnVideoSpeaker(player, self);
             if (!isIdValid(speaker))
             {
                 sendSystemMessage(player, string_id.unlocalized("Failed to create speaker object."));
                 return SCRIPT_CONTINUE;
             }
-            setObjVar(speaker, OBJVAR_EMITTER_PARENT_ID, self.toString());
-            setName(speaker, "Video Speaker");
             sendSystemMessage(player, string_id.unlocalized("Speaker spawned and linked to this video player."));
-            LOG("video_player", "[PlayerVideoPlayer] " + getName(player) + " spawned speaker " + speaker + " linked to " + self);
             return SCRIPT_CONTINUE;
         }
         else if (item == MENU_VP_TOGGLE_LOOP)
