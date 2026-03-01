@@ -193,7 +193,7 @@ public class video_player_manager extends script.base_script
         if (ids == null || row >= ids.length)
             return SCRIPT_CONTINUE;
 
-        obj_id target = obj_id.getObjId(ids[row]);
+        obj_id target = obj_id.getObjId(Long.parseLong(ids[row]));
         if (!isIdValid(target))
         {
             sendSystemMessage(player, string_id.unlocalized("Invalid object."));
@@ -241,7 +241,7 @@ public class video_player_manager extends script.base_script
             return SCRIPT_CONTINUE;
 
         String targetStr = getStringObjVar(self, "video_manager.selected");
-        obj_id target = obj_id.getObjId(targetStr);
+        obj_id target = obj_id.getObjId(Long.parseLong(targetStr));
 
         if (!isIdValid(target))
         {
@@ -288,7 +288,7 @@ public class video_player_manager extends script.base_script
         if (ids == null || row >= ids.length)
             return SCRIPT_CONTINUE;
 
-        obj_id target = obj_id.getObjId(ids[row]);
+        obj_id target = obj_id.getObjId(Long.parseLong(ids[row]));
         if (!isIdValid(target))
         {
             sendSystemMessage(player, string_id.unlocalized("Invalid object."));
@@ -328,7 +328,7 @@ public class video_player_manager extends script.base_script
             return SCRIPT_CONTINUE;
 
         String targetStr = getStringObjVar(self, "video_manager.selected_speaker");
-        obj_id target = obj_id.getObjId(targetStr);
+        obj_id target = obj_id.getObjId(Long.parseLong(targetStr));
 
         if (!isIdValid(target))
         {
