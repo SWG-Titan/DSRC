@@ -1686,6 +1686,49 @@ public class player_developer extends base_script
             LOG("ethereal", "[Developer]: ***" + getName(self) + "*** used /developer magicPaintingUrl " + url + " on " + getName(target));
             return SCRIPT_CONTINUE;
         }
+        else if (cmd.equalsIgnoreCase("spawnTelevision"))
+        {
+            if (!tok.hasMoreTokens())
+            {
+                broadcast(self, "Usage: /developer spawnTelevision <url> [scale]");
+                return SCRIPT_CONTINUE;
+            }
+
+            String url = tok.nextToken();
+            float scale = 1.0f;
+            if (tok.hasMoreTokens())
+            {
+                try
+                {
+                    scale = Float.parseFloat(tok.nextToken());
+                }
+                catch (NumberFormatException e)
+                {
+                    scale = 1.0f;
+                }
+            }
+            if (scale < 0.1f) scale = 0.1f;
+            if (scale > 20.0f) scale = 20.0f;
+
+            location loc = getLocation(self);
+            obj_id tv = createObject("object/tangible/furniture/decorative/painting_starships_01.iff", loc);
+            if (!isIdValid(tv))
+            {
+                broadcast(self, "Failed to create television object.");
+                return SCRIPT_CONTINUE;
+            }
+
+            setCondition(tv, CONDITION_MAGIC_VIDEO_PLAYER);
+            setObjVar(tv, "stream.url", url);
+            setObjVar(tv, "timestamp", "0");
+            setName(tv, "Video Player");
+            setScale(tv, scale);
+
+            broadcast(self, "Spawned video player at your location.");
+            broadcast(self, "URL: " + url + " | Scale: " + scale);
+            LOG("ethereal", "[Developer]: ***" + getName(self) + "*** used /developer spawnTelevision " + url + " scale=" + scale);
+            return SCRIPT_CONTINUE;
+        }
         else if (cmd.equalsIgnoreCase("setCondition"))
         {
             if (!tok.hasMoreTokens())
