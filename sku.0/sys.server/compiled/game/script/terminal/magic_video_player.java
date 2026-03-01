@@ -37,6 +37,7 @@ public class magic_video_player extends script.base_script
     private static final String LBL_NAME     = COMP + "statusSection.lblName";
     private static final String LBL_FEEDBACK = COMP + "feedbackSection.lblFeedback";
     private static final String BTN_PLAY     = COMP + "playbackControls.btnPlay";
+    private static final String BTN_PAUSE    = COMP + "playbackControls.btnPause";
     private static final String BTN_STOP     = COMP + "playbackControls.btnStop";
     private static final String BTN_LOOP     = COMP + "playbackControls.btnLoop";
     private static final String BTN_ASPECT   = COMP + "playbackControls.btnAspect";
@@ -98,6 +99,7 @@ public class magic_video_player extends script.base_script
         }
 
         subscribeToSUIEvent(pid, sui_event_type.SET_onButton, BTN_PLAY, "handlePlay");
+        subscribeToSUIEvent(pid, sui_event_type.SET_onButton, BTN_PAUSE, "handlePause");
         subscribeToSUIEvent(pid, sui_event_type.SET_onButton, BTN_STOP, "handleStop");
         subscribeToSUIEvent(pid, sui_event_type.SET_onButton, BTN_LOOP, "handleToggleLoop");
         subscribeToSUIEvent(pid, sui_event_type.SET_onButton, BTN_ASPECT, "handleToggleAspect");
@@ -168,6 +170,8 @@ public class magic_video_player extends script.base_script
         setSUIProperty(pid, BTN_ASPECT, sui.PROP_TEXT, "Aspect: " + aspect);
 
         setSUIProperty(pid, "bg.caption.lblTitle", sui.PROP_TEXT, "Video Player - " + name);
+
+        setSUIProperty(pid, sui.THIS, "videoPlayerTimeValue", self.toString());
     }
 
     private void refreshPanel(obj_id self, obj_id player, String feedback) throws InterruptedException
@@ -204,6 +208,34 @@ public class magic_video_player extends script.base_script
         setObjVar(self, OBJVAR_STREAM_START_TIME, String.valueOf(getCalendarTime()));
         setCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
         refreshPanel(self, player, "\\#00FF00 Video playing.");
+        return SCRIPT_CONTINUE;
+    }
+
+    public int handlePause(obj_id self, dictionary params) throws InterruptedException
+    {
+        obj_id player = sui.getPlayerId(params);
+        if (!isIdValid(player) || !canModifyVideoPlayer(player))
+            return SCRIPT_CONTINUE;
+
+        boolean isPlaying = hasCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
+        if (isPlaying)
+        {
+            clearCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
+            refreshPanel(self, player, "\\#FFFF00 Video paused.");
+        }
+        else
+        {
+            String url = hasObjVar(self, OBJVAR_STREAM_URL) ? getStringObjVar(self, OBJVAR_STREAM_URL) : "";
+            if (url != null && !url.isEmpty())
+            {
+                setCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
+                refreshPanel(self, player, "\\#00FF00 Video resumed.");
+            }
+            else
+            {
+                refreshPanel(self, player, "\\#FF4444 No URL set.");
+            }
+        }
         return SCRIPT_CONTINUE;
     }
 
