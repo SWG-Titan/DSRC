@@ -132,6 +132,7 @@ form "MOOD"
 			MOOD_TYPE (thoughtful)
 			MOOD_TYPE (tolerant)
 			MOOD_TYPE (uncertain)
+			MOOD_TYPE (undead)
 			MOOD_TYPE (unhappy)
 			MOOD_TYPE (unwilling)
 			MOOD_TYPE (warm)
