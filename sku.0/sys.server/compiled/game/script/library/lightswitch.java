@@ -5,7 +5,7 @@ import script.library.*;
 
 public class lightswitch extends script.base_script
 {
-    public static final String TOOL_TEMPLATE = "object/tangible/crafting/station/generic_tool.iff";
+    public static final String TOOL_TEMPLATE = "object/tangible/loot/npc_loot/datapad_generic.iff";
     public static final String TOOL_SCRIPT = "item.special.light_controller";
     public static final int TOOL_LIFESPAN = 120;
     public static final String TOOL_NAME = "Remote Light Controller";
