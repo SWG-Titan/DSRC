@@ -7,7 +7,7 @@ import script.menu_info;
 import script.menu_info_types;
 import script.obj_id;
 import script.string_id;
-import script.sui_event_type;
+
 
 public class magic_video_player extends script.base_script
 {
