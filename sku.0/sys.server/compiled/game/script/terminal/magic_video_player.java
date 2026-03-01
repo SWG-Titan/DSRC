@@ -18,10 +18,12 @@ public class magic_video_player extends script.base_script
     private static final int MENU_VIDEO_INFO = menu_info_types.SERVER_MENU34;
     private static final int MENU_VIDEO_SPAWN_SPEAKER = menu_info_types.SERVER_MENU35;
     private static final int MENU_VIDEO_TOGGLE_LOOP = menu_info_types.SERVER_MENU36;
+    private static final int MENU_VIDEO_TOGGLE_ASPECT = menu_info_types.SERVER_MENU37;
 
     private static final String OBJVAR_STREAM_URL = "stream.url";
     private static final String OBJVAR_TIMESTAMP = "timestamp";
     private static final String OBJVAR_STREAM_LOOP = "stream.loop";
+    private static final String OBJVAR_STREAM_ASPECT = "stream.aspect";
     private static final String OBJVAR_EMITTER_PARENT_ID = "video_emitter.parent_id";
 
     private static final String SPEAKER_TEMPLATE = "object/tangible/loot/misc/speaker_s01.iff";
@@ -56,6 +58,15 @@ public class magic_video_player extends script.base_script
                     loopState = "ON";
             }
             mi.addSubMenu(root, MENU_VIDEO_TOGGLE_LOOP, string_id.unlocalized("Loop: " + loopState));
+
+            String aspectState = "4:3";
+            if (hasObjVar(self, OBJVAR_STREAM_ASPECT))
+            {
+                String aspectVal = getStringObjVar(self, OBJVAR_STREAM_ASPECT);
+                if (aspectVal != null && aspectVal.equals("16:9"))
+                    aspectState = "16:9";
+            }
+            mi.addSubMenu(root, MENU_VIDEO_TOGGLE_ASPECT, string_id.unlocalized("Aspect: " + aspectState));
             mi.addSubMenu(root, MENU_VIDEO_STOP, string_id.unlocalized("Stop Video"));
         }
 
@@ -109,11 +120,23 @@ public class magic_video_player extends script.base_script
             sendSystemMessage(player, string_id.unlocalized("Loop " + (newLoop.equals("1") ? "enabled" : "disabled") + "."));
             return SCRIPT_CONTINUE;
         }
+        else if (item == MENU_VIDEO_TOGGLE_ASPECT)
+        {
+            String currentAspect = "4:3";
+            if (hasObjVar(self, OBJVAR_STREAM_ASPECT))
+                currentAspect = getStringObjVar(self, OBJVAR_STREAM_ASPECT);
+
+            String newAspect = (currentAspect != null && currentAspect.equals("16:9")) ? "4:3" : "16:9";
+            setObjVar(self, OBJVAR_STREAM_ASPECT, newAspect);
+            sendSystemMessage(player, string_id.unlocalized("Aspect ratio set to " + newAspect + "."));
+            return SCRIPT_CONTINUE;
+        }
         else if (item == MENU_VIDEO_STOP)
         {
             removeObjVar(self, OBJVAR_STREAM_URL);
             removeObjVar(self, OBJVAR_TIMESTAMP);
             removeObjVar(self, OBJVAR_STREAM_LOOP);
+            removeObjVar(self, OBJVAR_STREAM_ASPECT);
             sendSystemMessage(player, string_id.unlocalized("Video stopped."));
             return SCRIPT_CONTINUE;
         }

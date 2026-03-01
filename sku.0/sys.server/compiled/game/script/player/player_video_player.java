@@ -17,6 +17,7 @@ public class player_video_player extends script.base_script
     private static final String OBJVAR_STREAM_URL = "stream.url";
     private static final String OBJVAR_TIMESTAMP = "timestamp";
     private static final String OBJVAR_STREAM_LOOP = "stream.loop";
+    private static final String OBJVAR_STREAM_ASPECT = "stream.aspect";
     private static final String OBJVAR_EMITTER_PARENT_ID = "video_emitter.parent_id";
 
     private static final int MENU_VP_ROOT = menu_info_types.SERVER_MENU40;
@@ -24,8 +25,9 @@ public class player_video_player extends script.base_script
     private static final int MENU_VP_SET_TIMESTAMP = menu_info_types.SERVER_MENU42;
     private static final int MENU_VP_SPAWN_SPEAKER = menu_info_types.SERVER_MENU43;
     private static final int MENU_VP_TOGGLE_LOOP = menu_info_types.SERVER_MENU44;
-    private static final int MENU_VP_STOP = menu_info_types.SERVER_MENU45;
-    private static final int MENU_VP_INFO = menu_info_types.SERVER_MENU46;
+    private static final int MENU_VP_TOGGLE_ASPECT = menu_info_types.SERVER_MENU45;
+    private static final int MENU_VP_STOP = menu_info_types.SERVER_MENU46;
+    private static final int MENU_VP_INFO = menu_info_types.SERVER_MENU47;
 
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
@@ -54,6 +56,15 @@ public class player_video_player extends script.base_script
                 loopState = "ON";
         }
         mi.addSubMenu(root, MENU_VP_TOGGLE_LOOP, string_id.unlocalized("Loop: " + loopState));
+
+        String aspectState = "4:3";
+        if (hasObjVar(self, OBJVAR_STREAM_ASPECT))
+        {
+            String aspectVal = getStringObjVar(self, OBJVAR_STREAM_ASPECT);
+            if (aspectVal != null && aspectVal.equals("16:9"))
+                aspectState = "16:9";
+        }
+        mi.addSubMenu(root, MENU_VP_TOGGLE_ASPECT, string_id.unlocalized("Aspect: " + aspectState));
         mi.addSubMenu(root, MENU_VP_STOP, string_id.unlocalized("Stop Video"));
 
         String urlDisplay = currentUrl.length() > 40 ? currentUrl.substring(0, 40) + "..." : currentUrl;
@@ -106,12 +117,24 @@ public class player_video_player extends script.base_script
             sendSystemMessage(player, string_id.unlocalized("Loop " + (newLoop.equals("1") ? "enabled" : "disabled") + "."));
             return SCRIPT_CONTINUE;
         }
+        else if (item == MENU_VP_TOGGLE_ASPECT)
+        {
+            String currentAspect = "4:3";
+            if (hasObjVar(self, OBJVAR_STREAM_ASPECT))
+                currentAspect = getStringObjVar(self, OBJVAR_STREAM_ASPECT);
+
+            String newAspect = (currentAspect != null && currentAspect.equals("16:9")) ? "4:3" : "16:9";
+            setObjVar(self, OBJVAR_STREAM_ASPECT, newAspect);
+            sendSystemMessage(player, string_id.unlocalized("Aspect ratio set to " + newAspect + "."));
+            return SCRIPT_CONTINUE;
+        }
         else if (item == MENU_VP_STOP)
         {
             clearCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
             removeObjVar(self, OBJVAR_STREAM_URL);
             removeObjVar(self, OBJVAR_TIMESTAMP);
             removeObjVar(self, OBJVAR_STREAM_LOOP);
+            removeObjVar(self, OBJVAR_STREAM_ASPECT);
             sendSystemMessage(player, string_id.unlocalized("Video stopped."));
             return SCRIPT_CONTINUE;
         }
@@ -152,6 +175,8 @@ public class player_video_player extends script.base_script
             setObjVar(self, OBJVAR_TIMESTAMP, "0");
         if (!hasObjVar(self, OBJVAR_STREAM_LOOP))
             setObjVar(self, OBJVAR_STREAM_LOOP, "1");
+        if (!hasObjVar(self, OBJVAR_STREAM_ASPECT))
+            setObjVar(self, OBJVAR_STREAM_ASPECT, "4:3");
 
         sendSystemMessage(player, string_id.unlocalized("Video URL set to: " + url));
         LOG("video_player", "[PlayerVideoPlayer] " + getName(player) + " (" + player + ") set stream URL on " + self + " to: " + url);
