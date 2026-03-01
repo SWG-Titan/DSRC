@@ -245,7 +245,14 @@ public class magic_video_player extends script.base_script
         if (!isIdValid(player) || !canModifyVideoPlayer(player))
             return SCRIPT_CONTINUE;
 
+        boolean hadUrl = hasObjVar(self, OBJVAR_STREAM_URL);
+        String urlBefore = hadUrl ? getStringObjVar(self, OBJVAR_STREAM_URL) : "(none)";
+
         clearCondition(self, CONDITION_MAGIC_VIDEO_PLAYER);
+
+        boolean hasUrlAfter = hasObjVar(self, OBJVAR_STREAM_URL);
+        LOG("video_player", "[VideoPlayer] handleStop on " + self + " urlBefore=" + urlBefore + " hasUrlAfter=" + hasUrlAfter);
+
         refreshPanel(self, player, "\\#FFFF00 Video stopped.");
         return SCRIPT_CONTINUE;
     }
@@ -352,6 +359,9 @@ public class magic_video_player extends script.base_script
         }
 
         url = url.trim();
+
+        destroyLinkedSpeakers(self);
+
         setObjVar(self, OBJVAR_STREAM_URL, url);
         if (!hasObjVar(self, OBJVAR_TIMESTAMP))
             setObjVar(self, OBJVAR_TIMESTAMP, "0");
@@ -391,6 +401,9 @@ public class magic_video_player extends script.base_script
         {
             int timestamp = Integer.parseInt(timestampStr.trim());
             if (timestamp < 0) timestamp = 0;
+
+            destroyLinkedSpeakers(self);
+
             setObjVar(self, OBJVAR_TIMESTAMP, String.valueOf(timestamp));
             refreshPanel(self, player, "Timestamp set to " + timestamp + "s.");
         }
@@ -446,6 +459,16 @@ public class magic_video_player extends script.base_script
     }
 
     // ======================================================================
+    // Destroy handler
+    // ======================================================================
+
+    public int OnDestroy(obj_id self) throws InterruptedException
+    {
+        destroyLinkedSpeakers(self);
+        return SCRIPT_CONTINUE;
+    }
+
+    // ======================================================================
     // Permission check
     // ======================================================================
 
@@ -458,5 +481,36 @@ public class magic_video_player extends script.base_script
             return true;
 
         return false;
+    }
+
+    // ======================================================================
+    // Speaker lifecycle
+    // ======================================================================
+
+    private static final float SPEAKER_SCAN_RANGE = 256.0f;
+    private static final String OBJVAR_EMITTER_PARENT_ID = "video_emitter.parent_id";
+
+    private void destroyLinkedSpeakers(obj_id self) throws InterruptedException
+    {
+        obj_id[] nearby = getObjectsInRange(getLocation(self), SPEAKER_SCAN_RANGE);
+        if (nearby == null || nearby.length == 0)
+            return;
+
+        String selfStr = self.toString();
+        for (obj_id obj : nearby)
+        {
+            if (!isIdValid(obj) || obj.equals(self))
+                continue;
+
+            if (!hasObjVar(obj, OBJVAR_EMITTER_PARENT_ID))
+                continue;
+
+            String parentId = getStringObjVar(obj, OBJVAR_EMITTER_PARENT_ID);
+            if (parentId != null && parentId.equals(selfStr))
+            {
+                LOG("video_player", "[VideoPlayer] Destroying linked speaker " + obj + " (parent=" + self + ")");
+                destroyObject(obj);
+            }
+        }
     }
 }
