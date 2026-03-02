@@ -1069,7 +1069,7 @@ public class vehicle extends script.base_script
     }
     public static final float AIRSPEEDER_HEIGHT_THRESHOLD = 10.0f;
     public static final float AIRSPEEDER_EXIT_HYSTERESIS = 0.5f;
-    public static final float AIRSPEEDER_HOVER_HEIGHT = 15.0f;
+    public static final float AIRSPEEDER_HOVER_HEIGHT = 155.0f;
     public static final float AIRSPEEDER_SPEED_MULTIPLIER = 1.5f;
     public static final float AIRSPEEDER_BOOST_SPEED_MULTIPLIER = 5.0f;
     public static final float AIRSPEEDER_TRAFFIC_SPEED_MULTIPLIER = 0.3f;

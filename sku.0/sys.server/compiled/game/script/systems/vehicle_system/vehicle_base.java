@@ -27,7 +27,7 @@ public class vehicle_base extends script.base_script
     public static final String OV_AIRSPEEDER_SAVED_TURN_MAX = "airspeeder.savedTurnMax";
     public static final String OV_AIRSPEEDER_SAVED_BANKING = "airspeeder.savedBanking";
     public static final float AIRSPEEDER_HOVER_HEIGHT = 155.0f;
-    public static final float AIRSPEEDER_SPEED = 80.0f;
+    public static final float AIRSPEEDER_SPEED = 200.0f;
     public static final float AIRSPEEDER_MIN_SPEED = 10.0f;
     public static final float AIRSPEEDER_ACCEL_MIN = 25.0f;
     public static final float AIRSPEEDER_ACCEL_MAX = 50.0f;
@@ -40,9 +40,9 @@ public class vehicle_base extends script.base_script
 
     public static final String OV_AUTOPILOT_ACTIVE = "autopilot.active";
     public static final String OV_AUTOPILOT_INDEX = "autopilot.currentIndex";
-    public static final float AUTOPILOT_TICK_INTERVAL = 0.5f;
+    public static final float AUTOPILOT_TICK_INTERVAL = 0.25f;
     public static final float AUTOPILOT_ARRIVAL_THRESHOLD = 10.0f;
-    public static final float AUTOPILOT_SPEED = 40.0f;
+    public static final float AUTOPILOT_SPEED = 30.0f;
     public int revertVehicleMod(obj_id self, dictionary params) throws InterruptedException
     {
         if (params == null || !params.containsKey("type"))
@@ -483,10 +483,10 @@ public class vehicle_base extends script.base_script
         }
 
         location target = queue[idx];
-        location myLoc = getLocation(self);
+        location riderLoc = getLocation(rider);
 
-        float dx = target.x - myLoc.x;
-        float dz = target.z - myLoc.z;
+        float dx = target.x - riderLoc.x;
+        float dz = target.z - riderLoc.z;
         float dist = (float) Math.sqrt(dx * dx + dz * dz);
 
         if (dist <= AUTOPILOT_ARRIVAL_THRESHOLD)
@@ -512,11 +512,11 @@ public class vehicle_base extends script.base_script
         float nx = dx / dist;
         float nz = dz / dist;
 
-        float newX = myLoc.x + nx * step;
-        float newZ = myLoc.z + nz * step;
+        float newX = riderLoc.x + nx * step;
+        float newZ = riderLoc.z + nz * step;
 
-        location newLoc = new location(newX, myLoc.y, newZ, myLoc.area, myLoc.cell);
-        setLocation(self, newLoc);
+        location newLoc = new location(newX, riderLoc.y, newZ, riderLoc.area, riderLoc.cell);
+        setLocation(rider, newLoc);
 
         float yawRad = (float) Math.atan2(nx, nz);
         float yawDeg = (float)(yawRad * 180.0 / Math.PI);
