@@ -19,7 +19,7 @@ public class vehicle_base extends script.base_script
     public static final String OV_AIRSPEEDER_PANEL_RIDER = "airspeeder.panelRider";
     public static final String OV_AIRSPEEDER_SAVED_HOVER = "airspeeder.savedHoverHeight";
     public static final String OV_AIRSPEEDER_SAVED_SPEED = "airspeeder.savedSpeed";
-    public static final float AIRSPEEDER_HOVER_HEIGHT = 15.0f;
+    public static final float AIRSPEEDER_HOVER_HEIGHT = 50.0f;
     public static final float AIRSPEEDER_SPEED_MULTIPLIER = 1.5f;
     public static final float AIRSPEEDER_ASCENT_DURATION = 5.0f;
     public static final float AIRSPEEDER_DESCENT_DURATION = 5.0f;
@@ -122,8 +122,7 @@ public class vehicle_base extends script.base_script
             }
             if (hasObjVar(self, "airspeeder.active"))
             {
-                removeObjVar(self, "airspeeder.active");
-                setObjectCollidable(self, true);
+                exitAirspeederModeLocal(self);
             }
             messageTo(self, "handleAirspeederCheck", null, 2.0f, false);
             return SCRIPT_CONTINUE;
@@ -152,6 +151,7 @@ public class vehicle_base extends script.base_script
         {
             setObjVar(self, OV_AIRSPEEDER_ACTIVE, 1);
             setObjectCollidable(self, false);
+            setObjectCollidable(rider, false);
             return SCRIPT_CONTINUE;
         }
         if (!hasObjVar(self, OV_AIRSPEEDER_SAVED_HOVER))
@@ -160,6 +160,7 @@ public class vehicle_base extends script.base_script
         }
         setObjVar(self, OV_AIRSPEEDER_ACTIVE, 1);
         setObjectCollidable(self, false);
+        setObjectCollidable(rider, false);
         dictionary ascentParams = new dictionary();
         ascentParams.put("startHover", currentHover);
         ascentParams.put("startYaw", getYaw(self));
@@ -256,6 +257,11 @@ public class vehicle_base extends script.base_script
             removeObjVar(veh, OV_AIRSPEEDER_SAVED_SPEED);
         }
         setObjectCollidable(veh, true);
+        obj_id rider = getRiderId(veh);
+        if (isIdValid(rider))
+        {
+            setObjectCollidable(rider, true);
+        }
     }
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
