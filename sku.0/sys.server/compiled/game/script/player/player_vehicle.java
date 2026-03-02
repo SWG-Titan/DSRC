@@ -21,6 +21,7 @@ import script.library.sui;
 import script.library.vehicle;
 import script.location;
 import script.obj_id;
+import script.string_id;
 
 public class player_vehicle extends script.base_script
 {
@@ -230,7 +231,7 @@ public class player_vehicle extends script.base_script
                 "Hey! I'm walkin' here!",
                 "Learn to drive!"
             };
-            obj_id[] npcs = getNPCsInRange(vehicleObj, 32.0f);
+            obj_id[] npcs = getCreaturesInRangeObject(vehicleObj, 32.0f);
             if (npcs != null)
             {
                 for (int i = 0; i < npcs.length; i++)
@@ -239,7 +240,7 @@ public class player_vehicle extends script.base_script
                         continue;
                     if (!hasScript(npcs[i], "ai.ai"))
                         continue;
-                    if (isInCombat(npcs[i]))
+                    if (ai_lib.isInCombat(npcs[i]))
                         continue;
                     if (hasCondition(npcs[i], CONDITION_INVULNERABLE) || hasCondition(npcs[i], CONDITION_CONVERSABLE))
                         continue;
