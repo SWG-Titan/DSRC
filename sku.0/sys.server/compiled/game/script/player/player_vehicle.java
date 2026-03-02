@@ -219,7 +219,7 @@ public class player_vehicle extends script.base_script
             obj_id[] nearby = getPlayerCreaturesInRange(vehicleObj, 128.0f);
             if (nearby != null && nearby.length > 0)
             {
-                playClientEffectObj(nearby, "sound/veh_horn.snd", vehicleObj, "");
+                play2dNonLoopingMusic(nearby, "sound/veh_horn.snd");
             }
             String[] hornQuips = {
                 "Watch it!",
@@ -282,6 +282,15 @@ public class player_vehicle extends script.base_script
         wpParams.put("x", x);
         wpParams.put("z", z);
         messageTo(vehicleObj, "addAutoPilotWaypoint", wpParams, 0, false);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int handleAutoPilotArrived(obj_id self, dictionary params) throws InterruptedException
+    {
+        obj_id vehicleObj = getMountId(self);
+        if (!isIdValid(vehicleObj) || getState(self, STATE_RIDING_MOUNT) != 1)
+            return SCRIPT_CONTINUE;
+        messageTo(vehicleObj, "handleAutoPilotArrived", null, 0, false);
         return SCRIPT_CONTINUE;
     }
 

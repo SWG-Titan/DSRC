@@ -19009,6 +19009,18 @@ public class base_class
         return _showAirspeederPanel(getLongWithNull(player), show);
     }
 
+    private static native boolean _sendAutoPilotEngage(long player, float targetX, float targetZ);
+    public static boolean sendAutoPilotEngage(obj_id player, float targetX, float targetZ)
+    {
+        return _sendAutoPilotEngage(getLongWithNull(player), targetX, targetZ);
+    }
+
+    private static native boolean _sendAutoPilotDisengage(long player);
+    public static boolean sendAutoPilotDisengage(obj_id player)
+    {
+        return _sendAutoPilotDisengage(getLongWithNull(player));
+    }
+
     /**
      *  Query the lot system to see if the building can be placed
      *

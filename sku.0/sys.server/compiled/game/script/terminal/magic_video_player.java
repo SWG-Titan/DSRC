@@ -360,7 +360,7 @@ public class magic_video_player extends script.base_script
 
         url = url.trim();
 
-        setObjVar(self, OBJVAR_STREAM_URL, url);
+z        setObjVar(self, OBJVAR_STREAM_URL, url);
         if (!hasObjVar(self, OBJVAR_TIMESTAMP))
             setObjVar(self, OBJVAR_TIMESTAMP, "0");
         if (!hasObjVar(self, OBJVAR_STREAM_LOOP))

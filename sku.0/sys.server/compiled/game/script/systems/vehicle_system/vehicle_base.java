@@ -40,9 +40,7 @@ public class vehicle_base extends script.base_script
 
     public static final String OV_AUTOPILOT_ACTIVE = "autopilot.active";
     public static final String OV_AUTOPILOT_INDEX = "autopilot.currentIndex";
-    public static final float AUTOPILOT_TICK_INTERVAL = 0.25f;
-    public static final float AUTOPILOT_ARRIVAL_THRESHOLD = 10.0f;
-    public static final float AUTOPILOT_SPEED = 30.0f;
+    public static final float AUTOPILOT_BOARDING_DELAY = 15.0f;
     public int revertVehicleMod(obj_id self, dictionary params) throws InterruptedException
     {
         if (params == null || !params.containsKey("type"))
@@ -230,6 +228,11 @@ public class vehicle_base extends script.base_script
             vehicle.setDecel(self, AIRSPEEDER_DECEL);
             vehicle.setTurnRateMax(self, AIRSPEEDER_TURN_RATE_MAX);
             vehicle.setBankingAngle(self, AIRSPEEDER_BANKING_ANGLE);
+
+            if (hasObjVar(self, OV_AUTOPILOT_ACTIVE))
+            {
+                sendAutoPilotCurrentWaypoint(self, rider);
+            }
         }
         else
         {
@@ -448,22 +451,39 @@ public class vehicle_base extends script.base_script
         setObjVar(self, OV_AUTOPILOT_INDEX, 0);
 
         obj_id rider = getRiderId(self);
-        if (isIdValid(rider))
-            sendSystemMessageTestingOnly(rider, "Auto-Pilot engaged.");
+        if (!isIdValid(rider))
+            return SCRIPT_CONTINUE;
 
-        messageTo(self, "autoPilotTick", null, AUTOPILOT_TICK_INTERVAL, false);
+        sendSystemMessageTestingOnly(rider, "Auto-Pilot engaged.");
+        sendAutoPilotCurrentWaypoint(self, rider);
         return SCRIPT_CONTINUE;
     }
 
-    public int autoPilotTick(obj_id self, dictionary params) throws InterruptedException
+    public void sendAutoPilotCurrentWaypoint(obj_id self, obj_id rider) throws InterruptedException
+    {
+        if (!hasObjVar(self, OV_AUTOPILOT_ACTIVE))
+            return;
+
+        location[] queue = getLocationArrayObjVar(self, "autopilot.queue");
+        int idx = hasObjVar(self, OV_AUTOPILOT_INDEX) ? getIntObjVar(self, OV_AUTOPILOT_INDEX) : 0;
+
+        if (queue == null || idx >= queue.length)
+        {
+            cancelAutoPilotLocal(self);
+            sendSystemMessageTestingOnly(rider, "Auto-Pilot: All waypoints reached.");
+            return;
+        }
+
+        location target = queue[idx];
+        int remaining = queue.length - idx;
+        sendAutoPilotEngage(rider, target.x, target.z);
+        sendSystemMessageTestingOnly(rider, "Auto-Pilot: Heading to waypoint " + (idx + 1) + " of " + queue.length + ".");
+    }
+
+    public int handleAutoPilotArrived(obj_id self, dictionary params) throws InterruptedException
     {
         if (!hasObjVar(self, OV_AUTOPILOT_ACTIVE))
             return SCRIPT_CONTINUE;
-        if (!hasObjVar(self, OV_AIRSPEEDER_ACTIVE))
-        {
-            cancelAutoPilotLocal(self);
-            return SCRIPT_CONTINUE;
-        }
 
         obj_id rider = getRiderId(self);
         if (!isIdValid(rider))
@@ -472,57 +492,103 @@ public class vehicle_base extends script.base_script
             return SCRIPT_CONTINUE;
         }
 
-        location[] queue = getLocationArrayObjVar(self, "autopilot.queue");
-        int idx = getIntObjVar(self, OV_AUTOPILOT_INDEX);
+        sendAutoPilotDisengage(rider);
 
-        if (queue == null || idx >= queue.length)
+        int idx = hasObjVar(self, OV_AUTOPILOT_INDEX) ? getIntObjVar(self, OV_AUTOPILOT_INDEX) : 0;
+        idx++;
+        setObjVar(self, OV_AUTOPILOT_INDEX, idx);
+
+        location[] queue = getLocationArrayObjVar(self, "autopilot.queue");
+        int remaining = (queue != null) ? queue.length - idx : 0;
+
+        if (remaining <= 0)
+        {
+            sendSystemMessageTestingOnly(rider, "Auto-Pilot: All waypoints reached. Descending.");
+            cancelAutoPilotLocal(self);
+            messageTo(self, "startSkywayDescent", null, 0, false);
+            return SCRIPT_CONTINUE;
+        }
+
+        sendSystemMessageTestingOnly(rider, "Auto-Pilot: Arrived. Departing in " + (int) AUTOPILOT_BOARDING_DELAY + " seconds. (" + remaining + " waypoint" + (remaining == 1 ? "" : "s") + " remaining)");
+        beginAutoPilotDescent(self);
+        messageTo(self, "autoPilotResumeNext", null, AUTOPILOT_BOARDING_DELAY, false);
+        return SCRIPT_CONTINUE;
+    }
+
+    public void beginAutoPilotDescent(obj_id self) throws InterruptedException
+    {
+        if (!hasObjVar(self, OV_AIRSPEEDER_ACTIVE))
+            return;
+
+        obj_id rider = getRiderId(self);
+        if (!isIdValid(rider))
+            return;
+
+        float currentHover = vehicle.getHoverHeight(self);
+        float targetHover = 0.5f;
+        if (hasObjVar(self, OV_AIRSPEEDER_SAVED_HOVER))
+            targetHover = getFloatObjVar(self, OV_AIRSPEEDER_SAVED_HOVER);
+
+        removeObjVar(self, OV_AIRSPEEDER_ACTIVE);
+        if (hasObjVar(self, OV_AIRSPEEDER_SAVED_SPEED))
+        {
+            vehicle.setMaximumSpeed(self, getFloatObjVar(self, OV_AIRSPEEDER_SAVED_SPEED));
+            removeObjVar(self, OV_AIRSPEEDER_SAVED_SPEED);
+        }
+        if (hasObjVar(self, OV_AIRSPEEDER_SAVED_MIN_SPEED))
+        {
+            vehicle.setMinimumSpeed(self, getFloatObjVar(self, OV_AIRSPEEDER_SAVED_MIN_SPEED));
+            removeObjVar(self, OV_AIRSPEEDER_SAVED_MIN_SPEED);
+        }
+        if (hasObjVar(self, OV_AIRSPEEDER_SAVED_ACCEL_MIN))
+        {
+            vehicle.setAccelMin(self, getFloatObjVar(self, OV_AIRSPEEDER_SAVED_ACCEL_MIN));
+            removeObjVar(self, OV_AIRSPEEDER_SAVED_ACCEL_MIN);
+        }
+        if (hasObjVar(self, OV_AIRSPEEDER_SAVED_ACCEL_MAX))
+        {
+            vehicle.setAccelMax(self, getFloatObjVar(self, OV_AIRSPEEDER_SAVED_ACCEL_MAX));
+            removeObjVar(self, OV_AIRSPEEDER_SAVED_ACCEL_MAX);
+        }
+        if (hasObjVar(self, OV_AIRSPEEDER_SAVED_DECEL))
+        {
+            vehicle.setDecel(self, getFloatObjVar(self, OV_AIRSPEEDER_SAVED_DECEL));
+            removeObjVar(self, OV_AIRSPEEDER_SAVED_DECEL);
+        }
+        if (hasObjVar(self, OV_AIRSPEEDER_SAVED_TURN_MAX))
+        {
+            vehicle.setTurnRateMax(self, getFloatObjVar(self, OV_AIRSPEEDER_SAVED_TURN_MAX));
+            removeObjVar(self, OV_AIRSPEEDER_SAVED_TURN_MAX);
+        }
+        if (hasObjVar(self, OV_AIRSPEEDER_SAVED_BANKING))
+        {
+            vehicle.setBankingAngle(self, getFloatObjVar(self, OV_AIRSPEEDER_SAVED_BANKING));
+            removeObjVar(self, OV_AIRSPEEDER_SAVED_BANKING);
+        }
+        setObjectCollidable(self, true);
+        setObjectCollidable(rider, true);
+
+        dictionary descentParams = new dictionary();
+        descentParams.put("startHover", currentHover);
+        descentParams.put("targetHover", targetHover);
+        descentParams.put("startYaw", getYaw(self));
+        messageTo(self, "continueSkywayDescent", descentParams, AIRSPEEDER_TICK_INTERVAL, false);
+    }
+
+    public int autoPilotResumeNext(obj_id self, dictionary params) throws InterruptedException
+    {
+        if (!hasObjVar(self, OV_AUTOPILOT_ACTIVE))
+            return SCRIPT_CONTINUE;
+
+        obj_id rider = getRiderId(self);
+        if (!isIdValid(rider))
         {
             cancelAutoPilotLocal(self);
-            sendSystemMessageTestingOnly(rider, "Auto-Pilot: All waypoints reached.");
             return SCRIPT_CONTINUE;
         }
 
-        location target = queue[idx];
-        location riderLoc = getLocation(rider);
-
-        float dx = target.x - riderLoc.x;
-        float dz = target.z - riderLoc.z;
-        float dist = (float) Math.sqrt(dx * dx + dz * dz);
-
-        if (dist <= AUTOPILOT_ARRIVAL_THRESHOLD)
-        {
-            idx++;
-            setObjVar(self, OV_AUTOPILOT_INDEX, idx);
-            int remaining = queue.length - idx;
-            if (remaining <= 0)
-            {
-                cancelAutoPilotLocal(self);
-                sendSystemMessageTestingOnly(rider, "Auto-Pilot: All waypoints reached.");
-                return SCRIPT_CONTINUE;
-            }
-            sendSystemMessageTestingOnly(rider, "Auto-Pilot: Waypoint reached. " + remaining + " remaining.");
-            messageTo(self, "autoPilotTick", null, AUTOPILOT_TICK_INTERVAL, false);
-            return SCRIPT_CONTINUE;
-        }
-
-        float step = AUTOPILOT_SPEED * AUTOPILOT_TICK_INTERVAL;
-        if (step > dist)
-            step = dist;
-
-        float nx = dx / dist;
-        float nz = dz / dist;
-
-        float newX = riderLoc.x + nx * step;
-        float newZ = riderLoc.z + nz * step;
-
-        location newLoc = new location(newX, riderLoc.y, newZ, riderLoc.area, riderLoc.cell);
-        setLocation(rider, newLoc);
-
-        float yawRad = (float) Math.atan2(nx, nz);
-        float yawDeg = (float)(yawRad * 180.0 / Math.PI);
-        setYaw(self, yawDeg);
-
-        messageTo(self, "autoPilotTick", null, AUTOPILOT_TICK_INTERVAL, false);
+        sendSystemMessageTestingOnly(rider, "Auto-Pilot: Resuming. Ascending...");
+        messageTo(self, "startSkywayAscent", null, 0, false);
         return SCRIPT_CONTINUE;
     }
 
@@ -537,12 +603,20 @@ public class vehicle_base extends script.base_script
 
     public void cancelAutoPilotLocal(obj_id veh) throws InterruptedException
     {
-        if (hasObjVar(veh, OV_AUTOPILOT_ACTIVE))
+        boolean wasActive = hasObjVar(veh, OV_AUTOPILOT_ACTIVE);
+        if (wasActive)
             removeObjVar(veh, OV_AUTOPILOT_ACTIVE);
         if (hasObjVar(veh, OV_AUTOPILOT_INDEX))
             removeObjVar(veh, OV_AUTOPILOT_INDEX);
         if (hasObjVar(veh, "autopilot.queue"))
             removeObjVar(veh, "autopilot.queue");
+
+        if (wasActive)
+        {
+            obj_id rider = getRiderId(veh);
+            if (isIdValid(rider))
+                sendAutoPilotDisengage(rider);
+        }
     }
 
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
