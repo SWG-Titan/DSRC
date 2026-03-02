@@ -220,7 +220,7 @@ public class player_vehicle extends script.base_script
             if (nearby != null && nearby.length > 0)
             {
                 for (int i = 0; i < nearby.length; i++)
-                    play2dNonLoopingMusic(nearby[i], "sound/veh_horn.snd");
+                    play2dNonLoopingMusic(nearby[i], "music/veh_horn.mp3");
             }
             String[] hornQuips = {
                 "Watch it!",
