@@ -184,7 +184,11 @@ public class player_vehicle extends script.base_script
         String action = params.trim().toLowerCase();
         if (action.equals("skyway"))
         {
-            if (hasObjVar(vehicleObj, "airspeeder.active"))
+            if (hasObjVar(vehicleObj, "airspeeder.ascending"))
+            {
+                messageTo(vehicleObj, "cancelSkywayAscent", null, 0, false);
+            }
+            else if (hasObjVar(vehicleObj, "airspeeder.active"))
             {
                 messageTo(vehicleObj, "startSkywayDescent", null, 0, false);
             }
