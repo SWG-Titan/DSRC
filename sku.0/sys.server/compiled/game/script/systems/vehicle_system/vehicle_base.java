@@ -356,6 +356,37 @@ public class vehicle_base extends script.base_script
         {
             setObjectCollidable(rider, true);
         }
+        if (hasObjVar(veh, OV_AIRSPEEDER_PANEL_RIDER))
+        {
+            obj_id panelRider = getObjIdObjVar(veh, OV_AIRSPEEDER_PANEL_RIDER);
+            if (isIdValid(panelRider))
+            {
+                showAirspeederPanel(panelRider, false);
+            }
+            removeObjVar(veh, OV_AIRSPEEDER_PANEL_RIDER);
+        }
+    }
+    public int handleSkywayCollision(obj_id self, dictionary params) throws InterruptedException
+    {
+        obj_id rider = getRiderId(self);
+        exitAirspeederModeLocal(self);
+        if (isIdValid(rider))
+        {
+            playClientEffectObj(rider, "clienteffect/avatar_hallway_explosion.cef", self, "");
+            pet_lib.doDismountNow(rider, false);
+            setPosture(rider, POSTURE_INCAPACITATED);
+            sendSystemMessageTestingOnly(rider, "Your speeder crashed into a building!");
+        }
+        obj_id vcd = callable.getCallableCD(self);
+        if (isIdValid(vcd))
+        {
+            vehicle.storeVehicle(vcd, rider, false);
+        }
+        else
+        {
+            setHitpoints(self, 0);
+        }
+        return SCRIPT_CONTINUE;
     }
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
@@ -459,6 +490,10 @@ public class vehicle_base extends script.base_script
         {
             if (!hasObjVar(self, battlefield.VAR_CONSTRUCTED))
             {
+                if (hasObjVar(self, OV_AIRSPEEDER_ACTIVE) || hasObjVar(self, OV_AIRSPEEDER_ASCENDING))
+                {
+                    exitAirspeederModeLocal(self);
+                }
                 vehicle.storeVehicle(petControlDevice, player);
             }
             return SCRIPT_CONTINUE;

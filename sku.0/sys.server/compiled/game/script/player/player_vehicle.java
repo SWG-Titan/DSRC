@@ -207,6 +207,29 @@ public class player_vehicle extends script.base_script
             boolean enable = !hasObjVar(vehicleObj, "airspeeder.trafficActive");
             vehicle.setTrafficMode(vehicleObj, enable);
         }
+        else if (action.equals("horn"))
+        {
+            int lastHorn = getIntObjVar(vehicleObj, "airspeeder.lastHorn");
+            int now = getGameTime();
+            if (now - lastHorn < 3)
+                return SCRIPT_CONTINUE;
+            setObjVar(vehicleObj, "airspeeder.lastHorn", now);
+            obj_id[] nearby = getPlayerCreaturesInRange(vehicleObj, 128.0f);
+            if (nearby != null && nearby.length > 0)
+            {
+                playClientEffectObj(nearby, "sound/veh_horn.snd", vehicleObj, "");
+            }
+        }
+        return SCRIPT_CONTINUE;
+    }
+    public int onAirspeederCrash(obj_id self, obj_id target, String params, float defaultTime) throws InterruptedException
+    {
+        obj_id vehicleObj = getMountId(self);
+        if (!isIdValid(vehicleObj) || getState(self, STATE_RIDING_MOUNT) != 1)
+            return SCRIPT_CONTINUE;
+        if (!hasObjVar(vehicleObj, "airspeeder.active"))
+            return SCRIPT_CONTINUE;
+        messageTo(vehicleObj, "handleSkywayCollision", null, 0, false);
         return SCRIPT_CONTINUE;
     }
 
