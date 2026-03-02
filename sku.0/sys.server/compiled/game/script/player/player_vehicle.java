@@ -16,6 +16,7 @@ package script.player;/*
 
 import script.combat_engine;
 import script.dictionary;
+import script.library.ai_lib;
 import script.library.sui;
 import script.library.vehicle;
 import script.location;
@@ -218,6 +219,21 @@ public class player_vehicle extends script.base_script
             if (nearby != null && nearby.length > 0)
             {
                 playClientEffectObj(nearby, "sound/veh_horn.snd", vehicleObj, "");
+            }
+            obj_id[] npcs = getNPCsInRange(vehicleObj, 32.0f);
+            if (npcs != null)
+            {
+                for (int i = 0; i < npcs.length; i++)
+                {
+                    if (!isIdValid(npcs[i]))
+                        continue;
+                    if (!hasScript(npcs[i], "ai.ai"))
+                        continue;
+                    if (isInCombat(npcs[i]))
+                        continue;
+                    setMovementRun(npcs[i]);
+                    ai_lib.pathAwayFrom(npcs[i], vehicleObj);
+                }
             }
         }
         return SCRIPT_CONTINUE;
