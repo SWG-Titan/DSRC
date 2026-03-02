@@ -26,7 +26,7 @@ public class vehicle_base extends script.base_script
     public static final String OV_AIRSPEEDER_SAVED_DECEL = "airspeeder.savedDecel";
     public static final String OV_AIRSPEEDER_SAVED_TURN_MAX = "airspeeder.savedTurnMax";
     public static final String OV_AIRSPEEDER_SAVED_BANKING = "airspeeder.savedBanking";
-    public static final float AIRSPEEDER_HOVER_HEIGHT = 50.0f;
+    public static final float AIRSPEEDER_HOVER_HEIGHT = 155.0f;
     public static final float AIRSPEEDER_SPEED = 80.0f;
     public static final float AIRSPEEDER_MIN_SPEED = 10.0f;
     public static final float AIRSPEEDER_ACCEL_MIN = 25.0f;
