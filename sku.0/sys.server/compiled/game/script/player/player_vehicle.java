@@ -231,7 +231,7 @@ public class player_vehicle extends script.base_script
                 "Hey! I'm walkin' here!",
                 "Learn to drive!"
             };
-            obj_id[] npcs = getCreaturesInRangeObject(vehicleObj, 32.0f);
+            obj_id[] npcs = getNPCsInRange(vehicleObj, 32.0f);
             if (npcs != null)
             {
                 for (int i = 0; i < npcs.length; i++)
