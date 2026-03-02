@@ -83,6 +83,7 @@ public class player_structure extends script.base_script
     public static final String VAR_MAINTENANCE_MOD_TAX = VAR_MAINTENANCE_MODIFIERS + ".tax";
     public static final String VAR_POWER_MOD_FACTORY = "player_structure.power.modifiers.factory";
     public static final String VAR_POWER_MOD_HARVESTER = "player_structure.power.modifiers.harvester";
+    public static final int ELECTRICITY_COST_PER_WEEK = 1200;
     public static final String VAR_SIGN_BASE = "player_structure.sign";
     public static final String VAR_SIGN_ID = VAR_SIGN_BASE + ".id";
     public static final String VAR_SIGN_NAME = VAR_SIGN_BASE + ".name";
@@ -1390,6 +1391,7 @@ public class player_structure extends script.base_script
         {
             maint += tax;
         }
+        maint += getElectricityCost(structure);
         return maint;
     }
     public static int getBaseMaintenanceRate(obj_id structure) throws InterruptedException
@@ -1436,6 +1438,24 @@ public class player_structure extends script.base_script
             return Math.round(maint * city.getPropertyTax(structure) / 100.0f);
         }
         return 0;
+    }
+    public static boolean hasCustomLighting(obj_id structure) throws InterruptedException
+    {
+        return hasObjVar(structure, "cellLights");
+    }
+    public static int getElectricityCost(obj_id structure) throws InterruptedException
+    {
+        if (!hasCustomLighting(structure))
+        {
+            return 0;
+        }
+        int heartbeat = getMaintenanceHeartbeat();
+        int heartbeatsPerWeek = (60 * 60 * 24 * 7) / heartbeat;
+        if (heartbeatsPerWeek < 1)
+        {
+            heartbeatsPerWeek = 1;
+        }
+        return Math.round((float)ELECTRICITY_COST_PER_WEEK / (float)heartbeatsPerWeek);
     }
     public static int getMaintenancePool(obj_id structure) throws InterruptedException
     {
