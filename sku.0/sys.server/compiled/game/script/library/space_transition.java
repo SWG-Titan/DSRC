@@ -596,6 +596,16 @@ public class space_transition extends script.base_script
             removeObjVar(ship, "teleportFixup");
             LIVE_LOG("TeleportFixup", "Removing teleportFixup objVar from " + ship);
         }
+        if (isAtmosphericFlightScene())
+        {
+            messageTo(ship, "delayedPackShipFinalize", null, 3.0f, false);
+            return;
+        }
+        packShipFinalize(ship);
+    }
+    public static void packShipFinalize(obj_id ship) throws InterruptedException
+    {
+        obj_id owner = getOwner(ship);
         if (isIdValid(owner))
         {
             space_combat.clearHyperspace(ship);

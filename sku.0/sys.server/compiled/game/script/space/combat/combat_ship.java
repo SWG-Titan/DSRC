@@ -1397,4 +1397,10 @@ public class combat_ship extends script.base_script
         broadcastToShip(ship, "\\#ddbb88   Please remain seated until further notice.\"");
         broadcastToShip(ship, " ");
     }
+
+    public int delayedPackShipFinalize(obj_id self, dictionary params) throws InterruptedException
+    {
+        space_transition.packShipFinalize(self);
+        return SCRIPT_CONTINUE;
+    }
 }
