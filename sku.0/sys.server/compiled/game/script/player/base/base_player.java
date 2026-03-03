@@ -3588,14 +3588,16 @@ public class base_player extends script.base_script
             if (isIdValid(targetShip))
             {
                 space_crafting.repairDamage(targetCreature, targetShip, 1.0f, 0.0f);
+                space_pilot_command.allPurposeShipComponentReset(targetShip);
                 if (isShipSlotInstalled(targetShip, ship_chassis_slot_type.SCST_shield_0))
                 {
                     setShipShieldHitpointsFrontCurrent(targetShip, getShipShieldHitpointsFrontMaximum(targetShip));
                     setShipShieldHitpointsBackCurrent(targetShip, getShipShieldHitpointsBackMaximum(targetShip));
                 }
+                setShipCurrentChassisHitPoints(targetShip, getShipMaximumChassisHitPoints(targetShip));
                 if (isIdValid(targetCreature))
                 {
-                    sendSystemMessageTestingOnly(targetCreature, "Ship Repaired.");
+                    sendSystemMessageTestingOnly(targetCreature, "Ship fully repaired and all alarms silenced.");
                 }
                 CustomerServiceLog("Death", "(" + targetShip + ") " + getName(targetShip) + " has been /gmRevive'd at " + (getLocation(self)).toString() + " by (" + self + ") " + getName(self));
             }
