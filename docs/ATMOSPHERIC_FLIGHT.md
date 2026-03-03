@@ -27,14 +27,16 @@ Atmospheric flight allows players to pilot ships on ground scenes (e.g., Tatooin
 
 ## Scene Detection
 
-Atmospheric flight is available on all ground scenes **except** `kashyyyk_*` and `mustafar`.
+Atmospheric flight is available on all ground scenes **except** `kashyyyk_`* and `mustafar`.
 
-| Function | Language | Location |
-|----------|----------|----------|
-| `ServerWorld::isAtmosphericFlightScene()` | C++ | `ServerWorld.cpp` |
-| `isAtmosphericFlightScene()` | Java (native) | `base_class.java` |
-| `isShipScene()` | Both | Returns true for space **or** atmospheric flight |
-| `isSpaceOrAtmosphericScene()` | Java | `space_transition.java` |
+
+| Function                                  | Language      | Location                                         |
+| ----------------------------------------- | ------------- | ------------------------------------------------ |
+| `ServerWorld::isAtmosphericFlightScene()` | C++           | `ServerWorld.cpp`                                |
+| `isAtmosphericFlightScene()`              | Java (native) | `base_class.java`                                |
+| `isShipScene()`                           | Both          | Returns true for space **or** atmospheric flight |
+| `isSpaceOrAtmosphericScene()`             | Java          | `space_transition.java`                          |
+
 
 ---
 
@@ -43,6 +45,7 @@ Atmospheric flight is available on all ground scenes **except** `kashyyyk_*` and
 **Trigger**: Radial menu on a Ship Control Device (SCD) → **Atmospheric Flight** → **Launch Ship**, or via a Starship Terminal.
 
 **Flow**:
+
 1. `ship_control_device.OnObjectMenuRequest` adds the **Atmospheric Flight** submenu with **Launch Ship** if conditions are met.
 2. `ship_control_device.OnObjectMenuSelect` calls `space_transition.launchToAtmosphere(player, scd)`.
 3. `launchToAtmosphere` validates the single-ship policy, sets launch objvars, and calls `handlePotentialSceneChange`.
@@ -57,6 +60,7 @@ Atmospheric flight is available on all ground scenes **except** `kashyyyk_*` and
 **Trigger**: Radial on SCD → **Atmospheric Flight** → **Land Ship**.
 
 **Flow**:
+
 1. `ship_control_device.OnObjectMenuSelect` calls `space_transition.packShip(ship)`.
 2. `packShip` clears autopilot, detaches boarding script, ejects all players to terrain.
 3. In atmospheric flight, the actual ship teardown is **delayed 3 seconds** via `messageTo("delayedPackShipFinalize")` to prevent a DPVS crash (see below).
@@ -85,12 +89,14 @@ A physics-driven autopilot that flies POB ships autonomously through four phases
 
 ### Phases
 
-| Phase | Enum | Behavior |
-|-------|------|----------|
-| **Ascending** | `AP_ASCENDING (1)` | Elevator-style vertical climb to 500m above terrain. No yaw/pitch/roll changes. |
-| **Cruising** | `AP_CRUISING (2)` | Yaw toward target, full throttle. Fixed cruise altitude (no terrain following). Boosted speed (engine + booster × 0.75). |
-| **Descending** | `AP_DESCENDING (3)` | Elevator-style vertical descent to 200m above destination terrain. No yaw/pitch/roll changes. |
-| **Arrived** | `AP_ARRIVED (4)` | All inputs zero. Autopilot disengaged. |
+
+| Phase          | Enum                | Behavior                                                                                                                 |
+| -------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Ascending**  | `AP_ASCENDING (1)`  | Elevator-style vertical climb to 500m above terrain. No yaw/pitch/roll changes.                                          |
+| **Cruising**   | `AP_CRUISING (2)`   | Yaw toward target, full throttle. Fixed cruise altitude (no terrain following). Boosted speed (engine + booster × 0.75). |
+| **Descending** | `AP_DESCENDING (3)` | Elevator-style vertical descent to 200m above destination terrain. No yaw/pitch/roll changes.                            |
+| **Arrived**    | `AP_ARRIVED (4)`    | All inputs zero. Autopilot disengaged.                                                                                   |
+
 
 ### C++ Implementation (`PlayerShipController`)
 
@@ -112,13 +118,15 @@ A physics-driven autopilot that flies POB ships autonomously through four phases
 
 ### Constants
 
-| Constant | Value |
-|----------|-------|
-| `AUTOPILOT_TAKEOFF_ALT` | 500m |
-| `AUTOPILOT_LANDING_ALT` | 200m |
-| `AUTOPILOT_MONITOR_RATE` | 2 seconds |
+
+| Constant                    | Value                |
+| --------------------------- | -------------------- |
+| `AUTOPILOT_TAKEOFF_ALT`     | 500m                 |
+| `AUTOPILOT_LANDING_ALT`     | 200m                 |
+| `AUTOPILOT_MONITOR_RATE`    | 2 seconds            |
 | `AUTOPILOT_STATUS_INTERVAL` | Every 10 ticks (20s) |
-| Elevator speed | 30 m/s |
+| Elevator speed              | 30 m/s               |
+
 
 **Files**: `PlayerShipController.cpp`, `PlayerShipController.h`, `combat_ship.java`, `player_vehicle.java`, `SwgCuiPlanetMap.cpp`
 
@@ -133,6 +141,7 @@ Allows a player on the ground to summon their deployed POB ship to their locatio
 **Trigger**: Radial menu → **Summon Ship** (only visible in atmospheric flight when a deployed ship exists and the player is not aboard it).
 
 **Behavior**:
+
 1. Finds the player's deployed ship by scanning SCDs.
 2. Validates: ship has interior, not already on autopilot, not being piloted.
 3. Sends `messageTo(ship, "shipSummonEngage")` with the player's X/Z coordinates.
@@ -172,6 +181,7 @@ POB ships can be "parked" in atmospheric flight — the ship stays loaded in the
 ## Disembarking
 
 `space_transition.disembarkShip(player, ship)`:
+
 - Unpilots if the player is the pilot.
 - Stands the player up.
 - Calculates ground position below the ship.
@@ -201,6 +211,7 @@ Ship weapons can damage ground targets in atmospheric flight.
 ### Spawner Script (`ship_atmospheric_spawner.java`)
 
 Attach to a spawner object with objvars:
+
 - `atmo.spawns` — String array of ship template types
 - `atmo.spawnCount` — Number of ships per type
 - `atmo.cruiseAltitude` — Flight altitude (default 200m)
@@ -226,6 +237,7 @@ Ships spawn at terrain-aware altitudes and follow patrol paths where each waypoi
 Ships at altitude need to see ground objects (NPCs, buildings, creatures) and vice versa. The ground visibility system (`NetworkTriggerVolume`) has limited vertical range, so atmospheric flight leverages the 3D `SpaceVisibilityManager`.
 
 **Changes**:
+
 - `Client.cpp`, `ObserveTracker.cpp`, `CreatureObject.cpp`, `ServerObject.cpp`: Changed `isSpaceScene()` checks to `isShipScene()` so atmospheric flight scenes use `SpaceVisibilityManager`.
 - `ServerObject.cpp`: Removed filter that prevented non-player objects (NPCs, buildings) from being added to `SpaceVisibilityManager` in atmospheric scenes.
 - `SpaceVisibilityManager.cpp`: Increased `ms_maxCoordinate` from 4096 to 8192 to cover full ground map extents.
@@ -237,10 +249,13 @@ Ships at altitude need to see ground objects (NPCs, buildings, creatures) and vi
 ## Altitude Enforcement & Space Transition
 
 ### Minimum Altitude
+
 `PlayerShipController::realAlter()` enforces a minimum altitude of terrain + 15m in atmospheric scenes, preventing ships from clipping into terrain.
 
 ### Space Transition
+
 `combat_ship.checkAtmosphericAltitude` (scheduled every 2s):
+
 - At 4000m: Broadcasts warning — "Approaching upper atmosphere boundary."
 - At 5000m: Triggers warp to the adjacent space zone (e.g., `tatooine` → `space_tatooine`).
 
@@ -262,12 +277,15 @@ Ships at altitude need to see ground objects (NPCs, buildings, creatures) and vi
 
 `SwgCuiPlanetMap.cpp` adds context menu options when right-clicking the map:
 
-| Option | Condition | Action |
-|--------|-----------|--------|
-| **Auto-Pilot Here** | Piloting a ship, or in skyway, or aboard own POB ship in atmo | Engages autopilot to clicked coordinates |
-| **Cancel Auto-Pilot** | Inside POB ship in atmo (not piloting) | Sends `AutoPilotCancel` message |
+
+| Option                | Condition                                                     | Action                                   |
+| --------------------- | ------------------------------------------------------------- | ---------------------------------------- |
+| **Auto-Pilot Here**   | Piloting a ship, or in skyway, or aboard own POB ship in atmo | Engages autopilot to clicked coordinates |
+| **Cancel Auto-Pilot** | Inside POB ship in atmo (not piloting)                        | Sends `AutoPilotCancel` message          |
+
 
 **Flow**:
+
 - If piloting: client-side `PlayerShipController::engageAutopilotToLocation()`.
 - If aboard POB (not piloting): sends `GenericValueTypeMessage("AutoPilotWaypoint")` → `player_vehicle.handleAutoPilotWaypoint` → `messageTo(ship, "shipAutoPilotEngage")`.
 
@@ -279,12 +297,14 @@ Ships at altitude need to see ground objects (NPCs, buildings, creatures) and vi
 
 Exposed to Java scripts via JNI (`ScriptMethodsPilot.cpp`, declared in `base_class.java`):
 
-| Method | Signature | Purpose |
-|--------|-----------|---------|
+
+| Method                   | Signature                                     | Purpose                                                         |
+| ------------------------ | --------------------------------------------- | --------------------------------------------------------------- |
 | `shipSetAutopilotTarget` | `(obj_id, float, float, float, float) → bool` | Start autopilot: ship, targetX, targetZ, takeoffAlt, landingAlt |
-| `shipClearAutopilot` | `(obj_id) → bool` | Stop autopilot, reset dynamics |
-| `shipIsAutopilotActive` | `(obj_id) → bool` | Check if autopilot is running |
-| `shipGetAutopilotPhase` | `(obj_id) → int` | Get current phase (0-4) |
+| `shipClearAutopilot`     | `(obj_id) → bool`                             | Stop autopilot, reset dynamics                                  |
+| `shipIsAutopilotActive`  | `(obj_id) → bool`                             | Check if autopilot is running                                   |
+| `shipGetAutopilotPhase`  | `(obj_id) → int`                              | Get current phase (0-4)                                         |
+
 
 **Files**: `ScriptMethodsPilot.cpp`, `base_class.java`, `PlayerShipController.cpp`
 
@@ -293,36 +313,46 @@ Exposed to Java scripts via JNI (`ScriptMethodsPilot.cpp`, declared in `base_cla
 ## File Reference
 
 ### Server Scripts (Java)
-| File | Purpose |
-|------|---------|
-| `space_transition.java` | Core launch/land/pack/unpack/disembark/boarding logic, single ship policy, SCD dirty notifications |
-| `combat_ship.java` | Autopilot engage/tick/cancel/summon, altitude checks, delayed pack handler |
-| `ship_control_device.java` | SCD radial menu (Launch/Land/Repair) |
-| `terminal_space.java` | Starship terminal launch-to-atmosphere |
-| `player_vehicle.java` | Routes autopilot/cancel messages from client to ship |
-| `escape_hatch.java` | Boarding ramp departure |
-| `ship_atmospheric_boarding.java` | Ground-to-ship boarding radial and permissions |
-| `ship_atmospheric_spawner.java` | AI ship spawner for atmospheric scenes |
-| `summon_ship.java` | Ship summon radial script |
-| `qatool.java` | `/qat spawnAtmoShip` command |
-| `base_class.java` | Native method declarations |
+
+
+| File                             | Purpose                                                                                            |
+| -------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `space_transition.java`          | Core launch/land/pack/unpack/disembark/boarding logic, single ship policy, SCD dirty notifications |
+| `combat_ship.java`               | Autopilot engage/tick/cancel/summon, altitude checks, delayed pack handler                         |
+| `ship_control_device.java`       | SCD radial menu (Launch/Land/Repair)                                                               |
+| `terminal_space.java`            | Starship terminal launch-to-atmosphere                                                             |
+| `player_vehicle.java`            | Routes autopilot/cancel messages from client to ship                                               |
+| `escape_hatch.java`              | Boarding ramp departure                                                                            |
+| `ship_atmospheric_boarding.java` | Ground-to-ship boarding radial and permissions                                                     |
+| `ship_atmospheric_spawner.java`  | AI ship spawner for atmospheric scenes                                                             |
+| `summon_ship.java`               | Ship summon radial script                                                                          |
+| `qatool.java`                    | `/qat spawnAtmoShip` command                                                                       |
+| `base_class.java`                | Native method declarations                                                                         |
+
 
 ### Server C++
-| File | Purpose |
-|------|---------|
+
+
+| File                          | Purpose                                                          |
+| ----------------------------- | ---------------------------------------------------------------- |
 | `PlayerShipController.cpp/.h` | Autopilot state machine, physics overrides, altitude enforcement |
-| `ScriptMethodsPilot.cpp` | JNI bindings for autopilot native methods |
-| `ServerObject.cpp` | Visibility manager registration for atmospheric objects |
-| `SpaceVisibilityManager.cpp` | 3D visibility grid (expanded to 8192 for ground maps) |
-| `Client.cpp` | Client visibility registration for ship scenes |
-| `ObserveTracker.cpp` | Observation routing for ship scenes |
-| `CreatureObject.cpp` | Container transfer visibility updates |
-| `CreatureObject_Ships.cpp` | Unpilot transform flattening (DPVS crash avoidance) |
-| `ServerWorld.cpp` | `isAtmosphericFlightScene()` / `isShipScene()` definitions |
+| `ScriptMethodsPilot.cpp`      | JNI bindings for autopilot native methods                        |
+| `ServerObject.cpp`            | Visibility manager registration for atmospheric objects          |
+| `SpaceVisibilityManager.cpp`  | 3D visibility grid (expanded to 8192 for ground maps)            |
+| `Client.cpp`                  | Client visibility registration for ship scenes                   |
+| `ObserveTracker.cpp`          | Observation routing for ship scenes                              |
+| `CreatureObject.cpp`          | Container transfer visibility updates                            |
+| `CreatureObject_Ships.cpp`    | Unpilot transform flattening (DPVS crash avoidance)              |
+| `ServerWorld.cpp`             | `isAtmosphericFlightScene()` / `isShipScene()` definitions       |
+
 
 ### Client C++
-| File | Purpose |
-|------|---------|
-| `SwgCuiPlanetMap.cpp` | Planet map autopilot UI options |
-| `FreeChaseCamera.cpp` | Camera yaw fix for ship interiors in atmospheric flight |
-| `PlayerShipController.cpp` (client) | Client-side autopilot engagement |
+
+
+| File                                | Purpose                                                 |
+| ----------------------------------- | ------------------------------------------------------- |
+| `SwgCuiPlanetMap.cpp`               | Planet map autopilot UI options                         |
+| `FreeChaseCamera.cpp`               | Camera yaw fix for ship interiors in atmospheric flight |
+| `PlayerShipController.cpp` (client) | Client-side autopilot engagement                        |
+
+

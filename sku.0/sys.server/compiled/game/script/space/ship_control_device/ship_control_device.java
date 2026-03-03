@@ -14,6 +14,7 @@ public class ship_control_device extends script.base_script
     public static final string_id SID_ATMOSPHERIC_FLIGHT = string_id.unlocalized("Atmospheric Flight");
     public static final string_id SID_LAUNCH = string_id.unlocalized("Launch Ship");
     public static final string_id SID_REPAIR_GM = string_id.unlocalized("Repair (GM)");
+    public static final string_id SID_FORCE_LAND_GM = string_id.unlocalized("Force Land (GM)");
     public static final string_id PROMPT1 = new string_id("sui", "rename_ship_text");
     public static final String[] ignoreRules = new String[]
     {
@@ -108,7 +109,8 @@ public class ship_control_device extends script.base_script
         boolean hasLaunch = isIdValid(objShip) && isAtmo && !isIdValid(currentShip) && !anotherShipDeployed;
         boolean hasLand = thisScdsShipIsOut && isAtmo;
         boolean hasRepairGM = isIdValid(objShip) && getShipChassisType(objShip).equals("player_sorosuub_space_yacht") && isGod(player);
-        if (hasLaunch || hasLand || hasRepairGM)
+        boolean hasForceLandGM = isAtmo && isGod(player) && (thisScdsShipIsOut || isIdValid(deployedShip));
+        if (hasLaunch || hasLand || hasRepairGM || hasForceLandGM)
         {
             int atmRoot = mi.addRootMenu(menu_info_types.SERVER_MENU5, SID_ATMOSPHERIC_FLIGHT);
             if (hasLaunch)
@@ -117,6 +119,8 @@ public class ship_control_device extends script.base_script
                 mi.addSubMenu(atmRoot, menu_info_types.SERVER_MENU7, LAND_SHIP);
             if (hasRepairGM)
                 mi.addSubMenu(atmRoot, menu_info_types.SERVER_MENU8, SID_REPAIR_GM);
+            if (hasForceLandGM)
+                mi.addSubMenu(atmRoot, menu_info_types.SERVER_MENU9, SID_FORCE_LAND_GM);
         }
         return SCRIPT_CONTINUE;
     }
@@ -173,6 +177,21 @@ public class ship_control_device extends script.base_script
             string_id strSpam = new string_id("space/space_interaction", "complete_repair");
             sendSystemMessage(player, strSpam);
             space_crafting.repairDamage(player, objShip, 1.0f);
+            return SCRIPT_CONTINUE;
+        }
+        if (item == menu_info_types.SERVER_MENU9)
+        {
+            if (!isGod(player) || !space_transition.isAtmosphericFlightScene())
+                return SCRIPT_CONTINUE;
+            obj_id shipToLand = space_transition.getDeployedShipForPlayer(player);
+            if (!isIdValid(shipToLand))
+            {
+                sendSystemMessageTestingOnly(player, "[GM] No deployed ship found.");
+                return SCRIPT_CONTINUE;
+            }
+            sendSystemMessageTestingOnly(player, "[GM] Force landing ship " + shipToLand + "...");
+            space_transition.packShip(shipToLand);
+            sendSystemMessageTestingOnly(player, "[GM] Ship force landed.");
             return SCRIPT_CONTINUE;
         }
         if (item == menu_info_types.SERVER_MENU1)
