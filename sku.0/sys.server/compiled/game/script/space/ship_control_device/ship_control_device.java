@@ -144,6 +144,7 @@ public class ship_control_device extends script.base_script
                         return SCRIPT_CONTINUE;
                     }
                     setObjVar(player, "space.launch.ship", objShip);
+                    setObjVar(player, "space.launch.scd", self);
                     space_transition.handlePotentialSceneChange(player);
                 }
             }

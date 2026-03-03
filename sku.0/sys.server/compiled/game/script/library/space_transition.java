@@ -168,7 +168,16 @@ public class space_transition extends script.base_script
         }
         else
         {
-            obj_id launchedShip = getObjIdObjVar(player, "space.launch.ship");
+            obj_id launchedShip = null;
+            obj_id launchScd = getObjIdObjVar(player, "space.launch.scd");
+            if (isIdValid(launchScd))
+            {
+                launchedShip = getShipFromShipControlDevice(launchScd);
+            }
+            if (!isIdValid(launchedShip))
+            {
+                launchedShip = getObjIdObjVar(player, "space.launch.ship");
+            }
             if (isIdValid(launchedShip) && launchedShip.isLoaded() && getOwner(launchedShip) == player && getContainedBy(getContainedBy(launchedShip)) == utils.getDatapad(player))
             {
                 if (unpackShipForPlayer(player, launchedShip))
@@ -241,6 +250,7 @@ public class space_transition extends script.base_script
             return;
         }
         setObjVar(player, "space.launch.ship", ship);
+        setObjVar(player, "space.launch.scd", shipControlDevice);
         handlePotentialSceneChange(player);
     }
     public static void setLaunchInfo(obj_id player, obj_id ship, int startLocationIndex, location groundLoc) throws InterruptedException
@@ -550,7 +560,9 @@ public class space_transition extends script.base_script
                         copyObjVar(ship, player, "teleportFixup");
                         LIVE_LOG("TeleportFixup", "Copying teleportFixup objVar from " + ship + " to " + player);
                     }
-                    setLocation(player, shipLoc);
+                    float terrainY = getHeightAtLocation(shipLoc.x, shipLoc.z);
+                    location worldLoc = new location(shipLoc.x, terrainY, shipLoc.z, shipLoc.area, null);
+                    setLocation(player, worldLoc);
                 }
             }
         }
