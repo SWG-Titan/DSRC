@@ -91,6 +91,8 @@ public class ship_control_device extends script.base_script
         if (!hasScript(ship, "space.ship.ship_atmospheric_boarding"))
             attachScript(ship, "space.ship.ship_atmospheric_boarding");
 
+        space_transition.setShipName(ship, getOwner(ship), scd);
+
         messageTo(ship, "checkAtmosphericAltitude", null, 5.0f, false);
     }
     public int OnGetAttributes(obj_id self, obj_id objPlayer, String[] strNames, String[] strAttribs) throws InterruptedException

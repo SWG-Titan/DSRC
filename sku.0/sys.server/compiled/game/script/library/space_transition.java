@@ -725,15 +725,36 @@ public class space_transition extends script.base_script
     }
     public static void setShipName(obj_id ship, obj_id player, obj_id shipControlDevice) throws InterruptedException
     {
+        String ownerName = getFirstName(player);
         String strName = getAssignedName(shipControlDevice);
-        LOG("space", "strName is " + strName);
-        if (strName == null || strName.length() == 0)
+        if (strName != null && strName.length() > 0)
         {
-            setName(ship, getName(player));
+            setName(ship, ownerName + "'s " + strName);
         }
         else
         {
-            setName(ship, getName(player) + " (" + strName + ")");
+            setName(ship, ownerName + "'s Ship");
+        }
+    }
+    public static void refreshShipNameIfEmpty(obj_id ship) throws InterruptedException
+    {
+        if (!isIdValid(ship))
+            return;
+        Vector players = getContainedPlayers(ship, null);
+        if (players != null && players.size() > 0)
+            return;
+        obj_id owner = getOwner(ship);
+        if (!isIdValid(owner))
+            return;
+        obj_id scd = findEmptyShipControlDeviceForShip(owner, ship);
+        if (isIdValid(scd))
+        {
+            setShipName(ship, owner, scd);
+        }
+        else
+        {
+            String ownerName = getFirstName(owner);
+            setName(ship, ownerName + "'s Ship");
         }
     }
     public static boolean unpackShipForPlayer(obj_id player, obj_id ship) throws InterruptedException
@@ -1449,6 +1470,7 @@ public class space_transition extends script.base_script
         if (isAtmosphericFlightScene())
         {
             setLocation(player, groundLoc);
+            refreshShipNameIfEmpty(ship);
         }
         else
         {
