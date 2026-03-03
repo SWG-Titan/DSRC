@@ -1910,7 +1910,7 @@ public class qatool extends script.base_script
         }
         else if ((toLower(command)).equals("spawnship") || (toLower(command)).equals("qaspawnship"))
         {
-            if (!isSpaceScene())
+            if (!isSpaceScene() || !isAtmosphericFlightScene())
             {
                 sendSystemMessage(self, "You must be in space to use this tool", null);
                 return SCRIPT_CONTINUE;
