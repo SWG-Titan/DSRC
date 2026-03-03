@@ -669,7 +669,8 @@ public class space_transition extends script.base_script
             location shipLoc = getLocation(player);
             if (isAtmosphericFlightScene())
             {
-                shipLoc.y += 200.0f;
+                float groundY = getHeightAtLocation(shipLoc.x, shipLoc.z);
+                shipLoc.y = groundY + 200.0f;
             }
             setLocation(ship, shipLoc);
             setObjVar(shipControlDevice, "ship", ship);
