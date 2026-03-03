@@ -37,7 +37,32 @@ public class ship_control_device extends script.base_script
         setObjVar(self, "noTrade", 1);
         removeObjVar(self, IN_USE_OBJVAR);
         messageTo(self, "checkCollectionReactor", null, 2, false);
+        recoverOrphanedShip(self);
         return SCRIPT_CONTINUE;
+    }
+    private void recoverOrphanedShip(obj_id scd) throws InterruptedException
+    {
+        obj_id[] contents = getContents(scd);
+        if (contents != null && contents.length > 0)
+            return;
+
+        if (!hasObjVar(scd, "ship"))
+            return;
+
+        obj_id ship = getObjIdObjVar(scd, "ship");
+        if (!isIdValid(ship) || !exists(ship))
+        {
+            removeObjVar(scd, "ship");
+            LOG("space_transition", "recoverOrphanedShip: SCD " + scd + " had stale ship objvar pointing to non-existent ship " + ship + ", removed.");
+            return;
+        }
+
+        if (getTopMostContainer(ship) == ship)
+        {
+            LOG("space_transition", "recoverOrphanedShip: SCD " + scd + " has orphaned ship " + ship + " in world, packing.");
+            removeObjVar(ship, "space.packPending");
+            space_transition.packShipFinalize(ship);
+        }
     }
     public int OnGetAttributes(obj_id self, obj_id objPlayer, String[] strNames, String[] strAttribs) throws InterruptedException
     {
