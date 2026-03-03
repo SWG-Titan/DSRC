@@ -1342,6 +1342,9 @@ public class combat_ship extends script.base_script
                 {
                     shipClearAutopilot(self);
 
+                    boolean wasSummon = hasObjVar(self, OV_SUMMON_OWNER);
+                    obj_id summonOwner = wasSummon ? getObjIdObjVar(self, OV_SUMMON_OWNER) : null;
+
                     broadcastToShip(self, " ");
                     broadcastToShip(self, "\\#00ff88========================================");
                     broadcastToShip(self, "\\#00ff88[Navicomputer]: Destination reached. Auto-pilot disengaged.");
@@ -1349,8 +1352,22 @@ public class combat_ship extends script.base_script
                     broadcastToShip(self, " ");
                     broadcastToShip(self, "\\#88ddaa  Coordinates: [" + formatCoord(shipLoc.x) + ", " + formatCoord(shipLoc.y) + ", " + formatCoord(shipLoc.z) + "]");
                     broadcastToShip(self, " ");
-                    broadcastToShip(self, "\\#88ddaa  \"We have arrived at our destination. You may now disembark");
-                    broadcastToShip(self, "\\#88ddaa   or land the vessel. Thank you for flying with us.\"");
+
+                    if (wasSummon)
+                    {
+                        broadcastToShip(self, "\\#88ddaa  \"The ship has arrived at the summoned location.\"");
+                        if (isIdValid(summonOwner) && exists(summonOwner))
+                        {
+                            sendSystemMessageTestingOnly(summonOwner, "\\#00ff88[Navicomputer]: Your ship has arrived at your location.");
+                            sendSystemMessageTestingOnly(summonOwner, "\\#88ddaa  Coordinates: [" + formatCoord(shipLoc.x) + ", " + formatCoord(shipLoc.y) + ", " + formatCoord(shipLoc.z) + "]");
+                            sendSystemMessageTestingOnly(summonOwner, "\\#88ddaa  You may now board your ship.");
+                        }
+                    }
+                    else
+                    {
+                        broadcastToShip(self, "\\#88ddaa  \"We have arrived at our destination. You may now disembark");
+                        broadcastToShip(self, "\\#88ddaa   or land the vessel. Thank you for flying with us.\"");
+                    }
                     broadcastToShip(self, " ");
 
                     removeObjVar(self, OV_AUTOPILOT_ROOT);
@@ -1365,7 +1382,15 @@ public class combat_ship extends script.base_script
             String cardinal = getBearingCardinal(bearing);
             float estSpeed = getShipEngineSpeedMaximum(self) * 1.5f;
             String eta = formatETA(horizDist, estSpeed);
-            broadcastToShip(self, "\\#778899[Navicomputer]: " + formatCoord(horizDist) + "m remaining | " + cardinal + " | Alt " + formatCoord(shipLoc.y) + "m | ETA: " + eta);
+            String statusMsg = "\\#778899[Navicomputer]: " + formatCoord(horizDist) + "m remaining | " + cardinal + " | Alt " + formatCoord(shipLoc.y) + "m | ETA: " + eta;
+            broadcastToShip(self, statusMsg);
+
+            if (hasObjVar(self, OV_SUMMON_OWNER))
+            {
+                obj_id summonOwner = getObjIdObjVar(self, OV_SUMMON_OWNER);
+                if (isIdValid(summonOwner) && exists(summonOwner))
+                    sendSystemMessageTestingOnly(summonOwner, statusMsg);
+            }
         }
 
         messageTo(self, "shipAutoPilotTick", null, AUTOPILOT_MONITOR_RATE, false);
@@ -1396,6 +1421,85 @@ public class combat_ship extends script.base_script
         broadcastToShip(ship, "\\#ddbb88  \"Attention passengers, the captain has taken manual control.");
         broadcastToShip(ship, "\\#ddbb88   Please remain seated until further notice.\"");
         broadcastToShip(ship, " ");
+    }
+
+    // =====================================================================
+    // Ship Summon (auto-pilot to player's location)
+    // =====================================================================
+
+    public static final String OV_SUMMON_OWNER = "space.autopilot.summonOwner";
+    public static final float  SUMMON_TAKEOFF_ALT  = 500.0f;
+    public static final float  SUMMON_LANDING_ALT  = 50.0f;
+
+    public int shipSummonEngage(obj_id self, dictionary params) throws InterruptedException
+    {
+        if (!isAtmosphericFlightScene())
+            return SCRIPT_CONTINUE;
+
+        if (!space_utils.isShipWithInterior(self))
+        {
+            obj_id owner = params.getObjId("owner");
+            if (isIdValid(owner))
+                sendSystemMessageTestingOnly(owner, "Only ships with an interior can be summoned.");
+            return SCRIPT_CONTINUE;
+        }
+
+        float targetX = params.getFloat("x");
+        float targetZ = params.getFloat("z");
+        obj_id owner = params.getObjId("owner");
+
+        if (!isIdValid(owner) || getOwner(self) != owner)
+        {
+            if (isIdValid(owner))
+                sendSystemMessageTestingOnly(owner, "Only the ship owner may summon this vessel.");
+            return SCRIPT_CONTINUE;
+        }
+
+        if (hasObjVar(self, OV_AUTOPILOT_ACTIVE))
+        {
+            shipClearAutopilot(self);
+            removeObjVar(self, OV_AUTOPILOT_ROOT);
+        }
+
+        if (!shipSetAutopilotTarget(self, targetX, targetZ, SUMMON_TAKEOFF_ALT, SUMMON_LANDING_ALT))
+        {
+            sendSystemMessageTestingOnly(owner, "Failed to summon ship. Auto-pilot could not engage.");
+            return SCRIPT_CONTINUE;
+        }
+
+        setObjVar(self, OV_AUTOPILOT_ACTIVE, true);
+        setObjVar(self, OV_AUTOPILOT_TARGET_X, targetX);
+        setObjVar(self, OV_AUTOPILOT_TARGET_Z, targetZ);
+        setObjVar(self, OV_AUTOPILOT_OWNER, owner);
+        setObjVar(self, OV_AUTOPILOT_TICKS, 0);
+        setObjVar(self, OV_AUTOPILOT_LAST_PHASE, AP_NONE);
+        setObjVar(self, OV_SUMMON_OWNER, owner);
+
+        location shipLoc = getLocation(self);
+        float dx = targetX - shipLoc.x;
+        float dz = targetZ - shipLoc.z;
+        float dist = (float) StrictMath.sqrt(dx * dx + dz * dz);
+        float bearing = getDirectionBearing(dx, dz);
+        String cardinal = getBearingCardinal(bearing);
+
+        float estSpeed = getShipEngineSpeedMaximum(self) * 1.5f;
+        String eta = formatETA(dist, estSpeed);
+
+        sendSystemMessageTestingOnly(owner, "\\#00ccff[Navicomputer]: Ship summoned. En route to your location.");
+        sendSystemMessageTestingOnly(owner, "\\#aaddff  Distance: " + formatCoord(dist) + "m | Bearing: " + cardinal + " | ETA: " + eta);
+
+        broadcastToShip(self, " ");
+        broadcastToShip(self, "\\#00ccff========================================");
+        broadcastToShip(self, "\\#00ccff[Navicomputer]: Ship summoned by owner.");
+        broadcastToShip(self, "\\#00ccff  Destination: [" + formatCoord(targetX) + ", " + formatCoord(targetZ) + "]");
+        broadcastToShip(self, "\\#00ccff========================================");
+        broadcastToShip(self, " ");
+        broadcastToShip(self, "\\#88bbdd  \"Attention: the ship has been summoned remotely.");
+        broadcastToShip(self, "\\#88bbdd   Ascending to cruise altitude " + formatCoord(SUMMON_TAKEOFF_ALT) + "m...\"");
+        broadcastToShip(self, " ");
+
+        messageTo(self, "shipAutoPilotTick", null, AUTOPILOT_MONITOR_RATE, false);
+        return SCRIPT_CONTINUE;
     }
 
     public int delayedPackShipFinalize(obj_id self, dictionary params) throws InterruptedException
