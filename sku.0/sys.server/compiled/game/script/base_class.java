@@ -25918,6 +25918,21 @@ public class base_class
     {
         _setShipAggroDistance(getLongWithNull(shipId), aggroDistance);
     }
+    private static native boolean _shipSetAutopilotTarget(long shipId, float targetX, float targetZ, float cruiseAltitude);
+    public static boolean shipSetAutopilotTarget(obj_id shipId, float targetX, float targetZ, float cruiseAltitude)
+    {
+        return _shipSetAutopilotTarget(getLongWithNull(shipId), targetX, targetZ, cruiseAltitude);
+    }
+    private static native boolean _shipClearAutopilot(long shipId);
+    public static boolean shipClearAutopilot(obj_id shipId)
+    {
+        return _shipClearAutopilot(getLongWithNull(shipId));
+    }
+    private static native boolean _shipIsAutopilotActive(long shipId);
+    public static boolean shipIsAutopilotActive(obj_id shipId)
+    {
+        return _shipIsAutopilotActive(getLongWithNull(shipId));
+    }
     private static native String _getShipComponentDebugString(long shipId, int chassisSlot);
     public static String getShipComponentDebugString(obj_id shipId, int chassisSlot)
     {

@@ -1122,7 +1122,7 @@ public class combat_ship extends script.base_script
     }
 
     // =====================================================================
-    // Server-Side Atmospheric Auto-Pilot
+    // Server-Side Atmospheric Auto-Pilot (physics-driven)
     // =====================================================================
 
     public static final String OV_AUTOPILOT_ROOT     = "space.autopilot";
@@ -1132,11 +1132,9 @@ public class combat_ship extends script.base_script
     public static final String OV_AUTOPILOT_OWNER     = "space.autopilot.owner";
     public static final String OV_AUTOPILOT_TICKS     = "space.autopilot.ticks";
     public static final float  AUTOPILOT_CRUISE_ALT   = 200.0f;
-    public static final float  AUTOPILOT_SPEED        = 40.0f;
-    public static final float  AUTOPILOT_TICK_RATE    = 1.0f;
-    public static final float  AUTOPILOT_ARRIVAL_DIST = 50.0f;
-    public static final float  AUTOPILOT_CLIMB_RATE   = 15.0f;
-    public static final int    AUTOPILOT_STATUS_INTERVAL = 30;
+    public static final float  AUTOPILOT_MONITOR_RATE = 2.0f;
+    public static final float  AUTOPILOT_ARRIVAL_DIST = 80.0f;
+    public static final int    AUTOPILOT_STATUS_INTERVAL = 15;
 
     private void broadcastToShip(obj_id ship, String message) throws InterruptedException
     {
@@ -1203,8 +1201,15 @@ public class combat_ship extends script.base_script
 
         if (hasObjVar(self, OV_AUTOPILOT_ACTIVE))
         {
+            shipClearAutopilot(self);
             removeObjVar(self, OV_AUTOPILOT_ROOT);
             broadcastToShip(self, "\\#00ccff[Navicomputer]: Previous auto-pilot course cancelled. Recalculating...");
+        }
+
+        if (!shipSetAutopilotTarget(self, targetX, targetZ, AUTOPILOT_CRUISE_ALT))
+        {
+            sendSystemMessageTestingOnly(owner, "Failed to engage auto-pilot on this ship.");
+            return SCRIPT_CONTINUE;
         }
 
         float terrainHeight = getHeightAtLocation(targetX, targetZ);
@@ -1222,9 +1227,6 @@ public class combat_ship extends script.base_script
         float dist = (float) StrictMath.sqrt(dx * dx + dz * dz);
         float bearing = getDirectionBearing(dx, dz);
         String cardinal = getBearingCardinal(bearing);
-        float eta = dist / AUTOPILOT_SPEED;
-        int etaMin = (int)(eta / 60.0f);
-        int etaSec = (int)(eta % 60.0f);
 
         broadcastToShip(self, " ");
         broadcastToShip(self, "\\#00ccff========================================");
@@ -1234,16 +1236,12 @@ public class combat_ship extends script.base_script
         broadcastToShip(self, "\\#aaddff  Bearing: " + formatCoord(bearing) + "\\#778899 deg \\#aaddff(" + cardinal + ")");
         broadcastToShip(self, "\\#aaddff  Distance: " + formatCoord(dist) + "m");
         broadcastToShip(self, "\\#aaddff  Cruise Altitude: " + formatCoord(cruiseAlt) + "m");
-        if (etaMin > 0)
-            broadcastToShip(self, "\\#aaddff  ETA: ~" + etaMin + " min " + etaSec + " sec");
-        else
-            broadcastToShip(self, "\\#aaddff  ETA: ~" + etaSec + " sec");
         broadcastToShip(self, " ");
         broadcastToShip(self, "\\#88bbdd  \"All hands, the captain has engaged auto-pilot.");
         broadcastToShip(self, "\\#88bbdd   You are free to move about the cabin.\"");
         broadcastToShip(self, " ");
 
-        messageTo(self, "shipAutoPilotTick", null, AUTOPILOT_TICK_RATE, false);
+        messageTo(self, "shipAutoPilotTick", null, AUTOPILOT_MONITOR_RATE, false);
         return SCRIPT_CONTINUE;
     }
 
@@ -1251,6 +1249,12 @@ public class combat_ship extends script.base_script
     {
         if (!hasObjVar(self, OV_AUTOPILOT_ACTIVE))
             return SCRIPT_CONTINUE;
+
+        if (!shipIsAutopilotActive(self))
+        {
+            removeObjVar(self, OV_AUTOPILOT_ROOT);
+            return SCRIPT_CONTINUE;
+        }
 
         if (!isAtmosphericFlightScene())
         {
@@ -1278,27 +1282,21 @@ public class combat_ship extends script.base_script
 
         if (ticks % AUTOPILOT_STATUS_INTERVAL == 0 && horizDist > AUTOPILOT_ARRIVAL_DIST)
         {
-            float eta = horizDist / AUTOPILOT_SPEED;
-            int etaMin = (int)(eta / 60.0f);
-            int etaSec = (int)(eta % 60.0f);
             float bearing = getDirectionBearing(dx, dz);
             String cardinal = getBearingCardinal(bearing);
-            String etaStr = (etaMin > 0) ? ("~" + etaMin + " min " + etaSec + " sec") : ("~" + etaSec + " sec");
-            broadcastToShip(self, "\\#778899[Navicomputer]: " + formatCoord(horizDist) + "m remaining | Bearing " + formatCoord(bearing) + " deg (" + cardinal + ") | ETA " + etaStr + " | Alt " + formatCoord(shipLoc.y) + "m");
+            broadcastToShip(self, "\\#778899[Navicomputer]: " + formatCoord(horizDist) + "m remaining | Bearing " + formatCoord(bearing) + " deg (" + cardinal + ") | Alt " + formatCoord(shipLoc.y) + "m");
         }
 
         if (horizDist <= AUTOPILOT_ARRIVAL_DIST)
         {
-            float terrainH = getHeightAtLocation(targetX, targetZ);
-            location finalLoc = new location(targetX, terrainH + AUTOPILOT_CRUISE_ALT, targetZ, shipLoc.area, null);
-            setLocation(self, finalLoc);
+            shipClearAutopilot(self);
 
             broadcastToShip(self, " ");
             broadcastToShip(self, "\\#00ff88========================================");
             broadcastToShip(self, "\\#00ff88[Navicomputer]: Destination reached.");
             broadcastToShip(self, "\\#00ff88========================================");
             broadcastToShip(self, " ");
-            broadcastToShip(self, "\\#88ddaa  Coordinates: [" + formatCoord(targetX) + ", " + formatCoord(finalLoc.y) + ", " + formatCoord(targetZ) + "]");
+            broadcastToShip(self, "\\#88ddaa  Coordinates: [" + formatCoord(shipLoc.x) + ", " + formatCoord(shipLoc.y) + ", " + formatCoord(shipLoc.z) + "]");
             broadcastToShip(self, "\\#88ddaa  \"We have arrived. Auto-pilot disengaged.\"");
             broadcastToShip(self, " ");
 
@@ -1306,32 +1304,7 @@ public class combat_ship extends script.base_script
             return SCRIPT_CONTINUE;
         }
 
-        float moveStep = AUTOPILOT_SPEED * AUTOPILOT_TICK_RATE;
-        if (moveStep > horizDist)
-            moveStep = horizDist;
-
-        float dirX = dx / horizDist;
-        float dirZ = dz / horizDist;
-
-        float newX = shipLoc.x + dirX * moveStep;
-        float newZ = shipLoc.z + dirZ * moveStep;
-
-        float terrainH = getHeightAtLocation(newX, newZ);
-        float desiredY = terrainH + AUTOPILOT_CRUISE_ALT;
-
-        float currentY = shipLoc.y;
-        float altDelta = desiredY - currentY;
-        float maxClimb = AUTOPILOT_CLIMB_RATE * AUTOPILOT_TICK_RATE;
-        if (altDelta > maxClimb)
-            altDelta = maxClimb;
-        else if (altDelta < -maxClimb)
-            altDelta = -maxClimb;
-        float newY = currentY + altDelta;
-
-        location newLoc = new location(newX, newY, newZ, shipLoc.area, null);
-        setLocation(self, newLoc);
-
-        messageTo(self, "shipAutoPilotTick", null, AUTOPILOT_TICK_RATE, false);
+        messageTo(self, "shipAutoPilotTick", null, AUTOPILOT_MONITOR_RATE, false);
         return SCRIPT_CONTINUE;
     }
 
@@ -1345,6 +1318,7 @@ public class combat_ship extends script.base_script
 
     private void shipAutoPilotCancelInternal(obj_id ship, String reason) throws InterruptedException
     {
+        shipClearAutopilot(ship);
         removeObjVar(ship, OV_AUTOPILOT_ROOT);
 
         broadcastToShip(ship, " ");
@@ -1358,10 +1332,5 @@ public class combat_ship extends script.base_script
         broadcastToShip(ship, "\\#ddbb88  \"Attention passengers, the captain has taken manual control.");
         broadcastToShip(ship, "\\#ddbb88   Please remain seated until further notice.\"");
         broadcastToShip(ship, " ");
-    }
-
-    public boolean isShipAutoPilotActive(obj_id ship) throws InterruptedException
-    {
-        return hasObjVar(ship, OV_AUTOPILOT_ACTIVE);
     }
 }
