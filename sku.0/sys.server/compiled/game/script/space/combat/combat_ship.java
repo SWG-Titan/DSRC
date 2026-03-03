@@ -1120,4 +1120,248 @@ public class combat_ship extends script.base_script
         messageTo(self, "checkAtmosphericAltitude", null, 2.0f, false);
         return SCRIPT_CONTINUE;
     }
+
+    // =====================================================================
+    // Server-Side Atmospheric Auto-Pilot
+    // =====================================================================
+
+    public static final String OV_AUTOPILOT_ROOT     = "space.autopilot";
+    public static final String OV_AUTOPILOT_ACTIVE    = "space.autopilot.active";
+    public static final String OV_AUTOPILOT_TARGET_X  = "space.autopilot.targetX";
+    public static final String OV_AUTOPILOT_TARGET_Z  = "space.autopilot.targetZ";
+    public static final String OV_AUTOPILOT_OWNER     = "space.autopilot.owner";
+    public static final String OV_AUTOPILOT_TICKS     = "space.autopilot.ticks";
+    public static final float  AUTOPILOT_CRUISE_ALT   = 200.0f;
+    public static final float  AUTOPILOT_SPEED        = 40.0f;
+    public static final float  AUTOPILOT_TICK_RATE    = 1.0f;
+    public static final float  AUTOPILOT_ARRIVAL_DIST = 50.0f;
+    public static final float  AUTOPILOT_CLIMB_RATE   = 15.0f;
+    public static final int    AUTOPILOT_STATUS_INTERVAL = 30;
+
+    private void broadcastToShip(obj_id ship, String message) throws InterruptedException
+    {
+        Vector players = space_transition.getContainedPlayers(ship, null);
+        if (players != null)
+        {
+            for (Object p : players)
+            {
+                obj_id player = (obj_id) p;
+                if (isIdValid(player))
+                    sendSystemMessageTestingOnly(player, message);
+            }
+        }
+    }
+
+    private String formatCoord(float v)
+    {
+        return String.valueOf(Math.round(v));
+    }
+
+    private float getDirectionBearing(float dx, float dz)
+    {
+        double rad = StrictMath.atan2(dx, dz);
+        float deg = (float)(rad * (180.0 / Math.PI));
+        if (deg < 0) deg += 360.0f;
+        return deg;
+    }
+
+    private String getBearingCardinal(float bearing)
+    {
+        if (bearing >= 337.5f || bearing < 22.5f)   return "North";
+        if (bearing >= 22.5f  && bearing < 67.5f)   return "North-East";
+        if (bearing >= 67.5f  && bearing < 112.5f)  return "East";
+        if (bearing >= 112.5f && bearing < 157.5f)  return "South-East";
+        if (bearing >= 157.5f && bearing < 202.5f)  return "South";
+        if (bearing >= 202.5f && bearing < 247.5f)  return "South-West";
+        if (bearing >= 247.5f && bearing < 292.5f)  return "West";
+        return "North-West";
+    }
+
+    public int shipAutoPilotEngage(obj_id self, dictionary params) throws InterruptedException
+    {
+        if (!isAtmosphericFlightScene())
+            return SCRIPT_CONTINUE;
+
+        if (!space_utils.isShipWithInterior(self))
+        {
+            obj_id owner = params.getObjId("owner");
+            if (isIdValid(owner))
+                sendSystemMessageTestingOnly(owner, "Auto-pilot is only available on ships with an interior.");
+            return SCRIPT_CONTINUE;
+        }
+
+        float targetX = params.getFloat("x");
+        float targetZ = params.getFloat("z");
+        obj_id owner = params.getObjId("owner");
+
+        if (!isIdValid(owner) || getOwner(self) != owner)
+        {
+            if (isIdValid(owner))
+                sendSystemMessageTestingOnly(owner, "Only the ship owner may engage the auto-pilot.");
+            return SCRIPT_CONTINUE;
+        }
+
+        if (hasObjVar(self, OV_AUTOPILOT_ACTIVE))
+        {
+            removeObjVar(self, OV_AUTOPILOT_ROOT);
+            broadcastToShip(self, "\\#00ccff[Navicomputer]: Previous auto-pilot course cancelled. Recalculating...");
+        }
+
+        float terrainHeight = getHeightAtLocation(targetX, targetZ);
+        float cruiseAlt = terrainHeight + AUTOPILOT_CRUISE_ALT;
+
+        setObjVar(self, OV_AUTOPILOT_ACTIVE, true);
+        setObjVar(self, OV_AUTOPILOT_TARGET_X, targetX);
+        setObjVar(self, OV_AUTOPILOT_TARGET_Z, targetZ);
+        setObjVar(self, OV_AUTOPILOT_OWNER, owner);
+        setObjVar(self, OV_AUTOPILOT_TICKS, 0);
+
+        location shipLoc = getLocation(self);
+        float dx = targetX - shipLoc.x;
+        float dz = targetZ - shipLoc.z;
+        float dist = (float) StrictMath.sqrt(dx * dx + dz * dz);
+        float bearing = getDirectionBearing(dx, dz);
+        String cardinal = getBearingCardinal(bearing);
+        float eta = dist / AUTOPILOT_SPEED;
+        int etaMin = (int)(eta / 60.0f);
+        int etaSec = (int)(eta % 60.0f);
+
+        broadcastToShip(self, " ");
+        broadcastToShip(self, "\\#00ccff========================================");
+        broadcastToShip(self, "\\#00ccff[Navicomputer]: Auto-Pilot coordinates locked [" + formatCoord(targetX) + ", " + formatCoord(cruiseAlt) + ", " + formatCoord(targetZ) + "]");
+        broadcastToShip(self, "\\#00ccff========================================");
+        broadcastToShip(self, " ");
+        broadcastToShip(self, "\\#aaddff  Bearing: " + formatCoord(bearing) + "\\#778899 deg \\#aaddff(" + cardinal + ")");
+        broadcastToShip(self, "\\#aaddff  Distance: " + formatCoord(dist) + "m");
+        broadcastToShip(self, "\\#aaddff  Cruise Altitude: " + formatCoord(cruiseAlt) + "m");
+        if (etaMin > 0)
+            broadcastToShip(self, "\\#aaddff  ETA: ~" + etaMin + " min " + etaSec + " sec");
+        else
+            broadcastToShip(self, "\\#aaddff  ETA: ~" + etaSec + " sec");
+        broadcastToShip(self, " ");
+        broadcastToShip(self, "\\#88bbdd  \"All hands, the captain has engaged auto-pilot.");
+        broadcastToShip(self, "\\#88bbdd   You are free to move about the cabin.\"");
+        broadcastToShip(self, " ");
+
+        messageTo(self, "shipAutoPilotTick", null, AUTOPILOT_TICK_RATE, false);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int shipAutoPilotTick(obj_id self, dictionary params) throws InterruptedException
+    {
+        if (!hasObjVar(self, OV_AUTOPILOT_ACTIVE))
+            return SCRIPT_CONTINUE;
+
+        if (!isAtmosphericFlightScene())
+        {
+            shipAutoPilotCancelInternal(self, "Auto-pilot disengaged: no longer in atmospheric flight.");
+            return SCRIPT_CONTINUE;
+        }
+
+        obj_id pilot = getPilotId(self);
+        if (isIdValid(pilot))
+        {
+            shipAutoPilotCancelInternal(self, "Auto-pilot disengaged: a pilot has taken the helm.");
+            return SCRIPT_CONTINUE;
+        }
+
+        float targetX = getFloatObjVar(self, OV_AUTOPILOT_TARGET_X);
+        float targetZ = getFloatObjVar(self, OV_AUTOPILOT_TARGET_Z);
+        int ticks = hasObjVar(self, OV_AUTOPILOT_TICKS) ? getIntObjVar(self, OV_AUTOPILOT_TICKS) : 0;
+        ticks++;
+        setObjVar(self, OV_AUTOPILOT_TICKS, ticks);
+
+        location shipLoc = getLocation(self);
+        float dx = targetX - shipLoc.x;
+        float dz = targetZ - shipLoc.z;
+        float horizDist = (float) StrictMath.sqrt(dx * dx + dz * dz);
+
+        if (ticks % AUTOPILOT_STATUS_INTERVAL == 0 && horizDist > AUTOPILOT_ARRIVAL_DIST)
+        {
+            float eta = horizDist / AUTOPILOT_SPEED;
+            int etaMin = (int)(eta / 60.0f);
+            int etaSec = (int)(eta % 60.0f);
+            float bearing = getDirectionBearing(dx, dz);
+            String cardinal = getBearingCardinal(bearing);
+            String etaStr = (etaMin > 0) ? ("~" + etaMin + " min " + etaSec + " sec") : ("~" + etaSec + " sec");
+            broadcastToShip(self, "\\#778899[Navicomputer]: " + formatCoord(horizDist) + "m remaining | Bearing " + formatCoord(bearing) + " deg (" + cardinal + ") | ETA " + etaStr + " | Alt " + formatCoord(shipLoc.y) + "m");
+        }
+
+        if (horizDist <= AUTOPILOT_ARRIVAL_DIST)
+        {
+            float terrainH = getHeightAtLocation(targetX, targetZ);
+            location finalLoc = new location(targetX, terrainH + AUTOPILOT_CRUISE_ALT, targetZ, shipLoc.area, null);
+            setLocation(self, finalLoc);
+
+            broadcastToShip(self, " ");
+            broadcastToShip(self, "\\#00ff88========================================");
+            broadcastToShip(self, "\\#00ff88[Navicomputer]: Destination reached.");
+            broadcastToShip(self, "\\#00ff88========================================");
+            broadcastToShip(self, " ");
+            broadcastToShip(self, "\\#88ddaa  Coordinates: [" + formatCoord(targetX) + ", " + formatCoord(finalLoc.y) + ", " + formatCoord(targetZ) + "]");
+            broadcastToShip(self, "\\#88ddaa  \"We have arrived. Auto-pilot disengaged.\"");
+            broadcastToShip(self, " ");
+
+            removeObjVar(self, OV_AUTOPILOT_ROOT);
+            return SCRIPT_CONTINUE;
+        }
+
+        float moveStep = AUTOPILOT_SPEED * AUTOPILOT_TICK_RATE;
+        if (moveStep > horizDist)
+            moveStep = horizDist;
+
+        float dirX = dx / horizDist;
+        float dirZ = dz / horizDist;
+
+        float newX = shipLoc.x + dirX * moveStep;
+        float newZ = shipLoc.z + dirZ * moveStep;
+
+        float terrainH = getHeightAtLocation(newX, newZ);
+        float desiredY = terrainH + AUTOPILOT_CRUISE_ALT;
+
+        float currentY = shipLoc.y;
+        float altDelta = desiredY - currentY;
+        float maxClimb = AUTOPILOT_CLIMB_RATE * AUTOPILOT_TICK_RATE;
+        if (altDelta > maxClimb)
+            altDelta = maxClimb;
+        else if (altDelta < -maxClimb)
+            altDelta = -maxClimb;
+        float newY = currentY + altDelta;
+
+        location newLoc = new location(newX, newY, newZ, shipLoc.area, null);
+        setLocation(self, newLoc);
+
+        messageTo(self, "shipAutoPilotTick", null, AUTOPILOT_TICK_RATE, false);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int shipAutoPilotCancel(obj_id self, dictionary params) throws InterruptedException
+    {
+        if (!hasObjVar(self, OV_AUTOPILOT_ACTIVE))
+            return SCRIPT_CONTINUE;
+        shipAutoPilotCancelInternal(self, null);
+        return SCRIPT_CONTINUE;
+    }
+
+    private void shipAutoPilotCancelInternal(obj_id ship, String reason) throws InterruptedException
+    {
+        removeObjVar(ship, OV_AUTOPILOT_ROOT);
+
+        broadcastToShip(ship, " ");
+        broadcastToShip(ship, "\\#ffaa44========================================");
+        if (reason != null && reason.length() > 0)
+            broadcastToShip(ship, "\\#ffaa44[Navicomputer]: " + reason);
+        else
+            broadcastToShip(ship, "\\#ffaa44[Navicomputer]: Auto-pilot disengaged by the captain.");
+        broadcastToShip(ship, "\\#ffaa44========================================");
+        broadcastToShip(ship, " ");
+        broadcastToShip(ship, "\\#ddbb88  \"Attention passengers, the captain has taken manual control.");
+        broadcastToShip(ship, "\\#ddbb88   Please remain seated until further notice.\"");
+        broadcastToShip(ship, " ");
+    }
+
+    public boolean isShipAutoPilotActive(obj_id ship) throws InterruptedException
+    {
+        return hasObjVar(ship, OV_AUTOPILOT_ACTIVE);
+    }
 }

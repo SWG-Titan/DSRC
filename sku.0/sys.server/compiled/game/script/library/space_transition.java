@@ -548,6 +548,7 @@ public class space_transition extends script.base_script
             return;
         }
         removeObjVar(ship, "space.altitude");
+        removeObjVar(ship, "space.autopilot");
         if (hasScript(ship, "space.ship.ship_atmospheric_boarding"))
             detachScript(ship, "space.ship.ship_atmospheric_boarding");
         boolean inSpace = isSpaceScene();

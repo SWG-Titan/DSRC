@@ -17,6 +17,7 @@ package script.player;/*
 import script.combat_engine;
 import script.dictionary;
 import script.library.ai_lib;
+import script.library.space_transition;
 import script.library.sui;
 import script.library.vehicle;
 import script.location;
@@ -277,6 +278,25 @@ public class player_vehicle extends script.base_script
 
     public int handleAutoPilotWaypoint(obj_id self, dictionary params) throws InterruptedException
     {
+        float x = params.getFloat("x");
+        float z = params.getFloat("z");
+
+        obj_id containingShip = space_transition.getContainingShip(self);
+        if (isIdValid(containingShip) && space_transition.isAtmosphericFlightScene())
+        {
+            if (getOwner(containingShip) != self)
+            {
+                sendSystemMessageTestingOnly(self, "Only the ship owner may engage the auto-pilot.");
+                return SCRIPT_CONTINUE;
+            }
+            dictionary wpParams = new dictionary();
+            wpParams.put("x", x);
+            wpParams.put("z", z);
+            wpParams.put("owner", self);
+            messageTo(containingShip, "shipAutoPilotEngage", wpParams, 0, false);
+            return SCRIPT_CONTINUE;
+        }
+
         obj_id vehicleObj = getMountId(self);
         if (!isIdValid(vehicleObj) || getState(self, STATE_RIDING_MOUNT) != 1)
             return SCRIPT_CONTINUE;
@@ -285,8 +305,6 @@ public class player_vehicle extends script.base_script
             sendSystemMessageTestingOnly(self, "You must be in skyway mode to use auto-pilot.");
             return SCRIPT_CONTINUE;
         }
-        float x = params.getFloat("x");
-        float z = params.getFloat("z");
         dictionary wpParams = new dictionary();
         wpParams.put("x", x);
         wpParams.put("z", z);
@@ -305,6 +323,14 @@ public class player_vehicle extends script.base_script
 
     public int onAutoPilotCancel(obj_id self, obj_id target, String params, float defaultTime) throws InterruptedException
     {
+        obj_id containingShip = space_transition.getContainingShip(self);
+        if (isIdValid(containingShip) && space_transition.isAtmosphericFlightScene())
+        {
+            if (getOwner(containingShip) == self)
+                messageTo(containingShip, "shipAutoPilotCancel", null, 0, false);
+            return SCRIPT_CONTINUE;
+        }
+
         obj_id vehicleObj = getMountId(self);
         if (!isIdValid(vehicleObj) || getState(self, STATE_RIDING_MOUNT) != 1)
             return SCRIPT_CONTINUE;
