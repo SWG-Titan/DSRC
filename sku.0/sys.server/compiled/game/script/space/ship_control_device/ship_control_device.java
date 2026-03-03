@@ -8,9 +8,12 @@ public class ship_control_device extends script.base_script
     public ship_control_device()
     {
     }
-    public static final string_id RENAME_SHIP = new string_id("sui", "rename_ship");
-    public static final string_id PACK_SHIP = new string_id("sui", "pack_ship");
-    public static final string_id LAND_SHIP = new string_id("space/space_interaction", "land_ship");
+    public static final string_id RENAME_SHIP = string_id.unlocalized("Change Call Sign");
+    public static final string_id PACK_SHIP = string_id.unlocalized("Pack Ship");
+    public static final string_id LAND_SHIP = string_id.unlocalized("Land Ship");
+    public static final string_id SID_ATMOSPHERIC_FLIGHT = string_id.unlocalized("Atmospheric Flight");
+    public static final string_id SID_LAUNCH = string_id.unlocalized("Launch Ship");
+    public static final string_id SID_REPAIR_GM = string_id.unlocalized("Repair (GM)");
     public static final string_id PROMPT1 = new string_id("sui", "rename_ship_text");
     public static final String[] ignoreRules = new String[]
     {
@@ -87,17 +90,6 @@ public class ship_control_device extends script.base_script
             {
                 mi.addRootMenu(menu_info_types.SERVER_MENU2, PACK_SHIP);
             }
-            String strChassisType = getShipChassisType(objShip);
-            if (strChassisType.equals("player_sorosuub_space_yacht"))
-            {
-                menu_info_data data = mi.getMenuItemByType(menu_info_types.ITEM_USE);
-                string_id strSpam = new string_id("space/space_interaction", "repair");
-                mi.addRootMenu(menu_info_types.ITEM_USE, strSpam);
-            }
-            else if (!isSpaceScene() && space_transition.isAtmosphericFlightScene())
-            {
-                mi.addRootMenu(menu_info_types.ITEM_USE, string_id.unlocalized("Launch / Land"));
-            }
             if (isShipSlotInstalled(objShip, ship_chassis_slot_type.SCST_cargo_hold))
             {
                 string_id strSpam = new string_id("space/space_interaction", "view");
@@ -107,9 +99,18 @@ public class ship_control_device extends script.base_script
             }
         }
         obj_id unpackedShip = space_transition.getUnpackedShipForShipControlDevice(self, player);
-        if (isIdValid(unpackedShip) && !isSpaceScene() && space_transition.isAtmosphericFlightScene())
+        boolean hasLaunch = isIdValid(objShip) && !isSpaceScene() && space_transition.isAtmosphericFlightScene();
+        boolean hasLand = isIdValid(unpackedShip) && !isSpaceScene() && space_transition.isAtmosphericFlightScene();
+        boolean hasRepairGM = isIdValid(objShip) && getShipChassisType(objShip).equals("player_sorosuub_space_yacht") && isGod(player);
+        if (hasLaunch || hasLand || hasRepairGM)
         {
-            mi.addRootMenu(menu_info_types.SERVER_MENU5, LAND_SHIP);
+            int atmRoot = mi.addRootMenu(menu_info_types.SERVER_MENU5, SID_ATMOSPHERIC_FLIGHT);
+            if (hasLaunch)
+                mi.addSubMenu(atmRoot, menu_info_types.SERVER_MENU6, SID_LAUNCH);
+            if (hasLand)
+                mi.addSubMenu(atmRoot, menu_info_types.SERVER_MENU7, LAND_SHIP);
+            if (hasRepairGM)
+                mi.addSubMenu(atmRoot, menu_info_types.SERVER_MENU8, SID_REPAIR_GM);
         }
         return SCRIPT_CONTINUE;
     }
@@ -119,37 +120,27 @@ public class ship_control_device extends script.base_script
         {
             return SCRIPT_CONTINUE;
         }
-        if (item == menu_info_types.ITEM_USE)
+        if (item == menu_info_types.SERVER_MENU6)
         {
             obj_id objShip = space_transition.getShipFromShipControlDevice(self);
-            if (isIdValid(objShip))
+            if (!isIdValid(objShip))
+                return SCRIPT_CONTINUE;
+            if (!space_transition.isAtmosphericFlightScene())
             {
-                String strChassisType = getShipChassisType(objShip);
-                if (strChassisType.equals("player_sorosuub_space_yacht"))
-                {
-                    string_id strSpam = new string_id("space/space_interaction", "complete_repair");
-                    sendSystemMessage(player, strSpam);
-                    space_crafting.repairDamage(player, objShip, 1.0f);
-                }
-                else if (!isSpaceScene())
-                {
-                    if (!space_transition.isAtmosphericFlightScene())
-                    {
-                        sendSystemMessage(player, new string_id("space/space_interaction", "no_atmospheric_flight"));
-                        return SCRIPT_CONTINUE;
-                    }
-                    if (ai_lib.isInCombat(player))
-                    {
-                        sendSystemMessage(player, new string_id("travel", "not_in_combat"));
-                        return SCRIPT_CONTINUE;
-                    }
-                    setObjVar(player, "space.launch.ship", objShip);
-                    setObjVar(player, "space.launch.scd", self);
-                    space_transition.handlePotentialSceneChange(player);
-                }
+                sendSystemMessage(player, new string_id("space/space_interaction", "no_atmospheric_flight"));
+                return SCRIPT_CONTINUE;
             }
+            if (ai_lib.isInCombat(player))
+            {
+                sendSystemMessage(player, new string_id("travel", "not_in_combat"));
+                return SCRIPT_CONTINUE;
+            }
+            setObjVar(player, "space.launch.ship", objShip);
+            setObjVar(player, "space.launch.scd", self);
+            space_transition.handlePotentialSceneChange(player);
+            return SCRIPT_CONTINUE;
         }
-        if (item == menu_info_types.SERVER_MENU5)
+        if (item == menu_info_types.SERVER_MENU7)
         {
             obj_id unpackedShip = space_transition.getUnpackedShipForShipControlDevice(self, player);
             if (!isIdValid(unpackedShip))
@@ -168,11 +159,19 @@ public class ship_control_device extends script.base_script
                 return SCRIPT_CONTINUE;
             }
             if (getOwner(unpackedShip) != player)
-            {
                 return SCRIPT_CONTINUE;
-            }
             space_transition.packShip(unpackedShip);
             sendSystemMessage(player, new string_id("space/space_interaction", "ship_landed"));
+            return SCRIPT_CONTINUE;
+        }
+        if (item == menu_info_types.SERVER_MENU8)
+        {
+            obj_id objShip = space_transition.getShipFromShipControlDevice(self);
+            if (!isIdValid(objShip) || !getShipChassisType(objShip).equals("player_sorosuub_space_yacht") || !isGod(player))
+                return SCRIPT_CONTINUE;
+            string_id strSpam = new string_id("space/space_interaction", "complete_repair");
+            sendSystemMessage(player, strSpam);
+            space_crafting.repairDamage(player, objShip, 1.0f);
             return SCRIPT_CONTINUE;
         }
         if (item == menu_info_types.SERVER_MENU1)
