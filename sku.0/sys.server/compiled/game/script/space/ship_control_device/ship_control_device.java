@@ -99,8 +99,11 @@ public class ship_control_device extends script.base_script
             }
         }
         obj_id unpackedShip = space_transition.getUnpackedShipForShipControlDevice(self, player);
-        boolean hasLaunch = isIdValid(objShip) && !isSpaceScene() && space_transition.isAtmosphericFlightScene();
-        boolean hasLand = isIdValid(unpackedShip) && !isSpaceScene() && space_transition.isAtmosphericFlightScene();
+        boolean isAtmo = !isSpaceScene() && space_transition.isAtmosphericFlightScene();
+        obj_id currentShip = space_transition.getContainingShip(player);
+        boolean playerInAnotherShip = isIdValid(currentShip) && currentShip != objShip;
+        boolean hasLaunch = isIdValid(objShip) && isAtmo && !playerInAnotherShip;
+        boolean hasLand = isIdValid(unpackedShip) && isAtmo && !playerInAnotherShip;
         boolean hasRepairGM = isIdValid(objShip) && getShipChassisType(objShip).equals("player_sorosuub_space_yacht") && isGod(player);
         if (hasLaunch || hasLand || hasRepairGM)
         {
