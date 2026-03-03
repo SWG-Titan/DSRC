@@ -271,8 +271,11 @@ public class space_transition extends script.base_script
             if (!hasObjVar(scd, "ship"))
                 continue;
             obj_id ship = getObjIdObjVar(scd, "ship");
-            if (isIdValid(ship) && exists(ship))
-                return ship;
+            if (!isIdValid(ship) || !exists(ship))
+                continue;
+            if (hasObjVar(ship, "space.packPending"))
+                continue;
+            return ship;
         }
         return null;
     }
@@ -635,6 +638,9 @@ public class space_transition extends script.base_script
         }
         if (isAtmosphericFlightScene())
         {
+            setObjVar(ship, "space.packPending", true);
+            if (isIdValid(owner))
+                dirtyAllShipControlDevices(owner);
             messageTo(ship, "delayedPackShipFinalize", null, 3.0f, false);
             return;
         }
@@ -642,6 +648,7 @@ public class space_transition extends script.base_script
     }
     public static void packShipFinalize(obj_id ship) throws InterruptedException
     {
+        removeObjVar(ship, "space.packPending");
         obj_id owner = getOwner(ship);
         if (isIdValid(owner))
         {
