@@ -95,8 +95,7 @@ public class ship_control_device extends script.base_script
             }
             else if (!isSpaceScene() && space_transition.isAtmosphericFlightScene())
             {
-                string_id strLaunch = new string_id("space/space_interaction", "launch");
-                mi.addRootMenu(menu_info_types.ITEM_USE, strLaunch);
+                mi.addRootMenu(menu_info_types.ITEM_USE, string_id.unlocalized("Launch / Land"));
             }
             if (isShipSlotInstalled(objShip, ship_chassis_slot_type.SCST_cargo_hold))
             {
@@ -131,6 +130,11 @@ public class ship_control_device extends script.base_script
                     if (!space_transition.isAtmosphericFlightScene())
                     {
                         sendSystemMessage(player, new string_id("space/space_interaction", "no_atmospheric_flight"));
+                        return SCRIPT_CONTINUE;
+                    }
+                    if (ai_lib.isInCombat(player))
+                    {
+                        sendSystemMessage(player, new string_id("travel", "not_in_combat"));
                         return SCRIPT_CONTINUE;
                     }
                     setObjVar(player, "space.launch.ship", objShip);

@@ -1568,11 +1568,25 @@ public class space_combat extends script.base_script
         clearHyperspace(objShip);
         if (objPlayers != null)
         {
+            boolean atmosphericDeath = space_transition.isAtmosphericFlightScene();
             for (Object objPlayer : objPlayers) {
                 groundquests.sendSignal(((obj_id) objPlayer), "smugglerEnemyIncap");
                 string_id strSpam = new string_id("space/space_interaction", "your_ship_esploded");
                 sendSystemMessage(((obj_id) objPlayer), strSpam);
                 CustomerServiceLog("space_death", "Wounding " + objPlayer + " because " + objShip + " exploded", ((obj_id) objPlayer));
+                if (atmosphericDeath)
+                {
+                    Vector facilityList = cloninglib.getAvailableCloningFacilities(((obj_id) objPlayer));
+                    if (facilityList != null && facilityList.size() > 0)
+                    {
+                        dictionary facilityData = (dictionary) facilityList.get(0);
+                        location spawnLoc = facilityData.getLocation("spawnLoc");
+                        if (spawnLoc != null)
+                        {
+                            warpPlayer(((obj_id) objPlayer), spawnLoc.area, spawnLoc.x, spawnLoc.y, spawnLoc.z, spawnLoc.cell, spawnLoc.x, spawnLoc.y, spawnLoc.z);
+                        }
+                    }
+                }
                 healing.healClone(((obj_id) objPlayer), false);
             }
         }
@@ -1587,6 +1601,11 @@ public class space_combat extends script.base_script
         }
         clearDeathFlags(objShip);
         clearCondition(objShip, CONDITION_EJECT);
+        if (space_transition.isAtmosphericFlightScene())
+        {
+            space_transition.packShip(objShip);
+            return;
+        }
         if (space_battlefield.isInBattlefield(objShip))
         {
             CustomerServiceLog("battlefield", "Battlefield death for " + objShip + " removing  them from " + getLocation(objShip), getOwner(objShip));

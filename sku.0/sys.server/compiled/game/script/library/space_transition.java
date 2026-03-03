@@ -617,7 +617,12 @@ public class space_transition extends script.base_script
         if (isIdValid(shipControlDevice) && isIdValid(ship))
         {
             setShipName(ship, player, shipControlDevice);
-            setLocation(ship, getLocation(player));
+            location shipLoc = getLocation(player);
+            if (isAtmosphericFlightScene())
+            {
+                shipLoc.y += 200.0f;
+            }
+            setLocation(ship, shipLoc);
             setObjVar(shipControlDevice, "ship", ship);
             setObjVar(ship, "shipControlDevice", shipControlDevice);
             obj_id pilotSlotObject = findPilotSlotObjectForShip(player, ship);
