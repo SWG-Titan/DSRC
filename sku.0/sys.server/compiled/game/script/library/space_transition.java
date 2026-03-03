@@ -1389,7 +1389,14 @@ public class space_transition extends script.base_script
         float theta = rand() * (2.0f * (float)Math.PI);
         groundLoc.x += 3.0f * (float)StrictMath.cos(theta);
         groundLoc.z += 3.0f * (float)StrictMath.sin(theta);
-        warpPlayer(player, groundLoc.area, groundLoc.x, groundLoc.y, groundLoc.z, null, groundLoc.x, groundLoc.y, groundLoc.z, null, false);
+        if (isAtmosphericFlightScene())
+        {
+            setLocation(player, groundLoc);
+        }
+        else
+        {
+            warpPlayer(player, groundLoc.area, groundLoc.x, groundLoc.y, groundLoc.z, null, groundLoc.x, groundLoc.y, groundLoc.z, null, false);
+        }
     }
     public static boolean boardShipFromGround(obj_id player, obj_id ship) throws InterruptedException
     {

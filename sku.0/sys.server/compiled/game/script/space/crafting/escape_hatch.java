@@ -34,18 +34,18 @@ public class escape_hatch extends script.base_script
 
             if (!space_transition.isAtmosphericFlightScene())
             {
-                sendSystemMessage(objPlayer, new string_id("space/space_interaction", "no_atmospheric_flight"));
+                sendSystemMessageTestingOnly(objPlayer, "You can only disembark during atmospheric flight.");
                 return SCRIPT_CONTINUE;
             }
 
             obj_id pilot = getPilotId(objShip);
             if (isIdValid(pilot))
             {
-                sendSystemMessage(objPlayer, new string_id("space/space_interaction", "ship_in_flight"));
+                sendSystemMessageTestingOnly(objPlayer, "You cannot disembark while the ship is being piloted.");
                 return SCRIPT_CONTINUE;
             }
 
-            sendSystemMessage(objPlayer, new string_id("space/space_interaction", "disembarking"));
+            sendSystemMessageTestingOnly(objPlayer, "Disembarking through the boarding ramp...");
             space_transition.disembarkShip(objPlayer, objShip);
             return SCRIPT_CONTINUE;
         }
