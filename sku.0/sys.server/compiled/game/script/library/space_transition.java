@@ -1407,7 +1407,7 @@ public class space_transition extends script.base_script
         String[] bannedList = permissionsGetBanned(ship);
         if (bannedList != null)
         {
-            String playerName = getFirstName(getName(player)).toLowerCase();
+            String playerName = getFirstName(player);
             for (String banned : bannedList)
             {
                 if (banned.toLowerCase().equals(playerName))
@@ -1426,7 +1426,7 @@ public class space_transition extends script.base_script
                 boolean found = false;
                 if (allowedList != null)
                 {
-                    String playerName = getFirstName(getName(player)).toLowerCase();
+                    String playerName = getFirstName(player);
                     for (String allowed : allowedList)
                     {
                         if (allowed.toLowerCase().equals(playerName))

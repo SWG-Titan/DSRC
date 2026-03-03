@@ -1714,7 +1714,7 @@ public class qatool extends script.base_script
         }
         else if ((toLower(command)).equals("spacemobsearch"))
         {
-            if (isSpaceScene())
+            if (isSpaceScene() || isAtmosphericFlightScene())
             {
                 String argumentString = null;
                 if (st.hasMoreTokens())
