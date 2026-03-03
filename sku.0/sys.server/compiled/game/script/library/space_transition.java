@@ -797,6 +797,7 @@ public class space_transition extends script.base_script
                             if (isIdValid(cellId))
                             {
                                 permissionsMakePublic(cellId);
+                                sendDirtyCellPermissionsUpdate(cellId, player, true);
                             }
                         }
                     }
