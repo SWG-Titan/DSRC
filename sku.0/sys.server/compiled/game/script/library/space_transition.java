@@ -276,6 +276,17 @@ public class space_transition extends script.base_script
         }
         return null;
     }
+    public static void dirtyAllShipControlDevices(obj_id player) throws InterruptedException
+    {
+        obj_id[] scds = findShipControlDevicesForPlayer(player);
+        if (scds == null)
+            return;
+        for (obj_id scd : scds)
+        {
+            if (isIdValid(scd))
+                sendDirtyObjectMenuNotification(scd);
+        }
+    }
     public static void launchToAtmosphere(obj_id player, obj_id shipControlDevice) throws InterruptedException
     {
         if (!isAtmosphericFlightScene())
@@ -666,6 +677,7 @@ public class space_transition extends script.base_script
                         }
                     }
                 }
+                dirtyAllShipControlDevices(owner);
                 return;
             }
         }
@@ -841,6 +853,7 @@ public class space_transition extends script.base_script
                     messageTo(ship, "checkAtmosphericAltitude", null, 2.0f, false);
                     if (!hasScript(ship, "space.ship.ship_atmospheric_boarding"))
                         attachScript(ship, "space.ship.ship_atmospheric_boarding");
+                    dirtyAllShipControlDevices(player);
                 }
                 LOG("space", "AOK");
                 return true;
