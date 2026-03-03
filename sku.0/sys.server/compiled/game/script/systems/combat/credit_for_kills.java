@@ -24,6 +24,28 @@ public class credit_for_kills extends script.base_script
         xp.cleanupCreditForKills();
         return SCRIPT_CONTINUE;
     }
+    public int OnCreatureDamaged(obj_id self, obj_id attacker, obj_id weapon, int[] damage) throws InterruptedException
+    {
+        if (!isIdValid(attacker) || isIdValid(weapon))
+            return SCRIPT_CONTINUE;
+
+        int totalDamage = 0;
+        if (damage != null)
+        {
+            for (int i = 0; i < damage.length; i += 2)
+            {
+                if (damage[i] > 0)
+                    totalDamage += damage[i];
+            }
+        }
+
+        if (totalDamage <= 0)
+            return SCRIPT_CONTINUE;
+
+        xp.updateCombatXpList(self, attacker, xp.COMBAT_GENERAL, totalDamage);
+
+        return SCRIPT_CONTINUE;
+    }
     public int OnDeath(obj_id self, obj_id killer, obj_id corpseId) throws InterruptedException
     {
         xp.assessCombatResults(self);
