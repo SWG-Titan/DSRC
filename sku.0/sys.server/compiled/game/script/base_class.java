@@ -25918,10 +25918,10 @@ public class base_class
     {
         _setShipAggroDistance(getLongWithNull(shipId), aggroDistance);
     }
-    private static native boolean _shipSetAutopilotTarget(long shipId, float targetX, float targetZ, float cruiseAltitude);
-    public static boolean shipSetAutopilotTarget(obj_id shipId, float targetX, float targetZ, float cruiseAltitude)
+    private static native boolean _shipSetAutopilotTarget(long shipId, float targetX, float targetZ, float takeoffAlt, float landingAlt);
+    public static boolean shipSetAutopilotTarget(obj_id shipId, float targetX, float targetZ, float takeoffAlt, float landingAlt)
     {
-        return _shipSetAutopilotTarget(getLongWithNull(shipId), targetX, targetZ, cruiseAltitude);
+        return _shipSetAutopilotTarget(getLongWithNull(shipId), targetX, targetZ, takeoffAlt, landingAlt);
     }
     private static native boolean _shipClearAutopilot(long shipId);
     public static boolean shipClearAutopilot(obj_id shipId)
@@ -25932,6 +25932,11 @@ public class base_class
     public static boolean shipIsAutopilotActive(obj_id shipId)
     {
         return _shipIsAutopilotActive(getLongWithNull(shipId));
+    }
+    private static native int _shipGetAutopilotPhase(long shipId);
+    public static int shipGetAutopilotPhase(obj_id shipId)
+    {
+        return _shipGetAutopilotPhase(getLongWithNull(shipId));
     }
     private static native String _getShipComponentDebugString(long shipId, int chassisSlot);
     public static String getShipComponentDebugString(obj_id shipId, int chassisSlot)
