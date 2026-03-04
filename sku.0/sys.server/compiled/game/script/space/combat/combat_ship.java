@@ -1266,8 +1266,12 @@ public class combat_ship extends script.base_script
         obj_id owner = params.getObjId("owner");
         boolean npcControlled = params.getBoolean("npcControlled");
 
+        // Use provided altitudes for NPC shuttles, otherwise use defaults
+        float takeoffAlt = params.containsKey("takeoffAlt") ? params.getFloat("takeoffAlt") : AUTOPILOT_TAKEOFF_ALT;
+        float landingAlt = params.containsKey("landingAlt") ? params.getFloat("landingAlt") : AUTOPILOT_LANDING_ALT;
+
         if (npcControlled)
-            script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle combat_ship: shipAutoPilotEngage npcControlled=true targetX=" + targetX + " targetZ=" + targetZ);
+            script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle combat_ship: shipAutoPilotEngage npcControlled=true targetX=" + targetX + " targetZ=" + targetZ + " takeoffAlt=" + takeoffAlt + " landingAlt=" + landingAlt);
 
         if (!npcControlled && (!isIdValid(owner) || getOwner(self) != owner))
         {
@@ -1285,7 +1289,7 @@ public class combat_ship extends script.base_script
             broadcastToShip(self, "\\#00ccff[Navicomputer]: Previous auto-pilot course cancelled. Recalculating...");
         }
 
-        if (!shipSetAutopilotTarget(self, targetX, targetZ, AUTOPILOT_TAKEOFF_ALT, AUTOPILOT_LANDING_ALT))
+        if (!shipSetAutopilotTarget(self, targetX, targetZ, takeoffAlt, landingAlt))
         {
             if (npcControlled)
                 script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle combat_ship: shipSetAutopilotTarget FAILED");
@@ -1866,12 +1870,19 @@ public class combat_ship extends script.base_script
             if (landingDuration <= 0)
                 landingDuration = 60;
 
-            script_logs.logToGodsInRange(self, NPC_SHUTTLE_LOG_RANGE, "NPC Shuttle: flying to waypoint " + currentIdx + " (" + x + ", " + z + "), landing duration " + landingDuration + "s");
+            // Get terrain height at waypoint and calculate altitude relative to terrain
+            float terrainHeight = getHeightAtLocation(x, z);
+            float takeoffAlt = terrainHeight + AUTOPILOT_TAKEOFF_ALT;
+            float landingAlt = terrainHeight + AUTOPILOT_LANDING_ALT;
 
-            // Fly to this waypoint
+            script_logs.logToGodsInRange(self, NPC_SHUTTLE_LOG_RANGE, "NPC Shuttle: flying to waypoint " + currentIdx + " (" + x + ", " + z + "), terrain=" + terrainHeight + "m, takeoff=" + takeoffAlt + "m, landing=" + landingAlt + "m, landing duration " + landingDuration + "s");
+
+            // Fly to this waypoint with terrain-relative altitudes
             dictionary flyParams = new dictionary();
             flyParams.put("x", x);
             flyParams.put("z", z);
+            flyParams.put("takeoffAlt", takeoffAlt);
+            flyParams.put("landingAlt", landingAlt);
             flyParams.put("npcControlled", true);
             obj_id owner = getOwner(self);
             flyParams.put("owner", isIdValid(owner) ? owner : self);
