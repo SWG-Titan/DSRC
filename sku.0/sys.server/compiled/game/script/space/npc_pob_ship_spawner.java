@@ -14,7 +14,7 @@ public class npc_pob_ship_spawner extends script.base_script
     private static final String SHIP_TEMPLATE = "object/ship/player/player_sorosuub_space_yacht.iff";
     private static final String DATATABLE_PREFIX = "datatables/npc_shuttle/";
     private static final String DATATABLE_SUFFIX = ".iff";
-    private static final float SPAWN_ALTITUDE = 200.0f;
+    private static final float SPAWN_ALTITUDE = 500.0f;
     private static final int TICK_INTERVAL = 60;
     private static final int DEFAULT_LANDING_DURATION = 30;
 
