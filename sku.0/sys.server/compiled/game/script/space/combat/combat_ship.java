@@ -1560,11 +1560,17 @@ public class combat_ship extends script.base_script
 
     public int delayedPackShipFinalize(obj_id self, dictionary params) throws InterruptedException
     {
+        if (!hasObjVar(self, "space.packPending"))
+            return SCRIPT_CONTINUE;
+        if (getTopMostContainer(self) != self)
+            return SCRIPT_CONTINUE;
         space_transition.prepareShipForPackDpvsSafe(self);
         return SCRIPT_CONTINUE;
     }
     public int delayedPackShipFinalizePhase2(obj_id self, dictionary params) throws InterruptedException
     {
+        if (getTopMostContainer(self) != self)
+            return SCRIPT_CONTINUE;
         space_transition.packShipFinalize(self);
         return SCRIPT_CONTINUE;
     }

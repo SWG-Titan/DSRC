@@ -761,6 +761,10 @@ public class space_transition extends script.base_script
         {
             return;
         }
+        if (hasObjVar(ship, "space.packPending"))
+        {
+            return;
+        }
         if (space_dungeon.isSpaceDungeon(ship))
         {
             return;
@@ -807,7 +811,7 @@ public class space_transition extends script.base_script
                     location worldLoc = new location(shipLoc.x, terrainY, shipLoc.z, shipLoc.area, null);
                     setLocation(player, worldLoc);
                     if (isAtmosphericFlightScene())
-                        warpPlayer(player, worldLoc.area, worldLoc.x, worldLoc.y, worldLoc.z, null, worldLoc.x, worldLoc.y, worldLoc.z, null, false);
+                        warpPlayer(player, worldLoc.area, worldLoc.x, worldLoc.y, worldLoc.z, null, worldLoc.x, worldLoc.y, worldLoc.z, null, true);
                 }
             }
         }
@@ -829,6 +833,10 @@ public class space_transition extends script.base_script
     /** Moves ship far from owner so client DPVS can drop it, then schedules actual pack to avoid dpvs.dll crash. */
     public static void prepareShipForPackDpvsSafe(obj_id ship) throws InterruptedException
     {
+        if (!hasObjVar(ship, "space.packPending"))
+            return;
+        if (getTopMostContainer(ship) != ship)
+            return;
         obj_id owner = getOwner(ship);
         if (!isIdValid(owner))
         {
@@ -847,6 +855,8 @@ public class space_transition extends script.base_script
     public static void packShipFinalize(obj_id ship) throws InterruptedException
     {
         removeObjVar(ship, "space.packPending");
+        if (getTopMostContainer(ship) != ship)
+            return;
         obj_id owner = getOwner(ship);
         if (isIdValid(owner))
         {
