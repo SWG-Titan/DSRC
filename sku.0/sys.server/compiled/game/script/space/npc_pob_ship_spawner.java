@@ -155,6 +155,8 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_SHIP, ship);
                 // Set controller objvar to enable autonomous waypoint cycling in combat_ship.java
                 setObjVar(ship, "npc_pob.controller", 1);
+                // Trigger the waypoint tick on the ship
+                messageTo(ship, "npcWaypointTick", null, 0, false);
                 script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: OnAttach spawned ship " + ship + " with autonomous waypoint control");
             }
         }
@@ -179,6 +181,7 @@ public class npc_pob_ship_spawner extends script.base_script
             {
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(ship, "npc_pob.controller", 1);
+                messageTo(ship, "npcWaypointTick", null, 0, false);
                 script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: respawned missing ship " + ship);
             }
         }
@@ -217,40 +220,22 @@ public class npc_pob_ship_spawner extends script.base_script
 
     public int delayedFlyToWaypoint(obj_id self, dictionary params) throws InterruptedException
     {
-        obj_id ship = params.getObjId("ship");
-        int index = params.getInt("index");
-        if (!isIdValid(ship) || !exists(ship))
-            return SCRIPT_CONTINUE;
-        script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: delayedFlyToWaypoint firing, flying to waypoint " + index);
-        flyToWaypoint(self, ship, index);
+        // Deprecated - ship now manages its own waypoints via npcWaypointTick
         return SCRIPT_CONTINUE;
     }
 
     private void scheduleFlyToWaypoint(obj_id self, obj_id ship, int index) throws InterruptedException
     {
-        dictionary params = new dictionary();
-        params.put("ship", ship);
-        params.put("index", index);
-        messageTo(self, "delayedFlyToWaypoint", params, FLY_TO_DELAY, false);
+        // Deprecated - ship now manages its own waypoints via npcWaypointTick
     }
 
     private void flyToWaypoint(obj_id self, obj_id ship, int index) throws InterruptedException
     {
-        String dtPath = getDatatablePathForScene(getLocation(ship).area);
-        flyToWaypointWithPath(self, ship, dtPath, index);
+        // Deprecated - ship now manages its own waypoints via npcWaypointTick
     }
 
     private void flyToWaypointWithPath(obj_id self, obj_id ship, String dtPath, int index) throws InterruptedException
     {
-        int numWaypoints = getNumWaypointsForPath(dtPath);
-        if (index < 0 || index >= numWaypoints)
-            return;
-        float x = dataTableGetFloat(dtPath, index, "x");
-        float z = dataTableGetFloat(dtPath, index, "z");
-        dictionary params = new dictionary();
-        params.put("x", x);
-        params.put("z", z);
-        messageTo(ship, "npcPobFlyTo", params, 0, false);
-        script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: sent npcPobFlyTo waypoint " + index + " (" + x + ", " + z + ")");
+        // Deprecated - ship now manages its own waypoints via npcWaypointTick
     }
 }
