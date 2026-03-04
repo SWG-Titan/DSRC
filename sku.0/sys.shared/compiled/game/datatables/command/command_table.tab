@@ -912,6 +912,8 @@ gcwscore	commandClicky	normal	cmdGcwScore				1		1	1	1	1	1	1	1	1	1	0	0	1	1	1	1	0	
 gcwSkirmishCityHelp	commandClicky	normal	cmdGcwSkirmishCityHelp				1		1	1	1	1	1	1	1	1	1	0	0	1	1	1	1	0	0	0	0	1	1	1	0	1	1	1	0	0	0	0	1	1	1	0	1	1	1	1	1	1	0	1									1		1	1	1	1	1									none		3						gcw	0				0	0	0
 gcwStatus		immediate	gcwStatus				0																								0	1												1																																						gcw	0
 generateCraftedItem		immediate	cmdGenerateCraftedItem					admin																	1	1					0	1												1															1													gm.cmd		optional							40	csr	0
+gmCraftSchematic		immediate	cmdGmCraftSchematic					admin																	1	1					0	1												1															1													player.player_titan		optional							40	csr	0
+gmCrateSchematic		immediate	cmdGmCrateSchematic					admin																	1	1					0	1												1															1													player.player_titan		optional							40	csr	0
 getAccountInfo		immediate		failAdmin	getAccountInfo			admin																				1	1		0	1												1																														optional							40	csr	0
 getAttributes		immediate			getAttributes																							1	1		0	1												1																														required					0				0
 getAttributesBatch		immediate			getAttributesBatch																							1	1		0	1												1																														none					0				0

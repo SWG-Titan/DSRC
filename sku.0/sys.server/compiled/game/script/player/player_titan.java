@@ -2197,4 +2197,75 @@ public class player_titan extends base_script
         return SCRIPT_CONTINUE;
     }
 
+    public int cmdGmCraftSchematic(obj_id self, obj_id target, String params, float defaultTime) throws InterruptedException
+    {
+        if (!isGod(self))
+            return SCRIPT_CONTINUE;
+
+        if (params == null || params.isEmpty())
+        {
+            sendSystemMessageTestingOnly(self, "[GM Craft] No schematic template provided.");
+            return SCRIPT_CONTINUE;
+        }
+
+        String schematic = params.trim();
+        obj_id inventory = utils.getInventoryContainer(self);
+        if (!isIdValid(inventory))
+        {
+            sendSystemMessageTestingOnly(self, "[GM Craft] Could not find inventory.");
+            return SCRIPT_CONTINUE;
+        }
+
+        obj_id item = makeCraftedItem(schematic, 1000.0f, inventory);
+        if (isIdValid(item))
+        {
+            sendSystemMessageTestingOnly(self, "[GM Craft] Created: " + getName(item) + " (q1000) in your inventory.");
+            CustomerServiceLog("gmCraft", "GM " + getPlayerFullName(self) + " crafted " + item + " from " + schematic + " at quality 1000.");
+        }
+        else
+        {
+            sendSystemMessageTestingOnly(self, "[GM Craft] Failed to create item from: " + schematic);
+        }
+        return SCRIPT_CONTINUE;
+    }
+
+    public int cmdGmCrateSchematic(obj_id self, obj_id target, String params, float defaultTime) throws InterruptedException
+    {
+        if (!isGod(self))
+            return SCRIPT_CONTINUE;
+
+        if (params == null || params.isEmpty())
+        {
+            sendSystemMessageTestingOnly(self, "[GM Crate] No schematic template provided.");
+            return SCRIPT_CONTINUE;
+        }
+
+        String schematic = params.trim();
+        obj_id inventory = utils.getInventoryContainer(self);
+        if (!isIdValid(inventory))
+        {
+            sendSystemMessageTestingOnly(self, "[GM Crate] Could not find inventory.");
+            return SCRIPT_CONTINUE;
+        }
+
+        obj_id prototype = makeCraftedItem(schematic, 1000.0f, inventory);
+        if (!isIdValid(prototype))
+        {
+            sendSystemMessageTestingOnly(self, "[GM Crate] Failed to create prototype from: " + schematic);
+            return SCRIPT_CONTINUE;
+        }
+
+        obj_id crate = makeIntoFactoryCrate(prototype, 100, inventory);
+        if (isIdValid(crate))
+        {
+            sendSystemMessageTestingOnly(self, "[GM Crate] Created factory crate: " + getName(crate) + " (q1000 x100) in your inventory.");
+            CustomerServiceLog("gmCraft", "GM " + getPlayerFullName(self) + " created factory crate " + crate + " from " + schematic + " at quality 1000 x100.");
+        }
+        else
+        {
+            sendSystemMessageTestingOnly(self, "[GM Crate] Failed to create factory crate. Prototype was created instead.");
+        }
+        return SCRIPT_CONTINUE;
+    }
+
 }
