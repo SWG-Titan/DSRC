@@ -21,6 +21,7 @@ public class npc_pob_ship_spawner extends script.base_script
     private static final String OBJVAR_SHIP = "npc_pob.spawner.ship";
     private static final String OBJVAR_WAYPOINT_INDEX = "npc_pob.spawner.waypointIndex";
     private static final String OBJVAR_LAST_ARRIVAL = "npc_pob.spawner.lastArrival";
+    private static final String OBJVAR_AUTOPILOT_WAS_ACTIVE = "npc_pob.spawner.autopilotWasActive";
 
     private static final float FLY_TO_DELAY = 2.0f;
 
@@ -34,16 +35,25 @@ public class npc_pob_ship_spawner extends script.base_script
 
     private String getDatatablePath(obj_id self) throws InterruptedException
     {
-        String scene = getLocation(self).area;
-        String planet = getPlanetFromScene(scene);
+        return getDatatablePathForScene(getLocation(self).area);
+    }
+
+    private String getDatatablePathForScene(String scene)
+    {
+        String planet = getPlanetFromScene(scene != null ? scene : "");
         return DATATABLE_PREFIX + planet + DATATABLE_SUFFIX;
     }
 
     private int getNumWaypoints(obj_id self) throws InterruptedException
     {
+        return getNumWaypointsForPath(getDatatablePath(self));
+    }
+
+    private int getNumWaypointsForPath(String dtPath)
+    {
         try
         {
-            return dataTableGetNumRows(getDatatablePath(self));
+            return dataTableGetNumRows(dtPath);
         }
         catch (Throwable t)
         {
@@ -56,6 +66,19 @@ public class npc_pob_ship_spawner extends script.base_script
         try
         {
             int d = dataTableGetInt(getDatatablePath(self), waypointIndex, "landingDuration");
+            return d > 0 ? d : DEFAULT_LANDING_DURATION;
+        }
+        catch (Throwable t)
+        {
+            return DEFAULT_LANDING_DURATION;
+        }
+    }
+
+    private int getLandingDurationForPath(String dtPath, int waypointIndex)
+    {
+        try
+        {
+            int d = dataTableGetInt(dtPath, waypointIndex, "landingDuration");
             return d > 0 ? d : DEFAULT_LANDING_DURATION;
         }
         catch (Throwable t)
@@ -90,6 +113,7 @@ public class npc_pob_ship_spawner extends script.base_script
             removeObjVar(self, OBJVAR_SHIP);
             removeObjVar(self, OBJVAR_WAYPOINT_INDEX);
             removeObjVar(self, OBJVAR_LAST_ARRIVAL);
+            removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
             int numWaypoints = getNumWaypoints(self);
             if (numWaypoints <= 0)
             {
@@ -102,6 +126,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
                 setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
+                removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
                 scheduleFlyToWaypoint(self, ship, 0);
                 sendSystemMessage(player, string_id.unlocalized("Shuttle reset and spawned at waypoint 0."));
             }
@@ -128,6 +153,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
                 setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
+                removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
                 scheduleFlyToWaypoint(self, ship, 0);
             }
         }
@@ -152,6 +178,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
                 setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
+                removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
                 scheduleFlyToWaypoint(self, ship, 0);
             }
         }
@@ -162,25 +189,36 @@ public class npc_pob_ship_spawner extends script.base_script
             obj_id pilot = getPilotId(ship);
             boolean hasPilot = isIdValid(pilot);
 
+            if (autopilotActive)
+                setObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE, 1);
+
             if (!autopilotActive && !hasPilot)
             {
+                boolean autopilotWasActive = hasObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
+                if (autopilotWasActive)
+                {
+                    removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
+                    setObjVar(self, OBJVAR_LAST_ARRIVAL, getGameTime());
+                }
+
                 int idx = hasObjVar(self, OBJVAR_WAYPOINT_INDEX) ? getIntObjVar(self, OBJVAR_WAYPOINT_INDEX) : 0;
                 int lastArrival = hasObjVar(self, OBJVAR_LAST_ARRIVAL) ? getIntObjVar(self, OBJVAR_LAST_ARRIVAL) : 0;
                 int now = getGameTime();
-                if (lastArrival == 0)
-                    setObjVar(self, OBJVAR_LAST_ARRIVAL, now);
-                else
+
+                if (lastArrival != 0)
                 {
-                    int landingDuration = getLandingDuration(self, idx);
+                    String dtPath = getDatatablePathForScene(getLocation(ship).area);
+                    int landingDuration = getLandingDurationForPath(dtPath, idx);
                     if (now - lastArrival >= landingDuration)
                     {
-                        int numWaypoints = getNumWaypoints(self);
+                        int numWaypoints = getNumWaypointsForPath(dtPath);
                         if (numWaypoints > 0)
                         {
                             int nextIdx = (idx + 1) % numWaypoints;
                             setObjVar(self, OBJVAR_WAYPOINT_INDEX, nextIdx);
                             setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
-                            flyToWaypoint(self, ship, nextIdx);
+                            setObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE, 1);
+                            flyToWaypointWithPath(self, ship, dtPath, nextIdx);
                         }
                     }
                 }
@@ -239,10 +277,15 @@ public class npc_pob_ship_spawner extends script.base_script
 
     private void flyToWaypoint(obj_id self, obj_id ship, int index) throws InterruptedException
     {
-        int numWaypoints = getNumWaypoints(self);
+        String dtPath = getDatatablePathForScene(getLocation(ship).area);
+        flyToWaypointWithPath(self, ship, dtPath, index);
+    }
+
+    private void flyToWaypointWithPath(obj_id self, obj_id ship, String dtPath, int index) throws InterruptedException
+    {
+        int numWaypoints = getNumWaypointsForPath(dtPath);
         if (index < 0 || index >= numWaypoints)
             return;
-        String dtPath = getDatatablePath(self);
         float x = dataTableGetFloat(dtPath, index, "x");
         float z = dataTableGetFloat(dtPath, index, "z");
         dictionary params = new dictionary();
