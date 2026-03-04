@@ -27,6 +27,10 @@ public class space_transition extends script.base_script
     public static final String OBJVAR_BOARDING_IS_PUBLIC = "boardingPermissions.isPublic";
     public static final String OBJVAR_BOARDING_ALLOWED = "boardingPermissions.allowed";
     public static final String OBJVAR_BOARDING_BANNED = "boardingPermissions.banned";
+    /** SCD stores lists as single string to avoid client crash on string-array objvars. */
+    private static final String OBJVAR_BOARDING_ALLOWED_PACKED = "boardingPermissions.allowedPacked";
+    private static final String OBJVAR_BOARDING_BANNED_PACKED = "boardingPermissions.bannedPacked";
+    private static final String BOARDING_LIST_DELIM = "\t";
     public static boolean getBoardingIsPublic(obj_id ship) throws InterruptedException
     {
         return isIdValid(ship) && hasObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC) && getIntObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC) != 0;
@@ -100,6 +104,89 @@ public class space_transition extends script.base_script
             removeObjVar(ship, OBJVAR_BOARDING_BANNED);
         else
             setObjVar(ship, OBJVAR_BOARDING_BANNED, list.toArray(new String[0]));
+    }
+    /** Copy boarding permission objvars from ship to SCD and remove from ship. Call before packing ship into SCD to avoid crash. */
+    public static void transferBoardingPermissionsToScd(obj_id ship, obj_id shipControlDevice) throws InterruptedException
+    {
+        if (!isIdValid(ship) || !isIdValid(shipControlDevice)) return;
+        if (hasObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC))
+        {
+            setObjVar(shipControlDevice, OBJVAR_BOARDING_IS_PUBLIC, getIntObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC));
+            removeObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC);
+        }
+        if (hasObjVar(ship, OBJVAR_BOARDING_ALLOWED))
+        {
+            String[] arr = getStringArrayObjVar(ship, OBJVAR_BOARDING_ALLOWED);
+            if (arr != null && arr.length > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < arr.length; i++)
+                {
+                    if (i > 0) sb.append(BOARDING_LIST_DELIM);
+                    if (arr[i] != null) sb.append(arr[i].replace(BOARDING_LIST_DELIM, " "));
+                }
+                setObjVar(shipControlDevice, OBJVAR_BOARDING_ALLOWED_PACKED, sb.toString());
+            }
+            removeObjVar(ship, OBJVAR_BOARDING_ALLOWED);
+        }
+        else if (hasObjVar(shipControlDevice, OBJVAR_BOARDING_ALLOWED))
+        {
+            removeObjVar(shipControlDevice, OBJVAR_BOARDING_ALLOWED);
+        }
+        if (hasObjVar(ship, OBJVAR_BOARDING_BANNED))
+        {
+            String[] arr = getStringArrayObjVar(ship, OBJVAR_BOARDING_BANNED);
+            if (arr != null && arr.length > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < arr.length; i++)
+                {
+                    if (i > 0) sb.append(BOARDING_LIST_DELIM);
+                    if (arr[i] != null) sb.append(arr[i].replace(BOARDING_LIST_DELIM, " "));
+                }
+                setObjVar(shipControlDevice, OBJVAR_BOARDING_BANNED_PACKED, sb.toString());
+            }
+            removeObjVar(ship, OBJVAR_BOARDING_BANNED);
+        }
+        else if (hasObjVar(shipControlDevice, OBJVAR_BOARDING_BANNED))
+        {
+            removeObjVar(shipControlDevice, OBJVAR_BOARDING_BANNED);
+        }
+    }
+    /** Copy boarding permission objvars from SCD to ship. Call after unpacking ship so terminal and boarding checks work. */
+    public static void restoreBoardingPermissionsFromScd(obj_id ship, obj_id shipControlDevice) throws InterruptedException
+    {
+        if (!isIdValid(ship) || !isIdValid(shipControlDevice)) return;
+        if (hasObjVar(shipControlDevice, OBJVAR_BOARDING_IS_PUBLIC))
+            setObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC, getIntObjVar(shipControlDevice, OBJVAR_BOARDING_IS_PUBLIC));
+        if (hasObjVar(shipControlDevice, OBJVAR_BOARDING_ALLOWED_PACKED))
+        {
+            String packed = getStringObjVar(shipControlDevice, OBJVAR_BOARDING_ALLOWED_PACKED);
+            if (packed != null && packed.length() > 0)
+            {
+                String[] arr = packed.split(java.util.regex.Pattern.quote(BOARDING_LIST_DELIM));
+                if (arr != null && arr.length > 0)
+                    setObjVar(ship, OBJVAR_BOARDING_ALLOWED, arr);
+            }
+        }
+        else if (hasObjVar(shipControlDevice, OBJVAR_BOARDING_ALLOWED))
+        {
+            setObjVar(ship, OBJVAR_BOARDING_ALLOWED, getStringArrayObjVar(shipControlDevice, OBJVAR_BOARDING_ALLOWED));
+        }
+        if (hasObjVar(shipControlDevice, OBJVAR_BOARDING_BANNED_PACKED))
+        {
+            String packed = getStringObjVar(shipControlDevice, OBJVAR_BOARDING_BANNED_PACKED);
+            if (packed != null && packed.length() > 0)
+            {
+                String[] arr = packed.split(java.util.regex.Pattern.quote(BOARDING_LIST_DELIM));
+                if (arr != null && arr.length > 0)
+                    setObjVar(ship, OBJVAR_BOARDING_BANNED, arr);
+            }
+        }
+        else if (hasObjVar(shipControlDevice, OBJVAR_BOARDING_BANNED))
+        {
+            setObjVar(ship, OBJVAR_BOARDING_BANNED, getStringArrayObjVar(shipControlDevice, OBJVAR_BOARDING_BANNED));
+        }
     }
     public static final string_id SID_PVP_NOW_OVERT = new string_id("space/space_interaction", "pvp_now_overt");
     public static final string_id SID_PVP_NOW_NEUTRAL = new string_id("space/space_interaction", "pvp_now_neutral");
@@ -748,6 +835,7 @@ public class space_transition extends script.base_script
                 }
             }
             space_pilot_command.allPurposeShipComponentReset(ship);
+            transferBoardingPermissionsToScd(ship, shipControlDevice);
             if (isIdValid(shipControlDevice) && putIn(ship, shipControlDevice))
             {
                 if (isGameObjectTypeOf(ship, GOT_ship_fighter) && space_utils.isShipWithInterior(ship))
@@ -868,6 +956,7 @@ public class space_transition extends script.base_script
             setLocation(ship, shipLoc);
             setObjVar(shipControlDevice, "ship", ship);
             setObjVar(ship, "shipControlDevice", shipControlDevice);
+            restoreBoardingPermissionsFromScd(ship, shipControlDevice);
             obj_id pilotSlotObject = findPilotSlotObjectForShip(player, ship);
             if (debugSpaceTransition)
             {
