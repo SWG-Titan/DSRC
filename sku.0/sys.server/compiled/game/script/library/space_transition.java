@@ -23,6 +23,84 @@ public class space_transition extends script.base_script
     public static final float STATION_COMM_MAX_DISTANCE = 750.0f;
     public static final String POB_SHIP_PILOT_SLOT_NAME = "ship_pilot_pob";
     public static final String SHIP_PILOT_SLOT_NAME = "ship_pilot";
+    /** Objvars on ship for boarding permissions (ships don't support engine BuildingObject/CellObject permissions). */
+    public static final String OBJVAR_BOARDING_IS_PUBLIC = "boardingPermissions.isPublic";
+    public static final String OBJVAR_BOARDING_ALLOWED = "boardingPermissions.allowed";
+    public static final String OBJVAR_BOARDING_BANNED = "boardingPermissions.banned";
+    public static boolean getBoardingIsPublic(obj_id ship) throws InterruptedException
+    {
+        return isIdValid(ship) && hasObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC) && getIntObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC) != 0;
+    }
+    public static void setBoardingIsPublic(obj_id ship, boolean isPublic) throws InterruptedException
+    {
+        if (!isIdValid(ship)) return;
+        if (isPublic)
+            setObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC, 1);
+        else
+            removeObjVar(ship, OBJVAR_BOARDING_IS_PUBLIC);
+    }
+    public static String[] getBoardingAllowed(obj_id ship) throws InterruptedException
+    {
+        if (!isIdValid(ship) || !hasObjVar(ship, OBJVAR_BOARDING_ALLOWED)) return null;
+        return getStringArrayObjVar(ship, OBJVAR_BOARDING_ALLOWED);
+    }
+    public static String[] getBoardingBanned(obj_id ship) throws InterruptedException
+    {
+        if (!isIdValid(ship) || !hasObjVar(ship, OBJVAR_BOARDING_BANNED)) return null;
+        return getStringArrayObjVar(ship, OBJVAR_BOARDING_BANNED);
+    }
+    public static void addBoardingAllowed(obj_id ship, String name) throws InterruptedException
+    {
+        if (!isIdValid(ship) || name == null || name.length() == 0) return;
+        String[] current = getBoardingAllowed(ship);
+        int len = current != null ? current.length : 0;
+        String[] next = new String[len + 1];
+        if (current != null)
+            for (int i = 0; i < len; i++) next[i] = current[i];
+        next[len] = name.trim();
+        setObjVar(ship, OBJVAR_BOARDING_ALLOWED, next);
+    }
+    public static void removeBoardingAllowed(obj_id ship, String name) throws InterruptedException
+    {
+        if (!isIdValid(ship) || name == null) return;
+        String[] current = getBoardingAllowed(ship);
+        if (current == null || current.length == 0) return;
+        java.util.ArrayList<String> list = new java.util.ArrayList<String>();
+        String n = name.trim().toLowerCase();
+        for (String s : current) {
+            if (s != null && !s.trim().toLowerCase().equals(n)) list.add(s);
+        }
+        if (list.isEmpty())
+            removeObjVar(ship, OBJVAR_BOARDING_ALLOWED);
+        else
+            setObjVar(ship, OBJVAR_BOARDING_ALLOWED, list.toArray(new String[0]));
+    }
+    public static void addBoardingBanned(obj_id ship, String name) throws InterruptedException
+    {
+        if (!isIdValid(ship) || name == null || name.length() == 0) return;
+        String[] current = getBoardingBanned(ship);
+        int len = current != null ? current.length : 0;
+        String[] next = new String[len + 1];
+        if (current != null)
+            for (int i = 0; i < len; i++) next[i] = current[i];
+        next[len] = name.trim();
+        setObjVar(ship, OBJVAR_BOARDING_BANNED, next);
+    }
+    public static void removeBoardingBanned(obj_id ship, String name) throws InterruptedException
+    {
+        if (!isIdValid(ship) || name == null) return;
+        String[] current = getBoardingBanned(ship);
+        if (current == null || current.length == 0) return;
+        java.util.ArrayList<String> list = new java.util.ArrayList<String>();
+        String n = name.trim().toLowerCase();
+        for (String s : current) {
+            if (s != null && !s.trim().toLowerCase().equals(n)) list.add(s);
+        }
+        if (list.isEmpty())
+            removeObjVar(ship, OBJVAR_BOARDING_BANNED);
+        else
+            setObjVar(ship, OBJVAR_BOARDING_BANNED, list.toArray(new String[0]));
+    }
     public static final string_id SID_PVP_NOW_OVERT = new string_id("space/space_interaction", "pvp_now_overt");
     public static final string_id SID_PVP_NOW_NEUTRAL = new string_id("space/space_interaction", "pvp_now_neutral");
     public static boolean isAtmosphericFlightAllowed(String sceneName) throws InterruptedException
@@ -1492,7 +1570,7 @@ public class space_transition extends script.base_script
             sendSystemMessage(player, string_id.unlocalized("This ship is currently in flight, it would be dangerous to try to board it."));
             return false;
         }
-        String[] bannedList = permissionsGetBanned(ship);
+        String[] bannedList = space_transition.getBoardingBanned(ship);
         if (bannedList != null)
         {
             String playerName = getFirstName(player);
@@ -1505,12 +1583,12 @@ public class space_transition extends script.base_script
                 }
             }
         }
-        if (!permissionsIsPublic(ship))
+        if (!space_transition.getBoardingIsPublic(ship))
         {
             obj_id owner = getOwner(ship);
             if (owner != player)
             {
-                String[] allowedList = permissionsGetAllowed(ship);
+                String[] allowedList = space_transition.getBoardingAllowed(ship);
                 boolean found = false;
                 if (allowedList != null)
                 {

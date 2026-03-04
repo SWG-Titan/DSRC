@@ -208,15 +208,9 @@ public class terminal_pob_ship extends script.base_script
     }
     public void showBoardingPermissionsMenu(obj_id self, obj_id player, obj_id ship) throws InterruptedException
     {
-        int oldPid = sui.getPid(player, BOARDING_PERMISSIONS_PID);
-        if (oldPid > -1)
-        {
-            forceCloseSUIPage(oldPid);
-            sui.removePid(player, BOARDING_PERMISSIONS_PID);
-        }
-        boolean isPublic = permissionsIsPublic(ship);
-        String[] allowedList = permissionsGetAllowed(ship);
-        String[] bannedList = permissionsGetBanned(ship);
+        boolean isPublic = space_transition.getBoardingIsPublic(ship);
+        String[] allowedList = space_transition.getBoardingAllowed(ship);
+        String[] bannedList = space_transition.getBoardingBanned(ship);
 
         java.util.ArrayList<String> entries = new java.util.ArrayList<String>();
         entries.add(isPublic ? "[Public Boarding: ON] - Toggle" : "[Public Boarding: OFF] - Toggle");
@@ -236,9 +230,24 @@ public class terminal_pob_ship extends script.base_script
         entries.add("Add Player to Ban List");
 
         String[] entryArray = entries.toArray(new String[0]);
+        int allowedCount = allowedList != null ? allowedList.length : 0;
+        int bannedCount = bannedList != null ? bannedList.length : 0;
         utils.setScriptVar(self, "boardingPermissions.ship", ship);
-        utils.setScriptVar(self, "boardingPermissions.allowedCount", allowedList != null ? allowedList.length : 0);
-        utils.setScriptVar(self, "boardingPermissions.bannedCount", bannedList != null ? bannedList.length : 0);
+        utils.setScriptVar(self, "boardingPermissions.allowedCount", allowedCount);
+        utils.setScriptVar(self, "boardingPermissions.bannedCount", bannedCount);
+
+        int existingPid = sui.getPid(player, BOARDING_PERMISSIONS_PID);
+        if (existingPid > -1)
+        {
+            clearSUIDataSource(existingPid, sui.LISTBOX_DATASOURCE);
+            for (int i = 0; i < entryArray.length; i++)
+            {
+                addSUIDataItem(existingPid, sui.LISTBOX_DATASOURCE, "" + i);
+                setSUIProperty(existingPid, sui.LISTBOX_DATASOURCE + "." + i, sui.PROP_TEXT, entryArray[i]);
+            }
+            flushSUIPage(existingPid);
+            return;
+        }
 
         int pid = sui.listbox(self, player, "Manage who can board your ship when parked.", sui.OK_CANCEL, "Boarding Permissions", entryArray, "handleBoardingPermissions", true, false);
         sui.setPid(player, pid, BOARDING_PERMISSIONS_PID);
@@ -248,7 +257,10 @@ public class terminal_pob_ship extends script.base_script
     {
         int btn = sui.getIntButtonPressed(params);
         if (btn == sui.BP_CANCEL)
+        {
+            sui.removePid(sui.getPlayerId(params), BOARDING_PERMISSIONS_PID);
             return SCRIPT_CONTINUE;
+        }
 
         obj_id player = sui.getPlayerId(params);
         obj_id ship = utils.getObjIdScriptVar(self, "boardingPermissions.ship");
@@ -264,11 +276,8 @@ public class terminal_pob_ship extends script.base_script
 
         if (selectedRow == 0)
         {
-            boolean isPublic = permissionsIsPublic(ship);
-            if (isPublic)
-                permissionsMakePrivate(ship);
-            else
-                permissionsMakePublic(ship);
+            boolean isPublic = space_transition.getBoardingIsPublic(ship);
+            space_transition.setBoardingIsPublic(ship, !isPublic);
             sendSystemMessage(player, string_id.unlocalized(isPublic ? "Ship boarding set to PRIVATE." : "Ship boarding set to PUBLIC."));
             showBoardingPermissionsMenu(self, player, ship);
             return SCRIPT_CONTINUE;
@@ -291,12 +300,12 @@ public class terminal_pob_ship extends script.base_script
 
         if (selectedRow >= 2 && selectedRow < addAllowedRow)
         {
-            String[] allowedList = permissionsGetAllowed(ship);
+            String[] list = space_transition.getBoardingAllowed(ship);
             int idx = selectedRow - 2;
-            if (allowedList != null && idx < allowedList.length)
+            if (list != null && idx < list.length)
             {
-                permissionsRemoveAllowed(ship, allowedList[idx]);
-                sendSystemMessage(player, string_id.unlocalized("Removed " + allowedList[idx] + " from allowed list."));
+                space_transition.removeBoardingAllowed(ship, list[idx]);
+                sendSystemMessage(player, string_id.unlocalized("Removed " + list[idx] + " from allowed list."));
             }
             showBoardingPermissionsMenu(self, player, ship);
             return SCRIPT_CONTINUE;
@@ -305,12 +314,12 @@ public class terminal_pob_ship extends script.base_script
         int bannedStart = addAllowedRow + 1;
         if (selectedRow >= bannedStart + 1 && selectedRow < addBannedRow)
         {
-            String[] bannedList = permissionsGetBanned(ship);
+            String[] list = space_transition.getBoardingBanned(ship);
             int idx = selectedRow - bannedStart - 1;
-            if (bannedList != null && idx < bannedList.length)
+            if (list != null && idx < list.length)
             {
-                permissionsRemoveBanned(ship, bannedList[idx]);
-                sendSystemMessage(player, string_id.unlocalized("Removed " + bannedList[idx] + " from ban list."));
+                space_transition.removeBoardingBanned(ship, list[idx]);
+                sendSystemMessage(player, string_id.unlocalized("Removed " + list[idx] + " from ban list."));
             }
             showBoardingPermissionsMenu(self, player, ship);
             return SCRIPT_CONTINUE;
@@ -332,7 +341,7 @@ public class terminal_pob_ship extends script.base_script
         String name = sui.getInputBoxText(params);
         if (name != null && name.length() > 0)
         {
-            permissionsAddAllowed(ship, name);
+            space_transition.addBoardingAllowed(ship, name);
             sendSystemMessage(player, string_id.unlocalized(name + " added to allowed boarding list."));
         }
         showBoardingPermissionsMenu(self, player, ship);
@@ -352,7 +361,7 @@ public class terminal_pob_ship extends script.base_script
         String name = sui.getInputBoxText(params);
         if (name != null && name.length() > 0)
         {
-            permissionsAddBanned(ship, name);
+            space_transition.addBoardingBanned(ship, name);
             sendSystemMessage(player, string_id.unlocalized(name + " added to boarding ban list."));
         }
         showBoardingPermissionsMenu(self, player, ship);
