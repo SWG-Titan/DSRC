@@ -18,6 +18,16 @@ public class combat_ship extends script.base_script
     public static final int SHIP_FIRED_SKILLMOD_PENALTY_TIME = 5;
     public static final float STUNNED_COMPONENT_LOOP_TIME = 5.0f;
     public static final String NO_DAMAGE_WARN = "clienteffect/cbt_friendlyfire_warn.cef";
+
+    // NPC POB Ship waypoint cycling constants
+    public static final String NPC_CONTROLLER_OBJVAR = "npc_pob.controller";
+    public static final String NPC_CURRENT_WAYPOINT_INDEX = "npc_pob.currentWaypointIndex";
+    public static final String NPC_LANDING_END_TIME = "npc_pob.landingEndTime";
+    public static final String NPC_DATATABLE_PREFIX = "datatables/npc_shuttle/";
+    public static final String NPC_DATATABLE_SUFFIX = ".iff";
+    public static final int NPC_WAYPOINT_CHECK_INTERVAL = 2;
+    private static final float NPC_SHUTTLE_LOG_RANGE = 2000.0f;
+
     public int OnAttach(obj_id self) throws InterruptedException
     {
         int[] intSlots = getShipChassisSlots(self);
@@ -26,6 +36,13 @@ public class combat_ship extends script.base_script
             setShipComponentEfficiencyGeneral(self, intSlots[intI], 1.0f);
             setShipComponentEfficiencyEnergy(self, intSlots[intI], 1.0f);
         }
+
+        // Check if this is an NPC-controlled ship and start waypoint management
+        if (hasObjVar(self, NPC_CONTROLLER_OBJVAR))
+        {
+            messageTo(self, "npcWaypointTick", null, NPC_WAYPOINT_CHECK_INTERVAL, false);
+        }
+
         messageTo(self, "setupRotationalVelocity", null, 2, false);
         return SCRIPT_CONTINUE;
     }
@@ -1637,5 +1654,146 @@ public class combat_ship extends script.base_script
             return SCRIPT_CONTINUE;
         space_transition.packShipFinalize(self);
         return SCRIPT_CONTINUE;
+    }
+
+    // =====================================================================
+    // NPC POB Ship Autonomous Waypoint Cycling
+    // =====================================================================
+
+    public int npcWaypointTick(obj_id self, dictionary params) throws InterruptedException
+    {
+        if (!hasObjVar(self, NPC_CONTROLLER_OBJVAR))
+            return SCRIPT_CONTINUE;
+
+        // Continue the tick loop
+        messageTo(self, "npcWaypointTick", null, NPC_WAYPOINT_CHECK_INTERVAL, false);
+
+        if (!space_transition.isAtmosphericFlightScene())
+            return SCRIPT_CONTINUE;
+
+        // Check if ship has a pilot (manual control)
+        obj_id pilot = getPilotId(self);
+        if (isIdValid(pilot))
+            return SCRIPT_CONTINUE;
+
+        // Check if currently in landing phase
+        int landingEndTime = hasObjVar(self, NPC_LANDING_END_TIME) ? getIntObjVar(self, NPC_LANDING_END_TIME) : 0;
+        int now = getGameTime();
+
+        if (landingEndTime > 0)
+        {
+            // Currently landing, check if landing duration expired
+            if (now >= landingEndTime)
+            {
+                removeObjVar(self, NPC_LANDING_END_TIME);
+                // Proceed to next waypoint
+                npcFlyToNextWaypoint(self);
+            }
+            return SCRIPT_CONTINUE;
+        }
+
+        // Check if ship is currently flying (autopilot active)
+        boolean autopilotActive = shipIsAutopilotActive(self);
+
+        if (autopilotActive)
+        {
+            // Currently flying, do nothing
+            return SCRIPT_CONTINUE;
+        }
+
+        // Ship is not flying and not landing
+        // Check if this is first initialization or if we should start/continue waypoint loop
+        if (!hasObjVar(self, NPC_CURRENT_WAYPOINT_INDEX))
+        {
+            // Initialize waypoint queue
+            String dtPath = npcGetDatatablePathForCurrentScene(self);
+            int numWaypoints = npcGetNumWaypointsForPath(dtPath);
+
+            if (numWaypoints > 0)
+            {
+                setObjVar(self, NPC_CURRENT_WAYPOINT_INDEX, 0);
+                script_logs.logToGodsInRange(self, NPC_SHUTTLE_LOG_RANGE, "NPC Shuttle: initialized waypoint system with " + numWaypoints + " waypoints from " + dtPath);
+                npcFlyToNextWaypoint(self);
+            }
+            else
+            {
+                script_logs.logToGodsInRange(self, NPC_SHUTTLE_LOG_RANGE, "NPC Shuttle: ERROR - no waypoints found, check datatable " + dtPath);
+            }
+        }
+
+        return SCRIPT_CONTINUE;
+    }
+
+    private void npcFlyToNextWaypoint(obj_id self) throws InterruptedException
+    {
+        if (!space_transition.isAtmosphericFlightScene())
+            return;
+
+        String dtPath = npcGetDatatablePathForCurrentScene(self);
+        int numWaypoints = npcGetNumWaypointsForPath(dtPath);
+
+        if (numWaypoints <= 0)
+            return;
+
+        int currentIdx = hasObjVar(self, NPC_CURRENT_WAYPOINT_INDEX) ? getIntObjVar(self, NPC_CURRENT_WAYPOINT_INDEX) : 0;
+
+        try
+        {
+            float x = dataTableGetFloat(dtPath, currentIdx, "x");
+            float z = dataTableGetFloat(dtPath, currentIdx, "z");
+            int landingDuration = dataTableGetInt(dtPath, currentIdx, "landingDuration");
+            if (landingDuration <= 0)
+                landingDuration = 60;
+
+            script_logs.logToGodsInRange(self, NPC_SHUTTLE_LOG_RANGE, "NPC Shuttle: flying to waypoint " + currentIdx + " (" + x + ", " + z + "), landing duration " + landingDuration + "s");
+
+            // Fly to this waypoint
+            dictionary flyParams = new dictionary();
+            flyParams.put("x", x);
+            flyParams.put("z", z);
+            flyParams.put("npcControlled", true);
+            obj_id owner = getOwner(self);
+            flyParams.put("owner", isIdValid(owner) ? owner : self);
+            messageTo(self, "shipAutoPilotEngage", flyParams, 0, false);
+
+            // Calculate next waypoint index for after landing
+            int nextIdx = (currentIdx + 1) % numWaypoints;
+            setObjVar(self, NPC_CURRENT_WAYPOINT_INDEX, nextIdx);
+
+            // Schedule landing end time
+            int landingEndTime = getGameTime() + landingDuration;
+            setObjVar(self, NPC_LANDING_END_TIME, landingEndTime);
+        }
+        catch (Throwable t)
+        {
+            script_logs.logToGodsInRange(self, NPC_SHUTTLE_LOG_RANGE, "NPC Shuttle: ERROR reading waypoint data - " + t.getMessage());
+        }
+    }
+
+    private String npcGetDatatablePathForCurrentScene(obj_id self) throws InterruptedException
+    {
+        String scene = getLocation(self).area;
+        String planet = npcGetPlanetFromScene(scene);
+        return NPC_DATATABLE_PREFIX + planet + NPC_DATATABLE_SUFFIX;
+    }
+
+    private static String npcGetPlanetFromScene(String scene)
+    {
+        if (scene == null || scene.length() == 0)
+            return "";
+        int idx = scene.indexOf('_');
+        return idx > 0 ? scene.substring(0, idx) : scene;
+    }
+
+    private int npcGetNumWaypointsForPath(String dtPath)
+    {
+        try
+        {
+            return dataTableGetNumRows(dtPath);
+        }
+        catch (Throwable t)
+        {
+            return 0;
+        }
     }
 }
