@@ -1557,6 +1557,11 @@ public class combat_ship extends script.base_script
 
     public int delayedPackShipFinalize(obj_id self, dictionary params) throws InterruptedException
     {
+        space_transition.prepareShipForPackDpvsSafe(self);
+        return SCRIPT_CONTINUE;
+    }
+    public int delayedPackShipFinalizePhase2(obj_id self, dictionary params) throws InterruptedException
+    {
         space_transition.packShipFinalize(self);
         return SCRIPT_CONTINUE;
     }

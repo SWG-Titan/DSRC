@@ -826,6 +826,24 @@ public class space_transition extends script.base_script
         }
         packShipFinalize(ship);
     }
+    /** Moves ship far from owner so client DPVS can drop it, then schedules actual pack to avoid dpvs.dll crash. */
+    public static void prepareShipForPackDpvsSafe(obj_id ship) throws InterruptedException
+    {
+        obj_id owner = getOwner(ship);
+        if (!isIdValid(owner))
+        {
+            packShipFinalize(ship);
+            return;
+        }
+        location ownerLoc = getWorldLocation(owner);
+        float farX = ownerLoc.x + 10000.0f;
+        float farZ = ownerLoc.z + 10000.0f;
+        float farY = getHeightAtLocation(farX, farZ) + 200.0f;
+        location farLoc = new location(farX, farY, farZ, ownerLoc.area, null);
+        setLocation(ship, farLoc);
+        messageTo(ship, "delayedPackShipFinalizePhase2", null, 2.0f, false);
+    }
+
     public static void packShipFinalize(obj_id ship) throws InterruptedException
     {
         removeObjVar(ship, "space.packPending");
