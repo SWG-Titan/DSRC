@@ -1334,26 +1334,51 @@ public class combat_ship extends script.base_script
         int lastPhase = hasObjVar(self, OV_AUTOPILOT_LAST_PHASE) ? getIntObjVar(self, OV_AUTOPILOT_LAST_PHASE) : AP_NONE;
 
         boolean npcShuttle = hasObjVar(self, "npc_pob.controller");
-        if (!shipIsAutopilotActive(self))
+
+        if (npcShuttle && ticks == 0) {
+            script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG A: about to check autopilot active");
+        }
+
+        // For NPC shuttles, trust that shipSetAutopilotTarget succeeded and skip the engine check
+        // Player ships still need to verify autopilot is active
+        boolean autopilotActive = npcShuttle ? true : shipIsAutopilotActive(self);
+
+        if (npcShuttle && ticks == 0) {
+            script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG B: autopilotActive=" + autopilotActive + " (NPC shuttle, trusting engine)");
+        }
+
+        if (!autopilotActive)
         {
+            if (npcShuttle && ticks == 0) {
+                script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG C: entering wait block, lastPhase=" + lastPhase);
+            }
             if (lastPhase != AP_NONE)
             {
+                if (npcShuttle) script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG: canceling, lastPhase was " + lastPhase);
                 removeObjVar(self, OV_AUTOPILOT_ROOT);
                 return SCRIPT_CONTINUE;
             }
             ticks++;
             setObjVar(self, OV_AUTOPILOT_TICKS, ticks);
+            if (npcShuttle) script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG D: waiting, ticks=" + ticks + "/" + AUTOPILOT_WAIT_ACTIVE_TICKS);
             if (ticks >= AUTOPILOT_WAIT_ACTIVE_TICKS)
             {
+                if (npcShuttle) script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG: timeout reached, clearing autopilot");
                 removeObjVar(self, OV_AUTOPILOT_ROOT);
                 return SCRIPT_CONTINUE;
             }
             messageTo(self, "shipAutoPilotTick", null, AUTOPILOT_MONITOR_RATE, false);
+            if (npcShuttle) script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG E: rescheduled tick");
             return SCRIPT_CONTINUE;
+        }
+
+        if (npcShuttle) {
+            script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG F: autopilot IS active, proceeding with phase logic");
         }
 
         if (!isAtmosphericFlightScene())
         {
+            if (npcShuttle) script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG: no longer in atmo scene");
             shipAutoPilotCancelInternal(self, "Auto-pilot disengaged: no longer in atmospheric flight.");
             return SCRIPT_CONTINUE;
         }
@@ -1371,6 +1396,9 @@ public class combat_ship extends script.base_script
         setObjVar(self, OV_AUTOPILOT_TICKS, ticks);
 
         int phase = shipGetAutopilotPhase(self);
+        if (npcShuttle && phase != lastPhase) {
+            script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle DEBUG: phase change to " + phase);
+        }
 
         location shipLoc = getLocation(self);
         float dx = targetX - shipLoc.x;
