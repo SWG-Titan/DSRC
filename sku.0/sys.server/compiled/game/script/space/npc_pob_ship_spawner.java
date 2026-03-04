@@ -153,11 +153,9 @@ public class npc_pob_ship_spawner extends script.base_script
             if (isIdValid(ship))
             {
                 setObjVar(self, OBJVAR_SHIP, ship);
-                setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
-                setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
-                removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
-                scheduleFlyToWaypoint(self, ship, 0);
-                script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: OnAttach spawned ship " + ship + ", scheduled fly to waypoint 0");
+                // Set controller objvar to enable autonomous waypoint cycling in combat_ship.java
+                setObjVar(ship, "npc_pob.controller", 1);
+                script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: OnAttach spawned ship " + ship + " with autonomous waypoint control");
             }
         }
         messageTo(self, "npcPobSpawnerTick", null, TICK_INTERVAL, false);
@@ -172,6 +170,7 @@ public class npc_pob_ship_spawner extends script.base_script
             return SCRIPT_CONTINUE;
         }
 
+        // Monitor ship existence, respawn if needed
         obj_id ship = hasObjVar(self, OBJVAR_SHIP) ? getObjIdObjVar(self, OBJVAR_SHIP) : null;
         if (!isIdValid(ship) || !exists(ship))
         {
@@ -179,61 +178,8 @@ public class npc_pob_ship_spawner extends script.base_script
             if (isIdValid(ship))
             {
                 setObjVar(self, OBJVAR_SHIP, ship);
-                setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
-                setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
-                removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
-                scheduleFlyToWaypoint(self, ship, 0);
-                script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: tick respawned missing ship " + ship);
-            }
-        }
-
-        if (isIdValid(ship) && exists(ship))
-        {
-            boolean autopilotActive = shipIsAutopilotActive(ship);
-            int phase = shipGetAutopilotPhase(ship);
-            obj_id pilot = getPilotId(ship);
-            boolean hasPilot = isIdValid(pilot);
-
-            if (autopilotActive)
-                setObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE, 1);
-
-            // Detect ship arrival either by autopilot finishing or by reaching phase 4 (arrived)
-            boolean hasArrived = (!autopilotActive && !hasPilot) || (phase == 4 && !hasPilot);
-
-            if (hasArrived)
-            {
-                int idx = hasObjVar(self, OBJVAR_WAYPOINT_INDEX) ? getIntObjVar(self, OBJVAR_WAYPOINT_INDEX) : 0;
-                boolean autopilotWasActive = hasObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
-
-                // Record landing time if not already recorded (first detection of arrival)
-                int lastArrival = hasObjVar(self, OBJVAR_LAST_ARRIVAL) ? getIntObjVar(self, OBJVAR_LAST_ARRIVAL) : 0;
-                if (lastArrival == 0 && (autopilotWasActive || phase == 4))
-                {
-                    removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
-                    setObjVar(self, OBJVAR_LAST_ARRIVAL, getGameTime());
-                    script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: ship landed at waypoint " + idx + ", lastArrival set (phase=" + phase + ")");
-                }
-
-                int now = getGameTime();
-
-                if (lastArrival != 0)
-                {
-                    String dtPath = getDatatablePathForScene(getLocation(ship).area);
-                    int landingDuration = getLandingDurationForPath(dtPath, idx);
-                    if (now - lastArrival >= landingDuration)
-                    {
-                        int numWaypoints = getNumWaypointsForPath(dtPath);
-                        if (numWaypoints > 0)
-                        {
-                            int nextIdx = (idx + 1) % numWaypoints;
-                            setObjVar(self, OBJVAR_WAYPOINT_INDEX, nextIdx);
-                            setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
-                            removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
-                            flyToWaypointWithPath(self, ship, dtPath, nextIdx);
-                            script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: advancing to waypoint " + nextIdx + "/" + numWaypoints + ", sent flyTo");
-                        }
-                    }
-                }
+                setObjVar(ship, "npc_pob.controller", 1);
+                script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: respawned missing ship " + ship);
             }
         }
 

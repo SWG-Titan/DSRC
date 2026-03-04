@@ -1659,6 +1659,78 @@ public class combat_ship extends script.base_script
     // =====================================================================
     // NPC POB Ship Autonomous Waypoint Cycling
     // =====================================================================
+    //
+    // FLOW CHAIN:
+    //
+    // [Spawn Egg (Terminal in World)]
+    //   |
+    //   +-> OnAttach (npc_pob_ship_spawner.java)
+    //   |     |
+    //   |     +-> spawnShip() -> creates ship object
+    //   |     |
+    //   |     +-> setObjVar(ship, "npc_pob.controller", 1)
+    //   |
+    //   +-> [Ship Attaches to combat_ship.java]
+    //   |     |
+    //   |     +-> OnAttach() (combat_ship.java, line ~42)
+    //   |     |     |
+    //   |     |     +-> detects npc_pob.controller objvar
+    //   |     |     |
+    //   |     |     +-> messageTo(self, "npcWaypointTick", ..., 2s)
+    //   |     |
+    //   |     +-> npcWaypointTick() runs every 2 seconds
+    //   |           |
+    //   |           +-> First run: initializes waypoint system
+    //   |           |     |
+    //   |           |     +-> reads datatables/npc_shuttle/naboo.iff
+    //   |           |     |
+    //   |           |     +-> finds 6 waypoints (Theed, Lake Retreat, etc.)
+    //   |           |     |
+    //   |           |     +-> setObjVar(ship, npc_pob.currentWaypointIndex, 0)
+    //   |           |     |
+    //   |           |     +-> npcFlyToNextWaypoint()
+    //   |           |           |
+    //   |           |           +-> reads waypoint 0: x=-4858, z=4164, landingDuration=60
+    //   |           |           |
+    //   |           |           +-> messageTo(ship, "shipAutoPilotEngage", x, z)
+    //   |           |           |
+    //   |           |           +-> setObjVar(ship, npc_pob.currentWaypointIndex, 1)
+    //   |           |           |
+    //   |           |           +-> setObjVar(ship, npc_pob.landingEndTime, now + 60)
+    //   |           |
+    //   |           +-> Second+ runs: checks landing timer
+    //   |                 |
+    //   |                 +-> if (now >= landingEndTime)
+    //   |                 |     |
+    //   |                 |     +-> npcFlyToNextWaypoint() to waypoint 1
+    //   |                 |
+    //   |                 +-> else: wait for landing duration to expire
+    //   |
+    //   +-> [Ship Autopilot]
+    //   |     |
+    //   |     +-> shipAutoPilotEngage() handles actual flight
+    //   |     |
+    //   |     +-> phases: 1=Ascending, 2=Cruising, 3=Descending, 4=Arrived
+    //   |     |
+    //   |     +-> after phase 4: autopilotActive returns false
+    //   |
+    //   +-> [Landing Phase]
+    //         |
+    //         +-> npcWaypointTick detects landing timer active
+    //         |
+    //         +-> waits for landingDuration seconds
+    //         |
+    //         +-> calls npcFlyToNextWaypoint() again
+    //         |
+    //         +-> LOOP repeats: Theed -> Lake Retreat -> Keren -> Moenia -> Kaadara -> Deeja Peak -> repeat
+    //
+    // KEY POINTS:
+    // - Spawner ONLY spawns ship and sets npc_pob.controller objvar
+    // - Ship script handles ALL waypoint logic autonomously
+    // - Waypoint data comes from datatables/npc_shuttle/<planet>.iff
+    // - Landing duration is per-waypoint from datatable (default 60s)
+    // - Ship cycles endlessly through all waypoints without spawner involvement
+    // =====================================================================
 
     public int npcWaypointTick(obj_id self, dictionary params) throws InterruptedException
     {
