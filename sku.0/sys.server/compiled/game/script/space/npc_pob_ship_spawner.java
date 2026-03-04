@@ -24,6 +24,7 @@ public class npc_pob_ship_spawner extends script.base_script
     private static final String OBJVAR_AUTOPILOT_WAS_ACTIVE = "npc_pob.spawner.autopilotWasActive";
 
     private static final float FLY_TO_DELAY = 2.0f;
+    private static final float SHUTTLE_LOG_RANGE = 2000.0f;
 
     private static String getPlanetFromScene(String scene)
     {
@@ -128,6 +129,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
                 removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
                 scheduleFlyToWaypoint(self, ship, 0);
+                script_logs.log(player, "Shuttle: reset, spawned ship " + ship + ", scheduled fly to waypoint 0");
                 sendSystemMessage(player, string_id.unlocalized("Shuttle reset and spawned at waypoint 0."));
             }
             else
@@ -155,6 +157,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
                 removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
                 scheduleFlyToWaypoint(self, ship, 0);
+                script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: OnAttach spawned ship " + ship + ", scheduled fly to waypoint 0");
             }
         }
         messageTo(self, "npcPobSpawnerTick", null, TICK_INTERVAL, false);
@@ -180,6 +183,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
                 removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
                 scheduleFlyToWaypoint(self, ship, 0);
+                script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: tick respawned missing ship " + ship);
             }
         }
 
@@ -199,6 +203,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 {
                     removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
                     setObjVar(self, OBJVAR_LAST_ARRIVAL, getGameTime());
+                    script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: ship landed at waypoint " + idx + ", lastArrival set");
                 }
 
                 int idx = hasObjVar(self, OBJVAR_WAYPOINT_INDEX) ? getIntObjVar(self, OBJVAR_WAYPOINT_INDEX) : 0;
@@ -219,6 +224,7 @@ public class npc_pob_ship_spawner extends script.base_script
                             setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
                             setObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE, 1);
                             flyToWaypointWithPath(self, ship, dtPath, nextIdx);
+                            script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: advancing to waypoint " + nextIdx + "/" + numWaypoints + ", sent flyTo");
                         }
                     }
                 }
@@ -263,6 +269,7 @@ public class npc_pob_ship_spawner extends script.base_script
         int index = params.getInt("index");
         if (!isIdValid(ship) || !exists(ship))
             return SCRIPT_CONTINUE;
+        script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: delayedFlyToWaypoint firing, flying to waypoint " + index);
         flyToWaypoint(self, ship, index);
         return SCRIPT_CONTINUE;
     }
@@ -292,5 +299,6 @@ public class npc_pob_ship_spawner extends script.base_script
         params.put("x", x);
         params.put("z", z);
         messageTo(ship, "npcPobFlyTo", params, 0, false);
+        script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: sent npcPobFlyTo waypoint " + index + " (" + x + ", " + z + ")");
     }
 }

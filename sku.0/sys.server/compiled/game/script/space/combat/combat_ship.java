@@ -1482,7 +1482,7 @@ public class combat_ship extends script.base_script
 
     public static final String OV_SUMMON_OWNER = "space.autopilot.summonOwner";
     public static final float  SUMMON_TAKEOFF_ALT  = 500.0f;
-    public static final float  SUMMON_LANDING_ALT  = 50.0f;
+    public static final float  SUMMON_LANDING_ALT  = 25.0f;
 
     public int shipSummonEngage(obj_id self, dictionary params) throws InterruptedException
     {

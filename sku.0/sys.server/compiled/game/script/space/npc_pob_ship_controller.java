@@ -18,6 +18,7 @@ public class npc_pob_ship_controller extends script.base_script
 {
     public static final String OBJVAR_CONTROLLER = "npc_pob.controller";
     public static final String OBJVAR_WAYPOINT_QUEUE = "npc_pob.waypointQueue";
+    private static final float SHUTTLE_LOG_RANGE = 2000.0f;
 
     public npc_pob_ship_controller()
     {
@@ -45,6 +46,7 @@ public class npc_pob_ship_controller extends script.base_script
 
         float x = params.getFloat("x");
         float z = params.getFloat("z");
+        script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: controller npcPobFlyTo received, sending shipAutoPilotEngage x=" + x + " z=" + z);
         dictionary engageParams = new dictionary();
         engageParams.put("x", x);
         engageParams.put("z", z);

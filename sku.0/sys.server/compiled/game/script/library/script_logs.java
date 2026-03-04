@@ -36,6 +36,23 @@ public class script_logs extends script.base_script
     }
 
     /**
+     * Log to all god players within range of the given object (e.g. spawner). Use for NPC/diagnostic logging.
+     */
+    public static void logToGodsInRange(obj_id center, float rangeMeters, String message) throws InterruptedException
+    {
+        if (center == null || !isIdValid(center) || message == null)
+            return;
+        obj_id[] objects = getObjectsInRange(center, rangeMeters);
+        if (objects == null)
+            return;
+        for (obj_id obj : objects)
+        {
+            if (isIdValid(obj) && isPlayer(obj) && isGod(obj))
+                log(obj, message);
+        }
+    }
+
+    /**
      * Get current log content for the player.
      */
     public static String getLogContent(obj_id player) throws InterruptedException
