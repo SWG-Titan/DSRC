@@ -99,6 +99,7 @@ public class npc_pob_ship_spawner extends script.base_script
             {
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
+                setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
                 flyToWaypoint(self, ship, 0);
                 sendSystemMessage(player, string_id.unlocalized("Shuttle reset and spawned at waypoint 0."));
             }
@@ -124,6 +125,7 @@ public class npc_pob_ship_spawner extends script.base_script
             {
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
+                setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
                 flyToWaypoint(self, ship, 0);
             }
         }
@@ -147,7 +149,7 @@ public class npc_pob_ship_spawner extends script.base_script
             {
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
-                setObjVar(self, OBJVAR_LAST_ARRIVAL, getGameTime());
+                setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
             }
         }
 
@@ -160,22 +162,24 @@ public class npc_pob_ship_spawner extends script.base_script
             if (!autopilotActive && !hasPilot)
             {
                 int idx = hasObjVar(self, OBJVAR_WAYPOINT_INDEX) ? getIntObjVar(self, OBJVAR_WAYPOINT_INDEX) : 0;
-                int landingDuration = getLandingDuration(self, idx);
                 int lastArrival = hasObjVar(self, OBJVAR_LAST_ARRIVAL) ? getIntObjVar(self, OBJVAR_LAST_ARRIVAL) : 0;
                 int now = getGameTime();
-                if (now - lastArrival >= landingDuration)
-                {
-                    int numWaypoints = getNumWaypoints(self);
-                    if (numWaypoints <= 0)
-                    {
-                        messageTo(self, "npcPobSpawnerTick", null, TICK_INTERVAL, false);
-                        return SCRIPT_CONTINUE;
-                    }
-                    // Cycle: 0 -> 1 -> ... -> (n-1) -> 0 (endless)
-                    int nextIdx = (idx + 1) % numWaypoints;
-                    setObjVar(self, OBJVAR_WAYPOINT_INDEX, nextIdx);
+                if (lastArrival == 0)
                     setObjVar(self, OBJVAR_LAST_ARRIVAL, now);
-                    flyToWaypoint(self, ship, nextIdx);
+                else
+                {
+                    int landingDuration = getLandingDuration(self, idx);
+                    if (now - lastArrival >= landingDuration)
+                    {
+                        int numWaypoints = getNumWaypoints(self);
+                        if (numWaypoints > 0)
+                        {
+                            int nextIdx = (idx + 1) % numWaypoints;
+                            setObjVar(self, OBJVAR_WAYPOINT_INDEX, nextIdx);
+                            setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
+                            flyToWaypoint(self, ship, nextIdx);
+                        }
+                    }
                 }
             }
         }
@@ -205,7 +209,6 @@ public class npc_pob_ship_spawner extends script.base_script
 
         String planet = getPlanetFromScene(scene);
         setName(ship, planet != null && planet.length() > 0 ? (planet.substring(0, 1).toUpperCase() + planet.substring(1) + " Shuttle") : "Shuttle");
-        setObjVar(self, OBJVAR_LAST_ARRIVAL, getGameTime());
         return ship;
     }
 
