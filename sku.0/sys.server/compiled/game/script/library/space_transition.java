@@ -1483,13 +1483,13 @@ public class space_transition extends script.base_script
             return false;
         if (!space_utils.isShipWithInterior(ship))
         {
-            sendSystemMessage(player, new string_id("space/space_interaction", "not_boardable"));
+            sendSystemMessage(player, string_id.unlocalized("This ship only has a cockpit."));
             return false;
         }
         obj_id pilot = getPilotId(ship);
         if (isIdValid(pilot))
         {
-            sendSystemMessage(player, new string_id("space/space_interaction", "ship_in_flight"));
+            sendSystemMessage(player, string_id.unlocalized("This ship is currently in flight, it would be dangerous to try to board it."));
             return false;
         }
         String[] bannedList = permissionsGetBanned(ship);
@@ -1500,7 +1500,7 @@ public class space_transition extends script.base_script
             {
                 if (banned.toLowerCase().equals(playerName))
                 {
-                    sendSystemMessage(player, new string_id("space/space_interaction", "boarding_denied"));
+                    broadcast(player, "Airlock access denied.");
                     return false;
                 }
             }
@@ -1526,7 +1526,7 @@ public class space_transition extends script.base_script
                 }
                 if (!found)
                 {
-                    sendSystemMessage(player, new string_id("space/space_interaction", "boarding_denied"));
+                    broadcast(player, "Airlock access denied.");
                     return false;
                 }
             }
@@ -1550,7 +1550,7 @@ public class space_transition extends script.base_script
             obj_id[] cells = getContents(ship);
             if (cells == null || cells.length == 0)
             {
-                sendSystemMessage(player, new string_id("space/space_interaction", "not_boardable"));
+                broadcast(player, "Unable to board this ship.");
                 return false;
             }
             location loc = new location();
