@@ -1334,7 +1334,7 @@ public class combat_ship extends script.base_script
         int lastPhase = hasObjVar(self, OV_AUTOPILOT_LAST_PHASE) ? getIntObjVar(self, OV_AUTOPILOT_LAST_PHASE) : AP_NONE;
 
         boolean npcShuttle = hasObjVar(self, "npc_pob.controller");
-        if (!npcShuttle && !shipIsAutopilotActive(self))
+        if (!shipIsAutopilotActive(self))
         {
             if (lastPhase != AP_NONE)
             {
