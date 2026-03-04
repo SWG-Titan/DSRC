@@ -25,6 +25,10 @@ public class ship_atmospheric_boarding extends script.base_script
         if (!space_transition.isShipParkedInWorld(self))
             return SCRIPT_CONTINUE;
 
+        // Don't allow boarding NPC-controlled ships
+        if (hasObjVar(self, "npc_pob.controller"))
+            return SCRIPT_CONTINUE;
+
         float dist = getDistance(player, self);
         if (dist > 500.0f)
             return SCRIPT_CONTINUE;

@@ -1153,7 +1153,7 @@ public class combat_ship extends script.base_script
     public static final String OV_AUTOPILOT_TICKS     = "space.autopilot.ticks";
     public static final String OV_AUTOPILOT_LAST_PHASE = "space.autopilot.lastPhase";
     public static final float  AUTOPILOT_TAKEOFF_ALT  = 500.0f;
-    public static final float  AUTOPILOT_LANDING_ALT  = 200.0f;
+    public static final float  AUTOPILOT_LANDING_ALT  = 50.0f;
     public static final float  AUTOPILOT_MONITOR_RATE = 2.0f;
     public static final int    AUTOPILOT_STATUS_INTERVAL = 10;
     /** Max tick count to wait for engine to report autopilot active after shipSetAutopilotTarget (server-driven only). Planet map uses client sendAutoPilotEngage and does not use this tick. */
