@@ -22,6 +22,8 @@ public class npc_pob_ship_spawner extends script.base_script
     private static final String OBJVAR_WAYPOINT_INDEX = "npc_pob.spawner.waypointIndex";
     private static final String OBJVAR_LAST_ARRIVAL = "npc_pob.spawner.lastArrival";
 
+    private static final float FLY_TO_DELAY = 2.0f;
+
     private static String getPlanetFromScene(String scene)
     {
         if (scene == null || scene.length() == 0)
@@ -100,7 +102,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
                 setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
-                flyToWaypoint(self, ship, 0);
+                scheduleFlyToWaypoint(self, ship, 0);
                 sendSystemMessage(player, string_id.unlocalized("Shuttle reset and spawned at waypoint 0."));
             }
             else
@@ -126,7 +128,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
                 setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
-                flyToWaypoint(self, ship, 0);
+                scheduleFlyToWaypoint(self, ship, 0);
             }
         }
         messageTo(self, "npcPobSpawnerTick", null, TICK_INTERVAL, false);
@@ -150,6 +152,7 @@ public class npc_pob_ship_spawner extends script.base_script
                 setObjVar(self, OBJVAR_SHIP, ship);
                 setObjVar(self, OBJVAR_WAYPOINT_INDEX, 0);
                 setObjVar(self, OBJVAR_LAST_ARRIVAL, 0);
+                scheduleFlyToWaypoint(self, ship, 0);
             }
         }
 
@@ -214,6 +217,24 @@ public class npc_pob_ship_spawner extends script.base_script
         String planet = getPlanetFromScene(scene);
         setName(ship, planet != null && planet.length() > 0 ? (planet.substring(0, 1).toUpperCase() + planet.substring(1) + " Shuttle") : "Shuttle");
         return ship;
+    }
+
+    public int delayedFlyToWaypoint(obj_id self, dictionary params) throws InterruptedException
+    {
+        obj_id ship = params.getObjId("ship");
+        int index = params.getInt("index");
+        if (!isIdValid(ship) || !exists(ship))
+            return SCRIPT_CONTINUE;
+        flyToWaypoint(self, ship, index);
+        return SCRIPT_CONTINUE;
+    }
+
+    private void scheduleFlyToWaypoint(obj_id self, obj_id ship, int index) throws InterruptedException
+    {
+        dictionary params = new dictionary();
+        params.put("ship", ship);
+        params.put("index", index);
+        messageTo(self, "delayedFlyToWaypoint", params, FLY_TO_DELAY, false);
     }
 
     private void flyToWaypoint(obj_id self, obj_id ship, int index) throws InterruptedException
