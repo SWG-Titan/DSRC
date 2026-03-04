@@ -198,6 +198,7 @@ public class npc_pob_ship_spawner extends script.base_script
 
             if (!autopilotActive && !hasPilot)
             {
+                int idx = hasObjVar(self, OBJVAR_WAYPOINT_INDEX) ? getIntObjVar(self, OBJVAR_WAYPOINT_INDEX) : 0;
                 boolean autopilotWasActive = hasObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
                 if (autopilotWasActive)
                 {
@@ -206,7 +207,6 @@ public class npc_pob_ship_spawner extends script.base_script
                     script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: ship landed at waypoint " + idx + ", lastArrival set");
                 }
 
-                int idx = hasObjVar(self, OBJVAR_WAYPOINT_INDEX) ? getIntObjVar(self, OBJVAR_WAYPOINT_INDEX) : 0;
                 int lastArrival = hasObjVar(self, OBJVAR_LAST_ARRIVAL) ? getIntObjVar(self, OBJVAR_LAST_ARRIVAL) : 0;
                 int now = getGameTime();
 
