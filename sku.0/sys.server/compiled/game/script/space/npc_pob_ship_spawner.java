@@ -190,24 +190,30 @@ public class npc_pob_ship_spawner extends script.base_script
         if (isIdValid(ship) && exists(ship))
         {
             boolean autopilotActive = shipIsAutopilotActive(ship);
+            int phase = shipGetAutopilotPhase(ship);
             obj_id pilot = getPilotId(ship);
             boolean hasPilot = isIdValid(pilot);
 
             if (autopilotActive)
                 setObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE, 1);
 
-            if (!autopilotActive && !hasPilot)
+            // Detect ship arrival either by autopilot finishing or by reaching phase 4 (arrived)
+            boolean hasArrived = (!autopilotActive && !hasPilot) || (phase == 4 && !hasPilot);
+
+            if (hasArrived)
             {
                 int idx = hasObjVar(self, OBJVAR_WAYPOINT_INDEX) ? getIntObjVar(self, OBJVAR_WAYPOINT_INDEX) : 0;
                 boolean autopilotWasActive = hasObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
-                if (autopilotWasActive)
+
+                // Record landing time if not already recorded (first detection of arrival)
+                int lastArrival = hasObjVar(self, OBJVAR_LAST_ARRIVAL) ? getIntObjVar(self, OBJVAR_LAST_ARRIVAL) : 0;
+                if (lastArrival == 0 && (autopilotWasActive || phase == 4))
                 {
                     removeObjVar(self, OBJVAR_AUTOPILOT_WAS_ACTIVE);
                     setObjVar(self, OBJVAR_LAST_ARRIVAL, getGameTime());
-                    script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: ship landed at waypoint " + idx + ", lastArrival set");
+                    script_logs.logToGodsInRange(self, SHUTTLE_LOG_RANGE, "Shuttle: ship landed at waypoint " + idx + ", lastArrival set (phase=" + phase + ")");
                 }
 
-                int lastArrival = hasObjVar(self, OBJVAR_LAST_ARRIVAL) ? getIntObjVar(self, OBJVAR_LAST_ARRIVAL) : 0;
                 int now = getGameTime();
 
                 if (lastArrival != 0)
