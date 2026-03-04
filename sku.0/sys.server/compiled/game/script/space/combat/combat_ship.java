@@ -1241,13 +1241,16 @@ public class combat_ship extends script.base_script
         float targetX = params.getFloat("x");
         float targetZ = params.getFloat("z");
         obj_id owner = params.getObjId("owner");
+        boolean npcControlled = params.getBoolean("npcControlled");
 
-        if (!isIdValid(owner) || getOwner(self) != owner)
+        if (!npcControlled && (!isIdValid(owner) || getOwner(self) != owner))
         {
             if (isIdValid(owner))
                 sendSystemMessageTestingOnly(owner, "Only the ship owner may engage the auto-pilot.");
             return SCRIPT_CONTINUE;
         }
+        if (npcControlled)
+            owner = isIdValid(getOwner(self)) ? getOwner(self) : self;
 
         if (hasObjVar(self, OV_AUTOPILOT_ACTIVE))
         {

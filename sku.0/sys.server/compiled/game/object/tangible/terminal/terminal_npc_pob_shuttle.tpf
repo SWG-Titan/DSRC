@@ -1,0 +1,16 @@
+//            Filename:     terminal_npc_pob_shuttle.tpf
+//            Directory:    object/tangible/terminal
+//
+//            Description:  Terminal for NPC POB shuttle - Board/Disembark via linked ship
+//
+
+@base object/tangible/terminal/base/base_terminal.iff
+
+@class tangible_object_template 0
+
+
+@class object_template 2
+
+sharedTemplate = "object/tangible/terminal/shared_terminal_npc_pob_shuttle.iff"
+
+scripts = +["terminal.terminal_npc_pob_shuttle"]

@@ -1,0 +1,21 @@
+//            Filename:     shared_terminal_npc_pob_shuttle.tpf
+//            Directory:    object/tangible/terminal
+//
+//            Description:  Terminal for NPC POB shuttle - Board/Disembark via linked ship
+//
+
+@base object/tangible/terminal/base/shared_base_terminal.iff
+
+@class tangible_object_template 3
+
+
+@class object_template 5
+
+objectName = "space/space_interaction" "terminal_npc_pob_shuttle"
+detailedDescription = "space/space_interaction" "terminal_npc_pob_shuttle"
+lookAtText = "space/space_interaction" "terminal_npc_pob_shuttle"
+
+appearanceFilename = "appearance/frn_all_data_terminal_wall_s2.apt"
+portalLayoutFilename = ""
+
+gameObjectType = GOT_terminal_misc
