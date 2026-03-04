@@ -49,7 +49,8 @@ public class npc_pob_ship_controller extends script.base_script
         engageParams.put("x", x);
         engageParams.put("z", z);
         engageParams.put("npcControlled", true);
-        engageParams.put("owner", getOwner(self));
+        obj_id owner = getOwner(self);
+        engageParams.put("owner", isIdValid(owner) ? owner : self);
         messageTo(self, "shipAutoPilotEngage", engageParams, 0, false);
         return SCRIPT_CONTINUE;
     }
