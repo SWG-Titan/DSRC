@@ -806,6 +806,8 @@ public class space_transition extends script.base_script
                     float terrainY = getHeightAtLocation(shipLoc.x, shipLoc.z);
                     location worldLoc = new location(shipLoc.x, terrainY, shipLoc.z, shipLoc.area, null);
                     setLocation(player, worldLoc);
+                    if (isAtmosphericFlightScene())
+                        warpPlayer(player, worldLoc.area, worldLoc.x, worldLoc.y, worldLoc.z, null, worldLoc.x, worldLoc.y, worldLoc.z, null, false);
                 }
             }
         }
@@ -819,7 +821,7 @@ public class space_transition extends script.base_script
             setObjVar(ship, "space.packPending", true);
             if (isIdValid(owner))
                 dirtyAllShipControlDevices(owner);
-            messageTo(ship, "delayedPackShipFinalize", null, 3.0f, false);
+            messageTo(ship, "delayedPackShipFinalize", null, 5.0f, false);
             return;
         }
         packShipFinalize(ship);

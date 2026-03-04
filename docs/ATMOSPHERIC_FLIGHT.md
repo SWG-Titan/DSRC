@@ -63,7 +63,7 @@ Atmospheric flight is available on all ground scenes **except** `kashyyyk_`* and
 
 1. `ship_control_device.OnObjectMenuSelect` calls `space_transition.packShip(ship)`.
 2. `packShip` clears autopilot, detaches boarding script, ejects all players to terrain.
-3. In atmospheric flight, the actual ship teardown is **delayed 3 seconds** via `messageTo("delayedPackShipFinalize")` to prevent a DPVS crash (see below).
+3. In atmospheric flight, the actual ship teardown is **delayed 5 seconds** via `messageTo("delayedPackShipFinalize")` to prevent a DPVS crash (see below).
 4. `packShipFinalize` puts the ship back into the SCD and dirties all SCD radial menus.
 
 **Files**: `space_transition.java`, `combat_ship.java` (handler for `delayedPackShipFinalize`)
@@ -267,7 +267,7 @@ Ships at altitude need to see ground objects (NPCs, buildings, creatures) and vi
 
 **Problem**: When packing a ship in atmospheric flight, the server sends player extraction and ship destruction messages in the same frame. The client's dPVS occlusion culling library crashes (access violation in `dpvs.dll`) because it references ship cell data that is being destroyed.
 
-**Fix**: In atmospheric flight, `packShip` defers the actual ship teardown by 3 seconds via `messageTo(ship, "delayedPackShipFinalize", null, 3.0f)`. The handler in `combat_ship.java` calls `space_transition.packShipFinalize()`. This gives the client time to process the player's containment change and camera transition before the ship's cells are destroyed.
+**Fix**: In atmospheric flight, `packShip` defers the actual ship teardown by 5 seconds via `messageTo(ship, "delayedPackShipFinalize", null, 5.0f)`. The handler in `combat_ship.java` calls `space_transition.packShipFinalize()`. This gives the client time to process the player's containment change and camera transition before the ship's cells are destroyed. After moving the player to terrain, the server also sends a `warpPlayer` to the same location so the client performs a full relocation and clears vehicle/ship references.
 
 **Files**: `space_transition.java`, `combat_ship.java`
 
