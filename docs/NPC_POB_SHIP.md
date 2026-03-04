@@ -42,6 +42,24 @@ The ship will use atmospheric autopilot to fly to the destination and land.
 
 - **Link Terminal to Ship**: Use the shuttle terminal in atmospheric flight, with a POB ship within 128m of the terminal.
 
+## Spawner (Naboo Shuttle Test)
+
+A spawner controller spawns a Sorosuub Space Yacht and cycles through all Naboo city waypoints:
+Theed → Keren → Moenia → Kaadara → Deeja Peak → (repeat).
+
+### Spawner Setup
+
+- **Template**: `object/tangible/ground_spawning/npc_pob_ship_spawner.iff`
+- **Script**: `space.npc_pob_ship_spawner`
+- **Buildout**: Placed in `naboo_2_7.tab` (Theed area) – invisible, GM-only
+- **Ship**: `object/ship/player/player_sorosuub_space_yacht.iff`
+- **Dwell**: 30 seconds at each stop before flying to next
+- **Tick**: Polls every 60 seconds
+
+### Terminal Linking
+
+Place `terminal_npc_pob_shuttle` at each city. As god, use **Link Terminal to Ship** when the shuttle is parked at that stop.
+
 ## Technical Notes
 
 - The ship uses `shipAutoPilotEngage` with `npcControlled=true` to bypass the owner check.

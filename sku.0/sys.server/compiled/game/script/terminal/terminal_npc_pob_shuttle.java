@@ -10,7 +10,7 @@ import script.space.npc_pob_ship_controller;
  * Setup:
  * - Terminal on ground at a stop: set objvar npc_pob.linkedShip = ship. Shows "Board Shuttle".
  * - Terminal inside the ship: uses getContainingShip. Shows "Disembark".
- * - God mode: "Link Terminal to Ship" to set npc_pob.linkedShip when near the ship.
+ * - God mode: "Link Terminal to NPC Shuttle" links only to ships with npc_pob.controller (NPC POB shuttle).
  */
 public class terminal_npc_pob_shuttle extends script.base_script
 {
@@ -61,9 +61,10 @@ public class terminal_npc_pob_shuttle extends script.base_script
             {
                 for (obj_id o : nearby)
                 {
-                    if (isIdValid(o) && getTopMostContainer(o) == o && space_utils.isShipWithInterior(o))
+                    if (isIdValid(o) && getTopMostContainer(o) == o && space_utils.isShipWithInterior(o)
+                            && hasObjVar(o, npc_pob_ship_controller.OBJVAR_CONTROLLER))
                     {
-                        mi.addRootMenu(menu_info_types.SERVER_MENU3, string_id.unlocalized("Link Terminal to Ship"));
+                        mi.addRootMenu(menu_info_types.SERVER_MENU3, string_id.unlocalized("Link Terminal to NPC Shuttle"));
                         break;
                     }
                 }
@@ -123,15 +124,16 @@ public class terminal_npc_pob_shuttle extends script.base_script
             {
                 for (obj_id o : nearby)
                 {
-                    if (isIdValid(o) && getTopMostContainer(o) == o && space_utils.isShipWithInterior(o))
+                    if (isIdValid(o) && getTopMostContainer(o) == o && space_utils.isShipWithInterior(o)
+                            && hasObjVar(o, npc_pob_ship_controller.OBJVAR_CONTROLLER))
                     {
                         setObjVar(self, OBJVAR_LINKED_SHIP, o);
-                        sendSystemMessage(player, string_id.unlocalized("Terminal linked to ship."));
+                        sendSystemMessage(player, string_id.unlocalized("Terminal linked to NPC shuttle."));
                         return SCRIPT_CONTINUE;
                     }
                 }
             }
-            sendSystemMessage(player, string_id.unlocalized("No POB ship within range to link."));
+            sendSystemMessage(player, string_id.unlocalized("No NPC POB shuttle within range to link."));
         }
         return SCRIPT_CONTINUE;
     }
