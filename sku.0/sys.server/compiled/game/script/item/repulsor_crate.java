@@ -50,13 +50,17 @@ public class repulsor_crate extends script.base_script
 
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
-        // Only show menu if player is within range
-        if (getDistance(self, player) > ACTIVATION_RANGE)
+        boolean isActive = hasObjVar(self, VAR_ACTIVE) && getBooleanObjVar(self, VAR_ACTIVE);
+
+        // Only check range if crate is NOT active (if it's active and following, always allow interaction)
+        if (!isActive && getDistance(self, player) > ACTIVATION_RANGE)
             return SCRIPT_CONTINUE;
 
-        boolean isActive = getBooleanObjVar(self, VAR_ACTIVE);
-        obj_id currentOwner = getObjIdObjVar(self, VAR_OWNER);
-
+        obj_id currentOwner = null;
+        if (hasObjVar(self, VAR_OWNER))
+        {
+            currentOwner = getObjIdObjVar(self, VAR_OWNER);
+        }
 
         if (!isActive)
         {
@@ -73,10 +77,16 @@ public class repulsor_crate extends script.base_script
                 mi.addRootMenu(menu_info_types.SERVER_ITEM_OPTIONS, string_id.unlocalized("Deactivate Repulsor"));
                 mi.addRootMenu(menu_info_types.SERVER_MENU2, string_id.unlocalized("Disable Repulsor"));
             }
+            else if (isIdValid(currentOwner))
+            {
+                // Someone else owns it - show in use (not clickable)
+                mi.addRootMenu(menu_info_types.SERVER_ITEM_OPTIONS, string_id.unlocalized("In Use"));
+            }
             else
             {
-                // Someone else owns it
-                mi.addRootMenu(menu_info_types.SERVER_ITEM_OPTIONS, string_id.unlocalized("In Use"));
+                // Active but no valid owner - allow anyone to deactivate
+                mi.addRootMenu(menu_info_types.SERVER_ITEM_OPTIONS, string_id.unlocalized("Deactivate Repulsor"));
+                mi.addRootMenu(menu_info_types.SERVER_MENU2, string_id.unlocalized("Disable Repulsor"));
             }
         }
 
@@ -95,17 +105,21 @@ public class repulsor_crate extends script.base_script
         if (item != menu_info_types.SERVER_ITEM_OPTIONS)
             return SCRIPT_CONTINUE;
 
-        boolean isActive = getBooleanObjVar(self, VAR_ACTIVE);
-        obj_id currentOwner = getObjIdObjVar(self, VAR_OWNER);
+        boolean isActive = hasObjVar(self, VAR_ACTIVE) && getBooleanObjVar(self, VAR_ACTIVE);
+        obj_id currentOwner = null;
+        if (hasObjVar(self, VAR_OWNER))
+        {
+            currentOwner = getObjIdObjVar(self, VAR_OWNER);
+        }
 
         if (!isActive)
         {
             // Activate the repulsor
             activateRepulsor(self, player);
         }
-        else if (isIdValid(currentOwner) && currentOwner.equals(player))
+        else if (!isIdValid(currentOwner) || currentOwner.equals(player))
         {
-            // Deactivate the repulsor
+            // Deactivate the repulsor (owner or no owner)
             deactivateRepulsor(self, player);
         }
         else
@@ -158,7 +172,7 @@ public class repulsor_crate extends script.base_script
         // Clear follow effect first
         tangible_dynamics.clearFollowTargetEffect(self);
 
-        // Get player's position for landing
+        // Get player's current position for landing
         location playerLoc = getLocation(player);
 
         // Position the crate at the player's feet (slightly in front)
@@ -169,31 +183,36 @@ public class repulsor_crate extends script.base_script
         float offsetX = (float)(Math.sin(radians) * 1.5f);
         float offsetZ = (float)(Math.cos(radians) * 1.5f);
 
+        // Get terrain height at landing position
+        float landX = playerLoc.x + offsetX;
+        float landZ = playerLoc.z + offsetZ;
+        float terrainHeight = getHeightAtLocation(landX, landZ);
+        if (terrainHeight < -100000.0f)
+        {
+            terrainHeight = playerLoc.y;
+        }
+
         location landingLoc = new location(
-            playerLoc.x + offsetX,
-            playerLoc.y + LANDING_HEIGHT,
-            playerLoc.z + offsetZ,
+            landX,
+            terrainHeight + LANDING_HEIGHT,
+            landZ,
             playerLoc.area,
             playerLoc.cell
         );
 
-        // Apply a gentle "landing" push downward, then clear
-        tangible_dynamics.applyPushForce(self, 0.0f, -2.0f, 0.0f, 0.5f, tangible_dynamics.SPACE_WORLD);
-
-        // Schedule the final landing after a short delay
-        dictionary params = new dictionary();
-        params.put("landX", landingLoc.x);
-        params.put("landY", landingLoc.y);
-        params.put("landZ", landingLoc.z);
-        params.put("area", landingLoc.area);
-        messageTo(self, "handleLandingComplete", params, 0.6f, false);
+        // Move the crate to the landing position immediately
+        setLocation(self, landingLoc);
 
         // Clear ownership
         removeObjVar(self, VAR_ACTIVE);
         removeObjVar(self, VAR_OWNER);
 
+        // Clear all dynamics and condition
+        tangible_dynamics.clearAllForces(self);
+        clearCondition(self, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+
         // Visual/audio feedback
-        sendSystemMessageTestingOnly(player, "Repulsor crate deactivated. The crate is landing.");
+        sendSystemMessageTestingOnly(player, "Repulsor crate deactivated. The crate has landed.");
 
         // Play deactivation sound effect
         playClientEffectObj(player, "sound/item_repulsor_deactivate.snd", self, "");
