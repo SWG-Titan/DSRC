@@ -62,6 +62,7 @@ public class repulsor_crate extends script.base_script
         {
             // Crate is landed - show activate option
             mi.addRootMenu(menu_info_types.SERVER_ITEM_OPTIONS, string_id.unlocalized("Activate Repulsor"));
+            mi.addRootMenu(menu_info_types.SERVER_MENU2, string_id.unlocalized("Disable Repulsor"));
         }
         else
         {
@@ -70,6 +71,7 @@ public class repulsor_crate extends script.base_script
             {
                 // This player owns the crate - show deactivate option
                 mi.addRootMenu(menu_info_types.SERVER_ITEM_OPTIONS, string_id.unlocalized("Deactivate Repulsor"));
+                mi.addRootMenu(menu_info_types.SERVER_MENU2, string_id.unlocalized("Disable Repulsor"));
             }
             else
             {
@@ -83,6 +85,13 @@ public class repulsor_crate extends script.base_script
 
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
+        // Handle Disable Repulsor option
+        if (item == menu_info_types.SERVER_MENU2)
+        {
+            disableRepulsor(self, player);
+            return SCRIPT_CONTINUE;
+        }
+
         if (item != menu_info_types.SERVER_ITEM_OPTIONS)
             return SCRIPT_CONTINUE;
 
@@ -285,6 +294,39 @@ public class repulsor_crate extends script.base_script
             loc.y = terrainHeight;
             setLocation(self, loc);
         }
+    }
+
+    /**
+     * Disable the repulsor completely - removes the script from the object
+     */
+    public void disableRepulsor(obj_id self, obj_id player) throws InterruptedException
+    {
+        // First, land the crate if it's active
+        boolean isActive = getBooleanObjVar(self, VAR_ACTIVE);
+        if (isActive)
+        {
+            emergencyLand(self);
+        }
+
+        // Clear all dynamics and condition
+        tangible_dynamics.clearAllForces(self);
+        clearCondition(self, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+
+        // Remove all objvars
+        removeObjVar(self, VAR_ACTIVE);
+        removeObjVar(self, VAR_OWNER);
+
+        // Remove the handler script
+        if (hasScript(self, "handler.tangible_dynamics_handler"))
+        {
+            detachScript(self, "handler.tangible_dynamics_handler");
+        }
+
+        // Visual/audio feedback
+        sendSystemMessageTestingOnly(player, "Repulsor system disabled and removed from object.");
+
+        // Remove this script last
+        detachScript(self, "item.repulsor_crate");
     }
 
     // =====================================================================
