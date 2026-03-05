@@ -254,6 +254,8 @@ public class tangible_dynamics_handler extends script.base_script
         handleClearBounce(self);
         handleClearWobble(self);
         handleClearOrbit(self);
+        handleClearHover(self);
+        handleClearFollowTarget(self);
         removeObjVar(self, "dynamics.easing.type");
         removeObjVar(self, "dynamics.easing.duration");
         return SCRIPT_CONTINUE;
