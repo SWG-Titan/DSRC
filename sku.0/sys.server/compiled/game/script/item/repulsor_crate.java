@@ -57,7 +57,6 @@ public class repulsor_crate extends script.base_script
         boolean isActive = getBooleanObjVar(self, VAR_ACTIVE);
         obj_id currentOwner = getObjIdObjVar(self, VAR_OWNER);
 
-        int rootMenu = mi.getRootMenu();
 
         if (!isActive)
         {
