@@ -17,17 +17,17 @@ import script.library.*;
 
 public class tangible_dynamics_test extends script.base_script
 {
-    // Test menu options
-    private static final int MENU_TEST_DYNAMICS   = menu_info_types.SERVER_MENU_1;
-    private static final int MENU_PUSH_TEST       = menu_info_types.SERVER_MENU_2;
-    private static final int MENU_SPIN_TEST       = menu_info_types.SERVER_MENU_3;
-    private static final int MENU_BREATHING_TEST  = menu_info_types.SERVER_MENU_4;
-    private static final int MENU_COMBINED_TEST   = menu_info_types.SERVER_MENU_5;
-    private static final int MENU_BOUNCE_TEST     = menu_info_types.SERVER_MENU_6;
-    private static final int MENU_WOBBLE_TEST     = menu_info_types.SERVER_MENU_7;
-    private static final int MENU_ORBIT_TEST      = menu_info_types.SERVER_MENU_8;
-    private static final int MENU_DRAG_TEST       = menu_info_types.SERVER_MENU_9;
-    private static final int MENU_CLEAR_ALL       = menu_info_types.SERVER_MENU_10;
+    // Test menu options (note: no underscore in SERVER_MENU1 etc)
+    private static final int MENU_TEST_DYNAMICS   = menu_info_types.SERVER_MENU1;
+    private static final int MENU_PUSH_TEST       = menu_info_types.SERVER_MENU2;
+    private static final int MENU_SPIN_TEST       = menu_info_types.SERVER_MENU3;
+    private static final int MENU_BREATHING_TEST  = menu_info_types.SERVER_MENU4;
+    private static final int MENU_COMBINED_TEST   = menu_info_types.SERVER_MENU5;
+    private static final int MENU_BOUNCE_TEST     = menu_info_types.SERVER_MENU6;
+    private static final int MENU_WOBBLE_TEST     = menu_info_types.SERVER_MENU7;
+    private static final int MENU_ORBIT_TEST      = menu_info_types.SERVER_MENU8;
+    private static final int MENU_DRAG_TEST       = menu_info_types.SERVER_MENU9;
+    private static final int MENU_CLEAR_ALL       = menu_info_types.SERVER_MENU10;
 
     /**
      * Main initialization for test object
@@ -36,8 +36,6 @@ public class tangible_dynamics_test extends script.base_script
     {
         // Attach the handler script if not already attached
         attachScript(self, "handler.tangible_dynamics_handler");
-
-        setScriptVar(self, "test_object", true);
         return SCRIPT_CONTINUE;
     }
 
@@ -64,7 +62,7 @@ public class tangible_dynamics_test extends script.base_script
             float vy = getFloatObjVar(self, "dynamics.push.vy");
             float vz = getFloatObjVar(self, "dynamics.push.vz");
             names[index] = "Push Velocity";
-            attribs[index] = String.format("(%.2f, %.2f, %.2f)", vx, vy, vz);
+            attribs[index] = "(" + vx + ", " + vy + ", " + vz + ")";
             index++;
         }
 
@@ -72,7 +70,7 @@ public class tangible_dynamics_test extends script.base_script
         {
             float yaw = getFloatObjVar(self, "dynamics.spin.yaw");
             names[index] = "Spin Rate";
-            attribs[index] = String.format("%.2f rad/s", yaw);
+            attribs[index] = yaw + " rad/s";
             index++;
         }
 
@@ -81,7 +79,7 @@ public class tangible_dynamics_test extends script.base_script
             float minS = getFloatObjVar(self, "dynamics.breathing.min");
             float maxS = getFloatObjVar(self, "dynamics.breathing.max");
             names[index] = "Breathing";
-            attribs[index] = String.format("%.2f - %.2f", minS, maxS);
+            attribs[index] = minS + " - " + maxS;
             index++;
         }
 
@@ -93,7 +91,7 @@ public class tangible_dynamics_test extends script.base_script
      */
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
-        if (player == null)
+        if (!isIdValid(player))
             return SCRIPT_CONTINUE;
 
         if (item == MENU_PUSH_TEST)
@@ -115,7 +113,7 @@ public class tangible_dynamics_test extends script.base_script
         else if (item == MENU_CLEAR_ALL)
         {
             tangible_dynamics.clearAllForces(self);
-            sendSystemMessage(player, "All dynamics forces cleared.");
+            sendSystemMessageTestingOnly(player, "All dynamics forces cleared.");
         }
 
         return SCRIPT_CONTINUE;
@@ -125,7 +123,7 @@ public class tangible_dynamics_test extends script.base_script
     private void testPushForce(obj_id self, obj_id player) throws InterruptedException
     {
         tangible_dynamics.applyPushForce(self, 0.0f, 3.0f, 0.0f, 3.0f, tangible_dynamics.SPACE_WORLD);
-        sendSystemMessage(player, "Push force applied: upward 3m/s for 3s.");
+        sendSystemMessageTestingOnly(player, "Push force applied: upward 3m/s for 3s.");
     }
 
     // --- Spin: yaw 180deg/s for 5 seconds ---
@@ -133,21 +131,21 @@ public class tangible_dynamics_test extends script.base_script
     {
         float rotSpeed = (float)Math.PI;
         tangible_dynamics.applySpinForce(self, rotSpeed, 0.0f, 0.0f, 5.0f, false);
-        sendSystemMessage(player, "Spin applied: PI rad/s yaw for 5s.");
+        sendSystemMessageTestingOnly(player, "Spin applied: PI rad/s yaw for 5s.");
     }
 
     // --- Breathing: scale 0.8-1.2 for 4 seconds ---
     private void testBreathingEffect(obj_id self, obj_id player) throws InterruptedException
     {
         tangible_dynamics.applyBreathingEffect(self, 0.8f, 1.2f, 1.5f, 4.0f);
-        sendSystemMessage(player, "Breathing applied: 0.8-1.2 scale for 4s.");
+        sendSystemMessageTestingOnly(player, "Breathing applied: 0.8-1.2 scale for 4s.");
     }
 
     // --- Bounce: gravity 9.8, elasticity 0.7, initial launch 8 m/s ---
     private void testBounceEffect(obj_id self, obj_id player) throws InterruptedException
     {
         tangible_dynamics.applyBounceEffect(self, 9.8f, 0.7f, 8.0f, 10.0f);
-        sendSystemMessage(player, "Bounce applied: gravity=9.8, elasticity=0.7, launch=8m/s.");
+        sendSystemMessageTestingOnly(player, "Bounce applied: gravity=9.8, elasticity=0.7, launch=8m/s.");
     }
 
     // --- Wobble: gentle oscillation on all axes ---
@@ -157,7 +155,7 @@ public class tangible_dynamics_test extends script.base_script
             0.3f, 0.2f, 0.3f,   // amplitude X, Y, Z (meters)
             1.0f, 1.5f, 0.8f,   // frequency X, Y, Z (cycles/sec)
             6.0f);               // duration
-        sendSystemMessage(player, "Wobble applied: oscillating for 6s.");
+        sendSystemMessageTestingOnly(player, "Wobble applied: oscillating for 6s.");
     }
 
     // --- Orbit: circle around current position ---
@@ -169,7 +167,7 @@ public class tangible_dynamics_test extends script.base_script
             3.0f,                  // radius 3m
             (float)Math.PI,        // PI rad/s = half revolution per second
             8.0f);                 // duration
-        sendSystemMessage(player, "Orbit applied: 3m radius, half-rev/s for 8s.");
+        sendSystemMessageTestingOnly(player, "Orbit applied: 3m radius, half-rev/s for 8s.");
     }
 
     // --- Push with drag: shove sideways with heavy friction ---
@@ -180,7 +178,7 @@ public class tangible_dynamics_test extends script.base_script
             2.0f,                // drag coefficient (heavy)
             -1.0f,               // no duration limit (drag stops it)
             tangible_dynamics.SPACE_WORLD);
-        sendSystemMessage(player, "Push with drag applied: 5m/s sideways, drag=2.0.");
+        sendSystemMessageTestingOnly(player, "Push with drag applied: 5m/s sideways, drag=2.0.");
     }
 
     // --- Combined: push + spin + breathing ---
@@ -192,29 +190,29 @@ public class tangible_dynamics_test extends script.base_script
             spinSpeed, 0.0f, 0.0f, // spin
             0.9f, 1.1f, 1.0f,   // breathing
             6.0f);               // duration
-        sendSystemMessage(player, "Combined forces applied for 6s.");
+        sendSystemMessageTestingOnly(player, "Combined forces applied for 6s.");
     }
 
     /**
-     * Get menu options
+     * Build radial menu
      */
-    public void GetMenuItems(obj_id self, obj_id player, menu_info mi) throws InterruptedException
+    public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
-        if (player == null)
-            return;
+        if (!isIdValid(player))
+            return SCRIPT_CONTINUE;
 
-        int root = mi.addRootMenu(MENU_TEST_DYNAMICS, new string_id("tangible_dynamics", "test_menu_title"));
+        int root = mi.addRootMenu(MENU_TEST_DYNAMICS, new string_id("ui", "test_dynamics"));
 
-        mi.addSubMenu(root, MENU_PUSH_TEST, new string_id("tangible_dynamics", "test_push"));
-        mi.addSubMenu(root, MENU_SPIN_TEST, new string_id("tangible_dynamics", "test_spin"));
-        mi.addSubMenu(root, MENU_BREATHING_TEST, new string_id("tangible_dynamics", "test_breathing"));
-        mi.addSubMenu(root, MENU_BOUNCE_TEST, new string_id("tangible_dynamics", "test_bounce"));
-        mi.addSubMenu(root, MENU_WOBBLE_TEST, new string_id("tangible_dynamics", "test_wobble"));
-        mi.addSubMenu(root, MENU_ORBIT_TEST, new string_id("tangible_dynamics", "test_orbit"));
-        mi.addSubMenu(root, MENU_DRAG_TEST, new string_id("tangible_dynamics", "test_drag"));
-        mi.addSubMenu(root, MENU_COMBINED_TEST, new string_id("tangible_dynamics", "test_combined"));
+        mi.addSubMenu(root, MENU_PUSH_TEST, new string_id("ui", "test_push"));
+        mi.addSubMenu(root, MENU_SPIN_TEST, new string_id("ui", "test_spin"));
+        mi.addSubMenu(root, MENU_BREATHING_TEST, new string_id("ui", "test_breathing"));
+        mi.addSubMenu(root, MENU_BOUNCE_TEST, new string_id("ui", "test_bounce"));
+        mi.addSubMenu(root, MENU_WOBBLE_TEST, new string_id("ui", "test_wobble"));
+        mi.addSubMenu(root, MENU_ORBIT_TEST, new string_id("ui", "test_orbit"));
+        mi.addSubMenu(root, MENU_DRAG_TEST, new string_id("ui", "test_drag"));
+        mi.addSubMenu(root, MENU_COMBINED_TEST, new string_id("ui", "test_combined"));
+        mi.addSubMenu(root, MENU_CLEAR_ALL, new string_id("ui", "clear_all"));
 
-        mi.addSeparator(root);
-        mi.addSubMenu(root, MENU_CLEAR_ALL, new string_id("tangible_dynamics", "clear_all"));
+        return SCRIPT_CONTINUE;
     }
 }

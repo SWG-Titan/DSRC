@@ -332,6 +332,6 @@ public class tangible_dynamics extends script.base_script
 
     private static boolean isValidTarget(obj_id target)
     {
-        return target != null && target.getAsLong() > 0;
+        return isIdValid(target);
     }
 }
