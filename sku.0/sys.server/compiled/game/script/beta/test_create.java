@@ -49,7 +49,7 @@ public class test_create extends script.base_script
                     spacing = getObjectCollisionRadius(creature) * 2.5f;
                 }
                 // Apply bounce effect to non-creature tangible objects
-                if (isValidId(creature) && !isCreature(creature) && isTangible(creature))
+                if (isValidId(creature) && !isMob(creature) && isTangible(creature))
                 {
                     applySpawnBounce(creature);
                 }
