@@ -2,6 +2,7 @@ package script.beta;
 
 import script.library.ai_lib;
 import script.library.create;
+import script.library.tangible_dynamics;
 import script.library.utils;
 import script.location;
 import script.obj_id;
@@ -46,6 +47,11 @@ public class test_create extends script.base_script
                 if (spaceUsingCollisionRadius && isValidId(creature))
                 {
                     spacing = getObjectCollisionRadius(creature) * 2.5f;
+                }
+                // Apply bounce effect to non-creature tangible objects
+                if (isValidId(creature) && !isCreature(creature) && isTangible(creature))
+                {
+                    applySpawnBounce(creature);
                 }
             }
             return SCRIPT_CONTINUE;
@@ -115,5 +121,18 @@ public class test_create extends script.base_script
             return SCRIPT_CONTINUE;
         }
         return SCRIPT_CONTINUE;
+    }
+
+    /**
+     * Applies a bounce effect to a newly spawned object for visual feedback.
+     * The object will bounce up and settle down naturally.
+     */
+    private void applySpawnBounce(obj_id target) throws InterruptedException
+    {
+        // Set the condition to enable dynamics
+        setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+
+        // Apply bounce: gravity=9.8, elasticity=0.6, initial upward velocity=4.0, duration=3s
+        tangible_dynamics.applyBounceEffect(target, 9.8f, 0.6f, 4.0f, 3.0f);
     }
 }
