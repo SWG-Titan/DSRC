@@ -1746,15 +1746,9 @@ public class player_developer extends base_script
         }
         else if (cmd.equalsIgnoreCase("dynamicsTest"))
         {
-            // Open SUI panel to configure TangibleDynamics on target
-            if (!isTangible(target))
-            {
-                broadcast(self, "Target must be a tangible object.");
-                return SCRIPT_CONTINUE;
-            }
-
-            // Store target for handler
-            setObjVar(self, "dynamics_test.target", target);
+            // Open SUI panel to configure TangibleDynamics on SELF (not target)
+            // Store self as target for handler
+            setObjVar(self, "dynamics_test.target", self);
 
             // Build options list
             String[] options = new String[] {
@@ -1768,6 +1762,8 @@ public class player_developer extends base_script
                 "Apply Bounce Effect (gravity bounce)",
                 "Apply Wobble Effect (oscillate position)",
                 "Apply Orbit Effect (circle around point)",
+                "Apply Hover Effect (terrain-following float)",
+                "Apply Follow Target (hover + follow lookAt)",
                 "Apply Combined (push + spin + breathing)",
                 "------- COLLISION -------",
                 "Enable Collision Push (hockey puck)",
@@ -1782,10 +1778,12 @@ public class player_developer extends base_script
                 "Clear Bounce Effect",
                 "Clear Wobble Effect",
                 "Clear Orbit Effect",
+                "Clear Hover Effect",
+                "Clear Follow Target Effect",
                 "Clear ALL Forces"
             };
 
-            int pid = sui.listbox(self, self, "Select a TangibleDynamics option for: " + getName(target),
+            int pid = sui.listbox(self, self, "Select a TangibleDynamics option for: " + getName(self),
                 sui.OK_CANCEL, "TangibleDynamics Test Panel", options, "handleDynamicsTestSUI", true, false);
 
             if (pid < 0)
@@ -8776,76 +8774,110 @@ public class player_developer extends base_script
                 broadcast(self, "Orbit effect applied (3m radius, PI rad/s)");
                 break;
 
-            case 10: // Combined
+            case 10: // Hover Effect
+                attachScript(target, "handler.tangible_dynamics_handler");
+                tangible_dynamics.applyHoverEffect(target, 1.5f, 0.15f, 0.8f, -1.0f);
+                broadcast(self, "Hover effect applied (1.5m height, 0.15m bob, 0.8 speed)");
+                break;
+
+            case 11: // Follow Target Effect - make lookAt target follow player
+                {
+                    obj_id lookAt = getLookAtTarget(self);
+                    if (isIdValid(lookAt))
+                    {
+                        // Apply dynamics to the lookAt target, make it follow the player (self)
+                        attachScript(lookAt, "handler.tangible_dynamics_handler");
+                        setCondition(lookAt, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+                        tangible_dynamics.applyFollowTargetEffect(lookAt, self, 3.0f, 4.0f, 1.5f, 0.1f, -1.0f);
+                        broadcast(self, "Follow target effect applied - " + getName(lookAt) + " now follows you!");
+                    }
+                    else
+                    {
+                        broadcast(self, "No lookAt target! Select an object to make it follow you.");
+                    }
+                }
+                break;
+
+            case 12: // Combined
                 attachScript(target, "handler.tangible_dynamics_handler");
                 tangible_dynamics.applyCombinedForces(target, 0.0f, 1.5f, 0.0f, 1.57f, 0.0f, 0.0f, 0.9f, 1.1f, 1.0f, -1.0f);
                 broadcast(self, "Combined forces applied (push + spin + breathing)");
                 break;
 
-            case 11: // Separator - do nothing
+            case 13: // Separator - do nothing
                 break;
 
-            case 12: // Enable Collision Push
+            case 14: // Enable Collision Push
                 removeObjVar(target, "collideBlock");
                 setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
                 attachScript(target, "handler.tangible_dynamics_handler");
                 broadcast(self, "Collision push ENABLED (hockey puck mode)");
                 break;
 
-            case 13: // Disable Collision Push
+            case 15: // Disable Collision Push
                 setObjVar(target, "collideBlock", 1);
                 broadcast(self, "Collision push DISABLED");
                 break;
 
-            case 14: // Set Collision Radius
+            case 16: // Set Collision Radius
                 setObjVar(self, "dynamics_test.param", "collisionRadius");
                 sui.inputbox(self, self, "Enter collision radius (meters):", "Set Collision Radius", "handleDynamicsParamInput", "1.0");
                 return SCRIPT_CONTINUE;
 
-            case 15: // Set Push Speed
+            case 17: // Set Push Speed
                 setObjVar(self, "dynamics_test.param", "pushSpeed");
                 sui.inputbox(self, self, "Enter push speed (m/s):", "Set Push Speed", "handleDynamicsParamInput", "5.0");
                 return SCRIPT_CONTINUE;
 
-            case 16: // Set Push Drag
+            case 18: // Set Push Drag
                 setObjVar(self, "dynamics_test.param", "pushDrag");
                 sui.inputbox(self, self, "Enter push drag coefficient:", "Set Push Drag", "handleDynamicsParamInput", "1.5");
                 return SCRIPT_CONTINUE;
 
-            case 17: // Separator - do nothing
+            case 19: // Separator - do nothing
                 break;
 
-            case 18: // Clear Push
+            case 20: // Clear Push
                 tangible_dynamics.clearPushForce(target);
                 broadcast(self, "Push force cleared");
                 break;
 
-            case 19: // Clear Spin
+            case 21: // Clear Spin
                 tangible_dynamics.clearSpinForce(target);
                 broadcast(self, "Spin force cleared");
                 break;
 
-            case 20: // Clear Breathing
+            case 22: // Clear Breathing
                 tangible_dynamics.clearBreathingEffect(target);
                 broadcast(self, "Breathing effect cleared");
                 break;
 
-            case 21: // Clear Bounce
+            case 23: // Clear Bounce
                 tangible_dynamics.clearBounceEffect(target);
                 broadcast(self, "Bounce effect cleared");
                 break;
 
-            case 22: // Clear Wobble
+            case 24: // Clear Wobble
                 tangible_dynamics.clearWobbleEffect(target);
                 broadcast(self, "Wobble effect cleared");
                 break;
 
-            case 23: // Clear Orbit
+            case 25: // Clear Orbit
                 tangible_dynamics.clearOrbitEffect(target);
                 broadcast(self, "Orbit effect cleared");
                 break;
 
-            case 24: // Clear ALL
+            case 26: // Clear Hover
+                tangible_dynamics.clearHoverEffect(target);
+                broadcast(self, "Hover effect cleared");
+                break;
+
+            case 27: // Clear Follow Target
+                tangible_dynamics.clearFollowTargetEffect(target);
+                broadcast(self, "Follow target effect cleared");
+                break;
+
+            case 28: // Clear ALL
                 tangible_dynamics.clearAllForces(target);
                 broadcast(self, "ALL dynamics forces cleared");
                 break;

@@ -40,6 +40,10 @@ public class tangible_dynamics_handler extends script.base_script
             handleApplyWobble(self, params);
         else if (command.equals("apply_orbit"))
             handleApplyOrbit(self, params);
+        else if (command.equals("apply_hover"))
+            handleApplyHover(self, params);
+        else if (command.equals("apply_follow_target"))
+            handleApplyFollowTarget(self, params);
         else if (command.equals("apply_combined"))
             handleApplyCombined(self, params);
         else if (command.equals("set_easing"))
@@ -59,6 +63,10 @@ public class tangible_dynamics_handler extends script.base_script
             handleClearWobble(self);
         else if (command.equals("clear_orbit"))
             handleClearOrbit(self);
+        else if (command.equals("clear_hover"))
+            handleClearHover(self);
+        else if (command.equals("clear_follow_target"))
+            handleClearFollowTarget(self);
 
         return SCRIPT_CONTINUE;
     }
@@ -313,6 +321,66 @@ public class tangible_dynamics_handler extends script.base_script
         return SCRIPT_CONTINUE;
     }
 
+    private int handleApplyHover(obj_id self, dictionary params) throws InterruptedException
+    {
+        float hoverHeight = params.getFloat("hoverHeight");
+        float bobAmplitude = params.getFloat("bobAmplitude");
+        float bobSpeed = params.getFloat("bobSpeed");
+        float duration = params.getFloat("duration");
+
+        setObjVar(self, "dynamics.hover.height", hoverHeight);
+        setObjVar(self, "dynamics.hover.bobAmplitude", bobAmplitude);
+        setObjVar(self, "dynamics.hover.bobSpeed", bobSpeed);
+        setObjVar(self, "dynamics.hover.duration", duration);
+
+        if (duration > 0.0f)
+            messageTo(self, "OnHoverEffectTick", null, (long)(duration * 1000), false);
+
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleApplyFollowTarget(obj_id self, dictionary params) throws InterruptedException
+    {
+        long followTargetId = params.getLong("followTargetId");
+        float followDistance = params.getFloat("followDistance");
+        float followSpeed = params.getFloat("followSpeed");
+        float hoverHeight = params.getFloat("hoverHeight");
+        float bobAmplitude = params.getFloat("bobAmplitude");
+        float duration = params.getFloat("duration");
+
+        setObjVar(self, "dynamics.follow.targetId", followTargetId);
+        setObjVar(self, "dynamics.follow.distance", followDistance);
+        setObjVar(self, "dynamics.follow.speed", followSpeed);
+        setObjVar(self, "dynamics.follow.hoverHeight", hoverHeight);
+        setObjVar(self, "dynamics.follow.bobAmplitude", bobAmplitude);
+        setObjVar(self, "dynamics.follow.duration", duration);
+
+        if (duration > 0.0f)
+            messageTo(self, "OnFollowTargetEffectTick", null, (long)(duration * 1000), false);
+
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleClearHover(obj_id self) throws InterruptedException
+    {
+        removeObjVar(self, "dynamics.hover.height");
+        removeObjVar(self, "dynamics.hover.bobAmplitude");
+        removeObjVar(self, "dynamics.hover.bobSpeed");
+        removeObjVar(self, "dynamics.hover.duration");
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleClearFollowTarget(obj_id self) throws InterruptedException
+    {
+        removeObjVar(self, "dynamics.follow.targetId");
+        removeObjVar(self, "dynamics.follow.distance");
+        removeObjVar(self, "dynamics.follow.speed");
+        removeObjVar(self, "dynamics.follow.hoverHeight");
+        removeObjVar(self, "dynamics.follow.bobAmplitude");
+        removeObjVar(self, "dynamics.follow.duration");
+        return SCRIPT_CONTINUE;
+    }
+
     // =====================================================================
     // DURATION EXPIRY CALLBACKS
     // =====================================================================
@@ -350,6 +418,18 @@ public class tangible_dynamics_handler extends script.base_script
     public int OnOrbitEffectTick(obj_id self) throws InterruptedException
     {
         handleClearOrbit(self);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnHoverEffectTick(obj_id self) throws InterruptedException
+    {
+        handleClearHover(self);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnFollowTargetEffectTick(obj_id self) throws InterruptedException
+    {
+        handleClearFollowTarget(self);
         return SCRIPT_CONTINUE;
     }
 }

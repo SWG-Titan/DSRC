@@ -18,13 +18,15 @@ import script.library.*;
 public class tangible_dynamics extends script.base_script
 {
     // Force mode bitmask values (match C++ TangibleDynamics::ForceMode)
-    public static final int FORCE_MODE_NONE      = 0;
-    public static final int FORCE_MODE_PUSH      = (1 << 0);
-    public static final int FORCE_MODE_SPIN      = (1 << 1);
-    public static final int FORCE_MODE_BREATHING = (1 << 2);
-    public static final int FORCE_MODE_BOUNCE    = (1 << 3);
-    public static final int FORCE_MODE_WOBBLE    = (1 << 4);
-    public static final int FORCE_MODE_ORBIT     = (1 << 5);
+    public static final int FORCE_MODE_NONE         = 0;
+    public static final int FORCE_MODE_PUSH         = (1 << 0);
+    public static final int FORCE_MODE_SPIN         = (1 << 1);
+    public static final int FORCE_MODE_BREATHING    = (1 << 2);
+    public static final int FORCE_MODE_BOUNCE       = (1 << 3);
+    public static final int FORCE_MODE_WOBBLE       = (1 << 4);
+    public static final int FORCE_MODE_ORBIT        = (1 << 5);
+    public static final int FORCE_MODE_HOVER        = (1 << 6);
+    public static final int FORCE_MODE_FOLLOW_TARGET = (1 << 7);
 
     // Movement spaces
     public static final int SPACE_WORLD  = 0;
@@ -324,6 +326,106 @@ public class tangible_dynamics extends script.base_script
         dictionary params = new dictionary();
         params.put("command", "clear_orbit");
         messageTo(target, "OnTangibleDynamics", params, 0, false);
+    }
+
+    public static void clearHoverEffect(obj_id target) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+        dictionary params = new dictionary();
+        params.put("command", "clear_hover");
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+    }
+
+    public static void clearFollowTargetEffect(obj_id target) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+        dictionary params = new dictionary();
+        params.put("command", "clear_follow_target");
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+    }
+
+    // =====================================================================
+    // HOVER (terrain-following with slight bob)
+    // =====================================================================
+
+    /**
+     * Apply a hover effect - object floats above terrain with slight bob
+     * @param target Object to apply effect to
+     * @param hoverHeight Height above terrain (default 1.0m)
+     * @param bobAmplitude How much it bobs up/down (default 0.1m)
+     * @param bobSpeed How fast it bobs (cycles per second, default 1.0)
+     * @param duration Duration in seconds (-1 = infinite)
+     */
+    public static void applyHoverEffect(obj_id target, float hoverHeight, float bobAmplitude, float bobSpeed, float duration) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+
+        dictionary params = new dictionary();
+        params.put("command", "apply_hover");
+        params.put("hoverHeight", hoverHeight);
+        params.put("bobAmplitude", bobAmplitude);
+        params.put("bobSpeed", bobSpeed);
+        params.put("duration", duration);
+
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+        setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+    }
+
+    /**
+     * Apply a simple hover effect with defaults
+     */
+    public static void applyHoverEffect(obj_id target, float hoverHeight) throws InterruptedException
+    {
+        applyHoverEffect(target, hoverHeight, 0.1f, 1.0f, -1.0f);
+    }
+
+    // =====================================================================
+    // FOLLOW TARGET (hover + follow another object, matching rotation)
+    // =====================================================================
+
+    /**
+     * Apply a follow target effect - object follows another object, hovers, and matches rotation
+     * Like a camera drone or companion pet
+     * @param target Object to apply effect to
+     * @param followTarget Object to follow
+     * @param followDistance Distance to maintain behind target (default 2.0m)
+     * @param followSpeed Movement speed toward target (default 3.0 m/s)
+     * @param hoverHeight Height above terrain (default 1.0m)
+     * @param bobAmplitude How much it bobs up/down (default 0.05m)
+     * @param duration Duration in seconds (-1 = infinite)
+     */
+    public static void applyFollowTargetEffect(obj_id target, obj_id followTarget, float followDistance, float followSpeed, float hoverHeight, float bobAmplitude, float duration) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+        if (!isIdValid(followTarget)) return;
+
+        dictionary params = new dictionary();
+        params.put("command", "apply_follow_target");
+        params.put("followTargetId", followTarget.getValue());
+        params.put("followDistance", followDistance);
+        params.put("followSpeed", followSpeed);
+        params.put("hoverHeight", hoverHeight);
+        params.put("bobAmplitude", bobAmplitude);
+        params.put("duration", duration);
+
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+        setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+    }
+
+    /**
+     * Apply a simple follow target effect with defaults
+     */
+    public static void applyFollowTargetEffect(obj_id target, obj_id followTarget) throws InterruptedException
+    {
+        applyFollowTargetEffect(target, followTarget, 2.0f, 3.0f, 1.0f, 0.05f, -1.0f);
+    }
+
+    /**
+     * Apply follow target effect with distance and speed
+     */
+    public static void applyFollowTargetEffect(obj_id target, obj_id followTarget, float followDistance, float followSpeed) throws InterruptedException
+    {
+        applyFollowTargetEffect(target, followTarget, followDistance, followSpeed, 1.0f, 0.05f, -1.0f);
     }
 
     // =====================================================================
