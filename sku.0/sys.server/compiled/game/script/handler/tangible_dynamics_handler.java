@@ -44,6 +44,14 @@ public class tangible_dynamics_handler extends script.base_script
             handleApplyHover(self, params);
         else if (command.equals("apply_follow_target"))
             handleApplyFollowTarget(self, params);
+        else if (command.equals("apply_sway"))
+            handleApplySway(self, params);
+        else if (command.equals("apply_shake"))
+            handleApplyShake(self, params);
+        else if (command.equals("apply_float"))
+            handleApplyFloat(self, params);
+        else if (command.equals("apply_conveyor"))
+            handleApplyConveyor(self, params);
         else if (command.equals("apply_combined"))
             handleApplyCombined(self, params);
         else if (command.equals("set_easing"))
@@ -67,6 +75,14 @@ public class tangible_dynamics_handler extends script.base_script
             handleClearHover(self);
         else if (command.equals("clear_follow_target"))
             handleClearFollowTarget(self);
+        else if (command.equals("clear_sway"))
+            handleClearSway(self);
+        else if (command.equals("clear_shake"))
+            handleClearShake(self);
+        else if (command.equals("clear_float"))
+            handleClearFloat(self);
+        else if (command.equals("clear_conveyor"))
+            handleClearConveyor(self);
 
         return SCRIPT_CONTINUE;
     }
@@ -254,7 +270,7 @@ public class tangible_dynamics_handler extends script.base_script
         handleClearBounce(self);
         handleClearWobble(self);
         handleClearOrbit(self);
-        handleClearHover(self);
+         handleClearHover(self);
         handleClearFollowTarget(self);
         removeObjVar(self, "dynamics.easing.type");
         removeObjVar(self, "dynamics.easing.duration");
@@ -384,6 +400,117 @@ public class tangible_dynamics_handler extends script.base_script
         return SCRIPT_CONTINUE;
     }
 
+    private int handleApplySway(obj_id self, dictionary params) throws InterruptedException
+    {
+        float swingAngle = params.getFloat("swingAngle");
+        float swingSpeed = params.getFloat("swingSpeed");
+        float damping = params.getFloat("damping");
+        float duration = params.getFloat("duration");
+
+        setObjVar(self, "dynamics.sway.swingAngle", swingAngle);
+        setObjVar(self, "dynamics.sway.swingSpeed", swingSpeed);
+        setObjVar(self, "dynamics.sway.damping", damping);
+        setObjVar(self, "dynamics.sway.duration", duration);
+
+        if (duration > 0.0f)
+            messageTo(self, "OnSwayEffectTick", null, (long)(duration * 1000), false);
+
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleClearSway(obj_id self) throws InterruptedException
+    {
+        removeObjVar(self, "dynamics.sway.swingAngle");
+        removeObjVar(self, "dynamics.sway.swingSpeed");
+        removeObjVar(self, "dynamics.sway.damping");
+        removeObjVar(self, "dynamics.sway.duration");
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleApplyShake(obj_id self, dictionary params) throws InterruptedException
+    {
+        float intensity = params.getFloat("intensity");
+        float frequency = params.getFloat("frequency");
+        float duration = params.getFloat("duration");
+
+        setObjVar(self, "dynamics.shake.intensity", intensity);
+        setObjVar(self, "dynamics.shake.frequency", frequency);
+        setObjVar(self, "dynamics.shake.duration", duration);
+
+        if (duration > 0.0f)
+            messageTo(self, "OnShakeEffectTick", null, (long)(duration * 1000), false);
+
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleClearShake(obj_id self) throws InterruptedException
+    {
+        removeObjVar(self, "dynamics.shake.intensity");
+        removeObjVar(self, "dynamics.shake.frequency");
+        removeObjVar(self, "dynamics.shake.duration");
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleApplyFloat(obj_id self, dictionary params) throws InterruptedException
+    {
+        float floatHeight = params.getFloat("floatHeight");
+        float driftSpeed = params.getFloat("driftSpeed");
+        float randomStrength = params.getFloat("randomStrength");
+        float duration = params.getFloat("duration");
+
+        setObjVar(self, "dynamics.float.height", floatHeight);
+        setObjVar(self, "dynamics.float.driftSpeed", driftSpeed);
+        setObjVar(self, "dynamics.float.randomStrength", randomStrength);
+        setObjVar(self, "dynamics.float.duration", duration);
+
+        if (duration > 0.0f)
+            messageTo(self, "OnFloatEffectTick", null, (long)(duration * 1000), false);
+
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleClearFloat(obj_id self) throws InterruptedException
+    {
+        removeObjVar(self, "dynamics.float.height");
+        removeObjVar(self, "dynamics.float.driftSpeed");
+        removeObjVar(self, "dynamics.float.randomStrength");
+        removeObjVar(self, "dynamics.float.duration");
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleApplyConveyor(obj_id self, dictionary params) throws InterruptedException
+    {
+        float directionX = params.getFloat("directionX");
+        float directionY = params.getFloat("directionY");
+        float directionZ = params.getFloat("directionZ");
+        float speed = params.getFloat("speed");
+        float wrapDistance = params.getFloat("wrapDistance");
+        float duration = params.getFloat("duration");
+
+        setObjVar(self, "dynamics.conveyor.dirX", directionX);
+        setObjVar(self, "dynamics.conveyor.dirY", directionY);
+        setObjVar(self, "dynamics.conveyor.dirZ", directionZ);
+        setObjVar(self, "dynamics.conveyor.speed", speed);
+        setObjVar(self, "dynamics.conveyor.wrapDistance", wrapDistance);
+        setObjVar(self, "dynamics.conveyor.duration", duration);
+
+        if (duration > 0.0f)
+            messageTo(self, "OnConveyorEffectTick", null, (long)(duration * 1000), false);
+
+        return SCRIPT_CONTINUE;
+    }
+
+    private int handleClearConveyor(obj_id self) throws InterruptedException
+    {
+        removeObjVar(self, "dynamics.conveyor.dirX");
+        removeObjVar(self, "dynamics.conveyor.dirY");
+        removeObjVar(self, "dynamics.conveyor.dirZ");
+        removeObjVar(self, "dynamics.conveyor.speed");
+        removeObjVar(self, "dynamics.conveyor.wrapDistance");
+        removeObjVar(self, "dynamics.conveyor.duration");
+        return SCRIPT_CONTINUE;
+    }
+
     // =====================================================================
     // DURATION EXPIRY CALLBACKS
     // =====================================================================
@@ -433,6 +560,30 @@ public class tangible_dynamics_handler extends script.base_script
     public int OnFollowTargetEffectTick(obj_id self) throws InterruptedException
     {
         handleClearFollowTarget(self);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnSwayEffectTick(obj_id self) throws InterruptedException
+    {
+        handleClearSway(self);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnShakeEffectTick(obj_id self) throws InterruptedException
+    {
+        handleClearShake(self);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnFloatEffectTick(obj_id self) throws InterruptedException
+    {
+        handleClearFloat(self);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnConveyorEffectTick(obj_id self) throws InterruptedException
+    {
+        handleClearConveyor(self);
         return SCRIPT_CONTINUE;
     }
 }

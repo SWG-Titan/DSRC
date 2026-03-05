@@ -27,6 +27,10 @@ public class tangible_dynamics extends script.base_script
     public static final int FORCE_MODE_ORBIT        = (1 << 5);
     public static final int FORCE_MODE_HOVER        = (1 << 6);
     public static final int FORCE_MODE_FOLLOW_TARGET = (1 << 7);
+    public static final int FORCE_MODE_SWAY         = (1 << 8);
+    public static final int FORCE_MODE_SHAKE        = (1 << 9);
+    public static final int FORCE_MODE_FLOAT        = (1 << 10);
+    public static final int FORCE_MODE_CONVEYOR     = (1 << 11);
 
     // Movement spaces
     public static final int SPACE_WORLD  = 0;
@@ -426,6 +430,208 @@ public class tangible_dynamics extends script.base_script
     public static void applyFollowTargetEffect(obj_id target, obj_id followTarget, float followDistance, float followSpeed) throws InterruptedException
     {
         applyFollowTargetEffect(target, followTarget, followDistance, followSpeed, 1.0f, 0.05f, -1.0f);
+    }
+
+    // =====================================================================
+    // SWAY/PENDULUM (swinging back and forth like a hanging sign)
+    // =====================================================================
+
+    /**
+     * Apply a sway/pendulum effect - object swings back and forth
+     * Great for hanging signs, chandeliers, chains, lanterns
+     * @param target Object to apply effect to
+     * @param swingAngle Maximum swing angle in radians (default 0.1 rad ~ 6 degrees)
+     * @param swingSpeed Swing cycles per second (default 1.0)
+     * @param damping How quickly swing decays (0=no damping, higher=faster decay)
+     * @param duration Duration in seconds (-1 = infinite)
+     */
+    public static void applySwayEffect(obj_id target, float swingAngle, float swingSpeed, float damping, float duration) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+
+        dictionary params = new dictionary();
+        params.put("command", "apply_sway");
+        params.put("swingAngle", swingAngle);
+        params.put("swingSpeed", swingSpeed);
+        params.put("damping", damping);
+        params.put("duration", duration);
+
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+        setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+    }
+
+    /**
+     * Apply a simple sway effect with defaults
+     */
+    public static void applySwayEffect(obj_id target) throws InterruptedException
+    {
+        applySwayEffect(target, 0.1f, 1.0f, 0.0f, -1.0f);
+    }
+
+    /**
+     * Apply sway with angle and speed
+     */
+    public static void applySwayEffect(obj_id target, float swingAngle, float swingSpeed) throws InterruptedException
+    {
+        applySwayEffect(target, swingAngle, swingSpeed, 0.0f, -1.0f);
+    }
+
+    public static void clearSwayEffect(obj_id target) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+        dictionary params = new dictionary();
+        params.put("command", "clear_sway");
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+    }
+
+    // =====================================================================
+    // SHAKE/VIBRATE (rapid small position offsets for emphasis)
+    // =====================================================================
+
+    /**
+     * Apply a shake/vibrate effect - rapid small movements
+     * Great for explosions, machinery, damaged equipment, alerts
+     * @param target Object to apply effect to
+     * @param intensity How much to shake (meters, default 0.1m)
+     * @param frequency Shakes per second (default 10)
+     * @param duration Duration in seconds (-1 = infinite)
+     */
+    public static void applyShakeEffect(obj_id target, float intensity, float frequency, float duration) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+
+        dictionary params = new dictionary();
+        params.put("command", "apply_shake");
+        params.put("intensity", intensity);
+        params.put("frequency", frequency);
+        params.put("duration", duration);
+
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+        setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+    }
+
+    /**
+     * Apply a simple shake effect with defaults
+     */
+    public static void applyShakeEffect(obj_id target, float duration) throws InterruptedException
+    {
+        applyShakeEffect(target, 0.1f, 10.0f, duration);
+    }
+
+    public static void clearShakeEffect(obj_id target) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+        dictionary params = new dictionary();
+        params.put("command", "clear_shake");
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+    }
+
+    // =====================================================================
+    // FLOAT/LEVITATE (slow drift up and down with slight random movement)
+    // =====================================================================
+
+    /**
+     * Apply a float/levitate effect - slow drift with organic randomness
+     * Great for magical items, holocrons, force-sensitive objects, ghosts
+     * @param target Object to apply effect to
+     * @param floatHeight Height range to drift (default 0.5m)
+     * @param driftSpeed How fast it drifts up/down (cycles per second, default 0.5)
+     * @param randomStrength Random horizontal drift amount (default 0.1m)
+     * @param duration Duration in seconds (-1 = infinite)
+     */
+    public static void applyFloatEffect(obj_id target, float floatHeight, float driftSpeed, float randomStrength, float duration) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+
+        dictionary params = new dictionary();
+        params.put("command", "apply_float");
+        params.put("floatHeight", floatHeight);
+        params.put("driftSpeed", driftSpeed);
+        params.put("randomStrength", randomStrength);
+        params.put("duration", duration);
+
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+        setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+    }
+
+    /**
+     * Apply a simple float effect with defaults
+     */
+    public static void applyFloatEffect(obj_id target) throws InterruptedException
+    {
+        applyFloatEffect(target, 0.5f, 0.5f, 0.1f, -1.0f);
+    }
+
+    /**
+     * Apply float effect with height
+     */
+    public static void applyFloatEffect(obj_id target, float floatHeight) throws InterruptedException
+    {
+        applyFloatEffect(target, floatHeight, 0.5f, 0.1f, -1.0f);
+    }
+
+    public static void clearFloatEffect(obj_id target) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+        dictionary params = new dictionary();
+        params.put("command", "clear_float");
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+    }
+
+    // =====================================================================
+    // CONVEYOR (continuous linear movement with optional wrap)
+    // =====================================================================
+
+    /**
+     * Apply a conveyor effect - continuous linear movement in one direction
+     * Great for factory belts, flowing water effects, escalators
+     * @param target Object to apply effect to
+     * @param directionX X component of direction vector (will be normalized)
+     * @param directionY Y component of direction vector
+     * @param directionZ Z component of direction vector
+     * @param speed Movement speed in meters per second
+     * @param wrapDistance Distance to travel before wrapping back to start (0=no wrap)
+     * @param duration Duration in seconds (-1 = infinite)
+     */
+    public static void applyConveyorEffect(obj_id target, float directionX, float directionY, float directionZ, float speed, float wrapDistance, float duration) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+
+        dictionary params = new dictionary();
+        params.put("command", "apply_conveyor");
+        params.put("directionX", directionX);
+        params.put("directionY", directionY);
+        params.put("directionZ", directionZ);
+        params.put("speed", speed);
+        params.put("wrapDistance", wrapDistance);
+        params.put("duration", duration);
+
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
+        setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+    }
+
+    /**
+     * Apply conveyor effect with just direction and speed (no wrap, infinite duration)
+     */
+    public static void applyConveyorEffect(obj_id target, float directionX, float directionY, float directionZ, float speed) throws InterruptedException
+    {
+        applyConveyorEffect(target, directionX, directionY, directionZ, speed, 0.0f, -1.0f);
+    }
+
+    /**
+     * Apply conveyor effect with wrap (object loops back after traveling wrapDistance)
+     */
+    public static void applyConveyorEffectWithWrap(obj_id target, float directionX, float directionY, float directionZ, float speed, float wrapDistance) throws InterruptedException
+    {
+        applyConveyorEffect(target, directionX, directionY, directionZ, speed, wrapDistance, -1.0f);
+    }
+
+    public static void clearConveyorEffect(obj_id target) throws InterruptedException
+    {
+        if (!isValidTarget(target)) return;
+        dictionary params = new dictionary();
+        params.put("command", "clear_conveyor");
+        messageTo(target, "OnTangibleDynamics", params, 0, false);
     }
 
     // =====================================================================

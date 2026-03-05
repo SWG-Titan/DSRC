@@ -8752,86 +8752,131 @@ public class player_developer extends base_script
                 broadcast(self, "Follow target effect applied - " + getName(target) + " now follows you!");
                 break;
 
-            case 12: // Combined
+            case 12: // Conveyor Effect - linear movement with wrap
+                attachScript(target, "handler.tangible_dynamics_handler");
+                location myHeading = getHeading(self);
+                tangible_dynamics.applyConveyorEffectWithWrap(target, myHeading.x, 0.0f, myHeading.z, 2.0f, 10.0f);
+                broadcast(self, "Conveyor effect applied (2m/s, wraps at 10m in your facing direction)");
+                break;
+
+            case 13: // Sway Effect - pendulum swing
+                attachScript(target, "handler.tangible_dynamics_handler");
+                tangible_dynamics.applySwayEffect(target, 0.15f, 0.8f, 0.0f, -1.0f);
+                broadcast(self, "Sway effect applied (0.15 rad swing, 0.8 speed)");
+                break;
+
+            case 14: // Shake Effect - vibrate
+                attachScript(target, "handler.tangible_dynamics_handler");
+                tangible_dynamics.applyShakeEffect(target, 0.15f, 12.0f, 5.0f);
+                broadcast(self, "Shake effect applied (0.15m intensity, 12Hz, 5s duration)");
+                break;
+
+            case 15: // Float Effect - levitate with drift
+                attachScript(target, "handler.tangible_dynamics_handler");
+                tangible_dynamics.applyFloatEffect(target, 0.6f, 0.4f, 0.15f, -1.0f);
+                broadcast(self, "Float effect applied (0.6m height, 0.4 speed, 0.15m random drift)");
+                break;
+
+            case 16: // Combined
                 attachScript(target, "handler.tangible_dynamics_handler");
                 tangible_dynamics.applyCombinedForces(target, 0.0f, 1.5f, 0.0f, 1.57f, 0.0f, 0.0f, 0.9f, 1.1f, 1.0f, -1.0f);
                 broadcast(self, "Combined forces applied (push + spin + breathing)");
                 break;
 
-            case 13: // Separator - do nothing
+            case 17: // Separator - do nothing
                 break;
 
-            case 14: // Enable Collision Push
+            case 18: // Enable Collision Push
                 removeObjVar(target, "collideBlock");
                 setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
                 attachScript(target, "handler.tangible_dynamics_handler");
                 broadcast(self, "Collision push ENABLED (hockey puck mode)");
                 break;
 
-            case 15: // Disable Collision Push
+            case 19: // Disable Collision Push
                 setObjVar(target, "collideBlock", 1);
                 broadcast(self, "Collision push DISABLED");
                 break;
 
-            case 16: // Set Collision Radius
+            case 20: // Set Collision Radius
                 setObjVar(self, "dynamics_test.param", "collisionRadius");
                 sui.inputbox(self, self, "Enter collision radius (meters):", "Set Collision Radius", "handleDynamicsParamInput", "1.0");
                 return SCRIPT_CONTINUE;
 
-            case 17: // Set Push Speed
+            case 21: // Set Push Speed
                 setObjVar(self, "dynamics_test.param", "pushSpeed");
                 sui.inputbox(self, self, "Enter push speed (m/s):", "Set Push Speed", "handleDynamicsParamInput", "5.0");
                 return SCRIPT_CONTINUE;
 
-            case 18: // Set Push Drag
+            case 22: // Set Push Drag
                 setObjVar(self, "dynamics_test.param", "pushDrag");
                 sui.inputbox(self, self, "Enter push drag coefficient:", "Set Push Drag", "handleDynamicsParamInput", "1.5");
                 return SCRIPT_CONTINUE;
 
-            case 19: // Separator - do nothing
+            case 23: // Separator - do nothing
                 break;
 
-            case 20: // Clear Push
+            case 24: // Clear Push
                 tangible_dynamics.clearPushForce(target);
                 broadcast(self, "Push force cleared");
                 break;
 
-            case 21: // Clear Spin
+            case 25: // Clear Spin
                 tangible_dynamics.clearSpinForce(target);
                 broadcast(self, "Spin force cleared");
                 break;
 
-            case 22: // Clear Breathing
+            case 26: // Clear Breathing
                 tangible_dynamics.clearBreathingEffect(target);
                 broadcast(self, "Breathing effect cleared");
                 break;
 
-            case 23: // Clear Bounce
+            case 27: // Clear Bounce
                 tangible_dynamics.clearBounceEffect(target);
                 broadcast(self, "Bounce effect cleared");
                 break;
 
-            case 24: // Clear Wobble
+            case 28: // Clear Wobble
                 tangible_dynamics.clearWobbleEffect(target);
                 broadcast(self, "Wobble effect cleared");
                 break;
 
-            case 25: // Clear Orbit
+            case 29: // Clear Orbit
                 tangible_dynamics.clearOrbitEffect(target);
                 broadcast(self, "Orbit effect cleared");
                 break;
 
-            case 26: // Clear Hover
+            case 30: // Clear Hover
                 tangible_dynamics.clearHoverEffect(target);
                 broadcast(self, "Hover effect cleared");
                 break;
 
-            case 27: // Clear Follow Target
+            case 31: // Clear Follow Target
                 tangible_dynamics.clearFollowTargetEffect(target);
                 broadcast(self, "Follow target effect cleared");
                 break;
 
-            case 28: // Clear ALL
+            case 32: // Clear Conveyor
+                tangible_dynamics.clearConveyorEffect(target);
+                broadcast(self, "Conveyor effect cleared");
+                break;
+
+            case 33: // Clear Sway
+                tangible_dynamics.clearSwayEffect(target);
+                broadcast(self, "Sway effect cleared");
+                break;
+
+            case 34: // Clear Shake
+                tangible_dynamics.clearShakeEffect(target);
+                broadcast(self, "Shake effect cleared");
+                break;
+
+            case 35: // Clear Float
+                tangible_dynamics.clearFloatEffect(target);
+                broadcast(self, "Float effect cleared");
+                break;
+
+            case 36: // Clear ALL
                 tangible_dynamics.clearAllForces(target);
                 broadcast(self, "ALL dynamics forces cleared");
                 break;
@@ -8874,6 +8919,10 @@ public class player_developer extends base_script
             "Apply Orbit Effect (circle around point)",
             "Apply Hover Effect (terrain-following float)",
             "Apply Follow Target (target follows YOU)",
+            "Apply Conveyor Effect (linear movement with wrap)",
+            "Apply Sway Effect (pendulum swing)",
+            "Apply Shake Effect (vibrate)",
+            "Apply Float Effect (levitate with drift)",
             "Apply Combined (push + spin + breathing)",
             "------- COLLISION -------",
             "Enable Collision Push (hockey puck)",
@@ -8890,6 +8939,10 @@ public class player_developer extends base_script
             "Clear Orbit Effect",
             "Clear Hover Effect",
             "Clear Follow Target Effect",
+            "Clear Conveyor Effect",
+            "Clear Sway Effect",
+            "Clear Shake Effect",
+            "Clear Float Effect",
             "Clear ALL Forces"
         };
 
