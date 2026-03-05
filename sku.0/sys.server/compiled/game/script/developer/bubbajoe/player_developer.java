@@ -1746,9 +1746,16 @@ public class player_developer extends base_script
         }
         else if (cmd.equalsIgnoreCase("dynamicsTest"))
         {
-            // Open SUI panel to configure TangibleDynamics on SELF (not target)
-            // Store self as target for handler
-            setObjVar(self, "dynamics_test.target", self);
+            // Open SUI panel to configure TangibleDynamics on hard target
+            obj_id hardTarget = getIntendedTarget(self);
+            if (!isIdValid(hardTarget))
+            {
+                broadcast(self, "No target selected! Target an object first.");
+                return SCRIPT_CONTINUE;
+            }
+
+            // Store hard target for handler
+            setObjVar(self, "dynamics_test.target", hardTarget);
 
             // Build options list
             String[] options = new String[] {
@@ -1763,7 +1770,7 @@ public class player_developer extends base_script
                 "Apply Wobble Effect (oscillate position)",
                 "Apply Orbit Effect (circle around point)",
                 "Apply Hover Effect (terrain-following float)",
-                "Apply Follow Target (hover + follow lookAt)",
+                "Apply Follow Target (target follows YOU)",
                 "Apply Combined (push + spin + breathing)",
                 "------- COLLISION -------",
                 "Enable Collision Push (hockey puck)",
@@ -1783,7 +1790,7 @@ public class player_developer extends base_script
                 "Clear ALL Forces"
             };
 
-            int pid = sui.listbox(self, self, "Select a TangibleDynamics option for: " + getName(self),
+            int pid = sui.listbox(self, self, "Select a TangibleDynamics option for: " + getName(hardTarget),
                 sui.OK_CANCEL, "TangibleDynamics Test Panel", options, "handleDynamicsTestSUI", true, false);
 
             if (pid < 0)
@@ -8780,22 +8787,10 @@ public class player_developer extends base_script
                 broadcast(self, "Hover effect applied (1.5m height, 0.15m bob, 0.8 speed)");
                 break;
 
-            case 11: // Follow Target Effect - make lookAt target follow player
-                {
-                    obj_id lookAt = getLookAtTarget(self);
-                    if (isIdValid(lookAt))
-                    {
-                        // Apply dynamics to the lookAt target, make it follow the player (self)
-                        attachScript(lookAt, "handler.tangible_dynamics_handler");
-                        setCondition(lookAt, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
-                        tangible_dynamics.applyFollowTargetEffect(lookAt, self, 3.0f, 4.0f, 1.5f, 0.1f, -1.0f);
-                        broadcast(self, "Follow target effect applied - " + getName(lookAt) + " now follows you!");
-                    }
-                    else
-                    {
-                        broadcast(self, "No lookAt target! Select an object to make it follow you.");
-                    }
-                }
+            case 11: // Follow Target Effect - target follows the player
+                attachScript(target, "handler.tangible_dynamics_handler");
+                tangible_dynamics.applyFollowTargetEffect(target, self, 3.0f, 4.0f, 1.5f, 0.1f, -1.0f);
+                broadcast(self, "Follow target effect applied - " + getName(target) + " now follows you!");
                 break;
 
             case 12: // Combined
