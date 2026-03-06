@@ -46,32 +46,37 @@ public class atmo_landing_spawner_config extends script.base_script
         if (!isGod(player))
             return SCRIPT_CONTINUE;
 
-        switch (item)
+        if (item == menu_info_types.SERVER_MENU2)
         {
-            case MENU_SET_NAME:
-                showSetNameUI(self, player);
-                break;
-            case MENU_SET_LOC:
-                setLocationFromPlayer(self, player);
-                break;
-            case MENU_SET_DISEMBARK:
-                setDisembarkFromPlayer(self, player);
-                break;
-            case MENU_SET_YAW:
-                showSetYawUI(self, player);
-                break;
-            case MENU_SET_TIME:
-                showSetTimeUI(self, player);
-                break;
-            case MENU_SHOW_CONFIG:
-                showCurrentConfig(self, player);
-                break;
-            case MENU_CLEAR_CONFIG:
-                clearConfig(self, player);
-                break;
-            case MENU_APPLY:
-                applyConfig(self, player);
-                break;
+            showSetNameUI(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU3)
+        {
+            setLocationFromPlayer(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU4)
+        {
+            setDisembarkFromPlayer(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU5)
+        {
+            showSetYawUI(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU6)
+        {
+            showSetTimeUI(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU7)
+        {
+            showCurrentConfig(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU8)
+        {
+            clearConfig(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU9)
+        {
+            applyConfig(self, player);
         }
 
         return SCRIPT_CONTINUE;
@@ -86,11 +91,7 @@ public class atmo_landing_spawner_config extends script.base_script
         String title = "Set Landing Point Name";
         String prompt = "Enter the name for this landing point (e.g., 'Docking Bay 327'):";
 
-        int pid = sui.inputbox(self, player, prompt, title, "handleSetName", currentName);
-        if (pid > -1)
-        {
-            sui.setSUIAssociatedLocation(self, pid);
-        }
+        sui.inputbox(self, player, prompt, title, "handleSetName", currentName);
     }
 
     public int handleSetName(obj_id self, dictionary params) throws InterruptedException

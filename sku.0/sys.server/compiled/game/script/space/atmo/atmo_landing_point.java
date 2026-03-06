@@ -170,13 +170,7 @@ public class atmo_landing_point extends script.base_script
         if (!isIdValid(ship) || !exists(ship))
             return;
 
-        transform t = getTransform_o2w(ship);
-        if (t == null)
-            return;
-
-        float radians = (float)(yaw * Math.PI / 180.0);
-        t = t.yaw_l(radians);
-        setTransform_o2w(ship, t);
+        setYaw(ship, yaw);
     }
 
     private void notifyShipOccupants(obj_id ship, String message) throws InterruptedException

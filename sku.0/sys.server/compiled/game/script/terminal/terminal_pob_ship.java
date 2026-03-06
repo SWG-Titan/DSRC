@@ -40,7 +40,6 @@ public class terminal_pob_ship extends script.base_script
     public static final string_id SID_EXTEND_DOCKING = string_id.unlocalized("Extend Docking Time");
     public static final string_id SID_MANAGE_ACCESS = string_id.unlocalized("Manage Access");
     private static final String BOARDING_PERMISSIONS_PID = "boardingPermissions.pid";
-    private static final String BOARDING_PERMISSIONS_PID = "boardingPermissions.pid";
 
     public static final int EXTEND_COST = 20000;
     public static final int EXTEND_TIME = 300;
@@ -521,19 +520,11 @@ public class terminal_pob_ship extends script.base_script
             return SCRIPT_CONTINUE;
         }
 
-        int remaining = EXTEND_COST;
-        if (cashBalance >= remaining)
+        // Transfer credits to docking fees account
+        if (!transferBankCreditsToNamedAccount(player, money.ACCT_TRAVEL, EXTEND_COST, "handleDockingPaymentSuccess", "handleDockingPaymentFail", null))
         {
-            money.pay(player, "cash", remaining);
-        }
-        else
-        {
-            if (cashBalance > 0)
-            {
-                money.pay(player, "cash", cashBalance);
-                remaining -= cashBalance;
-            }
-            money.pay(player, "bank", remaining);
+            sendSystemMessageTestingOnly(player, "\\#ff4444[Docking Control]: Payment failed. Please try again.");
+            return SCRIPT_CONTINUE;
         }
 
         int currentExpiry = getIntObjVar(ship, "atmo.landing.dockExpiry");
@@ -544,6 +535,16 @@ public class terminal_pob_ship extends script.base_script
         sendSystemMessageTestingOnly(player, "\\#00ff88[Docking Control]: Docking time extended by " + (EXTEND_TIME / 60) + " minutes.");
         sendSystemMessageTestingOnly(player, "\\#aaddff  " + EXTEND_COST + " credits charged.");
 
+        return SCRIPT_CONTINUE;
+    }
+
+    public int handleDockingPaymentSuccess(obj_id self, dictionary params) throws InterruptedException
+    {
+        return SCRIPT_CONTINUE;
+    }
+
+    public int handleDockingPaymentFail(obj_id self, dictionary params) throws InterruptedException
+    {
         return SCRIPT_CONTINUE;
     }
 }
