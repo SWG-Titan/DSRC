@@ -276,12 +276,23 @@ public class tangible_dynamics extends script.base_script
     // CLEAR FORCES
     // =====================================================================
 
+    /**
+     * Clear ALL dynamics forces and remove all dynamics objvars
+     * This completely resets the object to a non-dynamic state
+     */
     public static void clearAllForces(obj_id target) throws InterruptedException
     {
         if (!isValidTarget(target)) return;
+
+        // Send clear command to handler (triggers C++ side cleanup)
         dictionary params = new dictionary();
         params.put("command", "clear_all");
         messageTo(target, "OnTangibleDynamics", params, 0, false);
+
+        // Also directly remove all dynamics objvars as a backup
+        removeObjVar(target, "dynamics");
+
+        // Clear the dynamics condition
         clearCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
     }
 

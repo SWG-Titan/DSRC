@@ -268,16 +268,15 @@ public class tangible_dynamics_handler extends script.base_script
 
     private int handleClearAll(obj_id self) throws InterruptedException
     {
-        handleClearPush(self);
-        handleClearSpin(self);
-        handleClearBreathing(self);
-        handleClearBounce(self);
-        handleClearWobble(self);
-        handleClearOrbit(self);
-         handleClearHover(self);
-        handleClearFollowTarget(self);
-        removeObjVar(self, "dynamics.easing.type");
-        removeObjVar(self, "dynamics.easing.duration");
+        // Remove the entire dynamics objvar tree for complete cleanup
+        removeObjVar(self, "dynamics");
+
+        // Also clear any collision-related objvars
+        removeObjVar(self, "collideBlock");
+
+        // Clear the dynamics condition
+        clearCondition(self, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
+
         return SCRIPT_CONTINUE;
     }
 
