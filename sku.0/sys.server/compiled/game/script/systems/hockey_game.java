@@ -110,36 +110,34 @@ public class hockey_game extends script.base_script
 
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
-        switch (item)
+        if (item == menu_info_types.SERVER_MENU2) // Spawn Puck
         {
-            case menu_info_types.SERVER_MENU2: // Spawn Puck
-                spawnPuck(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU3: // Reset Scores
-                resetScores(self);
-                sendSystemMessage(player, string_id.unlocalized("Scores reset!"));
-                break;
-
-            case menu_info_types.SERVER_MENU4: // Show Scores
-                showScores(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU5: // Set Red
-                setObjVar(self, OBJVAR_TEAM, TEAM_RED);
-                sendSystemMessage(player, string_id.unlocalized("This goal is now RED team's goal."));
-                break;
-
-            case menu_info_types.SERVER_MENU6: // Set Blue
-                setObjVar(self, OBJVAR_TEAM, TEAM_BLUE);
-                sendSystemMessage(player, string_id.unlocalized("This goal is now BLUE team's goal."));
-                break;
-
-            case menu_info_types.SERVER_MENU7: // Toggle Active
-                int active = getIntObjVar(self, OBJVAR_GAME_ACTIVE);
-                setObjVar(self, OBJVAR_GAME_ACTIVE, active == 1 ? 0 : 1);
-                sendSystemMessage(player, string_id.unlocalized("Game is now " + (active == 1 ? "PAUSED" : "ACTIVE")));
-                break;
+            spawnPuck(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU3) // Reset Scores
+        {
+            resetScores(self);
+            sendSystemMessage(player, string_id.unlocalized("Scores reset!"));
+        }
+        else if (item == menu_info_types.SERVER_MENU4) // Show Scores
+        {
+            showScores(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU5) // Set Red
+        {
+            setObjVar(self, OBJVAR_TEAM, TEAM_RED);
+            sendSystemMessage(player, string_id.unlocalized("This goal is now RED team's goal."));
+        }
+        else if (item == menu_info_types.SERVER_MENU6) // Set Blue
+        {
+            setObjVar(self, OBJVAR_TEAM, TEAM_BLUE);
+            sendSystemMessage(player, string_id.unlocalized("This goal is now BLUE team's goal."));
+        }
+        else if (item == menu_info_types.SERVER_MENU7) // Toggle Active
+        {
+            int active = getIntObjVar(self, OBJVAR_GAME_ACTIVE);
+            setObjVar(self, OBJVAR_GAME_ACTIVE, active == 1 ? 0 : 1);
+            sendSystemMessage(player, string_id.unlocalized("Game is now " + (active == 1 ? "PAUSED" : "ACTIVE")));
         }
 
         return SCRIPT_CONTINUE;

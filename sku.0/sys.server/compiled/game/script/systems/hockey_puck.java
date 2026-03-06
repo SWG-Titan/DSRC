@@ -86,19 +86,17 @@ public class hockey_puck extends script.base_script
 
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
-        switch (item)
+        if (item == menu_info_types.SERVER_MENU1) // Kick
         {
-            case menu_info_types.SERVER_MENU1: // Kick
-                kickPuck(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU2: // Reset
-                resetPuck(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU3: // Stats
-                showStats(self, player);
-                break;
+            kickPuck(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU2) // Reset
+        {
+            resetPuck(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU3) // Stats
+        {
+            showStats(self, player);
         }
 
         return SCRIPT_CONTINUE;

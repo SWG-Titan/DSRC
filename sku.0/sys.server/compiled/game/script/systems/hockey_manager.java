@@ -92,44 +92,41 @@ public class hockey_manager extends script.base_script
 
     public int OnObjectMenuSelect(obj_id self, obj_id player, int item) throws InterruptedException
     {
-        switch (item)
+        if (item == menu_info_types.SERVER_MENU3) // Place Red Goal
         {
-            case menu_info_types.SERVER_MENU3: // Place Red Goal
-                placeGoal(self, player, "red");
-                break;
-
-            case menu_info_types.SERVER_MENU4: // Place Blue Goal
-                placeGoal(self, player, "blue");
-                break;
-
-            case menu_info_types.SERVER_MENU5: // Set Center
-                setCenterPoint(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU6: // Auto-Setup
-                autoSetupArena(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU8: // Spawn Puck
-                spawnPuckAtCenter(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU9: // Reset Scores
-                resetScores(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU10: // New Game
-                startNewGame(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU1: // View Scores (non-admin)
-            case menu_info_types.SERVER_MENU11: // View Scores (admin)
-                showScores(self, player);
-                break;
-
-            case menu_info_types.SERVER_MENU12: // Show Info
-                showSetupInfo(self, player);
-                break;
+            placeGoal(self, player, "red");
+        }
+        else if (item == menu_info_types.SERVER_MENU4) // Place Blue Goal
+        {
+            placeGoal(self, player, "blue");
+        }
+        else if (item == menu_info_types.SERVER_MENU5) // Set Center
+        {
+            setCenterPoint(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU6) // Auto-Setup
+        {
+            autoSetupArena(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU8) // Spawn Puck
+        {
+            spawnPuckAtCenter(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU9) // Reset Scores
+        {
+            resetScores(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU10) // New Game
+        {
+            startNewGame(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU1 || item == menu_info_types.SERVER_MENU11) // View Scores
+        {
+            showScores(self, player);
+        }
+        else if (item == menu_info_types.SERVER_MENU12) // Show Info
+        {
+            showSetupInfo(self, player);
         }
 
         return SCRIPT_CONTINUE;
