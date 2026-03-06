@@ -8932,7 +8932,15 @@ public class player_developer extends base_script
                 removeObjVar(target, "collideBlock");
                 setCondition(target, CONDITION_MAGIC_TANGIBLE_DYNAMIC);
                 attachScript(target, "handler.tangible_dynamics_handler");
+                // Set physics parameters for reliable collision detection
+                if (!hasObjVar(target, "dynamics.pushSpeed"))
+                    setObjVar(target, "dynamics.pushSpeed", 8.0f);
+                if (!hasObjVar(target, "dynamics.pushDrag"))
+                    setObjVar(target, "dynamics.pushDrag", 0.3f);
+                if (!hasObjVar(target, "dynamics.collisionRadius"))
+                    setObjVar(target, "dynamics.collisionRadius", 2.5f);
                 broadcast(self, "Collision push ENABLED (hockey puck mode)");
+                broadcast(self, "Settings: radius=2.5m, speed=8m/s, drag=0.3");
                 break;
 
             case 21: // Disable Collision Push
