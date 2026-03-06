@@ -20,6 +20,12 @@ public class atmo_landing_registry extends script.base_script
     public static final String OBJVAR_LOC_OFFSET = OBJVAR_ROOT + ".loc_offset";
     public static final String OBJVAR_OCCUPIED_BY = OBJVAR_ROOT + ".occupied_by";
     public static final String OBJVAR_OCCUPIED_ETA = OBJVAR_ROOT + ".occupied_eta";
+    public static final String OBJVAR_OCCUPIED_STATE = OBJVAR_ROOT + ".occupied_state";
+
+    // Occupancy states
+    public static final int OCCUPANCY_NONE = 0;
+    public static final int OCCUPANCY_RESERVED = 1;  // Ship en route
+    public static final int OCCUPANCY_DOCKED = 2;    // Ship landed
 
     public static final String MAP_CATEGORY = "atmo_landing";
     public static final String MAP_SUBCATEGORY = "";
@@ -109,13 +115,38 @@ public class atmo_landing_registry extends script.base_script
     }
 
     /**
-     * Check if the landing point is occupied.
+     * Check if the landing point is occupied (either reserved or docked).
      */
     public static boolean isOccupied(obj_id landingPoint) throws InterruptedException
     {
         if (!isLandingPoint(landingPoint))
             return false;
 
+        // Check explicit occupancy state first
+        if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_STATE))
+        {
+            int state = getIntObjVar(landingPoint, OBJVAR_OCCUPIED_STATE);
+            if (state == OCCUPANCY_DOCKED)
+            {
+                // Validate the ship still exists
+                if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_BY))
+                {
+                    obj_id occupier = getObjIdObjVar(landingPoint, OBJVAR_OCCUPIED_BY);
+                    if (isIdValid(occupier) && exists(occupier))
+                        return true;
+                }
+                // Ship no longer exists, clear it
+                clearOccupancy(landingPoint);
+                return false;
+            }
+            else if (state == OCCUPANCY_RESERVED)
+            {
+                // Reserved but not yet docked - check ETA
+                return isEnRoute(landingPoint);
+            }
+        }
+
+        // Fallback to legacy check
         if (!hasObjVar(landingPoint, OBJVAR_OCCUPIED_BY))
             return false;
 
@@ -127,6 +158,29 @@ public class atmo_landing_registry extends script.base_script
         }
 
         return true;
+    }
+
+    /**
+     * Check if the landing point is fully docked (not just reserved).
+     */
+    public static boolean isDocked(obj_id landingPoint) throws InterruptedException
+    {
+        if (!isLandingPoint(landingPoint))
+            return false;
+
+        if (!hasObjVar(landingPoint, OBJVAR_OCCUPIED_STATE))
+            return false;
+
+        int state = getIntObjVar(landingPoint, OBJVAR_OCCUPIED_STATE);
+        if (state != OCCUPANCY_DOCKED)
+            return false;
+
+        // Validate occupier exists
+        if (!hasObjVar(landingPoint, OBJVAR_OCCUPIED_BY))
+            return false;
+
+        obj_id occupier = getObjIdObjVar(landingPoint, OBJVAR_OCCUPIED_BY);
+        return isIdValid(occupier) && exists(occupier);
     }
 
     /**
@@ -163,8 +217,20 @@ public class atmo_landing_registry extends script.base_script
         if (!isLandingPoint(landingPoint))
             return;
 
-        if (!hasObjVar(landingPoint, OBJVAR_OCCUPIED_ETA))
+        // Check if in reserved state
+        if (!hasObjVar(landingPoint, OBJVAR_OCCUPIED_STATE))
             return;
+
+        int state = getIntObjVar(landingPoint, OBJVAR_OCCUPIED_STATE);
+        if (state != OCCUPANCY_RESERVED)
+            return;
+
+        if (!hasObjVar(landingPoint, OBJVAR_OCCUPIED_ETA))
+        {
+            // Reserved but no ETA - invalid state, clear it
+            clearOccupancy(landingPoint);
+            return;
+        }
 
         int eta = getIntObjVar(landingPoint, OBJVAR_OCCUPIED_ETA);
         int now = getGameTime();
@@ -176,18 +242,21 @@ public class atmo_landing_registry extends script.base_script
             if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_BY))
                 reservedShip = getObjIdObjVar(landingPoint, OBJVAR_OCCUPIED_BY);
 
-            // Only clear if the ship hasn't actually landed (no docked state)
+            // Check if ship still exists and hasn't actually docked
             if (isIdValid(reservedShip) && exists(reservedShip))
             {
-                if (!hasObjVar(reservedShip, "atmo.landing.docked"))
+                // If ship has docked state, upgrade to DOCKED instead of clearing
+                if (hasObjVar(reservedShip, "atmo.landing.docked"))
                 {
-                    clearOccupancy(landingPoint);
+                    setObjVar(landingPoint, OBJVAR_OCCUPIED_STATE, OCCUPANCY_DOCKED);
+                    removeObjVar(landingPoint, OBJVAR_OCCUPIED_ETA);
+                    updateMapStatus(landingPoint);
+                    return;
                 }
             }
-            else
-            {
-                clearOccupancy(landingPoint);
-            }
+
+            // Ship didn't arrive or doesn't exist, clear reservation
+            clearOccupancy(landingPoint);
         }
     }
 
@@ -204,6 +273,7 @@ public class atmo_landing_registry extends script.base_script
 
         setObjVar(landingPoint, OBJVAR_OCCUPIED_BY, ship);
         setObjVar(landingPoint, OBJVAR_OCCUPIED_ETA, getGameTime() + etaSeconds);
+        setObjVar(landingPoint, OBJVAR_OCCUPIED_STATE, OCCUPANCY_RESERVED);
         updateMapStatus(landingPoint);
         return true;
     }
@@ -217,6 +287,7 @@ public class atmo_landing_registry extends script.base_script
             return false;
 
         setObjVar(landingPoint, OBJVAR_OCCUPIED_BY, ship);
+        setObjVar(landingPoint, OBJVAR_OCCUPIED_STATE, OCCUPANCY_DOCKED);
         removeObjVar(landingPoint, OBJVAR_OCCUPIED_ETA);
         updateMapStatus(landingPoint);
         return true;
@@ -232,17 +303,27 @@ public class atmo_landing_registry extends script.base_script
 
         removeObjVar(landingPoint, OBJVAR_OCCUPIED_BY);
         removeObjVar(landingPoint, OBJVAR_OCCUPIED_ETA);
+        setObjVar(landingPoint, OBJVAR_OCCUPIED_STATE, OCCUPANCY_NONE);
         updateMapStatus(landingPoint);
     }
 
     /**
      * Get the ship occupying a landing point.
+     * Returns null if no ship is occupying or the ship no longer exists.
      */
     public static obj_id getOccupyingShip(obj_id landingPoint) throws InterruptedException
     {
-        if (!isOccupied(landingPoint))
+        if (!isLandingPoint(landingPoint))
             return null;
-        return getObjIdObjVar(landingPoint, OBJVAR_OCCUPIED_BY);
+
+        if (!hasObjVar(landingPoint, OBJVAR_OCCUPIED_BY))
+            return null;
+
+        obj_id occupier = getObjIdObjVar(landingPoint, OBJVAR_OCCUPIED_BY);
+        if (!isIdValid(occupier) || !exists(occupier))
+            return null;
+
+        return occupier;
     }
 
     /**
@@ -321,10 +402,27 @@ public class atmo_landing_registry extends script.base_script
         if (name == null || name.isEmpty())
             return "Unknown Landing Point";
 
+        // Check explicit state first
+        if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_STATE))
+        {
+            int state = getIntObjVar(landingPoint, OBJVAR_OCCUPIED_STATE);
+            if (state == OCCUPANCY_DOCKED || state == OCCUPANCY_RESERVED)
+            {
+                // Validate occupier still exists before showing as occupied
+                if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_BY))
+                {
+                    obj_id occupier = getObjIdObjVar(landingPoint, OBJVAR_OCCUPIED_BY);
+                    if (isIdValid(occupier) && exists(occupier))
+                        return name + " (OCCUPIED)";
+                }
+            }
+        }
+
+        // Fallback checks
         if (isOccupied(landingPoint) || isEnRoute(landingPoint))
             return name + " (OCCUPIED)";
-        else
-            return name + " (AVAILABLE)";
+
+        return name + " (AVAILABLE)";
     }
 
     /**

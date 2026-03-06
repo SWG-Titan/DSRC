@@ -139,33 +139,46 @@ public class atmo_landing_point extends script.base_script
 
     /**
      * Periodic heartbeat to validate that occupying ship still exists.
-     * Clears stale occupancy if ship no longer exists.
+     * Clears stale occupancy if ship no longer exists or is no longer docked.
      */
     public int validateOccupancy(obj_id self, dictionary params) throws InterruptedException
     {
         if (!atmo_landing_registry.isLandingPoint(self))
             return SCRIPT_CONTINUE;
 
-        // Check if there's an occupying ship
-        obj_id occupier = atmo_landing_registry.getOccupyingShip(self);
-        if (isIdValid(occupier))
+        // Check if we have a docked ship
+        if (atmo_landing_registry.isDocked(self))
         {
-            // Verify ship still exists
-            if (!exists(occupier))
+            obj_id occupier = atmo_landing_registry.getOccupyingShip(self);
+            if (isIdValid(occupier))
             {
-                atmo_landing_registry.clearOccupancy(self);
-            }
-            else
-            {
-                // Verify ship still has docked state - if not, clear
-                if (!hasObjVar(occupier, "atmo.landing.docked"))
+                // Verify ship still exists
+                if (!exists(occupier))
                 {
                     atmo_landing_registry.clearOccupancy(self);
                 }
+                // Verify ship still has docked state
+                else if (!hasObjVar(occupier, "atmo.landing.docked"))
+                {
+                    atmo_landing_registry.clearOccupancy(self);
+                }
+                // Verify ship's landing target is still this landing point
+                else if (hasObjVar(occupier, "atmo.landing.target"))
+                {
+                    obj_id shipTarget = getObjIdObjVar(occupier, "atmo.landing.target");
+                    if (!isIdValid(shipTarget) || shipTarget != self)
+                    {
+                        atmo_landing_registry.clearOccupancy(self);
+                    }
+                }
+            }
+            else
+            {
+                atmo_landing_registry.clearOccupancy(self);
             }
         }
 
-        // Check ETA reservations
+        // Check and validate ETA reservations
         atmo_landing_registry.validateEnRoute(self);
 
         // Schedule next check
@@ -280,13 +293,16 @@ public class atmo_landing_point extends script.base_script
         if (!isIdValid(ship) || !exists(ship))
             return SCRIPT_CONTINUE;
 
+        // Mark as occupied with DOCKED state
         atmo_landing_registry.occupyLandingPoint(self, ship);
 
         float yaw = atmo_landing_registry.getLandingYaw(self);
         applyShipYaw(ship, yaw);
 
-        // Schedule a delayed map update to ensure status is properly visible
-        messageTo(self, "refreshMapStatus", null, 2, false);
+        // Schedule multiple delayed map updates to ensure status is properly visible
+        messageTo(self, "refreshMapStatus", null, 1, false);
+        messageTo(self, "refreshMapStatus", null, 3, false);
+        messageTo(self, "refreshMapStatus", null, 5, false);
 
         int timeToDisembark = atmo_landing_registry.getTimeToDisembark(self);
         if (timeToDisembark > 0)
@@ -315,10 +331,13 @@ public class atmo_landing_point extends script.base_script
     {
         obj_id ship = params.getObjId("ship");
 
+        // Clear occupancy state
         atmo_landing_registry.clearOccupancy(self);
 
-        // Schedule a delayed map update to ensure status is properly visible
-        messageTo(self, "refreshMapStatus", null, 2, false);
+        // Schedule multiple delayed map updates to ensure status is properly visible
+        messageTo(self, "refreshMapStatus", null, 1, false);
+        messageTo(self, "refreshMapStatus", null, 3, false);
+        messageTo(self, "refreshMapStatus", null, 5, false);
 
         if (isIdValid(ship) && exists(ship))
         {
