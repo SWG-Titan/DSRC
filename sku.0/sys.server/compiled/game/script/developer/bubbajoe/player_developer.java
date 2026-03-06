@@ -804,6 +804,77 @@ public class player_developer extends base_script
                 broadcast(self, "Failed to create Lambda Shuttle  ship control device (check datapad and ship templates).");
             return SCRIPT_CONTINUE;
         }
+        else if (cmd.equalsIgnoreCase("makeLandingPoint"))
+        {
+            location playerLoc = getLocation(self);
+
+            // If player is in a ship, use ship location
+            obj_id ship = space_transition.getContainingShip(self);
+            if (isIdValid(ship))
+            {
+                playerLoc = getLocation(ship);
+            }
+
+            // Create spawn egg at player location
+            obj_id egg = createObject("object/tangible/spawning/spawn_egg.iff", playerLoc);
+            if (!isIdValid(egg) || !exists(egg))
+            {
+                broadcast(self, "\\#ff4444[Error]: Failed to create spawn egg object.");
+                return SCRIPT_CONTINUE;
+            }
+
+            // Set initial objvars
+            setObjVar(egg, "atmo.landing_point.loc", playerLoc);
+
+            // If name provided, set it
+            if (tok.hasMoreTokens())
+            {
+                StringBuilder nameBuilder = new StringBuilder();
+                while (tok.hasMoreTokens())
+                {
+                    if (nameBuilder.length() > 0)
+                        nameBuilder.append(" ");
+                    nameBuilder.append(tok.nextToken());
+                }
+                String name = nameBuilder.toString().trim();
+                if (name.startsWith("\"") && name.endsWith("\""))
+                    name = name.substring(1, name.length() - 1);
+                setObjVar(egg, "atmo.landing_point.name", name);
+            }
+
+            // Set default yaw from player's current facing
+            float yaw = getYaw(self);
+            if (isIdValid(ship))
+                yaw = getYaw(ship);
+            setObjVar(egg, "atmo.landing_point.yaw", yaw);
+
+            // Set default time to disembark (-1 = unlimited)
+            setObjVar(egg, "atmo.landing_point.time_to_disembark", -1);
+
+            // Attach the GM configuration script
+            attachScript(egg, "gm.atmo_landing_spawner_config");
+
+            // Set a visible name for the egg
+            String displayName = hasObjVar(egg, "atmo.landing_point.name")
+                ? getStringObjVar(egg, "atmo.landing_point.name")
+                : "Landing Point (Unconfigured)";
+            setName(egg, displayName);
+
+            broadcast(self, "\\#00ff88[Landing Point]: Spawn egg created at your location.");
+            broadcast(self, "\\#aaddff  Location: [" + Math.round(playerLoc.x) + ", " + Math.round(playerLoc.y) + ", " + Math.round(playerLoc.z) + "]");
+            broadcast(self, "\\#aaddff  Yaw: " + Math.round(yaw) + " degrees");
+
+            if (hasObjVar(egg, "atmo.landing_point.name"))
+            {
+                broadcast(self, "\\#aaddff  Name: " + getStringObjVar(egg, "atmo.landing_point.name"));
+                broadcast(self, "\\#88ddaa  Use radial menu on egg to configure and activate.");
+            }
+            else
+            {
+                broadcast(self, "\\#ffaa44  Name not set. Use radial menu on egg to configure.");
+            }
+            return SCRIPT_CONTINUE;
+        }
         else if (cmd.equalsIgnoreCase("awardBadge"))
         {
             String parameter = tok.nextToken();
