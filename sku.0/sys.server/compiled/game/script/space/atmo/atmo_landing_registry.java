@@ -25,7 +25,7 @@ public class atmo_landing_registry extends script.base_script
     // Occupancy states
     public static final int OCCUPANCY_NONE = 0;
     public static final int OCCUPANCY_RESERVED = 1;  // Ship en route
-    public static final int OCCUPANCY_DOCKED = 2;    // Ship landed
+    public static final int OCCUPANCY_LANDED = 2;    // Ship landed
 
     public static final String MAP_CATEGORY = "atmo_landing";
     public static final String MAP_SUBCATEGORY = "";
@@ -126,7 +126,7 @@ public class atmo_landing_registry extends script.base_script
         if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_STATE))
         {
             int state = getIntObjVar(landingPoint, OBJVAR_OCCUPIED_STATE);
-            if (state == OCCUPANCY_DOCKED)
+            if (state == OCCUPANCY_LANDED)
             {
                 // Validate the ship still exists
                 if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_BY))
@@ -161,9 +161,9 @@ public class atmo_landing_registry extends script.base_script
     }
 
     /**
-     * Check if the landing point is fully docked (not just reserved).
+     * Check if a ship has landed at this point (not just reserved/en route).
      */
-    public static boolean isDocked(obj_id landingPoint) throws InterruptedException
+    public static boolean isLanded(obj_id landingPoint) throws InterruptedException
     {
         if (!isLandingPoint(landingPoint))
             return false;
@@ -172,7 +172,7 @@ public class atmo_landing_registry extends script.base_script
             return false;
 
         int state = getIntObjVar(landingPoint, OBJVAR_OCCUPIED_STATE);
-        if (state != OCCUPANCY_DOCKED)
+        if (state != OCCUPANCY_LANDED)
             return false;
 
         // Validate occupier exists
@@ -242,16 +242,20 @@ public class atmo_landing_registry extends script.base_script
             if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_BY))
                 reservedShip = getObjIdObjVar(landingPoint, OBJVAR_OCCUPIED_BY);
 
-            // Check if ship still exists and hasn't actually docked
+            // Check if ship still exists and has actually landed
             if (isIdValid(reservedShip) && exists(reservedShip))
             {
-                // If ship has docked state, upgrade to DOCKED instead of clearing
-                if (hasObjVar(reservedShip, "atmo.landing.docked"))
+                // If ship has landed_at reference to this landing point, upgrade to LANDED
+                if (hasObjVar(reservedShip, "atmo.landing.landed_at"))
                 {
-                    setObjVar(landingPoint, OBJVAR_OCCUPIED_STATE, OCCUPANCY_DOCKED);
-                    removeObjVar(landingPoint, OBJVAR_OCCUPIED_ETA);
-                    updateMapStatus(landingPoint);
-                    return;
+                    obj_id landedAt = getObjIdObjVar(reservedShip, "atmo.landing.landed_at");
+                    if (isIdValid(landedAt) && landedAt.equals(landingPoint))
+                    {
+                        setObjVar(landingPoint, OBJVAR_OCCUPIED_STATE, OCCUPANCY_LANDED);
+                        removeObjVar(landingPoint, OBJVAR_OCCUPIED_ETA);
+                        updateMapStatus(landingPoint);
+                        return;
+                    }
                 }
             }
 
@@ -287,7 +291,7 @@ public class atmo_landing_registry extends script.base_script
             return false;
 
         setObjVar(landingPoint, OBJVAR_OCCUPIED_BY, ship);
-        setObjVar(landingPoint, OBJVAR_OCCUPIED_STATE, OCCUPANCY_DOCKED);
+        setObjVar(landingPoint, OBJVAR_OCCUPIED_STATE, OCCUPANCY_LANDED);
         removeObjVar(landingPoint, OBJVAR_OCCUPIED_ETA);
         updateMapStatus(landingPoint);
         return true;
@@ -406,7 +410,7 @@ public class atmo_landing_registry extends script.base_script
         if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_STATE))
         {
             int state = getIntObjVar(landingPoint, OBJVAR_OCCUPIED_STATE);
-            if (state == OCCUPANCY_DOCKED || state == OCCUPANCY_RESERVED)
+            if (state == OCCUPANCY_LANDED || state == OCCUPANCY_RESERVED)
             {
                 // Validate occupier still exists before showing as occupied
                 if (hasObjVar(landingPoint, OBJVAR_OCCUPIED_BY))

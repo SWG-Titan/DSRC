@@ -139,15 +139,15 @@ public class atmo_landing_point extends script.base_script
 
     /**
      * Periodic heartbeat to validate that occupying ship still exists.
-     * Clears stale occupancy if ship no longer exists or is no longer docked.
+     * Clears stale occupancy if ship no longer exists or has departed.
      */
     public int validateOccupancy(obj_id self, dictionary params) throws InterruptedException
     {
         if (!atmo_landing_registry.isLandingPoint(self))
             return SCRIPT_CONTINUE;
 
-        // Check if we have a docked ship
-        if (atmo_landing_registry.isDocked(self))
+        // Check if we have a landed ship
+        if (atmo_landing_registry.isLanded(self))
         {
             obj_id occupier = atmo_landing_registry.getOccupyingShip(self);
             if (isIdValid(occupier))
@@ -157,19 +157,19 @@ public class atmo_landing_point extends script.base_script
                 {
                     atmo_landing_registry.clearOccupancy(self);
                 }
-                // Verify ship still has docked state
-                else if (!hasObjVar(occupier, "atmo.landing.docked"))
+                // Verify ship still has landed_at reference to this landing point
+                else if (hasObjVar(occupier, "atmo.landing.landed_at"))
                 {
-                    atmo_landing_registry.clearOccupancy(self);
-                }
-                // Verify ship's landing target is still this landing point
-                else if (hasObjVar(occupier, "atmo.landing.target"))
-                {
-                    obj_id shipTarget = getObjIdObjVar(occupier, "atmo.landing.target");
-                    if (!isIdValid(shipTarget) || shipTarget != self)
+                    obj_id landedAt = getObjIdObjVar(occupier, "atmo.landing.landed_at");
+                    if (!isIdValid(landedAt) || landedAt != self)
                     {
                         atmo_landing_registry.clearOccupancy(self);
                     }
+                }
+                else
+                {
+                    // Ship doesn't have landed_at reference - it has departed
+                    atmo_landing_registry.clearOccupancy(self);
                 }
             }
             else
@@ -204,12 +204,21 @@ public class atmo_landing_point extends script.base_script
         if (!isIdValid(ship) || !isIdValid(pilot))
             return SCRIPT_CONTINUE;
 
-        // Block if ship is already docked somewhere
+        // Block if ship is already docked (separate docking system)
         if (hasObjVar(ship, "atmo.landing.docked"))
         {
             commPlayerIDA(pilot, getRandomMessage(IDA_ALREADY_DOCKED));
-            sendSystemMessageTestingOnly(pilot, "\\#ff4444[Imperial Docking Authority]: Your ship is already docked at a landing point.");
+            sendSystemMessageTestingOnly(pilot, "\\#ff4444[Imperial Docking Authority]: Your ship is already docked at a platform.");
             sendSystemMessageTestingOnly(pilot, "\\#ffaa44  Use the Starship Management Terminal to undock first.");
+            return SCRIPT_CONTINUE;
+        }
+
+        // Block if ship is already landed somewhere
+        if (hasObjVar(ship, "atmo.landing.landed_at"))
+        {
+            commPlayerIDA(pilot, getRandomMessage(IDA_ALREADY_DOCKED));
+            sendSystemMessageTestingOnly(pilot, "\\#ff4444[Imperial Docking Authority]: Your ship is already landed at another location.");
+            sendSystemMessageTestingOnly(pilot, "\\#ffaa44  Take off first before requesting new landing clearance.");
             return SCRIPT_CONTINUE;
         }
 
@@ -293,8 +302,11 @@ public class atmo_landing_point extends script.base_script
         if (!isIdValid(ship) || !exists(ship))
             return SCRIPT_CONTINUE;
 
-        // Mark as occupied with DOCKED state
+        // Mark as occupied with LANDED state (not docked - docking is a separate system)
         atmo_landing_registry.occupyLandingPoint(self, ship);
+
+        // Store reference on ship for tracking
+        setObjVar(ship, "atmo.landing.landed_at", self);
 
         float yaw = atmo_landing_registry.getLandingYaw(self);
         applyShipYaw(ship, yaw);
@@ -304,19 +316,9 @@ public class atmo_landing_point extends script.base_script
         messageTo(self, "refreshMapStatus", null, 3, false);
         messageTo(self, "refreshMapStatus", null, 5, false);
 
-        int timeToDisembark = atmo_landing_registry.getTimeToDisembark(self);
-        if (timeToDisembark > 0)
-        {
-            setObjVar(ship, "atmo.landing.dockExpiry", getGameTime() + timeToDisembark);
-            messageTo(ship, "checkDockingTimer", null, 1, false);
-
-            notifyShipOccupants(ship, "\\#88ddaa[Docking Control]: You have " + (timeToDisembark / 60) + " minutes of docking time.");
-            notifyShipOccupants(ship, "\\#88ddaa  Use the Starship Management Terminal to extend docking time if needed.");
-        }
-        else
-        {
-            notifyShipOccupants(ship, "\\#88ddaa[Docking Control]: Unlimited docking time at this location.");
-        }
+        String landingName = atmo_landing_registry.getLandingPointName(self);
+        notifyShipOccupants(ship, "\\#88ddaa[Imperial Docking Authority]: You have landed at " + landingName + ".");
+        notifyShipOccupants(ship, "\\#88ddaa  You may take off at any time by piloting the ship.");
 
         return SCRIPT_CONTINUE;
     }

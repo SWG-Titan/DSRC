@@ -366,16 +366,18 @@ public class combat_ship extends script.base_script
             return SCRIPT_CONTINUE;
         }
 
-        // Clear any landing point occupancy
-        if (hasObjVar(self, "atmo.landing.target"))
+        // Clear any landing point occupancy (check both landed_at and target)
+        obj_id landingPoint = null;
+        if (hasObjVar(self, "atmo.landing.landed_at"))
+            landingPoint = getObjIdObjVar(self, "atmo.landing.landed_at");
+        else if (hasObjVar(self, "atmo.landing.target"))
+            landingPoint = getObjIdObjVar(self, "atmo.landing.target");
+
+        if (isIdValid(landingPoint) && exists(landingPoint))
         {
-            obj_id landingPoint = getObjIdObjVar(self, "atmo.landing.target");
-            if (isIdValid(landingPoint) && exists(landingPoint))
-            {
-                dictionary departedParams = new dictionary();
-                departedParams.put("ship", self);
-                messageTo(landingPoint, "handleShipDeparted", departedParams, 0, false);
-            }
+            dictionary departedParams = new dictionary();
+            departedParams.put("ship", self);
+            messageTo(landingPoint, "handleShipDeparted", departedParams, 0, false);
         }
 
         obj_id[] notifylist = getObjIdArrayObjVar(self, "destroynotify");
@@ -1519,14 +1521,16 @@ public class combat_ship extends script.base_script
                     {
                         String landingName = hasObjVar(self, "atmo.landing.name") ? getStringObjVar(self, "atmo.landing.name") : "Landing Pad";
                         broadcastToShip(self, "\\#88ddaa  Welcome to " + landingName + ".");
-                        broadcastToShip(self, "\\#88ddaa   You have successfully docked.");
+                        broadcastToShip(self, "\\#88ddaa   You have successfully landed.");
 
                         dictionary arrivedParams = new dictionary();
                         arrivedParams.put("ship", self);
                         messageTo(landingTarget, "handleShipArrived", arrivedParams, 0, false);
 
-                        if (!hasScript(self, "space.atmo.atmo_landing_docked"))
-                            attachScript(self, "space.atmo.atmo_landing_docked");
+                        // Clear landing target objvars - ship has arrived, landing point will track occupancy
+                        removeObjVar(self, "atmo.landing.target");
+                        removeObjVar(self, "atmo.landing.yaw");
+                        removeObjVar(self, "atmo.landing.name");
                     }
                     else
                     {
@@ -1587,12 +1591,12 @@ public class combat_ship extends script.base_script
     {
         shipClearAutopilot(ship);
 
-        // Clear any landing point reservation if we were en route
+        // Clear any landing point reservation if we were en route (not yet landed)
         if (hasObjVar(ship, "atmo.landing.target"))
         {
             obj_id landingPoint = getObjIdObjVar(ship, "atmo.landing.target");
-            // Only clear if not already docked
-            if (!hasObjVar(ship, "atmo.landing.docked"))
+            // Only clear if not already landed or docked
+            if (!hasObjVar(ship, "atmo.landing.landed_at") && !hasObjVar(ship, "atmo.landing.docked"))
             {
                 if (isIdValid(landingPoint) && exists(landingPoint))
                 {
