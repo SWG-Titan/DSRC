@@ -81,6 +81,7 @@ public class handler extends script.base_script
 
         // First check for HTML color input from enhanced picker
         String htmlColor = sui.getEnhancedColorPickerHtml(params);
+        sendSystemMessageTestingOnly(self, "/setHue DEBUG: htmlColor = [" + htmlColor + "], target = " + target + ", varPath = " + varPath);
         if (htmlColor != null && !htmlColor.isEmpty() && (htmlColor.startsWith("#") || htmlColor.length() == 6))
         {
             // Use the new direct color API with HTML color
