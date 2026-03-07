@@ -79,6 +79,14 @@ public class handler extends script.base_script
         String varPath = utils.getStringScriptVar(self, gm.SCRIPTVAR_SETHUE_DATA);
         gm.cleanupSetHueScriptVars(self);
 
+        // Debug: dump all params
+        java.util.Enumeration keys = params.keys();
+        while (keys.hasMoreElements())
+        {
+            String key = (String)keys.nextElement();
+            sendSystemMessageTestingOnly(self, "/setHue DEBUG key: [" + key + "] = [" + params.getString(key) + "]");
+        }
+
         // First check for HTML color input from enhanced picker
         String htmlColor = sui.getEnhancedColorPickerHtml(params);
         sendSystemMessageTestingOnly(self, "/setHue DEBUG: htmlColor = [" + htmlColor + "], target = " + target + ", varPath = " + varPath);
