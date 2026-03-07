@@ -1151,14 +1151,7 @@ public class calendar extends script.base_script
             return false;
 
         // Check if player object exists and is connected
-        try
-        {
-            return exists(player) && isPlayer(player);
-        }
-        catch (InterruptedException e)
-        {
-            return false;
-        }
+        return exists(player) && isPlayer(player);
     }
 
     /**
