@@ -50,10 +50,10 @@ public class sui extends script.base_script
     public static final String COLORPICKER_TITLE = COLORPICKER_PAGE_CAPTION + ".lblTitle";
     // Enhanced Color Picker with HTML hex input support
     public static final String SUI_COLORPICKER_ENHANCED = "Script.GMSetHue";
-    public static final String COLORPICKER_ENH_TEXTBOX_HTML = "htmlRow.textboxHtml";
-    public static final String COLORPICKER_ENH_VOLUME_PAGE = "content.pagePaletteGrid.volumePage";
-    public static final String COLORPICKER_ENH_PAGE_SAMPLE = "htmlRow.pageSample";
-    public static final String COLORPICKER_ENH_TEXT_TITLE = "header.textTitle";
+    public static final String COLORPICKER_ENH_TEXTBOX_HTML = "textboxHtml";
+    public static final String COLORPICKER_ENH_VOLUME_PAGE = "volumePage";
+    public static final String COLORPICKER_ENH_PAGE_SAMPLE = "pageSample";
+    public static final String COLORPICKER_ENH_TEXT_TITLE = "text";
     public static final String SUI_MSGBOX = "Script.messageBox";
     public static final String MSGBOX_PAGE_PROMPT = "Prompt";
     public static final String MSGBOX_PAGE_CAPTION = "bg.caption";
@@ -1549,10 +1549,8 @@ public class sui extends script.base_script
             setSUIProperty(pid, COLORPICKER_ENH_VOLUME_PAGE, PROP_TARGETVAR, customizationVar);
             setSUIProperty(pid, COLORPICKER_ENH_VOLUME_PAGE, PROP_TARGETRANGEMAX, "500");
 
-            // Subscribe to HTML textbox value when dialog is closed with OK
-            subscribeToSUIPropertyForEvent(pid, sui_event_type.SET_onClosedOk, null, COLORPICKER_ENH_TEXTBOX_HTML, PROP_LOCALTEXT);
-
-            // Subscribe to palette selection
+            // Subscribe to HTML textbox value and palette selection
+            subscribeToSUIProperty(pid, COLORPICKER_ENH_TEXTBOX_HTML, PROP_LOCALTEXT);
             subscribeToSUIProperty(pid, COLORPICKER_ENH_VOLUME_PAGE, PROP_SELECTEDINDEX);
 
             showSUIPage(pid);
