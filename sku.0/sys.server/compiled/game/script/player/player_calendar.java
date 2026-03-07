@@ -57,6 +57,26 @@ public class player_calendar extends script.base_script
     public static final String VAR_CREATE_DATA = VAR_BASE + ".create_data";
 
     // =========================================================================
+    // Helper Methods
+    // =========================================================================
+
+    /**
+     * Helper method to get a property value from the SUI callback params.
+     * @param params    The callback params dictionary
+     * @param component The component path
+     * @param property  The property name (e.g., sui.PROP_SELECTEDROW)
+     * @return          The property value as a string, or empty string if not found
+     */
+    private static String getSUIPropertyFromParams(dictionary params, String component, String property)
+    {
+        if (params == null)
+            return "";
+        String key = component + "." + property;
+        String value = params.getString(key);
+        return value != null ? value : "";
+    }
+
+    // =========================================================================
     // Lifecycle
     // =========================================================================
 
@@ -300,7 +320,7 @@ public class player_calendar extends script.base_script
 
         if (dayEvents == null || dayEvents.length == 0)
         {
-            addSUIDataSourceContainer(pid, COMP_EVENTS_DATA, "No events", "");
+            addSUIDataSourceContainer(pid, COMP_EVENTS_DATA, "No events");
             utils.removeScriptVar(player, VAR_SELECTED_EVENTS);
         }
         else
@@ -337,7 +357,7 @@ public class player_calendar extends script.base_script
                         prefix = "";
                 }
 
-                addSUIDataSourceContainer(pid, COMP_EVENTS_DATA, prefix + title, eventId);
+                addSUIDataSourceContainer(pid, COMP_EVENTS_DATA, prefix + title);
             }
 
             utils.setScriptVar(player, VAR_SELECTED_EVENTS, eventIds);
@@ -490,7 +510,7 @@ public class player_calendar extends script.base_script
 
         // Get selected row from the list
         int selectedRow = 0;
-        String selectedRowStr = getSUIProperty(pid, COMP_EVENTS_LIST, sui.PROP_SELECTEDROW);
+        String selectedRowStr = getSUIPropertyFromParams(params, COMP_EVENTS_LIST, sui.PROP_SELECTEDROW);
         if (selectedRowStr != null && !selectedRowStr.isEmpty())
         {
             try
@@ -579,7 +599,7 @@ public class player_calendar extends script.base_script
         int pid = utils.getIntScriptVar(self, VAR_SUI_PID);
 
         int selectedRow = 0;
-        String selectedRowStr = getSUIProperty(pid, COMP_EVENTS_LIST, sui.PROP_SELECTEDROW);
+        String selectedRowStr = getSUIPropertyFromParams(params, COMP_EVENTS_LIST, sui.PROP_SELECTEDROW);
         if (selectedRowStr != null && !selectedRowStr.isEmpty())
         {
             try
@@ -743,7 +763,7 @@ public class player_calendar extends script.base_script
             return SCRIPT_CONTINUE;
 
         int pid = utils.getIntScriptVar(self, VAR_EDITOR_PID);
-        String checked = getSUIProperty(pid, EDITOR_RECURRING, sui.PROP_CHECKED);
+        String checked = getSUIPropertyFromParams(params, EDITOR_RECURRING, sui.PROP_CHECKED);
         boolean isRecurring = "true".equalsIgnoreCase(checked);
 
         setSUIProperty(pid, EDITOR_RECUR_SECTION, sui.PROP_VISIBLE, isRecurring ? "true" : "false");
@@ -757,7 +777,7 @@ public class player_calendar extends script.base_script
             return SCRIPT_CONTINUE;
 
         int pid = utils.getIntScriptVar(self, VAR_EDITOR_PID);
-        String selectedIdx = getSUIProperty(pid, EDITOR_TYPE, sui.PROP_SELECTEDINDEX);
+        String selectedIdx = getSUIPropertyFromParams(params, EDITOR_TYPE, sui.PROP_SELECTEDINDEX);
         int eventType = 0;
         try
         {
@@ -794,16 +814,16 @@ public class player_calendar extends script.base_script
         int pid = utils.getIntScriptVar(self, VAR_EDITOR_PID);
 
         // Read all values from the editor
-        String title = getSUIProperty(pid, EDITOR_TITLE, sui.PROP_TEXT);
-        String description = getSUIProperty(pid, EDITOR_DESC, sui.PROP_TEXT);
-        String eventTypeStr = getSUIProperty(pid, EDITOR_TYPE, sui.PROP_SELECTEDINDEX);
-        String dateStr = getSUIProperty(pid, EDITOR_DATE, sui.PROP_TEXT);
-        String timeStr = getSUIProperty(pid, EDITOR_TIME, sui.PROP_TEXT);
-        String durationStr = getSUIProperty(pid, EDITOR_DURATION, sui.PROP_SELECTEDINDEX);
-        String serverEventStr = getSUIProperty(pid, EDITOR_SERVER_EVENT, sui.PROP_SELECTEDINDEX);
-        String broadcastStr = getSUIProperty(pid, EDITOR_BROADCAST, sui.PROP_CHECKED);
-        String recurringStr = getSUIProperty(pid, EDITOR_RECURRING, sui.PROP_CHECKED);
-        String recurTypeStr = getSUIProperty(pid, EDITOR_RECUR_TYPE, sui.PROP_SELECTEDINDEX);
+        String title = getSUIPropertyFromParams(params, EDITOR_TITLE, sui.PROP_TEXT);
+        String description = getSUIPropertyFromParams(params, EDITOR_DESC, sui.PROP_TEXT);
+        String eventTypeStr = getSUIPropertyFromParams(params, EDITOR_TYPE, sui.PROP_SELECTEDINDEX);
+        String dateStr = getSUIPropertyFromParams(params, EDITOR_DATE, sui.PROP_TEXT);
+        String timeStr = getSUIPropertyFromParams(params, EDITOR_TIME, sui.PROP_TEXT);
+        String durationStr = getSUIPropertyFromParams(params, EDITOR_DURATION, sui.PROP_SELECTEDINDEX);
+        String serverEventStr = getSUIPropertyFromParams(params, EDITOR_SERVER_EVENT, sui.PROP_SELECTEDINDEX);
+        String broadcastStr = getSUIPropertyFromParams(params, EDITOR_BROADCAST, sui.PROP_CHECKED);
+        String recurringStr = getSUIPropertyFromParams(params, EDITOR_RECURRING, sui.PROP_CHECKED);
+        String recurTypeStr = getSUIPropertyFromParams(params, EDITOR_RECUR_TYPE, sui.PROP_SELECTEDINDEX);
 
         // Validate title
         if (title == null || title.trim().isEmpty())
@@ -1373,11 +1393,11 @@ public class player_calendar extends script.base_script
         int pid = utils.getIntScriptVar(self, VAR_SETTINGS_PID);
 
         // Read values
-        String texture = getSUIProperty(pid, SETTINGS_TEXTURE, sui.PROP_TEXT);
-        String rectXStr = getSUIProperty(pid, SETTINGS_RECT_X, sui.PROP_TEXT);
-        String rectYStr = getSUIProperty(pid, SETTINGS_RECT_Y, sui.PROP_TEXT);
-        String rectWStr = getSUIProperty(pid, SETTINGS_RECT_W, sui.PROP_TEXT);
-        String rectHStr = getSUIProperty(pid, SETTINGS_RECT_H, sui.PROP_TEXT);
+        String texture = getSUIPropertyFromParams(params, SETTINGS_TEXTURE, sui.PROP_TEXT);
+        String rectXStr = getSUIPropertyFromParams(params, SETTINGS_RECT_X, sui.PROP_TEXT);
+        String rectYStr = getSUIPropertyFromParams(params, SETTINGS_RECT_Y, sui.PROP_TEXT);
+        String rectWStr = getSUIPropertyFromParams(params, SETTINGS_RECT_W, sui.PROP_TEXT);
+        String rectHStr = getSUIPropertyFromParams(params, SETTINGS_RECT_H, sui.PROP_TEXT);
 
         // Parse values
         int rectX = 0, rectY = 0, rectW = 512, rectH = 512;
@@ -1511,7 +1531,7 @@ public class player_calendar extends script.base_script
         dictionary settings = calendar.getCalendarSettings();
         int current = settings.getInt(key);
 
-        int pid = sui.inputbox(player, player, "Enter " + label + " value:\n\nCurrent: " + current, sui.OK_CANCEL, "Source Rect " + label, sui.INPUT_NORMAL, String.valueOf(current), "handleSettingsRectInput");
+        int pid = sui.inputbox(player, player, "Enter " + label + " value:\n\nCurrent: " + current, "Source Rect " + label, "handleSettingsRectInput", String.valueOf(current));
     }
 
     public int handleSettingsRectInput(obj_id self, dictionary params) throws InterruptedException

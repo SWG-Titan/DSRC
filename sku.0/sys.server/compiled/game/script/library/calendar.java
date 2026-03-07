@@ -110,7 +110,7 @@ public class calendar extends script.base_script
                 if (guildId <= 0)
                     return false;
                 // Check if player is guild leader or officer
-                return guild.isGuildLeader(guildId, player) ||
+                return guildGetLeader(guildId) == player ||
                        guildHasPermission(player, guild.GUILD_PERMISSION_MAIL);
 
             case EVENT_TYPE_CITY:
@@ -118,7 +118,7 @@ public class calendar extends script.base_script
                 if (cityId <= 0)
                     return false;
                 // Check if player is mayor
-                return city.isMayor(player);
+                return city.isAMayor(player);
 
             case EVENT_TYPE_SERVER:
                 return false; // Only staff can set server event dates
@@ -160,14 +160,14 @@ public class calendar extends script.base_script
                 int playerGuildId = getGuildId(player);
                 if (guildId != playerGuildId)
                     return false;
-                return guild.isGuildLeader(guildId, player);
+                return guildGetLeader(guildId) == player;
 
             case EVENT_TYPE_CITY:
                 int cityId = eventData.getInt(KEY_CITY_ID);
                 int playerCityId = getCitizenOfCityId(player);
                 if (cityId != playerCityId)
                     return false;
-                return city.isMayor(player);
+                return city.isAMayor(player);
 
             default:
                 return false;
@@ -525,15 +525,15 @@ public class calendar extends script.base_script
 
     public static int getCurrentHour() throws InterruptedException
     {
-        return getCalendarTime().get(Calendar.HOUR_OF_DAY);
+        return getCalendarTimeNow().get(Calendar.HOUR_OF_DAY);
     }
 
     public static int getCurrentMinute() throws InterruptedException
     {
-        return getCalendarTime().get(Calendar.MINUTE);
+        return getCalendarTimeNow().get(Calendar.MINUTE);
     }
 
-    public static Calendar getCalendarTime() throws InterruptedException
+    public static Calendar getCalendarTimeNow() throws InterruptedException
     {
         Calendar cal = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
         cal.setTimeInMillis(System.currentTimeMillis());
@@ -628,7 +628,7 @@ public class calendar extends script.base_script
     public static void broadcastGalaxyWide(String message) throws InterruptedException
     {
         // Use cluster-wide broadcast
-        obj_id[] allPlayers = getAllPlayers(getLocation(getSelf()));
+        obj_id[] allPlayers = getAllPlayers();
         for (obj_id player : allPlayers)
         {
             if (isIdValid(player) && isPlayer(player))
@@ -641,7 +641,7 @@ public class calendar extends script.base_script
         if (guildId <= 0)
             return;
 
-        obj_id[] guildMembers = guildGetMemberIds(guildId);
+        obj_id[] guildMembers = guild.getMemberIds(guildId, false, true);
         if (guildMembers == null)
             return;
 
@@ -1080,7 +1080,7 @@ public class calendar extends script.base_script
         if (guildId <= 0)
             return;
 
-        obj_id[] members = guild.getGuildMemberIds(guildId);
+        obj_id[] members = guild.getMemberIds(guildId, false, true);
         if (members == null)
             return;
 
@@ -1102,7 +1102,7 @@ public class calendar extends script.base_script
         if (cityId <= 0)
             return;
 
-        obj_id[] citizens = city.getCitizens(cityId);
+        obj_id[] citizens = cityGetCitizenIds(cityId);
         if (citizens == null)
             return;
 
@@ -1145,13 +1145,13 @@ public class calendar extends script.base_script
     /**
      * Checks if a player is currently online/active.
      */
-    private static boolean isPlayerActive(obj_id player) throws InterruptedException
+    public static boolean isPlayerActive(obj_id player) throws InterruptedException
     {
         if (!isIdValid(player))
             return false;
 
         // Check if player object exists and is connected
-        return exists(player) && isPlayerControlled(player);
+        return exists(player) && isPlayer(player);
     }
 
     /**

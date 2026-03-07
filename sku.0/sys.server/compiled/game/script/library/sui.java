@@ -43,6 +43,7 @@ public class sui extends script.base_script
     public static final String PROP_TYPE = "Type";
     public static final String PROP_LABEL = "Label";
     public static final String PROP_VALUE = "Value";
+    public static final String PROP_CHECKED = "Checked";
     public static final String SUI_COLORPICKER = "Script.ColorPicker";
     public static final String COLORPICKER_PAGE_CAPTION = "bg.caption";
     public static final String COLORPICKER_COLORPICKER = "ColorPicker";
