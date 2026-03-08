@@ -875,23 +875,36 @@ public class player_developer extends base_script
             }
             return SCRIPT_CONTINUE;
         }
-        else if (cmd.equalsIgnoreCase("spawnRtCamera"))
+        else if (cmd.equalsIgnoreCase("spawnRtCamera") || cmd.equalsIgnoreCase("spawnRtScreen") || cmd.equalsIgnoreCase("spawnRtSystem"))
         {
-            // Spawn RT Camera at player location
+            // Spawn RT Camera and RT Screen at player location, auto-linked
             location playerLoc = getLocation(self);
+            location screenLoc = new location(playerLoc.x, playerLoc.y + 1.5f, playerLoc.z, playerLoc.area, playerLoc.cell);
 
-            // Create camera object using dedicated template
+            // Get optional name
+            String systemName = "RT System";
+            if (tok.hasMoreTokens())
+            {
+                StringBuilder nameBuilder = new StringBuilder();
+                while (tok.hasMoreTokens())
+                {
+                    if (nameBuilder.length() > 0)
+                        nameBuilder.append(" ");
+                    nameBuilder.append(tok.nextToken());
+                }
+                systemName = nameBuilder.toString().trim();
+            }
+
+            // Create camera object
             obj_id camera = createObject("object/tangible/device/rt_camera.iff", playerLoc);
             if (!isIdValid(camera) || !exists(camera))
             {
-                // Fallback to generic terminal template if custom doesn't exist
                 camera = createObject("object/tangible/terminal/terminal_guild.iff", playerLoc);
                 if (!isIdValid(camera) || !exists(camera))
                 {
-                    broadcast(self, "\\#ff4444[RT Camera]: Failed to create camera object.");
+                    broadcast(self, "\\#ff4444[RT System]: Failed to create camera object.");
                     return SCRIPT_CONTINUE;
                 }
-                // Remove all existing scripts and attach RT camera script
                 String[] existingScripts = getScriptList(camera);
                 if (existingScripts != null)
                 {
@@ -903,47 +916,17 @@ public class player_developer extends base_script
                 attachScript(camera, "item.rt_camera");
             }
 
-            // Set owner
-            setOwner(camera, self);
-
-            // Set default name
-            String cameraName = "RT Camera";
-            if (tok.hasMoreTokens())
-            {
-                StringBuilder nameBuilder = new StringBuilder();
-                while (tok.hasMoreTokens())
-                {
-                    if (nameBuilder.length() > 0)
-                        nameBuilder.append(" ");
-                    nameBuilder.append(tok.nextToken());
-                }
-                cameraName = nameBuilder.toString().trim();
-            }
-            setName(camera, cameraName);
-            setObjVar(camera, "rt_camera.name", cameraName);
-
-            broadcast(self, "\\#00ff88[RT Camera]: Camera spawned at your location.");
-            broadcast(self, "\\#aaddff  Name: " + cameraName);
-            broadcast(self, "\\#aaddff  Use radial menu to link to an RT Screen.");
-            return SCRIPT_CONTINUE;
-        }
-        else if (cmd.equalsIgnoreCase("spawnRtScreen"))
-        {
-            // Spawn RT Screen at player location
-            location playerLoc = getLocation(self);
-
-            // Create screen object using dedicated template
-            obj_id screen = createObject("object/tangible/device/rt_screen.iff", playerLoc);
+            // Create screen object above camera
+            obj_id screen = createObject("object/tangible/device/rt_screen.iff", screenLoc);
             if (!isIdValid(screen) || !exists(screen))
             {
-                // Fallback to guild screen template if custom doesn't exist
-                screen = createObject("object/tangible/furniture/technical/guild_screen_imp_1.iff", playerLoc);
+                screen = createObject("object/tangible/furniture/technical/guild_screen_imp_1.iff", screenLoc);
                 if (!isIdValid(screen) || !exists(screen))
                 {
-                    broadcast(self, "\\#ff4444[RT Screen]: Failed to create screen object.");
+                    broadcast(self, "\\#ff4444[RT System]: Failed to create screen object.");
+                    destroyObject(camera);
                     return SCRIPT_CONTINUE;
                 }
-                // Remove all existing scripts and attach RT screen script
                 String[] existingScripts = getScriptList(screen);
                 if (existingScripts != null)
                 {
@@ -955,28 +938,33 @@ public class player_developer extends base_script
                 attachScript(screen, "item.rt_screen");
             }
 
-            // Set owner
+            // Set ownership
+            setOwner(camera, self);
             setOwner(screen, self);
 
-            // Set default name
-            String screenName = "RT Screen";
-            if (tok.hasMoreTokens())
-            {
-                StringBuilder nameBuilder = new StringBuilder();
-                while (tok.hasMoreTokens())
-                {
-                    if (nameBuilder.length() > 0)
-                        nameBuilder.append(" ");
-                    nameBuilder.append(tok.nextToken());
-                }
-                screenName = nameBuilder.toString().trim();
-            }
+            // Set names
+            String cameraName = systemName + " Camera";
+            String screenName = systemName + " Screen";
+            setName(camera, cameraName);
             setName(screen, screenName);
+            setObjVar(camera, "rt_camera.name", cameraName);
             setObjVar(screen, "rt_screen.name", screenName);
 
-            broadcast(self, "\\#00ff88[RT Screen]: Screen spawned at your location.");
-            broadcast(self, "\\#aaddff  Name: " + screenName);
-            broadcast(self, "\\#aaddff  Use radial menu to link to an RT Camera.");
+            // Auto-link camera and screen
+            setObjVar(camera, "rt_camera.linkedScreen", screen);
+            setObjVar(camera, "rt_camera.owner", self);
+            setObjVar(camera, "rt_camera.isActive", 1);
+            setObjVar(camera, "rt_camera.fov", 60.0f);
+
+            setObjVar(screen, "rt_screen.linkedCamera", camera);
+            setObjVar(screen, "rt_screen.owner", self);
+            setObjVar(screen, "rt_screen.resolution", 512);
+
+            broadcast(self, "\\#00ff88[RT System]: Camera and Screen spawned and linked!");
+            broadcast(self, "\\#aaddff  Camera: " + cameraName);
+            broadcast(self, "\\#aaddff  Screen: " + screenName + " (above camera)");
+            broadcast(self, "\\#aaddff  Camera is ACTIVE and streaming.");
+            broadcast(self, "\\#aaddff  Use radial menus to configure.");
             return SCRIPT_CONTINUE;
         }
         else if (cmd.equalsIgnoreCase("awardBadge"))
