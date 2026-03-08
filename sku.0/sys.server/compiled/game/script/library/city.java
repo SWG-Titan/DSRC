@@ -2209,7 +2209,7 @@ public class city extends script.base_script
 
         if (upheld)
         {
-            removeCitizen(citizen, cityId);
+            cityRemoveCitizen(cityId, citizen);
             sendSystemMessage(citizen, SID_EVICTION_UPHELD);
         }
         else
