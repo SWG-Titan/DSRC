@@ -15,6 +15,5 @@ appearanceFilename = "appearance/frn_all_guild_registry_imp.apt"
 
 gameObjectType = GOT_terminal_misc
 
-clientGameObjectType = 8207
 
 

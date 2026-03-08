@@ -15,6 +15,5 @@ appearanceFilename = "appearance/thm_prp_camera.apt"
 
 gameObjectType = GOT_terminal_misc
 
-clientGameObjectType = 8207
 
 
