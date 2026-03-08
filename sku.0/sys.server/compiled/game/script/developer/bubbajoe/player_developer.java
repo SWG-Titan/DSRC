@@ -969,6 +969,110 @@ public class player_developer extends base_script
             broadcast(self, "\\#aaddff  Use radial menus to configure.");
             return SCRIPT_CONTINUE;
         }
+        else if (cmd.equalsIgnoreCase("spawnRtCameraWithFollowTarget"))
+        {
+            // Spawn RT Camera system that follows the current target
+            if (!isIdValid(target) || target.equals(self))
+            {
+                broadcast(self, "\\#ff4444[RT System]: You must have a valid target to follow.");
+                return SCRIPT_CONTINUE;
+            }
+
+            // Get optional system name
+            String systemName = "Follow Cam";
+            if (tok.hasMoreTokens())
+            {
+                systemName = tok.nextToken();
+            }
+
+            // Get player location for screen placement
+            location playerLoc = getLocation(self);
+            location screenLoc = new location(playerLoc.x, playerLoc.y + 2.0f, playerLoc.z, playerLoc.area, playerLoc.cell);
+
+            // Get target location for camera placement (offset above target)
+            location targetLoc = getLocation(target);
+            location cameraLoc = new location(targetLoc.x, targetLoc.y + 3.0f, targetLoc.z - 5.0f, targetLoc.area, targetLoc.cell);
+
+            // Create camera object
+            obj_id camera = createObject("object/tangible/device/rt_camera.iff", cameraLoc);
+            if (!isIdValid(camera) || !exists(camera))
+            {
+                camera = createObject("object/tangible/loot/generic_usable/binoculars_s1_generic.iff", cameraLoc);
+                if (!isIdValid(camera) || !exists(camera))
+                {
+                    broadcast(self, "\\#ff4444[RT System]: Failed to create camera object.");
+                    return SCRIPT_CONTINUE;
+                }
+                String[] existingScripts = getScriptList(camera);
+                if (existingScripts != null)
+                {
+                    for (String script : existingScripts)
+                    {
+                        detachScript(camera, script);
+                    }
+                }
+                attachScript(camera, "item.rt_camera");
+            }
+
+            // Create screen object near player
+            obj_id screen = createObject("object/tangible/device/rt_screen.iff", screenLoc);
+            if (!isIdValid(screen) || !exists(screen))
+            {
+                screen = createObject("object/tangible/furniture/house_cleanup/cts_kauri_painting.iff", screenLoc);
+                if (!isIdValid(screen) || !exists(screen))
+                {
+                    broadcast(self, "\\#ff4444[RT System]: Failed to create screen object.");
+                    destroyObject(camera);
+                    return SCRIPT_CONTINUE;
+                }
+                String[] existingScripts = getScriptList(screen);
+                if (existingScripts != null)
+                {
+                    for (String script : existingScripts)
+                    {
+                        detachScript(screen, script);
+                    }
+                }
+                attachScript(screen, "item.rt_screen");
+            }
+
+            // Set ownership
+            setOwner(camera, self);
+            setOwner(screen, self);
+
+            // Set names
+            String cameraName = systemName + " Camera";
+            String screenName = systemName + " Screen";
+            setName(camera, cameraName);
+            setName(screen, screenName);
+            setObjVar(camera, "rt_camera.name", cameraName);
+            setObjVar(screen, "rt_screen.name", screenName);
+
+            // Auto-link camera and screen
+            setObjVar(camera, "rt_camera.linkedScreen", screen.toString());
+            setObjVar(camera, "rt_camera.owner", self.toString());
+            setObjVar(camera, "rt_camera.isActive", 1);
+            setObjVar(camera, "rt_camera.fov", 60.0f);
+
+            setObjVar(screen, "rt_screen.linkedCamera", camera.toString());
+            setObjVar(screen, "rt_screen.owner", self.toString());
+            setObjVar(screen, "rt_screen.resolution", 512);
+
+            // Set up tangible dynamics to follow target
+            // Lock to parent with offset (above and behind target)
+            setObjVar(camera, "dynamics.lockParent.parentId", target.toString());
+            setObjVar(camera, "dynamics.lockParent.offsetX", 0.0f);
+            setObjVar(camera, "dynamics.lockParent.offsetY", 3.0f);   // Above target
+            setObjVar(camera, "dynamics.lockParent.offsetZ", -5.0f);  // Behind target
+            setObjVar(camera, "dynamics.lockParent.matchRotation", 1);
+
+            broadcast(self, "\\#00ff88[RT System]: Follow Camera spawned and linked!");
+            broadcast(self, "\\#aaddff  Camera: " + cameraName + " (following " + getName(target) + ")");
+            broadcast(self, "\\#aaddff  Screen: " + screenName + " (near you)");
+            broadcast(self, "\\#aaddff  Camera is ACTIVE and following target.");
+            broadcast(self, "\\#aaddff  Use radial menus to configure.");
+            return SCRIPT_CONTINUE;
+        }
         else if (cmd.equalsIgnoreCase("awardBadge"))
         {
             String parameter = tok.nextToken();

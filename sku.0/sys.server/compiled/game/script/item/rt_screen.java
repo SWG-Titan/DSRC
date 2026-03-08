@@ -49,6 +49,26 @@ public class rt_screen extends script.base_script
         return SCRIPT_CONTINUE;
     }
 
+    public int OnDestroy(obj_id self) throws InterruptedException
+    {
+        // Clean up linked camera when screen is destroyed
+        if (hasObjVar(self, OBJVAR_LINKED_CAMERA))
+        {
+            obj_id camera = getObjIdObjVar(self, OBJVAR_LINKED_CAMERA);
+            if (isIdValid(camera) && exists(camera))
+            {
+                // Clear the camera's link to this screen
+                removeObjVar(camera, "rt_camera.linkedScreen");
+            }
+        }
+
+        // Clear synced objvars to notify clients
+        setObjVar(self, "rt_screen.linkedCamera", "");
+        removeObjVar(self, OBJVAR_LINKED_CAMERA);
+
+        return SCRIPT_CONTINUE;
+    }
+
     public int OnObjectMenuRequest(obj_id self, obj_id player, menu_info mi) throws InterruptedException
     {
         obj_id owner = getOwner(self);
