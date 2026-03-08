@@ -3683,6 +3683,21 @@ public class terminal_city extends script.base_script
             return;
         }
 
+        // Open client-side terrain painter UI using base_class native function
+        base_class.openCityTerrainPainter(player, city_id);
+    }
+
+    public void showRadiusPaintUILegacy(obj_id player, obj_id terminal, int city_id) throws InterruptedException
+    {
+        int cityRank = city.getCityRank(city_id);
+        int maxRadius = PAINT_RADIUS_MAX[Math.min(cityRank, PAINT_RADIUS_MAX.length - 1)];
+
+        if (maxRadius <= 0)
+        {
+            sendSystemMessage(player, new string_id(STF, "terrain_rank_too_low"));
+            return;
+        }
+
         utils.setScriptVar(player, "terrain.city_id", city_id);
         utils.setScriptVar(player, "terrain.max_radius", maxRadius);
 
@@ -3754,22 +3769,17 @@ public class terminal_city extends script.base_script
         {
             attachScript(player, "systems.city.city_terrain_painter");
         }
-
-        return SCRIPT_CONTINUE;
-    }
-
     public void showRoadPaintUI(obj_id player, obj_id terminal, int city_id) throws InterruptedException
     {
         int cityRank = city.getCityRank(city_id);
-
         if (cityRank < 2)
         {
             sendSystemMessage(player, new string_id(STF, "terrain_rank_too_low"));
             return;
         }
-
-        utils.setScriptVar(player, "terrain.city_id", city_id);
-
+        // Open client-side terrain painter UI (supports all paint modes)
+        base_class.openCityTerrainPainter(player, city_id);
+    }
         sui.listbox(terminal, player, "Select road surface shader:", sui.OK_CANCEL,
                    "Select Road Surface", TERRAIN_SHADER_NAMES, "handleRoadShaderSelection", true, false);
     }

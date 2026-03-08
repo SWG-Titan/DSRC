@@ -26895,7 +26895,11 @@ public class base_class
 		_openExamineWindow(getLongWithNull(player), getLongWithNull(item));
 	}
 
-	private static native void _addObjectEffect(long obj, String effectFile, String hardpoint, vector offset, float scale, String label);
+	private static native void _openCityTerrainPainter(long player, int cityId);
+public static void openCityTerrainPainter(obj_id player, int cityId)
+{
+_openCityTerrainPainter(getLongWithNull(player), cityId);
+}private static native void _addObjectEffect(long obj, String effectFile, String hardpoint, vector offset, float scale, String label);
 	public static void addObjectEffect(obj_id obj, String effectFile, String hardpoint, vector offset, float scale, String label)
 	{
 		_addObjectEffect(getLongWithNull(obj), effectFile, hardpoint, offset, scale, label);
