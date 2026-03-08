@@ -884,8 +884,8 @@ public class player_developer extends base_script
             obj_id camera = createObject("object/tangible/device/rt_camera.iff", playerLoc);
             if (!isIdValid(camera) || !exists(camera))
             {
-                // Fallback to generic template if custom doesn't exist
-                camera = createObject("object/tangible/terminal/base/base_terminal.iff", playerLoc);
+                // Fallback to generic terminal template if custom doesn't exist
+                camera = createObject("object/tangible/terminal/terminal_guild.iff", playerLoc);
                 if (!isIdValid(camera) || !exists(camera))
                 {
                     broadcast(self, "\\#ff4444[RT Camera]: Failed to create camera object.");
@@ -928,8 +928,8 @@ public class player_developer extends base_script
             obj_id screen = createObject("object/tangible/device/rt_screen.iff", playerLoc);
             if (!isIdValid(screen) || !exists(screen))
             {
-                // Fallback to generic template if custom doesn't exist
-                screen = createObject("object/tangible/furniture/technical/shared_guild_screen_imp_1.iff", playerLoc);
+                // Fallback to guild screen template if custom doesn't exist
+                screen = createObject("object/tangible/furniture/technical/guild_screen_imp_1.iff", playerLoc);
                 if (!isIdValid(screen) || !exists(screen))
                 {
                     broadcast(self, "\\#ff4444[RT Screen]: Failed to create screen object.");
