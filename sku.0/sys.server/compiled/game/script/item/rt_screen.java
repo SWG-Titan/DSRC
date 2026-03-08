@@ -178,6 +178,8 @@ public class rt_screen extends script.base_script
         {
             sendSystemMessageTestingOnly(player, "\\#ff4444[RT Screen]: Camera no longer exists.");
             removeObjVar(screen, OBJVAR_LINKED_CAMERA);
+            // Clear the synced variable
+            setObjVar(screen, "rt_screen.linkedCamera", "");
             return;
         }
 
@@ -196,26 +198,12 @@ public class rt_screen extends script.base_script
             return;
         }
 
-        // Send message to client to start rendering camera feed
+        // Set the synced objvar with camera ID - this will sync to all clients
+        setObjVar(screen, "rt_screen.linkedCamera", camera.toString());
+
+        // Set resolution objvar for sync
         int resolution = hasObjVar(screen, OBJVAR_RESOLUTION) ? getIntObjVar(screen, OBJVAR_RESOLUTION) : DEFAULT_RESOLUTION;
-        float fov = hasObjVar(camera, "rt_camera.fov") ? getFloatObjVar(camera, "rt_camera.fov") : 60.0f;
-
-        dictionary params = new dictionary();
-        params.put("cameraId", camera);
-        params.put("screenId", screen);
-        params.put("resolution", resolution);
-        params.put("fov", fov);
-
-        // Get camera transform data
-        location camLoc = getLocation(camera);
-        if (camLoc != null)
-        {
-            params.put("camX", camLoc.x);
-            params.put("camY", camLoc.y);
-            params.put("camZ", camLoc.z);
-        }
-
-        messageTo(player, "handleRtCameraFeed", params, 0, false);
+        setObjVar(screen, "rt_camera.resolution", resolution);
 
         String cameraName = hasObjVar(camera, "rt_camera.name") ? getStringObjVar(camera, "rt_camera.name") : "RT Camera";
         sendSystemMessageTestingOnly(player, "\\#00ff88[RT Screen]: Viewing feed from '" + cameraName + "'.");
@@ -233,6 +221,10 @@ public class rt_screen extends script.base_script
 
         removeObjVar(screen, OBJVAR_LINKED_CAMERA);
         setObjVar(screen, OBJVAR_IS_DISPLAYING, false);
+
+        // Clear synced variables
+        setObjVar(screen, "rt_screen.linkedCamera", "");
+        removeObjVar(screen, "rt_camera.resolution");
 
         if (isIdValid(camera) && exists(camera))
         {

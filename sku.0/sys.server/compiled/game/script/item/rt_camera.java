@@ -224,18 +224,13 @@ public class rt_camera extends script.base_script
         }
 
         boolean isActive = hasObjVar(camera, OBJVAR_IS_ACTIVE) && getBooleanObjVar(camera, OBJVAR_IS_ACTIVE);
-        setObjVar(camera, OBJVAR_IS_ACTIVE, !isActive);
+        boolean newActive = !isActive;
+        setObjVar(camera, OBJVAR_IS_ACTIVE, newActive);
 
-        obj_id screen = getObjIdObjVar(camera, OBJVAR_LINKED_SCREEN);
-        if (isIdValid(screen) && exists(screen))
-        {
-            dictionary params = new dictionary();
-            params.put("camera", camera);
-            params.put("active", !isActive);
-            messageTo(screen, "handleCameraActiveChanged", params, 0, false);
-        }
+        // This triggers the synced variable update in the server's alter()
+        // The server reads rt_camera.isActive objvar and syncs to m_rtCameraActive
 
-        sendSystemMessageTestingOnly(player, "\\#00ff88[RT Camera]: " + (!isActive ? "Activated" : "Deactivated") + ".");
+        sendSystemMessageTestingOnly(player, "\\#00ff88[RT Camera]: " + (newActive ? "Activated" : "Deactivated") + ".");
     }
 
     private void notifyLinkedScreen(obj_id camera) throws InterruptedException
