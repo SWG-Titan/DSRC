@@ -128,8 +128,10 @@ public class city_terrain_painter extends script.base_script
         {
             regionIds = new String[0];
         }
-        regionIds = utils.addElement(regionIds, regionId);
-        setObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids", regionIds);
+        String[] newRegionIds = new String[regionIds.length + 1];
+        System.arraycopy(regionIds, 0, newRegionIds, 0, regionIds.length);
+        newRegionIds[regionIds.length] = regionId;
+        setObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids", newRegionIds);
 
         broadcastTerrainShaderRadius(cityId, center.x, center.z, radius, shader);
 
@@ -177,8 +179,10 @@ public class city_terrain_painter extends script.base_script
         {
             regionIds = new String[0];
         }
-        regionIds = utils.addElement(regionIds, regionId);
-        setObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids", regionIds);
+        String[] newRegionIds = new String[regionIds.length + 1];
+        System.arraycopy(regionIds, 0, newRegionIds, 0, regionIds.length);
+        newRegionIds[regionIds.length] = regionId;
+        setObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids", newRegionIds);
 
         broadcastTerrainShaderRoad(cityId, startX, startZ, endX, endZ, width, shader);
 
@@ -247,4 +251,6 @@ public class city_terrain_painter extends script.base_script
         }
     }
 }
+
+
 

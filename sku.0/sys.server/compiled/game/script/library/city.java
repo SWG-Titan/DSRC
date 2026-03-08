@@ -1928,7 +1928,7 @@ public class city extends script.base_script
 
         String cityName = cityGetName(cityId);
         prose_package pp = prose.getPackage(SID_EXPULSION_WARNING, cityName, EXPULSION_GRACE_PERIOD);
-        sendSystemMessage(target, pp);
+        prose.sendSystemMessageProse(target, pp);
 
         dictionary params = new dictionary();
         params.put("cityId", cityId);
@@ -2026,20 +2026,9 @@ public class city extends script.base_script
         return dist <= cityRadius;
     }
 
-    public static boolean hasMilitiaFlag(obj_id citizen, int cityId) throws InterruptedException
-    {
-        int perms = cityGetCitizenPermissions(cityId, citizen);
-        return (perms & CP_MILITIA) != 0;
-    }
-
     public static int getFirstCitizenOfCityId(obj_id citizen) throws InterruptedException
     {
-        int[] cities = getCitizenOfCityId(citizen);
-        if (cities == null || cities.length == 0)
-        {
-            return 0;
-        }
-        return cities[0];
+        return getCitizenOfCityId(citizen);
     }
 
     // ========================================================================
@@ -2233,23 +2222,6 @@ public class city extends script.base_script
         CustomerServiceLog("player_city", "Judge decision on eviction. City: " + cityName + " (" + cityId + "/" + cityHall + ") Citizen: " + citizen + " Upheld: " + upheld + " Judge: " + judge);
     }
 
-    public static boolean isCitizenOfCity(obj_id citizen, int cityId) throws InterruptedException
-    {
-        obj_id[] citizens = cityGetCitizenIds(cityId);
-        if (citizens == null)
-        {
-            return false;
-        }
-        for (obj_id c : citizens)
-        {
-            if (c.equals(citizen))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     // ========================================================================
     // EXTENDED TAXATION SYSTEM
     // ========================================================================
@@ -2430,7 +2402,7 @@ public class city extends script.base_script
             int landingTax = getStarshipLandingTax(cityId);
             int playerCash = getTotalMoney(pilot);
             prose_package pp = prose.getPackage(SID_LANDING_TAX_INSUFFICIENT, cityName, landingTax, playerCash);
-            sendSystemMessage(pilot, pp);
+            prose.sendSystemMessageProse(pilot, pp);
         }
 
         messageTo(ship, "handleUndock", null, 0.0f, false);

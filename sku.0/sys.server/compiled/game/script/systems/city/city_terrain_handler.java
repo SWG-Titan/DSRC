@@ -300,8 +300,10 @@ public class city_terrain_handler extends script.base_script
         {
             regionIds = new String[0];
         }
-        regionIds = utils.addElement(regionIds, regionId);
-        setObjVar(self, TERRAIN_VAR_ROOT + ".region_ids", regionIds);
+        String[] newRegionIds = new String[regionIds.length + 1];
+        System.arraycopy(regionIds, 0, newRegionIds, 0, regionIds.length);
+        newRegionIds[regionIds.length] = regionId;
+        setObjVar(self, TERRAIN_VAR_ROOT + ".region_ids", newRegionIds);
 
         return SCRIPT_CONTINUE;
     }
@@ -353,3 +355,4 @@ public class city_terrain_handler extends script.base_script
         return SCRIPT_CONTINUE;
     }
 }
+

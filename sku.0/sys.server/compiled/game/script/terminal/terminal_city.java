@@ -3260,7 +3260,7 @@ public class terminal_city extends script.base_script
         utils.setScriptVar(player, "eviction.target", target);
 
         sui.inputbox(self, player, "Enter the reason for eviction:", sui.OK_CANCEL, "Eviction Reason",
-                    sui.INPUT_NORMAL, "", "handleEvictionReasonInput", null);
+                    sui.INPUT_NORMAL, new String[]{""}, "handleEvictionReasonInput", null);
 
         return SCRIPT_CONTINUE;
     }
@@ -3342,7 +3342,7 @@ public class terminal_city extends script.base_script
         }
 
         utils.setScriptVar(player, "extendedtax.max", max);
-        sui.inputbox(self, player, prompt, sui.OK_CANCEL, "Set Tax", sui.INPUT_NORMAL, "0", "handleExtendedTaxInput", null);
+        sui.inputbox(self, player, prompt, sui.OK_CANCEL, "Set Tax", sui.INPUT_NORMAL, new String[]{"0"}, "handleExtendedTaxInput", null);
 
         return SCRIPT_CONTINUE;
     }
@@ -3619,7 +3619,7 @@ public class terminal_city extends script.base_script
 
         utils.setScriptVar(player, "appeal.city_id", city_id);
         sui.inputbox(self, player, "Enter your defense for the appeal:", sui.OK_CANCEL, "Appeal Eviction",
-                    sui.INPUT_NORMAL, "", "handleAppealInput", null);
+                    sui.INPUT_NORMAL, new String[]{""}, "handleAppealInput", null);
     }
 
     public int handleAppealInput(obj_id self, dictionary params) throws InterruptedException
@@ -3707,7 +3707,7 @@ public class terminal_city extends script.base_script
         int maxRadius = utils.getIntScriptVar(player, "terrain.max_radius");
 
         sui.inputbox(self, player, "Enter paint radius (5 - " + maxRadius + " meters):",
-                    sui.OK_CANCEL, "Set Radius", sui.INPUT_NORMAL, "10", "handleRadiusInput", null);
+                    sui.OK_CANCEL, "Set Radius", sui.INPUT_NORMAL, new String[]{"10"}, "handleRadiusInput", null);
 
         return SCRIPT_CONTINUE;
     }
@@ -3789,7 +3789,7 @@ public class terminal_city extends script.base_script
         utils.setScriptVar(player, "terrain.shader_name", TERRAIN_SHADER_NAMES[idx]);
 
         sui.inputbox(self, player, "Enter road width (2 - 10 meters):",
-                    sui.OK_CANCEL, "Set Road Width", sui.INPUT_NORMAL, "4", "handleRoadWidthInput", null);
+                    sui.OK_CANCEL, "Set Road Width", sui.INPUT_NORMAL, new String[]{"4"}, "handleRoadWidthInput", null);
 
         return SCRIPT_CONTINUE;
     }
@@ -3879,7 +3879,7 @@ public class terminal_city extends script.base_script
         int city_id = utils.getIntScriptVar(player, "terrain.city_id");
 
         sui.inputbox(self, player, "Enter target height (leave blank for average terrain height):",
-                    sui.OK_CANCEL, "Set Bulldoze Height", sui.INPUT_NORMAL, "", "handleBulldozeHeightInput", null);
+                    sui.OK_CANCEL, "Set Bulldoze Height", sui.INPUT_NORMAL, new String[]{""}, "handleBulldozeHeightInput", null);
 
         return SCRIPT_CONTINUE;
     }

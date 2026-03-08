@@ -71,8 +71,10 @@ public class city_judge_election extends script.base_script
             }
         }
 
-        candidates = utils.addElement(candidates, citizen);
-        setObjVar(cityHall, ELECTION_VAR_ROOT + ".candidates", candidates);
+        obj_id[] newCandidates = new obj_id[candidates.length + 1];
+        System.arraycopy(candidates, 0, newCandidates, 0, candidates.length);
+        newCandidates[candidates.length] = citizen;
+        setObjVar(cityHall, ELECTION_VAR_ROOT + ".candidates", newCandidates);
 
         sendSystemMessage(citizen, city.SID_REGISTERED_AS_JUDGE_CANDIDATE);
 
@@ -138,8 +140,10 @@ public class city_judge_election extends script.base_script
         {
             hasVoted = new obj_id[0];
         }
-        hasVoted = utils.addElement(hasVoted, voter);
-        setObjVar(cityHall, ELECTION_VAR_ROOT + ".voted", hasVoted);
+        obj_id[] newHasVoted = new obj_id[hasVoted.length + 1];
+        System.arraycopy(hasVoted, 0, newHasVoted, 0, hasVoted.length);
+        newHasVoted[hasVoted.length] = voter;
+        setObjVar(cityHall, ELECTION_VAR_ROOT + ".voted", newHasVoted);
 
         sendSystemMessage(voter, city.SID_VOTE_RECORDED);
     }
@@ -229,4 +233,6 @@ public class city_judge_election extends script.base_script
         return SCRIPT_CONTINUE;
     }
 }
+
+
 

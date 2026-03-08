@@ -109,23 +109,25 @@ public class city_terrain_manager extends script.base_script
             return SCRIPT_CONTINUE;
         }
 
-        switch (item)
+        if (item == menu_info_types.SERVER_MENU41)
         {
-            case menu_info_types.SERVER_MENU41:
-                showRadiusPaintUI(player, self, cityId);
-                break;
-            case menu_info_types.SERVER_MENU42:
-                showRoadPaintUI(player, self, cityId);
-                break;
-            case menu_info_types.SERVER_MENU43:
-                showBulldozeUI(player, self, cityId);
-                break;
-            case menu_info_types.SERVER_MENU44:
-                showTerrainRegions(player, self, cityId);
-                break;
-            case menu_info_types.SERVER_MENU45:
-                showRemoveRegionUI(player, self, cityId);
-                break;
+            showRadiusPaintUI(player, self, cityId);
+        }
+        else if (item == menu_info_types.SERVER_MENU42)
+        {
+            showRoadPaintUI(player, self, cityId);
+        }
+        else if (item == menu_info_types.SERVER_MENU43)
+        {
+            showBulldozeUI(player, self, cityId);
+        }
+        else if (item == menu_info_types.SERVER_MENU44)
+        {
+            showTerrainRegions(player, self, cityId);
+        }
+        else if (item == menu_info_types.SERVER_MENU45)
+        {
+            showRemoveRegionUI(player, self, cityId);
         }
 
         return SCRIPT_CONTINUE;
@@ -170,7 +172,7 @@ public class city_terrain_manager extends script.base_script
         int maxRadius = utils.getIntScriptVar(player, "terrain.max_radius");
 
         sui.inputbox(self, player, "Enter paint radius (5 - " + maxRadius + " meters):",
-                    sui.OK_CANCEL, "Set Radius", sui.INPUT_NORMAL, "10", "handleRadiusInput", null);
+                    sui.OK_CANCEL, "Set Radius", sui.INPUT_NORMAL, new String[]{"10"}, "handleRadiusInput", null);
 
         return SCRIPT_CONTINUE;
     }
@@ -299,7 +301,7 @@ public class city_terrain_manager extends script.base_script
         utils.setScriptVar(player, "terrain.shader_name", TERRAIN_SHADER_NAMES[idx]);
 
         sui.inputbox(self, player, "Enter road width (" + ROAD_WIDTH_MIN + " - " + ROAD_WIDTH_MAX + " meters):",
-                    sui.OK_CANCEL, "Set Road Width", sui.INPUT_NORMAL, "4", "handleRoadWidthInput", null);
+                    sui.OK_CANCEL, "Set Road Width", sui.INPUT_NORMAL, new String[]{"4"}, "handleRoadWidthInput", null);
 
         return SCRIPT_CONTINUE;
     }
@@ -388,7 +390,7 @@ public class city_terrain_manager extends script.base_script
         int cityId = utils.getIntScriptVar(player, "terrain.city_id");
 
         sui.inputbox(self, player, "Enter target height (leave blank for average terrain height):",
-                    sui.OK_CANCEL, "Set Bulldoze Height", sui.INPUT_NORMAL, "", "handleBulldozeHeightInput", null);
+                    sui.OK_CANCEL, "Set Bulldoze Height", sui.INPUT_NORMAL, new String[]{""}, "handleBulldozeHeightInput", null);
 
         return SCRIPT_CONTINUE;
     }
@@ -549,8 +551,10 @@ public class city_terrain_manager extends script.base_script
         {
             regionIds = new String[0];
         }
-        regionIds = utils.addElement(regionIds, regionId);
-        setObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids", regionIds);
+        String[] newRegionIds = new String[regionIds.length + 1];
+        System.arraycopy(regionIds, 0, newRegionIds, 0, regionIds.length);
+        newRegionIds[regionIds.length] = regionId;
+        setObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids", newRegionIds);
 
         // Apply terrain modification via server call
         applyTerrainShaderRadius(cityId, center.x, center.z, radius, shader);
@@ -601,8 +605,10 @@ public class city_terrain_manager extends script.base_script
         {
             regionIds = new String[0];
         }
-        regionIds = utils.addElement(regionIds, regionId);
-        setObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids", regionIds);
+        String[] newRegionIds = new String[regionIds.length + 1];
+        System.arraycopy(regionIds, 0, newRegionIds, 0, regionIds.length);
+        newRegionIds[regionIds.length] = regionId;
+        setObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids", newRegionIds);
 
         // Apply terrain modification via server call
         applyTerrainShaderRoad(cityId, startX, startZ, endX, endZ, width, shader);
@@ -919,6 +925,12 @@ public class city_terrain_manager extends script.base_script
         return SCRIPT_CONTINUE;
     }
 }
+
+
+
+
+
+
 
 
 

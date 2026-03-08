@@ -23,7 +23,7 @@ public class city_court extends script.base_script
             return SCRIPT_CONTINUE;
         }
 
-        city.removeCitizen(self, cityId);
+        cityRemoveCitizen(cityId, self);
 
         removeObjVar(self, "city.eviction");
 
@@ -107,4 +107,5 @@ public class city_court extends script.base_script
         return result;
     }
 }
+
 

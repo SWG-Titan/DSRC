@@ -317,7 +317,7 @@ public class atmo_landing_point extends script.base_script
             return SCRIPT_CONTINUE;
         }
 
-        location landingLoc = atmo_landing_registry.getLandingLocation(self);
+        landingLoc = atmo_landing_registry.getLandingLocation(self);
         float cruiseAlt = atmo_landing_registry.getCruiseAltitude(self);
         float landingAlt = atmo_landing_registry.getApproachAltitude(self);
         float yaw = atmo_landing_registry.getLandingYaw(self);
