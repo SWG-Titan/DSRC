@@ -124,14 +124,14 @@ public class rt_camera extends script.base_script
         {
             float currentFov = hasObjVar(self, OBJVAR_FOV) ? getFloatObjVar(self, OBJVAR_FOV) : DEFAULT_FOV;
             String prompt = "Enter field of view (30-120 degrees)\\nCurrent: " + (int)currentFov;
-            sui.inputbox(self, player, prompt, sui.OK_CANCEL, "Set Field of View", sui.INPUT_NORMAL, String.valueOf((int)currentFov), "handleSetFov", null);
+            sui.inputbox(self, player, prompt, sui.OK_CANCEL, "Set Field of View", sui.INPUT_NORMAL, new String[]{String.valueOf((int)currentFov)}, "handleSetFov", null);
             return SCRIPT_CONTINUE;
         }
 
         if (item == MENU_SET_NAME)
         {
             String currentName = hasObjVar(self, OBJVAR_NAME) ? getStringObjVar(self, OBJVAR_NAME) : "RT Camera";
-            sui.inputbox(self, player, "Enter camera name:", sui.OK_CANCEL, "Set Camera Name", sui.INPUT_NORMAL, currentName, "handleSetName", null);
+            sui.inputbox(self, player, "Enter camera name:", sui.OK_CANCEL, "Set Camera Name", sui.INPUT_NORMAL, new String[]{currentName}, "handleSetName", null);
             return SCRIPT_CONTINUE;
         }
 

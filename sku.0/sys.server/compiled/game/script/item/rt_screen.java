@@ -152,7 +152,7 @@ public class rt_screen extends script.base_script
         if (item == MENU_SET_NAME)
         {
             String currentName = hasObjVar(self, OBJVAR_NAME) ? getStringObjVar(self, OBJVAR_NAME) : "RT Screen";
-            sui.inputbox(self, player, "Enter screen name:", sui.OK_CANCEL, "Set Screen Name", sui.INPUT_NORMAL, currentName, "handleSetName", null);
+            sui.inputbox(self, player, "Enter screen name:", sui.OK_CANCEL, "Set Screen Name", sui.INPUT_NORMAL, new String[]{currentName}, "handleSetName", null);
             return SCRIPT_CONTINUE;
         }
 
