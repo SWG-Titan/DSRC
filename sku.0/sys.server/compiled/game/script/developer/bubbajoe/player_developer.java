@@ -1301,7 +1301,7 @@ public class player_developer extends base_script
                 if (isIdValid(obj) && exists(obj))
                 {
                     // Skip creatures/players
-                    if (isPlayer(obj) || isCreatureObject(obj))
+                    if (isPlayer(obj) || isMob(obj))
                         continue;
 
                     location loc = getLocation(obj);
