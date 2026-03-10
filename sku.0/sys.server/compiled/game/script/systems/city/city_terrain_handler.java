@@ -13,7 +13,7 @@ public class city_terrain_handler extends script.base_script
     {
     }
 
-    public static final String TERRAIN_VAR_ROOT = "city.terrain";
+    public static final String TERRAIN_VAR_ROOT = "city.terrain.regions";
 
     /**
      * Called when player enters a city region
@@ -49,31 +49,67 @@ public class city_terrain_handler extends script.base_script
             return;
         }
 
-        // Get all terrain regions for this city
-        String[] regionIds = getStringArrayObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids");
-        if (regionIds == null || regionIds.length == 0)
+        // Get all terrain regions - try both C++ indexed format and Java array format
+        java.util.Vector regionIdList = new java.util.Vector();
+
+        // Try C++ indexed format first (region_ids.0, region_ids.1, etc.)
+        int regionCount = getIntObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_count");
+        if (regionCount > 0)
         {
-            return;
+            for (int i = 0; i < regionCount + 10 && regionIdList.size() < regionCount; i++)
+            {
+                String regionId = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids." + i);
+                if (regionId != null && !regionId.isEmpty())
+                {
+                    regionIdList.add(regionId);
+                }
+            }
+        }
+
+        // Also try Java array format
+        if (regionIdList.isEmpty())
+        {
+            String[] regionIdsArray = getStringArrayObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids");
+            if (regionIdsArray != null)
+            {
+                for (int i = 0; i < regionIdsArray.length; i++)
+                {
+                    if (regionIdsArray[i] != null && !regionIdsArray[i].isEmpty())
+                    {
+                        regionIdList.add(regionIdsArray[i]);
+                    }
+                }
+            }
         }
 
         // Send each region to the client
-        for (String regionId : regionIds)
+        for (int i = 0; i < regionIdList.size(); i++)
         {
-            String type = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".type");
-            String shader = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".shader");
+            String regionId = (String)regionIdList.get(i);
 
-            int modType = 0;
-            if (type != null)
+            // Try both C++ format (.type_id) and Java format (.type)
+            String type = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".type");
+            int typeId = getIntObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".type_id");
+
+            String shader = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".shader_name");
+            if (shader == null || shader.isEmpty())
             {
-                if (type.equals("RADIUS"))
+                shader = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".shader");
+            }
+
+            int modType = typeId;
+            if (modType == 0 && type != null && !type.isEmpty())
+            {
+                // Derive modType from string type
+                if (type.equals("RADIUS") || type.contains("Circle"))
                 {
                     modType = 0;
                 }
-                else if (type.equals("ROAD"))
+                else if (type.equals("ROAD") || type.contains("Road") || type.contains("Path"))
                 {
                     modType = 1;
                 }
-                else if (type.equals("FLATTEN"))
+                else if (type.equals("FLATTEN") || type.contains("Flatten"))
                 {
                     modType = 2;
                 }
@@ -87,6 +123,18 @@ public class city_terrain_handler extends script.base_script
             float width = getFloatObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".width");
             float height = getFloatObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".height");
             float blendDist = getFloatObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".blend_dist");
+
+            // Handle road format: start_x/start_z might be used instead of center_x/center_z
+            if (modType == 1) // Road
+            {
+                float startX = getFloatObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".start_x");
+                float startZ = getFloatObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionId + ".start_z");
+                if (startX != 0 || startZ != 0)
+                {
+                    centerX = startX;
+                    centerZ = startZ;
+                }
+            }
 
             // Send terrain modify message to client
             sendTerrainModifyToClient(player, cityId, modType, regionId, shader,
