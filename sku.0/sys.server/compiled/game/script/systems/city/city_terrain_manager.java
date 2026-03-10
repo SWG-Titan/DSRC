@@ -21,8 +21,8 @@ public class city_terrain_manager extends script.base_script
     // CONSTANTS
     // ========================================================================
 
-    public static final String TERRAIN_VAR_ROOT = "city.terrain";
-    public static final String ROAD_MARKER_VAR = "city.terrain.road_marker";
+    public static final String TERRAIN_VAR_ROOT = "city.terrain.regions";
+    public static final String ROAD_MARKER_VAR = "city.terrain.regions.road_marker";
 
     // Shader templates available for painting
     public static final String[] TERRAIN_SHADERS = {
@@ -441,9 +441,25 @@ public class city_terrain_manager extends script.base_script
     {
         obj_id cityHall = cityGetCityHall(cityId);
 
-        String[] regionIds = getStringArrayObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids");
+        int regionCount = getIntObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_count");
+        if (regionCount <= 0)
+        {
+            sendSystemMessage(player, new string_id("city/city", "no_terrain_regions"));
+            return;
+        }
 
-        if (regionIds == null || regionIds.length == 0)
+        // Read region IDs from indexed objvars
+        Vector regionIdList = new Vector();
+        for (int i = 0; i < regionCount + 10; i++)
+        {
+            String regionId = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids." + i);
+            if (regionId != null && !regionId.isEmpty())
+            {
+                regionIdList.add(regionId);
+            }
+        }
+
+        if (regionIdList.isEmpty())
         {
             sendSystemMessage(player, new string_id("city/city", "no_terrain_regions"));
             return;
@@ -451,12 +467,53 @@ public class city_terrain_manager extends script.base_script
 
         String message = "City Terrain Regions:\n\n";
 
-        for (int i = 0; i < regionIds.length; i++)
+        for (int i = 0; i < regionIdList.size(); i++)
         {
-            String regionType = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionIds[i] + ".type");
-            String shader = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionIds[i] + ".shader_name");
+            String regionId = (String)regionIdList.get(i);
+            String regionBase = TERRAIN_VAR_ROOT + "." + regionId;
 
-            message += (i + 1) + ". [" + regionType + "] " + shader + "\n";
+            String regionType = getStringObjVar(cityHall, regionBase + ".type");
+            String shader = getStringObjVar(cityHall, regionBase + ".shader_name");
+            String creatorName = getStringObjVar(cityHall, regionBase + ".creator_name");
+            int timestamp = getIntObjVar(cityHall, regionBase + ".timestamp");
+            float radius = getFloatObjVar(cityHall, regionBase + ".radius");
+            float height = getFloatObjVar(cityHall, regionBase + ".height");
+
+            // Format timestamp as date
+            String dateStr = "Unknown";
+            if (timestamp > 0)
+            {
+                // Convert game time to readable format
+                int days = timestamp / 86400;
+                int hours = (timestamp % 86400) / 3600;
+                int minutes = (timestamp % 3600) / 60;
+                dateStr = days + " days ago";
+                if (days == 0)
+                {
+                    dateStr = hours + " hours ago";
+                    if (hours == 0)
+                    {
+                        dateStr = minutes + " minutes ago";
+                    }
+                }
+            }
+
+            // Build display line
+            message += "\\#80FFFF" + (i + 1) + ". [" + regionType + "]\\#FFFFFF\n";
+            if (shader != null && !shader.isEmpty())
+            {
+                message += "   Shader: " + shader + "\n";
+            }
+            if (height != 0)
+            {
+                message += "   Height: " + (int)height + "m, Radius: " + (int)radius + "m\n";
+            }
+            else if (radius > 0)
+            {
+                message += "   Radius: " + (int)radius + "m\n";
+            }
+            message += "   Created by: \\#FFFF80" + (creatorName != null ? creatorName : "Unknown") + "\\#FFFFFF\n";
+            message += "   Date: " + dateStr + "\n\n";
         }
 
         sui.msgbox(terminal, player, message, sui.OK_ONLY, "Terrain Regions", sui.MSG_NORMAL, null);
@@ -466,21 +523,50 @@ public class city_terrain_manager extends script.base_script
     {
         obj_id cityHall = cityGetCityHall(cityId);
 
-        String[] regionIds = getStringArrayObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids");
-
-        if (regionIds == null || regionIds.length == 0)
+        int regionCount = getIntObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_count");
+        if (regionCount <= 0)
         {
             sendSystemMessage(player, new string_id("city/city", "no_terrain_regions"));
             return;
         }
 
-        String[] displayNames = new String[regionIds.length];
-
-        for (int i = 0; i < regionIds.length; i++)
+        // Read region IDs from indexed objvars
+        Vector regionIdList = new Vector();
+        for (int i = 0; i < regionCount + 10; i++)
         {
-            String regionType = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionIds[i] + ".type");
-            String shader = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + "." + regionIds[i] + ".shader_name");
-            displayNames[i] = "[" + regionType + "] " + shader;
+            String regionId = getStringObjVar(cityHall, TERRAIN_VAR_ROOT + ".region_ids." + i);
+            if (regionId != null && !regionId.isEmpty())
+            {
+                regionIdList.add(regionId);
+            }
+        }
+
+        if (regionIdList.isEmpty())
+        {
+            sendSystemMessage(player, new string_id("city/city", "no_terrain_regions"));
+            return;
+        }
+
+        String[] regionIds = new String[regionIdList.size()];
+        String[] displayNames = new String[regionIdList.size()];
+
+        for (int i = 0; i < regionIdList.size(); i++)
+        {
+            String regionId = (String)regionIdList.get(i);
+            regionIds[i] = regionId;
+
+            String regionBase = TERRAIN_VAR_ROOT + "." + regionId;
+            String regionType = getStringObjVar(cityHall, regionBase + ".type");
+            String shader = getStringObjVar(cityHall, regionBase + ".shader_name");
+            String creatorName = getStringObjVar(cityHall, regionBase + ".creator_name");
+
+            String displayName = "[" + (regionType != null ? regionType : "Unknown") + "]";
+            if (shader != null && !shader.isEmpty())
+            {
+                displayName += " " + shader;
+            }
+            displayName += " - by " + (creatorName != null ? creatorName : "Unknown");
+            displayNames[i] = displayName;
         }
 
         utils.setScriptVar(player, "terrain.city_id", cityId);
