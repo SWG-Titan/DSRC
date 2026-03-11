@@ -1001,7 +1001,7 @@ public class chat extends script.base_script
         }
 
         // For non-creature objects (tangibles without command queue), use speakText directly
-        if (!isCreature(npc))
+        if (!isMob(npc))
         {
             // Convert chat type and mood strings to indices (0 = default/say, 0 = none)
             int chatTypeIndex = 0;  // say
