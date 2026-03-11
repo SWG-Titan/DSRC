@@ -1,5 +1,6 @@
 package script.conversation;
 
+import script.conversation.base.ConvoResponse;
 import script.library.ai_lib;
 import script.library.utils;
 import script.obj_id;

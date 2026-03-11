@@ -135,40 +135,9 @@ public class conversation_base extends script.base_script
 	// Server-side conversation methods (no STF files required)
 	// These methods allow pure server-sided conversations without string files.
 	// Response matching uses unique response IDs instead of STF string indices.
+	// See ConvoResponse.java for the response class definition.
 	// ========================================================================
 
-	/**
-	 * Represents a server-side conversation response with an ID for matching and display text.
-	 */
-	public static class ConvoResponse
-	{
-		public final String id;
-		public final String text;
-
-		public ConvoResponse(String id, String text)
-		{
-			this.id = id;
-			this.text = text;
-		}
-
-		/**
-		 * Creates the string_id for this response, combining id and text.
-		 * The id is used for matching in OnNpcConversationResponse.
-		 */
-		public string_id toStringId()
-		{
-			return string_id.convoResponse(id, text);
-		}
-
-		/**
-		 * Returns the full match string for use with response.equals() in OnNpcConversationResponse.
-		 * Format: "id|text"
-		 */
-		public String getMatchString()
-		{
-			return id + "|" + text;
-		}
-	}
 
 	/**
 	 * Creates a conversation response for server-side conversations.

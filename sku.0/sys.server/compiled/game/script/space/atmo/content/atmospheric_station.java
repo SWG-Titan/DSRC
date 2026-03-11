@@ -1,5 +1,6 @@
 package script.space.atmo.content;
 
+import script.conversation.base.ConvoResponse;
 import script.library.ai_lib;
 import script.library.utils;
 import script.obj_id;
@@ -33,7 +34,14 @@ public class atmospheric_station extends script.conversation.base.conversation_b
 
     public int OnAttach(obj_id self)
     {
-        setCondition()
+        setCondition(self, CONDITION_CONVERSABLE);
+        return SCRIPT_CONTINUE;
+    }
+
+    public int OnInitialize(obj_id self)
+    {
+        setCondition(self, CONDITION_CONVERSABLE);
+        return SCRIPT_CONTINUE;
     }
 
     @Override

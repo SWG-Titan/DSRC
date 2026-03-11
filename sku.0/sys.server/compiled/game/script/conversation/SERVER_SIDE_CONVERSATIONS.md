@@ -18,6 +18,8 @@ The new server-side system allows:
 ### Basic Structure
 
 ```java
+import script.conversation.base.ConvoResponse;
+
 public class my_conversation extends script.conversation.base.conversation_base
 {
     public String conversation = "conversation.my_conversation";
@@ -192,7 +194,8 @@ The traditional response matching `response.equals("s_6")` continues to work for
 ### Files Modified
 
 - `string_id.java` - Added `convoResponse()` method and helper methods
-- `conversation_base.java` - Added `serverSide_*` methods and `ConvoResponse` class
+- `conversation_base.java` - Added `serverSide_*` methods
+- `ConvoResponse.java` - New class for conversation response data (id + display text)
 - `LocalizationManager.cpp` (client & server) - Added `convo_response` table handling
 
 ## Example
